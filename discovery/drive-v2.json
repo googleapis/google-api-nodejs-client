@@ -3869,7 +3869,7 @@
       }
     }
   },
-  "revision": "20240914",
+  "revision": "20250122",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -6430,7 +6430,7 @@
           "type": "boolean"
         },
         "publishedLink": {
-          "description": "Output only. A link to the published revision. This is only populated for Google Sites files.",
+          "description": "Output only. A link to the published revision. This is only populated for Docs Editors files.",
           "type": "string"
         },
         "publishedOutsideDomain": {

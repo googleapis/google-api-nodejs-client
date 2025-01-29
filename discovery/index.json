@@ -691,6 +691,21 @@
       "version": "v1alpha1"
     },
     {
+      "description": "Places Insights API.",
+      "discoveryRestUrl": "https://areainsights.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://g3doc.corp.google.com/geo/platform/area_insights/README.md?cl=head",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "areainsights:v1",
+      "kind": "discovery#directoryItem",
+      "name": "areainsights",
+      "preferred": true,
+      "title": "Places Insights API",
+      "version": "v1"
+    },
+    {
       "description": "Store and manage build artifacts in a scalable and integrated service built on Google infrastructure.",
       "discoveryRestUrl": "https://artifactregistry.googleapis.com/$discovery/rest?version=v1beta1",
       "documentationLink": "https://cloud.google.com/artifacts/docs/",
@@ -1188,7 +1203,7 @@
     {
       "description": "The Chrome Management API is a suite of services that allows Chrome administrators to view, manage and gain insights on their Chrome OS and Chrome Browser devices.",
       "discoveryRestUrl": "https://chromemanagement.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "http://developers.google.com/chrome/management/",
+      "documentationLink": "https://developers.google.com/chrome/management/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3122,7 +3137,7 @@
       "kind": "discovery#directoryItem",
       "name": "firebasedatabase",
       "preferred": true,
-      "title": "Firebase Realtime Database API",
+      "title": "Firebase Realtime Database Management API",
       "version": "v1beta"
     },
     {
@@ -3336,7 +3351,7 @@
       "version": "v1"
     },
     {
-      "description": "The Google Play games service allows developers to enhance games with social leaderboards, achievements, game state, sign-in with Google, and more.",
+      "description": "The Google Play Games Service allows developers to enhance games with social leaderboards, achievements, game state, sign-in with Google, and more.",
       "discoveryRestUrl": "https://games.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://developers.google.com/games/",
       "icons": {
@@ -3366,7 +3381,7 @@
       "version": "v1configuration"
     },
     {
-      "description": "The Google Play Game Management API allows developers to manage resources from the Google Play Game service.",
+      "description": "The Google Play Games Management API allows developers to manage resources from the Google Play Game service.",
       "discoveryRestUrl": "https://gamesmanagement.googleapis.com/$discovery/rest?version=v1management",
       "documentationLink": "https://developers.google.com/games/",
       "icons": {
@@ -4342,6 +4357,21 @@
     },
     {
       "description": "The Dataproc Metastore API is used to manage the lifecycle and configuration of metastore services.",
+      "discoveryRestUrl": "https://metastore.googleapis.com/$discovery/rest?version=v2alpha",
+      "documentationLink": "https://cloud.google.com/dataproc-metastore/docs",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "metastore:v2alpha",
+      "kind": "discovery#directoryItem",
+      "name": "metastore",
+      "preferred": false,
+      "title": "Dataproc Metastore API",
+      "version": "v2alpha"
+    },
+    {
+      "description": "The Dataproc Metastore API is used to manage the lifecycle and configuration of metastore services.",
       "discoveryRestUrl": "https://metastore.googleapis.com/$discovery/rest?version=v1beta",
       "documentationLink": "https://cloud.google.com/dataproc-metastore/docs",
       "icons": {
@@ -4357,6 +4387,21 @@
     },
     {
       "description": "The Dataproc Metastore API is used to manage the lifecycle and configuration of metastore services.",
+      "discoveryRestUrl": "https://metastore.googleapis.com/$discovery/rest?version=v2beta",
+      "documentationLink": "https://cloud.google.com/dataproc-metastore/docs",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "metastore:v2beta",
+      "kind": "discovery#directoryItem",
+      "name": "metastore",
+      "preferred": false,
+      "title": "Dataproc Metastore API",
+      "version": "v2beta"
+    },
+    {
+      "description": "The Dataproc Metastore API is used to manage the lifecycle and configuration of metastore services.",
       "discoveryRestUrl": "https://metastore.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://cloud.google.com/dataproc-metastore/docs",
       "icons": {
@@ -4366,9 +4411,24 @@
       "id": "metastore:v1",
       "kind": "discovery#directoryItem",
       "name": "metastore",
-      "preferred": true,
+      "preferred": false,
       "title": "Dataproc Metastore API",
       "version": "v1"
+    },
+    {
+      "description": "The Dataproc Metastore API is used to manage the lifecycle and configuration of metastore services.",
+      "discoveryRestUrl": "https://metastore.googleapis.com/$discovery/rest?version=v2",
+      "documentationLink": "https://cloud.google.com/dataproc-metastore/docs",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "metastore:v2",
+      "kind": "discovery#directoryItem",
+      "name": "metastore",
+      "preferred": true,
+      "title": "Dataproc Metastore API",
+      "version": "v2"
     },
     {
       "description": "A unified platform that helps you accelerate your end-to-end cloud journey from your current on-premises or cloud environments to Google Cloud.",
@@ -4548,6 +4608,36 @@
       "name": "mybusinessverifications",
       "preferred": true,
       "title": "My Business Verifications API",
+      "version": "v1"
+    },
+    {
+      "description": "Google Cloud NetApp Volumes is a fully-managed, cloud-based data storage service that provides advanced data management capabilities and highly scalable performance with global availability.",
+      "discoveryRestUrl": "https://netapp.googleapis.com/$discovery/rest?version=v1beta1",
+      "documentationLink": "https://cloud.google.com/netapp/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "netapp:v1beta1",
+      "kind": "discovery#directoryItem",
+      "name": "netapp",
+      "preferred": false,
+      "title": "NetApp API",
+      "version": "v1beta1"
+    },
+    {
+      "description": "Google Cloud NetApp Volumes is a fully-managed, cloud-based data storage service that provides advanced data management capabilities and highly scalable performance with global availability.",
+      "discoveryRestUrl": "https://netapp.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/netapp/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "netapp:v1",
+      "kind": "discovery#directoryItem",
+      "name": "netapp",
+      "preferred": true,
+      "title": "NetApp API",
       "version": "v1"
     },
     {
@@ -4808,6 +4898,21 @@
     },
     {
       "description": "OS management tools that can be used for patch management, patch compliance, and configuration management on VM instances.",
+      "discoveryRestUrl": "https://osconfig.googleapis.com/$discovery/rest?version=v2beta",
+      "documentationLink": "https://cloud.google.com/compute/docs/osconfig/rest",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "osconfig:v2beta",
+      "kind": "discovery#directoryItem",
+      "name": "osconfig",
+      "preferred": false,
+      "title": "OS Config API",
+      "version": "v2beta"
+    },
+    {
+      "description": "OS management tools that can be used for patch management, patch compliance, and configuration management on VM instances.",
       "discoveryRestUrl": "https://osconfig.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://cloud.google.com/compute/docs/osconfig/rest",
       "icons": {
@@ -4880,6 +4985,36 @@
       "preferred": true,
       "title": "PageSpeed Insights API",
       "version": "v5"
+    },
+    {
+      "description": "",
+      "discoveryRestUrl": "https://parallelstore.googleapis.com/$discovery/rest?version=v1beta",
+      "documentationLink": "https://cloud.google.com/parallelstore",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "parallelstore:v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "parallelstore",
+      "preferred": false,
+      "title": "Parallelstore API",
+      "version": "v1beta"
+    },
+    {
+      "description": "",
+      "discoveryRestUrl": "https://parallelstore.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/parallelstore",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "parallelstore:v1",
+      "kind": "discovery#directoryItem",
+      "name": "parallelstore",
+      "preferred": true,
+      "title": "Parallelstore API",
+      "version": "v1"
     },
     {
       "description": "",
@@ -5437,22 +5572,7 @@
       "version": "v1"
     },
     {
-      "description": "The Resource Settings API allows users to control and modify the behavior of their GCP resources (e.g., VM, firewall, Project, etc.) across the Cloud Resource Hierarchy.",
-      "discoveryRestUrl": "https://resourcesettings.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://cloud.google.com/resource-manager/docs/resource-settings/overview",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "resourcesettings:v1",
-      "kind": "discovery#directoryItem",
-      "name": "resourcesettings",
-      "preferred": true,
-      "title": "Resource Settings API",
-      "version": "v1"
-    },
-    {
-      "description": "Vertex AI Search for Retail API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
+      "description": "Vertex AI Search for commerce API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
       "discoveryRestUrl": "https://retail.googleapis.com/$discovery/rest?version=v2alpha",
       "documentationLink": "https://cloud.google.com/recommendations",
       "icons": {
@@ -5463,11 +5583,11 @@
       "kind": "discovery#directoryItem",
       "name": "retail",
       "preferred": false,
-      "title": "Vertex AI Search for Retail API",
+      "title": "Vertex AI Search for commerce API",
       "version": "v2alpha"
     },
     {
-      "description": "Vertex AI Search for Retail API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
+      "description": "Vertex AI Search for commerce API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
       "discoveryRestUrl": "https://retail.googleapis.com/$discovery/rest?version=v2beta",
       "documentationLink": "https://cloud.google.com/recommendations",
       "icons": {
@@ -5478,11 +5598,11 @@
       "kind": "discovery#directoryItem",
       "name": "retail",
       "preferred": false,
-      "title": "Vertex AI Search for Retail API",
+      "title": "Vertex AI Search for commerce API",
       "version": "v2beta"
     },
     {
-      "description": "Vertex AI Search for Retail API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
+      "description": "Vertex AI Search for commerce API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.",
       "discoveryRestUrl": "https://retail.googleapis.com/$discovery/rest?version=v2",
       "documentationLink": "https://cloud.google.com/recommendations",
       "icons": {
@@ -5493,7 +5613,7 @@
       "kind": "discovery#directoryItem",
       "name": "retail",
       "preferred": true,
-      "title": "Vertex AI Search for Retail API",
+      "title": "Vertex AI Search for commerce API",
       "version": "v2"
     },
     {
@@ -5734,6 +5854,21 @@
       "name": "securitycenter",
       "preferred": true,
       "title": "Security Command Center API",
+      "version": "v1"
+    },
+    {
+      "description": "Defines, assesses, and monitors the overall status of your security in Google Cloud. You can use security postures to evaluate your current cloud security against defined benchmarks and help maintain the level of security that your organization requires.",
+      "discoveryRestUrl": "https://securityposture.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/security-command-center",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "securityposture:v1",
+      "kind": "discovery#directoryItem",
+      "name": "securityposture",
+      "preferred": true,
+      "title": "Security Posture API",
       "version": "v1"
     },
     {

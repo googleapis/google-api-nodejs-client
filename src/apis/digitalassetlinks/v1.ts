@@ -153,48 +153,6 @@ export namespace digitalassetlinks_v1 {
     web?: Schema$WebAsset;
   }
   /**
-   * Message used to check for the existence of multiple digital asset links within a single RPC.
-   */
-  export interface Schema$BulkCheckRequest {
-    /**
-     * Same configuration as in Check request, all statements checks will use same configurations.
-     */
-    allowGoogleInternalDataSources?: boolean | null;
-    /**
-     * If specified, will be used in any given template statement that doesn’t specify a relation.
-     */
-    defaultRelation?: string | null;
-    /**
-     * If specified, will be used in any given template statement that doesn’t specify a source.
-     */
-    defaultSource?: Schema$Asset;
-    /**
-     * If specified, will be used in any given template statement that doesn’t specify a target.
-     */
-    defaultTarget?: Schema$Asset;
-    /**
-     * Same configuration as in Check request, all statements checks will use same configurations.
-     */
-    skipCacheLookup?: boolean | null;
-    /**
-     * List of statements to check. For each statement, you can omit a field if the corresponding default_* field below was supplied. Minimum 1 statement; maximum 1,000 statements. Any additional statements will be ignored.
-     */
-    statements?: Schema$StatementTemplate[];
-  }
-  /**
-   * Response for BulkCheck call. Results are sent in a list in the same order in which they were sent. Individual check errors are described in the appropriate check_results entry. If the entire call fails, the response will include a bulk_error_code field describing the error.
-   */
-  export interface Schema$BulkCheckResponse {
-    /**
-     * Error code for the entire request. Present only if the entire request failed. Individual check errors will not trigger the presence of this field.
-     */
-    bulkErrorCode?: string | null;
-    /**
-     * List of results for each check request. Results are returned in the same order in which they were sent in the request.
-     */
-    checkResults?: Schema$CheckResponse[];
-  }
-  /**
    * Describes an X509 certificate.
    */
   export interface Schema$CertificateInfo {
@@ -263,23 +221,6 @@ export namespace digitalassetlinks_v1 {
     target?: Schema$Asset;
   }
   /**
-   * A single statement to check in a bulk call using BulkCheck. See CheckRequest for details about each field.
-   */
-  export interface Schema$StatementTemplate {
-    /**
-     * The relationship being asserted between the source and target. If omitted, you must specify a BulkCheckRequest.default_relation value to use here.
-     */
-    relation?: string | null;
-    /**
-     * The source asset that is asserting the statement. If omitted, you must specify a BulkCheckRequest.default_source value to use here.
-     */
-    source?: Schema$Asset;
-    /**
-     * The target that the source is declaring the relationship with. If omitted, you must specify a BulkCheckRequest.default_target to use here.
-     */
-    target?: Schema$Asset;
-  }
-  /**
    * Describes a web asset.
    */
   export interface Schema$WebAsset {
@@ -293,98 +234,6 @@ export namespace digitalassetlinks_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
-    }
-
-    /**
-     * Send a bundle of statement checks in a single RPC to minimize latency and service load. Statements need not be all for the same source and/or target. We recommend using this method when you need to check more than one statement in a short period of time.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    bulkCheck(
-      params: Params$Resource$Assetlinks$Bulkcheck,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    bulkCheck(
-      params?: Params$Resource$Assetlinks$Bulkcheck,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkCheckResponse>;
-    bulkCheck(
-      params: Params$Resource$Assetlinks$Bulkcheck,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    bulkCheck(
-      params: Params$Resource$Assetlinks$Bulkcheck,
-      options: MethodOptions | BodyResponseCallback<Schema$BulkCheckResponse>,
-      callback: BodyResponseCallback<Schema$BulkCheckResponse>
-    ): void;
-    bulkCheck(
-      params: Params$Resource$Assetlinks$Bulkcheck,
-      callback: BodyResponseCallback<Schema$BulkCheckResponse>
-    ): void;
-    bulkCheck(callback: BodyResponseCallback<Schema$BulkCheckResponse>): void;
-    bulkCheck(
-      paramsOrCallback?:
-        | Params$Resource$Assetlinks$Bulkcheck
-        | BodyResponseCallback<Schema$BulkCheckResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkCheckResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BulkCheckResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$BulkCheckResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Assetlinks$Bulkcheck;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Assetlinks$Bulkcheck;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://digitalassetlinks.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/assetlinks:bulkCheck').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BulkCheckResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BulkCheckResponse>(parameters);
-      }
     }
 
     /**
@@ -476,13 +325,6 @@ export namespace digitalassetlinks_v1 {
     }
   }
 
-  export interface Params$Resource$Assetlinks$Bulkcheck
-    extends StandardParameters {
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$BulkCheckRequest;
-  }
   export interface Params$Resource$Assetlinks$Check extends StandardParameters {
     /**
      * Query string for the relation. We identify relations with strings of the format `/`, where `` must be one of a set of pre-defined purpose categories, and `` is a free-form lowercase alphanumeric string that describes the specific use case of the statement. Refer to [our API documentation](/digital-asset-links/v1/relation-strings) for the current list of supported relations. For a query to match an asset link, both the query's and the asset link's relation strings must match exactly. Example: A query with relation `delegate_permission/common.handle_all_urls` matches an asset link with relation `delegate_permission/common.handle_all_urls`.

@@ -144,7 +144,7 @@ export namespace merchantapi_accounts_v1beta {
     validUntil?: Schema$Date;
   }
   /**
-   * An account.
+   * The `Account` message represents a merchant's account within Shopping Ads. It's the primary entity for managing product data, settings, and interactions with Google's services and external providers. Accounts can operate as standalone entities or be part of a multi-client account (MCA) structure. In an MCA setup the parent account manages multiple sub-accounts. Establishing an account involves configuring attributes like the account name, time zone, and language preferences. The `Account` message is the parent entity for many other resources, for example, `AccountRelationship`, `Homepage`, `BusinessInfo` and so on.
    */
   export interface Schema$Account {
     /**
@@ -218,7 +218,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     accountAggregation?: Schema$AccountAggregation;
     /**
-     * Optional. The provider of the service. Format: `accounts/{account\}`
+     * Required. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).
      */
     provider?: string | null;
   }
@@ -290,7 +290,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string | null;
     /**
-     * Optional. Whether the identity attributes may be used for promotions.
+     * Required. Whether the identity attributes may be used for promotions.
      */
     promotionsConsent?: string | null;
     /**
@@ -307,11 +307,11 @@ export namespace merchantapi_accounts_v1beta {
     womenOwned?: Schema$IdentityAttribute;
   }
   /**
-   * Collection of information related to a business.
+   * The `BusinessInfo` message contains essential information about a merchant's business. This message captures key business details such as physical address, customer service contacts, and region-specific identifiers.
    */
   export interface Schema$BusinessInfo {
     /**
-     * Optional. The address of the business.
+     * Optional. The address of the business. Only `region_code`, `address_lines`, `postal_code`, `administrative_area` and `locality` fields are supported. All other fields are ignored.
      */
     address?: Schema$PostalAddress;
     /**
@@ -336,7 +336,7 @@ export namespace merchantapi_accounts_v1beta {
     phoneVerificationState?: string | null;
   }
   /**
-   * A list of carrier rates that can be referred to by `main_table` or `single_value`.
+   * A list of carrier rates that can be referred to by `main_table` or `single_value`. Supported carrier services are defined in https://support.google.com/merchants/answer/12577710?ref_topic=12570808&sjid=10662598224319463032-NC#zippy=%2Cdelivery-cost-rate-type%2Ccarrier-rate-au-de-uk-and-us-only.
    */
   export interface Schema$CarrierRate {
     /**
@@ -367,7 +367,12 @@ export namespace merchantapi_accounts_v1beta {
   /**
    * Request message for the `ClaimHomepage` method.
    */
-  export interface Schema$ClaimHomepageRequest {}
+  export interface Schema$ClaimHomepageRequest {
+    /**
+     * Optional. When set to `true`, this option removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.
+     */
+    overwrite?: boolean | null;
+  }
   /**
    * Request message for the `CreateAndConfigureAccount` method.
    */
@@ -394,7 +399,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     parent?: string | null;
     /**
-     * Required. The user to create.
+     * Optional. The user to create.
      */
     user?: Schema$User;
     /**
@@ -584,7 +589,7 @@ export namespace merchantapi_accounts_v1beta {
     weights?: Schema$Weight[];
   }
   /**
-   * A store's homepage.
+   * The `Homepage` message represents a merchant's store homepage within the system. A merchant's homepage is the primary domain where customers interact with their store. The homepage can be claimed and verified as a proof of ownership and allows the merchant to unlock features that require a verified website. For more information, see [Understanding online store URL verification](//support.google.com/merchants/answer/176793).
    */
   export interface Schema$Homepage {
     /**
@@ -792,7 +797,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     acceptExchange?: boolean | null;
     /**
-     * The countries of sale where the return policy applies. The values must be a valid 2 letter ISO 3166 code.
+     * Required. Immutable. The countries of sale where the return policy applies. The values must be a valid 2 letter ISO 3166 code.
      */
     countries?: string[] | null;
     /**
@@ -800,7 +805,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     itemConditions?: string[] | null;
     /**
-     * This field represents the unique user-defined label of the return policy. It is important to note that the same label cannot be used in different return policies for the same country. Unless a product specifies a specific label attribute, policies will be automatically labeled as 'default'. To assign a custom return policy to certain product groups, follow the instructions provided in the [Return policy label] (https://support.google.com/merchants/answer/9445425). The label can contain up to 50 characters.
+     * Required. Immutable. This field represents the unique user-defined label of the return policy. It is important to note that the same label cannot be used in different return policies for the same country. Unless a product specifies a specific label attribute, policies will be automatically labeled as 'default'. To assign a custom return policy to certain product groups, follow the instructions provided in the [Return policy label] (https://support.google.com/merchants/answer/9445425). The label can contain up to 50 characters.
      */
     label?: string | null;
     /**
@@ -828,20 +833,24 @@ export namespace merchantapi_accounts_v1beta {
      */
     returnPolicyId?: string | null;
     /**
-     * The return policy uri. This can used by Google to do a sanity check for the policy. It must be a valid URL.
+     * Required. The return policy uri. This can used by Google to do a sanity check for the policy. It must be a valid URL.
      */
     returnPolicyUri?: string | null;
     /**
      * The return shipping fee. Should be set only when customer need to download and print the return label.
      */
     returnShippingFee?: Schema$ReturnShippingFee;
+    /**
+     * Optional. Overrides to the general policy for orders placed during a specific set of time intervals.
+     */
+    seasonalOverrides?: Schema$SeasonalOverride[];
   }
   /**
    * An object representing a phone number, suitable as an API wire format. This representation: - should not be used for locale-specific formatting of a phone number, such as "+1 (650) 253-0000 ext. 123" - is not designed for efficient storage - may not be suitable for dialing - specialized libraries (see references) should be used to parse the number for that purpose To do something meaningful with this number, such as format it for various use-cases, convert it to an `i18n.phonenumbers.PhoneNumber` object first. For instance, in Java this would be: com.google.type.PhoneNumber wireProto = com.google.type.PhoneNumber.newBuilder().build(); com.google.i18n.phonenumbers.Phonenumber.PhoneNumber phoneNumber = PhoneNumberUtil.getInstance().parse(wireProto.getE164Number(), "ZZ"); if (!wireProto.getExtension().isEmpty()) { phoneNumber.setExtension(wireProto.getExtension()); \} Reference(s): - https://github.com/google/libphonenumber
    */
   export interface Schema$PhoneNumber {
     /**
-     * The phone number, represented as a leading plus sign ('+'), followed by a phone number that uses a relaxed ITU E.164 format consisting of the country calling code (1 to 3 digits) and the subscriber number, with no additional spaces or formatting, e.g.: - correct: "+15552220123" - incorrect: "+1 (555) 222-01234 x123". The ITU E.164 format limits the latter to 12 digits, but in practice not all countries respect that, so we relax that restriction here. National-only numbers are not allowed. References: - https://www.itu.int/rec/T-REC-E.164-201011-I - https://en.wikipedia.org/wiki/E.164. - https://en.wikipedia.org/wiki/List_of_country_calling_codes
+     * The phone number, represented as a leading plus sign ('+'), followed by a phone number that uses a relaxed ITU E.164 format consisting of the country calling code (1 to 3 digits) and the subscriber number, with no additional spaces or formatting. For example: - correct: "+15552220123" - incorrect: "+1 (555) 222-01234 x123". The ITU E.164 format limits the latter to 12 digits, but in practice not all countries respect that, so we relax that restriction here. National-only numbers are not allowed. References: - https://www.itu.int/rec/T-REC-E.164-201011-I - https://en.wikipedia.org/wiki/E.164. - https://en.wikipedia.org/wiki/List_of_country_calling_codes
      */
     e164Number?: string | null;
     /**
@@ -867,15 +876,15 @@ export namespace merchantapi_accounts_v1beta {
     type?: string | null;
   }
   /**
-   * Represents a postal address, e.g. for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created via user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, please see: https://support.google.com/business/answer/6397478
+   * Represents a postal address. For example for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478
    */
   export interface Schema$PostalAddress {
     /**
-     * Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (e.g. "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country/region of the address. In places where this can vary (e.g. Japan), address_language is used to make it explicit (e.g. "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
+     * Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (For example "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country/region of the address. In places where this can vary (For example Japan), address_language is used to make it explicit (For example "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
      */
     addressLines?: string[] | null;
     /**
-     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (e.g. "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. E.g. in Switzerland this should be left unpopulated.
+     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (For example "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example in Switzerland this should be left unpopulated.
      */
     administrativeArea?: string | null;
     /**
@@ -891,7 +900,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     organization?: string | null;
     /**
-     * Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (e.g. state/zip validation in the U.S.A.).
+     * Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (For example state/zip validation in the U.S.A.).
      */
     postalCode?: string | null;
     /**
@@ -907,7 +916,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     revision?: number | null;
     /**
-     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (e.g. "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (e.g. Côte d'Ivoire).
+     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (For example "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (For example Côte d'Ivoire).
      */
     sortingCode?: string | null;
     /**
@@ -991,6 +1000,10 @@ export namespace merchantapi_accounts_v1beta {
      * A message to describe the change that happened to the product
      */
     changes?: Schema$ProductChange[];
+    /**
+     * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     */
+    expirationTime?: string | null;
     /**
      * The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id\}`
      */
@@ -1143,7 +1156,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     fixedFee?: Schema$Price;
     /**
-     * Type of return shipping fee.
+     * Required. Type of return shipping fee.
      */
     type?: string | null;
   }
@@ -1155,6 +1168,27 @@ export namespace merchantapi_accounts_v1beta {
      * Required. The list of cells that constitute the row. Must have the same length as `columnHeaders` for two-dimensional tables, a length of 1 for one-dimensional tables.
      */
     cells?: Schema$Value[];
+  }
+  /**
+   * Next: 5
+   */
+  export interface Schema$SeasonalOverride {
+    /**
+     * Required. Defines the date range when this seasonal override applies. Both begin and end are inclusive and should be in date decimal format, example 20250115. The dates of the seasonal overrides should not overlap.
+     */
+    begin?: Schema$Date;
+    /**
+     * Required. seasonal override end date (inclusive).
+     */
+    end?: Schema$Date;
+    /**
+     * Required. Display name of this seasonal override in Merchant Center.
+     */
+    label?: string | null;
+    /**
+     * Required. The return policy for the given date range.
+     */
+    policy?: Schema$Policy;
   }
   /**
    * Shipping service.
@@ -1227,11 +1261,11 @@ export namespace merchantapi_accounts_v1beta {
     warehouses?: Schema$Warehouse[];
   }
   /**
-   * An object representing a short code, which is a phone number that is typically much shorter than regular phone numbers and can be used to address messages in MMS and SMS systems, as well as for abbreviated dialing (e.g. "Text 611 to see how many minutes you have remaining on your plan."). Short codes are restricted to a region and are not internationally dialable, which means the same short code can exist in different regions, with different usage and pricing, even if those regions share the same country calling code (e.g. US and CA).
+   * An object representing a short code, which is a phone number that is typically much shorter than regular phone numbers and can be used to address messages in MMS and SMS systems, as well as for abbreviated dialing (For example "Text 611 to see how many minutes you have remaining on your plan."). Short codes are restricted to a region and are not internationally dialable, which means the same short code can exist in different regions, with different usage and pricing, even if those regions share the same country calling code (For example: US and CA).
    */
   export interface Schema$ShortCode {
     /**
-     * Required. The short code digits, without a leading plus ('+') or country calling code, e.g. "611".
+     * Required. The short code digits, without a leading plus ('+') or country calling code. For example "611".
      */
     number?: string | null;
     /**
@@ -1295,7 +1329,7 @@ export namespace merchantapi_accounts_v1beta {
     rows?: Schema$Row[];
   }
   /**
-   * A `TermsOfService`.
+   * The `TermsOfService` message represents a specific version of the terms of service that merchants must accept to access certain features or services (see https://support.google.com/merchants/answer/160173). This message is important for the onboarding process, ensuring that merchants agree to the necessary legal agreements for using the service. Merchants can retrieve the latest terms of service for a given `kind` and `region` through `RetrieveLatestTermsOfService`, and accept them as required through `AcceptTermsOfService`.
    */
   export interface Schema$TermsOfService {
     /**
@@ -1349,11 +1383,11 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$TimeZone {
     /**
-     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     * IANA Time Zone Database time zone. For example "America/New_York".
      */
     id?: string | null;
     /**
-     * Optional. IANA Time Zone Database version number, e.g. "2019a".
+     * Optional. IANA Time Zone Database version number. For example "2019a".
      */
     version?: string | null;
   }
@@ -1401,7 +1435,7 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$UnclaimHomepageRequest {}
   /**
-   * A [user](https://support.google.com/merchants/answer/12160472).
+   * The `User` message represents a user associated with a Merchant Center account. It is used to manage user permissions and access rights within the account. For more information, see [Frequently asked questions about people and access levels](//support.google.com/merchants/answer/12160472).
    */
   export interface Schema$User {
     /**
@@ -1443,7 +1477,7 @@ export namespace merchantapi_accounts_v1beta {
     subtable?: string | null;
   }
   /**
-   * A fulfillment warehouse, which stores and handles inventory. Next tag: 7
+   * A fulfillment warehouse, which stores and handles inventory.
    */
   export interface Schema$Warehouse {
     /**
@@ -1472,7 +1506,7 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$WarehouseBasedDeliveryTime {
     /**
-     * Required. Carrier, such as `"UPS"` or `"Fedex"`.
+     * Required. Carrier, such as `"UPS"` or `"Fedex"`. [supported carriers](https://support.google.com/merchants/answer/7050921#zippy=%2Ccarrier-rates-au-de-uk-and-us-only)
      */
     carrier?: string | null;
     /**
@@ -2135,7 +2169,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent account. Format: `accounts/{account\}`
+     * Required. The aggregation service provider. Format: `providers/{providerId\}`
      */
     provider?: string;
   }
@@ -2145,7 +2179,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `account_name` - `adult_content` - `language_code` - `time_zone`
      */
     updateMask?: string;
 
@@ -2571,7 +2605,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `black_owned` - `latino_owned` - `promotions_consent` - `small_business` - `veteran_owned` - `women_owned`
      */
     updateMask?: string;
 
@@ -2780,7 +2814,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `address` - `customer_service` - `korean_business_registration_number`
      */
     updateMask?: string;
 
@@ -2797,7 +2831,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Returns the email preferences for a Merchant Center account user. Use the name=accounts/x/users/me/emailPreferences alias to get preferences for the authenticated user.
+     * Returns the email preferences for a Merchant Center account user. This service only permits retrieving and updating email preferences for the authenticated user. Use the name=accounts/x/users/me/emailPreferences alias to get preferences for the authenticated user.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2993,7 +3027,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `news_and_tips`
      */
     updateMask?: string;
 
@@ -3400,7 +3434,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `uri`
      */
     updateMask?: string;
 
@@ -3543,7 +3577,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Gets an existing return policy.
+     * Gets an existing return policy for a given merchant.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3634,7 +3668,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Lists all existing return policies.
+     * Lists all existing return policies for a given merchant.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5194,7 +5228,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Deletes a Merchant Center account user. Executing this method requires admin access.
+     * Deletes a Merchant Center account user. Executing this method requires admin access. The user to be deleted can't be the last admin user of that account. Also a user is protected from deletion if it is managed by Business Manager"
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5601,7 +5635,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `access_rights`
      */
     updateMask?: string;
 

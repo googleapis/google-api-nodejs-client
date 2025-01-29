@@ -586,7 +586,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "networksecurity.organizations.locations.operations.cancel",
@@ -2740,6 +2740,734 @@
                 }
               }
             },
+            "interceptDeploymentGroups": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new InterceptDeploymentGroup in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.interceptDeploymentGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "interceptDeploymentGroupId": {
+                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and intercept_deployment_group_id from the method_signature of Create RPC",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/interceptDeploymentGroups",
+                  "request": {
+                    "$ref": "InterceptDeploymentGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single InterceptDeploymentGroup.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups/{interceptDeploymentGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.interceptDeploymentGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeploymentGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single InterceptDeploymentGroup.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups/{interceptDeploymentGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptDeploymentGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeploymentGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "InterceptDeploymentGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists InterceptDeploymentGroups in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptDeploymentGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListInterceptDeploymentGroupsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/interceptDeploymentGroups",
+                  "response": {
+                    "$ref": "ListInterceptDeploymentGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a single InterceptDeploymentGroup.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups/{interceptDeploymentGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.interceptDeploymentGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. Then name of the InterceptDeploymentGroup.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeploymentGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the InterceptDeploymentGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "InterceptDeploymentGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "interceptDeployments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new InterceptDeployment in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeployments",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.interceptDeployments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "interceptDeploymentId": {
+                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and intercept_deployment_id from the method_signature of Create RPC",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/interceptDeployments",
+                  "request": {
+                    "$ref": "InterceptDeployment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single InterceptDeployment.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeployments/{interceptDeploymentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.interceptDeployments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single InterceptDeployment.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeployments/{interceptDeploymentsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptDeployments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "InterceptDeployment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists InterceptDeployments in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeployments",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptDeployments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListInterceptDeploymentsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/interceptDeployments",
+                  "response": {
+                    "$ref": "ListInterceptDeploymentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a single InterceptDeployment.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeployments/{interceptDeploymentsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.interceptDeployments.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. The name of the InterceptDeployment.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the InterceptDeployment resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "InterceptDeployment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "interceptEndpointGroupAssociations": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new InterceptEndpointGroupAssociation in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "interceptEndpointGroupAssociationId": {
+                      "description": "Optional. Id of the requesting object If auto-generating Id server-side, remove this field and intercept_endpoint_group_association_id from the method_signature of Create RPC",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/interceptEndpointGroupAssociations",
+                  "request": {
+                    "$ref": "InterceptEndpointGroupAssociation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single InterceptEndpointGroupAssociation.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations/{interceptEndpointGroupAssociationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroupAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single InterceptEndpointGroupAssociation.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations/{interceptEndpointGroupAssociationsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroupAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "InterceptEndpointGroupAssociation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists InterceptEndpointGroupAssociations in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListInterceptEndpointGroupAssociationsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/interceptEndpointGroupAssociations",
+                  "response": {
+                    "$ref": "ListInterceptEndpointGroupAssociationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a single InterceptEndpointGroupAssociation.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations/{interceptEndpointGroupAssociationsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. The name of the InterceptEndpointGroupAssociation.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroupAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the InterceptEndpointGroupAssociation resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "InterceptEndpointGroupAssociation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "interceptEndpointGroups": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new InterceptEndpointGroup in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "interceptEndpointGroupId": {
+                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and intercept_endpoint_group_id from the method_signature of Create RPC",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/interceptEndpointGroups",
+                  "request": {
+                    "$ref": "InterceptEndpointGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single InterceptEndpointGroup.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups/{interceptEndpointGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single InterceptEndpointGroup.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups/{interceptEndpointGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "InterceptEndpointGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists InterceptEndpointGroups in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListInterceptEndpointGroupsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/interceptEndpointGroups",
+                  "response": {
+                    "$ref": "ListInterceptEndpointGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a single InterceptEndpointGroup.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups/{interceptEndpointGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. The name of the InterceptEndpointGroup.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the InterceptEndpointGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "InterceptEndpointGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "mirroringDeploymentGroups": {
               "methods": {
                 "create": {
@@ -3437,7 +4165,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. The name of the MirroringEndpointGroup.",
+                      "description": "Immutable. Identifier. Next ID: 11 The name of the MirroringEndpointGroup.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroups/[^/]+$",
                       "required": true,
@@ -3471,7 +4199,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.operations.cancel",
@@ -4159,7 +4887,7 @@
       }
     }
   },
-  "revision": "20240919",
+  "revision": "20250118",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -4388,11 +5116,11 @@
       "properties": {
         "from": {
           "$ref": "AuthzPolicyAuthzRuleFrom",
-          "description": "Optional. Describes properties of one or more sources of a request."
+          "description": "Optional. Describes properties of a source of a request."
         },
         "to": {
           "$ref": "AuthzPolicyAuthzRuleTo",
-          "description": "Optional. Describes properties of one or more targets of a request."
+          "description": "Optional. Describes properties of a target of a request."
         },
         "when": {
           "description": "Optional. CEL expression that describes the conditions to be satisfied for the action. The result of the CEL expression is ANDed with the from and to. Refer to the CEL language reference for a list of available attributes.",
@@ -4413,7 +5141,7 @@
           "type": "array"
         },
         "sources": {
-          "description": "Optional. Describes the properties of a request's sources. At least one of sources or notSources must be specified. Limited to 5 sources. A match occurs when ANY source (in sources or notSources) matches the request. Within a single source, the match follows AND semantics across fields and OR semantics within a single field, i.e. a match occurs when ANY principal matches AND ANY ipBlocks match.",
+          "description": "Optional. Describes the properties of a request's sources. At least one of sources or notSources must be specified. Limited to 1 source. A match occurs when ANY source (in sources or notSources) matches the request. Within a single source, the match follows AND semantics across fields and OR semantics within a single field, i.e. a match occurs when ANY principal matches AND ANY ipBlocks match.",
           "items": {
             "$ref": "AuthzPolicyAuthzRuleFromRequestSource"
           },
@@ -4527,7 +5255,7 @@
           "type": "array"
         },
         "operations": {
-          "description": "Optional. Describes properties of one or more targets of a request. At least one of operations or notOperations must be specified. Limited to 5 operations. A match occurs when ANY operation (in operations or notOperations) matches. Within an operation, the match follows AND semantics across fields and OR semantics within a field, i.e. a match occurs when ANY path matches AND ANY header matches and ANY method matches.",
+          "description": "Optional. Describes properties of one or more targets of a request. At least one of operations or notOperations must be specified. Limited to 1 operation. A match occurs when ANY operation (in operations or notOperations) matches. Within an operation, the match follows AND semantics across fields and OR semantics within a field, i.e. a match occurs when ANY path matches AND ANY header matches and ANY method matches.",
           "items": {
             "$ref": "AuthzPolicyAuthzRuleToRequestOperation"
           },
@@ -4723,6 +5451,17 @@
         },
         "sourceAddressGroup": {
           "description": "Required. Source address group to clone items from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomInterceptProfile": {
+      "description": "CustomInterceptProfile defines the Packet Intercept Endpoint Group used to intercept traffic to a third-party firewall in a Firewall rule.",
+      "id": "CustomInterceptProfile",
+      "properties": {
+        "interceptEndpointGroup": {
+          "description": "Required. The InterceptEndpointGroup to which traffic associated with the SP should be mirrored.",
           "type": "string"
         }
       },
@@ -4934,7 +5673,7 @@
             "Active and ready for traffic.",
             "Being deleted.",
             "Down or in an error state.",
-            "The GCP project that housed the association has been deleted."
+            "The project that housed the association has been deleted."
           ],
           "readOnly": true,
           "type": "string"
@@ -5248,6 +5987,369 @@
       },
       "type": "object"
     },
+    "InterceptDeployment": {
+      "description": "Message describing InterceptDeployment object NEXT ID: 10",
+      "id": "InterceptDeployment",
+      "properties": {
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the deployment. Used as additional context for the deployment.",
+          "type": "string"
+        },
+        "forwardingRule": {
+          "description": "Required. Immutable. The regional load balancer which the intercepted traffic should be forwarded to. Format is: projects/{project}/regions/{region}/forwardingRules/{forwardingRule}",
+          "type": "string"
+        },
+        "interceptDeploymentGroup": {
+          "description": "Required. Immutable. The Intercept Deployment Group that this resource is part of. Format is: `projects/{project}/locations/global/interceptDeploymentGroups/{interceptDeploymentGroup}`",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The name of the InterceptDeployment.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. Current state of the deployment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Ready.",
+            "Being created.",
+            "Being deleted.",
+            "The underlying data plane is out of sync with the deployment. The deployment is not expected to be usable. This state can result in undefined behavior.",
+            "An attempt to delete the deployment has failed. This is a terminal state and the deployment is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the deployment."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptDeploymentGroup": {
+      "description": "Message describing InterceptDeploymentGroup object NEXT ID: 10",
+      "id": "InterceptDeploymentGroup",
+      "properties": {
+        "connectedEndpointGroups": {
+          "description": "Output only. The list of Intercept Endpoint Groups that are connected to this resource.",
+          "items": {
+            "$ref": "InterceptDeploymentGroupConnectedEndpointGroup"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the deployment group. Used as additional context for the deployment group.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. Then name of the InterceptDeploymentGroup.",
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. Immutable. The network that is being used for the deployment. Format is: projects/{project}/global/networks/{network}.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. Current state of the deployment group.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Ready.",
+            "Being created.",
+            "Being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptDeploymentGroupConnectedEndpointGroup": {
+      "description": "An endpoint group connected to this deployment group.",
+      "id": "InterceptDeploymentGroupConnectedEndpointGroup",
+      "properties": {
+        "name": {
+          "description": "Output only. A connected intercept endpoint group.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptEndpointGroup": {
+      "description": "Message describing InterceptEndpointGroup object.",
+      "id": "InterceptEndpointGroup",
+      "properties": {
+        "associations": {
+          "description": "Output only. List of Intercept Endpoint Group Associations that are associated to this endpoint group.",
+          "items": {
+            "$ref": "InterceptEndpointGroupAssociationDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the endpoint group. Used as additional context for the endpoint group.",
+          "type": "string"
+        },
+        "interceptDeploymentGroup": {
+          "description": "Required. Immutable. The Intercept Deployment Group that this resource is connected to. Format is: `projects/{project}/locations/global/interceptDeploymentGroups/{interceptDeploymentGroup}`",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The name of the InterceptEndpointGroup.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. Current state of the endpoint group.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CLOSED",
+            "CREATING",
+            "DELETING",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Ready.",
+            "The deployment group has been deleted and intercept is disabled.",
+            "Being created.",
+            "Being deleted.",
+            "The underlying data plane is out of sync with the endpoint group. Some associations might not be usable.",
+            "An attempt to delete the endpoint group has failed. This is a terminal state and the endpoint group is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the endpoint group."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptEndpointGroupAssociation": {
+      "description": "Message describing InterceptEndpointGroupAssociation object",
+      "id": "InterceptEndpointGroupAssociation",
+      "properties": {
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "interceptEndpointGroup": {
+          "description": "Required. Immutable. The Intercept Endpoint Group that this resource is connected to. Format is: `projects/{project}/locations/global/interceptEndpointGroups/{interceptEndpointGroup}`",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "locationsDetails": {
+          "description": "Output only. The list of locations that this association is in and its details.",
+          "items": {
+            "$ref": "InterceptEndpointGroupAssociationLocationDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The name of the InterceptEndpointGroupAssociation.",
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. Immutable. The VPC network associated. Format: projects/{project}/global/networks/{network}.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. Current state of the endpoint group association.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "CLOSED",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Ready.",
+            "Being created.",
+            "Being deleted.",
+            "Intercept is disabled due to an operation on another resource.",
+            "The underlying data plane is out of sync with the association. The association is not expected to be usable. This state can result in undefined behavior. See the `locations_details` field for more details.",
+            "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptEndpointGroupAssociationDetails": {
+      "description": "This is a subset of the InterceptEndpointGroupAssociation message, containing fields to be used by the consumer.",
+      "id": "InterceptEndpointGroupAssociationDetails",
+      "properties": {
+        "name": {
+          "description": "Output only. The resource name of the InterceptEndpointGroupAssociation. Format: projects/{project}/locations/{location}/interceptEndpointGroupAssociations/{interceptEndpointGroupAssociation}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "network": {
+          "description": "Output only. The VPC network associated. Format: projects/{project}/global/networks/{name}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Current state of the association.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "CLOSED",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Ready.",
+            "Being created.",
+            "Being deleted.",
+            "Intercept is disabled due to an operation on another resource.",
+            "The underlying data plane is out of sync with the association. The association is not expected to be usable. This state can result in undefined behavior. See the `locations_details` field for more details.",
+            "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptEndpointGroupAssociationLocationDetails": {
+      "description": "Details about the association status in a specific cloud location.",
+      "id": "InterceptEndpointGroupAssociationLocationDetails",
+      "properties": {
+        "location": {
+          "description": "Output only. The cloud location.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The association state in this location.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OUT_OF_SYNC"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Ready.",
+            "The data plane is out of sync with the association in this location."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAddressGroupReferencesResponse": {
       "description": "Response of the ListAddressGroupReferences method.",
       "id": "ListAddressGroupReferencesResponse",
@@ -5461,6 +6563,85 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListInterceptDeploymentGroupsResponse": {
+      "description": "Message for response to listing InterceptDeploymentGroups",
+      "id": "ListInterceptDeploymentGroupsResponse",
+      "properties": {
+        "interceptDeploymentGroups": {
+          "description": "The list of InterceptDeploymentGroup",
+          "items": {
+            "$ref": "InterceptDeploymentGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListInterceptDeploymentsResponse": {
+      "description": "Message for response to listing InterceptDeployments",
+      "id": "ListInterceptDeploymentsResponse",
+      "properties": {
+        "interceptDeployments": {
+          "description": "The list of InterceptDeployment",
+          "items": {
+            "$ref": "InterceptDeployment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListInterceptEndpointGroupAssociationsResponse": {
+      "description": "Message for response to listing InterceptEndpointGroupAssociations",
+      "id": "ListInterceptEndpointGroupAssociationsResponse",
+      "properties": {
+        "interceptEndpointGroupAssociations": {
+          "description": "The list of InterceptEndpointGroupAssociation",
+          "items": {
+            "$ref": "InterceptEndpointGroupAssociation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListInterceptEndpointGroupsResponse": {
+      "description": "Message for response to listing InterceptEndpointGroups",
+      "id": "ListInterceptEndpointGroupsResponse",
+      "properties": {
+        "interceptEndpointGroups": {
+          "description": "The list of InterceptEndpointGroup",
+          "items": {
+            "$ref": "InterceptEndpointGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5751,7 +6932,7 @@
       "type": "object"
     },
     "MirroringDeployment": {
-      "description": "Message describing MirroringDeployment object",
+      "description": "Message describing MirroringDeployment object NEXT ID: 10",
       "id": "MirroringDeployment",
       "properties": {
         "createTime": {
@@ -5815,7 +6996,7 @@
       "type": "object"
     },
     "MirroringDeploymentGroup": {
-      "description": "Message describing MirroringDeploymentGroup object",
+      "description": "Message describing MirroringDeploymentGroup object NEXT ID: 10",
       "id": "MirroringDeploymentGroup",
       "properties": {
         "connectedEndpointGroups": {
@@ -5891,9 +7072,17 @@
       "type": "object"
     },
     "MirroringEndpointGroup": {
-      "description": "Message describing MirroringEndpointGroup object. Next ID: 10",
+      "description": "Message describing MirroringEndpointGroup object.",
       "id": "MirroringEndpointGroup",
       "properties": {
+        "associations": {
+          "description": "Output only. List of Mirroring Endpoint Group Associations that are associated to this endpoint group.",
+          "items": {
+            "$ref": "MirroringEndpointGroupAssociationDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. [Output only] Create time stamp",
           "format": "google-datetime",
@@ -5912,7 +7101,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Identifier. The name of the MirroringEndpointGroup.",
+          "description": "Immutable. Identifier. Next ID: 11 The name of the MirroringEndpointGroup.",
           "type": "string"
         },
         "reconciling": {
@@ -6020,6 +7209,46 @@
         "updateTime": {
           "description": "Output only. [Output only] Update time stamp",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MirroringEndpointGroupAssociationDetails": {
+      "description": "This is a subset of the MirroringEndpointGroupAssociation message, containing fields to be used by the consumer.",
+      "id": "MirroringEndpointGroupAssociationDetails",
+      "properties": {
+        "name": {
+          "description": "Output only. The resource name of the MirroringEndpointGroupAssociation. Format: projects/{project}/locations/{location}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociation}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "network": {
+          "description": "Output only. The VPC network associated. Format: projects/{project}/global/networks/{name}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Current state of the association.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "CLOSED",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Ready.",
+            "Being created.",
+            "Being deleted.",
+            "Mirroring is disabled due to an operation on another resource.",
+            "The underlying data plane is out of sync with the association. The association is not expected to be usable. This state can result in undefined behavior. See the `locations_details` field for more details.",
+            "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -6172,7 +7401,7 @@
       "type": "object"
     },
     "SecurityProfile": {
-      "description": "SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 12",
+      "description": "SecurityProfile is a resource that defines the behavior for one of many ProfileTypes.",
       "id": "SecurityProfile",
       "properties": {
         "createTime": {
@@ -6180,6 +7409,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "customInterceptProfile": {
+          "$ref": "CustomInterceptProfile",
+          "description": "The custom TPPI configuration for the SecurityProfile."
         },
         "customMirroringProfile": {
           "$ref": "CustomMirroringProfile",
@@ -6214,12 +7447,14 @@
           "enum": [
             "PROFILE_TYPE_UNSPECIFIED",
             "THREAT_PREVENTION",
-            "CUSTOM_MIRRORING"
+            "CUSTOM_MIRRORING",
+            "CUSTOM_INTERCEPT"
           ],
           "enumDescriptions": [
             "Profile type not specified.",
             "Profile type for threat prevention.",
-            "Profile type for packet mirroring v2"
+            "Profile type for packet mirroring v2",
+            "Profile type for TPPI."
           ],
           "type": "string"
         },
@@ -6233,13 +7468,17 @@
       "type": "object"
     },
     "SecurityProfileGroup": {
-      "description": "SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 11",
+      "description": "SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes.",
       "id": "SecurityProfileGroup",
       "properties": {
         "createTime": {
           "description": "Output only. Resource creation timestamp.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "customInterceptProfile": {
+          "description": "Optional. Reference to a SecurityProfile with the CustomIntercept configuration.",
           "type": "string"
         },
         "customMirroringProfile": {

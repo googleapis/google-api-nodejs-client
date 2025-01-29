@@ -1201,7 +1201,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "notebooks.projects.locations.operations.cancel",
@@ -2008,7 +2008,7 @@
       }
     }
   },
-  "revision": "20240918",
+  "revision": "20241204",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2132,7 +2132,7 @@
           "description": "Required. Defines flags that are used to run the diagnostic tool"
         },
         "timeoutMinutes": {
-          "description": "Optional. Maxmium amount of time in minutes before the operation times out.",
+          "description": "Optional. Maximum amount of time in minutes before the operation times out.",
           "format": "int32",
           "type": "integer"
         }
@@ -2148,7 +2148,7 @@
           "description": "Required. Defines flags that are used to run the diagnostic tool"
         },
         "timeoutMinutes": {
-          "description": "Optional. Maxmium amount of time in minutes before the operation times out.",
+          "description": "Optional. Maximum amount of time in minutes before the operation times out.",
           "format": "int32",
           "type": "integer"
         }
@@ -2706,7 +2706,7 @@
           "type": "object"
         },
         "machineType": {
-          "description": "Required. The [Compute Engine machine type](https://cloud.google.com/compute/docs/machine-types) of this instance.",
+          "description": "Required. The [Compute Engine machine type](https://cloud.google.com/compute/docs/machine-resource) of this instance.",
           "type": "string"
         },
         "metadata": {
@@ -3360,7 +3360,7 @@
           "type": "string"
         },
         "requestedCancellation": {
-          "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
           "type": "boolean"
         },
         "statusMessage": {
@@ -3968,9 +3968,9 @@
           "enumDescriptions": [
             "Unspecified state.",
             "The job is executing normally.",
-            "The job is paused by the user. It will not execute. A user can intentionally pause the job using PauseJobRequest.",
+            "The job is paused by the user. It will not execute. A user can intentionally pause the job using [Cloud Scheduler](https://cloud.google.com/scheduler/docs/creating#pause).",
             "The job is disabled by the system due to error. The user cannot directly set a job to be disabled.",
-            "The job state resulting from a failed CloudScheduler.UpdateJob operation. To recover a job from this state, retry CloudScheduler.UpdateJob until a successful response is received.",
+            "The job state resulting from a failed [CloudScheduler.UpdateJob](https://cloud.google.com/scheduler/docs/creating#edit) operation. To recover a job from this state, retry [CloudScheduler.UpdateJob](https://cloud.google.com/scheduler/docs/creating#edit) until a successful response is received.",
             "The schedule resource is being created.",
             "The schedule resource is being deleted."
           ],
@@ -4109,7 +4109,7 @@
       "id": "SetInstanceMachineTypeRequest",
       "properties": {
         "machineType": {
-          "description": "Required. The [Compute Engine machine type](https://cloud.google.com/compute/docs/machine-types).",
+          "description": "Required. The [Compute Engine machine type](https://cloud.google.com/compute/docs/machine-resource).",
           "type": "string"
         }
       },

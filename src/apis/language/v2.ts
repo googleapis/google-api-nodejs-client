@@ -146,7 +146,7 @@ export namespace language_v2 {
      */
     entities?: Schema$Entity[];
     /**
-     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
+     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language_code field for more details.
      */
     languageCode?: string | null;
     /**
@@ -176,7 +176,7 @@ export namespace language_v2 {
      */
     documentSentiment?: Schema$Sentiment;
     /**
-     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
+     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language_code field for more details.
      */
     languageCode?: string | null;
     /**
@@ -239,11 +239,11 @@ export namespace language_v2 {
      */
     documentSentiment?: Schema$Sentiment;
     /**
-     * Entities, along with their semantic information, in the input document. Populated if the user enables AnnotateTextRequest.Features.extract_entities or AnnotateTextRequest.Features.extract_entity_sentiment.
+     * Entities, along with their semantic information, in the input document. Populated if the user enables AnnotateTextRequest.Features.extract_entities .
      */
     entities?: Schema$Entity[];
     /**
-     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
+     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language_code field for more details.
      */
     languageCode?: string | null;
     /**
@@ -294,7 +294,7 @@ export namespace language_v2 {
      */
     categories?: Schema$ClassificationCategory[];
     /**
-     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
+     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language_code field for more details.
      */
     languageCode?: string | null;
     /**
@@ -396,7 +396,7 @@ export namespace language_v2 {
      */
     name?: string | null;
     /**
-     * For calls to AnalyzeEntitySentiment or if AnnotateTextRequest.Features.extract_entity_sentiment is set to true, this field will contain the aggregate sentiment expressed for this entity in the provided document.
+     * For calls to AnalyzeEntitySentiment this field will contain the aggregate sentiment expressed for this entity in the provided document.
      */
     sentiment?: Schema$Sentiment;
     /**
@@ -413,7 +413,7 @@ export namespace language_v2 {
      */
     probability?: number | null;
     /**
-     * For calls to AnalyzeEntitySentiment or if AnnotateTextRequest.Features.extract_entity_sentiment is set to true, this field will contain the sentiment expressed for this mention of the entity in the provided document.
+     * For calls to AnalyzeEntitySentiment this field will contain the sentiment expressed for this mention of the entity in the provided document.
      */
     sentiment?: Schema$Sentiment;
     /**
@@ -444,7 +444,7 @@ export namespace language_v2 {
     trackingLabels?: {[key: string]: string} | null;
   }
   /**
-   * Infra Usage of billing metrics. Next ID: 6
+   * Infra Usage of billing metrics.
    */
   export interface Schema$InfraUsage {
     /**
@@ -486,7 +486,7 @@ export namespace language_v2 {
    */
   export interface Schema$ModerateTextResponse {
     /**
-     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
+     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language_code field for more details.
      */
     languageCode?: string | null;
     /**
@@ -538,7 +538,7 @@ export namespace language_v2 {
    */
   export interface Schema$Sentiment {
     /**
-     * A non-negative number in the [0, +inf) range, which represents the absolute magnitude of sentiment regardless of score (positive or negative).
+     * A non-negative number in the [0, +inf] range, which represents the absolute magnitude of sentiment regardless of score (positive or negative).
      */
     magnitude?: number | null;
     /**
@@ -761,9 +761,6 @@ export namespace language_v2 {
     columnId?: number | null;
     correlationStats?: Schema$XPSCorrelationStats;
   }
-  /**
-   * =========================================================================== # The fields below are used exclusively for Forecasting.
-   */
   export interface Schema$XPSColumnSpecForecastingMetadata {
     /**
      * The type of the column for FORECASTING model training purposes.
@@ -1067,11 +1064,11 @@ export namespace language_v2 {
      */
     exportFirebaseAuxiliaryInfo?: boolean | null;
     /**
-     * The Google Contained Registry (GCR) path the exported files to be pushed to. This location is set if the exported format is DOCKDER.
+     * The Google Contained Registry path the exported files to be pushed to. This location is set if the exported format is DOCKDER.
      */
     outputGcrUri?: string | null;
     /**
-     * The Google Cloud Storage (GCS) directory where XPS will output the exported models and related files. Format: gs://bucket/directory
+     * The Google Cloud Storage directory where XPS will output the exported models and related files. Format: gs://bucket/directory
      */
     outputGcsUri?: string | null;
     tfJsFormat?: Schema$XPSTfJsFormat;
@@ -1079,7 +1076,7 @@ export namespace language_v2 {
     tfSavedModelFormat?: Schema$XPSTfSavedModelFormat;
   }
   /**
-   * Spec of input and output files, on external file systems (CNS, GCS, etc).
+   * Spec of input and output files, on external file systems (for example, Colossus Namespace System or Google Cloud Storage).
    */
   export interface Schema$XPSFileSpec {
     /**
@@ -1167,7 +1164,7 @@ export namespace language_v2 {
    */
   export interface Schema$XPSImageExportModelSpec {
     /**
-     * Contains the model format and internal location of the model files to be exported/downloaded. Use the GCS bucket name which is provided via TrainRequest.gcs_bucket_name to store the model files.
+     * Contains the model format and internal location of the model files to be exported/downloaded. Use the Google Cloud Storage bucket name which is provided via TrainRequest.gcs_bucket_name to store the model files.
      */
     exportModelOutputConfig?: Schema$XPSExportModelOutputConfig[];
   }
@@ -1184,7 +1181,7 @@ export namespace language_v2 {
      */
     exportArtifact?: Schema$XPSModelArtifactItem[];
     /**
-     * GCS uri of decoded labels file for model export 'dict.txt'.
+     * Google Cloud Storage URI of decoded labels file for model export 'dict.txt'.
      */
     labelGcsUri?: string | null;
     /**
@@ -1192,11 +1189,11 @@ export namespace language_v2 {
      */
     servingArtifact?: Schema$XPSModelArtifactItem;
     /**
-     * GCS uri prefix of Tensorflow JavaScript binary files 'groupX-shardXofX.bin' Deprecated.
+     * Google Cloud Storage URI prefix of Tensorflow JavaScript binary files 'groupX-shardXofX.bin'. Deprecated.
      */
     tfJsBinaryGcsPrefix?: string | null;
     /**
-     * GCS uri of Tensorflow Lite metadata 'tflite_metadata.json'.
+     * Google Cloud Storage URI of Tensorflow Lite metadata 'tflite_metadata.json'.
      */
     tfLiteMetadataGcsUri?: string | null;
   }
@@ -1381,13 +1378,10 @@ export namespace language_v2 {
      */
     artifactFormat?: string | null;
     /**
-     * The Google Cloud Storage (GCS) uri that stores the model binary files.
+     * The Google Cloud Storage URI that stores the model binary files.
      */
     gcsUri?: string | null;
   }
-  /**
-   * Next ID: 8
-   */
   export interface Schema$XPSPreprocessResponse {
     /**
      * Preprocessed examples, that are to be imported into AutoML storage. This should point to RecordIO file(s) of PreprocessedExample messages. The PreprocessedExample.mvp_training_data-s returned here are later verbatim passed to Train() call in TrainExample.mvp_training_data.
@@ -1500,7 +1494,7 @@ export namespace language_v2 {
     xraiAttribution?: Schema$XPSXraiAttribution;
   }
   /**
-   * Specification of Model explanation. Feature-based XAI in AutoML Vision ICN is deprecated, see b/288407203 for context.
+   * Specification of Model explanation. Feature-based XAI in AutoML Vision ICN is deprecated.
    */
   export interface Schema$XPSResponseExplanationSpec {
     /**
@@ -1776,7 +1770,7 @@ export namespace language_v2 {
     truePositiveRate?: number | null;
   }
   /**
-   * Metadata for a dataset used for AutoML Tables. Next ID: 6
+   * Metadata for a dataset used for AutoML Tables.
    */
   export interface Schema$XPSTablesDatasetMetadata {
     /**
@@ -1957,7 +1951,7 @@ export namespace language_v2 {
     trainCostMilliNodeHours?: string | null;
   }
   /**
-   * Component model. Next ID: 10
+   * Component model.
    */
   export interface Schema$XPSTextComponentModel {
     /**
@@ -2158,9 +2152,6 @@ export namespace language_v2 {
      */
     value?: number | null;
   }
-  /**
-   * Next ID: 18
-   */
   export interface Schema$XPSTrainResponse {
     /**
      * Estimated model size in bytes once deployed.
@@ -2331,7 +2322,7 @@ export namespace language_v2 {
    */
   export interface Schema$XPSVideoExportModelSpec {
     /**
-     * Contains the model format and internal location of the model files to be exported/downloaded. Use the GCS bucket name which is provided via TrainRequest.gcs_bucket_name to store the model files.
+     * Contains the model format and internal location of the model files to be exported/downloaded. Use the Google Cloud Storage bucket name which is provided via TrainRequest.gcs_bucket_name to store the model files.
      */
     exportModelOutputConfig?: Schema$XPSExportModelOutputConfig[];
   }

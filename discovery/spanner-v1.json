@@ -24,6 +24,11 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.me-central2.rep.googleapis.com/",
       "location": "me-central2"
     },
@@ -31,6 +36,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.us-central1.rep.googleapis.com/",
       "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
     },
     {
       "description": "Regional Endpoint",
@@ -49,13 +59,38 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.us-west1.rep.googleapis.com/",
       "location": "us-west1"
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.us-west4.rep.googleapis.com/",
       "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-west8.rep.googleapis.com/",
+      "location": "us-west8"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -360,7 +395,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instanceConfigs.operations.cancel",
@@ -486,7 +521,7 @@
                 "operations": {
                   "methods": {
                     "cancel": {
-                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                       "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}/ssdCaches/{ssdCachesId}/operations/{operationsId}:cancel",
                       "httpMethod": "POST",
                       "id": "spanner.projects.instanceConfigs.ssdCaches.operations.cancel",
@@ -1009,7 +1044,7 @@
                       "type": "string"
                     },
                     "encryptionConfig.kmsKeyNames": {
-                      "description": "Optional. Specifies the KMS configuration for the one or more keys used to protect the backup. Values are of the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by kms_key_names must fully cover all regions of the backup's instance configuration. Some examples: * For single region instance configs, specify a single regional location KMS key. * For multi-regional instance configs of type GOOGLE_MANAGED, either specify a multi-regional location KMS key or multiple regional location KMS keys that cover all regions in the instance config. * For an instance config of type USER_MANAGED, please specify only regional location KMS keys to cover each region in the instance config. Multi-regional location KMS keys are not supported for USER_MANAGED instance configs.",
+                      "description": "Optional. Specifies the KMS configuration for the one or more keys used to protect the backup. Values are of the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by `kms_key_names` must fully cover all regions of the backup's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations.",
                       "location": "query",
                       "repeated": true,
                       "type": "string"
@@ -1087,7 +1122,7 @@
                   ]
                 },
                 "getIamPolicy": {
-                  "description": "Gets the access control policy for a database or backup resource. Returns an empty policy if a database or backup exists but does not have a policy set. Authorization requires `spanner.databases.getIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.getIamPolicy` permission on resource.",
+                  "description": "Gets the access control policy for a database or backup resource. Returns an empty policy if a database or backup exists but does not have a policy set. Authorization requires `spanner.databases.getIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.getIamPolicy` permission on resource. For backup schedules, authorization requires `spanner.backupSchedules.getIamPolicy` permission on resource.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/backups/{backupsId}:getIamPolicy",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instances.backups.getIamPolicy",
@@ -1193,7 +1228,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on a database or backup resource. Replaces any existing policy. Authorization requires `spanner.databases.setIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.setIamPolicy` permission on resource.",
+                  "description": "Sets the access control policy on a database or backup resource. Replaces any existing policy. Authorization requires `spanner.databases.setIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.setIamPolicy` permission on resource. For backup schedules, authorization requires `spanner.backupSchedules.setIamPolicy` permission on resource.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/backups/{backupsId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instances.backups.setIamPolicy",
@@ -1222,7 +1257,7 @@
                   ]
                 },
                 "testIamPermissions": {
-                  "description": "Returns permissions that the caller has on the specified database or backup resource. Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions. Calling this method on a backup that does not exist will result in a NOT_FOUND error if the user has `spanner.backups.list` permission on the containing instance.",
+                  "description": "Returns permissions that the caller has on the specified database or backup resource. Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions. Calling this method on a backup that does not exist will result in a NOT_FOUND error if the user has `spanner.backups.list` permission on the containing instance. Calling this method on a backup schedule that does not exist will result in a NOT_FOUND error if the user has `spanner.backupSchedules.list` permission on the containing database.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/backups/{backupsId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instances.backups.testIamPermissions",
@@ -1255,7 +1290,7 @@
                 "operations": {
                   "methods": {
                     "cancel": {
-                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                       "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/backups/{backupsId}/operations/{operationsId}:cancel",
                       "httpMethod": "POST",
                       "id": "spanner.projects.instances.backups.operations.cancel",
@@ -1390,7 +1425,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for RestoreDatabaseMetadata is `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \\ `(metadata.source_type:BACKUP) AND` \\ `(metadata.backup_info.backup:backup_howl) AND` \\ `(metadata.name:restored_howl) AND` \\ `(metadata.progress.start_time < \\\"2018-03-28T14:50:00Z\\\") AND` \\ `(error:*)` - Return operations where: * The operation's metadata type is RestoreDatabaseMetadata. * The database is restored from a backup. * The backup name contains \"backup_howl\". * The restored database's name contains \"restored_howl\". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error.",
+                      "description": "An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for RestoreDatabaseMetadata is `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \\ `(metadata.source_type:BACKUP) AND` \\ `(metadata.backup_info.backup:backup_howl) AND` \\ `(metadata.name:restored_howl) AND` \\ `(metadata.progress.start_time < \\\"2018-03-28T14:50:00Z\\\") AND` \\ `(error:*)` - Return operations where: * The operation's metadata type is RestoreDatabaseMetadata. * The database is restored from a backup. * The backup name contains \"backup_howl\". * The restored database's name contains \"restored_howl\". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1426,6 +1461,35 @@
             },
             "databases": {
               "methods": {
+                "addSplitPoints": {
+                  "description": "Adds split points to specified tables, indexes of a database.",
+                  "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}:addSplitPoints",
+                  "httpMethod": "POST",
+                  "id": "spanner.projects.instances.databases.addSplitPoints",
+                  "parameterOrder": [
+                    "database"
+                  ],
+                  "parameters": {
+                    "database": {
+                      "description": "Required. The database on whose tables/indexes split points are to be added. Values are of the form `projects//instances//databases/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+database}:addSplitPoints",
+                  "request": {
+                    "$ref": "AddSplitPointsRequest"
+                  },
+                  "response": {
+                    "$ref": "AddSplitPointsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/spanner.admin"
+                  ]
+                },
                 "changequorum": {
                   "description": "`ChangeQuorum` is strictly restricted to databases that use dual-region instance configurations. Initiates a background operation to change the quorum of a database from dual-region mode to single-region mode or vice versa. The returned long-running operation has a name of the format `projects//instances//databases//operations/` and can be used to track execution of the `ChangeQuorum`. The metadata field type is ChangeQuorumMetadata. Authorization requires `spanner.databases.changequorum` permission on the resource database.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}:changequorum",
@@ -1563,7 +1627,7 @@
                   ]
                 },
                 "getIamPolicy": {
-                  "description": "Gets the access control policy for a database or backup resource. Returns an empty policy if a database or backup exists but does not have a policy set. Authorization requires `spanner.databases.getIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.getIamPolicy` permission on resource.",
+                  "description": "Gets the access control policy for a database or backup resource. Returns an empty policy if a database or backup exists but does not have a policy set. Authorization requires `spanner.databases.getIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.getIamPolicy` permission on resource. For backup schedules, authorization requires `spanner.backupSchedules.getIamPolicy` permission on resource.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}:getIamPolicy",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instances.databases.getIamPolicy",
@@ -1746,7 +1810,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on a database or backup resource. Replaces any existing policy. Authorization requires `spanner.databases.setIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.setIamPolicy` permission on resource.",
+                  "description": "Sets the access control policy on a database or backup resource. Replaces any existing policy. Authorization requires `spanner.databases.setIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.setIamPolicy` permission on resource. For backup schedules, authorization requires `spanner.backupSchedules.setIamPolicy` permission on resource.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instances.databases.setIamPolicy",
@@ -1775,7 +1839,7 @@
                   ]
                 },
                 "testIamPermissions": {
-                  "description": "Returns permissions that the caller has on the specified database or backup resource. Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions. Calling this method on a backup that does not exist will result in a NOT_FOUND error if the user has `spanner.backups.list` permission on the containing instance.",
+                  "description": "Returns permissions that the caller has on the specified database or backup resource. Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions. Calling this method on a backup that does not exist will result in a NOT_FOUND error if the user has `spanner.backups.list` permission on the containing instance. Calling this method on a backup schedule that does not exist will result in a NOT_FOUND error if the user has `spanner.backupSchedules.list` permission on the containing database.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instances.databases.testIamPermissions",
@@ -1923,7 +1987,7 @@
                       ]
                     },
                     "getIamPolicy": {
-                      "description": "Gets the access control policy for a database or backup resource. Returns an empty policy if a database or backup exists but does not have a policy set. Authorization requires `spanner.databases.getIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.getIamPolicy` permission on resource.",
+                      "description": "Gets the access control policy for a database or backup resource. Returns an empty policy if a database or backup exists but does not have a policy set. Authorization requires `spanner.databases.getIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.getIamPolicy` permission on resource. For backup schedules, authorization requires `spanner.backupSchedules.getIamPolicy` permission on resource.",
                       "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}:getIamPolicy",
                       "httpMethod": "POST",
                       "id": "spanner.projects.instances.databases.backupSchedules.getIamPolicy",
@@ -2024,7 +2088,7 @@
                       ]
                     },
                     "setIamPolicy": {
-                      "description": "Sets the access control policy on a database or backup resource. Replaces any existing policy. Authorization requires `spanner.databases.setIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.setIamPolicy` permission on resource.",
+                      "description": "Sets the access control policy on a database or backup resource. Replaces any existing policy. Authorization requires `spanner.databases.setIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.setIamPolicy` permission on resource. For backup schedules, authorization requires `spanner.backupSchedules.setIamPolicy` permission on resource.",
                       "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}:setIamPolicy",
                       "httpMethod": "POST",
                       "id": "spanner.projects.instances.databases.backupSchedules.setIamPolicy",
@@ -2053,7 +2117,7 @@
                       ]
                     },
                     "testIamPermissions": {
-                      "description": "Returns permissions that the caller has on the specified database or backup resource. Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions. Calling this method on a backup that does not exist will result in a NOT_FOUND error if the user has `spanner.backups.list` permission on the containing instance.",
+                      "description": "Returns permissions that the caller has on the specified database or backup resource. Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions. Calling this method on a backup that does not exist will result in a NOT_FOUND error if the user has `spanner.backups.list` permission on the containing instance. Calling this method on a backup schedule that does not exist will result in a NOT_FOUND error if the user has `spanner.backupSchedules.list` permission on the containing database.",
                       "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}:testIamPermissions",
                       "httpMethod": "POST",
                       "id": "spanner.projects.instances.databases.backupSchedules.testIamPermissions",
@@ -2123,7 +2187,7 @@
                       ]
                     },
                     "testIamPermissions": {
-                      "description": "Returns permissions that the caller has on the specified database or backup resource. Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions. Calling this method on a backup that does not exist will result in a NOT_FOUND error if the user has `spanner.backups.list` permission on the containing instance.",
+                      "description": "Returns permissions that the caller has on the specified database or backup resource. Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions. Calling this method on a backup that does not exist will result in a NOT_FOUND error if the user has `spanner.backups.list` permission on the containing instance. Calling this method on a backup schedule that does not exist will result in a NOT_FOUND error if the user has `spanner.backupSchedules.list` permission on the containing database.",
                       "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/databaseRoles/{databaseRolesId}:testIamPermissions",
                       "httpMethod": "POST",
                       "id": "spanner.projects.instances.databases.databaseRoles.testIamPermissions",
@@ -2156,7 +2220,7 @@
                 "operations": {
                   "methods": {
                     "cancel": {
-                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                       "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/operations/{operationsId}:cancel",
                       "httpMethod": "POST",
                       "id": "spanner.projects.instances.databases.operations.cancel",
@@ -2480,7 +2544,7 @@
                       ]
                     },
                     "executeSql": {
-                      "description": "Executes an SQL statement, returning all results in a single reply. This method cannot be used to return a result set larger than 10 MiB; if the query yields more data than that, the query fails with a `FAILED_PRECONDITION` error. Operations inside read-write transactions might return `ABORTED`. If this occurs, the application should restart the transaction from the beginning. See Transaction for more details. Larger result sets can be fetched in streaming fashion by calling ExecuteStreamingSql instead.",
+                      "description": "Executes an SQL statement, returning all results in a single reply. This method cannot be used to return a result set larger than 10 MiB; if the query yields more data than that, the query fails with a `FAILED_PRECONDITION` error. Operations inside read-write transactions might return `ABORTED`. If this occurs, the application should restart the transaction from the beginning. See Transaction for more details. Larger result sets can be fetched in streaming fashion by calling ExecuteStreamingSql instead. The query string can be SQL or [Graph Query Language (GQL)](https://cloud.google.com/spanner/docs/reference/standard-sql/graph-intro).",
                       "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/sessions/{sessionsId}:executeSql",
                       "httpMethod": "POST",
                       "id": "spanner.projects.instances.databases.sessions.executeSql",
@@ -2509,7 +2573,7 @@
                       ]
                     },
                     "executeStreamingSql": {
-                      "description": "Like ExecuteSql, except returns the result set as a stream. Unlike ExecuteSql, there is no limit on the size of the returned result set. However, no individual row in the result set can exceed 100 MiB, and no column value can exceed 10 MiB.",
+                      "description": "Like ExecuteSql, except returns the result set as a stream. Unlike ExecuteSql, there is no limit on the size of the returned result set. However, no individual row in the result set can exceed 100 MiB, and no column value can exceed 10 MiB. The query string can be SQL or [Graph Query Language (GQL)](https://cloud.google.com/spanner/docs/reference/standard-sql/graph-intro).",
                       "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/sessions/{sessionsId}:executeStreamingSql",
                       "httpMethod": "POST",
                       "id": "spanner.projects.instances.databases.sessions.executeStreamingSql",
@@ -2771,7 +2835,7 @@
                       "type": "string"
                     },
                     "instancePartitionDeadline": {
-                      "description": "Optional. Deadline used while retrieving metadata for instance partition operations. Instance partitions whose operation metadata cannot be retrieved within this deadline will be added to unreachable in ListInstancePartitionOperationsResponse.",
+                      "description": "Optional. Deadline used while retrieving metadata for instance partition operations. Instance partitions whose operation metadata cannot be retrieved within this deadline will be added to unreachable_instance_partitions in ListInstancePartitionOperationsResponse.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
@@ -2971,7 +3035,7 @@
                 "operations": {
                   "methods": {
                     "cancel": {
-                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                       "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/instancePartitions/{instancePartitionsId}/operations/{operationsId}:cancel",
                       "httpMethod": "POST",
                       "id": "spanner.projects.instances.instancePartitions.operations.cancel",
@@ -3097,7 +3161,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instances.operations.cancel",
@@ -3284,13 +3348,59 @@
       }
     }
   },
-  "revision": "20240918",
+  "revision": "20250113",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
+    "AddSplitPointsRequest": {
+      "description": "The request for AddSplitPoints.",
+      "id": "AddSplitPointsRequest",
+      "properties": {
+        "initiator": {
+          "description": "Optional. A user-supplied tag associated with the split points. For example, \"intital_data_load\", \"special_event_1\". Defaults to \"CloudAddSplitPointsAPI\" if not specified. The length of the tag must not exceed 50 characters,else will be trimmed. Only valid UTF8 characters are allowed.",
+          "type": "string"
+        },
+        "splitPoints": {
+          "description": "Required. The split points to add.",
+          "items": {
+            "$ref": "SplitPoints"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AddSplitPointsResponse": {
+      "description": "The response for AddSplitPoints.",
+      "id": "AddSplitPointsResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "AsymmetricAutoscalingOption": {
+      "description": "AsymmetricAutoscalingOption specifies the scaling of replicas identified by the given selection.",
+      "id": "AsymmetricAutoscalingOption",
+      "properties": {
+        "overrides": {
+          "$ref": "AutoscalingConfigOverrides",
+          "description": "Optional. Overrides applied to the top-level autoscaling configuration for the selected replicas."
+        },
+        "replicaSelection": {
+          "$ref": "InstanceReplicaSelection",
+          "description": "Required. Selects the replicas to which this AsymmetricAutoscalingOption applies. Only read-only replicas are supported."
+        }
+      },
+      "type": "object"
+    },
     "AutoscalingConfig": {
       "description": "Autoscaling configuration for an instance.",
       "id": "AutoscalingConfig",
       "properties": {
+        "asymmetricAutoscalingOptions": {
+          "description": "Optional. Optional asymmetric autoscaling options. Replicas matching the replica selection criteria will be autoscaled independently from other replicas. The autoscaler will scale the replicas based on the utilization of replicas identified by the replica selection. Replica selections should not overlap with each other. Other replicas (those do not match any replica selection) will be autoscaled together and will have the same compute capacity allocated to them.",
+          "items": {
+            "$ref": "AsymmetricAutoscalingOption"
+          },
+          "type": "array"
+        },
         "autoscalingLimits": {
           "$ref": "AutoscalingLimits",
           "description": "Required. Autoscaling limits for an instance."
@@ -3298,6 +3408,22 @@
         "autoscalingTargets": {
           "$ref": "AutoscalingTargets",
           "description": "Required. The autoscaling targets for an instance."
+        }
+      },
+      "type": "object"
+    },
+    "AutoscalingConfigOverrides": {
+      "description": "Overrides the top-level autoscaling configuration for the replicas identified by `replica_selection`. All fields in this message are optional. Any unspecified fields will use the corresponding values from the top-level autoscaling configuration.",
+      "id": "AutoscalingConfigOverrides",
+      "properties": {
+        "autoscalingLimits": {
+          "$ref": "AutoscalingLimits",
+          "description": "Optional. If specified, overrides the min/max limit in the top-level autoscaling configuration for the selected replicas."
+        },
+        "autoscalingTargetHighPriorityCpuUtilizationPercent": {
+          "description": "Optional. If specified, overrides the autoscaling target high_priority_cpu_utilization_percent in the top-level autoscaling configuration for the selected replicas.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3389,7 +3515,7 @@
           "readOnly": true
         },
         "encryptionInformation": {
-          "description": "Output only. The encryption information for the backup, whether it is protected by one or more KMS keys. The information includes all Cloud KMS key versions used to encrypt the backup. The `encryption_status' field inside of each `EncryptionInfo` is not populated. At least one of the key versions must be available for the backup to be restored. If a key version is revoked in the middle of a restore, the restore behavior is undefined.",
+          "description": "Output only. The encryption information for the backup, whether it is protected by one or more KMS keys. The information includes all Cloud KMS key versions used to encrypt the backup. The `encryption_status` field inside of each `EncryptionInfo` is not populated. At least one of the key versions must be available for the backup to be restored. If a key version is revoked in the middle of a restore, the restore behavior is undefined.",
           "items": {
             "$ref": "EncryptionInfo"
           },
@@ -3505,7 +3631,7 @@
       "type": "object"
     },
     "BackupSchedule": {
-      "description": "BackupSchedule expresses the automated backup creation specification for a Spanner database. Next ID: 10",
+      "description": "BackupSchedule expresses the automated backup creation specification for a Spanner database.",
       "id": "BackupSchedule",
       "properties": {
         "encryptionConfig": {
@@ -3633,6 +3759,10 @@
       "description": "The request for BeginTransaction.",
       "id": "BeginTransactionRequest",
       "properties": {
+        "mutationKey": {
+          "$ref": "Mutation",
+          "description": "Optional. Required for read-write transactions on a multiplexed session that commit mutations but do not perform any reads or queries. Clients should randomly select one of the mutations from the mutation set and send it as a part of this request."
+        },
         "options": {
           "$ref": "TransactionOptions",
           "description": "Required. Options for the new transaction."
@@ -3742,6 +3872,10 @@
           },
           "type": "array"
         },
+        "precommitToken": {
+          "$ref": "MultiplexedSessionPrecommitToken",
+          "description": "Optional. If the read-write transaction was executed on a multiplexed session, the precommit token with the highest sequence number received in this transaction attempt, should be included here. Failing to do so will result in a FailedPrecondition error."
+        },
         "requestOptions": {
           "$ref": "RequestOptions",
           "description": "Common options for this request."
@@ -3774,6 +3908,10 @@
           "description": "The Cloud Spanner timestamp at which the transaction committed.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "precommitToken": {
+          "$ref": "MultiplexedSessionPrecommitToken",
+          "description": "If specified, transaction has not committed yet. Clients must retry the commit with the new precommit token."
         }
       },
       "type": "object"
@@ -3853,7 +3991,7 @@
           "type": "string"
         },
         "kmsKeyNames": {
-          "description": "Optional. Specifies the KMS configuration for the one or more keys used to protect the backup. Values are of the form `projects//locations//keyRings//cryptoKeys/`. Kms keys specified can be in any order. The keys referenced by kms_key_names must fully cover all regions of the backup's instance configuration. Some examples: * For single region instance configs, specify a single regional location KMS key. * For multi-regional instance configs of type GOOGLE_MANAGED, either specify a multi-regional location KMS key or multiple regional location KMS keys that cover all regions in the instance config. * For an instance config of type USER_MANAGED, please specify only regional location KMS keys to cover each region in the instance config. Multi-regional location KMS keys are not supported for USER_MANAGED instance configs.",
+          "description": "Optional. Specifies the KMS configuration for the one or more keys used to protect the backup. Values are of the form `projects//locations//keyRings//cryptoKeys/`. KMS keys specified can be in any order. The keys referenced by `kms_key_names` must fully cover all regions of the backup's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations.",
           "items": {
             "type": "string"
           },
@@ -3935,7 +4073,7 @@
           "type": "string"
         },
         "kmsKeyNames": {
-          "description": "Optional. Specifies the KMS configuration for the one or more keys used to protect the backup. Values are of the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by kms_key_names must fully cover all regions of the backup's instance configuration. Some examples: * For single region instance configs, specify a single regional location KMS key. * For multi-regional instance configs of type GOOGLE_MANAGED, either specify a multi-regional location KMS key or multiple regional location KMS keys that cover all regions in the instance config. * For an instance config of type USER_MANAGED, please specify only regional location KMS keys to cover each region in the instance config. Multi-regional location KMS keys are not supported for USER_MANAGED instance configs.",
+          "description": "Optional. Specifies the KMS configuration for the one or more keys used to protect the backup. Values are of the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by `kms_key_names` must fully cover all regions of the backup's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations.",
           "items": {
             "type": "string"
           },
@@ -4041,7 +4179,7 @@
       "type": "object"
     },
     "CreateInstanceConfigRequest": {
-      "description": "The request for CreateInstanceConfigRequest.",
+      "description": "The request for CreateInstanceConfig.",
       "id": "CreateInstanceConfigRequest",
       "properties": {
         "instanceConfig": {
@@ -4177,7 +4315,7 @@
           "type": "string"
         },
         "text": {
-          "description": "Required. Textual representation of the crontab. User can customize the backup frequency and the backup version time using the cron expression. The version time must be in UTC timzeone. The backup will contain an externally consistent copy of the database at the version time. Allowed frequencies are 12 hour, 1 day, 1 week and 1 month. Examples of valid cron specifications: * `0 2/12 * * * ` : every 12 hours at (2, 14) hours past midnight in UTC. * `0 2,14 * * * ` : every 12 hours at (2,14) hours past midnight in UTC. * `0 2 * * * ` : once a day at 2 past midnight in UTC. * `0 2 * * 0 ` : once a week every Sunday at 2 past midnight in UTC. * `0 2 8 * * ` : once a month on 8th day at 2 past midnight in UTC.",
+          "description": "Required. Textual representation of the crontab. User can customize the backup frequency and the backup version time using the cron expression. The version time must be in UTC timezone. The backup will contain an externally consistent copy of the database at the version time. Full backups must be scheduled a minimum of 12 hours apart and incremental backups must be scheduled a minimum of 4 hours apart. Examples of valid cron specifications: * `0 2/12 * * *` : every 12 hours at (2, 14) hours past midnight in UTC. * `0 2,14 * * *` : every 12 hours at (2,14) hours past midnight in UTC. * `0 */4 * * *` : (incremental backups only) every 4 hours at (0, 4, 8, 12, 16, 20) hours past midnight in UTC. * `0 2 * * *` : once a day at 2 past midnight in UTC. * `0 2 * * 0` : once a week every Sunday at 2 past midnight in UTC. * `0 2 8 * *` : once a month on 8th day at 2 past midnight in UTC.",
           "type": "string"
         },
         "timeZone": {
@@ -4234,7 +4372,7 @@
           "readOnly": true
         },
         "encryptionInfo": {
-          "description": "Output only. For databases that are using customer managed encryption, this field contains the encryption information for the database, such as all Cloud KMS key versions that are in use. The `encryption_status' field inside of each `EncryptionInfo` is not populated. For databases that are using Google default or other types of encryption, this field is empty. This field is propagated lazily from the backend. There might be a delay from when a key version is being used and when it appears in this field.",
+          "description": "Output only. For databases that are using customer managed encryption, this field contains the encryption information for the database, such as all Cloud KMS key versions that are in use. The `encryption_status` field inside of each `EncryptionInfo` is not populated. For databases that are using Google default or other types of encryption, this field is empty. This field is propagated lazily from the backend. There might be a delay from when a key version is being used and when it appears in this field.",
           "items": {
             "$ref": "EncryptionInfo"
           },
@@ -4425,7 +4563,7 @@
           "type": "string"
         },
         "kmsKeyNames": {
-          "description": "Specifies the KMS configuration for the one or more keys used to encrypt the database. Values are of the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by kms_key_names must fully cover all regions of the database instance configuration. Some examples: * For single region database instance configs, specify a single regional location KMS key. * For multi-regional database instance configs of type GOOGLE_MANAGED, either specify a multi-regional location KMS key or multiple regional location KMS keys that cover all regions in the instance config. * For a database instance config of type USER_MANAGED, please specify only regional location KMS keys to cover each region in the instance config. Multi-regional location KMS keys are not supported for USER_MANAGED instance configs.",
+          "description": "Specifies the KMS configuration for one or more keys used to encrypt the database. Values are of the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by `kms_key_names` must fully cover all regions of the database's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations.",
           "items": {
             "type": "string"
           },
@@ -4484,6 +4622,10 @@
       "description": "The request for ExecuteBatchDml.",
       "id": "ExecuteBatchDmlRequest",
       "properties": {
+        "lastStatements": {
+          "description": "Optional. If set to true, this request marks the end of the transaction. The transaction should be committed or aborted after these statements execute, and attempts to execute any other requests against this transaction (including reads and queries) will be rejected. Setting this option may cause some error reporting to be deferred until commit time (e.g. validation of unique constraints). Given this, successful execution of statements should not be assumed until a subsequent Commit call completes successfully.",
+          "type": "boolean"
+        },
         "requestOptions": {
           "$ref": "RequestOptions",
           "description": "Common options for this request."
@@ -4511,6 +4653,10 @@
       "description": "The response for ExecuteBatchDml. Contains a list of ResultSet messages, one for each DML statement that has successfully executed, in the same order as the statements in the request. If a statement fails, the status in the response body identifies the cause of the failure. To check for DML statements that failed, use the following approach: 1. Check the status in the response message. The google.rpc.Code enum value `OK` indicates that all statements were executed successfully. 2. If the status was not `OK`, check the number of result sets in the response. If the response contains `N` ResultSet messages, then statement `N+1` in the request failed. Example 1: * Request: 5 DML statements, all executed successfully. * Response: 5 ResultSet messages, with the status `OK`. Example 2: * Request: 5 DML statements. The third statement has a syntax error. * Response: 2 ResultSet messages, and a syntax error (`INVALID_ARGUMENT`) status. The number of ResultSet messages indicates that the third statement failed, and the fourth and fifth statements were not executed.",
       "id": "ExecuteBatchDmlResponse",
       "properties": {
+        "precommitToken": {
+          "$ref": "MultiplexedSessionPrecommitToken",
+          "description": "Optional. A precommit token will be included if the read-write transaction is on a multiplexed session. The precommit token with the highest sequence number from this transaction attempt should be passed to the Commit request for this transaction."
+        },
         "resultSets": {
           "description": "One ResultSet for each statement in the request that ran successfully, in the same order as the statements in the request. Each ResultSet does not contain any rows. The ResultSetStats in each ResultSet contain the number of rows modified by the statement. Only the first ResultSet in the response contains valid ResultSetMetadata.",
           "items": {
@@ -4537,6 +4683,10 @@
           "$ref": "DirectedReadOptions",
           "description": "Directed read options for this request."
         },
+        "lastStatement": {
+          "description": "Optional. If set to true, this statement marks the end of the transaction. The transaction should be committed or aborted after this statement executes, and attempts to execute any other requests against this transaction (including reads and queries) will be rejected. For DML statements, setting this option may cause some error reporting to be deferred until commit time (e.g. validation of unique constraints). Given this, successful execution of a DML statement should not be assumed until a subsequent Commit call completes successfully.",
+          "type": "boolean"
+        },
         "paramTypes": {
           "additionalProperties": {
             "$ref": "Type"
@@ -4562,12 +4712,16 @@
           "enum": [
             "NORMAL",
             "PLAN",
-            "PROFILE"
+            "PROFILE",
+            "WITH_STATS",
+            "WITH_PLAN_AND_STATS"
           ],
           "enumDescriptions": [
             "The default mode. Only the statement results are returned.",
             "This mode returns only the query plan, without any results or execution statistics information.",
-            "This mode returns the query plan, overall execution statistics, operator level execution statistics along with the results. This has a performance overhead compared to the other modes. It is not recommended to use this mode for production traffic."
+            "This mode returns the query plan, overall execution statistics, operator level execution statistics along with the results. This has a performance overhead compared to the other modes. It is not recommended to use this mode for production traffic.",
+            "This mode returns the overall (but not operator-level) execution statistics along with the results.",
+            "This mode returns the query plan, overall (but not operator-level) execution statistics along with the results."
           ],
           "type": "string"
         },
@@ -4809,6 +4963,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "defaultBackupScheduleType": {
+          "description": "Optional. Controls the default backup schedule behavior for new databases within the instance. By default, a backup schedule is created automatically when a new database is created in a new instance. Note that the `AUTOMATIC` value isn't permitted for free instances, as backups and backup schedules aren't supported for free instances. In the `GetInstance` or `ListInstances` response, if the value of `default_backup_schedule_type` isn't set, or set to `NONE`, Spanner doesn't create a default backup schedule for new databases in the instance.",
+          "enum": [
+            "DEFAULT_BACKUP_SCHEDULE_TYPE_UNSPECIFIED",
+            "NONE",
+            "AUTOMATIC"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "A default backup schedule isn't created automatically when a new database is created in the instance.",
+            "A default backup schedule is created automatically when a new database is created in the instance. The default backup schedule creates a full backup every 24 hours. These full backups are retained for 7 days. You can edit or delete the default backup schedule once it's created."
+          ],
+          "type": "string"
+        },
         "displayName": {
           "description": "Required. The descriptive name for this instance as it appears in UIs. Must be unique per project and between 4 and 30 characters in length.",
           "type": "string"
@@ -4874,6 +5042,14 @@
           "description": "The number of processing units allocated to this instance. At most, one of either `processing_units` or `node_count` should be present in the message. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance. If autoscaling is enabled, `processing_units` is treated as an `OUTPUT_ONLY` field and reflects the current number of processing units allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. For more information, see [Compute capacity, nodes and processing units](https://cloud.google.com/spanner/docs/compute-capacity).",
           "format": "int32",
           "type": "integer"
+        },
+        "replicaComputeCapacity": {
+          "description": "Output only. Lists the compute capacity per ReplicaSelection. A replica selection identifies a set of replicas with common properties. Replicas identified by a ReplicaSelection are scaled with the same compute capacity.",
+          "items": {
+            "$ref": "ReplicaComputeCapacity"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "state": {
           "description": "Output only. The current instance state. For CreateInstance, the state must be either omitted or set to `CREATING`. For UpdateInstance, the state must be either omitted or set to `READY`.",
@@ -5123,6 +5299,31 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceReplicaSelection": {
+      "description": "ReplicaSelection identifies replicas with common properties.",
+      "id": "InstanceReplicaSelection",
+      "properties": {
+        "location": {
+          "description": "Required. Name of the location of the replicas (e.g., \"us-central1\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Key": {
+      "description": "A split key.",
+      "id": "Key",
+      "properties": {
+        "keyParts": {
+          "description": "Required. The column values making up the split key.",
+          "items": {
+            "type": "any"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5809,6 +6010,10 @@
           "$ref": "ResultSetMetadata",
           "description": "Metadata about the result set, such as row type information. Only present in the first response."
         },
+        "precommitToken": {
+          "$ref": "MultiplexedSessionPrecommitToken",
+          "description": "Optional. A precommit token will be included if the read-write transaction is on a multiplexed session. The precommit token with the highest sequence number from this transaction attempt should be passed to the Commit request for this transaction."
+        },
         "resumeToken": {
           "description": "Streaming calls might be interrupted for a variety of reasons, such as TCP connection loss. If this occurs, the stream of results can be resumed by re-sending the original request and including `resume_token`. Note that executing any other transaction in the same session invalidates the token.",
           "format": "byte",
@@ -6102,7 +6307,7 @@
         },
         "queryAdvice": {
           "$ref": "QueryAdvisorResult",
-          "description": "Optional. The advices/recommendations for a query. Currently this field will be serving index recommendations for a query."
+          "description": "Optional. The advise/recommendations for a query. Currently this field will be serving index recommendations for a query."
         }
       },
       "type": "object"
@@ -6284,6 +6489,11 @@
       "description": "Message type to initiate a read-write transaction. Currently this transaction type has no options.",
       "id": "ReadWrite",
       "properties": {
+        "multiplexedSessionPreviousTransactionId": {
+          "description": "Optional. Clients should pass the transaction ID of the previous transaction attempt that was aborted if this transaction is being executed on a multiplexed session.",
+          "format": "byte",
+          "type": "string"
+        },
         "readLockMode": {
           "description": "Read lock mode for the transaction.",
           "enum": [
@@ -6297,6 +6507,27 @@
             "Optimistic lock mode. Locks for reads within the transaction are not acquired on read. Instead the locks are acquired on a commit to validate that read/queried data has not changed since the transaction started."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReplicaComputeCapacity": {
+      "description": "ReplicaComputeCapacity describes the amount of server resources that are allocated to each replica identified by the replica selection.",
+      "id": "ReplicaComputeCapacity",
+      "properties": {
+        "nodeCount": {
+          "description": "The number of nodes allocated to each replica. This may be zero in API responses for instances that are not yet in state `READY`.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "processingUnits": {
+          "description": "The number of processing units allocated to each replica. This may be zero in API responses for instances that are not yet in state `READY`.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "replicaSelection": {
+          "$ref": "InstanceReplicaSelection",
+          "description": "Required. Identifies replicas by specified properties. All replicas in the selection have the same amount of compute capacity."
         }
       },
       "type": "object"
@@ -6412,7 +6643,7 @@
           "type": "string"
         },
         "kmsKeyNames": {
-          "description": "Optional. Specifies the KMS configuration for the one or more keys used to encrypt the database. Values have the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by kms_key_names must fully cover all regions of the database instance configuration. Some examples: * For single region database instance configurations, specify a single regional location KMS key. * For multi-regional database instance configurations of type `GOOGLE_MANAGED`, either specify a multi-regional location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For a database instance configuration of type `USER_MANAGED`, please specify only regional location KMS keys to cover each region in the instance configuration. Multi-regional location KMS keys are not supported for USER_MANAGED instance configurations.",
+          "description": "Optional. Specifies the KMS configuration for one or more keys used to encrypt the database. Values have the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by `kms_key_names` must fully cover all regions of the database's instance configuration. Some examples: * For regional (single-region) instance configurations, specify a regional location KMS key. * For multi-region instance configurations of type `GOOGLE_MANAGED`, either specify a multi-region location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For an instance configuration of type `USER_MANAGED`, specify only regional location KMS keys to cover each region in the instance configuration. Multi-region location KMS keys aren't supported for `USER_MANAGED` type instance configurations.",
           "items": {
             "type": "string"
           },
@@ -6510,6 +6741,10 @@
         "metadata": {
           "$ref": "ResultSetMetadata",
           "description": "Metadata about the result set, such as row type information."
+        },
+        "precommitToken": {
+          "$ref": "MultiplexedSessionPrecommitToken",
+          "description": "Optional. A precommit token will be included if the read-write transaction is on a multiplexed session. The precommit token with the highest sequence number from this transaction attempt should be passed to the Commit request for this transaction."
         },
         "rows": {
           "description": "Each element in `rows` is a row whose format is defined by metadata.row_type. The ith element in each row matches the ith field in metadata.row_type. Elements are encoded based on type as described here.",
@@ -6723,6 +6958,33 @@
       },
       "type": "object"
     },
+    "SplitPoints": {
+      "description": "The split points of a table/index.",
+      "id": "SplitPoints",
+      "properties": {
+        "expireTime": {
+          "description": "Optional. The expiration timestamp of the split points. A timestamp in the past means immediate expiration. The maximum value can be 30 days in the future. Defaults to 10 days in the future if not specified.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "index": {
+          "description": "The index to split. If specified, the `table` field must refer to the index's base table.",
+          "type": "string"
+        },
+        "keys": {
+          "description": "Required. The list of split keys, i.e., the split boundaries.",
+          "items": {
+            "$ref": "Key"
+          },
+          "type": "array"
+        },
+        "table": {
+          "description": "The table to split.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Statement": {
       "description": "A single DML statement.",
       "id": "Statement",
@@ -6907,7 +7169,8 @@
             "NUMERIC",
             "JSON",
             "PROTO",
-            "ENUM"
+            "ENUM",
+            "INTERVAL"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -6924,7 +7187,8 @@
             "Encoded as `string`, in decimal format or scientific notation format. Decimal format: `[+-]Digits[.[Digits]]` or `+-.Digits` Scientific notation: `[+-]Digits[.[Digits]][ExponentIndicator[+-]Digits]` or `+-.Digits[ExponentIndicator[+-]Digits]` (ExponentIndicator is `\"e\"` or `\"E\"`)",
             "Encoded as a JSON-formatted `string` as described in RFC 7159. The following rules are applied when parsing JSON input: - Whitespace characters are not preserved. - If a JSON object has duplicate keys, only the first key is preserved. - Members of a JSON object are not guaranteed to have their order preserved. - JSON array elements will have their order preserved.",
             "Encoded as a base64-encoded `string`, as described in RFC 4648, section 4.",
-            "Encoded as `string`, in decimal format."
+            "Encoded as `string`, in decimal format.",
+            "Encoded as `string`, in `ISO8601` duration format - `P[n]Y[n]M[n]DT[n]H[n]M[n[.fraction]]S` where `n` is an integer. For example, `P1Y2M3DT4H5M6.5S` represents time duration of 1 year, 2 months, 3 days, 4 hours, 5 minutes, and 6.5 seconds."
           ],
           "type": "string"
         },
@@ -6941,12 +7205,14 @@
           "enum": [
             "TYPE_ANNOTATION_CODE_UNSPECIFIED",
             "PG_NUMERIC",
-            "PG_JSONB"
+            "PG_JSONB",
+            "PG_OID"
           ],
           "enumDescriptions": [
             "Not specified.",
             "PostgreSQL compatible NUMERIC type. This annotation needs to be applied to Type instances having NUMERIC type code to specify that values of this type should be treated as PostgreSQL NUMERIC values. Currently this annotation is always needed for NUMERIC when a client interacts with PostgreSQL-enabled Spanner databases.",
-            "PostgreSQL compatible JSONB type. This annotation needs to be applied to Type instances having JSON type code to specify that values of this type should be treated as PostgreSQL JSONB values. Currently this annotation is always needed for JSON when a client interacts with PostgreSQL-enabled Spanner databases."
+            "PostgreSQL compatible JSONB type. This annotation needs to be applied to Type instances having JSON type code to specify that values of this type should be treated as PostgreSQL JSONB values. Currently this annotation is always needed for JSON when a client interacts with PostgreSQL-enabled Spanner databases.",
+            "PostgreSQL compatible OID type. This annotation can be used by a client interacting with PostgreSQL-enabled Spanner database to specify that a value should be treated using the semantics of the OID type."
           ],
           "type": "string"
         }
@@ -7003,7 +7269,7 @@
       "id": "UpdateDatabaseDdlRequest",
       "properties": {
         "operationId": {
-          "description": "If empty, the new update request is assigned an automatically-generated operation ID. Otherwise, `operation_id` is used to construct the name of the resulting Operation. Specifying an explicit operation ID simplifies determining whether the statements were executed in the event that the UpdateDatabaseDdl call is replayed, or the return value is otherwise lost: the database and `operation_id` fields can be combined to form the name of the resulting longrunning.Operation: `/operations/`. `operation_id` should be unique within the database, and must be a valid identifier: `a-z*`. Note that automatically-generated operation IDs always begin with an underscore. If the named operation already exists, UpdateDatabaseDdl returns `ALREADY_EXISTS`.",
+          "description": "If empty, the new update request is assigned an automatically-generated operation ID. Otherwise, `operation_id` is used to construct the name of the resulting Operation. Specifying an explicit operation ID simplifies determining whether the statements were executed in the event that the UpdateDatabaseDdl call is replayed, or the return value is otherwise lost: the database and `operation_id` fields can be combined to form the `name` of the resulting longrunning.Operation: `/operations/`. `operation_id` should be unique within the database, and must be a valid identifier: `a-z*`. Note that automatically-generated operation IDs always begin with an underscore. If the named operation already exists, UpdateDatabaseDdl returns `ALREADY_EXISTS`.",
           "type": "string"
         },
         "protoDescriptors": {
@@ -7078,7 +7344,7 @@
       "type": "object"
     },
     "UpdateInstanceConfigRequest": {
-      "description": "The request for UpdateInstanceConfigRequest.",
+      "description": "The request for UpdateInstanceConfig.",
       "id": "UpdateInstanceConfigRequest",
       "properties": {
         "instanceConfig": {

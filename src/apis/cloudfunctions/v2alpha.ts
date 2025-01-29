@@ -185,11 +185,11 @@ export namespace cloudfunctions_v2alpha {
      */
     build?: string | null;
     /**
-     * Docker Registry to use for this deployment. This configuration is only applicable to 1st Gen functions, 2nd Gen functions can only use Artifact Registry. If unspecified, it defaults to `ARTIFACT_REGISTRY`. If `docker_repository` field is specified, this field should either be left unspecified or set to `ARTIFACT_REGISTRY`.
+     * Docker Registry to use for this deployment. This configuration is only applicable to 1st Gen functions, 2nd Gen functions can only use Artifact Registry. Deprecated: Container Registry option will no longer be available after March 2025: https://cloud.google.com/artifact-registry/docs/transition/transition-from-gcr Please use Artifact Registry instead, which is the default choice. If unspecified, it defaults to `ARTIFACT_REGISTRY`. If `docker_repository` field is specified, this field should either be left unspecified or set to `ARTIFACT_REGISTRY`.
      */
     dockerRegistry?: string | null;
     /**
-     * Repository in Artifact Registry to which the function docker image will be pushed after it is built by Cloud Build. If specified by user, it is created and managed by user with a customer managed encryption key. Otherwise, GCF will create and use a repository named 'gcf-artifacts' for every deployed region. It must match the pattern `projects/{project\}/locations/{location\}/repositories/{repository\}`. Cross-project repositories are not supported. Cross-location repositories are not supported. Repository format must be 'DOCKER'.
+     * Repository in Artifact Registry to which the function docker image will be pushed after it is built by Cloud Build. If specified by user, it is created and managed by user with a customer managed encryption key. Otherwise, GCF will create and use a repository named 'gcf-artifacts' for every deployed region. It must match the pattern `projects/{project\}/locations/{location\}/repositories/{repository\}`. Repository format must be 'DOCKER'.
      */
     dockerRepository?: string | null;
     /**
@@ -247,6 +247,10 @@ export namespace cloudfunctions_v2alpha {
      */
     year?: number | null;
   }
+  /**
+   * Request for the `DetachFunction` method.
+   */
+  export interface Schema$DetachFunctionRequest {}
   /**
    * Filters events based on exact matches on the CloudEvents attributes.
    */
@@ -1021,7 +1025,7 @@ export namespace cloudfunctions_v2alpha {
     permissions?: string[] | null;
   }
   /**
-   * Information related to: * A function's eligibility for 1st Gen to 2nd Gen migration * Current state of migration for function undergoing migration.
+   * Information related to: * A function's eligibility for 1st Gen to 2nd Gen migration and 2nd Gen to CRf detach. * Current state of migration for function undergoing migration/detach.
    */
   export interface Schema$UpgradeInfo {
     /**
@@ -1526,6 +1530,96 @@ export namespace cloudfunctions_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Detaches 2nd Gen function to Cloud Run function.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    detachFunction(
+      params: Params$Resource$Projects$Locations$Functions$Detachfunction,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    detachFunction(
+      params?: Params$Resource$Projects$Locations$Functions$Detachfunction,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    detachFunction(
+      params: Params$Resource$Projects$Locations$Functions$Detachfunction,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    detachFunction(
+      params: Params$Resource$Projects$Locations$Functions$Detachfunction,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    detachFunction(
+      params: Params$Resource$Projects$Locations$Functions$Detachfunction,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    detachFunction(callback: BodyResponseCallback<Schema$Operation>): void;
+    detachFunction(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Detachfunction
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Detachfunction;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Detachfunction;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}:detachFunction').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
             apiVersion: '',
           },
           options
@@ -2601,6 +2695,18 @@ export namespace cloudfunctions_v2alpha {
      * Required. The name of the function which should be deleted.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$Detachfunction
+    extends StandardParameters {
+    /**
+     * Required. The name of the function for which should be detached.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DetachFunctionRequest;
   }
   export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl
     extends StandardParameters {

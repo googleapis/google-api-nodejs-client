@@ -2614,7 +2614,7 @@
       }
     }
   },
-  "revision": "20240927",
+  "revision": "20250117",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -3514,6 +3514,13 @@
       "description": "Artifacts produced by a build that should be uploaded upon successful completion of all build steps.",
       "id": "GoogleDevtoolsCloudbuildV1Artifacts",
       "properties": {
+        "goModules": {
+          "description": "Optional. A list of Go modules to be uploaded to Artifact Registry upon successful completion of all build steps. If any objects fail to be pushed, the build is marked FAILURE.",
+          "items": {
+            "$ref": "GoogleDevtoolsCloudbuildV1GoModule"
+          },
+          "type": "array"
+        },
         "images": {
           "description": "A list of images to be pushed upon the successful completion of all build steps. The images will be pushed using the builder service account's credentials. The digests of the pushed images will be stored in the Build resource's results field. If any of the images fail to be pushed, the build is marked FAILURE.",
           "items": {
@@ -3820,6 +3827,10 @@
           "description": "Option to specify whether or not to apply bash style string operations to the substitutions. NOTE: this is always enabled for triggered builds and cannot be overridden in the build configuration file.",
           "type": "boolean"
         },
+        "enableStructuredLogging": {
+          "description": "Optional. Option to specify whether structured logging is enabled. If true, JSON-formatted logs are parsed as structured logs.",
+          "type": "boolean"
+        },
         "env": {
           "description": "A list of global environment variable definitions that will exist for all build steps in this build. If a variable is defined in both globally and in a build step, the variable will use the build step value. The elements are of the form \"KEY=VALUE\" for the environment variable \"KEY\" being given the value \"VALUE\".",
           "items": {
@@ -3927,12 +3938,14 @@
               "NONE",
               "SHA256",
               "MD5",
+              "GO_MODULE_H1",
               "SHA512"
             ],
             "enumDescriptions": [
               "No hash requested.",
               "Use a sha256 hash.",
               "Use a md5 hash.",
+              "Dirhash of a Go module's source code which is then hex-encoded.",
               "Use a sha512 hash."
             ],
             "type": "string"
@@ -4229,6 +4242,37 @@
       },
       "type": "object"
     },
+    "GoogleDevtoolsCloudbuildV1GoModule": {
+      "description": "Go module to upload to Artifact Registry upon successful completion of all build steps. A module refers to all dependencies in a go.mod file.",
+      "id": "GoogleDevtoolsCloudbuildV1GoModule",
+      "properties": {
+        "modulePath": {
+          "description": "Optional. The Go module's \"module path\". e.g. example.com/foo/v2",
+          "type": "string"
+        },
+        "moduleVersion": {
+          "description": "Optional. The Go module's semantic version in the form vX.Y.Z. e.g. v0.1.1 Pre-release identifiers can also be added by appending a dash and dot separated ASCII alphanumeric characters and hyphens. e.g. v0.2.3-alpha.x.12m.5",
+          "type": "string"
+        },
+        "repositoryLocation": {
+          "description": "Optional. Location of the Artifact Registry repository. i.e. us-east1 Defaults to the build’s location.",
+          "type": "string"
+        },
+        "repositoryName": {
+          "description": "Optional. Artifact Registry repository name. Specified Go modules will be zipped and uploaded to Artifact Registry with this location as a prefix. e.g. my-go-repo",
+          "type": "string"
+        },
+        "repositoryProjectId": {
+          "description": "Optional. Project ID of the Artifact Registry repository. Defaults to the build project.",
+          "type": "string"
+        },
+        "sourcePath": {
+          "description": "Optional. Source path of the go.mod file in the build's workspace. If not specified, this will default to the current directory. e.g. ~/code/go/mypackage",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsCloudbuildV1Hash": {
       "description": "Container message for hash values.",
       "id": "GoogleDevtoolsCloudbuildV1Hash",
@@ -4239,12 +4283,14 @@
             "NONE",
             "SHA256",
             "MD5",
+            "GO_MODULE_H1",
             "SHA512"
           ],
           "enumDescriptions": [
             "No hash requested.",
             "Use a sha256 hash.",
             "Use a md5 hash.",
+            "Dirhash of a Go module's source code which is then hex-encoded.",
             "Use a sha512 hash."
           ],
           "type": "string"
@@ -4424,6 +4470,13 @@
           "items": {
             "format": "byte",
             "type": "string"
+          },
+          "type": "array"
+        },
+        "goModules": {
+          "description": "Optional. Go module artifacts uploaded to Artifact Registry at the end of the build.",
+          "items": {
+            "$ref": "GoogleDevtoolsCloudbuildV1UploadedGoModule"
           },
           "type": "array"
         },
@@ -4652,6 +4705,26 @@
         "startTime": {
           "description": "Start of time span.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsCloudbuildV1UploadedGoModule": {
+      "description": "A Go module artifact uploaded to Artifact Registry using the GoModule directive.",
+      "id": "GoogleDevtoolsCloudbuildV1UploadedGoModule",
+      "properties": {
+        "fileHashes": {
+          "$ref": "GoogleDevtoolsCloudbuildV1FileHashes",
+          "description": "Hash types and values of the Go Module Artifact."
+        },
+        "pushTiming": {
+          "$ref": "GoogleDevtoolsCloudbuildV1TimeSpan",
+          "description": "Output only. Stores timing information for pushing the specified artifact.",
+          "readOnly": true
+        },
+        "uri": {
+          "description": "URI of the uploaded artifact.",
           "type": "string"
         }
       },
@@ -5383,7 +5456,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-enable-automatic-updates`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-function-target`: Service. * `run.googleapis.com/build-id`: Service. * `run.googleapis.com/build-image-uri`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-source-location`: Service. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.",
+          "description": "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-enable-automatic-updates`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-function-target`: Service. * `run.googleapis.com/build-id`: Service. * `run.googleapis.com/build-image-uri`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-source-location`: Service. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/health-check-disabled`: Revision. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.",
           "type": "object"
         },
         "clusterName": {
@@ -5770,7 +5843,7 @@
       "properties": {
         "metadata": {
           "$ref": "ObjectMeta",
-          "description": "Optional metadata for this Revision, including labels and annotations. Name will be generated by the Configuration. The following annotation keys set properties of the created revision: * `autoscaling.knative.dev/minScale` sets the minimum number of instances. * `autoscaling.knative.dev/maxScale` sets the maximum number of instances. * `run.googleapis.com/cloudsql-instances` sets Cloud SQL connections. Multiple values should be comma separated. * `run.googleapis.com/vpc-access-connector` sets a Serverless VPC Access connector. * `run.googleapis.com/vpc-access-egress` sets VPC egress. Supported values are `all-traffic`, `all` (deprecated), and `private-ranges-only`. `all-traffic` and `all` provide the same functionality. `all` is deprecated but will continue to be supported. Prefer `all-traffic`."
+          "description": "Optional metadata for this Revision, including labels and annotations. Name will be generated by the Configuration. The following annotation keys set properties of the created revision: * `autoscaling.knative.dev/minScale` sets the minimum number of instances. * `autoscaling.knative.dev/maxScale` sets the maximum number of instances. * `run.googleapis.com/cloudsql-instances` sets Cloud SQL connections. Multiple values should be comma separated. * `run.googleapis.com/health-check-disabled`: if true, deploy-time startup probes will not run for this revision. * `run.googleapis.com/vpc-access-connector` sets a Serverless VPC Access connector. * `run.googleapis.com/vpc-access-egress` sets VPC egress. Supported values are `all-traffic`, `all` (deprecated), and `private-ranges-only`. `all-traffic` and `all` provide the same functionality. `all` is deprecated but will continue to be supported. Prefer `all-traffic`."
         },
         "spec": {
           "$ref": "RevisionSpec",

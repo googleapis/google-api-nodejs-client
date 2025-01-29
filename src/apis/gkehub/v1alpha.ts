@@ -127,32 +127,6 @@ export namespace gkehub_v1alpha {
   }
 
   /**
-   * **Anthos Observability**: Spec
-   */
-  export interface Schema$AnthosObservabilityFeatureSpec {
-    /**
-     * Default membership spec for unconfigured memberships
-     */
-    defaultMembershipSpec?: Schema$AnthosObservabilityMembershipSpec;
-  }
-  /**
-   * **Anthosobservability**: Per-Membership Feature spec.
-   */
-  export interface Schema$AnthosObservabilityMembershipSpec {
-    /**
-     * Use full of metrics rather than optimized metrics. See https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/logging-and-monitoring#optimized_metrics_default_metrics
-     */
-    doNotOptimizeMetrics?: boolean | null;
-    /**
-     * Enable collecting and reporting metrics and logs from user apps.
-     */
-    enableStackdriverOnApplications?: boolean | null;
-    /**
-     * the version of stackdriver operator used by this feature
-     */
-    version?: string | null;
-  }
-  /**
    * Spec for App Dev Experience Feature.
    */
   export interface Schema$AppDevExperienceFeatureSpec {}
@@ -216,6 +190,14 @@ export namespace gkehub_v1alpha {
      * Optional. OIDC verification keys for this Membership in JWKS format (RFC 7517). When this field is set, OIDC discovery will NOT be performed on `issuer`, and instead OIDC tokens will be validated using this field.
      */
     oidcJwks?: string | null;
+    /**
+     * Optional. Output only. The identity provider for the scope-tenancy workload identity pool.
+     */
+    scopeTenancyIdentityProvider?: string | null;
+    /**
+     * Optional. Output only. The name of the scope-tenancy workload identity pool. This pool is set in the fleet-level feature.
+     */
+    scopeTenancyWorkloadIdentityPool?: string | null;
     /**
      * Output only. The name of the workload identity pool in which `issuer` will be recognized. There is a single Workload Identity Pool per Hub that is shared between all Memberships that belong to that Hub. For a Hub hosted in {PROJECT_ID\}, the workload pool format is `{PROJECT_ID\}.hub.id.goog`, although this is subject to change in newer versions of this API.
      */
@@ -496,10 +478,6 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$CommonFeatureSpec {
     /**
-     * Anthos Observability spec
-     */
-    anthosobservability?: Schema$AnthosObservabilityFeatureSpec;
-    /**
      * Appdevexperience specific spec.
      */
     appdevexperience?: Schema$AppDevExperienceFeatureSpec;
@@ -637,33 +615,33 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementConfigSync {
     /**
-     * Set to true to allow the vertical scaling. Defaults to false which disallows vertical scaling. This field is deprecated.
-     */
-    allowVerticalScale?: boolean | null;
-    /**
-     * Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of the git or oci field.
+     * Optional. Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of the git or oci field.
      */
     enabled?: boolean | null;
     /**
-     * Git repo configuration for the cluster.
+     * Optional. Git repo configuration for the cluster.
      */
     git?: Schema$ConfigManagementGitConfig;
     /**
-     * The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be bound to the GSA.
+     * Optional. The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be bound to the GSA. Deprecated: If Workload Identity Federation for GKE is enabled, Google Cloud Service Account is no longer needed for exporting Config Sync metrics: https://cloud.google.com/kubernetes-engine/enterprise/config-sync/docs/how-to/monitor-config-sync-cloud-monitoring#custom-monitoring.
      */
     metricsGcpServiceAccountEmail?: string | null;
     /**
-     * OCI repo configuration for the cluster
+     * Optional. OCI repo configuration for the cluster
      */
     oci?: Schema$ConfigManagementOciConfig;
     /**
-     * Set to true to enable the Config Sync admission webhook to prevent drifts. If set to `false`, disables the Config Sync admission webhook and does not prevent drifts.
+     * Optional. Set to true to enable the Config Sync admission webhook to prevent drifts. If set to `false`, disables the Config Sync admission webhook and does not prevent drifts.
      */
     preventDrift?: boolean | null;
     /**
-     * Specifies whether the Config Sync Repo is in "hierarchical" or "unstructured" mode.
+     * Optional. Specifies whether the Config Sync Repo is in "hierarchical" or "unstructured" mode.
      */
     sourceFormat?: string | null;
+    /**
+     * Optional. Set to true to stop syncing configs for a single cluster. Default to false.
+     */
+    stopSyncing?: boolean | null;
   }
   /**
    * The state of ConfigSync's deployment on a cluster
@@ -720,31 +698,39 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementConfigSyncState {
     /**
-     * Information about the deployment of ConfigSync, including the version of the various Pods deployed
+     * Output only. Whether syncing resources to the cluster is stopped at the cluster level.
+     */
+    clusterLevelStopSyncingState?: string | null;
+    /**
+     * Output only. The number of RootSync and RepoSync CRs in the cluster.
+     */
+    crCount?: number | null;
+    /**
+     * Output only. Information about the deployment of ConfigSync, including the version of the various Pods deployed
      */
     deploymentState?: Schema$ConfigManagementConfigSyncDeploymentState;
     /**
-     * Errors pertaining to the installation of Config Sync.
+     * Output only. Errors pertaining to the installation of Config Sync.
      */
     errors?: Schema$ConfigManagementConfigSyncError[];
     /**
-     * The state of the Reposync CRD
+     * Output only. The state of the Reposync CRD
      */
     reposyncCrd?: string | null;
     /**
-     * The state of the RootSync CRD
+     * Output only. The state of the RootSync CRD
      */
     rootsyncCrd?: string | null;
     /**
-     * The state of CS This field summarizes the other fields in this message.
+     * Output only. The state of CS This field summarizes the other fields in this message.
      */
     state?: string | null;
     /**
-     * The state of ConfigSync's process to sync configs to a cluster
+     * Output only. The state of ConfigSync's process to sync configs to a cluster
      */
     syncState?: Schema$ConfigManagementSyncState;
     /**
-     * The version of ConfigSync deployed
+     * Output only. The version of ConfigSync deployed
      */
     version?: Schema$ConfigManagementConfigSyncVersion;
   }
@@ -832,35 +818,35 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementGitConfig {
     /**
-     * The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.
+     * Optional. The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.
      */
     gcpServiceAccountEmail?: string | null;
     /**
-     * URL for the HTTPS proxy to be used when communicating with the Git repo.
+     * Optional. URL for the HTTPS proxy to be used when communicating with the Git repo.
      */
     httpsProxy?: string | null;
     /**
-     * The path within the Git repository that represents the top level of the repo to sync. Default: the root directory of the repository.
+     * Optional. The path within the Git repository that represents the top level of the repo to sync. Default: the root directory of the repository.
      */
     policyDir?: string | null;
     /**
-     * Type of secret configured for access to the Git repo. Must be one of ssh, cookiefile, gcenode, token, gcpserviceaccount or none. The validation of this is case-sensitive. Required.
+     * Required. Type of secret configured for access to the Git repo. Must be one of ssh, cookiefile, gcenode, token, gcpserviceaccount, githubapp or none. The validation of this is case-sensitive.
      */
     secretType?: string | null;
     /**
-     * The branch of the repository to sync from. Default: master.
+     * Optional. The branch of the repository to sync from. Default: master.
      */
     syncBranch?: string | null;
     /**
-     * The URL of the Git repository to use as the source of truth.
+     * Required. The URL of the Git repository to use as the source of truth.
      */
     syncRepo?: string | null;
     /**
-     * Git revision (tag or hash) to check out. Default HEAD.
+     * Optional. Git revision (tag or hash) to check out. Default HEAD.
      */
     syncRev?: string | null;
     /**
-     * Period in seconds between consecutive syncs. Default: 15.
+     * Optional. Period in seconds between consecutive syncs. Default: 15.
      */
     syncWaitSecs?: string | null;
   }
@@ -951,31 +937,31 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementMembershipSpec {
     /**
-     * Binauthz conifguration for the cluster. Deprecated: This field will be ignored and should not be set.
+     * Optional. Binauthz conifguration for the cluster. Deprecated: This field will be ignored and should not be set.
      */
     binauthz?: Schema$ConfigManagementBinauthzConfig;
     /**
-     * The user-specified cluster name used by Config Sync cluster-name-selector annotation or ClusterSelector, for applying configs to only a subset of clusters. Omit this field if the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector. Set this field if a name different from the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector.
+     * Optional. The user-specified cluster name used by Config Sync cluster-name-selector annotation or ClusterSelector, for applying configs to only a subset of clusters. Omit this field if the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector. Set this field if a name different from the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector.
      */
     cluster?: string | null;
     /**
-     * Config Sync configuration for the cluster.
+     * Optional. Config Sync configuration for the cluster.
      */
     configSync?: Schema$ConfigManagementConfigSync;
     /**
-     * Hierarchy Controller configuration for the cluster. Deprecated: Configuring Hierarchy Controller through the configmanagement feature is no longer recommended. Use https://github.com/kubernetes-sigs/hierarchical-namespaces instead.
+     * Optional. Hierarchy Controller configuration for the cluster. Deprecated: Configuring Hierarchy Controller through the configmanagement feature is no longer recommended. Use https://github.com/kubernetes-sigs/hierarchical-namespaces instead.
      */
     hierarchyController?: Schema$ConfigManagementHierarchyControllerConfig;
     /**
-     * Enables automatic Feature management.
+     * Optional. Enables automatic Feature management.
      */
     management?: string | null;
     /**
-     * Policy Controller configuration for the cluster. Deprecated: Configuring Policy Controller through the configmanagement feature is no longer recommended. Use the policycontroller feature instead.
+     * Optional. Policy Controller configuration for the cluster. Deprecated: Configuring Policy Controller through the configmanagement feature is no longer recommended. Use the policycontroller feature instead.
      */
     policyController?: Schema$ConfigManagementPolicyController;
     /**
-     * Version of ACM installed.
+     * Optional. Version of ACM installed.
      */
     version?: string | null;
   }
@@ -984,31 +970,31 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementMembershipState {
     /**
-     * Binauthz status
+     * Output only. Binauthz status
      */
     binauthzState?: Schema$ConfigManagementBinauthzState;
     /**
-     * This field is set to the `cluster_name` field of the Membership Spec if it is not empty. Otherwise, it is set to the cluster's fleet membership name.
+     * Output only. This field is set to the `cluster_name` field of the Membership Spec if it is not empty. Otherwise, it is set to the cluster's fleet membership name.
      */
     clusterName?: string | null;
     /**
-     * Current sync status
+     * Output only. Current sync status
      */
     configSyncState?: Schema$ConfigManagementConfigSyncState;
     /**
-     * Hierarchy Controller status
+     * Output only. Hierarchy Controller status
      */
     hierarchyControllerState?: Schema$ConfigManagementHierarchyControllerState;
     /**
-     * Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state
+     * Output only. Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state
      */
     membershipSpec?: Schema$ConfigManagementMembershipSpec;
     /**
-     * Current install status of ACM's Operator
+     * Output only. Current install status of ACM's Operator
      */
     operatorState?: Schema$ConfigManagementOperatorState;
     /**
-     * PolicyController status
+     * Output only. PolicyController status
      */
     policyControllerState?: Schema$ConfigManagementPolicyControllerState;
   }
@@ -1017,23 +1003,23 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementOciConfig {
     /**
-     * The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.
+     * Optional. The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.
      */
     gcpServiceAccountEmail?: string | null;
     /**
-     * The absolute path of the directory that contains the local resources. Default: the root directory of the image.
+     * Optional. The absolute path of the directory that contains the local resources. Default: the root directory of the image.
      */
     policyDir?: string | null;
     /**
-     * Type of secret configured for access to the Git repo.
+     * Required. Type of secret configured for access to the OCI repo. Must be one of gcenode, gcpserviceaccount, k8sserviceaccount or none. The validation of this is case-sensitive.
      */
     secretType?: string | null;
     /**
-     * The OCI image repository URL for the package to sync from. e.g. `LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY_NAME/PACKAGE_NAME`.
+     * Required. The OCI image repository URL for the package to sync from. e.g. `LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY_NAME/PACKAGE_NAME`.
      */
     syncRepo?: string | null;
     /**
-     * Period in seconds between consecutive syncs. Default: 15.
+     * Optional. Period in seconds between consecutive syncs. Default: 15.
      */
     syncWaitSecs?: string | null;
   }
@@ -2185,6 +2171,10 @@ export namespace gkehub_v1alpha {
      */
     authority?: Schema$Authority;
     /**
+     * Output only. The tier of the cluster.
+     */
+    clusterTier?: string | null;
+    /**
      * Output only. When the Membership was created.
      */
     createTime?: string | null;
@@ -2320,10 +2310,6 @@ export namespace gkehub_v1alpha {
    * MembershipFeatureSpec contains configuration information for a single Membership.
    */
   export interface Schema$MembershipFeatureSpec {
-    /**
-     * Anthos Observability-specific spec
-     */
-    anthosobservability?: Schema$AnthosObservabilityMembershipSpec;
     /**
      * Cloud Build-specific spec
      */
@@ -2614,7 +2600,7 @@ export namespace gkehub_v1alpha {
      */
     apiVersion?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -7643,7 +7629,7 @@ export namespace gkehub_v1alpha {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

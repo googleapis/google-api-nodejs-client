@@ -994,7 +994,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "oracledatabase.projects.locations.operations.cancel",
@@ -1119,7 +1119,7 @@
       }
     }
   },
-  "revision": "20240918",
+  "revision": "20241210",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -2237,8 +2237,9 @@
           "type": "integer"
         },
         "cpuCount": {
-          "description": "Optional. The number of enabled CPU cores.",
+          "description": "Output only. The number of enabled CPU cores.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "customerContacts": {
@@ -2255,8 +2256,9 @@
           "type": "number"
         },
         "dbNodeStorageSizeGb": {
-          "description": "Optional. The local node storage allocated in GBs.",
+          "description": "Output only. The local node storage allocated in GBs.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "dbServerVersion": {
@@ -2293,8 +2295,9 @@
           "type": "integer"
         },
         "memorySizeGb": {
-          "description": "Optional. The memory allocated in GBs.",
+          "description": "Output only. The memory allocated in GBs.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "monthlyDbServerVersion": {
@@ -2631,8 +2634,7 @@
           "type": "integer"
         },
         "systemVersion": {
-          "description": "Output only. Operating system version of the image.",
-          "readOnly": true,
+          "description": "Optional. Operating system version of the image.",
           "type": "string"
         },
         "timeZone": {
@@ -3065,13 +3067,15 @@
             "STATE_UNSPECIFIED",
             "ACCOUNT_NOT_LINKED",
             "ACCOUNT_NOT_ACTIVE",
-            "ACTIVE"
+            "ACTIVE",
+            "ACCOUNT_SUSPENDED"
           ],
           "enumDescriptions": [
             "Default unspecified value.",
             "Account not linked.",
             "Account is linked but not active.",
-            "Entitlement and Account are active."
+            "Entitlement and Account are active.",
+            "Account is suspended."
           ],
           "readOnly": true,
           "type": "string"
@@ -3719,22 +3723,22 @@
       "id": "TimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }
@@ -3746,11 +3750,11 @@
       "id": "TimeZone",
       "properties": {
         "id": {
-          "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
+          "description": "IANA Time Zone Database time zone. For example \"America/New_York\".",
           "type": "string"
         },
         "version": {
-          "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
+          "description": "Optional. IANA Time Zone Database version number. For example \"2019a\".",
           "type": "string"
         }
       },

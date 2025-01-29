@@ -17,11 +17,13 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {osconfig_v1} from './v1';
 import {osconfig_v1alpha} from './v1alpha';
 import {osconfig_v1beta} from './v1beta';
+import {osconfig_v2beta} from './v2beta';
 
 export const VERSIONS = {
   v1: osconfig_v1.Osconfig,
   v1alpha: osconfig_v1alpha.Osconfig,
   v1beta: osconfig_v1beta.Osconfig,
+  v2beta: osconfig_v2beta.Osconfig,
 };
 
 export function osconfig(version: 'v1'): osconfig_v1.Osconfig;
@@ -34,11 +36,16 @@ export function osconfig(version: 'v1beta'): osconfig_v1beta.Osconfig;
 export function osconfig(
   options: osconfig_v1beta.Options
 ): osconfig_v1beta.Osconfig;
+export function osconfig(version: 'v2beta'): osconfig_v2beta.Osconfig;
+export function osconfig(
+  options: osconfig_v2beta.Options
+): osconfig_v2beta.Osconfig;
 export function osconfig<
   T =
     | osconfig_v1.Osconfig
     | osconfig_v1alpha.Osconfig
-    | osconfig_v1beta.Osconfig,
+    | osconfig_v1beta.Osconfig
+    | osconfig_v2beta.Osconfig,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -48,6 +55,8 @@ export function osconfig<
     | osconfig_v1alpha.Options
     | 'v1beta'
     | osconfig_v1beta.Options
+    | 'v2beta'
+    | osconfig_v2beta.Options
 ) {
   return getAPI<T>('osconfig', versionOrOptions, VERSIONS, this);
 }
@@ -57,6 +66,7 @@ export {auth};
 export {osconfig_v1};
 export {osconfig_v1alpha};
 export {osconfig_v1beta};
+export {osconfig_v2beta};
 export {
   AuthPlus,
   GlobalOptions,

@@ -241,13 +241,21 @@ export namespace securitycenter_v1beta2 {
      */
     classification?: string | null;
     /**
-     * Total BPS (bytes per second) volume of attack.
+     * Total BPS (bytes per second) volume of attack. Deprecated - refer to volume_bps_long instead.
      */
     volumeBps?: number | null;
     /**
-     * Total PPS (packets per second) volume of attack.
+     * Total BPS (bytes per second) volume of attack.
+     */
+    volumeBpsLong?: string | null;
+    /**
+     * Total PPS (packets per second) volume of attack. Deprecated - refer to volume_pps_long instead.
      */
     volumePps?: number | null;
+    /**
+     * Total PPS (packets per second) volume of attack.
+     */
+    volumePpsLong?: string | null;
   }
   /**
    * An attack exposure contains the results of an attack path simulation run.
@@ -372,6 +380,10 @@ export namespace securitycenter_v1beta2 {
    * Represents an Azure resource group.
    */
   export interface Schema$AzureResourceGroup {
+    /**
+     * The ID of the Azure resource group.
+     */
+    id?: string | null;
     /**
      * The name of the Azure resource group. This is not a UUID.
      */
@@ -854,6 +866,27 @@ export namespace securitycenter_v1beta2 {
     violatedLocation?: string | null;
   }
   /**
+   * Details about data retention deletion violations, in which the data is non-compliant based on their retention or deletion time, as defined in the applicable data security policy. The Data Retention Deletion (DRD) control is a control of the DSPM (Data Security Posture Management) suite that enables organizations to manage data retention and deletion policies in compliance with regulations, such as GDPR and CRPA. DRD supports two primary policy types: maximum storage length (max TTL) and minimum storage length (min TTL). Both are aimed at helping organizations meet regulatory and data management commitments.
+   */
+  export interface Schema$DataRetentionDeletionEvent {
+    /**
+     * Number of objects that violated the policy for this resource. If the number is less than 1,000, then the value of this field is the exact number. If the number of objects that violated the policy is greater than or equal to 1,000, then the value of this field is 1000.
+     */
+    dataObjectCount?: string | null;
+    /**
+     * Timestamp indicating when the event was detected.
+     */
+    eventDetectionTime?: string | null;
+    /**
+     * Type of the DRD event.
+     */
+    eventType?: string | null;
+    /**
+     * Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user set the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.
+     */
+    maxRetentionAllowed?: string | null;
+  }
+  /**
    * Details of a subscription.
    */
   export interface Schema$Details {
@@ -882,6 +915,15 @@ export namespace securitycenter_v1beta2 {
      * The percentage of memory page hashes in the signature that were matched.
      */
     percentPagesMatched?: number | null;
+  }
+  /**
+   * Contains information about the disk associated with the finding.
+   */
+  export interface Schema$Disk {
+    /**
+     * The name of the disk, for example, "https://www.googleapis.com/compute/v1/projects/project-id/zones/zone-id/disks/disk-id".
+     */
+    name?: string | null;
   }
   /**
    * Path of the file in terms of underlying disk/partition identifiers.
@@ -1100,9 +1142,17 @@ export namespace securitycenter_v1beta2 {
      */
     dataFlowEvents?: Schema$DataFlowEvent[];
     /**
+     * Data retention deletion events associated with the finding.
+     */
+    dataRetentionDeletionEvents?: Schema$DataRetentionDeletionEvent[];
+    /**
      * Contains more details about the finding.
      */
     description?: string | null;
+    /**
+     * Disk associated with the finding.
+     */
+    disk?: Schema$Disk;
     /**
      * The time the finding was first detected. If an existing finding is updated, then this is the time the update occurred. For example, if the finding represents an open firewall, this property captures the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding is later resolved, then this time reflects when the finding was resolved. This must not be set to a value greater than the current timestamp.
      */
@@ -1410,6 +1460,10 @@ export namespace securitycenter_v1beta2 {
    * An EffectiveSecurityHealthAnalyticsCustomModule is the representation of a Security Health Analytics custom module at a specified level of the resource hierarchy: organization, folder, or project. If a custom module is inherited from a parent organization or folder, the value of the `enablementState` property in EffectiveSecurityHealthAnalyticsCustomModule is set to the value that is effective in the parent, instead of `INHERITED`. For example, if the module is enabled in a parent organization or folder, the effective enablement_state for the module in all child folders or projects is also `enabled`. EffectiveSecurityHealthAnalyticsCustomModule is read-only.
    */
   export interface Schema$GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule {
+    /**
+     * The cloud provider of the custom module.
+     */
+    cloudProvider?: string | null;
     /**
      * Output only. The user-specified configuration for the module.
      */
@@ -1808,7 +1862,7 @@ export namespace securitycenter_v1beta2 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping;
     /**
-     * Required. Tag values combined with `AND` to check against. Values in the form "tagValues/123" Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Required. Tag values combined with `AND` to check against. For Google Cloud resources, they are tag value IDs in the form of "tagValues/123". Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
@@ -1837,6 +1891,10 @@ export namespace securitycenter_v1beta2 {
      * Output only. If empty, indicates that the custom module was created in the organization, folder, or project in which you are viewing the custom module. Otherwise, `ancestor_module` specifies the organization or folder from which the custom module is inherited.
      */
     ancestorModule?: string | null;
+    /**
+     * The cloud provider of the custom module.
+     */
+    cloudProvider?: string | null;
     /**
      * The user specified custom configuration for the module.
      */
@@ -1988,13 +2046,21 @@ export namespace securitycenter_v1beta2 {
      */
     classification?: string | null;
     /**
-     * Total BPS (bytes per second) volume of attack.
+     * Total BPS (bytes per second) volume of attack. Deprecated - refer to volume_bps_long instead.
      */
     volumeBps?: number | null;
     /**
-     * Total PPS (packets per second) volume of attack.
+     * Total BPS (bytes per second) volume of attack.
+     */
+    volumeBpsLong?: string | null;
+    /**
+     * Total PPS (packets per second) volume of attack. Deprecated - refer to volume_pps_long instead.
      */
     volumePps?: number | null;
+    /**
+     * Total PPS (packets per second) volume of attack.
+     */
+    volumePpsLong?: string | null;
   }
   /**
    * An attack exposure contains the results of an attack path simulation run.
@@ -2119,6 +2185,10 @@ export namespace securitycenter_v1beta2 {
    * Represents an Azure resource group.
    */
   export interface Schema$GoogleCloudSecuritycenterV2AzureResourceGroup {
+    /**
+     * The ID of the Azure resource group.
+     */
+    id?: string | null;
     /**
      * The name of the Azure resource group. This is not a UUID.
      */
@@ -2588,6 +2658,27 @@ export namespace securitycenter_v1beta2 {
     violatedLocation?: string | null;
   }
   /**
+   * Details about data retention deletion violations, in which the data is non-compliant based on their retention or deletion time, as defined in the applicable data security policy. The Data Retention Deletion (DRD) control is a control of the DSPM (Data Security Posture Management) suite that enables organizations to manage data retention and deletion policies in compliance with regulations, such as GDPR and CRPA. DRD supports two primary policy types: maximum storage length (max TTL) and minimum storage length (min TTL). Both are aimed at helping organizations meet regulatory and data management commitments.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2DataRetentionDeletionEvent {
+    /**
+     * Number of objects that violated the policy for this resource. If the number is less than 1,000, then the value of this field is the exact number. If the number of objects that violated the policy is greater than or equal to 1,000, then the value of this field is 1000.
+     */
+    dataObjectCount?: string | null;
+    /**
+     * Timestamp indicating when the event was detected.
+     */
+    eventDetectionTime?: string | null;
+    /**
+     * Type of the DRD event.
+     */
+    eventType?: string | null;
+    /**
+     * Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user set the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.
+     */
+    maxRetentionAllowed?: string | null;
+  }
+  /**
    * Memory hash detection contributing to the binary family match.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Detection {
@@ -2599,6 +2690,15 @@ export namespace securitycenter_v1beta2 {
      * The percentage of memory page hashes in the signature that were matched.
      */
     percentPagesMatched?: number | null;
+  }
+  /**
+   * Contains information about the disk associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Disk {
+    /**
+     * The name of the disk, for example, "https://www.googleapis.com/compute/v1/projects/project-id/zones/zone-id/disks/disk-id".
+     */
+    name?: string | null;
   }
   /**
    * Path of the file in terms of underlying disk/partition identifiers.
@@ -2826,9 +2926,17 @@ export namespace securitycenter_v1beta2 {
      */
     dataFlowEvents?: Schema$GoogleCloudSecuritycenterV2DataFlowEvent[];
     /**
+     * Data retention deletion events associated with the finding.
+     */
+    dataRetentionDeletionEvents?: Schema$GoogleCloudSecuritycenterV2DataRetentionDeletionEvent[];
+    /**
      * Contains more details about the finding.
      */
     description?: string | null;
+    /**
+     * Disk associated with the finding.
+     */
+    disk?: Schema$GoogleCloudSecuritycenterV2Disk;
     /**
      * The time the finding was first detected. If an existing finding is updated, then this is the time the update occurred. For example, if the finding represents an open firewall, this property captures the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding is later resolved, then this time reflects when the finding was resolved. This must not be set to a value greater than the current timestamp.
      */
@@ -3040,6 +3148,269 @@ export namespace securitycenter_v1beta2 {
      * The list of URIs associated to the Findings.
      */
     uris?: string[] | null;
+  }
+  /**
+   * Security Command Center Issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Issue {
+    /**
+     * Output only. The time the issue was created.
+     */
+    createTime?: string | null;
+    /**
+     * The description of the issue in Markdown format.
+     */
+    description?: string | null;
+    /**
+     * The finding category or rule name that generated the issue.
+     */
+    detection?: string | null;
+    /**
+     * The domains of the issue.
+     */
+    domains?: Schema$GoogleCloudSecuritycenterV2IssueDomain[];
+    /**
+     * The exposure score of the issue.
+     */
+    exposureScore?: number | null;
+    /**
+     * The type of the issue.
+     */
+    issueType?: string | null;
+    /**
+     * The time the issue was last observed.
+     */
+    lastObservationTime?: string | null;
+    /**
+     * The mute information of the issue.
+     */
+    mute?: Schema$GoogleCloudSecuritycenterV2IssueMute;
+    /**
+     * Identifier. The name of the issue. Format: organizations/{organization\}/locations/{location\}/issues/{issue\}
+     */
+    name?: string | null;
+    /**
+     * The primary resource associated with the issue.
+     */
+    primaryResource?: Schema$GoogleCloudSecuritycenterV2IssueResource;
+    /**
+     * The findings related to the issue.
+     */
+    relatedFindings?: Schema$GoogleCloudSecuritycenterV2IssueFinding[];
+    /**
+     * Approaches to remediate the issue in Markdown format.
+     */
+    remediations?: string[] | null;
+    /**
+     * Additional resources associated with the issue.
+     */
+    secondaryResources?: Schema$GoogleCloudSecuritycenterV2IssueResource[];
+    /**
+     * The security context of the issue.
+     */
+    securityContexts?: Schema$GoogleCloudSecuritycenterV2IssueSecurityContext[];
+    /**
+     * The severity of the issue.
+     */
+    severity?: string | null;
+    /**
+     * Output only. The state of the issue.
+     */
+    state?: string | null;
+    /**
+     * Output only. The time the issue was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The domains of an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueDomain {
+    /**
+     * The domain category of the issue.
+     */
+    domainCategory?: string | null;
+  }
+  /**
+   * Finding related to an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueFinding {
+    /**
+     * The CVE of the finding.
+     */
+    cve?: Schema$GoogleCloudSecuritycenterV2IssueFindingCve;
+    /**
+     * The name of the finding.
+     */
+    name?: string | null;
+    /**
+     * The security bulletin of the finding.
+     */
+    securityBulletin?: Schema$GoogleCloudSecuritycenterV2IssueFindingSecurityBulletin;
+  }
+  /**
+   * The CVE of the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueFindingCve {
+    /**
+     * The CVE name.
+     */
+    name?: string | null;
+  }
+  /**
+   * The security bulletin of the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueFindingSecurityBulletin {
+    /**
+     * The security bulletin name.
+     */
+    name?: string | null;
+  }
+  /**
+   * The mute information of the issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueMute {
+    /**
+     * The email address of the user who last changed the mute state of the issue.
+     */
+    muteInitiator?: string | null;
+    /**
+     * The user-provided reason for muting the issue.
+     */
+    muteReason?: string | null;
+    /**
+     * Output only. The mute state of the issue.
+     */
+    muteState?: string | null;
+    /**
+     * The time the issue was muted.
+     */
+    muteUpdateTime?: string | null;
+  }
+  /**
+   * A resource associated with the an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResource {
+    /**
+     * The AWS metadata of the resource associated with the issue. Only populated for AWS resources.
+     */
+    awsMetadata?: Schema$GoogleCloudSecuritycenterV2IssueResourceAwsMetadata;
+    /**
+     * The Azure metadata of the resource associated with the issue. Only populated for Azure resources.
+     */
+    azureMetadata?: Schema$GoogleCloudSecuritycenterV2IssueResourceAzureMetadata;
+    /**
+     * The cloud provider of the resource associated with the issue.
+     */
+    cloudProvider?: string | null;
+    /**
+     * The resource-type specific display name of the resource associated with the issue.
+     */
+    displayName?: string | null;
+    /**
+     * The Google Cloud metadata of the resource associated with the issue. Only populated for Google Cloud resources.
+     */
+    googleCloudMetadata?: Schema$GoogleCloudSecuritycenterV2IssueResourceGoogleCloudMetadata;
+    /**
+     * The full resource name of the resource associated with the issue.
+     */
+    name?: string | null;
+    /**
+     * The type of the resource associated with the issue.
+     */
+    type?: string | null;
+  }
+  /**
+   * The AWS metadata of a resource associated with an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceAwsMetadata {
+    /**
+     * The AWS account of the resource associated with the issue.
+     */
+    account?: Schema$GoogleCloudSecuritycenterV2IssueResourceAwsMetadataAwsAccount;
+  }
+  /**
+   * The AWS account of the resource associated with the issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceAwsMetadataAwsAccount {
+    /**
+     * The AWS account ID of the resource associated with the issue.
+     */
+    id?: string | null;
+    /**
+     * The AWS account name of the resource associated with the issue.
+     */
+    name?: string | null;
+  }
+  /**
+   * The Azure metadata of a resource associated with an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceAzureMetadata {
+    /**
+     * The Azure subscription of the resource associated with the issue.
+     */
+    subscription?: Schema$GoogleCloudSecuritycenterV2IssueResourceAzureMetadataAzureSubscription;
+  }
+  /**
+   * The Azure subscription of the resource associated with the issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceAzureMetadataAzureSubscription {
+    /**
+     * The Azure subscription display name of the resource associated with the issue.
+     */
+    displayName?: string | null;
+    /**
+     * The Azure subscription ID of the resource associated with the issue.
+     */
+    id?: string | null;
+  }
+  /**
+   * Google Cloud metadata of a resource associated with an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceGoogleCloudMetadata {
+    /**
+     * The project ID that the resource associated with the issue belongs to.
+     */
+    projectId?: string | null;
+  }
+  /**
+   * Security context associated with an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueSecurityContext {
+    /**
+     * The aggregated count of the security context.
+     */
+    aggregatedCount?: Schema$GoogleCloudSecuritycenterV2IssueSecurityContextAggregatedCount;
+    /**
+     * The context of the security context.
+     */
+    context?: Schema$GoogleCloudSecuritycenterV2IssueSecurityContextContext;
+  }
+  /**
+   * Aggregated count of a security context.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueSecurityContextAggregatedCount {
+    /**
+     * Aggregation key.
+     */
+    key?: string | null;
+    /**
+     * Aggregation value.
+     */
+    value?: number | null;
+  }
+  /**
+   * Context of a security context.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueSecurityContextContext {
+    /**
+     * Context type.
+     */
+    type?: string | null;
+    /**
+     * Context values.
+     */
+    values?: string[] | null;
   }
   /**
    * Kernel mode rootkit signatures.
@@ -3599,7 +3970,7 @@ export namespace securitycenter_v1beta2 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping;
     /**
-     * Tag values combined with `AND` to check against. Values in the form "tagValues/123" Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Tag values combined with `AND` to check against. For Google Cloud resources, they are tag value IDs in the form of "tagValues/123". Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**

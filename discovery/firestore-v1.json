@@ -1421,7 +1421,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "firestore.projects.databases.operations.cancel",
@@ -1711,7 +1711,7 @@
       }
     }
   },
-  "revision": "20240904",
+  "revision": "20250120",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2417,7 +2417,7 @@
           "type": "string"
         },
         "distanceThreshold": {
-          "description": "Optional. Option to specify a threshold for which no less similar documents will be returned. The behavior of the specified `distance_measure` will affect the meaning of the distance threshold. Since DOT_PRODUCT distances increase when the vectors are more similar, the comparison is inverted. For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold For DOT_PRODUCT: WHERE distance >= distance_threshold",
+          "description": "Optional. Option to specify a threshold for which no less similar documents will be returned. The behavior of the specified `distance_measure` will affect the meaning of the distance threshold. Since DOT_PRODUCT distances increase when the vectors are more similar, the comparison is inverted. * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold * For DOT_PRODUCT: WHERE distance >= distance_threshold",
           "format": "double",
           "type": "number"
         },
@@ -3150,11 +3150,29 @@
           "description": "The API scope supported by this index.",
           "enum": [
             "ANY_API",
-            "DATASTORE_MODE_API"
+            "DATASTORE_MODE_API",
+            "IGNITE_API"
           ],
           "enumDescriptions": [
             "The index can only be used by the Firestore Native query API. This is the default.",
-            "The index can only be used by the Firestore in Datastore Mode query API."
+            "The index can only be used by the Firestore in Datastore Mode query API.",
+            "The index can only be used by Ignite."
+          ],
+          "type": "string"
+        },
+        "density": {
+          "description": "Immutable. The density configuration of the index.",
+          "enum": [
+            "DENSITY_UNSPECIFIED",
+            "SPARSE_ALL",
+            "SPARSE_ANY",
+            "DENSE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. It will use database default setting. This value is input only.",
+            "In order for an index entry to be added, the document must contain all fields specified in the index. This is the only allowed value for indexes having ApiScope `ANY_API` and `DATASTORE_MODE_API`.",
+            "In order for an index entry to be added, the document must contain at least one of the fields specified in the index. Non-existent fields are treated as having a NULL value when generating index entries.",
+            "An index entry will be added regardless of whether the document contains any of the fields specified in the index. Non-existent fields are treated as having a NULL value when generating index entries."
           ],
           "type": "string"
         },
@@ -3164,6 +3182,10 @@
             "$ref": "GoogleFirestoreAdminV1IndexField"
           },
           "type": "array"
+        },
+        "multikey": {
+          "description": "Optional. Whether the index is multikey. By default, the index is not multikey. For non-multikey indexes, none of the paths in the index definition reach or traverse an array, except via an explicit array index. For multikey indexes, at most one of the paths in the index definition reach or traverse an array, except via an explicit array index. Violations will result in errors. Note this field only applies to index with IGNITE_API ApiScope.",
+          "type": "boolean"
         },
         "name": {
           "description": "Output only. A server defined name for this index. The form of this name for composite indexes will be: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{composite_index_id}` For single field indexes, this field will be empty.",
@@ -4264,7 +4286,7 @@
       "type": "object"
     },
     "StructuredQuery": {
-      "description": "A Firestore query. The query stages are executed in the following order: 1. from 2. where 3. select 4. order_by + start_at + end_at 5. offset 6. limit",
+      "description": "A Firestore query. The query stages are executed in the following order: 1. from 2. where 3. select 4. order_by + start_at + end_at 5. offset 6. limit 7. find_nearest",
       "id": "StructuredQuery",
       "properties": {
         "endAt": {

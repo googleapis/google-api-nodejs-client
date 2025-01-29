@@ -241,7 +241,7 @@ export namespace composer_v1beta1 {
     statusMessage?: string | null;
   }
   /**
-   * Configuration for resources used by Airflow DAG processors. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+   * Configuration for resources used by Airflow DAG processors. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
    */
   export interface Schema$DagProcessorResource {
     /**
@@ -334,7 +334,7 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$Environment {
     /**
-     * Configuration parameters for this environment.
+     * Optional. Configuration parameters for this environment.
      */
     config?: Schema$EnvironmentConfig;
     /**
@@ -346,7 +346,7 @@ export namespace composer_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the environment, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}" EnvironmentId must start with a lowercase letter followed by up to 63 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     * Identifier. The resource name of the environment, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}" EnvironmentId must start with a lowercase letter followed by up to 63 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      */
     name?: string | null;
     /**
@@ -419,7 +419,7 @@ export namespace composer_v1beta1 {
      */
     masterAuthorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
     /**
-     * The configuration used for the Kubernetes Engine cluster.
+     * Optional. The configuration used for the Kubernetes Engine cluster.
      */
     nodeConfig?: Schema$NodeConfig;
     /**
@@ -427,7 +427,7 @@ export namespace composer_v1beta1 {
      */
     nodeCount?: number | null;
     /**
-     * The configuration used for the Private IP Cloud Composer environment.
+     * Optional. The configuration used for the Private IP Cloud Composer environment.
      */
     privateEnvironmentConfig?: Schema$PrivateEnvironmentConfig;
     /**
@@ -439,7 +439,7 @@ export namespace composer_v1beta1 {
      */
     resilienceMode?: string | null;
     /**
-     * The configuration settings for software inside the environment.
+     * Optional. The configuration settings for software inside the environment.
      */
     softwareConfig?: Schema$SoftwareConfig;
     /**
@@ -741,11 +741,11 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$NodeConfig {
     /**
-     * Optional. The IP range in CIDR notation to use internally by Cloud Composer. IP addresses are not reserved - and the same range can be used by multiple Cloud Composer environments. In case of overlap, IPs from this range will not be accessible in the user's VPC network. Cannot be updated. If not specified, the default value of '100.64.128.0/20' is used. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Optional. The IP range in CIDR notation to use internally by Cloud Composer. IP addresses are not reserved - and the same range can be used by multiple Cloud Composer environments. In case of overlap, IPs from this range will not be accessible in the user's VPC network. Cannot be updated. If not specified, the default value of '100.64.128.0/20' is used. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      */
     composerInternalIpv4CidrBlock?: string | null;
     /**
-     * Optional. Network Attachment that Cloud Composer environment is connected to, which provides connectivity with a user's VPC network. Takes precedence over network and subnetwork settings. If not provided, but network and subnetwork are defined during environment, it will be provisioned. If not provided and network and subnetwork are also empty, then connectivity to user's VPC network is disabled. Network attachment must be provided in format projects/{project\}/regions/{region\}/networkAttachments/{networkAttachment\}. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Optional. Network Attachment that Cloud Composer environment is connected to, which provides connectivity with a user's VPC network. Takes precedence over network and subnetwork settings. If not provided, but network and subnetwork are defined during environment, it will be provisioned. If not provided and network and subnetwork are also empty, then connectivity to user's VPC network is disabled. Network attachment must be provided in format projects/{project\}/regions/{region\}/networkAttachments/{networkAttachment\}. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      */
     composerNetworkAttachment?: string | null;
     /**
@@ -923,7 +923,7 @@ export namespace composer_v1beta1 {
      */
     cloudSqlIpv4CidrBlock?: string | null;
     /**
-     * Optional. If `true`, builds performed during operations that install Python packages have only private connectivity to Google services (including Artifact Registry) and VPC network (if either `NodeConfig.network` and `NodeConfig.subnetwork` fields or `NodeConfig.composer_network_attachment` field are specified). If `false`, the builds also have access to the internet. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Optional. If `true`, builds performed during operations that install Python packages have only private connectivity to Google services (including Artifact Registry) and VPC network (if either `NodeConfig.network` and `NodeConfig.subnetwork` fields or `NodeConfig.composer_network_attachment` field are specified). If `false`, the builds also have access to the internet. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      */
     enablePrivateBuildsOnly?: boolean | null;
     /**
@@ -1041,7 +1041,7 @@ export namespace composer_v1beta1 {
      */
     envVariables?: {[key: string]: string} | null;
     /**
-     * The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major or major.minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).
+     * Optional. The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major or major.minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).
      */
     imageVersion?: string | null;
     /**
@@ -1057,7 +1057,7 @@ export namespace composer_v1beta1 {
      */
     schedulerCount?: number | null;
     /**
-     * Optional. Whether or not the web server uses custom plugins. If unspecified, the field defaults to `PLUGINS_ENABLED`. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Optional. Whether or not the web server uses custom plugins. If unspecified, the field defaults to `PLUGINS_ENABLED`. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      */
     webServerPluginsMode?: string | null;
   }
@@ -1152,7 +1152,7 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$UserWorkloadsConfigMap {
     /**
-     * Optional. The "data" field of Kubernetes ConfigMap, organized in key-value pairs. For details see: https://kubernetes.io/docs/concepts/configuration/configmap/
+     * Optional. The "data" field of Kubernetes ConfigMap, organized in key-value pairs. For details see: https://kubernetes.io/docs/concepts/configuration/configmap/ Example: { "example_key": "example_value", "another_key": "another_value" \}
      */
     data?: {[key: string]: string} | null;
     /**
@@ -1165,7 +1165,7 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$UserWorkloadsSecret {
     /**
-     * Optional. The "data" field of Kubernetes Secret, organized in key-value pairs, which can contain sensitive values such as a password, a token, or a key. The values for all keys have to be base64-encoded strings. For details see: https://kubernetes.io/docs/concepts/configuration/secret/
+     * Optional. The "data" field of Kubernetes Secret, organized in key-value pairs, which can contain sensitive values such as a password, a token, or a key. The values for all keys have to be base64-encoded strings. For details see: https://kubernetes.io/docs/concepts/configuration/secret/ Example: { "example": "ZXhhbXBsZV92YWx1ZQ==", "another-example": "YW5vdGhlcl9leGFtcGxlX3ZhbHVl" \}
      */
     data?: {[key: string]: string} | null;
     /**
@@ -1238,7 +1238,7 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$WorkloadsConfig {
     /**
-     * Optional. Resources used by Airflow DAG processors. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Optional. Resources used by Airflow DAG processors. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      */
     dagProcessor?: Schema$DagProcessorResource;
     /**
@@ -2741,7 +2741,7 @@ export namespace composer_v1beta1 {
     }
 
     /**
-     * Creates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Creates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2834,7 +2834,7 @@ export namespace composer_v1beta1 {
     }
 
     /**
-     * Deletes a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Deletes a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2920,7 +2920,7 @@ export namespace composer_v1beta1 {
     }
 
     /**
-     * Gets an existing user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Gets an existing user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3011,7 +3011,7 @@ export namespace composer_v1beta1 {
     }
 
     /**
-     * Lists user workloads ConfigMaps. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Lists user workloads ConfigMaps. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3108,7 +3108,7 @@ export namespace composer_v1beta1 {
     }
 
     /**
-     * Updates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Updates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3260,7 +3260,7 @@ export namespace composer_v1beta1 {
     }
 
     /**
-     * Creates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Creates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3352,7 +3352,7 @@ export namespace composer_v1beta1 {
     }
 
     /**
-     * Deletes a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Deletes a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3438,7 +3438,7 @@ export namespace composer_v1beta1 {
     }
 
     /**
-     * Gets an existing user workloads Secret. Values of the "data" field in the response are cleared. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Gets an existing user workloads Secret. Values of the "data" field in the response are cleared. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3527,7 +3527,7 @@ export namespace composer_v1beta1 {
     }
 
     /**
-     * Lists user workloads Secrets. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Lists user workloads Secrets. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3625,7 +3625,7 @@ export namespace composer_v1beta1 {
     }
 
     /**
-     * Updates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Updates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3775,7 +3775,7 @@ export namespace composer_v1beta1 {
     }
 
     /**
-     * Lists workloads in a Cloud Composer environment. Workload is a unit that runs a single Composer component. This method is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
+     * Lists workloads in a Cloud Composer environment. Workload is a unit that runs a single Composer component. This method is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

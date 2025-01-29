@@ -760,7 +760,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "datafusion.projects.locations.operations.cancel",
@@ -930,7 +930,7 @@
       }
     }
   },
-  "revision": "20240703",
+  "revision": "20250122",
   "rootUrl": "https://datafusion.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -971,38 +971,6 @@
           ],
           "readOnly": true,
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "AssetLocation": {
-      "description": "Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.",
-      "id": "AssetLocation",
-      "properties": {
-        "expected": {
-          "$ref": "IsolationExpectations",
-          "description": "Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation."
-        },
-        "extraParameters": {
-          "description": "Defines extra parameters required for specific asset types.",
-          "items": {
-            "$ref": "ExtraParameter"
-          },
-          "type": "array"
-        },
-        "locationData": {
-          "description": "Contains all kinds of physical location definitions for this asset.",
-          "items": {
-            "$ref": "LocationData"
-          },
-          "type": "array"
-        },
-        "parentAsset": {
-          "description": "Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.",
-          "items": {
-            "$ref": "CloudAsset"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1077,47 +1045,10 @@
       },
       "type": "object"
     },
-    "BlobstoreLocation": {
-      "description": "Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains",
-      "id": "BlobstoreLocation",
-      "properties": {
-        "policyId": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
-      "type": "object"
-    },
-    "CloudAsset": {
-      "id": "CloudAsset",
-      "properties": {
-        "assetName": {
-          "type": "string"
-        },
-        "assetType": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "CloudAssetComposition": {
-      "id": "CloudAssetComposition",
-      "properties": {
-        "childAsset": {
-          "items": {
-            "$ref": "CloudAsset"
-          },
-          "type": "array"
-        }
-      },
       "type": "object"
     },
     "CryptoKeyConfig": {
@@ -1127,18 +1058,6 @@
         "keyReference": {
           "description": "The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DirectLocationAssignment": {
-      "id": "DirectLocationAssignment",
-      "properties": {
-        "location": {
-          "items": {
-            "$ref": "LocationAssignment"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1210,17 +1129,6 @@
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ExtraParameter": {
-      "description": "Defines parameters that should only be used for specific asset types.",
-      "id": "ExtraParameter",
-      "properties": {
-        "regionalMigDistributionPolicy": {
-          "$ref": "RegionalMigDistributionPolicy",
-          "description": "Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances."
         }
       },
       "type": "object"
@@ -1338,6 +1246,14 @@
           },
           "description": "The resource labels for instance to use to annotate any related underlying resources such as Compute Engine VMs. The character '=' is not allowed to be used within the labels.",
           "type": "object"
+        },
+        "maintenanceEvents": {
+          "description": "Output only. The maintenance events for this instance.",
+          "items": {
+            "$ref": "MaintenanceEvent"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "maintenancePolicy": {
           "$ref": "MaintenancePolicy",
@@ -1467,133 +1383,13 @@
       },
       "type": "object"
     },
-    "IsolationExpectations": {
-      "id": "IsolationExpectations",
-      "properties": {
-        "ziOrgPolicy": {
-          "enum": [
-            "ZI_UNSPECIFIED",
-            "ZI_UNKNOWN",
-            "ZI_NOT_REQUIRED",
-            "ZI_PREFERRED",
-            "ZI_REQUIRED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "ziRegionPolicy": {
-          "enum": [
-            "ZI_REGION_POLICY_UNSPECIFIED",
-            "ZI_REGION_POLICY_UNKNOWN",
-            "ZI_REGION_POLICY_NOT_SET",
-            "ZI_REGION_POLICY_FAIL_OPEN",
-            "ZI_REGION_POLICY_FAIL_CLOSED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "ziRegionState": {
-          "enum": [
-            "ZI_REGION_UNSPECIFIED",
-            "ZI_REGION_UNKNOWN",
-            "ZI_REGION_NOT_ENABLED",
-            "ZI_REGION_ENABLED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "zoneIsolation": {
-          "deprecated": true,
-          "description": "Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.",
-          "enum": [
-            "ZI_UNSPECIFIED",
-            "ZI_UNKNOWN",
-            "ZI_NOT_REQUIRED",
-            "ZI_PREFERRED",
-            "ZI_REQUIRED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "zoneSeparation": {
-          "deprecated": true,
-          "description": "Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.",
-          "enum": [
-            "ZS_UNSPECIFIED",
-            "ZS_UNKNOWN",
-            "ZS_NOT_REQUIRED",
-            "ZS_REQUIRED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "zsOrgPolicy": {
-          "enum": [
-            "ZS_UNSPECIFIED",
-            "ZS_UNKNOWN",
-            "ZS_NOT_REQUIRED",
-            "ZS_REQUIRED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "zsRegionState": {
-          "enum": [
-            "ZS_REGION_UNSPECIFIED",
-            "ZS_REGION_UNKNOWN",
-            "ZS_REGION_NOT_ENABLED",
-            "ZS_REGION_ENABLED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking of the asset ZS-bit is not available",
-            "",
-            ""
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListAvailableVersionsResponse": {
       "description": "Response message for the list available versions request.",
       "id": "ListAvailableVersionsResponse",
       "properties": {
         "availableVersions": {
-          "description": "Represents a list of versions that are supported.",
+          "deprecated": true,
+          "description": "Represents a list of versions that are supported. Deprecated: Use versions field instead.",
           "items": {
             "$ref": "Version"
           },
@@ -1602,6 +1398,13 @@
         "nextPageToken": {
           "description": "Token to retrieve the next page of results or empty if there are no more results in the list.",
           "type": "string"
+        },
+        "versions": {
+          "description": "Represents a list of all versions.",
+          "items": {
+            "$ref": "Version"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1737,60 +1540,38 @@
       },
       "type": "object"
     },
-    "LocationAssignment": {
-      "id": "LocationAssignment",
+    "MaintenanceEvent": {
+      "description": "Represents a maintenance event.",
+      "id": "MaintenanceEvent",
       "properties": {
-        "location": {
+        "endTime": {
+          "description": "Output only. The end time of the maintenance event provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. Example: \"2024-01-02T12:04:06-06:00\" This field will be empty if the maintenance event is not yet complete.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
-        "locationType": {
+        "startTime": {
+          "description": "Output only. The start time of the maintenance event provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. Example: \"2024-01-01T12:04:06-04:00\"",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the maintenance event.",
           "enum": [
-            "UNSPECIFIED",
-            "CLUSTER",
-            "POP",
-            "CLOUD_ZONE",
-            "CLOUD_REGION",
-            "MULTI_REGION_GEO",
-            "MULTI_REGION_JURISDICTION",
-            "GLOBAL",
-            "OTHER"
+            "STATE_UNSPECIFIED",
+            "SCHEDULED",
+            "STARTED",
+            "COMPLETED"
           ],
           "enumDescriptions": [
-            "",
-            "1-10: Physical failure domains.",
-            "",
-            "11-20: Logical failure domains.",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "The state of the maintenance event is unspecified.",
+            "The maintenance is scheduled but has not started.",
+            "The maintenance has been started.",
+            "The maintenance has been completed."
           ],
+          "readOnly": true,
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "LocationData": {
-      "id": "LocationData",
-      "properties": {
-        "blobstoreLocation": {
-          "$ref": "BlobstoreLocation"
-        },
-        "childAssetLocation": {
-          "$ref": "CloudAssetComposition"
-        },
-        "directLocation": {
-          "$ref": "DirectLocationAssignment"
-        },
-        "gcpProjectProxy": {
-          "$ref": "TenantProjectProxy"
-        },
-        "placerLocation": {
-          "$ref": "PlacerLocation"
-        },
-        "spannerLocation": {
-          "$ref": "SpannerLocation"
         }
       },
       "type": "object"
@@ -1948,17 +1729,6 @@
       },
       "type": "object"
     },
-    "PlacerLocation": {
-      "description": "Message describing that the location of the customer resource is tied to placer allocations",
-      "id": "PlacerLocation",
-      "properties": {
-        "placerConfig": {
-          "description": "Directory with a config related to it in placer (e.g. \"/placer/prod/home/my-root/my-dir\")",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "Policy": {
       "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
@@ -2025,25 +1795,6 @@
       },
       "type": "object"
     },
-    "RegionalMigDistributionPolicy": {
-      "description": "To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances",
-      "id": "RegionalMigDistributionPolicy",
-      "properties": {
-        "targetShape": {
-          "description": "The shape in which the group converges around distribution of resources. Instance of proto2 enum",
-          "format": "int32",
-          "type": "integer"
-        },
-        "zones": {
-          "description": "Cloud zones used by regional MIG to create instances.",
-          "items": {
-            "$ref": "ZoneConfiguration"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "RemoveIamPolicyRequest": {
       "description": "Request message for RemoveIamPolicy method.",
       "id": "RemoveIamPolicyRequest",
@@ -2078,26 +1829,6 @@
       },
       "type": "object"
     },
-    "SpannerLocation": {
-      "id": "SpannerLocation",
-      "properties": {
-        "backupName": {
-          "description": "Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "dbName": {
-          "description": "Set of databases used by the resource in format /span//",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -2121,18 +1852,6 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "TenantProjectProxy": {
-      "id": "TenantProjectProxy",
-      "properties": {
-        "projectNumbers": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -2208,26 +1927,19 @@
           "enum": [
             "TYPE_UNSPECIFIED",
             "TYPE_PREVIEW",
-            "TYPE_GENERAL_AVAILABILITY"
+            "TYPE_GENERAL_AVAILABILITY",
+            "TYPE_DEPRECATED"
           ],
           "enumDescriptions": [
             "Version does not have availability yet",
             "Version is under development and not considered stable",
-            "Version is available for public use Version is under development and not considered stable"
+            "Version is available for public use",
+            "Version is no longer supported."
           ],
           "type": "string"
         },
         "versionNumber": {
           "description": "The version number of the Data Fusion instance, such as '6.0.1.0'.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ZoneConfiguration": {
-      "id": "ZoneConfiguration",
-      "properties": {
-        "zone": {
           "type": "string"
         }
       },

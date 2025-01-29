@@ -113,6 +113,7 @@ export namespace checks_v1alpha {
   export class Checks {
     context: APIRequestContext;
     accounts: Resource$Accounts;
+    aisafety: Resource$Aisafety;
     media: Resource$Media;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -122,6 +123,7 @@ export namespace checks_v1alpha {
       };
 
       this.accounts = new Resource$Accounts(this.context);
+      this.aisafety = new Resource$Aisafety(this.context);
       this.media = new Resource$Media(this.context);
     }
   }
@@ -159,6 +161,97 @@ export namespace checks_v1alpha {
      * A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Request proto for ClassifyContent RPC.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaClassifyContentRequest {
+    /**
+     * Optional. Version of the classifier to use. If not specified, the latest version will be used.
+     */
+    classifierVersion?: string | null;
+    /**
+     * Optional. Context about the input that will be used to help on the classification.
+     */
+    context?: Schema$GoogleChecksAisafetyV1alphaClassifyContentRequestContext;
+    /**
+     * Required. Content to be classified.
+     */
+    input?: Schema$GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent;
+    /**
+     * Required. List of policies to classify against.
+     */
+    policies?: Schema$GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig[];
+  }
+  /**
+   * Context about the input that will be used to help on the classification.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaClassifyContentRequestContext {
+    /**
+     * Optional. Prompt that generated the model response.
+     */
+    prompt?: string | null;
+  }
+  /**
+   * Content to be classified.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent {
+    /**
+     * Content in text format.
+     */
+    textInput?: Schema$GoogleChecksAisafetyV1alphaTextInput;
+  }
+  /**
+   * List of policies to classify against.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig {
+    /**
+     * Required. Type of the policy.
+     */
+    policyType?: string | null;
+    /**
+     * Optional. Score threshold to use when deciding if the content is violative or non-violative. If not specified, the default 0.5 threshold for the policy will be used.
+     */
+    threshold?: number | null;
+  }
+  /**
+   * Response proto for ClassifyContent RPC.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse {
+    /**
+     * Results of the classification for each policy.
+     */
+    policyResults?: Schema$GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult[];
+  }
+  /**
+   * Result for one policy against the corresponding input.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult {
+    /**
+     * Type of the policy.
+     */
+    policyType?: string | null;
+    /**
+     * Final score for the results of this policy.
+     */
+    score?: number | null;
+    /**
+     * Result of the classification for the policy.
+     */
+    violationResult?: string | null;
+  }
+  /**
+   * Text input to be classified.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaTextInput {
+    /**
+     * Actual piece of text to be classified.
+     */
+    content?: string | null;
+    /**
+     * Optional. Language of the text in ISO 639-1 format. If the language is invalid or not specified, the system will try to detect it.
+     */
+    languageCode?: string | null;
   }
   /**
    * The request message for ReportService.AnalyzeUpload.
@@ -687,6 +780,201 @@ export namespace checks_v1alpha {
     id?: string | null;
   }
   /**
+   * The results of a Code Compliance CLI analysis.
+   */
+  export interface Schema$GoogleChecksRepoScanV1alphaCliAnalysis {
+    /**
+     * Optional. Requested code scans resulting from preliminary CLI analysis.
+     */
+    codeScans?: Schema$GoogleChecksRepoScanV1alphaCodeScan[];
+    /**
+     * Optional. Data sources detected in the scan.
+     */
+    sources?: Schema$GoogleChecksRepoScanV1alphaSource[];
+  }
+  /**
+   * Source code attribution.
+   */
+  export interface Schema$GoogleChecksRepoScanV1alphaCodeAttribution {
+    /**
+     * Optional. Code excerpt where the source was detected along with surrounding code.
+     */
+    codeExcerpt?: string | null;
+    /**
+     * Required. Line number (1-based).
+     */
+    lineNumber?: number | null;
+    /**
+     * Required. Path of the file.
+     */
+    path?: string | null;
+    /**
+     * Optional. Start line number of the code excerpt (1-based).
+     */
+    startLineNumber?: number | null;
+  }
+  /**
+   * A requested analysis of source code. Contains the source code and processing state.
+   */
+  export interface Schema$GoogleChecksRepoScanV1alphaCodeScan {
+    /**
+     * Optional. Data type classification requests.
+     */
+    dataTypeClassifications?: Schema$GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification[];
+    /**
+     * Required. Source code to analyze.
+     */
+    sourceCode?: Schema$GoogleChecksRepoScanV1alphaSourceCode;
+  }
+  /**
+   * A request to classify data types.
+   */
+  export interface Schema$GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification {
+    /**
+     * Required. Candidate data type.
+     */
+    dataType?: string | null;
+    /**
+     * Required. Line number (1-based).
+     */
+    lineNumber?: number | null;
+  }
+  /**
+   * The request message for RepoScanService.GenerateScan.
+   */
+  export interface Schema$GoogleChecksRepoScanV1alphaGenerateScanRequest {
+    /**
+     * Required. CLI analysis results.
+     */
+    cliAnalysis?: Schema$GoogleChecksRepoScanV1alphaCliAnalysis;
+    /**
+     * Required. CLI version.
+     */
+    cliVersion?: string | null;
+    /**
+     * Required. Local scan path.
+     */
+    localScanPath?: string | null;
+    /**
+     * Required. SCM metadata.
+     */
+    scmMetadata?: Schema$GoogleChecksRepoScanV1alphaScmMetadata;
+  }
+  /**
+   * The response message for RepoScanService.ListRepoScans.
+   */
+  export interface Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse {
+    /**
+     * A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The repo scans for the specified app.
+     */
+    repoScans?: Schema$GoogleChecksRepoScanV1alphaRepoScan[];
+  }
+  /**
+   * Pull request info.
+   */
+  export interface Schema$GoogleChecksRepoScanV1alphaPullRequest {
+    /**
+     * Required. For PR analysis, we compare against the most recent scan of the base branch to highlight new issues.
+     */
+    baseBranch?: string | null;
+    /**
+     * Required. This can be supplied by the user or parsed automatically from predefined CI environment variables.
+     */
+    prNumber?: string | null;
+  }
+  /**
+   * Repo scan.
+   */
+  export interface Schema$GoogleChecksRepoScanV1alphaRepoScan {
+    /**
+     * CLI version.
+     */
+    cliVersion?: string | null;
+    /**
+     * Local scan path.
+     */
+    localScanPath?: string | null;
+    /**
+     * Identifier. Resource name of the scan.
+     */
+    name?: string | null;
+    /**
+     * A URL to view results.
+     */
+    resultsUri?: string | null;
+    /**
+     * SCM metadata.
+     */
+    scmMetadata?: Schema$GoogleChecksRepoScanV1alphaScmMetadata;
+    /**
+     * Data sources detected.
+     */
+    sources?: Schema$GoogleChecksRepoScanV1alphaSource[];
+  }
+  /**
+   * SCM metadata.
+   */
+  export interface Schema$GoogleChecksRepoScanV1alphaScmMetadata {
+    /**
+     * Required. Branch name.
+     */
+    branch?: string | null;
+    /**
+     * Optional. Contains info about the associated pull request. This is only populated for pull request scans.
+     */
+    pullRequest?: Schema$GoogleChecksRepoScanV1alphaPullRequest;
+    /**
+     * Required. Git remote URL.
+     */
+    remoteUri?: string | null;
+    /**
+     * Required. Revision ID, e.g. Git commit hash.
+     */
+    revisionId?: string | null;
+  }
+  /**
+   * Represents a data source finding.
+   */
+  export interface Schema$GoogleChecksRepoScanV1alphaSource {
+    /**
+     * Optional. Source code attribution for the finding.
+     */
+    codeAttribution?: Schema$GoogleChecksRepoScanV1alphaCodeAttribution;
+    /**
+     * Required. Data type.
+     */
+    dataType?: string | null;
+    /**
+     * Optional. Whether the finding was marked as a false positive.
+     */
+    falsePositive?: boolean | null;
+  }
+  /**
+   * Contains source code from a repo.
+   */
+  export interface Schema$GoogleChecksRepoScanV1alphaSourceCode {
+    /**
+     * Required. Source code.
+     */
+    code?: string | null;
+    /**
+     * Required. End line number (1-based).
+     */
+    endLine?: number | null;
+    /**
+     * Required. Path of the file.
+     */
+    path?: string | null;
+    /**
+     * Required. Start line number (1-based).
+     */
+    startLine?: number | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -994,7 +1282,7 @@ export namespace checks_v1alpha {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1727,9 +2015,11 @@ export namespace checks_v1alpha {
   export class Resource$Accounts$Repos {
     context: APIRequestContext;
     operations: Resource$Accounts$Repos$Operations;
+    scans: Resource$Accounts$Repos$Scans;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.operations = new Resource$Accounts$Repos$Operations(this.context);
+      this.scans = new Resource$Accounts$Repos$Scans(this.context);
     }
   }
 
@@ -1831,6 +2121,443 @@ export namespace checks_v1alpha {
      * The name of the operation resource.
      */
     name?: string;
+  }
+
+  export class Resource$Accounts$Repos$Scans {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Uploads the results of local Code Compliance analysis and generates a scan of privacy issues. Returns a google.longrunning.Operation containing analysis and findings.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generate(
+      params: Params$Resource$Accounts$Repos$Scans$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
+      params?: Params$Resource$Accounts$Repos$Scans$Generate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    generate(
+      params: Params$Resource$Accounts$Repos$Scans$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generate(
+      params: Params$Resource$Accounts$Repos$Scans$Generate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    generate(
+      params: Params$Resource$Accounts$Repos$Scans$Generate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    generate(callback: BodyResponseCallback<Schema$Operation>): void;
+    generate(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Repos$Scans$Generate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Repos$Scans$Generate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Repos$Scans$Generate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://checks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/scans:generate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a repo scan. By default, only the name and results_uri fields are returned. You can include other fields by listing them in the `fields` URL query parameter. For example, `?fields=name,sources` will return the name and sources fields.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Repos$Scans$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accounts$Repos$Scans$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChecksRepoScanV1alphaRepoScan>;
+    get(
+      params: Params$Resource$Accounts$Repos$Scans$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Repos$Scans$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaRepoScan>,
+      callback: BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaRepoScan>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Repos$Scans$Get,
+      callback: BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaRepoScan>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaRepoScan>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Repos$Scans$Get
+        | BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaRepoScan>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaRepoScan>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaRepoScan>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChecksRepoScanV1alphaRepoScan>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Repos$Scans$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Repos$Scans$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://checks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChecksRepoScanV1alphaRepoScan>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChecksRepoScanV1alphaRepoScan>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists repo scans for the specified repo.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Repos$Scans$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Repos$Scans$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>;
+    list(
+      params: Params$Resource$Accounts$Repos$Scans$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Repos$Scans$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Repos$Scans$List,
+      callback: BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Repos$Scans$List
+        | BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Repos$Scans$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Repos$Scans$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://checks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/scans').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChecksRepoScanV1alphaListRepoScansResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Repos$Scans$Generate
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the repo. Example: `accounts/123/repos/456`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChecksRepoScanV1alphaGenerateScanRequest;
+  }
+  export interface Params$Resource$Accounts$Repos$Scans$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the repo scan. Example: `accounts/123/repos/456/scans/789`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Repos$Scans$List
+    extends StandardParameters {
+    /**
+     * Optional. An [AIP-160](https://google.aip.dev/160) filter string to filter repo scans. Example: `scmMetadata.branch = main`
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of repo scans to return. If unspecified, at most 10 repo scans will be returned. The maximum value is 50; values above 50 will be coerced to 50.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous `ListRepoScans` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepoScans` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the repo. Example: `accounts/123/repos/456`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Aisafety {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Analyze a piece of content with the provided set of policies.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    classifyContent(
+      params: Params$Resource$Aisafety$Classifycontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    classifyContent(
+      params?: Params$Resource$Aisafety$Classifycontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>;
+    classifyContent(
+      params: Params$Resource$Aisafety$Classifycontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    classifyContent(
+      params: Params$Resource$Aisafety$Classifycontent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+    ): void;
+    classifyContent(
+      params: Params$Resource$Aisafety$Classifycontent,
+      callback: BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+    ): void;
+    classifyContent(
+      callback: BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+    ): void;
+    classifyContent(
+      paramsOrCallback?:
+        | Params$Resource$Aisafety$Classifycontent
+        | BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Aisafety$Classifycontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Aisafety$Classifycontent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://checks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/aisafety:classifyContent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Aisafety$Classifycontent
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChecksAisafetyV1alphaClassifyContentRequest;
   }
 
   export class Resource$Media {

@@ -179,6 +179,15 @@ export namespace analyticshub_v1beta1 {
     role?: string | null;
   }
   /**
+   * Commercial info metadata for this subscription.
+   */
+  export interface Schema$CommercialInfo {
+    /**
+     * Output only. This is set when the subscription is commercialised via Cloud Marketplace.
+     */
+    cloudMarketplace?: Schema$GoogleCloudMarketplaceInfo;
+  }
+  /**
    * A data exchange is a container that lets you share data. Along with the descriptive information about the data exchange, it contains listings that reference shared datasets.
    */
   export interface Schema$DataExchange {
@@ -225,44 +234,6 @@ export namespace analyticshub_v1beta1 {
     primaryContact?: string | null;
   }
   /**
-   * Defines the destination bigquery dataset.
-   */
-  export interface Schema$DestinationDataset {
-    /**
-     * Required. A reference that identifies the destination dataset.
-     */
-    datasetReference?: Schema$DestinationDatasetReference;
-    /**
-     * Optional. A user-friendly description of the dataset.
-     */
-    description?: string | null;
-    /**
-     * Optional. A descriptive name for the dataset.
-     */
-    friendlyName?: string | null;
-    /**
-     * Optional. The labels associated with this dataset. You can use these to organize and group your datasets. You can set this property when inserting or updating a dataset. See https://cloud.google.com/resource-manager/docs/creating-managing-labels for more information.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
-     */
-    location?: string | null;
-  }
-  /**
-   * Contains the reference that identifies a destination bigquery dataset.
-   */
-  export interface Schema$DestinationDatasetReference {
-    /**
-     * Required. A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
-     */
-    datasetId?: string | null;
-    /**
-     * Required. The ID of the project containing this dataset.
-     */
-    projectId?: string | null;
-  }
-  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -304,6 +275,53 @@ export namespace analyticshub_v1beta1 {
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
+  }
+  /**
+   * Defines the destination bigquery dataset.
+   */
+  export interface Schema$GoogleCloudBigqueryDataexchangeV1beta1DestinationDataset {
+    /**
+     * Required. A reference that identifies the destination dataset.
+     */
+    datasetReference?: Schema$GoogleCloudBigqueryDataexchangeV1beta1DestinationDatasetReference;
+    /**
+     * Optional. A user-friendly description of the dataset.
+     */
+    description?: string | null;
+    /**
+     * Optional. A descriptive name for the dataset.
+     */
+    friendlyName?: string | null;
+    /**
+     * Optional. The labels associated with this dataset. You can use these to organize and group your datasets. You can set this property when inserting or updating a dataset. See https://cloud.google.com/resource-manager/docs/creating-managing-labels for more information.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
+     */
+    location?: string | null;
+  }
+  /**
+   * Contains the reference that identifies a destination bigquery dataset.
+   */
+  export interface Schema$GoogleCloudBigqueryDataexchangeV1beta1DestinationDatasetReference {
+    /**
+     * Required. A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
+     */
+    datasetId?: string | null;
+    /**
+     * Required. The ID of the project containing this dataset.
+     */
+    projectId?: string | null;
+  }
+  /**
+   * Cloud Marketplace commercial metadata for this subscription.
+   */
+  export interface Schema$GoogleCloudMarketplaceInfo {
+    /**
+     * Resource name of the Marketplace Order.
+     */
+    order?: string | null;
   }
   /**
    * Reference to a linked resource tracked by this Subscription.
@@ -540,7 +558,7 @@ export namespace analyticshub_v1beta1 {
     /**
      * BigQuery destination dataset to create for the subscriber.
      */
-    destinationDataset?: Schema$DestinationDataset;
+    destinationDataset?: Schema$GoogleCloudBigqueryDataexchangeV1beta1DestinationDataset;
   }
   /**
    * Message for response when you subscribe to a listing.
@@ -550,6 +568,10 @@ export namespace analyticshub_v1beta1 {
    * A subscription represents a subscribers' access to a particular set of published data. It contains references to associated listings, data exchanges, and linked datasets.
    */
   export interface Schema$Subscription {
+    /**
+     * Output only. This is set if this is a commercial subscription i.e. if this subscription was created from subscribing to a commercial listing.
+     */
+    commercialInfo?: Schema$CommercialInfo;
     /**
      * Output only. Timestamp when the subscription was created.
      */

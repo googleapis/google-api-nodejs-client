@@ -108,6 +108,199 @@
   },
   "protocol": "rest",
   "resources": {
+    "accounts": {
+      "resources": {
+        "platforms": {
+          "methods": {
+            "get": {
+              "description": "Gets a platform.",
+              "flatPath": "v1alpha/accounts/{accountsId}/platforms/{platformsId}",
+              "httpMethod": "GET",
+              "id": "adsenseplatform.accounts.platforms.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the platform to retrieve. Format: accounts/{account}/platforms/{platform}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/platforms/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "Platform"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/adsense",
+                "https://www.googleapis.com/auth/adsense.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists platforms for a specified account.",
+              "flatPath": "v1alpha/accounts/{accountsId}/platforms",
+              "httpMethod": "GET",
+              "id": "adsenseplatform.accounts.platforms.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of platforms to include in the response, used for paging. If unspecified, at most 10000 platforms will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListPlatforms` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPlatforms` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The account which owns the platforms. Format: accounts/{account}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/platforms",
+              "response": {
+                "$ref": "ListPlatformsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/adsense",
+                "https://www.googleapis.com/auth/adsense.readonly"
+              ]
+            }
+          },
+          "resources": {
+            "childAccounts": {
+              "resources": {
+                "sites": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists Platform Child Sites for a specified Platform Child Account.",
+                      "flatPath": "v1alpha/accounts/{accountsId}/platforms/{platformsId}/childAccounts/{childAccountsId}/sites",
+                      "httpMethod": "GET",
+                      "id": "adsenseplatform.accounts.platforms.childAccounts.sites.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. The maximum number of children to include in the response, used for paging. If unspecified, at most 10000 platforms will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListPlatformChildren` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPlatformChildren` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The name of the child account under the given platform which owns the platform child sites. Format: accounts/{account}/platforms/{platform}/childAccounts/{child_account}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/platforms/[^/]+/childAccounts/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/sites",
+                      "response": {
+                        "$ref": "ListPlatformChildSitesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/adsense",
+                        "https://www.googleapis.com/auth/adsense.readonly"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Update a Platform Child Site.",
+                      "flatPath": "v1alpha/accounts/{accountsId}/platforms/{platformsId}/childAccounts/{childAccountsId}/sites/{sitesId}",
+                      "httpMethod": "PATCH",
+                      "id": "adsenseplatform.accounts.platforms.childAccounts.sites.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. Format: accounts/{account}/platforms/{platform}/childAccounts/{child_account}/sites/{platform_child_site}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/platforms/[^/]+/childAccounts/[^/]+/sites/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. The list of fields to update - currently only supports updating the `platform_group` field.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "request": {
+                        "$ref": "PlatformChildSite"
+                      },
+                      "response": {
+                        "$ref": "PlatformChildSite"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/adsense"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "groups": {
+              "methods": {
+                "list": {
+                  "description": "Lists Platform Groups for a specified Platform.",
+                  "flatPath": "v1alpha/accounts/{accountsId}/platforms/{platformsId}/groups",
+                  "httpMethod": "GET",
+                  "id": "adsenseplatform.accounts.platforms.groups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of groups to include in the response, used for paging. If unspecified, at most 10000 groups will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListPlatformGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPlatformGroups` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The name of the platform to retrieve. Format: accounts/{account}/platforms/{platform}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/platforms/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/groups",
+                  "response": {
+                    "$ref": "ListPlatformGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adsense",
+                    "https://www.googleapis.com/auth/adsense.readonly"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "platforms": {
       "resources": {
         "accounts": {
@@ -446,7 +639,7 @@
       }
     }
   },
-  "revision": "20240710",
+  "revision": "20250123",
   "rootUrl": "https://adsenseplatform.googleapis.com/",
   "schemas": {
     "Account": {
@@ -559,6 +752,17 @@
       "properties": {},
       "type": "object"
     },
+    "Decimal": {
+      "description": "A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's [BigDecimal](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html) or Python's [decimal.Decimal](https://docs.python.org/3/library/decimal.html).",
+      "id": "Decimal",
+      "properties": {
+        "value": {
+          "description": "The decimal value, as a string. The string representation consists of an optional sign, `+` (`U+002B`) or `-` (`U+002D`), followed by a sequence of zero or more decimal digits (\"the integer\"), optionally followed by a fraction, optionally followed by an exponent. An empty string **should** be interpreted as `0`. The fraction consists of a decimal point followed by zero or more decimal digits. The string must contain at least one digit in either the integer or the fraction. The number formed by the sign, the integer and the fraction is referred to as the significand. The exponent consists of the character `e` (`U+0065`) or `E` (`U+0045`) followed by one or more decimal digits. Services **should** normalize decimal values before storing them by: - Removing an explicitly-provided `+` sign (`+2.5` -> `2.5`). - Replacing a zero-length integer value with `0` (`.5` -> `0.5`). - Coercing the exponent character to upper-case, with explicit sign (`2.5e8` -> `2.5E+8`). - Removing an explicitly-provided zero exponent (`2.5E0` -> `2.5`). Services **may** perform additional normalization based on its own needs and the internal decimal implementation selected, such as shifting the decimal point and exponent value together (example: `2.5E-1` <-> `0.25`). Additionally, services **may** preserve trailing zeroes in the fraction to indicate increased precision, but are not required to do so. Note that only the `.` character is supported to divide the integer and the fraction; `,` **should not** be supported regardless of locale. Additionally, thousand separators **should not** be supported. If a service does support them, values **must** be normalized. The ENBF grammar is: DecimalString = '' | [Sign] Significand [Exponent]; Sign = '+' | '-'; Significand = Digits '.' | [Digits] '.' Digits; Exponent = ('e' | 'E') [Sign] Digits; Digits = { '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' }; Services **should** clearly document the range of supported values, the maximum supported precision (total number of digits), and, if applicable, the scale (number of digits after the decimal point), as well as how it behaves when receiving out-of-bounds values. Services **may** choose to accept values passed as input even when the value has a higher precision or scale than the service supports, and **should** round the value to fit the supported scale. Alternatively, the service **may** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if precision would be lost. Services **should** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if the service receives a value outside of the supported range.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -628,6 +832,60 @@
       },
       "type": "object"
     },
+    "ListPlatformChildSitesResponse": {
+      "description": "Response definition for the list platform child sites rpc.",
+      "id": "ListPlatformChildSitesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Continuation token used to page through platforms. To retrieve the next page of the results, set the next request's \"page_token\" value to this.",
+          "type": "string"
+        },
+        "platformChildSites": {
+          "description": "The platform child sites returned in this list response.",
+          "items": {
+            "$ref": "PlatformChildSite"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListPlatformGroupsResponse": {
+      "description": "Response definition for the platform groups list rpc.",
+      "id": "ListPlatformGroupsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Continuation token used to page through platforms. To retrieve the next page of the results, set the next request's \"page_token\" value to this.",
+          "type": "string"
+        },
+        "platformGroups": {
+          "description": "The platform groups returned in this list response.",
+          "items": {
+            "$ref": "PlatformGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListPlatformsResponse": {
+      "description": "Response definition for the platform list rpc.",
+      "id": "ListPlatformsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Continuation token used to page through platforms. To retrieve the next page of the results, set the next request's \"page_token\" value to this.",
+          "type": "string"
+        },
+        "platforms": {
+          "description": "The platforms returned in this list response.",
+          "items": {
+            "$ref": "Platform"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSitesResponse": {
       "description": "Response definition for the site list rpc.",
       "id": "ListSitesResponse",
@@ -653,6 +911,66 @@
         "name": {
           "description": "The name of the Account Format: platforms/{platform}/accounts/{account_id}",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Platform": {
+      "description": "Representation of a Transparent Platform.",
+      "id": "Platform",
+      "properties": {
+        "defaultPlatformGroup": {
+          "description": "Default platform group for the platform.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. Description of the platform.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of a platform. Format: accounts/{account}/platforms/{platform}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PlatformChildSite": {
+      "description": "Representation of a Transparent Platform Child Site.",
+      "id": "PlatformChildSite",
+      "properties": {
+        "domain": {
+          "description": "Output only. Domain URL of the Platform Child Site. Part of the PlatformChildSite name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Format: accounts/{account}/platforms/{platform}/childAccounts/{child_account}/sites/{platform_child_site}",
+          "type": "string"
+        },
+        "platformGroup": {
+          "description": "Resource name of the Platform Group of the Platform Child Site.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PlatformGroup": {
+      "description": "Representation of a Transparent Platform Group.",
+      "id": "PlatformGroup",
+      "properties": {
+        "description": {
+          "description": "Output only. Description of the PlatformGroup.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Format: accounts/{account}/platforms/{platform}/groups/{platform_group}",
+          "type": "string"
+        },
+        "revshareMillipercent": {
+          "$ref": "Decimal",
+          "description": "The revenue share of the PlatformGroup, in millipercent (e.g. 15000 = 15%)."
         }
       },
       "type": "object"
@@ -703,11 +1021,11 @@
       "id": "TimeZone",
       "properties": {
         "id": {
-          "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
+          "description": "IANA Time Zone Database time zone. For example \"America/New_York\".",
           "type": "string"
         },
         "version": {
-          "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
+          "description": "Optional. IANA Time Zone Database version number. For example \"2019a\".",
           "type": "string"
         }
       },

@@ -825,6 +825,10 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$Documentation {
     /**
+     * Optional information about the IAM configuration. This is typically used to link to documentation about a product's IAM roles and permissions.
+     */
+    additionalIamInfo?: string | null;
+    /**
      * The URL to the root of documentation.
      */
     documentationRootUrl?: string | null;
@@ -988,6 +992,10 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$ExperimentalFeatures {
     /**
+     * Enables generation of protobuf code using new types that are more Pythonic which are included in `protobuf\>=5.29.x`. This feature will be enabled by default 1 month after launching the feature in preview packages.
+     */
+    protobufPythonicTypesEnabled?: boolean | null;
+    /**
      * Enables generation of asynchronous REST clients if `rest` transport is enabled. By default, asynchronous REST clients will not be generated. This feature will be enabled by default 1 month after launching the feature in preview packages.
      */
     restAsyncIoEnabled?: boolean | null;
@@ -1134,6 +1142,10 @@ export namespace servicenetworking_v1 {
      * Some settings.
      */
     common?: Schema$CommonLanguageSettings;
+    /**
+     * Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. publishing: go_settings: renamed_services: Publisher: TopicAdmin
+     */
+    renamedServices?: {[key: string]: string} | null;
   }
   /**
    * Defines the HTTP configuration for an API service. It contains a list of HttpRule, each specifying the mapping of an RPC method to one or more HTTP REST API methods.
@@ -1807,7 +1819,7 @@ export namespace servicenetworking_v1 {
      */
     name?: string | null;
     /**
-     * Specify the unit of the quota limit. It uses the same syntax as Metric.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * "1/min/{project\}" for quota per minute per project. Note: the order of unit components is insignificant. The "1" at the beginning is required to follow the metric unit syntax.
+     * Specify the unit of the quota limit. It uses the same syntax as MetricDescriptor.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * "1/min/{project\}" for quota per minute per project. Note: the order of unit components is insignificant. The "1" at the beginning is required to follow the metric unit syntax.
      */
     unit?: string | null;
     /**
@@ -2349,7 +2361,7 @@ export namespace servicenetworking_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4973,7 +4985,7 @@ export namespace servicenetworking_v1 {
   export interface Params$Resource$Services$Projects$Global$Networks$Dnszones$Get
     extends StandardParameters {
     /**
-     * Required. The network that the consumer is using to connect with services. Must be in the form of services/{service\}/projects/{project\}/global/networks/{network\}/zones/{zoneName\} Where {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this {project\} is the project number, as in '12345' {network\} is the network name. {zoneName\} is the DNS zone name
+     * Required. The network that the consumer is using to connect with services. Must be in the form of services/{service\}/projects/{project\}/global/networks/{network\}/dnsZones/{zoneName\} Where {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this {project\} is the project number, as in '12345' {network\} is the network name. {zoneName\} is the DNS zone name
      */
     name?: string;
   }

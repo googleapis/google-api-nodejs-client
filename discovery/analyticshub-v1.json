@@ -1022,11 +1022,11 @@
       }
     }
   },
-  "revision": "20240925",
+  "revision": "20250115",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AnalyticsHubSubscriptionInfo": {
-      "description": "Information about an associated Analytics Hub subscription (https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).",
+      "description": "Information about an associated [Analytics Hub subscription](https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).",
       "id": "AnalyticsHubSubscriptionInfo",
       "properties": {
         "listing": {
@@ -1501,6 +1501,68 @@
       },
       "type": "object"
     },
+    "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo": {
+      "description": "Commercial info contains the information about the commercial data products associated with the listing.",
+      "id": "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo",
+      "properties": {
+        "cloudMarketplace": {
+          "$ref": "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfo",
+          "description": "Output only. Details of the Marketplace Data Product associated with the Listing.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfo": {
+      "description": "Specifies the details of the Marketplace Data Product associated with the Listing.",
+      "id": "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfo",
+      "properties": {
+        "commercialState": {
+          "description": "Output only. Commercial state of the Marketplace Data Product.",
+          "enum": [
+            "COMMERCIAL_STATE_UNSPECIFIED",
+            "ONBOARDING",
+            "ACTIVE"
+          ],
+          "enumDescriptions": [
+            "Commercialization is incomplete and cannot be used.",
+            "Commercialization has been initialized.",
+            "Commercialization is complete and available for use."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "service": {
+          "description": "Output only. Resource name of the commercial service associated with the Marketplace Data Product. e.g. example.com",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfo": {
+      "description": "Commercial info metadata for this subscription.",
+      "id": "GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfo",
+      "properties": {
+        "cloudMarketplace": {
+          "$ref": "GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfoGoogleCloudMarketplaceInfo",
+          "description": "Output only. This is set when the subscription is commercialised via Cloud Marketplace.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfoGoogleCloudMarketplaceInfo": {
+      "description": "Cloud Marketplace commercial metadata for this subscription.",
+      "id": "GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfoGoogleCloudMarketplaceInfo",
+      "properties": {
+        "order": {
+          "description": "Resource name of the Marketplace Order.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePubsubV1Subscription": {
       "description": "A subscription resource. If none of `push_config`, `bigquery_config`, or `cloud_storage_config` is set, then the subscriber will pull and ack messages using API methods. At most one of these fields may be set.",
       "id": "GooglePubsubV1Subscription",
@@ -1769,6 +1831,11 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "commercialInfo": {
+          "$ref": "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo",
+          "description": "Output only. Commercial info contains the information about the commercial data products associated with the listing.",
+          "readOnly": true
         },
         "dataProvider": {
           "$ref": "DataProvider",
@@ -2155,6 +2222,10 @@
       "description": "Resource in this dataset that is selectively shared.",
       "id": "SelectedResource",
       "properties": {
+        "routine": {
+          "description": "Optional. Format: For routine: `projects/{projectId}/datasets/{datasetId}/routines/{routineId}` Example:\"projects/test_project/datasets/test_dataset/routines/test_routine\"",
+          "type": "string"
+        },
         "table": {
           "description": "Optional. Format: For table: `projects/{projectId}/datasets/{datasetId}/tables/{tableId}` Example:\"projects/test_project/datasets/test_dataset/tables/test_table\"",
           "type": "string"
@@ -2228,6 +2299,10 @@
           "description": "Required. The parent resource path of the Subscription. e.g. `projects/subscriberproject/locations/US`",
           "type": "string"
         },
+        "destinationDataset": {
+          "$ref": "DestinationDataset",
+          "description": "Optional. BigQuery destination dataset to create for the subscriber."
+        },
         "subscriberContact": {
           "description": "Email of the subscriber.",
           "type": "string"
@@ -2280,6 +2355,11 @@
       "description": "A subscription represents a subscribers' access to a particular set of published data. It contains references to associated listings, data exchanges, and linked datasets.",
       "id": "Subscription",
       "properties": {
+        "commercialInfo": {
+          "$ref": "GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfo",
+          "description": "Output only. This is set if this is a commercial subscription i.e. if this subscription was created from subscribing to a commercial listing.",
+          "readOnly": true
+        },
         "creationTime": {
           "description": "Output only. Timestamp when the subscription was created.",
           "format": "google-datetime",

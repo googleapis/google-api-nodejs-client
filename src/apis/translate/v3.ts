@@ -636,6 +636,10 @@ export namespace translate_v3 {
    */
   export interface Schema$GlossaryConfig {
     /**
+     * Optional. If set to true, the glossary will be used for contextual translation.
+     */
+    contextualTranslationEnabled?: boolean | null;
+    /**
      * Required. The `glossary` to be applied for this translation. The format depends on the glossary: - User-provided custom glossary: `projects/{project-number-or-id\}/locations/{location-id\}/glossaries/{glossary-id\}`
      */
     glossary?: string | null;
@@ -1217,6 +1221,10 @@ export namespace translate_v3 {
    * Configures which glossary is used for a specific target language and defines options for applying that glossary.
    */
   export interface Schema$TranslateTextGlossaryConfig {
+    /**
+     * Optional. If set to true, the glossary will be used for contextual translation.
+     */
+    contextualTranslationEnabled?: boolean | null;
     /**
      * Required. The `glossary` to be applied for this translation. The format depends on the glossary: - User-provided custom glossary: `projects/{project-number-or-id\}/locations/{location-id\}/glossaries/{glossary-id\}`
      */
@@ -6063,7 +6071,7 @@ export namespace translate_v3 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

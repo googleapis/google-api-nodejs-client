@@ -138,6 +138,64 @@
           "resources": {
             "customers": {
               "methods": {
+                "create": {
+                  "description": "Creates a new customer.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/customers",
+                  "httpMethod": "POST",
+                  "id": "cloudcontrolspartner.organizations.locations.customers.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "customerId": {
+                      "description": "Required. The customer id to use for the customer, which will become the final component of the customer's resource name. The specified value must be a valid Google cloud organization id.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent resource Format: `organizations/{organization}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customers",
+                  "request": {
+                    "$ref": "Customer"
+                  },
+                  "response": {
+                    "$ref": "Customer"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete details of a single customer",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/customers/{customersId}",
+                  "httpMethod": "DELETE",
+                  "id": "cloudcontrolspartner.organizations.locations.customers.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. name of the resource to be deleted format: name=organizations/*/locations/*/customers/*",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of a single customer",
                   "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/customers/{customersId}",
@@ -204,6 +262,40 @@
                   "path": "v1/{+parent}/customers",
                   "response": {
                     "$ref": "ListCustomersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update details of a single customer",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/customers/{customersId}",
+                  "httpMethod": "PATCH",
+                  "id": "cloudcontrolspartner.organizations.locations.customers.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Customer"
+                  },
+                  "response": {
+                    "$ref": "Customer"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -484,7 +576,7 @@
       }
     }
   },
-  "revision": "20240904",
+  "revision": "20241231",
   "rootUrl": "https://cloudcontrolspartner.googleapis.com/",
   "schemas": {
     "AccessApprovalRequest": {
@@ -608,6 +700,11 @@
         },
         "name": {
           "description": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}`",
+          "type": "string"
+        },
+        "organizationDomain": {
+          "description": "Output only. The customer organization domain, extracted from CRM Organization’s display_name field. e.g. \"google.com\"",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -746,16 +843,29 @@
             "THALES",
             "VIRTRU"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Unspecified EKM solution",
             "EKM Partner Fortanix",
             "EKM Partner FutureX",
             "EKM Partner Thales",
-            "EKM Partner Virtu"
+            "This enum value is never used."
           ],
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
       "type": "object"
     },
     "Gcloud": {

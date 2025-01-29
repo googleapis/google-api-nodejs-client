@@ -235,6 +235,19 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$ApproveRolloutResponse {}
   /**
+   * Information about entities associated with a `Target`.
+   */
+  export interface Schema$AssociatedEntities {
+    /**
+     * Optional. Information specifying Anthos clusters as associated entities.
+     */
+    anthosClusters?: Schema$AnthosCluster[];
+    /**
+     * Optional. Information specifying GKE clusters as associated entities.
+     */
+    gkeClusters?: Schema$GkeCluster[];
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -339,7 +352,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$AutomationResourceSelector {
     /**
-     * Contains attributes about a target.
+     * Optional. Contains attributes about a target.
      */
     targets?: Schema$TargetAttribute[];
   }
@@ -376,6 +389,10 @@ export namespace clouddeploy_v1 {
      * Optional. The `RepairRolloutRule` will automatically repair a failed rollout.
      */
     repairRolloutRule?: Schema$RepairRolloutRule;
+    /**
+     * Optional. The `TimedPromoteReleaseRule` will automatically promote a release from the current target(s) to the specified target(s) on a configured schedule.
+     */
+    timedPromoteReleaseRule?: Schema$TimedPromoteReleaseRule;
   }
   /**
    * `AutomationRuleCondition` contains conditions relevant to an `Automation` rule.
@@ -385,6 +402,10 @@ export namespace clouddeploy_v1 {
      * Optional. Details around targets enumerated in the rule.
      */
     targetsPresentCondition?: Schema$TargetsPresentCondition;
+    /**
+     * Optional. TimedPromoteReleaseCondition contains rule conditions specific to a an Automation with a timed promote release rule defined.
+     */
+    timedPromoteReleaseCondition?: Schema$TimedPromoteReleaseCondition;
   }
   /**
    * An `AutomationRun` resource in the Cloud Deploy API. An `AutomationRun` represents an execution instance of an automation rule.
@@ -447,9 +468,13 @@ export namespace clouddeploy_v1 {
      */
     stateDescription?: string | null;
     /**
-     * Output only. The ID of the target that represents the promotion stage that initiates the `AutomationRun`. The value of this field is the last segment of a target name.
+     * Output only. The ID of the source target that initiates the `AutomationRun`. The value of this field is the last segment of a target name.
      */
     targetId?: string | null;
+    /**
+     * Output only. Promotes a release to a specified 'Target' as defined in a Timed Promote Release rule.
+     */
+    timedPromoteReleaseOperation?: Schema$TimedPromoteReleaseOperation;
     /**
      * Output only. Time at which the automationRun was updated.
      */
@@ -514,11 +539,11 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$BuildArtifact {
     /**
-     * Image name in Skaffold configuration.
+     * Optional. Image name in Skaffold configuration.
      */
     image?: string | null;
     /**
-     * Image tag to use. This will generally be the full path to an image, such as "gcr.io/my-project/busybox:1.2.3" or "gcr.io/my-project/busybox@sha256:abc123".
+     * Optional. Image tag to use. This will generally be the full path to an image, such as "gcr.io/my-project/busybox:1.2.3" or "gcr.io/my-project/busybox@sha256:abc123".
      */
     tag?: string | null;
   }
@@ -527,11 +552,11 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Canary {
     /**
-     * Configures the progressive based deployment for a Target.
+     * Optional. Configures the progressive based deployment for a Target.
      */
     canaryDeployment?: Schema$CanaryDeployment;
     /**
-     * Configures the progressive based deployment for a Target, but allows customizing at the phase level where a phase represents each of the percentage deployments.
+     * Optional. Configures the progressive based deployment for a Target, but allows customizing at the phase level where a phase represents each of the percentage deployments.
      */
     customCanaryDeployment?: Schema$CustomCanaryDeployment;
     /**
@@ -556,7 +581,7 @@ export namespace clouddeploy_v1 {
      */
     predeploy?: Schema$Predeploy;
     /**
-     * Whether to run verify tests after each percentage deployment.
+     * Optional. Whether to run verify tests after each percentage deployment.
      */
     verify?: boolean | null;
   }
@@ -603,7 +628,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$CloudRunConfig {
     /**
-     * Whether Cloud Deploy should update the traffic stanza in a Cloud Run Service on the user's behalf to facilitate traffic splitting. This is required to be true for CanaryDeployments, but optional for CustomCanaryDeployments.
+     * Optional. Whether Cloud Deploy should update the traffic stanza in a Cloud Run Service on the user's behalf to facilitate traffic splitting. This is required to be true for CanaryDeployments, but optional for CustomCanaryDeployments.
      */
     automaticTrafficControl?: boolean | null;
     /**
@@ -758,7 +783,7 @@ export namespace clouddeploy_v1 {
      */
     createTime?: string | null;
     /**
-     * Configures render and deploy for the `CustomTargetType` using Skaffold custom actions.
+     * Optional. Configures render and deploy for the `CustomTargetType` using Skaffold custom actions.
      */
     customActions?: Schema$CustomTargetSkaffoldActions;
     /**
@@ -778,7 +803,7 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/{customTargetType\}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     * Identifier. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/{customTargetType\}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -846,7 +871,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$DeliveryPipeline {
     /**
-     * User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy.
+     * Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -858,7 +883,7 @@ export namespace clouddeploy_v1 {
      */
     createTime?: string | null;
     /**
-     * Description of the `DeliveryPipeline`. Max length is 255 characters.
+     * Optional. Description of the `DeliveryPipeline`. Max length is 255 characters.
      */
     description?: string | null;
     /**
@@ -870,15 +895,15 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     * Identifier. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
-     * SerialPipeline defines a sequential set of stages for a `DeliveryPipeline`.
+     * Optional. SerialPipeline defines a sequential set of stages for a `DeliveryPipeline`.
      */
     serialPipeline?: Schema$SerialPipeline;
     /**
-     * When suspended, no new releases or rollouts can be created, but in-progress ones will complete.
+     * Optional. When suspended, no new releases or rollouts can be created, but in-progress ones will complete.
      */
     suspended?: boolean | null;
     /**
@@ -895,7 +920,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$DeliveryPipelineAttribute {
     /**
-     * ID of the `DeliveryPipeline`. The value of this field could be one of the following: * The last segment of a pipeline name * "*", all delivery pipelines in a location
+     * Optional. ID of the `DeliveryPipeline`. The value of this field could be one of the following: * The last segment of a pipeline name * "*", all delivery pipelines in a location
      */
     id?: string | null;
     /**
@@ -1022,7 +1047,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$DeployPolicy {
     /**
-     * User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. Annotations must meet the following constraints: * Annotations are key/value pairs. * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (`/`). * The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. * The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots(`.`), not longer than 253 characters in total, followed by a slash (`/`). See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set for more details.
+     * Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. Annotations must meet the following constraints: * Annotations are key/value pairs. * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (`/`). * The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. * The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots(`.`), not longer than 253 characters in total, followed by a slash (`/`). See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set for more details.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -1030,7 +1055,7 @@ export namespace clouddeploy_v1 {
      */
     createTime?: string | null;
     /**
-     * Description of the `DeployPolicy`. Max length is 255 characters.
+     * Optional. Description of the `DeployPolicy`. Max length is 255 characters.
      */
     description?: string | null;
     /**
@@ -1054,7 +1079,7 @@ export namespace clouddeploy_v1 {
      */
     selectors?: Schema$DeployPolicyResourceSelector[];
     /**
-     * When suspended, the policy will not prevent actions from occurring, even if the action violates the policy.
+     * Optional. When suspended, the policy will not prevent actions from occurring, even if the action violates the policy.
      */
     suspended?: boolean | null;
     /**
@@ -1236,6 +1261,10 @@ export namespace clouddeploy_v1 {
      */
     podSelectorLabel?: string | null;
     /**
+     * Optional. Route destinations allow configuring the Gateway API HTTPRoute to be deployed to additional clusters. This option is available for multi-cluster service mesh set ups that require the route to exist in the clusters that call the service. If unspecified, the HTTPRoute will only be deployed to the Target cluster.
+     */
+    routeDestinations?: Schema$RouteDestinations;
+    /**
      * Optional. The time to wait for route updates to propagate. The maximum configurable time is 3 hours, in seconds format. If unspecified, there is no wait time.
      */
     routeUpdateWaitTime?: string | null;
@@ -1257,7 +1286,11 @@ export namespace clouddeploy_v1 {
      */
     cluster?: string | null;
     /**
-     * Optional. If true, `cluster` is accessed using the private IP address of the control plane endpoint. Otherwise, the default IP address of the control plane endpoint is used. The default IP address is the private IP address for clusters with private control-plane endpoints and the public IP address otherwise. Only specify this option when `cluster` is a [private GKE cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).
+     * Optional. If set, the cluster will be accessed using the DNS endpoint. Note that both `dns_endpoint` and `internal_ip` cannot be set to true.
+     */
+    dnsEndpoint?: boolean | null;
+    /**
+     * Optional. If true, `cluster` is accessed using the private IP address of the control plane endpoint. Otherwise, the default IP address of the control plane endpoint is used. The default IP address is the private IP address for clusters with private control-plane endpoints and the public IP address otherwise. Only specify this option when `cluster` is a [private GKE cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept). Note that `internal_ip` and `dns_endpoint` cannot both be set to true.
      */
     internalIp?: boolean | null;
     /**
@@ -1364,7 +1397,7 @@ export namespace clouddeploy_v1 {
      */
     jobId?: string | null;
     /**
-     * Optional. Name of the `JobRun`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{releases\}/rollouts/{rollouts\}/jobRuns/{uuid\}`.
+     * Identifier. Name of the `JobRun`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{releases\}/rollouts/{rollouts\}/jobRuns/{uuid\}`.
      */
     name?: string | null;
     /**
@@ -1442,11 +1475,11 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$KubernetesConfig {
     /**
-     * Kubernetes Gateway API service mesh configuration.
+     * Optional. Kubernetes Gateway API service mesh configuration.
      */
     gatewayServiceMesh?: Schema$GatewayServiceMesh;
     /**
-     * Kubernetes Service networking configuration.
+     * Optional. Kubernetes Service networking configuration.
      */
     serviceNetworking?: Schema$ServiceNetworking;
   }
@@ -1743,7 +1776,7 @@ export namespace clouddeploy_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -1822,11 +1855,11 @@ export namespace clouddeploy_v1 {
      */
     predeploy?: Schema$Predeploy;
     /**
-     * Skaffold profiles to use when rendering the manifest for this phase. These are in addition to the profiles list specified in the `DeliveryPipeline` stage.
+     * Optional. Skaffold profiles to use when rendering the manifest for this phase. These are in addition to the profiles list specified in the `DeliveryPipeline` stage.
      */
     profiles?: string[] | null;
     /**
-     * Whether to run verify tests after the deployment.
+     * Optional. Whether to run verify tests after the deployment.
      */
     verify?: boolean | null;
   }
@@ -1886,7 +1919,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$PolicyRule {
     /**
-     * Rollout restrictions.
+     * Optional. Rollout restrictions.
      */
     rolloutRestriction?: Schema$RolloutRestriction;
   }
@@ -2058,11 +2091,11 @@ export namespace clouddeploy_v1 {
      */
     abandoned?: boolean | null;
     /**
-     * User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     * Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * List of artifacts to pass through to Skaffold command.
+     * Optional. List of artifacts to pass through to Skaffold command.
      */
     buildArtifacts?: Schema$BuildArtifact[];
     /**
@@ -2086,7 +2119,7 @@ export namespace clouddeploy_v1 {
      */
     deployParameters?: {[key: string]: string} | null;
     /**
-     * Description of the `Release`. Max length is 255 characters.
+     * Optional. Description of the `Release`. Max length is 255 characters.
      */
     description?: string | null;
     /**
@@ -2098,7 +2131,7 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Name of the `Release`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}`. The `release` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     * Identifier. Name of the `Release`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}`. The `release` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -2114,15 +2147,15 @@ export namespace clouddeploy_v1 {
      */
     renderState?: string | null;
     /**
-     * Filepath of the Skaffold config inside of the config URI.
+     * Optional. Filepath of the Skaffold config inside of the config URI.
      */
     skaffoldConfigPath?: string | null;
     /**
-     * Cloud Storage URI of tar.gz archive containing Skaffold configuration.
+     * Optional. Cloud Storage URI of tar.gz archive containing Skaffold configuration.
      */
     skaffoldConfigUri?: string | null;
     /**
-     * The Skaffold version to use when operating on this release, such as "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set of versions. If unset, the most recent supported Skaffold version will be used.
+     * Optional. The Skaffold version to use when operating on this release, such as "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set of versions. If unset, the most recent supported Skaffold version will be used.
      */
     skaffoldVersion?: string | null;
     /**
@@ -2481,7 +2514,7 @@ export namespace clouddeploy_v1 {
      */
     activeRepairAutomationRun?: string | null;
     /**
-     * User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     * Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -2517,7 +2550,7 @@ export namespace clouddeploy_v1 {
      */
     deployStartTime?: string | null;
     /**
-     * Description of the `Rollout` for user purposes. Max length is 255 characters.
+     * Optional. Description of the `Rollout` for user purposes. Max length is 255 characters.
      */
     description?: string | null;
     /**
@@ -2541,7 +2574,7 @@ export namespace clouddeploy_v1 {
      */
     metadata?: Schema$Metadata;
     /**
-     * Optional. Name of the `Rollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`. The `rollout` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     * Identifier. Name of the `Rollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`. The `rollout` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -2665,15 +2698,28 @@ export namespace clouddeploy_v1 {
     type?: string | null;
   }
   /**
+   * Information about route destinations for the Gateway API service mesh.
+   */
+  export interface Schema$RouteDestinations {
+    /**
+     * Required. The clusters where the Gateway API HTTPRoute resource will be deployed to. Valid entries include the associated entities IDs configured in the Target resource and "@self" to include the Target cluster.
+     */
+    destinationIds?: string[] | null;
+    /**
+     * Optional. Whether to propagate the Kubernetes Service to the route destination clusters. The Service will always be deployed to the Target cluster even if the HTTPRoute is not. This option may be used to facilitiate successful DNS lookup in the route destination clusters. Can only be set to true if destinations are specified.
+     */
+    propagateService?: boolean | null;
+  }
+  /**
    * RuntimeConfig contains the runtime specific configurations for a deployment strategy.
    */
   export interface Schema$RuntimeConfig {
     /**
-     * Cloud Run runtime configuration.
+     * Optional. Cloud Run runtime configuration.
      */
     cloudRun?: Schema$CloudRunConfig;
     /**
-     * Kubernetes runtime configuration.
+     * Optional. Kubernetes runtime configuration.
      */
     kubernetes?: Schema$KubernetesConfig;
   }
@@ -2682,7 +2728,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$SerialPipeline {
     /**
-     * Each stage specifies configuration for a `Target`. The ordering of this list defines the promotion flow.
+     * Optional. Each stage specifies configuration for a `Target`. The ordering of this list defines the promotion flow.
      */
     stages?: Schema$Stage[];
   }
@@ -2776,15 +2822,15 @@ export namespace clouddeploy_v1 {
      */
     configs?: string[] | null;
     /**
-     * Remote git repository containing the Skaffold Config modules.
+     * Optional. Remote git repository containing the Skaffold Config modules.
      */
     git?: Schema$SkaffoldGitSource;
     /**
-     * Cloud Build V2 repository containing the Skaffold Config modules.
+     * Optional. Cloud Build V2 repository containing the Skaffold Config modules.
      */
     googleCloudBuildRepo?: Schema$SkaffoldGCBRepoSource;
     /**
-     * Cloud Storage bucket containing the Skaffold Config modules.
+     * Optional. Cloud Storage bucket containing the Skaffold Config modules.
      */
     googleCloudStorage?: Schema$SkaffoldGCSSource;
   }
@@ -2839,7 +2885,7 @@ export namespace clouddeploy_v1 {
      */
     deployParameters?: Schema$DeployParameters[];
     /**
-     * Skaffold profiles to use when rendering the manifest for this stage's `Target`.
+     * Optional. Skaffold profiles to use when rendering the manifest for this stage's `Target`.
      */
     profiles?: string[] | null;
     /**
@@ -2847,7 +2893,7 @@ export namespace clouddeploy_v1 {
      */
     strategy?: Schema$Strategy;
     /**
-     * The target_id to which this stage points. This field refers exclusively to the last segment of a target name. For example, this field would just be `my-target` (rather than `projects/project/locations/location/targets/my-target`). The location of the `Target` is inferred to be the same as the location of the `DeliveryPipeline` that contains this `Stage`.
+     * Optional. The target_id to which this stage points. This field refers exclusively to the last segment of a target name. For example, this field would just be `my-target` (rather than `projects/project/locations/location/targets/my-target`). The location of the `Target` is inferred to be the same as the location of the `DeliveryPipeline` that contains this `Stage`.
      */
     targetId?: string | null;
   }
@@ -2864,7 +2910,7 @@ export namespace clouddeploy_v1 {
      */
     predeploy?: Schema$Predeploy;
     /**
-     * Whether to verify a deployment.
+     * Optional. Whether to verify a deployment.
      */
     verify?: boolean | null;
   }
@@ -2890,11 +2936,11 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Strategy {
     /**
-     * Canary deployment strategy provides progressive percentage based deployments to a Target.
+     * Optional. Canary deployment strategy provides progressive percentage based deployments to a Target.
      */
     canary?: Schema$Canary;
     /**
-     * Standard deployment strategy executes a single deploy and allows verifying the deployment.
+     * Optional. Standard deployment strategy executes a single deploy and allows verifying the deployment.
      */
     standard?: Schema$Standard;
   }
@@ -2910,6 +2956,10 @@ export namespace clouddeploy_v1 {
      * Optional. Information specifying an Anthos Cluster.
      */
     anthosCluster?: Schema$AnthosCluster;
+    /**
+     * Optional. Map of entity IDs to their associated entities. Associated entities allows specifying places other than the deployment target for specific features. For example, the Gateway API canary can be configured to deploy the HTTPRoute to a different cluster(s) than the deployment cluster using associated entities. An entity ID must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
+     */
+    associatedEntities?: {[key: string]: Schema$AssociatedEntities} | null;
     /**
      * Output only. Time at which the `Target` was created.
      */
@@ -2931,7 +2981,7 @@ export namespace clouddeploy_v1 {
      */
     etag?: string | null;
     /**
-     * Configurations for all execution that relates to this `Target`. Each `ExecutionEnvironmentUsage` value may only be used in a single configuration; using the same value multiple times is an error. When one or more configurations are specified, they must include the `RENDER` and `DEPLOY` `ExecutionEnvironmentUsage` values. When no configurations are specified, execution will use the default specified in `DefaultPool`.
+     * Optional. Configurations for all execution that relates to this `Target`. Each `ExecutionEnvironmentUsage` value may only be used in a single configuration; using the same value multiple times is an error. When one or more configurations are specified, they must include the `RENDER` and `DEPLOY` `ExecutionEnvironmentUsage` values. When no configurations are specified, execution will use the default specified in `DefaultPool`.
      */
     executionConfigs?: Schema$ExecutionConfig[];
     /**
@@ -2947,7 +2997,7 @@ export namespace clouddeploy_v1 {
      */
     multiTarget?: Schema$MultiTarget;
     /**
-     * Optional. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/{target\}`. The `target` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     * Identifier. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/{target\}`. The `target` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -2997,7 +3047,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$TargetAttribute {
     /**
-     * ID of the `Target`. The value of this field could be one of the following: * The last segment of a target name * "*", all targets in a location
+     * Optional. ID of the `Target`. The value of this field could be one of the following: * The last segment of a target name * "*", all targets in a location
      */
     id?: string | null;
     /**
@@ -3046,6 +3096,19 @@ export namespace clouddeploy_v1 {
      * Output only. Current state of the render operation for this Target.
      */
     renderingState?: string | null;
+  }
+  /**
+   * The targets involved in a single timed promotion.
+   */
+  export interface Schema$Targets {
+    /**
+     * Optional. The destination target ID.
+     */
+    destinationTargetId?: string | null;
+    /**
+     * Optional. The source target ID.
+     */
+    sourceTargetId?: string | null;
   }
   /**
    * `TargetsPresentCondition` contains information on any Targets referenced in the Delivery Pipeline that do not actually exist.
@@ -3109,23 +3172,82 @@ export namespace clouddeploy_v1 {
     permissions?: string[] | null;
   }
   /**
+   * `TimedPromoteReleaseCondition` contains conditions specific to an Automation with a Timed Promote Release rule defined.
+   */
+  export interface Schema$TimedPromoteReleaseCondition {
+    /**
+     * Output only. When the next scheduled promotion(s) will occur.
+     */
+    nextPromotionTime?: string | null;
+    /**
+     * Output only. A list of targets involved in the upcoming timed promotion(s).
+     */
+    targetsList?: Schema$Targets[];
+  }
+  /**
+   * Contains the information of an automated timed promote-release operation.
+   */
+  export interface Schema$TimedPromoteReleaseOperation {
+    /**
+     * Output only. The starting phase of the rollout created by this operation.
+     */
+    phase?: string | null;
+    /**
+     * Output only. The name of the release to be promoted.
+     */
+    release?: string | null;
+    /**
+     * Output only. The ID of the target that represents the promotion stage to which the release will be promoted. The value of this field is the last segment of a target name.
+     */
+    targetId?: string | null;
+  }
+  /**
+   * The `TimedPromoteReleaseRule` will automatically promote a release from the current target(s) to the specified target(s) on a configured schedule.
+   */
+  export interface Schema$TimedPromoteReleaseRule {
+    /**
+     * Output only. Information around the state of the Automation rule.
+     */
+    condition?: Schema$AutomationRuleCondition;
+    /**
+     * Optional. The starting phase of the rollout created by this rule. Default to the first phase.
+     */
+    destinationPhase?: string | null;
+    /**
+     * Optional. The ID of the stage in the pipeline to which this `Release` is deploying. If unspecified, default it to the next stage in the promotion flow. The value of this field could be one of the following: * The last segment of a target name * "@next", the next target in the promotion sequence
+     */
+    destinationTargetId?: string | null;
+    /**
+     * Required. ID of the rule. This ID must be unique in the `Automation` resource to which this rule belongs. The format is `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
+     */
+    id?: string | null;
+    /**
+     * Required. Schedule in crontab format. e.g. "0 9 * * 1" for every Monday at 9am.
+     */
+    schedule?: string | null;
+    /**
+     * Required. The time zone in IANA format [IANA Time Zone Database](https://www.iana.org/time-zones) (e.g. America/New_York).
+     */
+    timeZone?: string | null;
+  }
+  /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }
@@ -4246,7 +4368,7 @@ export namespace clouddeploy_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/{customTargetType\}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     * Identifier. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/{customTargetType\}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string;
     /**
@@ -5215,7 +5337,7 @@ export namespace clouddeploy_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     * Identifier. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string;
     /**
@@ -8057,6 +8179,95 @@ export namespace clouddeploy_v1 {
     }
 
     /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
      * Lists DeployPolicies in a given project and location.
      *
      * @param params - Parameters for request
@@ -8235,6 +8446,95 @@ export namespace clouddeploy_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Deploypolicies$Create
@@ -8291,6 +8591,17 @@ export namespace clouddeploy_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Projects$Locations$Deploypolicies$List
     extends StandardParameters {
     /**
@@ -8342,6 +8653,18 @@ export namespace clouddeploy_v1 {
      */
     requestBody?: Schema$DeployPolicy;
   }
+  export interface Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
 
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
@@ -8350,7 +8673,7 @@ export namespace clouddeploy_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9552,7 +9875,7 @@ export namespace clouddeploy_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/{target\}`. The `target` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     * Identifier. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/{target\}`. The `target` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string;
     /**

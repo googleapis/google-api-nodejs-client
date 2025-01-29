@@ -120,6 +120,11 @@
               "repeated": true,
               "type": "string"
             },
+            "category": {
+              "description": "Filters by Webfont.category, if category is found in Webfont.categories. If not set, returns all families.",
+              "location": "query",
+              "type": "string"
+            },
             "family": {
               "description": "Filters by Webfont.family, using literal match. If not set, returns all families",
               "location": "query",
@@ -161,7 +166,7 @@
       }
     }
   },
-  "revision": "20240528",
+  "revision": "20250121",
   "rootUrl": "https://webfonts.googleapis.com/",
   "schemas": {
     "Axis": {

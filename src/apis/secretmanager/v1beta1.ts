@@ -428,7 +428,7 @@ export namespace secretmanager_v1beta1 {
     permissions?: string[] | null;
   }
   /**
-   * A replication policy that replicates the Secret payload into the locations specified in Secret.replication.user_managed.replicas
+   * A replication policy that replicates the Secret payload into the locations specified in Replication.UserManaged.replicas
    */
   export interface Schema$UserManaged {
     /**

@@ -170,6 +170,10 @@ export namespace aiplatform_v1beta1 {
      */
     imageRaiScores?: Schema$CloudAiLargeModelsVisionImageRAIScores;
     /**
+     * Image size. The size of the image. Can be self reported, or computed from the image bytes.
+     */
+    imageSize?: Schema$CloudAiLargeModelsVisionImageImageSize;
+    /**
      * RAI info for image.
      */
     raiInfo?: Schema$CloudAiLargeModelsVisionRaiInfo;
@@ -185,6 +189,14 @@ export namespace aiplatform_v1beta1 {
      * Path to another storage (typically Google Cloud Storage).
      */
     uri?: string | null;
+  }
+  /**
+   * Image size.
+   */
+  export interface Schema$CloudAiLargeModelsVisionImageImageSize {
+    channels?: number | null;
+    height?: number | null;
+    width?: number | null;
   }
   /**
    * RAI scores for generated image returned.
@@ -316,6 +328,14 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$CloudAiLargeModelsVisionVideo {
     /**
+     * Base 64 encoded video bytes.
+     */
+    encodedVideo?: string | null;
+    /**
+     * Video encoding, for example "video/mp4".
+     */
+    encoding?: string | null;
+    /**
      * Path to another storage (typically Google Cloud Storage).
      */
     uri?: string | null;
@@ -325,7 +345,7 @@ export namespace aiplatform_v1beta1 {
     video?: string | null;
   }
   /**
-   * Create API error message for Vertex Pipeline. Next Id: 3.
+   * Create API error message for Vertex Pipeline.
    */
   export interface Schema$CloudAiPlatformCommonCreatePipelineJobApiErrorDetail {
     /**
@@ -490,7 +510,7 @@ export namespace aiplatform_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * The generic reusable api auth config.
+   * The generic reusable api auth config. Deprecated. Please use AuthConfig (google/cloud/aiplatform/master/auth.proto) instead.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ApiAuth {
     /**
@@ -721,9 +741,13 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1AuthConfigApiKeyConfig {
     /**
-     * Required. The name of the SecretManager secret version resource storing the API key. Format: `projects/{project\}/secrets/{secrete\}/versions/{version\}` - If specified, the `secretmanager.versions.access` permission should be granted to Vertex AI Extension Service Agent (https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) on the specified resource.
+     * Optional. The name of the SecretManager secret version resource storing the API key. Format: `projects/{project\}/secrets/{secrete\}/versions/{version\}` - If both `api_key_secret` and `api_key_string` are specified, this field takes precedence over `api_key_string`. - If specified, the `secretmanager.versions.access` permission should be granted to Vertex AI Extension Service Agent (https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) on the specified resource.
      */
     apiKeySecret?: string | null;
+    /**
+     * Optional. The API key to be used in the request directly.
+     */
+    apiKeyString?: string | null;
     /**
      * Required. The location of the API key.
      */
@@ -994,7 +1018,7 @@ export namespace aiplatform_v1beta1 {
      */
     model?: string | null;
     /**
-     * It's the same as the value in MigrateResourceRequest.migrate_resource_requests.
+     * It's the same as the value in BatchMigrateResourcesRequest.migrate_resource_requests.
      */
     request?: Schema$GoogleCloudAiplatformV1beta1MigrateResourceRequest;
   }
@@ -1370,7 +1394,7 @@ export namespace aiplatform_v1beta1 {
     useEffectiveOrder?: boolean | null;
   }
   /**
-   * Content blob. It's preferred to send as text directly rather than raw bytes.
+   * Content blob.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Blob {
     /**
@@ -1654,6 +1678,28 @@ export namespace aiplatform_v1beta1 {
     startIndex?: number | null;
   }
   /**
+   * Configurations (e.g. inference timeout) that are applied on your endpoints.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ClientConnectionConfig {
+    /**
+     * Customizable online prediction request timeout.
+     */
+    inferenceTimeout?: string | null;
+  }
+  /**
+   * Result of executing the [ExecutableCode]. Always follows a `part` containing the [ExecutableCode].
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1CodeExecutionResult {
+    /**
+     * Required. Outcome of the code execution.
+     */
+    outcome?: string | null;
+    /**
+     * Optional. Contains stdout when code execution is successful, stderr or other description otherwise.
+     */
+    output?: string | null;
+  }
+  /**
    * Input for coherence metric.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1CoherenceInput {
@@ -1700,6 +1746,62 @@ export namespace aiplatform_v1beta1 {
      * Optional. Which version to use for evaluation.
      */
     version?: number | null;
+  }
+  /**
+   * Input for Comet metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1CometInput {
+    /**
+     * Required. Comet instance.
+     */
+    instance?: Schema$GoogleCloudAiplatformV1beta1CometInstance;
+    /**
+     * Required. Spec for comet metric.
+     */
+    metricSpec?: Schema$GoogleCloudAiplatformV1beta1CometSpec;
+  }
+  /**
+   * Spec for Comet instance - The fields used for evaluation are dependent on the comet version.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1CometInstance {
+    /**
+     * Required. Output of the evaluated model.
+     */
+    prediction?: string | null;
+    /**
+     * Optional. Ground truth used to compare against the prediction.
+     */
+    reference?: string | null;
+    /**
+     * Optional. Source text in original language.
+     */
+    source?: string | null;
+  }
+  /**
+   * Spec for Comet result - calculates the comet score for the given instance using the version specified in the spec.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1CometResult {
+    /**
+     * Output only. Comet score. Range depends on version.
+     */
+    score?: number | null;
+  }
+  /**
+   * Spec for Comet metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1CometSpec {
+    /**
+     * Optional. Source language in BCP-47 format.
+     */
+    sourceLanguage?: string | null;
+    /**
+     * Optional. Target language in BCP-47 format. Covers both prediction and reference.
+     */
+    targetLanguage?: string | null;
+    /**
+     * Required. Which version to use for evaluation.
+     */
+    version?: string | null;
   }
   /**
    * Request message for VizierService.CompleteTrial.
@@ -2439,6 +2541,10 @@ export namespace aiplatform_v1beta1 {
      */
     protectedArtifactLocationId?: string | null;
     /**
+     * Optional. Configuration for PSC-I for CustomJob.
+     */
+    pscInterfaceConfig?: Schema$GoogleCloudAiplatformV1beta1PscInterfaceConfig;
+    /**
      * Optional. A list of names for the reserved ip ranges under the VPC network that can be used for this job. If set, we will deploy the job within the provided ip ranges. Otherwise, the job will be deployed to any ip ranges under the provided VPC network. Example: ['vertex-ai-ip-range'].
      */
     reservedIpRanges?: string[] | null;
@@ -2639,7 +2745,7 @@ export namespace aiplatform_v1beta1 {
      */
     modelReference?: string | null;
     /**
-     * Output only. Identifier. The resource name of the Dataset.
+     * Output only. Identifier. The resource name of the Dataset. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}`
      */
     name?: string | null;
     /**
@@ -2779,7 +2885,7 @@ export namespace aiplatform_v1beta1 {
      */
     modelReference?: string | null;
     /**
-     * Output only. Identifier. The resource name of the DatasetVersion.
+     * Output only. Identifier. The resource name of the DatasetVersion. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}/datasetVersions/{dataset_version\}`
      */
     name?: string | null;
     /**
@@ -2815,6 +2921,10 @@ export namespace aiplatform_v1beta1 {
      * Required. Immutable. The minimum number of machine replicas this DeployedModel will be always deployed on. This value must be greater than or equal to 1. If traffic against the DeployedModel increases, it may dynamically be deployed onto more replicas, and as traffic decreases, some of these extra replicas may be freed.
      */
     minReplicaCount?: number | null;
+    /**
+     * Optional. Number of required available replicas for the deployment to succeed. This field is only needed when partial model deployment/mutation is desired. If set, the model deploy/mutate operation will succeed once available_replica_count reaches required_replica_count, and the rest of the replicas will be retried. If not set, the default required_replica_count will be min_replica_count.
+     */
+    requiredReplicaCount?: number | null;
     /**
      * Optional. If true, schedule the deployment workload on [spot VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).
      */
@@ -3062,6 +3172,10 @@ export namespace aiplatform_v1beta1 {
      */
     explanationSpec?: Schema$GoogleCloudAiplatformV1beta1ExplanationSpec;
     /**
+     * Configuration for faster model deployment.
+     */
+    fasterDeploymentConfig?: Schema$GoogleCloudAiplatformV1beta1FasterDeploymentConfig;
+    /**
      * Immutable. The ID of the DeployedModel. If not provided upon deployment, Vertex AI will generate a value for this ID. This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      */
     id?: string | null;
@@ -3085,6 +3199,14 @@ export namespace aiplatform_v1beta1 {
      * The resource name of the shared DeploymentResourcePool to deploy on. Format: `projects/{project\}/locations/{location\}/deploymentResourcePools/{deployment_resource_pool\}`
      */
     sharedResources?: string | null;
+    /**
+     * Output only. Runtime status of the deployed model.
+     */
+    status?: Schema$GoogleCloudAiplatformV1beta1DeployedModelStatus;
+    /**
+     * System labels to apply to Model Garden deployments. System labels are managed by Google for internal use only.
+     */
+    systemLabels?: {[key: string]: string} | null;
   }
   /**
    * Points to a DeployedModel.
@@ -3098,6 +3220,23 @@ export namespace aiplatform_v1beta1 {
      * Immutable. A resource name of an Endpoint.
      */
     endpoint?: string | null;
+  }
+  /**
+   * Runtime status of the deployed model.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DeployedModelStatus {
+    /**
+     * Output only. The number of available replicas of the deployed model.
+     */
+    availableReplicaCount?: number | null;
+    /**
+     * Output only. The time at which the status was last updated.
+     */
+    lastUpdateTime?: string | null;
+    /**
+     * Output only. The latest deployed model's status message (if any).
+     */
+    message?: string | null;
   }
   /**
    * Runtime operation information for IndexEndpointService.DeployIndex.
@@ -3197,6 +3336,35 @@ export namespace aiplatform_v1beta1 {
      * The DeployedModel that had been deployed in the Endpoint.
      */
     deployedModel?: Schema$GoogleCloudAiplatformV1beta1DeployedModel;
+  }
+  /**
+   * Request message for ModelGardenService.DeployPublisherModel.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DeployPublisherModelRequest {
+    /**
+     * Optional. Whether the user accepts the End User License Agreement (EULA) for the model.
+     */
+    acceptEula?: boolean | null;
+    /**
+     * Optional. The dedicated resources to use for the endpoint. If not set, the default resources will be used.
+     */
+    dedicatedResources?: Schema$GoogleCloudAiplatformV1beta1DedicatedResources;
+    /**
+     * Optional. The user-specified display name of the endpoint. If not set, a default name will be used.
+     */
+    endpointDisplayName?: string | null;
+    /**
+     * Optional. The Hugging Face read access token used to access the model artifacts of gated models.
+     */
+    huggingFaceAccessToken?: string | null;
+    /**
+     * Required. The name of the PublisherModel resource. Format: `publishers/{publisher\}/models/{publisher_model\}@{version_id\}`, or `publishers/hf-{hugging-face-author\}/models/{hugging-face-model-name\}@001` or Hugging Face model ID like `google/gemma-2-2b-it`.
+     */
+    model?: string | null;
+    /**
+     * Optional. The user-specified display name of the uploaded model. If not set, a default name will be used.
+     */
+    modelDisplayName?: string | null;
   }
   /**
    * Runtime operation information for SolverService.DeploySolver.
@@ -3321,15 +3489,15 @@ export namespace aiplatform_v1beta1 {
      */
     hyperParameters?: Schema$GoogleCloudAiplatformV1beta1DistillationHyperParameters;
     /**
-     * Required. A path in a Cloud Storage bucket, which will be treated as the root output directory of the distillation pipeline. It is used by the system to generate the paths of output artifacts.
+     * Deprecated. A path in a Cloud Storage bucket, which will be treated as the root output directory of the distillation pipeline. It is used by the system to generate the paths of output artifacts.
      */
     pipelineRootDirectory?: string | null;
     /**
-     * The student model that is being tuned, e.g., "google/gemma-2b-1.1-it".
+     * The student model that is being tuned, e.g., "google/gemma-2b-1.1-it". Deprecated. Use base_model instead.
      */
     studentModel?: string | null;
     /**
-     * Required. Cloud Storage path to file containing training dataset for tuning. The dataset must be formatted as a JSONL file.
+     * Deprecated. Cloud Storage path to file containing training dataset for tuning. The dataset must be formatted as a JSONL file.
      */
     trainingDatasetUri?: string | null;
     /**
@@ -3351,6 +3519,19 @@ export namespace aiplatform_v1beta1 {
     values?: number[] | null;
   }
   /**
+   * Describes the options to customize dynamic retrieval.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DynamicRetrievalConfig {
+    /**
+     * Optional. The threshold to be used in dynamic retrieval. If not set, a system default value is used.
+     */
+    dynamicThreshold?: number | null;
+    /**
+     * The mode of the predictor to be used in dynamic retrieval.
+     */
+    mode?: string | null;
+  }
+  /**
    * Represents a customer-managed encryption key spec that can be applied to a top-level resource.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1EncryptionSpec {
@@ -3363,6 +3544,10 @@ export namespace aiplatform_v1beta1 {
    * Models are deployed into it, and afterwards Endpoint is called to obtain predictions and explanations.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Endpoint {
+    /**
+     * Configurations that are applied to the endpoint for online prediction.
+     */
+    clientConnectionConfig?: Schema$GoogleCloudAiplatformV1beta1ClientConnectionConfig;
     /**
      * Output only. Timestamp when this Endpoint was created.
      */
@@ -3604,6 +3789,10 @@ export namespace aiplatform_v1beta1 {
      */
     coherenceInput?: Schema$GoogleCloudAiplatformV1beta1CoherenceInput;
     /**
+     * Translation metrics. Input for Comet metric.
+     */
+    cometInput?: Schema$GoogleCloudAiplatformV1beta1CometInput;
+    /**
      * Auto metric instances. Instances and metric spec for exact match metric.
      */
     exactMatchInput?: Schema$GoogleCloudAiplatformV1beta1ExactMatchInput;
@@ -3619,6 +3808,10 @@ export namespace aiplatform_v1beta1 {
      * Input for groundedness metric.
      */
     groundednessInput?: Schema$GoogleCloudAiplatformV1beta1GroundednessInput;
+    /**
+     * Input for Metricx metric.
+     */
+    metricxInput?: Schema$GoogleCloudAiplatformV1beta1MetricxInput;
     /**
      * Input for pairwise metric.
      */
@@ -3687,6 +3880,30 @@ export namespace aiplatform_v1beta1 {
      * Input for tool parameter key value match metric.
      */
     toolParameterKvMatchInput?: Schema$GoogleCloudAiplatformV1beta1ToolParameterKVMatchInput;
+    /**
+     * Input for trajectory match any order metric.
+     */
+    trajectoryAnyOrderMatchInput?: Schema$GoogleCloudAiplatformV1beta1TrajectoryAnyOrderMatchInput;
+    /**
+     * Input for trajectory exact match metric.
+     */
+    trajectoryExactMatchInput?: Schema$GoogleCloudAiplatformV1beta1TrajectoryExactMatchInput;
+    /**
+     * Input for trajectory in order match metric.
+     */
+    trajectoryInOrderMatchInput?: Schema$GoogleCloudAiplatformV1beta1TrajectoryInOrderMatchInput;
+    /**
+     * Input for trajectory precision metric.
+     */
+    trajectoryPrecisionInput?: Schema$GoogleCloudAiplatformV1beta1TrajectoryPrecisionInput;
+    /**
+     * Input for trajectory recall metric.
+     */
+    trajectoryRecallInput?: Schema$GoogleCloudAiplatformV1beta1TrajectoryRecallInput;
+    /**
+     * Input for trajectory single tool use metric.
+     */
+    trajectorySingleToolUseInput?: Schema$GoogleCloudAiplatformV1beta1TrajectorySingleToolUseInput;
   }
   /**
    * Response message for EvaluationService.EvaluateInstances.
@@ -3700,6 +3917,10 @@ export namespace aiplatform_v1beta1 {
      * Result for coherence metric.
      */
     coherenceResult?: Schema$GoogleCloudAiplatformV1beta1CoherenceResult;
+    /**
+     * Translation metrics. Result for Comet metric.
+     */
+    cometResult?: Schema$GoogleCloudAiplatformV1beta1CometResult;
     /**
      * Auto metric evaluation results. Results for exact match metric.
      */
@@ -3716,6 +3937,10 @@ export namespace aiplatform_v1beta1 {
      * Result for groundedness metric.
      */
     groundednessResult?: Schema$GoogleCloudAiplatformV1beta1GroundednessResult;
+    /**
+     * Result for Metricx metric.
+     */
+    metricxResult?: Schema$GoogleCloudAiplatformV1beta1MetricxResult;
     /**
      * Result for pairwise metric.
      */
@@ -3784,6 +4009,30 @@ export namespace aiplatform_v1beta1 {
      * Results for tool parameter key value match metric.
      */
     toolParameterKvMatchResults?: Schema$GoogleCloudAiplatformV1beta1ToolParameterKVMatchResults;
+    /**
+     * Result for trajectory any order match metric.
+     */
+    trajectoryAnyOrderMatchResults?: Schema$GoogleCloudAiplatformV1beta1TrajectoryAnyOrderMatchResults;
+    /**
+     * Result for trajectory exact match metric.
+     */
+    trajectoryExactMatchResults?: Schema$GoogleCloudAiplatformV1beta1TrajectoryExactMatchResults;
+    /**
+     * Result for trajectory in order match metric.
+     */
+    trajectoryInOrderMatchResults?: Schema$GoogleCloudAiplatformV1beta1TrajectoryInOrderMatchResults;
+    /**
+     * Result for trajectory precision metric.
+     */
+    trajectoryPrecisionResults?: Schema$GoogleCloudAiplatformV1beta1TrajectoryPrecisionResults;
+    /**
+     * Results for trajectory recall metric.
+     */
+    trajectoryRecallResults?: Schema$GoogleCloudAiplatformV1beta1TrajectoryRecallResults;
+    /**
+     * Results for trajectory single tool use metric.
+     */
+    trajectorySingleToolUseResults?: Schema$GoogleCloudAiplatformV1beta1TrajectorySingleToolUseResults;
   }
   /**
    * An edge describing the relationship between an Artifact and an Execution in a lineage graph.
@@ -3937,6 +4186,19 @@ export namespace aiplatform_v1beta1 {
      * The namespace name.
      */
     namespaceName?: string | null;
+  }
+  /**
+   * Code generated by the model that is meant to be executed, and the result returned to the model. Generated when using the [FunctionDeclaration] tool and [FunctionCallingConfig] mode is set to [Mode.CODE].
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ExecutableCode {
+    /**
+     * Required. The code to be executed.
+     */
+    code?: string | null;
+    /**
+     * Required. Programming language of the `code`.
+     */
+    language?: string | null;
   }
   /**
    * Request message for ExtensionExecutionService.ExecuteExtension.
@@ -4503,6 +4765,28 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ExportModelResponse {}
   /**
+   * Runtime operation information for ModelGardenService.ExportPublisherModel.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ExportPublisherModelOperationMetadata {
+    /**
+     * The operation generic information.
+     */
+    genericMetadata?: Schema$GoogleCloudAiplatformV1beta1GenericOperationMetadata;
+  }
+  /**
+   * Response message for ModelGardenService.ExportPublisherModel.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ExportPublisherModelResponse {
+    /**
+     * The destination uri of the model weights.
+     */
+    destinationUri?: string | null;
+    /**
+     * The name of the PublisherModel resource. Format: `publishers/{publisher\}/models/{publisher_model\}@{version_id\}`
+     */
+    publisherModel?: string | null;
+  }
+  /**
    * Request message for TensorboardService.ExportTensorboardTimeSeriesData.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ExportTensorboardTimeSeriesDataRequest {
@@ -4569,13 +4853,21 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string | null;
     /**
-     * Optional. The PrivateServiceConnect config for the extension. If specified, the service endpoints associated with the Extension should be registered with private network access in the provided Service Directory (https://cloud.google.com/service-directory/docs/configuring-private-network-access). If the service contains more than one endpoint with a network, the service will arbitrarilty choose one of the endpoints to use for extension execution.
+     * Optional. The PrivateServiceConnect config for the extension. If specified, the service endpoints associated with the Extension should be [registered with private network access in the provided Service Directory](https://cloud.google.com/service-directory/docs/configuring-private-network-access). If the service contains more than one endpoint with a network, the service will arbitrarilty choose one of the endpoints to use for extension execution.
      */
     privateServiceConnectConfig?: Schema$GoogleCloudAiplatformV1beta1ExtensionPrivateServiceConnectConfig;
     /**
      * Optional. Runtime config controlling the runtime behavior of this Extension.
      */
     runtimeConfig?: Schema$GoogleCloudAiplatformV1beta1RuntimeConfig;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Optional. Examples to illustrate the usage of the extension as a tool.
      */
@@ -4650,6 +4942,10 @@ export namespace aiplatform_v1beta1 {
      */
     query?: string | null;
     /**
+     * If present, according to the underlying Vector DB and the selected metric type, the score can be either the distance or the similarity between the query and the fact and its range depends on the metric type. For example, if the metric type is COSINE_DISTANCE, it represents the distance between the query and the fact. The larger the distance, the less relevant the fact is to the query. The range is [0, 2], while 0 means the most relevant and 2 means the least relevant.
+     */
+    score?: number | null;
+    /**
      * If present, the summary/snippet of the fact.
      */
     summary?: string | null;
@@ -4665,6 +4961,15 @@ export namespace aiplatform_v1beta1 {
      * If present, the distance between the query vector and this fact vector.
      */
     vectorDistance?: number | null;
+  }
+  /**
+   * Configuration for faster model deployment.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FasterDeploymentConfig {
+    /**
+     * If true, enable fast tryout feature for this deployed model.
+     */
+    fastTryoutEnabled?: boolean | null;
   }
   /**
    * Feature Metadata information. For example, color is a feature that describes an apple.
@@ -4686,6 +4991,10 @@ export namespace aiplatform_v1beta1 {
      * Used to perform a consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
     etag?: string | null;
+    /**
+     * Output only. Only applicable for Vertex AI Feature Store. The list of historical stats and anomalies.
+     */
+    featureStatsAndAnomaly?: Schema$GoogleCloudAiplatformV1beta1FeatureStatsAndAnomaly[];
     /**
      * Optional. The labels with user-defined metadata to organize your Features. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information on and examples of labels. No more than 64 user labels can be associated with one Feature (System labels are excluded)." System reserved label keys are prefixed with "aiplatform.googleapis.com/" and are immutable.
      */
@@ -4752,6 +5061,14 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. A Service Account unique to this FeatureGroup. The role bigquery.dataViewer should be granted to this service account to allow Vertex AI Feature Store to access source data while running jobs under this FeatureGroup.
+     */
+    serviceAccountEmail?: string | null;
+    /**
+     * Optional. Service agent type used during jobs under a FeatureGroup. By default, the Vertex AI Service Agent is used. When using an IAM Policy to isolate this FeatureGroup within a project, a separate service account should be provisioned by setting this field to `SERVICE_AGENT_TYPE_FEATURE_GROUP`. This will generate a separate service account to access the BigQuery source table.
+     */
+    serviceAgentType?: string | null;
+    /**
      * Output only. Timestamp when this FeatureGroup was last updated.
      */
     updateTime?: string | null;
@@ -4788,6 +5105,43 @@ export namespace aiplatform_v1beta1 {
     timestampColumn?: string | null;
   }
   /**
+   * Vertex AI Feature Monitor.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FeatureMonitor {
+    /**
+     * Output only. Timestamp when this FeatureMonitor was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of the FeatureMonitor.
+     */
+    description?: string | null;
+    /**
+     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
+     */
+    etag?: string | null;
+    /**
+     * Required. Feature selection config for the FeatureMonitor.
+     */
+    featureSelectionConfig?: Schema$GoogleCloudAiplatformV1beta1FeatureSelectionConfig;
+    /**
+     * Optional. The labels with user-defined metadata to organize your FeatureMonitor. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information on and examples of labels. No more than 64 user labels can be associated with one FeatureMonitor(System labels are excluded)." System reserved label keys are prefixed with "aiplatform.googleapis.com/" and are immutable.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. Name of the FeatureMonitor. Format: `projects/{project\}/locations/{location\}/featureGroups/{featureGroup\}/featureMonitors/{featureMonitor\}`
+     */
+    name?: string | null;
+    /**
+     * Required. Schedule config for the FeatureMonitor.
+     */
+    scheduleConfig?: Schema$GoogleCloudAiplatformV1beta1ScheduleConfig;
+    /**
+     * Output only. Timestamp when this FeatureMonitor was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * A list of historical SnapshotAnalysis or ImportFeaturesAnalysis stats requested by user, sorted by FeatureStatsAnomaly.start_time descending.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FeatureMonitoringStatsAnomaly {
@@ -4799,6 +5153,64 @@ export namespace aiplatform_v1beta1 {
      * Output only. The objective for each stats.
      */
     objective?: string | null;
+  }
+  /**
+   * Vertex AI Feature Monitor Job.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob {
+    /**
+     * Output only. Timestamp when this FeatureMonitorJob was created. Creation of a FeatureMonitorJob means that the job is pending / waiting for sufficient resources but may not have started running yet.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of the FeatureMonitor.
+     */
+    description?: string | null;
+    /**
+     * Output only. FeatureMonitorJob ID comparing to which the drift is calculated.
+     */
+    driftBaseFeatureMonitorJobId?: string | null;
+    /**
+     * Output only. Data snapshot time comparing to which the drift is calculated.
+     */
+    driftBaseSnapshotTime?: string | null;
+    /**
+     * Output only. Feature selection config used when creating FeatureMonitorJob.
+     */
+    featureSelectionConfig?: Schema$GoogleCloudAiplatformV1beta1FeatureSelectionConfig;
+    /**
+     * Output only. Final status of the FeatureMonitorJob.
+     */
+    finalStatus?: Schema$GoogleRpcStatus;
+    /**
+     * Output only. Summary from the FeatureMonitorJob.
+     */
+    jobSummary?: Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJobJobSummary;
+    /**
+     * Optional. The labels with user-defined metadata to organize your FeatureMonitorJob. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information on and examples of labels. No more than 64 user labels can be associated with one FeatureMonitor(System labels are excluded)." System reserved label keys are prefixed with "aiplatform.googleapis.com/" and are immutable.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. Name of the FeatureMonitorJob. Format: `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}/featureMonitors/{feature_monitor\}/featureMonitorJobs/{feature_monitor_job\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Trigger type of the Feature Monitor Job.
+     */
+    triggerType?: string | null;
+  }
+  /**
+   * Summary from the FeatureMonitorJob.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJobJobSummary {
+    /**
+     * Output only. Features and their stats and anomalies
+     */
+    featureStatsAndAnomalies?: Schema$GoogleCloudAiplatformV1beta1FeatureStatsAndAnomaly[];
+    /**
+     * Output only. BigQuery slot milliseconds consumed.
+     */
+    totalSlotMs?: string | null;
   }
   /**
    * Noise sigma by features. Noise sigma represents the standard deviation of the gaussian kernel that will be used to add noise to interpolated inputs prior to computing gradients.
@@ -4930,6 +5342,28 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FeatureOnlineStoreOptimized {}
   /**
+   * Feature selection configuration for the FeatureMonitor.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FeatureSelectionConfig {
+    /**
+     * Optional. A list of features to be monitored and each feature's drift threshold.
+     */
+    featureConfigs?: Schema$GoogleCloudAiplatformV1beta1FeatureSelectionConfigFeatureConfig[];
+  }
+  /**
+   * Feature configuration.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FeatureSelectionConfigFeatureConfig {
+    /**
+     * Optional. Drift threshold. If calculated difference with baseline data larger than threshold, it will be considered as the feature has drift. If not present, the threshold will be default to 0.3.
+     */
+    driftThreshold?: number | null;
+    /**
+     * Required. The ID of the feature resource. Final component of the Feature's resource name.
+     */
+    featureId?: string | null;
+  }
+  /**
    * Selector for Features of an EntityType.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FeatureSelector {
@@ -4937,6 +5371,43 @@ export namespace aiplatform_v1beta1 {
      * Required. Matches Features based on ID.
      */
     idMatcher?: Schema$GoogleCloudAiplatformV1beta1IdMatcher;
+  }
+  /**
+   * Stats and Anomaly generated by FeatureMonitorJobs. Anomaly only includes Drift.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FeatureStatsAndAnomaly {
+    /**
+     * Deviation from the current stats to baseline stats. 1. For categorical feature, the distribution distance is calculated by L-inifinity norm. 2. For numerical feature, the distribution distance is calculated by Jensen–Shannon divergence.
+     */
+    distributionDeviation?: number | null;
+    /**
+     * If set to true, indicates current stats is detected as and comparing with baseline stats.
+     */
+    driftDetected?: boolean | null;
+    /**
+     * This is the threshold used when detecting drifts, which is set in FeatureMonitor.FeatureSelectionConfig.FeatureConfig.drift_threshold
+     */
+    driftDetectionThreshold?: number | null;
+    /**
+     * Feature Id.
+     */
+    featureId?: string | null;
+    /**
+     * The ID of the FeatureMonitor that this FeatureStatsAndAnomaly generated according to.
+     */
+    featureMonitorId?: string | null;
+    /**
+     * The ID of the FeatureMonitorJob that generated this FeatureStatsAndAnomaly.
+     */
+    featureMonitorJobId?: string | null;
+    /**
+     * Feature stats. e.g. histogram buckets. In the format of tensorflow.metadata.v0.DatasetFeatureStatistics.
+     */
+    featureStats?: any | null;
+    /**
+     * The timestamp we take snapshot for feature values to generate stats.
+     */
+    statsTime?: string | null;
   }
   /**
    * Stats and Anomaly generated at specific timestamp for specific Feature. The start_time and end_time are used to define the time range of the dataset that current stats belongs to, e.g. prediction traffic is bucketed into prediction datasets by time window. If the Dataset is not defined by time window, start_time = end_time. Timestamp of the stats and anomalies always refers to end_time. Raw stats and anomalies are stored in stats_uri or anomaly_uri in the tensorflow defined protos. Field data_stats contains almost identical information with the raw stats in Vertex AI defined proto, for UI to display.
@@ -5418,6 +5889,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FeatureViewSyncConfig {
     /**
+     * Optional. If true, syncs the FeatureView in a continuous manner to Online Store.
+     */
+    continuous?: boolean | null;
+    /**
      * Cron schedule (https://en.wikipedia.org/wiki/Cron) to launch scheduled runs. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or "TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, "CRON_TZ=America/New_York 1 * * * *", or "TZ=America/New_York 1 * * * *".
      */
     cron?: string | null;
@@ -5551,6 +6026,15 @@ export namespace aiplatform_v1beta1 {
      * Feature value.
      */
     value?: Schema$GoogleCloudAiplatformV1beta1FeatureValue;
+  }
+  /**
+   * Request message for PredictionService.FetchPredictOperation.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FetchPredictOperationRequest {
+    /**
+     * Required. The server-assigned name for the operation.
+     */
+    operationName?: string | null;
   }
   /**
    * URI based data.
@@ -5833,7 +6317,7 @@ export namespace aiplatform_v1beta1 {
     mode?: string | null;
   }
   /**
-   * Structured representation of a function declaration as defined by the [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included in this declaration are the function name and parameters. This FunctionDeclaration is a representation of a block of code that can be used as a `Tool` by the model and executed by the client.
+   * Structured representation of a function declaration as defined by the [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included in this declaration are the function name, description, parameters and response type. This FunctionDeclaration is a representation of a block of code that can be used as a `Tool` by the model and executed by the client.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FunctionDeclaration {
     /**
@@ -6032,6 +6516,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfig {
     /**
+     * Optional. If enabled, audio timestamp will be included in the request to the model.
+     */
+    audioTimestamp?: boolean | null;
+    /**
      * Optional. Number of candidates to generate.
      */
     candidateCount?: number | null;
@@ -6048,6 +6536,10 @@ export namespace aiplatform_v1beta1 {
      */
     maxOutputTokens?: number | null;
     /**
+     * Optional. If specified, the media resolution specified will be used.
+     */
+    mediaResolution?: string | null;
+    /**
      * Optional. Positive penalties.
      */
     presencePenalty?: number | null;
@@ -6060,6 +6552,10 @@ export namespace aiplatform_v1beta1 {
      */
     responseMimeType?: string | null;
     /**
+     * Optional. The modalities of the response.
+     */
+    responseModalities?: string[] | null;
+    /**
      * Optional. The `Schema` object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema). If set, a compatible response_mime_type must also be set. Compatible mimetypes: `application/json`: Schema for JSON response.
      */
     responseSchema?: Schema$GoogleCloudAiplatformV1beta1Schema;
@@ -6071,6 +6567,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. Seed.
      */
     seed?: number | null;
+    /**
+     * Optional. The speech generation config.
+     */
+    speechConfig?: Schema$GoogleCloudAiplatformV1beta1SpeechConfig;
     /**
      * Optional. Stop sequences.
      */
@@ -6170,7 +6670,12 @@ export namespace aiplatform_v1beta1 {
   /**
    * Tool to retrieve public web data for grounding, powered by Google.
    */
-  export interface Schema$GoogleCloudAiplatformV1beta1GoogleSearchRetrieval {}
+  export interface Schema$GoogleCloudAiplatformV1beta1GoogleSearchRetrieval {
+    /**
+     * Specifies the dynamic retrieval configuration for the given source.
+     */
+    dynamicRetrievalConfig?: Schema$GoogleCloudAiplatformV1beta1DynamicRetrievalConfig;
+  }
   /**
    * Input for groundedness metric.
    */
@@ -6241,6 +6746,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext {
     /**
+     * Text of the attribution.
+     */
+    text?: string | null;
+    /**
      * Title of the attribution.
      */
     title?: string | null;
@@ -6274,6 +6783,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. List of grounding support.
      */
     groundingSupports?: Schema$GoogleCloudAiplatformV1beta1GroundingSupport[];
+    /**
+     * Optional. Output only. Retrieval metadata.
+     */
+    retrievalMetadata?: Schema$GoogleCloudAiplatformV1beta1RetrievalMetadata;
     /**
      * Optional. Queries executed by the retrieval tools.
      */
@@ -6575,11 +7088,11 @@ export namespace aiplatform_v1beta1 {
      */
     maxEmbeddingRequestsPerMin?: number | null;
     /**
-     * The BigQuery destination to write partial failures to. It should be a bigquery table resource name (e.g. "bq://projectId.bqDatasetId.bqTableId"). If the dataset id does not exist, it will be created. If the table does not exist, it will be created with the expected schema. If the table exists, the schema will be validated and data will be added to this existing table.
+     * The BigQuery destination to write partial failures to. It should be a bigquery table resource name (e.g. "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the table does not exist, it will be created with the expected schema. If the table exists, the schema will be validated and data will be added to this existing table. Deprecated. Prefer to use `import_result_bq_sink`.
      */
     partialFailureBigquerySink?: Schema$GoogleCloudAiplatformV1beta1BigQueryDestination;
     /**
-     * The Cloud Storage path to write partial failures to.
+     * The Cloud Storage path to write partial failures to. Deprecated. Prefer to use `import_result_gcs_sink`.
      */
     partialFailureGcsSink?: Schema$GoogleCloudAiplatformV1beta1GcsDestination;
     /**
@@ -6587,9 +7100,13 @@ export namespace aiplatform_v1beta1 {
      */
     ragFileChunkingConfig?: Schema$GoogleCloudAiplatformV1beta1RagFileChunkingConfig;
     /**
-     * Specifies the parsing config for RagFiles.
+     * Optional. Specifies the parsing config for RagFiles. RAG will use the default parser if this field is not set.
      */
     ragFileParsingConfig?: Schema$GoogleCloudAiplatformV1beta1RagFileParsingConfig;
+    /**
+     * Specifies the transformation config for RagFiles.
+     */
+    ragFileTransformationConfig?: Schema$GoogleCloudAiplatformV1beta1RagFileTransformationConfig;
     /**
      * SharePoint sources.
      */
@@ -6975,7 +7492,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1JiraSourceJiraQueries {
     /**
-     * Required. The SecretManager secret version resource name (e.g. projects/{project\}/secrets/{secret\}/versions/{version\}) storing the Jira API key (https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
+     * Required. The SecretManager secret version resource name (e.g. projects/{project\}/secrets/{secret\}/versions/{version\}) storing the Jira API key. See [Manage API tokens for your Atlassian account](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
      */
     apiKeyConfig?: Schema$GoogleCloudAiplatformV1beta1ApiAuthApiKeyConfig;
     /**
@@ -7226,6 +7743,32 @@ export namespace aiplatform_v1beta1 {
     featureGroups?: Schema$GoogleCloudAiplatformV1beta1FeatureGroup[];
     /**
      * A token, which can be sent as ListFeatureGroupsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for FeatureRegistryService.ListFeatureMonitorJobs.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorJobsResponse {
+    /**
+     * The FeatureMonitorJobs matching the request.
+     */
+    featureMonitorJobs?: Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob[];
+    /**
+     * A token, which can be sent as ListFeatureMonitorJobsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for FeatureRegistryService.ListFeatureMonitors.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorsResponse {
+    /**
+     * The FeatureMonitors matching the request.
+     */
+    featureMonitors?: Schema$GoogleCloudAiplatformV1beta1FeatureMonitor[];
+    /**
+     * A token, which can be sent as ListFeatureMonitorsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
   }
@@ -7481,7 +8024,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ListNotebookExecutionJobsResponse {
     /**
-     * A token to retrieve next page of results. Pass to ListNotebookExecutionJobs.page_token to obtain that page.
+     * A token to retrieve next page of results. Pass to ListNotebookExecutionJobsRequest.page_token to obtain that page.
      */
     nextPageToken?: string | null;
     /**
@@ -7768,11 +8311,11 @@ export namespace aiplatform_v1beta1 {
      */
     logProbability?: number | null;
     /**
-     * The candidate’s token string value.
+     * The candidate's token string value.
      */
     token?: string | null;
     /**
-     * The candidate’s token id value.
+     * The candidate's token id value.
      */
     tokenId?: number | null;
   }
@@ -7946,6 +8489,62 @@ export namespace aiplatform_v1beta1 {
      * The disk utilization of the MetadataStore in bytes.
      */
     diskUtilizationBytes?: string | null;
+  }
+  /**
+   * Input for MetricX metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1MetricxInput {
+    /**
+     * Required. Metricx instance.
+     */
+    instance?: Schema$GoogleCloudAiplatformV1beta1MetricxInstance;
+    /**
+     * Required. Spec for Metricx metric.
+     */
+    metricSpec?: Schema$GoogleCloudAiplatformV1beta1MetricxSpec;
+  }
+  /**
+   * Spec for MetricX instance - The fields used for evaluation are dependent on the MetricX version.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1MetricxInstance {
+    /**
+     * Required. Output of the evaluated model.
+     */
+    prediction?: string | null;
+    /**
+     * Optional. Ground truth used to compare against the prediction.
+     */
+    reference?: string | null;
+    /**
+     * Optional. Source text in original language.
+     */
+    source?: string | null;
+  }
+  /**
+   * Spec for MetricX result - calculates the MetricX score for the given instance using the version specified in the spec.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1MetricxResult {
+    /**
+     * Output only. MetricX score. Range depends on version.
+     */
+    score?: number | null;
+  }
+  /**
+   * Spec for MetricX metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1MetricxSpec {
+    /**
+     * Optional. Source language in BCP-47 format.
+     */
+    sourceLanguage?: string | null;
+    /**
+     * Optional. Target language in BCP-47 format. Covers both prediction and reference.
+     */
+    targetLanguage?: string | null;
+    /**
+     * Required. Which version to use for evaluation.
+     */
+    version?: string | null;
   }
   /**
    * Represents one resource that exists in automl.googleapis.com, datalabeling.googleapis.com or ml.googleapis.com.
@@ -8330,6 +8929,10 @@ export namespace aiplatform_v1beta1 {
      * Required. Immutable. URI of the Docker image to be used as the custom container for serving predictions. This URI must identify an image in Artifact Registry or Container Registry. Learn more about the [container publishing requirements](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#publishing), including permissions requirements for the Vertex AI Service Agent. The container image is ingested upon ModelService.UploadModel, stored internally, and this original path is afterwards not used. To learn about the requirements for the Docker image itself, see [Custom container requirements](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#). You can use the URI to one of Vertex AI's [pre-built container images for prediction](https://cloud.google.com/vertex-ai/docs/predictions/pre-built-containers) in this field.
      */
     imageUri?: string | null;
+    /**
+     * Immutable. Specification for Kubernetes liveness probe.
+     */
+    livenessProbe?: Schema$GoogleCloudAiplatformV1beta1Probe;
     /**
      * Immutable. List of ports to expose from the container. Vertex AI sends any prediction requests that it receives to the first port on this list. Vertex AI also sends [liveness and health checks](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#liveness) to this port. If you do not specify this field, it defaults to following value: ```json [ { "containerPort": 8080 \} ] ``` Vertex AI does not use ports other than the first one listed. This field corresponds to the `ports` field of the Kubernetes Containers [v1 core API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
      */
@@ -8809,7 +9412,7 @@ export namespace aiplatform_v1beta1 {
      */
     emailAlertConfig?: Schema$GoogleCloudAiplatformV1beta1ModelMonitoringAlertConfigEmailAlertConfig;
     /**
-     * Dump the anomalies to Cloud Logging. The anomalies will be put to json payload encoded from proto google.cloud.aiplatform.logging.ModelMonitoringAnomaliesLogEntry. This can be further sinked to Pub/Sub or any other services supported by Cloud Logging.
+     * Dump the anomalies to Cloud Logging. The anomalies will be put to json payload encoded from proto ModelMonitoringStatsAnomalies. This can be further synced to Pub/Sub or any other services supported by Cloud Logging.
      */
     enableLogging?: boolean | null;
     /**
@@ -10083,6 +10686,10 @@ export namespace aiplatform_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * The custom compute configuration for an execution job.
+     */
+    customEnvironmentSpec?: Schema$GoogleCloudAiplatformV1beta1NotebookExecutionJobCustomEnvironmentSpec;
+    /**
      * The Dataform Repository pointing to a single file notebook repository.
      */
     dataformRepositorySource?: Schema$GoogleCloudAiplatformV1beta1NotebookExecutionJobDataformRepositorySource;
@@ -10095,7 +10702,7 @@ export namespace aiplatform_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * Customer-managed encryption key spec for the notebook execution job. This field is auto-populated if the NotebookService.NotebookRuntimeTemplate has an encryption spec.
+     * Customer-managed encryption key spec for the notebook execution job. This field is auto-populated if the NotebookRuntimeTemplate has an encryption spec.
      */
     encryptionSpec?: Schema$GoogleCloudAiplatformV1beta1EncryptionSpec;
     /**
@@ -10119,6 +10726,10 @@ export namespace aiplatform_v1beta1 {
      */
     jobState?: string | null;
     /**
+     * The name of the kernel to use during notebook execution. If unset, the default kernel is used.
+     */
+    kernelName?: string | null;
+    /**
      * The labels with user-defined metadata to organize NotebookExecutionJobs. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with "aiplatform.googleapis.com/" and are immutable.
      */
     labels?: {[key: string]: string} | null;
@@ -10131,7 +10742,7 @@ export namespace aiplatform_v1beta1 {
      */
     notebookRuntimeTemplateResourceName?: string | null;
     /**
-     * Output only. The Schedule resource name if this job is triggered by one. Format: `projects/{project_id\}/locations/{location\}/schedules/{schedule_id\}`
+     * The Schedule resource name if this job is triggered by one. Format: `projects/{project_id\}/locations/{location\}/schedules/{schedule_id\}`
      */
     scheduleResourceName?: string | null;
     /**
@@ -10146,6 +10757,27 @@ export namespace aiplatform_v1beta1 {
      * Output only. Timestamp when this NotebookExecutionJob was most recently updated.
      */
     updateTime?: string | null;
+    /**
+     * The Workbench runtime configuration to use for the notebook execution.
+     */
+    workbenchRuntime?: Schema$GoogleCloudAiplatformV1beta1NotebookExecutionJobWorkbenchRuntime;
+  }
+  /**
+   * Compute configuration to use for an execution job.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1NotebookExecutionJobCustomEnvironmentSpec {
+    /**
+     * The specification of a single machine for the execution job.
+     */
+    machineSpec?: Schema$GoogleCloudAiplatformV1beta1MachineSpec;
+    /**
+     * The network configuration to use for the execution job.
+     */
+    networkSpec?: Schema$GoogleCloudAiplatformV1beta1NetworkSpec;
+    /**
+     * The specification of a persistent disk to attach for the execution job.
+     */
+    persistentDiskSpec?: Schema$GoogleCloudAiplatformV1beta1PersistentDiskSpec;
   }
   /**
    * The Dataform Repository containing the input notebook.
@@ -10183,6 +10815,10 @@ export namespace aiplatform_v1beta1 {
     uri?: string | null;
   }
   /**
+   * Configuration for a Workbench Instances-based environment.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1NotebookExecutionJobWorkbenchRuntime {}
+  /**
    * The idle shutdown configuration of NotebookRuntimeTemplate, which contains the idle_timeout as required field.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1NotebookIdleShutdownConfig {
@@ -10204,6 +10840,10 @@ export namespace aiplatform_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Output only. The specification of persistent disk attached to the notebook runtime as data disk storage.
+     */
+    dataPersistentDiskSpec?: Schema$GoogleCloudAiplatformV1beta1PersistentDiskSpec;
+    /**
      * The description of the NotebookRuntime.
      */
     description?: string | null;
@@ -10215,6 +10855,10 @@ export namespace aiplatform_v1beta1 {
      * Output only. Customer-managed encryption key spec for the notebook runtime.
      */
     encryptionSpec?: Schema$GoogleCloudAiplatformV1beta1EncryptionSpec;
+    /**
+     * Output only. EUC configuration of the notebook runtime.
+     */
+    eucConfig?: Schema$GoogleCloudAiplatformV1beta1NotebookEucConfig;
     /**
      * Output only. Timestamp when this NotebookRuntime will be expired: 1. System Predefined NotebookRuntime: 24 hours after creation. After expiration, system predifined runtime will be deleted. 2. User created NotebookRuntime: 6 months after last upgrade. After expiration, user created runtime will be stopped and allowed for upgrade.
      */
@@ -10236,9 +10880,17 @@ export namespace aiplatform_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Output only. The specification of a single machine used by the notebook runtime.
+     */
+    machineSpec?: Schema$GoogleCloudAiplatformV1beta1MachineSpec;
+    /**
      * Output only. The resource name of the NotebookRuntime.
      */
     name?: string | null;
+    /**
+     * Output only. Network spec of the notebook runtime.
+     */
+    networkSpec?: Schema$GoogleCloudAiplatformV1beta1NetworkSpec;
     /**
      * Optional. The Compute Engine tags to add to runtime (see [Tagging instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      */
@@ -10272,9 +10924,13 @@ export namespace aiplatform_v1beta1 {
      */
     satisfiesPzs?: boolean | null;
     /**
-     * Output only. The service account that the NotebookRuntime workload runs as.
+     * Output only. Deprecated: This field is no longer used and the "Vertex AI Notebook Service Account" (service-PROJECT_NUMBER@gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is used for the runtime workload identity. See https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account for more details. The service account that the NotebookRuntime workload runs as.
      */
     serviceAccount?: string | null;
+    /**
+     * Output only. Runtime Shielded VM spec.
+     */
+    shieldedVmConfig?: Schema$GoogleCloudAiplatformV1beta1ShieldedVmConfig;
     /**
      * Output only. Timestamp when this NotebookRuntime was most recently updated.
      */
@@ -10321,7 +10977,7 @@ export namespace aiplatform_v1beta1 {
      */
     idleShutdownConfig?: Schema$GoogleCloudAiplatformV1beta1NotebookIdleShutdownConfig;
     /**
-     * Output only. The default template to use if not specified.
+     * Output only. Deprecated: This field has no behavior. Use notebook_runtime_type = 'ONE_CLICK' instead. The default template to use if not specified.
      */
     isDefault?: boolean | null;
     /**
@@ -10349,7 +11005,7 @@ export namespace aiplatform_v1beta1 {
      */
     notebookRuntimeType?: string | null;
     /**
-     * The service account that the runtime workload runs as. You can use any service account within the same project, but you must have the service account user permission to use the instance. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.
+     * Deprecated: This field is ignored and the "Vertex AI Notebook Service Account" (service-PROJECT_NUMBER@gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is used for the runtime workload identity. See https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account for more details. For NotebookExecutionJob, use NotebookExecutionJob.service_account instead. The service account that the runtime workload runs as. You can use any service account within the same project, but you must have the service account user permission to use the instance. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.
      */
     serviceAccount?: string | null;
     /**
@@ -10555,6 +11211,14 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Part {
     /**
+     * Optional. Result of executing the [ExecutableCode].
+     */
+    codeExecutionResult?: Schema$GoogleCloudAiplatformV1beta1CodeExecutionResult;
+    /**
+     * Optional. Code generated by the model that is meant to be executed.
+     */
+    executableCode?: Schema$GoogleCloudAiplatformV1beta1ExecutableCode;
+    /**
      * Optional. URI based data.
      */
     fileData?: Schema$GoogleCloudAiplatformV1beta1FileData;
@@ -10575,9 +11239,30 @@ export namespace aiplatform_v1beta1 {
      */
     text?: string | null;
     /**
+     * Output only. Indicates if the part is thought from the model.
+     */
+    thought?: boolean | null;
+    /**
      * Optional. Video metadata. The metadata should only be specified while the video data is presented in inline_data or file_data.
      */
     videoMetadata?: Schema$GoogleCloudAiplatformV1beta1VideoMetadata;
+  }
+  /**
+   * Tuning spec for Partner models.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PartnerModelTuningSpec {
+    /**
+     * Hyperparameters for tuning. The accepted hyper_parameters and their valid range of values will differ depending on the base model.
+     */
+    hyperParameters?: {[key: string]: any} | null;
+    /**
+     * Required. Cloud Storage path to file containing training dataset for tuning. The dataset must be formatted as a JSONL file.
+     */
+    trainingDatasetUri?: string | null;
+    /**
+     * Optional. Cloud Storage path to file containing validation dataset for tuning. The dataset must be formatted as a JSONL file.
+     */
+    validationDatasetUri?: string | null;
   }
   /**
    * Request message for JobService.PauseModelDeploymentMonitoringJob.
@@ -10714,7 +11399,7 @@ export namespace aiplatform_v1beta1 {
      */
     network?: string | null;
     /**
-     * Output only. The original pipeline job id if this pipeline job is a rerun of a previous pipeline job.
+     * Optional. The original pipeline job id if this pipeline job is a rerun of a previous pipeline job.
      */
     originalPipelineJobId?: string | null;
     /**
@@ -10722,13 +11407,17 @@ export namespace aiplatform_v1beta1 {
      */
     pipelineSpec?: {[key: string]: any} | null;
     /**
-     * Output only. The rerun configs for each task in the pipeline job. By default, the rerun will: 1. Use the same input artifacts as the original run. 2. Use the same input parameters as the original run. 3. Skip all the tasks that are already succeeded in the original run. 4. Rerun all the tasks that are not succeeded in the original run. By providing this field, users can override the default behavior and specify the rerun config for each task.
+     * Optional. The rerun configs for each task in the pipeline job. By default, the rerun will: 1. Use the same input artifacts as the original run. 2. Use the same input parameters as the original run. 3. Skip all the tasks that are already succeeded in the original run. 4. Rerun all the tasks that are not succeeded in the original run. By providing this field, users can override the default behavior and specify the rerun config for each task.
      */
     pipelineTaskRerunConfigs?: Schema$GoogleCloudAiplatformV1beta1PipelineTaskRerunConfig[];
     /**
      * Optional. Whether to do component level validations before job creation.
      */
     preflightValidations?: boolean | null;
+    /**
+     * Optional. Configuration for PSC-I for PipelineJob.
+     */
+    pscInterfaceConfig?: Schema$GoogleCloudAiplatformV1beta1PscInterfaceConfig;
     /**
      * A list of names for the reserved ip ranges under the VPC network that can be used for this Pipeline Job's workload. If set, we will deploy the Pipeline Job's workload within the provided ip ranges. Otherwise, the job will be deployed to any ip ranges under the provided VPC network. Example: ['vertex-ai-ip-range'].
      */
@@ -10796,6 +11485,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfig {
     /**
+     * Optional. The default runtime for the PipelineJob. If not set, Standard Vertex Custom Job(https://cloud.google.com/vertex-ai/docs/training/overview) is used as the runtime. If set, all pipeline tasks will run on the default runtime unless a task is a GCPC custom job component (https://cloud.google.com/vertex-ai/docs/pipelines/customjob-component) based task. If the task is based on a GCPC custom job component, it runs solely according to the component's configuration.
+     */
+    defaultRuntime?: Schema$GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfigDefaultRuntime;
+    /**
      * Represents the failure policy of a pipeline. Currently, the default of a pipeline is that the pipeline will continue to run until no more tasks can be executed, also known as PIPELINE_FAILURE_POLICY_FAIL_SLOW. However, if a pipeline is set to PIPELINE_FAILURE_POLICY_FAIL_FAST, it will stop scheduling any new tasks when a task has failed. Any scheduled tasks will continue to completion.
      */
     failurePolicy?: string | null;
@@ -10823,6 +11516,15 @@ export namespace aiplatform_v1beta1 {
     parameterValues?: {[key: string]: any} | null;
   }
   /**
+   * The default runtime for the PipelineJob.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfigDefaultRuntime {
+    /**
+     * Persistent resource based runtime detail.
+     */
+    persistentResourceRuntimeDetail?: Schema$GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfigPersistentResourceRuntimeDetail;
+  }
+  /**
    * The type of an input artifact.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfigInputArtifact {
@@ -10830,6 +11532,23 @@ export namespace aiplatform_v1beta1 {
      * Artifact resource id from MLMD. Which is the last portion of an artifact resource name: `projects/{project\}/locations/{location\}/metadataStores/default/artifacts/{artifact_id\}`. The artifact must stay within the same project, location and default metadatastore as the pipeline.
      */
     artifactId?: string | null;
+  }
+  /**
+   * Persistent resource based runtime detail. For more information about persistent resource, refer to https://cloud.google.com/vertex-ai/docs/training/persistent-resource-overview
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfigPersistentResourceRuntimeDetail {
+    /**
+     * Persistent resource name. Format: `projects/{project\}/locations/{location\}/persistentResources/{persistent_resource\}`
+     */
+    persistentResourceName?: string | null;
+    /**
+     * Specifies the behavior to take if the timeout is reached.
+     */
+    taskResourceUnavailableTimeoutBehavior?: string | null;
+    /**
+     * The max time a pipeline task waits for the required CPU, memory, or accelerator resource to become available from the specified persistent resource. Default wait time is 0.
+     */
+    taskResourceUnavailableWaitTimeMs?: string | null;
   }
   /**
    * The runtime detail of a task execution.
@@ -10974,23 +11693,23 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1PipelineTaskRerunConfig {
     /**
-     * Output only. The runtime input of the task overridden by the user.
+     * Optional. The runtime input of the task overridden by the user.
      */
     inputs?: Schema$GoogleCloudAiplatformV1beta1PipelineTaskRerunConfigInputs;
     /**
-     * Output only. Whether to skip downstream tasks. Default value is False.
+     * Optional. Whether to skip downstream tasks. Default value is False.
      */
     skipDownstreamTasks?: boolean | null;
     /**
-     * Output only. Whether to skip this task. Default value is False.
+     * Optional. Whether to skip this task. Default value is False.
      */
     skipTask?: boolean | null;
     /**
-     * Output only. The system generated ID of the task. Retrieved from original run.
+     * Optional. The system generated ID of the task. Retrieved from original run.
      */
     taskId?: string | null;
     /**
-     * Output only. The name of the task.
+     * Optional. The name of the task.
      */
     taskName?: string | null;
   }
@@ -10999,7 +11718,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1PipelineTaskRerunConfigArtifactList {
     /**
-     * Output only. A list of artifact metadata.
+     * Optional. A list of artifact metadata.
      */
     artifacts?: Schema$GoogleCloudAiplatformV1beta1RuntimeArtifact[];
   }
@@ -11008,7 +11727,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1PipelineTaskRerunConfigInputs {
     /**
-     * Output only. Input artifacts.
+     * Optional. Input artifacts.
      */
     artifacts?: {
       [
@@ -11016,7 +11735,7 @@ export namespace aiplatform_v1beta1 {
       ]: Schema$GoogleCloudAiplatformV1beta1PipelineTaskRerunConfigArtifactList;
     } | null;
     /**
-     * Output only. Input parameters.
+     * Optional. Input parameters.
      */
     parameterValues?: {[key: string]: any} | null;
   }
@@ -11083,6 +11802,15 @@ export namespace aiplatform_v1beta1 {
     containerPort?: number | null;
   }
   /**
+   * The configuration for the prebuilt speaker to use.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PrebuiltVoiceConfig {
+    /**
+     * The name of the preset voice to use.
+     */
+    voiceName?: string | null;
+  }
+  /**
    * Assigns input data to training, validation, and test sets based on the value of a provided key. Supported only for tabular Datasets.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1PredefinedSplit {
@@ -11095,6 +11823,19 @@ export namespace aiplatform_v1beta1 {
    * Metadata for PredictLongRunning long running operations.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1PredictLongRunningMetadata {}
+  /**
+   * Request message for PredictionService.PredictLongRunning.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PredictLongRunningRequest {
+    /**
+     * Required. The instances that are the input to the prediction call. A DeployedModel may have an upper limit on the number of instances it supports per request, and when it is exceeded the prediction call errors in case of AutoML Models, or, in case of customer created Models, the behaviour is as documented by that Model. The schema of any single instance may be specified via Endpoint's DeployedModels' Model's PredictSchemata's instance_schema_uri.
+     */
+    instances?: any[] | null;
+    /**
+     * Optional. The parameters that govern the prediction. The schema of the parameters may be specified via Endpoint's DeployedModels' Model's PredictSchemata's parameters_schema_uri.
+     */
+    parameters?: any | null;
+  }
   /**
    * Response message for [PredictionService.PredictLongRunning]
    */
@@ -11244,9 +11985,21 @@ export namespace aiplatform_v1beta1 {
      */
     exec?: Schema$GoogleCloudAiplatformV1beta1ProbeExecAction;
     /**
+     * GrpcAction probes the health of a container by sending a gRPC request.
+     */
+    grpc?: Schema$GoogleCloudAiplatformV1beta1ProbeGrpcAction;
+    /**
+     * HttpGetAction probes the health of a container by sending an HTTP GET request.
+     */
+    httpGet?: Schema$GoogleCloudAiplatformV1beta1ProbeHttpGetAction;
+    /**
      * How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Must be less than timeout_seconds. Maps to Kubernetes probe argument 'periodSeconds'.
      */
     periodSeconds?: number | null;
+    /**
+     * TcpSocketAction probes the health of a container by opening a TCP socket connection.
+     */
+    tcpSocket?: Schema$GoogleCloudAiplatformV1beta1ProbeTcpSocketAction;
     /**
      * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Must be greater or equal to period_seconds. Maps to Kubernetes probe argument 'timeoutSeconds'.
      */
@@ -11260,6 +12013,70 @@ export namespace aiplatform_v1beta1 {
      * Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
      */
     command?: string[] | null;
+  }
+  /**
+   * GrpcAction checks the health of a container using a gRPC service.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ProbeGrpcAction {
+    /**
+     * Port number of the gRPC service. Number must be in the range 1 to 65535.
+     */
+    port?: number | null;
+    /**
+     * Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.
+     */
+    service?: string | null;
+  }
+  /**
+   * HttpGetAction describes an action based on HTTP Get requests.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ProbeHttpGetAction {
+    /**
+     * Host name to connect to, defaults to the model serving container's IP. You probably want to set "Host" in httpHeaders instead.
+     */
+    host?: string | null;
+    /**
+     * Custom headers to set in the request. HTTP allows repeated headers.
+     */
+    httpHeaders?: Schema$GoogleCloudAiplatformV1beta1ProbeHttpHeader[];
+    /**
+     * Path to access on the HTTP server.
+     */
+    path?: string | null;
+    /**
+     * Number of the port to access on the container. Number must be in the range 1 to 65535.
+     */
+    port?: number | null;
+    /**
+     * Scheme to use for connecting to the host. Defaults to HTTP. Acceptable values are "HTTP" or "HTTPS".
+     */
+    scheme?: string | null;
+  }
+  /**
+   * HttpHeader describes a custom header to be used in HTTP probes
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ProbeHttpHeader {
+    /**
+     * The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
+     */
+    name?: string | null;
+    /**
+     * The header field value
+     */
+    value?: string | null;
+  }
+  /**
+   * TcpSocketAction probes the health of a container by opening a TCP socket connection.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ProbeTcpSocketAction {
+    /**
+     * Optional: Host name to connect to, defaults to the model serving container's IP.
+     */
+    host?: string | null;
+    /**
+     * Number of the port to access on the container. Number must be in the range 1 to 65535.
+     */
+    port?: number | null;
   }
   /**
    * PscAutomatedEndpoints defines the output of the forwarding rule automatically created by each PscAutomationConfig.
@@ -11296,7 +12113,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1PscInterfaceConfig {
     /**
-     * Optional. The full name of the Compute Engine [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to attach to the resource. For example, `projects/12345/regions/us-central1/networkAttachments/myNA`. is of the form `projects/{project\}/regions/{region\}/networkAttachments/{networkAttachment\}`. Where {project\} is a project number, as in `12345`, and {networkAttachment\} is a network attachment name. To specify this field, you must have already [created a network attachment] (https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments). This field is only used for resources using PSC-I.
+     * Optional. The name of the Compute Engine [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to attach to the resource within the region and user project. To specify this field, you must have already [created a network attachment] (https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments). This field is only used for resources using PSC-I.
      */
     networkAttachment?: string | null;
   }
@@ -11460,7 +12277,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployDeployMetadata {
     /**
-     * Optional. Labels for the deployment. For managing deployment config like verifying, source of deployment config, etc.
+     * Optional. Labels for the deployment config. For managing deployment config like verifying, source of deployment config, etc.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -11775,6 +12592,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1QueryReasoningEngineRequest {
     /**
+     * Optional. Class method to be used for the query. It is optional and defaults to "query" if unspecified.
+     */
+    classMethod?: string | null;
+    /**
      * Optional. Input content provided by users in JSON object format. Examples include text query, function calling parameters, media bytes, etc.
      */
     input?: {[key: string]: any} | null;
@@ -12062,6 +12883,14 @@ export namespace aiplatform_v1beta1 {
      */
     distance?: number | null;
     /**
+     * According to the underlying Vector DB and the selected metric type, the score can be either the distance or the similarity between the query and the context and its range depends on the metric type. For example, if the metric type is COSINE_DISTANCE, it represents the distance between the query and the context. The larger the distance, the less relevant the context is to the query. The range is [0, 2], while 0 means the most relevant and 2 means the least relevant.
+     */
+    score?: number | null;
+    /**
+     * The file display name.
+     */
+    sourceDisplayName?: string | null;
+    /**
      * If the file is imported from Cloud Storage or Google Drive, source_uri will be original file URI in Cloud Storage or Google Drive; if file is uploaded, source_uri will be file display name.
      */
     sourceUri?: string | null;
@@ -12110,6 +12939,14 @@ export namespace aiplatform_v1beta1 {
      * Output only. Timestamp when this RagCorpus was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Optional. Immutable. The config for the Vector DBs.
+     */
+    vectorDbConfig?: Schema$GoogleCloudAiplatformV1beta1RagVectorDbConfig;
+    /**
+     * Optional. Immutable. The config for the Vertex AI Search.
+     */
+    vertexAiSearchConfig?: Schema$GoogleCloudAiplatformV1beta1VertexAiSearchConfig;
   }
   /**
    * Config for the embedding model to use for RAG.
@@ -12253,20 +13090,101 @@ export namespace aiplatform_v1beta1 {
      * The size of the chunks.
      */
     chunkSize?: number | null;
+    /**
+     * Specifies the fixed length chunking config.
+     */
+    fixedLengthChunking?: Schema$GoogleCloudAiplatformV1beta1RagFileChunkingConfigFixedLengthChunking;
+  }
+  /**
+   * Specifies the fixed length chunking config.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagFileChunkingConfigFixedLengthChunking {
+    /**
+     * The overlap between chunks.
+     */
+    chunkOverlap?: number | null;
+    /**
+     * The size of the chunks.
+     */
+    chunkSize?: number | null;
   }
   /**
    * Specifies the parsing config for RagFiles.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1RagFileParsingConfig {
     /**
+     * The Advanced Parser to use for RagFiles.
+     */
+    advancedParser?: Schema$GoogleCloudAiplatformV1beta1RagFileParsingConfigAdvancedParser;
+    /**
+     * The Layout Parser to use for RagFiles.
+     */
+    layoutParser?: Schema$GoogleCloudAiplatformV1beta1RagFileParsingConfigLayoutParser;
+    /**
+     * The LLM Parser to use for RagFiles.
+     */
+    llmParser?: Schema$GoogleCloudAiplatformV1beta1RagFileParsingConfigLlmParser;
+    /**
      * Whether to use advanced PDF parsing.
      */
     useAdvancedPdfParsing?: boolean | null;
   }
   /**
+   * Specifies the advanced parsing for RagFiles.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagFileParsingConfigAdvancedParser {
+    /**
+     * Whether to use advanced PDF parsing.
+     */
+    useAdvancedPdfParsing?: boolean | null;
+  }
+  /**
+   * Document AI Layout Parser config.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagFileParsingConfigLayoutParser {
+    /**
+     * The maximum number of requests the job is allowed to make to the Document AI processor per minute. Consult https://cloud.google.com/document-ai/quotas and the Quota page for your project to set an appropriate value here. If unspecified, a default value of 120 QPM would be used.
+     */
+    maxParsingRequestsPerMin?: number | null;
+    /**
+     * The full resource name of a Document AI processor or processor version. The processor must have type `LAYOUT_PARSER_PROCESSOR`. If specified, the `additional_config.parse_as_scanned_pdf` field must be false. Format: * `projects/{project_id\}/locations/{location\}/processors/{processor_id\}` * `projects/{project_id\}/locations/{location\}/processors/{processor_id\}/processorVersions/{processor_version_id\}`
+     */
+    processorName?: string | null;
+  }
+  /**
+   * Specifies the advanced parsing for RagFiles.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagFileParsingConfigLlmParser {
+    /**
+     * The prompt to use for parsing. If not specified, a default prompt will be used.
+     */
+    customParsingPrompt?: string | null;
+    /**
+     * The maximum number of requests the job is allowed to make to the LLM model per minute. Consult https://cloud.google.com/vertex-ai/generative-ai/docs/quotas and your document size to set an appropriate value here. If unspecified, a default value of 5000 QPM would be used.
+     */
+    maxParsingRequestsPerMin?: number | null;
+    /**
+     * The name of a LLM model used for parsing. Format: `gemini-1.5-pro-002`
+     */
+    modelName?: string | null;
+  }
+  /**
+   * Specifies the transformation config for RagFiles.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagFileTransformationConfig {
+    /**
+     * Specifies the chunking config for RagFiles.
+     */
+    ragFileChunkingConfig?: Schema$GoogleCloudAiplatformV1beta1RagFileChunkingConfig;
+  }
+  /**
    * A query to retrieve relevant contexts.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1RagQuery {
+    /**
+     * Optional. The retrieval config for the query.
+     */
+    ragRetrievalConfig?: Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfig;
     /**
      * Optional. Configurations for hybrid search results ranking.
      */
@@ -12290,6 +13208,84 @@ export namespace aiplatform_v1beta1 {
     alpha?: number | null;
   }
   /**
+   * Specifies the context retrieval config.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfig {
+    /**
+     * Optional. Config for filters.
+     */
+    filter?: Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfigFilter;
+    /**
+     * Optional. Config for Hybrid Search.
+     */
+    hybridSearch?: Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfigHybridSearch;
+    /**
+     * Optional. Config for ranking and reranking.
+     */
+    ranking?: Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfigRanking;
+    /**
+     * Optional. The number of contexts to retrieve.
+     */
+    topK?: number | null;
+  }
+  /**
+   * Config for filters.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfigFilter {
+    /**
+     * Optional. String for metadata filtering.
+     */
+    metadataFilter?: string | null;
+    /**
+     * Optional. Only returns contexts with vector distance smaller than the threshold.
+     */
+    vectorDistanceThreshold?: number | null;
+    /**
+     * Optional. Only returns contexts with vector similarity larger than the threshold.
+     */
+    vectorSimilarityThreshold?: number | null;
+  }
+  /**
+   * Config for Hybrid Search.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfigHybridSearch {
+    /**
+     * Optional. Alpha value controls the weight between dense and sparse vector search results. The range is [0, 1], while 0 means sparse vector search only and 1 means dense vector search only. The default value is 0.5 which balances sparse and dense vector search equally.
+     */
+    alpha?: number | null;
+  }
+  /**
+   * Config for ranking and reranking.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfigRanking {
+    /**
+     * Optional. Config for LlmRanker.
+     */
+    llmRanker?: Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfigRankingLlmRanker;
+    /**
+     * Optional. Config for Rank Service.
+     */
+    rankService?: Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfigRankingRankService;
+  }
+  /**
+   * Config for LlmRanker.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfigRankingLlmRanker {
+    /**
+     * Optional. The model name used for ranking. Format: `gemini-1.5-pro`
+     */
+    modelName?: string | null;
+  }
+  /**
+   * Config for Rank Service.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfigRankingRankService {
+    /**
+     * Optional. The model name of the rank service. Format: `semantic-ranker-512@latest`
+     */
+    modelName?: string | null;
+  }
+  /**
    * Config for the Vector DB to use for RAG.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1RagVectorDbConfig {
@@ -12301,6 +13297,10 @@ export namespace aiplatform_v1beta1 {
      * The config for the Pinecone.
      */
     pinecone?: Schema$GoogleCloudAiplatformV1beta1RagVectorDbConfigPinecone;
+    /**
+     * Optional. Immutable. The embedding model config of the Vector DB.
+     */
+    ragEmbeddingModelConfig?: Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfig;
     /**
      * The config for the RAG-managed Vector DB.
      */
@@ -12405,6 +13405,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. Default image for user to choose a preferred ML framework (for example, TensorFlow or Pytorch) by choosing from [Vertex prebuilt images](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers). Either this or the resource_pool_images is required. Use this field if you need all the resource pools to have the same Ray image. Otherwise, use the {@code resource_pool_images\} field.
      */
     imageUri?: string | null;
+    /**
+     * Optional. Use if you want to mount to any NFS storages.
+     */
+    nfsMounts?: Schema$GoogleCloudAiplatformV1beta1NfsMount[];
     /**
      * Optional. OSS Ray logging configurations.
      */
@@ -12614,7 +13618,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ReasoningEngineSpec {
     /**
-     * Optional. Declarations for object class methods.
+     * Optional. Declarations for object class methods in OpenAPI specification format.
      */
     classMethods?: Array<{[key: string]: any}> | null;
     /**
@@ -12894,6 +13898,28 @@ export namespace aiplatform_v1beta1 {
      * Set to use data source powered by Vertex RAG store. User data is uploaded via the VertexRagDataService.
      */
     vertexRagStore?: Schema$GoogleCloudAiplatformV1beta1VertexRagStore;
+  }
+  /**
+   * Retrieval config.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RetrievalConfig {
+    /**
+     * The language code of the user.
+     */
+    languageCode?: string | null;
+    /**
+     * The location of the user.
+     */
+    latLng?: Schema$GoogleTypeLatLng;
+  }
+  /**
+   * Metadata related to retrieval in the grounding flow.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RetrievalMetadata {
+    /**
+     * Optional. Score indicating how likely information from Google Search could help answer the prompt. The score is in the range `[0, 1]`, where 0 is the least likely and 1 is the most likely. This score is only populated when Google Search grounding and dynamic retrieval is enabled. It will be compared to the threshold to determine whether to trigger Google Search.
+     */
+    googleSearchDynamicRetrievalScore?: number | null;
   }
   /**
    * Request message for VertexRagService.RetrieveContexts.
@@ -13356,6 +14382,15 @@ export namespace aiplatform_v1beta1 {
     updateTime?: string | null;
   }
   /**
+   * Schedule configuration for the FeatureMonitor.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ScheduleConfig {
+    /**
+     * Cron schedule (https://en.wikipedia.org/wiki/Cron) to launch scheduled runs. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or "TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, "CRON_TZ=America/New_York 1 * * * *", or "TZ=America/New_York 1 * * * *".
+     */
+    cron?: string | null;
+  }
+  /**
    * Status of a scheduled run.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ScheduleRunResponse {
@@ -13381,7 +14416,7 @@ export namespace aiplatform_v1beta1 {
      */
     maxWaitDuration?: string | null;
     /**
-     * Restarts the entire CustomJob if a worker gets restarted. This feature can be used by distributed training jobs that are not resilient to workers leaving and joining a job.
+     * Optional. Restarts the entire CustomJob if a worker gets restarted. This feature can be used by distributed training jobs that are not resilient to workers leaving and joining a job.
      */
     restartJobOnWorkerRestart?: boolean | null;
     /**
@@ -13389,7 +14424,7 @@ export namespace aiplatform_v1beta1 {
      */
     strategy?: string | null;
     /**
-     * The maximum job running time. The default is 7 days.
+     * Optional. The maximum job running time. The default is 7 days.
      */
     timeout?: string | null;
   }
@@ -13410,7 +14445,7 @@ export namespace aiplatform_v1beta1 {
      */
     description?: string | null;
     /**
-     * Optional. Possible values of the element of Type.STRING with enum format. For example we can define an Enum Direction as : {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]\}
+     * Optional. Possible values of the element of primitive type with enum format. Examples: 1. We can define direction as : {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]\} 2. We can define apartment number as : {type:INTEGER, format:enum, enum:["101", "201", "301"]\}
      */
     enum?: string[] | null;
     /**
@@ -14387,6 +15422,40 @@ export namespace aiplatform_v1beta1 {
     status?: string | null;
   }
   /**
+   * The configuration for grounding checking.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPredictParamsGroundingConfig {
+    /**
+     * If set, skip finding claim attributions (i.e not generate grounding citation).
+     */
+    disableAttribution?: boolean | null;
+    /**
+     * The sources for the grounding checking.
+     */
+    sources?: Schema$GoogleCloudAiplatformV1beta1SchemaPredictParamsGroundingConfigSourceEntry[];
+  }
+  /**
+   * Single source entry for the grounding checking.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPredictParamsGroundingConfigSourceEntry {
+    /**
+     * The uri of the Vertex AI Search data source. Deprecated. Use vertex_ai_search_datastore instead.
+     */
+    enterpriseDatastore?: string | null;
+    /**
+     * The grounding text passed inline with the Predict API. It can support up to 1 million bytes.
+     */
+    inlineContext?: string | null;
+    /**
+     * The type of the grounding checking source.
+     */
+    type?: string | null;
+    /**
+     * The uri of the Vertex AI Search data source.
+     */
+    vertexAiSearchDatastore?: string | null;
+  }
+  /**
    * Prediction model parameters for Image Classification.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1SchemaPredictParamsImageClassificationPredictionParams {
@@ -14740,6 +15809,240 @@ export namespace aiplatform_v1beta1 {
     yMin?: number | null;
   }
   /**
+   * The A2 schema of a prompt.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptApiSchema {
+    /**
+     * The Schema version that represents changes to the API behavior.
+     */
+    apiSchemaVersion?: string | null;
+    /**
+     * A list of execution instances for constructing a ready-to-use prompt.
+     */
+    executions?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptInstancePromptExecution[];
+    /**
+     * Multimodal prompt which embeds preambles to prompt string.
+     */
+    multimodalPrompt?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecMultimodalPrompt;
+    /**
+     * The prompt variation that stores preambles in separate fields.
+     */
+    structuredPrompt?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecStructuredPrompt;
+    /**
+     * The prompt variation for Translation use case.
+     */
+    translationPrompt?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecTranslationPrompt;
+  }
+  /**
+   * A prompt instance's parameters set that contains a set of variable values.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptInstancePromptExecution {
+    /**
+     * Maps variable names to their value.
+     */
+    arguments?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudAiplatformV1beta1SchemaPromptInstanceVariableValue;
+    } | null;
+  }
+  /**
+   * The value of a variable in prompt.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptInstanceVariableValue {
+    /**
+     * The parts of the variable value.
+     */
+    partList?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecPartList;
+  }
+  /**
+   * Prompt variation that embeds preambles to prompt string.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecMultimodalPrompt {
+    /**
+     * The prompt message.
+     */
+    promptMessage?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecPromptMessage;
+  }
+  /**
+   * A list of elements and information that make up a portion of prompt.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecPartList {
+    /**
+     * A list of elements that can be part of a prompt.
+     */
+    parts?: Schema$GoogleCloudAiplatformV1beta1Part[];
+  }
+  /**
+   * The prompt message that aligns with the prompt message in google.cloud.aiplatform.master.GenerateContentRequest.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecPromptMessage {
+    /**
+     * The content of the current conversation with the model. For single-turn queries, this is a single instance. For multi-turn queries, this is a repeated field that contains conversation history + latest request.
+     */
+    contents?: Schema$GoogleCloudAiplatformV1beta1Content[];
+    /**
+     * Generation config.
+     */
+    generationConfig?: Schema$GoogleCloudAiplatformV1beta1GenerationConfig;
+    /**
+     * The model name.
+     */
+    model?: string | null;
+    /**
+     * Per request settings for blocking unsafe content. Enforced on GenerateContentResponse.candidates.
+     */
+    safetySettings?: Schema$GoogleCloudAiplatformV1beta1SafetySetting[];
+    /**
+     * The user provided system instructions for the model. Note: only text should be used in parts and content in each part will be in a separate paragraph.
+     */
+    systemInstruction?: Schema$GoogleCloudAiplatformV1beta1Content;
+    /**
+     * Tool config. This config is shared for all tools provided in the request.
+     */
+    toolConfig?: Schema$GoogleCloudAiplatformV1beta1ToolConfig;
+    /**
+     * A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.
+     */
+    tools?: Schema$GoogleCloudAiplatformV1beta1Tool[];
+  }
+  /**
+   * A pair of sentences used as reference in source and target languages.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecReferenceSentencePair {
+    /**
+     * Source sentence in the sentence pair.
+     */
+    sourceSentence?: string | null;
+    /**
+     * Target sentence in the sentence pair.
+     */
+    targetSentence?: string | null;
+  }
+  /**
+   * A list of reference sentence pairs.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecReferenceSentencePairList {
+    /**
+     * Reference sentence pairs.
+     */
+    referenceSentencePairs?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecReferenceSentencePair[];
+  }
+  /**
+   * Prompt variation that stores preambles in separate fields.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecStructuredPrompt {
+    /**
+     * Preamble: The context of the prompt.
+     */
+    context?: Schema$GoogleCloudAiplatformV1beta1Content;
+    /**
+     * Preamble: A set of examples for expected model response.
+     */
+    examples?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecPartList[];
+    /**
+     * Preamble: For infill prompt, the prefix before expected model response.
+     */
+    infillPrefix?: string | null;
+    /**
+     * Preamble: For infill prompt, the suffix after expected model response.
+     */
+    infillSuffix?: string | null;
+    /**
+     * Preamble: The input prefixes before each example input.
+     */
+    inputPrefixes?: string[] | null;
+    /**
+     * Preamble: The output prefixes before each example output.
+     */
+    outputPrefixes?: string[] | null;
+    /**
+     * Preamble: The input test data for prediction. Each PartList in this field represents one text-only input set for a single model request.
+     */
+    predictionInputs?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecPartList[];
+    /**
+     * The prompt message.
+     */
+    promptMessage?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecPromptMessage;
+  }
+  /**
+   * The translation example that contains reference sentences from various sources.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecTranslationExample {
+    /**
+     * The reference sentences from inline text.
+     */
+    referenceSentencePairLists?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecReferenceSentencePairList[];
+    /**
+     * The reference sentences from file.
+     */
+    referenceSentencesFileInputs?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecTranslationSentenceFileInput[];
+  }
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecTranslationFileInputSource {
+    /**
+     * The file's contents.
+     */
+    content?: string | null;
+    /**
+     * The file's display name.
+     */
+    displayName?: string | null;
+    /**
+     * The file's mime type.
+     */
+    mimeType?: string | null;
+  }
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecTranslationGcsInputSource {
+    /**
+     * Source data URI. For example, `gs://my_bucket/my_object`.
+     */
+    inputUri?: string | null;
+  }
+  /**
+   * Optional settings for translation prompt.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecTranslationOption {
+    /**
+     * How many shots to use.
+     */
+    numberOfShots?: number | null;
+  }
+  /**
+   * Prompt variation for Translation use case.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecTranslationPrompt {
+    /**
+     * The translation example.
+     */
+    example?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecTranslationExample;
+    /**
+     * The translation option.
+     */
+    option?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecTranslationOption;
+    /**
+     * The prompt message.
+     */
+    promptMessage?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecPromptMessage;
+    /**
+     * The source language code.
+     */
+    sourceLanguageCode?: string | null;
+    /**
+     * The target language code.
+     */
+    targetLanguageCode?: string | null;
+  }
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecTranslationSentenceFileInput {
+    /**
+     * Inlined file source.
+     */
+    fileInputSource?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecTranslationFileInputSource;
+    /**
+     * Cloud Storage file source.
+     */
+    gcsInputSource?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptSpecTranslationGcsInputSource;
+  }
+  /**
    * The metadata of Datasets that contain tables data.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1SchemaTablesDatasetMetadata {
@@ -14815,6 +16118,83 @@ export namespace aiplatform_v1beta1 {
      * The segment of the text content.
      */
     textSegment?: Schema$GoogleCloudAiplatformV1beta1SchemaTextSegment;
+  }
+  /**
+   * The metadata of Datasets that contain Text Prompt data.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SchemaTextPromptDatasetMetadata {
+    /**
+     * Number of candidates.
+     */
+    candidateCount?: string | null;
+    /**
+     * The Google Cloud Storage URI that stores the prompt data.
+     */
+    gcsUri?: string | null;
+    /**
+     * Grounding checking configuration.
+     */
+    groundingConfig?: Schema$GoogleCloudAiplatformV1beta1SchemaPredictParamsGroundingConfig;
+    /**
+     * Whether the prompt dataset has prompt variable.
+     */
+    hasPromptVariable?: boolean | null;
+    /**
+     * Whether or not the user has enabled logit probabilities in the model parameters.
+     */
+    logprobs?: boolean | null;
+    /**
+     * Value of the maximum number of tokens generated set when the dataset was saved.
+     */
+    maxOutputTokens?: string | null;
+    /**
+     * User-created prompt note. Note size limit is 2KB.
+     */
+    note?: string | null;
+    /**
+     * The API schema of the prompt to support both UI and SDK usages.
+     */
+    promptApiSchema?: Schema$GoogleCloudAiplatformV1beta1SchemaPromptApiSchema;
+    /**
+     * Type of the prompt dataset.
+     */
+    promptType?: string | null;
+    /**
+     * Seeding enables model to return a deterministic response on a best effort basis. Determinism isn't guaranteed. This field determines whether or not seeding is enabled.
+     */
+    seedEnabled?: boolean | null;
+    /**
+     * The actual value of the seed.
+     */
+    seedValue?: string | null;
+    /**
+     * Customized stop sequences.
+     */
+    stopSequences?: string[] | null;
+    /**
+     * The content of the prompt dataset system instruction.
+     */
+    systemInstruction?: string | null;
+    /**
+     * The Google Cloud Storage URI that stores the system instruction, starting with gs://.
+     */
+    systemInstructionGcsUri?: string | null;
+    /**
+     * Temperature value used for sampling set when the dataset was saved. This value is used to tune the degree of randomness.
+     */
+    temperature?: number | null;
+    /**
+     * The content of the prompt dataset.
+     */
+    text?: string | null;
+    /**
+     * Top K value set when the dataset was saved. This value determines how many candidates with highest probability from the vocab would be selected for each decoding step.
+     */
+    topK?: string | null;
+    /**
+     * Top P value set when the dataset was saved. Given topK tokens for decoding, top candidates will be selected until the sum of their probabilities is topP.
+     */
+    topP?: number | null;
   }
   /**
    * The text segment inside of DataItem.
@@ -16438,6 +17818,15 @@ export namespace aiplatform_v1beta1 {
     specialistWorkerEmails?: string[] | null;
   }
   /**
+   * The speech generation config.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SpeechConfig {
+    /**
+     * The configuration for the speaker to use.
+     */
+    voiceConfig?: Schema$GoogleCloudAiplatformV1beta1VoiceConfig;
+  }
+  /**
    * Metadata information for NotebookService.StartNotebookRuntime.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1StartNotebookRuntimeOperationMetadata {
@@ -16454,6 +17843,10 @@ export namespace aiplatform_v1beta1 {
    * Request message for NotebookService.StartNotebookRuntime.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1StartNotebookRuntimeRequest {}
+  /**
+   * Request message for NotebookService.StopNotebookRuntime.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1StopNotebookRuntimeRequest {}
   /**
    * Request message for VizierService.StopTrial.
    */
@@ -16527,7 +17920,7 @@ export namespace aiplatform_v1beta1 {
     parameters?: Schema$GoogleCloudAiplatformV1beta1Tensor;
   }
   /**
-   * Request message for FeaturestoreOnlineServingService.StreamingFeatureValuesRead.
+   * Request message for FeaturestoreOnlineServingService.StreamingReadFeatureValues.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1StreamingReadFeatureValuesRequest {
     /**
@@ -16538,6 +17931,19 @@ export namespace aiplatform_v1beta1 {
      * Required. Selector choosing Features of the target EntityType. Feature IDs will be deduplicated.
      */
     featureSelector?: Schema$GoogleCloudAiplatformV1beta1FeatureSelector;
+  }
+  /**
+   * Request message for ReasoningEngineExecutionService.StreamQuery.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1StreamQueryReasoningEngineRequest {
+    /**
+     * Optional. Class method to be used for the stream query. It is optional and defaults to "stream_query" if unspecified.
+     */
+    classMethod?: string | null;
+    /**
+     * Optional. Input content provided by users in JSON object format. Examples include text query, function calling parameters, media bytes, etc.
+     */
+    input?: {[key: string]: any} | null;
   }
   /**
    * Request message for PredictionService.StreamRawPredict.
@@ -17282,6 +18688,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1SupervisedTuningDataStats {
     /**
+     * Output only. For each index in `truncated_example_indices`, the user-facing reason why the example was dropped. Must not include example itself.
+     */
+    droppedExampleReasons?: string[] | null;
+    /**
      * Output only. Number of billable characters in the tuning dataset.
      */
     totalBillableCharacterCount?: string | null;
@@ -17290,7 +18700,7 @@ export namespace aiplatform_v1beta1 {
      */
     totalBillableTokenCount?: string | null;
     /**
-     * The number of examples in the dataset that have been truncated by any amount.
+     * Output only. The number of examples in the dataset that have been dropped. An example can be dropped for reasons including: too many tokens, contains an invalid image, contains too many images, etc.
      */
     totalTruncatedExampleCount?: string | null;
     /**
@@ -17298,7 +18708,7 @@ export namespace aiplatform_v1beta1 {
      */
     totalTuningCharacterCount?: string | null;
     /**
-     * A partial sample of the indices (starting from 1) of the truncated examples.
+     * Output only. A partial sample of the indices (starting from 1) of the dropped examples.
      */
     truncatedExampleIndices?: string[] | null;
     /**
@@ -17746,9 +19156,17 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Tool {
     /**
+     * Optional. CodeExecution tool type. Enables the model to execute code as part of generation. This field is only used by the Gemini Developer API services.
+     */
+    codeExecution?: Schema$GoogleCloudAiplatformV1beta1ToolCodeExecution;
+    /**
      * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 128 function declarations can be provided.
      */
     functionDeclarations?: Schema$GoogleCloudAiplatformV1beta1FunctionDeclaration[];
+    /**
+     * Optional. GoogleSearch tool type. Tool to support Google Search in Model. Powered by Google.
+     */
+    googleSearch?: Schema$GoogleCloudAiplatformV1beta1ToolGoogleSearch;
     /**
      * Optional. GoogleSearchRetrieval tool type. Specialized retrieval tool that is powered by Google search.
      */
@@ -17757,6 +19175,19 @@ export namespace aiplatform_v1beta1 {
      * Optional. Retrieval tool type. System will always execute the provided retrieval tool(s) to get external knowledge to answer the prompt. Retrieval results are presented to the model for generation.
      */
     retrieval?: Schema$GoogleCloudAiplatformV1beta1Retrieval;
+  }
+  /**
+   * Spec for tool call.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ToolCall {
+    /**
+     * Optional. Spec for tool input
+     */
+    toolInput?: string | null;
+    /**
+     * Required. Spec for tool name
+     */
+    toolName?: string | null;
   }
   /**
    * Input for tool call valid metric.
@@ -17807,6 +19238,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolCallValidSpec {}
   /**
+   * Tool that executes code generated by the model, and automatically returns the result to the model. See also [ExecutableCode]and [CodeExecutionResult] which are input and output to this tool.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ToolCodeExecution {}
+  /**
    * Tool config. This config is shared for all tools provided in the request.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolConfig {
@@ -17814,7 +19249,15 @@ export namespace aiplatform_v1beta1 {
      * Optional. Function calling config.
      */
     functionCallingConfig?: Schema$GoogleCloudAiplatformV1beta1FunctionCallingConfig;
+    /**
+     * Optional. Retrieval config.
+     */
+    retrievalConfig?: Schema$GoogleCloudAiplatformV1beta1RetrievalConfig;
   }
+  /**
+   * GoogleSearch tool type. Tool to support Google Search in Model. Powered by Google.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ToolGoogleSearch {}
   /**
    * Input for tool name match metric.
    */
@@ -17960,7 +19403,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolParameterKVMatchSpec {
     /**
-     * Optional. Whether to use STRCIT string match on parameter values.
+     * Optional. Whether to use STRICT string match on parameter values.
      */
     useStrictStringMatch?: boolean | null;
   }
@@ -18093,6 +19536,304 @@ export namespace aiplatform_v1beta1 {
     updateTime?: string | null;
   }
   /**
+   * Spec for trajectory.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1Trajectory {
+    /**
+     * Required. Tool calls in the trajectory.
+     */
+    toolCalls?: Schema$GoogleCloudAiplatformV1beta1ToolCall[];
+  }
+  /**
+   * Instances and metric spec for TrajectoryAnyOrderMatch metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryAnyOrderMatchInput {
+    /**
+     * Required. Repeated TrajectoryAnyOrderMatch instance.
+     */
+    instances?: Schema$GoogleCloudAiplatformV1beta1TrajectoryAnyOrderMatchInstance[];
+    /**
+     * Required. Spec for TrajectoryAnyOrderMatch metric.
+     */
+    metricSpec?: Schema$GoogleCloudAiplatformV1beta1TrajectoryAnyOrderMatchSpec;
+  }
+  /**
+   * Spec for TrajectoryAnyOrderMatch instance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryAnyOrderMatchInstance {
+    /**
+     * Required. Spec for predicted tool call trajectory.
+     */
+    predictedTrajectory?: Schema$GoogleCloudAiplatformV1beta1Trajectory;
+    /**
+     * Required. Spec for reference tool call trajectory.
+     */
+    referenceTrajectory?: Schema$GoogleCloudAiplatformV1beta1Trajectory;
+  }
+  /**
+   * TrajectoryAnyOrderMatch metric value for an instance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryAnyOrderMatchMetricValue {
+    /**
+     * Output only. TrajectoryAnyOrderMatch score.
+     */
+    score?: number | null;
+  }
+  /**
+   * Results for TrajectoryAnyOrderMatch metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryAnyOrderMatchResults {
+    /**
+     * Output only. TrajectoryAnyOrderMatch metric values.
+     */
+    trajectoryAnyOrderMatchMetricValues?: Schema$GoogleCloudAiplatformV1beta1TrajectoryAnyOrderMatchMetricValue[];
+  }
+  /**
+   * Spec for TrajectoryAnyOrderMatch metric - returns 1 if all tool calls in the reference trajectory appear in the predicted trajectory in any order, else 0.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryAnyOrderMatchSpec {}
+  /**
+   * Instances and metric spec for TrajectoryExactMatch metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryExactMatchInput {
+    /**
+     * Required. Repeated TrajectoryExactMatch instance.
+     */
+    instances?: Schema$GoogleCloudAiplatformV1beta1TrajectoryExactMatchInstance[];
+    /**
+     * Required. Spec for TrajectoryExactMatch metric.
+     */
+    metricSpec?: Schema$GoogleCloudAiplatformV1beta1TrajectoryExactMatchSpec;
+  }
+  /**
+   * Spec for TrajectoryExactMatch instance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryExactMatchInstance {
+    /**
+     * Required. Spec for predicted tool call trajectory.
+     */
+    predictedTrajectory?: Schema$GoogleCloudAiplatformV1beta1Trajectory;
+    /**
+     * Required. Spec for reference tool call trajectory.
+     */
+    referenceTrajectory?: Schema$GoogleCloudAiplatformV1beta1Trajectory;
+  }
+  /**
+   * TrajectoryExactMatch metric value for an instance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryExactMatchMetricValue {
+    /**
+     * Output only. TrajectoryExactMatch score.
+     */
+    score?: number | null;
+  }
+  /**
+   * Results for TrajectoryExactMatch metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryExactMatchResults {
+    /**
+     * Output only. TrajectoryExactMatch metric values.
+     */
+    trajectoryExactMatchMetricValues?: Schema$GoogleCloudAiplatformV1beta1TrajectoryExactMatchMetricValue[];
+  }
+  /**
+   * Spec for TrajectoryExactMatch metric - returns 1 if tool calls in the reference trajectory exactly match the predicted trajectory, else 0.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryExactMatchSpec {}
+  /**
+   * Instances and metric spec for TrajectoryInOrderMatch metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryInOrderMatchInput {
+    /**
+     * Required. Repeated TrajectoryInOrderMatch instance.
+     */
+    instances?: Schema$GoogleCloudAiplatformV1beta1TrajectoryInOrderMatchInstance[];
+    /**
+     * Required. Spec for TrajectoryInOrderMatch metric.
+     */
+    metricSpec?: Schema$GoogleCloudAiplatformV1beta1TrajectoryInOrderMatchSpec;
+  }
+  /**
+   * Spec for TrajectoryInOrderMatch instance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryInOrderMatchInstance {
+    /**
+     * Required. Spec for predicted tool call trajectory.
+     */
+    predictedTrajectory?: Schema$GoogleCloudAiplatformV1beta1Trajectory;
+    /**
+     * Required. Spec for reference tool call trajectory.
+     */
+    referenceTrajectory?: Schema$GoogleCloudAiplatformV1beta1Trajectory;
+  }
+  /**
+   * TrajectoryInOrderMatch metric value for an instance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryInOrderMatchMetricValue {
+    /**
+     * Output only. TrajectoryInOrderMatch score.
+     */
+    score?: number | null;
+  }
+  /**
+   * Results for TrajectoryInOrderMatch metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryInOrderMatchResults {
+    /**
+     * Output only. TrajectoryInOrderMatch metric values.
+     */
+    trajectoryInOrderMatchMetricValues?: Schema$GoogleCloudAiplatformV1beta1TrajectoryInOrderMatchMetricValue[];
+  }
+  /**
+   * Spec for TrajectoryInOrderMatch metric - returns 1 if tool calls in the reference trajectory appear in the predicted trajectory in the same order, else 0.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryInOrderMatchSpec {}
+  /**
+   * Instances and metric spec for TrajectoryPrecision metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryPrecisionInput {
+    /**
+     * Required. Repeated TrajectoryPrecision instance.
+     */
+    instances?: Schema$GoogleCloudAiplatformV1beta1TrajectoryPrecisionInstance[];
+    /**
+     * Required. Spec for TrajectoryPrecision metric.
+     */
+    metricSpec?: Schema$GoogleCloudAiplatformV1beta1TrajectoryPrecisionSpec;
+  }
+  /**
+   * Spec for TrajectoryPrecision instance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryPrecisionInstance {
+    /**
+     * Required. Spec for predicted tool call trajectory.
+     */
+    predictedTrajectory?: Schema$GoogleCloudAiplatformV1beta1Trajectory;
+    /**
+     * Required. Spec for reference tool call trajectory.
+     */
+    referenceTrajectory?: Schema$GoogleCloudAiplatformV1beta1Trajectory;
+  }
+  /**
+   * TrajectoryPrecision metric value for an instance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryPrecisionMetricValue {
+    /**
+     * Output only. TrajectoryPrecision score.
+     */
+    score?: number | null;
+  }
+  /**
+   * Results for TrajectoryPrecision metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryPrecisionResults {
+    /**
+     * Output only. TrajectoryPrecision metric values.
+     */
+    trajectoryPrecisionMetricValues?: Schema$GoogleCloudAiplatformV1beta1TrajectoryPrecisionMetricValue[];
+  }
+  /**
+   * Spec for TrajectoryPrecision metric - returns a float score based on average precision of individual tool calls.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryPrecisionSpec {}
+  /**
+   * Instances and metric spec for TrajectoryRecall metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryRecallInput {
+    /**
+     * Required. Repeated TrajectoryRecall instance.
+     */
+    instances?: Schema$GoogleCloudAiplatformV1beta1TrajectoryRecallInstance[];
+    /**
+     * Required. Spec for TrajectoryRecall metric.
+     */
+    metricSpec?: Schema$GoogleCloudAiplatformV1beta1TrajectoryRecallSpec;
+  }
+  /**
+   * Spec for TrajectoryRecall instance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryRecallInstance {
+    /**
+     * Required. Spec for predicted tool call trajectory.
+     */
+    predictedTrajectory?: Schema$GoogleCloudAiplatformV1beta1Trajectory;
+    /**
+     * Required. Spec for reference tool call trajectory.
+     */
+    referenceTrajectory?: Schema$GoogleCloudAiplatformV1beta1Trajectory;
+  }
+  /**
+   * TrajectoryRecall metric value for an instance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryRecallMetricValue {
+    /**
+     * Output only. TrajectoryRecall score.
+     */
+    score?: number | null;
+  }
+  /**
+   * Results for TrajectoryRecall metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryRecallResults {
+    /**
+     * Output only. TrajectoryRecall metric values.
+     */
+    trajectoryRecallMetricValues?: Schema$GoogleCloudAiplatformV1beta1TrajectoryRecallMetricValue[];
+  }
+  /**
+   * Spec for TrajectoryRecall metric - returns a float score based on average recall of individual tool calls.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectoryRecallSpec {}
+  /**
+   * Instances and metric spec for TrajectorySingleToolUse metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectorySingleToolUseInput {
+    /**
+     * Required. Repeated TrajectorySingleToolUse instance.
+     */
+    instances?: Schema$GoogleCloudAiplatformV1beta1TrajectorySingleToolUseInstance[];
+    /**
+     * Required. Spec for TrajectorySingleToolUse metric.
+     */
+    metricSpec?: Schema$GoogleCloudAiplatformV1beta1TrajectorySingleToolUseSpec;
+  }
+  /**
+   * Spec for TrajectorySingleToolUse instance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectorySingleToolUseInstance {
+    /**
+     * Required. Spec for predicted tool call trajectory.
+     */
+    predictedTrajectory?: Schema$GoogleCloudAiplatformV1beta1Trajectory;
+  }
+  /**
+   * TrajectorySingleToolUse metric value for an instance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectorySingleToolUseMetricValue {
+    /**
+     * Output only. TrajectorySingleToolUse score.
+     */
+    score?: number | null;
+  }
+  /**
+   * Results for TrajectorySingleToolUse metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectorySingleToolUseResults {
+    /**
+     * Output only. TrajectorySingleToolUse metric values.
+     */
+    trajectorySingleToolUseMetricValues?: Schema$GoogleCloudAiplatformV1beta1TrajectorySingleToolUseMetricValue[];
+  }
+  /**
+   * Spec for TrajectorySingleToolUse metric - returns 1 if tool is present in the predicted trajectory, else 0.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrajectorySingleToolUseSpec {
+    /**
+     * Required. Spec for tool name to be checked for in the predicted trajectory.
+     */
+    toolName?: string | null;
+  }
+  /**
    * A message representing a Trial. A Trial contains a unique set of Parameters that has been or will be evaluated, along with the objective metrics got by running the Trial.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Trial {
@@ -18216,7 +19957,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1TuningJob {
     /**
-     * The base model that is being tuned, e.g., "gemini-1.0-pro-002".
+     * The base model that is being tuned, e.g., "gemini-1.0-pro-002". .
      */
     baseModel?: string | null;
     /**
@@ -18256,9 +19997,17 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string | null;
     /**
+     * Tuning Spec for open sourced and third party Partner models.
+     */
+    partnerModelTuningSpec?: Schema$GoogleCloudAiplatformV1beta1PartnerModelTuningSpec;
+    /**
      * Output only. The resource name of the PipelineJob associated with the TuningJob. Format: `projects/{project\}/locations/{location\}/pipelineJobs/{pipeline_job\}`.
      */
     pipelineJob?: string | null;
+    /**
+     * The service account that the tuningJob workload runs as. If not specified, the Vertex AI Secure Fine-Tuned Service Agent in the project will be used. See https://cloud.google.com/iam/docs/service-agents#vertex-ai-secure-fine-tuning-service-agent Users starting the pipeline must have the `iam.serviceAccounts.actAs` permission on this service account.
+     */
+    serviceAccount?: string | null;
     /**
      * Output only. Time when the TuningJob for the first time entered the `JOB_STATE_RUNNING` state.
      */
@@ -18370,6 +20119,15 @@ export namespace aiplatform_v1beta1 {
      * The operation generic information.
      */
     genericMetadata?: Schema$GoogleCloudAiplatformV1beta1GenericOperationMetadata;
+  }
+  /**
+   * Request message for EndpointService.UpdateEndpointLongRunning.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1UpdateEndpointLongRunningRequest {
+    /**
+     * Required. The Endpoint which replaces the resource on the server. Currently we only support updating the `client_connection_config` field, all the other fields' update will be blocked.
+     */
+    endpoint?: Schema$GoogleCloudAiplatformV1beta1Endpoint;
   }
   /**
    * Runtime operation information for ModelService.UpdateExplanationDataset.
@@ -18572,6 +20330,10 @@ export namespace aiplatform_v1beta1 {
      * Specifies the size and overlap of chunks after uploading RagFile.
      */
     ragFileChunkingConfig?: Schema$GoogleCloudAiplatformV1beta1RagFileChunkingConfig;
+    /**
+     * Specifies the transformation config for RagFiles.
+     */
+    ragFileTransformationConfig?: Schema$GoogleCloudAiplatformV1beta1RagFileTransformationConfig;
   }
   /**
    * Request message for VertexRagDataService.UploadRagFile.
@@ -18660,6 +20422,15 @@ export namespace aiplatform_v1beta1 {
     datastore?: string | null;
   }
   /**
+   * Config for the Vertex AI Search.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1VertexAiSearchConfig {
+    /**
+     * Vertex AI Search Serving Config resource full name. For example, `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config\}` or `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/servingConfigs/{serving_config\}`.
+     */
+    servingConfig?: string | null;
+  }
+  /**
    * Retrieve from Vertex RAG Store for grounding.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1VertexRagStore {
@@ -18671,6 +20442,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. The representation of the rag source. It can be used to specify corpus only or ragfiles. Currently only support one corpus or multiple files from one corpus. In the future we may open up multiple corpora support.
      */
     ragResources?: Schema$GoogleCloudAiplatformV1beta1VertexRagStoreRagResource[];
+    /**
+     * Optional. The retrieval config for the Rag query.
+     */
+    ragRetrievalConfig?: Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfig;
     /**
      * Optional. Number of top k results to return from the selected corpora.
      */
@@ -18705,6 +20480,15 @@ export namespace aiplatform_v1beta1 {
      * Optional. The start offset of the video.
      */
     startOffset?: string | null;
+  }
+  /**
+   * The configuration for the voice to use.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1VoiceConfig {
+    /**
+     * The configuration for the prebuilt voice to use.
+     */
+    prebuiltVoiceConfig?: Schema$GoogleCloudAiplatformV1beta1PrebuiltVoiceConfig;
   }
   /**
    * Represents the spec of a worker pool in a job.
@@ -19057,6 +20841,19 @@ export namespace aiplatform_v1beta1 {
      * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
      */
     startTime?: string | null;
+  }
+  /**
+   * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.
+   */
+  export interface Schema$GoogleTypeLatLng {
+    /**
+     * The latitude in degrees. It must be in the range [-90.0, +90.0].
+     */
+    latitude?: number | null;
+    /**
+     * The longitude in degrees. It must be in the range [-180.0, +180.0].
+     */
+    longitude?: number | null;
   }
   /**
    * Represents an amount of money with its currency type.
@@ -19603,7 +21400,7 @@ export namespace aiplatform_v1beta1 {
   }
   export interface Params$Resource$Datasets$Patch extends StandardParameters {
     /**
-     * Output only. Identifier. The resource name of the Dataset.
+     * Output only. Identifier. The resource name of the Dataset. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}`
      */
     name?: string;
     /**
@@ -20251,7 +22048,7 @@ export namespace aiplatform_v1beta1 {
   export interface Params$Resource$Datasets$Datasetversions$Patch
     extends StandardParameters {
     /**
-     * Output only. Identifier. The resource name of the DatasetVersion.
+     * Output only. Identifier. The resource name of the DatasetVersion. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}/datasetVersions/{dataset_version\}`
      */
     name?: string;
     /**
@@ -21404,6 +23201,101 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
+     * Deploys publisher models.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deploy(
+      params: Params$Resource$Projects$Locations$Deploy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deploy(
+      params?: Params$Resource$Projects$Locations$Deploy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    deploy(
+      params: Params$Resource$Projects$Locations$Deploy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deploy(
+      params: Params$Resource$Projects$Locations$Deploy,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deploy(
+      params: Params$Resource$Projects$Locations$Deploy,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deploy(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deploy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deploy
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deploy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Deploy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+destination}:deploy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['destination'],
+        pathParams: ['destination'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Evaluates instances based on a given metric.
      *
      * @param params - Parameters for request
@@ -21811,6 +23703,18 @@ export namespace aiplatform_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1CorroborateContentRequest;
   }
+  export interface Params$Resource$Projects$Locations$Deploy
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Location to deploy the model in. Format: `projects/{project\}/locations/{location\}`
+     */
+    destination?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1DeployPublisherModelRequest;
+  }
   export interface Params$Resource$Projects$Locations$Evaluateinstances
     extends StandardParameters {
     /**
@@ -21880,7 +23784,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22417,7 +24321,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24565,7 +26469,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25644,7 +27548,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27033,7 +28937,7 @@ export namespace aiplatform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Patch
     extends StandardParameters {
     /**
-     * Output only. Identifier. The resource name of the Dataset.
+     * Output only. Identifier. The resource name of the Dataset. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}`
      */
     name?: string;
     /**
@@ -27232,7 +29136,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28040,7 +29944,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28567,7 +30471,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29727,7 +31631,7 @@ export namespace aiplatform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch
     extends StandardParameters {
     /**
-     * Output only. Identifier. The resource name of the DatasetVersion.
+     * Output only. Identifier. The resource name of the DatasetVersion. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}/datasetVersions/{dataset_version\}`
      */
     name?: string;
     /**
@@ -29755,7 +31659,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30520,7 +32424,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31702,7 +33606,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32240,7 +34144,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33543,6 +35447,101 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
+     * Fetch an asynchronous online prediction operation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchPredictOperation(
+      params: Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchPredictOperation(
+      params?: Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    fetchPredictOperation(
+      params: Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchPredictOperation(
+      params: Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    fetchPredictOperation(
+      params: Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    fetchPredictOperation(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    fetchPredictOperation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+endpoint}:fetchPredictOperation'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Generate content with multimodal inputs.
      *
      * @param params - Parameters for request
@@ -34213,6 +36212,101 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    predictLongRunning(
+      params: Params$Resource$Projects$Locations$Endpoints$Predictlongrunning,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    predictLongRunning(
+      params?: Params$Resource$Projects$Locations$Endpoints$Predictlongrunning,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    predictLongRunning(
+      params: Params$Resource$Projects$Locations$Endpoints$Predictlongrunning,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    predictLongRunning(
+      params: Params$Resource$Projects$Locations$Endpoints$Predictlongrunning,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    predictLongRunning(
+      params: Params$Resource$Projects$Locations$Endpoints$Predictlongrunning,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    predictLongRunning(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    predictLongRunning(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Endpoints$Predictlongrunning
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Endpoints$Predictlongrunning;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Endpoints$Predictlongrunning;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+endpoint}:predictLongRunning').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Perform an online prediction with an arbitrary HTTP payload. The response includes the following HTTP headers: * `X-Vertex-AI-Endpoint-Id`: ID of the Endpoint that served this prediction. * `X-Vertex-AI-Deployed-Model-Id`: ID of the Endpoint's DeployedModel that served this prediction.
      *
      * @param params - Parameters for request
@@ -34879,6 +36973,101 @@ export namespace aiplatform_v1beta1 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * Updates an Endpoint with a long running operation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Projects$Locations$Endpoints$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Projects$Locations$Endpoints$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    update(
+      params: Params$Resource$Projects$Locations$Endpoints$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Locations$Endpoints$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Locations$Endpoints$Update,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    update(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Endpoints$Update
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Endpoints$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Endpoints$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:update').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Endpoints$Computetokens
@@ -34976,6 +37165,18 @@ export namespace aiplatform_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1ExplainRequest;
   }
+  export interface Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation
+    extends StandardParameters {
+    /**
+     * Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}` or `projects/{project\}/locations/{location\}/publishers/{publisher\}/models/{model\}`
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1FetchPredictOperationRequest;
+  }
   export interface Params$Resource$Projects$Locations$Endpoints$Generatecontent
     extends StandardParameters {
     /**
@@ -35069,6 +37270,18 @@ export namespace aiplatform_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1PredictRequest;
   }
+  export interface Params$Resource$Projects$Locations$Endpoints$Predictlongrunning
+    extends StandardParameters {
+    /**
+     * Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}` or `projects/{project\}/locations/{location\}/publishers/{publisher\}/models/{model\}`
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1PredictLongRunningRequest;
+  }
   export interface Params$Resource$Projects$Locations$Endpoints$Rawpredict
     extends StandardParameters {
     /**
@@ -35151,6 +37364,18 @@ export namespace aiplatform_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1UndeployModelRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Endpoints$Update
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the Endpoint.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1UpdateEndpointLongRunningRequest;
   }
 
   export class Resource$Projects$Locations$Endpoints$Chat {
@@ -35272,7 +37497,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36249,7 +38474,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36788,7 +39013,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38082,7 +40307,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38604,10 +40829,15 @@ export namespace aiplatform_v1beta1 {
 
   export class Resource$Projects$Locations$Featuregroups {
     context: APIRequestContext;
+    featureMonitors: Resource$Projects$Locations$Featuregroups$Featuremonitors;
     features: Resource$Projects$Locations$Featuregroups$Features;
     operations: Resource$Projects$Locations$Featuregroups$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.featureMonitors =
+        new Resource$Projects$Locations$Featuregroups$Featuremonitors(
+          this.context
+        );
       this.features = new Resource$Projects$Locations$Featuregroups$Features(
         this.context
       );
@@ -38897,6 +41127,100 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
      * Lists FeatureGroups in a given project and location.
      *
      * @param params - Parameters for request
@@ -39084,6 +41408,198 @@ export namespace aiplatform_v1beta1 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Testiampermissions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Featuregroups$Create
@@ -39120,6 +41636,17 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Projects$Locations$Featuregroups$List
     extends StandardParameters {
     /**
@@ -39135,7 +41662,7 @@ export namespace aiplatform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous FeatureGroupAdminService.ListFeatureGroups call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeatureGroupAdminService.ListFeatureGroups must match the call that provided the page token.
+     * A page token, received from a previous FeatureRegistryService.ListFeatureGroups call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeatureRegistryService.ListFeatureGroups must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -39159,6 +41686,1255 @@ export namespace aiplatform_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1FeatureGroup;
   }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Testiampermissions
+    extends StandardParameters {
+    /**
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     */
+    permissions?: string[];
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+
+  export class Resource$Projects$Locations$Featuregroups$Featuremonitors {
+    context: APIRequestContext;
+    featureMonitorJobs: Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs;
+    operations: Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.featureMonitorJobs =
+        new Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs(
+          this.context
+        );
+      this.operations =
+        new Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a new FeatureMonitor in a given project, location and FeatureGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/featureMonitors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single FeatureMonitor.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single FeatureMonitor.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1FeatureMonitor>;
+    get(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitor>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitor>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitor>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitor>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Get
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitor>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitor>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitor>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1FeatureMonitor>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1FeatureMonitor>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1FeatureMonitor>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists FeatureGroups in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$List
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/featureMonitors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for this FeatureMonitor, which will become the final component of the FeatureGroup's resource name. This value may be up to 60 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within the FeatureGroup.
+     */
+    featureMonitorId?: string;
+    /**
+     * Required. The resource name of FeatureGroup to create FeatureMonitor. Format: `projects/{project\}/locations/{location\}/featureGroups/{featuregroup\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1FeatureMonitor;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the FeatureMonitor to be deleted. Format: `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}/featureMonitors/{feature_monitor\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the FeatureMonitor resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$List
+    extends StandardParameters {
+    /**
+     * Optional. Lists the FeatureMonitors that match the filter expression. The following fields are supported: * `create_time`: Supports `=`, `!=`, `<`, `\>`, `<=`, and `\>=` comparisons. Values must be in RFC 3339 format. * `update_time`: Supports `=`, `!=`, `<`, `\>`, `<=`, and `\>=` comparisons. Values must be in RFC 3339 format. * `labels`: Supports key-value equality and key presence. Examples: * `create_time \> "2020-01-01" OR update_time \> "2020-01-01"` FeatureMonitors created or updated after 2020-01-01. * `labels.env = "prod"` FeatureGroups with label "env" set to "prod".
+     */
+    filter?: string;
+    /**
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported Fields: * `create_time` * `update_time`
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of FeatureGroups to return. The service may return fewer than this value. If unspecified, at most 100 FeatureMonitors will be returned. The maximum value is 100; any value greater than 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous FeatureRegistryService.ListFeatureMonitors call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeatureRegistryService.ListFeatureMonitors must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the FeatureGroup to list FeatureMonitors. Format: `projects/{project\}/locations/{location\}/featureGroups/{featureGroup\}`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new feature monitor job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>;
+    create(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Create
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/featureMonitorJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Get a feature monitor job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>;
+    get(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Get
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * List feature monitor jobs.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorJobsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorJobsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorJobsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$List
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/featureMonitorJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1ListFeatureMonitorJobsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Create
+    extends StandardParameters {
+    /**
+     * Optional. Output only. System-generated ID for feature monitor job.
+     */
+    featureMonitorJobId?: string;
+    /**
+     * Required. The resource name of FeatureMonitor to create FeatureMonitorJob. Format: `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}/featureMonitors/{feature_monitor\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1FeatureMonitorJob;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the FeatureMonitorJob resource. Format: `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}/featureMonitors/{feature_monitor\}/featureMonitorJobs/{feature_monitor_job\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs$List
+    extends StandardParameters {
+    /**
+     * Optional. Lists the FeatureMonitorJobs that match the filter expression. The following fields are supported: * `create_time`: Supports `=`, `!=`, `<`, `\>`, `<=`, and `\>=` comparisons. Values must be Examples: * `create_time \> "2020-01-01"` FeatureMonitorJobs created after 2020-01-01.
+     */
+    filter?: string;
+    /**
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported Fields: * `create_time`
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of FeatureMonitorJobs to return. The service may return fewer than this value. If unspecified, at most 100 FeatureMonitorJobs will be returned. The maximum value is 100; any value greater than 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous FeatureRegistryService.ListFeatureMonitorJobs call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeatureRegistryService.ListFeatureMonitorJobs must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the FeatureMonitor to list FeatureMonitorJobs. Format: `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}/featureMonitors/{feature_monitor\}`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$List,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$List
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    wait(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Wait,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    wait(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Wait,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    wait(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Wait,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    wait(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Wait,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    wait(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Wait,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    wait(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    wait(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Wait
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Wait;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Wait;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:wait').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Delete
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$List
+    extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Operations$Wait
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to wait on.
+     */
+    name?: string;
+    /**
+     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
+     */
+    timeout?: string;
+  }
 
   export class Resource$Projects$Locations$Featuregroups$Features {
     context: APIRequestContext;
@@ -39169,6 +42945,102 @@ export namespace aiplatform_v1beta1 {
         new Resource$Projects$Locations$Featuregroups$Features$Operations(
           this.context
         );
+    }
+
+    /**
+     * Creates a batch of Features in a given FeatureGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchCreate(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/features:batchCreate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
     }
 
     /**
@@ -39647,6 +43519,18 @@ export namespace aiplatform_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the EntityType/FeatureGroup to create the batch of Features under. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1BatchCreateFeaturesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Featuregroups$Features$Create
     extends StandardParameters {
     /**
@@ -39672,6 +43556,18 @@ export namespace aiplatform_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Featuregroups$Features$Get
     extends StandardParameters {
+    /**
+     * Optional. If set, returns the most recent count of stats. Valid value is [0, 100]. If stats_time_range is set, return most recent count of stats within the stats_time_range.
+     */
+    'featureStatsAndAnomalySpec.latestStatsCount'?: number;
+    /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    'featureStatsAndAnomalySpec.statsTimeRange.endTime'?: string;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    'featureStatsAndAnomalySpec.statsTimeRange.startTime'?: string;
     /**
      * Required. The name of the Feature resource. Format for entity_type as parent: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` Format for feature_group as parent: `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
      */
@@ -42721,7 +46617,7 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `service_agent_type` * `big_query_source` * `big_query_source.uri` * `big_query_source.entity_id_columns` * `feature_registry_source` * `feature_registry_source.feature_groups` * `sync_config` * `sync_config.cron`
+     * Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `service_agent_type` * `big_query_source` * `big_query_source.uri` * `big_query_source.entity_id_columns` * `feature_registry_source` * `feature_registry_source.feature_groups` * `sync_config` * `sync_config.cron` * `optimized_config.automatic_resources`
      */
     updateMask?: string;
 
@@ -47147,6 +51043,18 @@ export namespace aiplatform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Get
     extends StandardParameters {
     /**
+     * Optional. If set, returns the most recent count of stats. Valid value is [0, 100]. If stats_time_range is set, return most recent count of stats within the stats_time_range.
+     */
+    'featureStatsAndAnomalySpec.latestStatsCount'?: number;
+    /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    'featureStatsAndAnomalySpec.statsTimeRange.endTime'?: string;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    'featureStatsAndAnomalySpec.statsTimeRange.startTime'?: string;
+    /**
      * Required. The name of the Feature resource. Format for entity_type as parent: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` Format for feature_group as parent: `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
      */
     name?: string;
@@ -47206,7 +51114,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -47733,7 +51641,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -48260,7 +52168,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -49335,7 +53243,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -50952,7 +54860,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -52246,7 +56154,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -54016,7 +57924,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -55656,7 +59564,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -57074,7 +60982,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -57942,7 +61850,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -58698,7 +62606,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -60096,7 +64004,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -61845,7 +65753,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -64250,7 +68158,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -65118,7 +69026,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -67053,7 +70961,7 @@ export namespace aiplatform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. The standard list page token. Typically obtained via ListNotebookExecutionJobs.next_page_token of the previous NotebookService.ListNotebookExecutionJobs call.
+     * Optional. The standard list page token. Typically obtained via ListNotebookExecutionJobsResponse.next_page_token of the previous NotebookService.ListNotebookExecutionJobs call.
      */
     pageToken?: string;
     /**
@@ -67085,7 +70993,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -68287,6 +72195,101 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
+     * Stops a NotebookRuntime.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stop(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
+      params?: Params$Resource$Projects$Locations$Notebookruntimes$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    stop(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Stop,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Stop,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    stop(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    stop(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimes$Stop
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimes$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebookruntimes$Stop;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:stop').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Upgrades a NotebookRuntime.
      *
      * @param params - Parameters for request
@@ -68424,7 +72427,7 @@ export namespace aiplatform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Notebookruntimes$List
     extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntime` supports = and !=. `notebookRuntime` represents the NotebookRuntime ID, i.e. the last segment of the NotebookRuntime's resource name. * `displayName` supports = and != and regex. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `healthState` supports = and !=. healthState enum: [HEALTHY, UNHEALTHY, HEALTH_STATE_UNSPECIFIED]. * `runtimeState` supports = and !=. runtimeState enum: [RUNTIME_STATE_UNSPECIFIED, RUNNING, BEING_STARTED, BEING_STOPPED, STOPPED, BEING_UPGRADED, ERROR, INVALID]. * `runtimeUser` supports = and !=. * API version is UI only: `uiState` supports = and !=. uiState enum: [UI_RESOURCE_STATE_UNSPECIFIED, UI_RESOURCE_STATE_BEING_CREATED, UI_RESOURCE_STATE_ACTIVE, UI_RESOURCE_STATE_BEING_DELETED, UI_RESOURCE_STATE_CREATION_FAILED]. * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum: [USER_DEFINED, ONE_CLICK]. Some examples: * `notebookRuntime="notebookRuntime123"` * `displayName="myDisplayName"` and `displayName=~"myDisplayNameRegex"` * `notebookRuntimeTemplate="notebookRuntimeTemplate321"` * `healthState=HEALTHY` * `runtimeState=RUNNING` * `runtimeUser="test@google.com"` * `uiState=UI_RESOURCE_STATE_BEING_DELETED` * `notebookRuntimeType=USER_DEFINED`
+     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntime` supports = and !=. `notebookRuntime` represents the NotebookRuntime ID, i.e. the last segment of the NotebookRuntime's resource name. * `displayName` supports = and != and regex. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `healthState` supports = and !=. healthState enum: [HEALTHY, UNHEALTHY, HEALTH_STATE_UNSPECIFIED]. * `runtimeState` supports = and !=. runtimeState enum: [RUNTIME_STATE_UNSPECIFIED, RUNNING, BEING_STARTED, BEING_STOPPED, STOPPED, BEING_UPGRADED, ERROR, INVALID]. * `runtimeUser` supports = and !=. * API version is UI only: `uiState` supports = and !=. uiState enum: [UI_RESOURCE_STATE_UNSPECIFIED, UI_RESOURCE_STATE_BEING_CREATED, UI_RESOURCE_STATE_ACTIVE, UI_RESOURCE_STATE_BEING_DELETED, UI_RESOURCE_STATE_CREATION_FAILED]. * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum: [USER_DEFINED, ONE_CLICK]. * `machineType` supports = and !=. * `acceleratorType` supports = and !=. Some examples: * `notebookRuntime="notebookRuntime123"` * `displayName="myDisplayName"` and `displayName=~"myDisplayNameRegex"` * `notebookRuntimeTemplate="notebookRuntimeTemplate321"` * `healthState=HEALTHY` * `runtimeState=RUNNING` * `runtimeUser="test@google.com"` * `uiState=UI_RESOURCE_STATE_BEING_DELETED` * `notebookRuntimeType=USER_DEFINED` * `machineType=e2-standard-4` * `acceleratorType=NVIDIA_TESLA_T4`
      */
     filter?: string;
     /**
@@ -68472,6 +72475,18 @@ export namespace aiplatform_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1StartNotebookRuntimeRequest;
   }
+  export interface Params$Resource$Projects$Locations$Notebookruntimes$Stop
+    extends StandardParameters {
+    /**
+     * Required. The name of the NotebookRuntime resource to be stopped. Instead of checking whether the name is in valid NotebookRuntime resource name format, directly throw NotFound exception if there is no such NotebookRuntime in spanner.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1StopNotebookRuntimeRequest;
+  }
   export interface Params$Resource$Projects$Locations$Notebookruntimes$Upgrade
     extends StandardParameters {
     /**
@@ -68492,7 +72507,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -69829,7 +73844,7 @@ export namespace aiplatform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Notebookruntimetemplates$List
     extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels."a key"`. * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum: [USER_DEFINED, ONE_CLICK]. Some examples: * `notebookRuntimeTemplate=notebookRuntimeTemplate123` * `displayName="myDisplayName"` * `labels.myKey="myValue"` * `notebookRuntimeType=USER_DEFINED`
+     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels."a key"`. * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum: [USER_DEFINED, ONE_CLICK]. * `machineType` supports = and !=. * `acceleratorType` supports = and !=. Some examples: * `notebookRuntimeTemplate=notebookRuntimeTemplate123` * `displayName="myDisplayName"` * `labels.myKey="myValue"` * `notebookRuntimeType=USER_DEFINED` * `machineType=e2-standard-4` * `acceleratorType=NVIDIA_TESLA_T4`
      */
     filter?: string;
     /**
@@ -69900,7 +73915,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -70427,7 +74442,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -71562,7 +75577,7 @@ export namespace aiplatform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. The standard list page token. Typically obtained via ListPersistentResourceResponse.next_page_token of the previous PersistentResourceService.ListPersistentResource call.
+     * Optional. The standard list page token. Typically obtained via ListPersistentResourcesResponse.next_page_token of the previous PersistentResourceService.ListPersistentResource call.
      */
     pageToken?: string;
     /**
@@ -71606,7 +75621,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -72899,7 +76914,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -73633,6 +77648,101 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
+     * Fetch an asynchronous online prediction operation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchPredictOperation(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchPredictOperation(
+      params?: Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    fetchPredictOperation(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchPredictOperation(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    fetchPredictOperation(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    fetchPredictOperation(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    fetchPredictOperation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+endpoint}:fetchPredictOperation'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Generate content with multimodal inputs.
      *
      * @param params - Parameters for request
@@ -73919,6 +78029,101 @@ export namespace aiplatform_v1beta1 {
         return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1PredictResponse>(
           parameters
         );
+      }
+    }
+
+    /**
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    predictLongRunning(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    predictLongRunning(
+      params?: Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    predictLongRunning(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    predictLongRunning(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    predictLongRunning(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    predictLongRunning(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    predictLongRunning(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+endpoint}:predictLongRunning').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -74328,6 +78533,18 @@ export namespace aiplatform_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1CountTokensRequest;
   }
+  export interface Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation
+    extends StandardParameters {
+    /**
+     * Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}` or `projects/{project\}/locations/{location\}/publishers/{publisher\}/models/{model\}`
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1FetchPredictOperationRequest;
+  }
   export interface Params$Resource$Projects$Locations$Publishers$Models$Generatecontent
     extends StandardParameters {
     /**
@@ -74362,6 +78579,18 @@ export namespace aiplatform_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1PredictRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning
+    extends StandardParameters {
+    /**
+     * Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}` or `projects/{project\}/locations/{location\}/publishers/{publisher\}/models/{model\}`
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1PredictLongRunningRequest;
   }
   export interface Params$Resource$Projects$Locations$Publishers$Models$Rawpredict
     extends StandardParameters {
@@ -74962,7 +79191,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -75925,7 +80154,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -77026,6 +81255,98 @@ export namespace aiplatform_v1beta1 {
         );
       }
     }
+
+    /**
+     * Streams queries using a reasoning engine.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    streamQuery(
+      params: Params$Resource$Projects$Locations$Reasoningengines$Streamquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    streamQuery(
+      params?: Params$Resource$Projects$Locations$Reasoningengines$Streamquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    streamQuery(
+      params: Params$Resource$Projects$Locations$Reasoningengines$Streamquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    streamQuery(
+      params: Params$Resource$Projects$Locations$Reasoningengines$Streamquery,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleApiHttpBody>,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    streamQuery(
+      params: Params$Resource$Projects$Locations$Reasoningengines$Streamquery,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    streamQuery(callback: BodyResponseCallback<Schema$GoogleApiHttpBody>): void;
+    streamQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reasoningengines$Streamquery
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleApiHttpBody>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reasoningengines$Streamquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reasoningengines$Streamquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:streamQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleApiHttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleApiHttpBody>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Reasoningengines$Create
@@ -77080,7 +81401,7 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string;
     /**
-     * Required. Mask specifying which fields to update.
+     * Optional. Mask specifying which fields to update.
      */
     updateMask?: string;
 
@@ -77101,6 +81422,18 @@ export namespace aiplatform_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1QueryReasoningEngineRequest;
   }
+  export interface Params$Resource$Projects$Locations$Reasoningengines$Streamquery
+    extends StandardParameters {
+    /**
+     * Required. The name of the ReasoningEngine resource to use. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1StreamQueryReasoningEngineRequest;
+  }
 
   export class Resource$Projects$Locations$Reasoningengines$Operations {
     context: APIRequestContext;
@@ -77109,7 +81442,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -78205,7 +82538,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Resumes a paused Schedule to start scheduling new runs. Will mark Schedule.state to 'ACTIVE'. Only paused Schedule can be resumed. When the Schedule is resumed, new runs will be scheduled starting from the next execution time after the current time based on the time_specification in the Schedule. If Schedule.catchUp is set up true, all missed runs will be scheduled for backfill first.
+     * Resumes a paused Schedule to start scheduling new runs. Will mark Schedule.state to 'ACTIVE'. Only paused Schedule can be resumed. When the Schedule is resumed, new runs will be scheduled starting from the next execution time after the current time based on the time_specification in the Schedule. If Schedule.catch_up is set up true, all missed runs will be scheduled for backfill first.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -78393,7 +82726,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -79802,7 +84135,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -80871,7 +85204,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -82478,7 +86811,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -84666,7 +88999,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -85983,7 +90316,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -87407,7 +91740,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -87934,7 +92267,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -89010,7 +93343,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -90057,7 +94390,7 @@ export namespace aiplatform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. The standard list page token. Typically obtained via ListTuningJob.next_page_token of the previous GenAiTuningService.ListTuningJob][] call.
+     * Optional. The standard list page token. Typically obtained via ListTuningJobsResponse.next_page_token of the previous GenAiTuningService.ListTuningJob][] call.
      */
     pageToken?: string;
     /**
@@ -90846,6 +95179,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. The IETF BCP-47 language code representing the language in which the publisher models' text information should be written in. If not set, by default English (en).
      */
     languageCode?: string;
+    /**
+     * Optional. List all publisher model versions if the flag is set to true.
+     */
+    listAllVersions?: boolean;
     /**
      * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending.
      */

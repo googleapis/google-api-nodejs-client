@@ -666,7 +666,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "vmmigration.projects.locations.operations.cancel",
@@ -2220,7 +2220,7 @@
       }
     }
   },
-  "revision": "20240912",
+  "revision": "20250116",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2430,6 +2430,21 @@
       "description": "Represent the source AWS VM details.",
       "id": "AwsSourceVmDetails",
       "properties": {
+        "architecture": {
+          "description": "Output only. The VM architecture.",
+          "enum": [
+            "VM_ARCHITECTURE_UNSPECIFIED",
+            "VM_ARCHITECTURE_X86_FAMILY",
+            "VM_ARCHITECTURE_ARM64"
+          ],
+          "enumDescriptions": [
+            "The architecture is unknown.",
+            "The architecture is one of the x86 architectures.",
+            "The architecture is ARM64."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "committedStorageBytes": {
           "description": "Output only. The total size of the disks being migrated in bytes.",
           "format": "int64",
@@ -2700,6 +2715,21 @@
       "description": "Represent the source Azure VM details.",
       "id": "AzureSourceVmDetails",
       "properties": {
+        "architecture": {
+          "description": "Output only. The VM architecture.",
+          "enum": [
+            "VM_ARCHITECTURE_UNSPECIFIED",
+            "VM_ARCHITECTURE_X86_FAMILY",
+            "VM_ARCHITECTURE_ARM64"
+          ],
+          "enumDescriptions": [
+            "The architecture is unknown.",
+            "The architecture is one of the x86 architectures.",
+            "The architecture is ARM64."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "committedStorageBytes": {
           "description": "Output only. The total size of the disks being migrated in bytes.",
           "format": "int64",
@@ -2741,6 +2771,20 @@
       "description": "AzureVmDetails describes a VM in Azure.",
       "id": "AzureVmDetails",
       "properties": {
+        "architecture": {
+          "description": "The CPU architecture.",
+          "enum": [
+            "VM_ARCHITECTURE_UNSPECIFIED",
+            "VM_ARCHITECTURE_X86_FAMILY",
+            "VM_ARCHITECTURE_ARM64"
+          ],
+          "enumDescriptions": [
+            "The architecture is unknown.",
+            "The architecture is one of the x86 architectures.",
+            "The architecture is ARM64."
+          ],
+          "type": "string"
+        },
         "bootOption": {
           "description": "The VM Boot Option.",
           "enum": [
@@ -5763,12 +5807,14 @@
             "enum": [
               "OS_CAPABILITY_UNSPECIFIED",
               "OS_CAPABILITY_NVME_STORAGE_ACCESS",
-              "OS_CAPABILITY_GVNIC_NETWORK_INTERFACE"
+              "OS_CAPABILITY_GVNIC_NETWORK_INTERFACE",
+              "OS_CAPABILITY_IDPF_NETWORK_INTERFACE"
             ],
             "enumDescriptions": [
               "This is for API compatibility only and is not in use.",
               "NVMe driver installed and the VM can use NVMe PD or local SSD.",
-              "gVNIC virtual NIC driver supported."
+              "gVNIC virtual NIC driver supported.",
+              "IDPF virtual NIC driver supported."
             ],
             "type": "string"
           },
@@ -5899,6 +5945,21 @@
       "description": "Represent the source Vmware VM details.",
       "id": "VmwareSourceVmDetails",
       "properties": {
+        "architecture": {
+          "description": "Output only. The VM architecture.",
+          "enum": [
+            "VM_ARCHITECTURE_UNSPECIFIED",
+            "VM_ARCHITECTURE_X86_FAMILY",
+            "VM_ARCHITECTURE_ARM64"
+          ],
+          "enumDescriptions": [
+            "The architecture is unknown.",
+            "The architecture is one of the x86 architectures.",
+            "The architecture is ARM64."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "committedStorageBytes": {
           "description": "Output only. The total size of the disks being migrated in bytes.",
           "format": "int64",
@@ -5940,6 +6001,21 @@
       "description": "VmwareVmDetails describes a VM in vCenter.",
       "id": "VmwareVmDetails",
       "properties": {
+        "architecture": {
+          "description": "Output only. The CPU architecture.",
+          "enum": [
+            "VM_ARCHITECTURE_UNSPECIFIED",
+            "VM_ARCHITECTURE_X86_FAMILY",
+            "VM_ARCHITECTURE_ARM64"
+          ],
+          "enumDescriptions": [
+            "The architecture is unknown.",
+            "The architecture is one of the x86 architectures.",
+            "The architecture is ARM64."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "bootOption": {
           "description": "Output only. The VM Boot Option.",
           "enum": [

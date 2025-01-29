@@ -656,7 +656,7 @@
       }
     }
   },
-  "revision": "20240923",
+  "revision": "20241206",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -824,7 +824,35 @@
             "REGIONAL_CONTROLS",
             "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
             "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
-            "IRS_1075"
+            "IRS_1075",
+            "CANADA_CONTROLLED_GOODS"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -833,8 +861,8 @@
             "FedRAMP High data protection controls",
             "FedRAMP Moderate data protection controls",
             "Assured Workloads For US Regions data protection controls",
-            "Health Insurance Portability and Accountability Act controls",
-            "Health Information Trust Alliance controls",
+            "[DEPRECATED] Health Insurance Portability and Accountability Act controls",
+            "[DEPRECATED] Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
@@ -850,7 +878,8 @@
             "Assured Workloads for Regional Controls",
             "Healthcare and Life Science Controls",
             "Healthcare and Life Science Controls with US Support",
-            "Internal Revenue Service 1075 controls"
+            "Internal Revenue Service 1075 controls",
+            "Canada Controlled Goods"
           ],
           "type": "string"
         },
@@ -1432,7 +1461,35 @@
             "REGIONAL_CONTROLS",
             "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
             "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
-            "IRS_1075"
+            "IRS_1075",
+            "CANADA_CONTROLLED_GOODS"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1441,8 +1498,8 @@
             "FedRAMP High data protection controls",
             "FedRAMP Moderate data protection controls",
             "Assured Workloads For US Regions data protection controls",
-            "Health Insurance Portability and Accountability Act controls",
-            "Health Information Trust Alliance controls",
+            "[DEPRECATED] Health Insurance Portability and Accountability Act controls",
+            "[DEPRECATED] Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
@@ -1458,7 +1515,8 @@
             "Assured Workloads for Regional Controls",
             "Healthcare and Life Science Controls",
             "Healthcare and Life Science Controls with US Support",
-            "Internal Revenue Service 1075 controls"
+            "Internal Revenue Service 1075 controls",
+            "Canada Controlled Goods"
           ],
           "type": "string"
         },
@@ -1611,6 +1669,10 @@
         "violationNotificationsEnabled": {
           "description": "Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored. This will always be true while creating the workload.",
           "type": "boolean"
+        },
+        "workloadOptions": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadWorkloadOptions",
+          "description": "Optional. Options to be set for the given created workload."
         }
       },
       "type": "object"
@@ -1695,7 +1757,7 @@
           "type": "string"
         },
         "ekmProvisioningState": {
-          "description": "Indicates Ekm enrollment Provisioning of a given workload.",
+          "description": "Output only. Indicates Ekm enrollment Provisioning of a given workload.",
           "enum": [
             "EKM_PROVISIONING_STATE_UNSPECIFIED",
             "EKM_PROVISIONING_STATE_PENDING",
@@ -1708,6 +1770,7 @@
             "Failed State for Ekm Provisioning",
             "Completed State for Ekm Provisioning"
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1780,7 +1843,7 @@
           "type": "boolean"
         },
         "dataLogsViewer": {
-          "description": "Allow the partner to view inspectability logs and monitoring violations.",
+          "description": "Optional. Allow the partner to view inspectability logs and monitoring violations.",
           "type": "boolean"
         },
         "serviceAccessApprover": {
@@ -1795,8 +1858,9 @@
       "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo",
       "properties": {
         "resourceId": {
-          "description": "Resource identifier. For a project this represents project_number.",
+          "description": "Output only. Resource identifier. For a project this represents project_number.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "resourceType": {
@@ -1893,7 +1957,7 @@
           "type": "array"
         },
         "setupStatus": {
-          "description": "Indicates SAA enrollment status of a given workload.",
+          "description": "Output only. Indicates SAA enrollment status of a given workload.",
           "enum": [
             "SETUP_STATE_UNSPECIFIED",
             "STATUS_PENDING",
@@ -1904,6 +1968,7 @@
             "SAA enrollment pending.",
             "SAA enrollment comopleted."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1947,6 +2012,25 @@
         "updateTime": {
           "description": "The time the update was last updated.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1WorkloadWorkloadOptions": {
+      "description": "Options to be set for the given created workload.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadWorkloadOptions",
+      "properties": {
+        "kajEnrollmentType": {
+          "description": "Optional. Specifies type of KAJ Enrollment if provided.",
+          "enum": [
+            "KAJ_ENROLLMENT_TYPE_UNSPECIFIED",
+            "KEY_ACCESS_TRANSPARENCY_OFF"
+          ],
+          "enumDescriptions": [
+            "KAJ Enrollment type is unspecified",
+            "KAT sets External, Hardware, and Software key feature logging only to TRUE. (no enforcement)"
+          ],
           "type": "string"
         }
       },

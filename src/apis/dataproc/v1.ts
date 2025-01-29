@@ -937,11 +937,11 @@ export namespace dataproc_v1 {
    */
   export interface Schema$DiskConfig {
     /**
-     * Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Note: This field is only supported if boot_disk_type is hyperdisk-balanced.
+     * Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. This field is supported only if boot_disk_type is hyperdisk-balanced.
      */
     bootDiskProvisionedIops?: string | null;
     /**
-     * Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be greater than or equal to 1. Note: This field is only supported if boot_disk_type is hyperdisk-balanced.
+     * Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be greater than or equal to 1. This field is supported only if boot_disk_type is hyperdisk-balanced.
      */
     bootDiskProvisionedThroughput?: string | null;
     /**
@@ -2606,7 +2606,7 @@ export namespace dataproc_v1 {
     pythonFileUris?: string[] | null;
   }
   /**
-   * A Dataproc job for running Apache PySpark (https://spark.apache.org/docs/0.9.0/python-programming-guide.html) applications on YARN.
+   * A Dataproc job for running Apache PySpark (https://spark.apache.org/docs/latest/api/python/index.html#pyspark-overview) applications on YARN.
    */
   export interface Schema$PySparkJob {
     /**

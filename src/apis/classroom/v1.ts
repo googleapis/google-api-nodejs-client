@@ -648,6 +648,27 @@ export namespace classroom_v1 {
     updateTime?: string | null;
   }
   /**
+   * A rubric criterion. Each criterion is a dimension on which performance is rated.
+   */
+  export interface Schema$Criterion {
+    /**
+     * The description of the criterion.
+     */
+    description?: string | null;
+    /**
+     * The criterion ID. On creation, an ID is assigned.
+     */
+    id?: string | null;
+    /**
+     * The list of levels within this criterion.
+     */
+    levels?: Schema$Level[];
+    /**
+     * The title of the criterion.
+     */
+    title?: string | null;
+  }
+  /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
@@ -902,6 +923,27 @@ export namespace classroom_v1 {
     userId?: string | null;
   }
   /**
+   * A level of the criterion.
+   */
+  export interface Schema$Level {
+    /**
+     * The description of the level.
+     */
+    description?: string | null;
+    /**
+     * The level ID. On creation, an ID is assigned.
+     */
+    id?: string | null;
+    /**
+     * Optional points associated with this level. If set, all levels within the rubric must specify points and the value must be distinct across all levels within a single criterion. 0 is distinct from no points.
+     */
+    points?: number | null;
+    /**
+     * The title of the level. If the level has no points set, title must be set.
+     */
+    title?: string | null;
+  }
+  /**
    * URL item.
    */
   export interface Schema$Link {
@@ -1034,6 +1076,19 @@ export namespace classroom_v1 {
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response when listing rubrics.
+   */
+  export interface Schema$ListRubricsResponse {
+    /**
+     * Token identifying the next page of results to return. If empty, no further results are available.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Rubrics that match the request.
+     */
+    rubrics?: Schema$Rubric[];
   }
   /**
    * Response when listing students.
@@ -1221,6 +1276,56 @@ export namespace classroom_v1 {
    */
   export interface Schema$ReturnStudentSubmissionRequest {}
   /**
+   * The rubric of the course work. A rubric is a scoring guide used to evaluate student work and give feedback. For further details, see [Rubrics structure and known limitations](/classroom/rubrics/limitations).
+   */
+  export interface Schema$Rubric {
+    /**
+     * Identifier of the course. Read-only.
+     */
+    courseId?: string | null;
+    /**
+     * Identifier for the course work this corresponds to. Read-only.
+     */
+    courseWorkId?: string | null;
+    /**
+     * Output only. Timestamp when this rubric was created. Read-only.
+     */
+    creationTime?: string | null;
+    /**
+     * List of criteria. Each criterion is a dimension on which performance is rated.
+     */
+    criteria?: Schema$Criterion[];
+    /**
+     * Classroom-assigned identifier for the rubric. This is unique among rubrics for the relevant course work. Read-only.
+     */
+    id?: string | null;
+    /**
+     * Input only. Immutable. Google Sheets ID of the spreadsheet. This spreadsheet must contain formatted rubric settings. See [Create or reuse a rubric for an assignment](https://support.google.com/edu/classroom/answer/9335069). Use of this field requires the `https://www.googleapis.com/auth/spreadsheets.readonly` or `https://www.googleapis.com/auth/spreadsheets` scope.
+     */
+    sourceSpreadsheetId?: string | null;
+    /**
+     * Output only. Timestamp of the most recent change to this rubric. Read-only.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A rubric grade set for the student submission. There is at most one entry per rubric criterion.
+   */
+  export interface Schema$RubricGrade {
+    /**
+     * Optional. Criterion ID.
+     */
+    criterionId?: string | null;
+    /**
+     * Optional. Optional level ID of the selected level. If empty, no level was selected.
+     */
+    levelId?: string | null;
+    /**
+     * Optional. Optional points assigned for this criterion, typically based on the level. Levels might or might not have points. If unset, no points were set for this criterion.
+     */
+    points?: number | null;
+  }
+  /**
    * Drive file that is used as material for course work.
    */
   export interface Schema$SharedDriveFile {
@@ -1302,6 +1407,10 @@ export namespace classroom_v1 {
      */
     assignedGrade?: number | null;
     /**
+     * Assigned rubric grades based on the rubric's Criteria. This map is empty if there is no rubric attached to this course work or if a rubric is attached, but no grades have been set on any Criteria. Entries are only populated for grades that have been set. Key: The rubric's criterion ID. Read-only.
+     */
+    assignedRubricGrades?: {[key: string]: Schema$RubricGrade} | null;
+    /**
      * Submission content when course_work_type is ASSIGNMENT. Students can modify this content using ModifyAttachments.
      */
     assignmentSubmission?: Schema$AssignmentSubmission;
@@ -1329,6 +1438,10 @@ export namespace classroom_v1 {
      * Optional pending grade. If unset, no grade was set. This value must be non-negative. Decimal (that is, non-integer) values are allowed, but are rounded to two decimal places. This is only visible to and modifiable by course teachers.
      */
     draftGrade?: number | null;
+    /**
+     * Pending rubric grades based on the rubric's criteria. This map is empty if there is no rubric attached to this course work or if a rubric is attached, but no grades have been set on any criteria. Entries are only populated for grades that have been set. Key: The rubric's criterion ID. Read-only.
+     */
+    draftRubricGrades?: {[key: string]: Schema$RubricGrade} | null;
     /**
      * Classroom-assigned Identifier for the student submission. This is unique among submissions for the relevant course work. Read-only.
      */
@@ -1401,19 +1514,19 @@ export namespace classroom_v1 {
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }
@@ -3734,12 +3847,14 @@ export namespace classroom_v1 {
   export class Resource$Courses$Coursework {
     context: APIRequestContext;
     addOnAttachments: Resource$Courses$Coursework$Addonattachments;
+    rubrics: Resource$Courses$Coursework$Rubrics;
     studentSubmissions: Resource$Courses$Coursework$Studentsubmissions;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.addOnAttachments = new Resource$Courses$Coursework$Addonattachments(
         this.context
       );
+      this.rubrics = new Resource$Courses$Coursework$Rubrics(this.context);
       this.studentSubmissions =
         new Resource$Courses$Coursework$Studentsubmissions(this.context);
     }
@@ -4363,6 +4478,94 @@ export namespace classroom_v1 {
         return createAPIRequest<Schema$CourseWork>(parameters);
       }
     }
+
+    /**
+     * Updates a rubric. See google.classroom.v1.Rubric for details of which fields can be updated. Rubric update capabilities are [limited](/classroom/rubrics/limitations) once grading has started. The requesting user and course owner must have rubrics creation capabilities. For details, see [licensing requirements](https://developers.google.com/classroom/rubrics/limitations#license-requirements). This request must be made by the Google Cloud console of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the parent course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project didn't create the corresponding course work, if the user isn't permitted to make the requested modification to the rubric, or for access errors. This error code is also returned if grading has already started on the rubric. * `INVALID_ARGUMENT` if the request is malformed and for the following request error: * `RubricCriteriaInvalidFormat` * `NOT_FOUND` if the requested course, course work, or rubric doesn't exist or if the user doesn't have access to the corresponding course work. * `INTERNAL` if grading has already started on the rubric.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateRubric(
+      params: Params$Resource$Courses$Coursework$Updaterubric,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateRubric(
+      params?: Params$Resource$Courses$Coursework$Updaterubric,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Rubric>;
+    updateRubric(
+      params: Params$Resource$Courses$Coursework$Updaterubric,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateRubric(
+      params: Params$Resource$Courses$Coursework$Updaterubric,
+      options: MethodOptions | BodyResponseCallback<Schema$Rubric>,
+      callback: BodyResponseCallback<Schema$Rubric>
+    ): void;
+    updateRubric(
+      params: Params$Resource$Courses$Coursework$Updaterubric,
+      callback: BodyResponseCallback<Schema$Rubric>
+    ): void;
+    updateRubric(callback: BodyResponseCallback<Schema$Rubric>): void;
+    updateRubric(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Updaterubric
+        | BodyResponseCallback<Schema$Rubric>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Rubric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Rubric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Rubric> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Updaterubric;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Coursework$Updaterubric;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/rubric'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'courseWorkId'],
+        pathParams: ['courseId', 'courseWorkId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Rubric>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Rubric>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Courses$Coursework$Create
@@ -4480,6 +4683,30 @@ export namespace classroom_v1 {
      * Request body metadata
      */
     requestBody?: Schema$CourseWork;
+  }
+  export interface Params$Resource$Courses$Coursework$Updaterubric
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Required. Identifier of the course work.
+     */
+    courseWorkId?: string;
+    /**
+     * Optional. Identifier of the rubric.
+     */
+    id?: string;
+    /**
+     * Optional. Mask that identifies which fields on the rubric to update. This field is required to do an update. The update fails if invalid fields are specified. There are multiple options to define the criteria of a rubric: the `source_spreadsheet_id` and the `criteria` list. Only one of these can be used at a time to define a rubric. The rubric `criteria` list is fully replaced by the rubric criteria specified in the update request. For example, if a criterion or level is missing from the request, it is deleted. New criteria and levels are added and an ID is assigned. Existing criteria and levels retain the previously assigned ID if the ID is specified in the request. The following fields can be specified by teachers: * `criteria` * `source_spreadsheet_id`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Rubric;
   }
 
   export class Resource$Courses$Coursework$Addonattachments {
@@ -5317,6 +5544,546 @@ export namespace classroom_v1 {
      * Request body metadata
      */
     requestBody?: Schema$AddOnAttachmentStudentSubmission;
+  }
+
+  export class Resource$Courses$Coursework$Rubrics {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a rubric. The requesting user and course owner must have rubrics creation capabilities. For details, see [licensing requirements](https://developers.google.com/classroom/rubrics/limitations#license-requirements). For further details, see [Rubrics structure and known limitations](/classroom/rubrics/limitations). This request must be made by the Google Cloud console of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the parent course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user isn't permitted to create rubrics for course work in the requested course. * `INTERNAL` if the request has insufficient OAuth scopes. * `INVALID_ARGUMENT` if the request is malformed and for the following request error: * `RubricCriteriaInvalidFormat` * `NOT_FOUND` if the requested course or course work don't exist or the user doesn't have access to the course or course work. * `FAILED_PRECONDITION` for the following request error: * `AttachmentNotVisible`
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Courses$Coursework$Rubrics$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Courses$Coursework$Rubrics$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Rubric>;
+    create(
+      params: Params$Resource$Courses$Coursework$Rubrics$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Coursework$Rubrics$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Rubric>,
+      callback: BodyResponseCallback<Schema$Rubric>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Coursework$Rubrics$Create,
+      callback: BodyResponseCallback<Schema$Rubric>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Rubric>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Rubrics$Create
+        | BodyResponseCallback<Schema$Rubric>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Rubric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Rubric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Rubric> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Rubrics$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Coursework$Rubrics$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/rubrics'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'courseWorkId'],
+        pathParams: ['courseId', 'courseWorkId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Rubric>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Rubric>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a rubric. The requesting user and course owner must have rubrics creation capabilities. For details, see [licensing requirements](https://developers.google.com/classroom/rubrics/limitations#license-requirements). This request must be made by the Google Cloud console of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding rubric. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project didn't create the corresponding rubric, or if the requesting user isn't permitted to delete the requested rubric. * `NOT_FOUND` if no rubric exists with the requested ID or the user does not have access to the course, course work, or rubric. * `INVALID_ARGUMENT` if grading has already started on the rubric.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Courses$Coursework$Rubrics$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Courses$Coursework$Rubrics$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Courses$Coursework$Rubrics$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Coursework$Rubrics$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Coursework$Rubrics$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Rubrics$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Rubrics$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Coursework$Rubrics$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/rubrics/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'courseWorkId', 'id'],
+        pathParams: ['courseId', 'courseWorkId', 'id'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Returns a rubric. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or rubric doesn't exist or if the user doesn't have access to the corresponding course work.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Courses$Coursework$Rubrics$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Courses$Coursework$Rubrics$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Rubric>;
+    get(
+      params: Params$Resource$Courses$Coursework$Rubrics$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Coursework$Rubrics$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Rubric>,
+      callback: BodyResponseCallback<Schema$Rubric>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Coursework$Rubrics$Get,
+      callback: BodyResponseCallback<Schema$Rubric>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Rubric>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Rubrics$Get
+        | BodyResponseCallback<Schema$Rubric>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Rubric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Rubric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Rubric> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Rubrics$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Coursework$Rubrics$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/rubrics/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'courseWorkId', 'id'],
+        pathParams: ['courseId', 'courseWorkId', 'id'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Rubric>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Rubric>(parameters);
+      }
+    }
+
+    /**
+     * Returns a list of rubrics that the requester is permitted to view. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or course work doesn't exist or if the user doesn't have access to the corresponding course work.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Courses$Coursework$Rubrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Courses$Coursework$Rubrics$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRubricsResponse>;
+    list(
+      params: Params$Resource$Courses$Coursework$Rubrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Coursework$Rubrics$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListRubricsResponse>,
+      callback: BodyResponseCallback<Schema$ListRubricsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Coursework$Rubrics$List,
+      callback: BodyResponseCallback<Schema$ListRubricsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRubricsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Rubrics$List
+        | BodyResponseCallback<Schema$ListRubricsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRubricsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRubricsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRubricsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Rubrics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Coursework$Rubrics$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/rubrics'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'courseWorkId'],
+        pathParams: ['courseId', 'courseWorkId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRubricsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRubricsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a rubric. See google.classroom.v1.Rubric for details of which fields can be updated. Rubric update capabilities are [limited](/classroom/rubrics/limitations) once grading has started. The requesting user and course owner must have rubrics creation capabilities. For details, see [licensing requirements](https://developers.google.com/classroom/rubrics/limitations#license-requirements). This request must be made by the Google Cloud console of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the parent course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project didn't create the corresponding course work, if the user isn't permitted to make the requested modification to the rubric, or for access errors. This error code is also returned if grading has already started on the rubric. * `INVALID_ARGUMENT` if the request is malformed and for the following request error: * `RubricCriteriaInvalidFormat` * `NOT_FOUND` if the requested course, course work, or rubric doesn't exist or if the user doesn't have access to the corresponding course work. * `INTERNAL` if grading has already started on the rubric.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Courses$Coursework$Rubrics$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Courses$Coursework$Rubrics$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Rubric>;
+    patch(
+      params: Params$Resource$Courses$Coursework$Rubrics$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Coursework$Rubrics$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Rubric>,
+      callback: BodyResponseCallback<Schema$Rubric>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Coursework$Rubrics$Patch,
+      callback: BodyResponseCallback<Schema$Rubric>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Rubric>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Rubrics$Patch
+        | BodyResponseCallback<Schema$Rubric>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Rubric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Rubric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Rubric> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Rubrics$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Coursework$Rubrics$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/rubrics/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'courseWorkId', 'id'],
+        pathParams: ['courseId', 'courseWorkId', 'id'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Rubric>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Rubric>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Courses$Coursework$Rubrics$Create
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Required. Identifier of the course work.
+     */
+    courseWorkId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Rubric;
+  }
+  export interface Params$Resource$Courses$Coursework$Rubrics$Delete
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Required. Identifier of the course work.
+     */
+    courseWorkId?: string;
+    /**
+     * Required. Identifier of the rubric.
+     */
+    id?: string;
+  }
+  export interface Params$Resource$Courses$Coursework$Rubrics$Get
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Required. Identifier of the course work.
+     */
+    courseWorkId?: string;
+    /**
+     * Required. Identifier of the rubric.
+     */
+    id?: string;
+  }
+  export interface Params$Resource$Courses$Coursework$Rubrics$List
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Required. Identifier of the course work.
+     */
+    courseWorkId?: string;
+    /**
+     * The maximum number of rubrics to return. If unspecified, at most 1 rubric is returned. The maximum value is 1; values above 1 are coerced to 1.
+     */
+    pageSize?: number;
+    /**
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Courses$Coursework$Rubrics$Patch
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Required. Identifier of the course work.
+     */
+    courseWorkId?: string;
+    /**
+     * Optional. Identifier of the rubric.
+     */
+    id?: string;
+    /**
+     * Optional. Mask that identifies which fields on the rubric to update. This field is required to do an update. The update fails if invalid fields are specified. There are multiple options to define the criteria of a rubric: the `source_spreadsheet_id` and the `criteria` list. Only one of these can be used at a time to define a rubric. The rubric `criteria` list is fully replaced by the rubric criteria specified in the update request. For example, if a criterion or level is missing from the request, it is deleted. New criteria and levels are added and an ID is assigned. Existing criteria and levels retain the previously assigned ID if the ID is specified in the request. The following fields can be specified by teachers: * `criteria` * `source_spreadsheet_id`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Rubric;
   }
 
   export class Resource$Courses$Coursework$Studentsubmissions {
@@ -9149,7 +9916,7 @@ export namespace classroom_v1 {
     }
 
     /**
-     * Creates a topic. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create a topic in the requested course, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
+     * Creates a topic. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create a topic in the requested course, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `ALREADY_EXISTS` if there exists a topic in the course with the same name. * `NOT_FOUND` if the requested course does not exist.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9504,7 +10271,7 @@ export namespace classroom_v1 {
     }
 
     /**
-     * Updates one or more fields of a topic. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding topic or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or topic does not exist
+     * Updates one or more fields of a topic. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding topic or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `FAILED_PRECONDITION` if there exists a topic in the course with the same name. * `NOT_FOUND` if the requested course or topic does not exist
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

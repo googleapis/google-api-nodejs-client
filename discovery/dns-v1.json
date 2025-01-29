@@ -1824,7 +1824,7 @@
       }
     }
   },
-  "revision": "20240719",
+  "revision": "20250102",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -2753,6 +2753,10 @@
           "description": "A mutable string of at most 1024 characters associated with this resource for the user's convenience. Has no effect on the policy's function.",
           "type": "string"
         },
+        "dns64Config": {
+          "$ref": "PolicyDns64Config",
+          "description": "Configurations related to DNS64 for this Policy."
+        },
         "enableInboundForwarding": {
           "description": "Allows networks bound to this policy to receive DNS queries sent by VMs or applications over VPN connections. When enabled, a virtual IP address is allocated from each of the subnetworks that are bound to this policy.",
           "type": "boolean"
@@ -2826,6 +2830,35 @@
         },
         "kind": {
           "default": "dns#policyAlternativeNameServerConfigTargetNameServer",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyDns64Config": {
+      "description": "DNS64 policies",
+      "id": "PolicyDns64Config",
+      "properties": {
+        "kind": {
+          "default": "dns#policyDns64Config",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "PolicyDns64ConfigScope",
+          "description": "The scope to which DNS64 config will be applied to."
+        }
+      },
+      "type": "object"
+    },
+    "PolicyDns64ConfigScope": {
+      "id": "PolicyDns64ConfigScope",
+      "properties": {
+        "allQueries": {
+          "description": "Controls whether DNS64 is enabled globally at the network level.",
+          "type": "boolean"
+        },
+        "kind": {
+          "default": "dns#policyDns64ConfigScope",
           "type": "string"
         }
       },

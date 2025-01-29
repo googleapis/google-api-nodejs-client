@@ -218,6 +218,232 @@ export namespace networksecurity_v1 {
     updateTime?: string | null;
   }
   /**
+   * `AuthzPolicy` is a resource that allows to forward traffic to a callout backend designed to scan the traffic for security purposes.
+   */
+  export interface Schema$AuthzPolicy {
+    /**
+     * Required. Can be one of `ALLOW`, `DENY`, `CUSTOM`. When the action is `CUSTOM`, `customProvider` must be specified. When the action is `ALLOW`, only requests matching the policy will be allowed. When the action is `DENY`, only requests matching the policy will be denied. When a request arrives, the policies are evaluated in the following order: 1. If there is a `CUSTOM` policy that matches the request, the `CUSTOM` policy is evaluated using the custom authorization providers and the request is denied if the provider rejects the request. 2. If there are any `DENY` policies that match the request, the request is denied. 3. If there are no `ALLOW` policies for the resource or if any of the `ALLOW` policies match the request, the request is allowed. 4. Else the request is denied by default if none of the configured AuthzPolicies with `ALLOW` action match the request.
+     */
+    action?: string | null;
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Required if the action is `CUSTOM`. Allows delegating authorization decisions to Cloud IAP or to Service Extensions. One of `cloudIap` or `authzExtension` must be specified.
+     */
+    customProvider?: Schema$AuthzPolicyCustomProvider;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Optional. A list of authorization HTTP rules to match against the incoming request. A policy match occurs when at least one HTTP rule matches the request or when no HTTP rules are specified in the policy. At least one HTTP Rule is required for Allow or Deny Action. Limited to 5 rules.
+     */
+    httpRules?: Schema$AuthzPolicyAuthzRule[];
+    /**
+     * Optional. Set of labels associated with the `AuthzPolicy` resource. The format must comply with [the following requirements](/compute/docs/labeling-resources#requirements).
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. Identifier. Name of the `AuthzPolicy` resource in the following format: `projects/{project\}/locations/{location\}/authzPolicies/{authz_policy\}`.
+     */
+    name?: string | null;
+    /**
+     * Required. Specifies the set of resources to which this policy should be applied to.
+     */
+    target?: Schema$AuthzPolicyTarget;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Conditions to match against the incoming request.
+   */
+  export interface Schema$AuthzPolicyAuthzRule {
+    /**
+     * Optional. Describes properties of a source of a request.
+     */
+    from?: Schema$AuthzPolicyAuthzRuleFrom;
+    /**
+     * Optional. Describes properties of a target of a request.
+     */
+    to?: Schema$AuthzPolicyAuthzRuleTo;
+    /**
+     * Optional. CEL expression that describes the conditions to be satisfied for the action. The result of the CEL expression is ANDed with the from and to. Refer to the CEL language reference for a list of available attributes.
+     */
+    when?: string | null;
+  }
+  /**
+   * Describes properties of one or more sources of a request.
+   */
+  export interface Schema$AuthzPolicyAuthzRuleFrom {
+    /**
+     * Optional. Describes the negated properties of request sources. Matches requests from sources that do not match the criteria specified in this field. At least one of sources or notSources must be specified.
+     */
+    notSources?: Schema$AuthzPolicyAuthzRuleFromRequestSource[];
+    /**
+     * Optional. Describes the properties of a request's sources. At least one of sources or notSources must be specified. Limited to 1 source. A match occurs when ANY source (in sources or notSources) matches the request. Within a single source, the match follows AND semantics across fields and OR semantics within a single field, i.e. a match occurs when ANY principal matches AND ANY ipBlocks match.
+     */
+    sources?: Schema$AuthzPolicyAuthzRuleFromRequestSource[];
+  }
+  /**
+   * Describes the properties of a single source.
+   */
+  export interface Schema$AuthzPolicyAuthzRuleFromRequestSource {
+    /**
+     * Optional. A list of identities derived from the client's certificate. This field will not match on a request unless mutual TLS is enabled for the Forwarding rule or Gateway. Each identity is a string whose value is matched against the URI SAN, or DNS SAN or the subject field in the client's certificate. The match can be exact, prefix, suffix or a substring match. One of exact, prefix, suffix or contains must be specified. Limited to 5 principals.
+     */
+    principals?: Schema$AuthzPolicyAuthzRuleStringMatch[];
+    /**
+     * Optional. A list of resources to match against the resource of the source VM of a request. Limited to 5 resources.
+     */
+    resources?: Schema$AuthzPolicyAuthzRuleRequestResource[];
+  }
+  /**
+   * Determines how a HTTP header should be matched.
+   */
+  export interface Schema$AuthzPolicyAuthzRuleHeaderMatch {
+    /**
+     * Optional. Specifies the name of the header in the request.
+     */
+    name?: string | null;
+    /**
+     * Optional. Specifies how the header match will be performed.
+     */
+    value?: Schema$AuthzPolicyAuthzRuleStringMatch;
+  }
+  /**
+   * Describes the properties of a client VM resource accessing the internal application load balancers.
+   */
+  export interface Schema$AuthzPolicyAuthzRuleRequestResource {
+    /**
+     * Optional. An IAM service account to match against the source service account of the VM sending the request.
+     */
+    iamServiceAccount?: Schema$AuthzPolicyAuthzRuleStringMatch;
+    /**
+     * Optional. A list of resource tag value permanent IDs to match against the resource manager tags value associated with the source VM of a request.
+     */
+    tagValueIdSet?: Schema$AuthzPolicyAuthzRuleRequestResourceTagValueIdSet;
+  }
+  /**
+   * Describes a set of resource tag value permanent IDs to match against the resource manager tags value associated with the source VM of a request.
+   */
+  export interface Schema$AuthzPolicyAuthzRuleRequestResourceTagValueIdSet {
+    /**
+     * Required. A list of resource tag value permanent IDs to match against the resource manager tags value associated with the source VM of a request. The match follows AND semantics which means all the ids must match. Limited to 5 matches.
+     */
+    ids?: string[] | null;
+  }
+  /**
+   * Determines how a string value should be matched.
+   */
+  export interface Schema$AuthzPolicyAuthzRuleStringMatch {
+    /**
+     * The input string must have the substring specified here. Note: empty contains match is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc.def``
+     */
+    contains?: string | null;
+    /**
+     * The input string must match exactly the string specified here. Examples: * ``abc`` only matches the value ``abc``.
+     */
+    exact?: string | null;
+    /**
+     * If true, indicates the exact/prefix/suffix/contains matching should be case insensitive. For example, the matcher ``data`` will match both input string ``Data`` and ``data`` if set to true.
+     */
+    ignoreCase?: boolean | null;
+    /**
+     * The input string must have the prefix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``abc.xyz``
+     */
+    prefix?: string | null;
+    /**
+     * The input string must have the suffix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc``
+     */
+    suffix?: string | null;
+  }
+  /**
+   * Describes properties of one or more targets of a request.
+   */
+  export interface Schema$AuthzPolicyAuthzRuleTo {
+    /**
+     * Optional. Describes the negated properties of the targets of a request. Matches requests for operations that do not match the criteria specified in this field. At least one of operations or notOperations must be specified.
+     */
+    notOperations?: Schema$AuthzPolicyAuthzRuleToRequestOperation[];
+    /**
+     * Optional. Describes properties of one or more targets of a request. At least one of operations or notOperations must be specified. Limited to 1 operation. A match occurs when ANY operation (in operations or notOperations) matches. Within an operation, the match follows AND semantics across fields and OR semantics within a field, i.e. a match occurs when ANY path matches AND ANY header matches and ANY method matches.
+     */
+    operations?: Schema$AuthzPolicyAuthzRuleToRequestOperation[];
+  }
+  /**
+   * Describes properties of one or more targets of a request.
+   */
+  export interface Schema$AuthzPolicyAuthzRuleToRequestOperation {
+    /**
+     * Optional. A list of headers to match against in http header.
+     */
+    headerSet?: Schema$AuthzPolicyAuthzRuleToRequestOperationHeaderSet;
+    /**
+     * Optional. A list of HTTP Hosts to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. Limited to 5 matches.
+     */
+    hosts?: Schema$AuthzPolicyAuthzRuleStringMatch[];
+    /**
+     * Optional. A list of HTTP methods to match against. Each entry must be a valid HTTP method name (GET, PUT, POST, HEAD, PATCH, DELETE, OPTIONS). It only allows exact match and is always case sensitive.
+     */
+    methods?: string[] | null;
+    /**
+     * Optional. A list of paths to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. Limited to 5 matches. Note that this path match includes the query parameters. For gRPC services, this should be a fully-qualified name of the form /package.service/method.
+     */
+    paths?: Schema$AuthzPolicyAuthzRuleStringMatch[];
+  }
+  /**
+   * Describes a set of HTTP headers to match against.
+   */
+  export interface Schema$AuthzPolicyAuthzRuleToRequestOperationHeaderSet {
+    /**
+     * Required. A list of headers to match against in http header. The match can be one of exact, prefix, suffix, or contains (substring match). The match follows AND semantics which means all the headers must match. Matches are always case sensitive unless the ignoreCase is set. Limited to 5 matches.
+     */
+    headers?: Schema$AuthzPolicyAuthzRuleHeaderMatch[];
+  }
+  /**
+   * Allows delegating authorization decisions to Cloud IAP or to Service Extensions.
+   */
+  export interface Schema$AuthzPolicyCustomProvider {
+    /**
+     * Optional. Delegate authorization decision to user authored Service Extension. Only one of cloudIap or authzExtension can be specified.
+     */
+    authzExtension?: Schema$AuthzPolicyCustomProviderAuthzExtension;
+    /**
+     * Optional. Delegates authorization decisions to Cloud IAP. Applicable only for managed load balancers. Enabling Cloud IAP at the AuthzPolicy level is not compatible with Cloud IAP settings in the BackendService. Enabling IAP in both places will result in request failure. Ensure that IAP is enabled in either the AuthzPolicy or the BackendService but not in both places.
+     */
+    cloudIap?: Schema$AuthzPolicyCustomProviderCloudIap;
+  }
+  /**
+   * Optional. Delegate authorization decision to user authored extension. Only one of cloudIap or authzExtension can be specified.
+   */
+  export interface Schema$AuthzPolicyCustomProviderAuthzExtension {
+    /**
+     * Required. A list of references to authorization extensions that will be invoked for requests matching this policy. Limited to 1 custom provider.
+     */
+    resources?: string[] | null;
+  }
+  /**
+   * Optional. Delegates authorization decisions to Cloud IAP. Applicable only for managed load balancers. Enabling Cloud IAP at the AuthzPolicy level is not compatible with Cloud IAP settings in the BackendService. Enabling IAP in both places will result in request failure. Ensure that IAP is enabled in either the AuthzPolicy or the BackendService but not in both places.
+   */
+  export interface Schema$AuthzPolicyCustomProviderCloudIap {}
+  /**
+   * Specifies the set of targets to which this policy should be applied to.
+   */
+  export interface Schema$AuthzPolicyTarget {
+    /**
+     * Required. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
+     */
+    loadBalancingScheme?: string | null;
+    /**
+     * Required. A list of references to the Forwarding Rules on which this policy will be applied.
+     */
+    resources?: string[] | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -279,6 +505,15 @@ export namespace networksecurity_v1 {
      * Required. Source address group to clone items from.
      */
     sourceAddressGroup?: string | null;
+  }
+  /**
+   * CustomInterceptProfile defines the Packet Intercept Endpoint Group used to intercept traffic to a third-party firewall in a Firewall rule.
+   */
+  export interface Schema$CustomInterceptProfile {
+    /**
+     * Required. The InterceptEndpointGroup to which traffic associated with the SP should be mirrored.
+     */
+    interceptEndpointGroup?: string | null;
   }
   /**
    * CustomMirroringProfile defines an action for mirroring traffic to a collector's EndpointGroup
@@ -695,6 +930,23 @@ export namespace networksecurity_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Message for response to listing `AuthzPolicy` resources.
+   */
+  export interface Schema$ListAuthzPoliciesResponse {
+    /**
+     * The list of `AuthzPolicy` resources.
+     */
+    authzPolicies?: Schema$AuthzPolicy[];
+    /**
+     * A token identifying a page of results that the server returns.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response returned by the ListClientTlsPolicies method.
    */
   export interface Schema$ListClientTlsPoliciesResponse {
@@ -1001,13 +1253,17 @@ export namespace networksecurity_v1 {
     sources?: Schema$Source[];
   }
   /**
-   * SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 12
+   * SecurityProfile is a resource that defines the behavior for one of many ProfileTypes.
    */
   export interface Schema$SecurityProfile {
     /**
      * Output only. Resource creation timestamp.
      */
     createTime?: string | null;
+    /**
+     * The custom TPPI configuration for the SecurityProfile.
+     */
+    customInterceptProfile?: Schema$CustomInterceptProfile;
     /**
      * The custom Packet Mirroring v2 configuration for the SecurityProfile.
      */
@@ -1042,13 +1298,17 @@ export namespace networksecurity_v1 {
     updateTime?: string | null;
   }
   /**
-   * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 11
+   * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes.
    */
   export interface Schema$SecurityProfileGroup {
     /**
      * Output only. Resource creation timestamp.
      */
     createTime?: string | null;
+    /**
+     * Optional. Reference to a SecurityProfile with the CustomIntercept configuration.
+     */
+    customInterceptProfile?: string | null;
     /**
      * Optional. Reference to a SecurityProfile with the CustomMirroring configuration.
      */
@@ -2802,7 +3062,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6631,6 +6891,267 @@ export namespace networksecurity_v1 {
     }
 
     /**
+     * Creates a new AuthzPolicy in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Authzpolicies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authzpolicies$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authzpolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Authzpolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/authzPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single AuthzPolicy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Authzpolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authzpolicies$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authzpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Authzpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single AuthzPolicy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Authzpolicies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AuthzPolicy>;
+    get(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AuthzPolicy>,
+      callback: BodyResponseCallback<Schema$AuthzPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Get,
+      callback: BodyResponseCallback<Schema$AuthzPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AuthzPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authzpolicies$Get
+        | BodyResponseCallback<Schema$AuthzPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuthzPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuthzPolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AuthzPolicy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authzpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Authzpolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuthzPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AuthzPolicy>(parameters);
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      *
      * @param params - Parameters for request
@@ -6722,6 +7243,188 @@ export namespace networksecurity_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists AuthzPolicies in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Authzpolicies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Authzpolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAuthzPoliciesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Authzpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Authzpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuthzPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListAuthzPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Authzpolicies$List,
+      callback: BodyResponseCallback<Schema$ListAuthzPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAuthzPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authzpolicies$List
+        | BodyResponseCallback<Schema$ListAuthzPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAuthzPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAuthzPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAuthzPoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authzpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Authzpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/authzPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAuthzPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAuthzPoliciesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the parameters of a single AuthzPolicy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Authzpolicies$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Authzpolicies$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authzpolicies$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authzpolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Authzpolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -6920,6 +7623,44 @@ export namespace networksecurity_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Authzpolicies$Create
+    extends StandardParameters {
+    /**
+     * Required. User-provided ID of the `AuthzPolicy` resource to be created.
+     */
+    authzPolicyId?: string;
+    /**
+     * Required. The parent resource of the `AuthzPolicy` resource. Must be in the format `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuthzPolicy;
+  }
+  export interface Params$Resource$Projects$Locations$Authzpolicies$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the `AuthzPolicy` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/authzPolicies/{authz_policy\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authzpolicies$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the `AuthzPolicy` resource to get. Must be in the format `projects/{project\}/locations/{location\}/authzPolicies/{authz_policy\}`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Authzpolicies$Getiampolicy
     extends StandardParameters {
     /**
@@ -6930,6 +7671,49 @@ export namespace networksecurity_v1 {
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authzpolicies$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results.
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results that the server returns.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the `AuthzPolicy` resources are listed, specified in the following format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authzpolicies$Patch
+    extends StandardParameters {
+    /**
+     * Required. Identifier. Name of the `AuthzPolicy` resource in the following format: `projects/{project\}/locations/{location\}/authzPolicies/{authz_policy\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Used to specify the fields to be overwritten in the `AuthzPolicy` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuthzPolicy;
   }
   export interface Params$Resource$Projects$Locations$Authzpolicies$Setiampolicy
     extends StandardParameters {
@@ -9402,7 +10186,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

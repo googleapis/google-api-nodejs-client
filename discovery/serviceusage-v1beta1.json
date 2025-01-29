@@ -964,7 +964,7 @@
       }
     }
   },
-  "revision": "20240929",
+  "revision": "20241219",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -1040,12 +1040,14 @@
           "enum": [
             "ANALYSIS_TYPE_UNSPECIFIED",
             "ANALYSIS_TYPE_DEPENDENCY",
-            "ANALYSIS_TYPE_RESOURCE_USAGE"
+            "ANALYSIS_TYPE_RESOURCE_USAGE",
+            "ANALYSIS_TYPE_RESOURCE_EXISTENCE"
           ],
           "enumDescriptions": [
             "Unspecified analysis type. Do not use.",
             "The analysis of service dependencies.",
-            "The analysis of service resource usage."
+            "The analysis of service resource usage.",
+            "The analysis of service resource existence."
           ],
           "readOnly": true,
           "type": "string"
@@ -1808,6 +1810,10 @@
       "description": "`Documentation` provides the information for describing a service. Example: documentation: summary: > The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages: - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: > ... - selector: google.calendar.Calendar.Put description: > ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.",
       "id": "Documentation",
       "properties": {
+        "additionalIamInfo": {
+          "description": "Optional information about the IAM configuration. This is typically used to link to documentation about a product's IAM roles and permissions.",
+          "type": "string"
+        },
         "documentationRootUrl": {
           "description": "The URL to the root of documentation.",
           "type": "string"
@@ -2101,6 +2107,10 @@
       "description": "Experimental features to be included during client library generation. These fields will be deprecated once the feature graduates and is enabled by default.",
       "id": "ExperimentalFeatures",
       "properties": {
+        "protobufPythonicTypesEnabled": {
+          "description": "Enables generation of protobuf code using new types that are more Pythonic which are included in `protobuf>=5.29.x`. This feature will be enabled by default 1 month after launching the feature in preview packages.",
+          "type": "boolean"
+        },
         "restAsyncIoEnabled": {
           "description": "Enables generation of asynchronous REST clients if `rest` transport is enabled. By default, asynchronous REST clients will not be generated. This feature will be enabled by default 1 month after launching the feature in preview packages.",
           "type": "boolean"
@@ -2269,6 +2279,13 @@
         "common": {
           "$ref": "CommonLanguageSettings",
           "description": "Some settings."
+        },
+        "renamedServices": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. publishing: go_settings: renamed_services: Publisher: TopicAdmin",
+          "type": "object"
         }
       },
       "type": "object"
@@ -2621,6 +2638,171 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleApiServiceusageV2betaAnalysis": {
+      "description": "A message to group the analysis information.",
+      "id": "GoogleApiServiceusageV2betaAnalysis",
+      "properties": {
+        "analysis": {
+          "$ref": "GoogleApiServiceusageV2betaAnalysisResult",
+          "description": "Output only. Analysis result of updating a policy.",
+          "readOnly": true
+        },
+        "analysisType": {
+          "description": "Output only. The type of analysis.",
+          "enum": [
+            "ANALYSIS_TYPE_UNSPECIFIED",
+            "ANALYSIS_TYPE_DEPENDENCY",
+            "ANALYSIS_TYPE_RESOURCE_USAGE"
+          ],
+          "enumDescriptions": [
+            "Unspecified analysis type. Do not use.",
+            "The analysis of service dependencies.",
+            "The analysis of service resource usage."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The user friendly display name of the analysis type. E.g. service dependency analysis, service resource usage analysis, etc.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "service": {
+          "description": "The names of the service that has analysis result of warnings or blockers. Example: `services/storage.googleapis.com`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaAnalysisResult": {
+      "description": "An analysis result including blockers and warnings.",
+      "id": "GoogleApiServiceusageV2betaAnalysisResult",
+      "properties": {
+        "blockers": {
+          "description": "Blocking information that would prevent the policy changes at runtime.",
+          "items": {
+            "$ref": "GoogleApiServiceusageV2betaImpact"
+          },
+          "type": "array"
+        },
+        "warnings": {
+          "description": "Warning information indicating that the policy changes might be unsafe, but will not block the changes at runtime.",
+          "items": {
+            "$ref": "GoogleApiServiceusageV2betaImpact"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaAnalyzeConsumerPolicyMetadata": {
+      "description": "Metadata for the `AnalyzeConsumerPolicy` method.",
+      "id": "GoogleApiServiceusageV2betaAnalyzeConsumerPolicyMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaAnalyzeConsumerPolicyResponse": {
+      "description": "The response of analyzing a consumer policy update.",
+      "id": "GoogleApiServiceusageV2betaAnalyzeConsumerPolicyResponse",
+      "properties": {
+        "analysis": {
+          "description": "The list of analyses returned from performing the intended policy update analysis. The analysis is grouped by service name and different analysis types. The empty analysis list means that the consumer policy can be updated without any warnings or blockers.",
+          "items": {
+            "$ref": "GoogleApiServiceusageV2betaAnalysis"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaConsumerPolicy": {
+      "description": "Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.",
+      "id": "GoogleApiServiceusageV2betaConsumerPolicy",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. The time the policy was created. For singleton policies, this is the first touch of the policy.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "enableRules": {
+          "description": "Enable rules define usable services, groups, and categories. There can currently be at most one `EnableRule`. This restriction will be lifted in later releases.",
+          "items": {
+            "$ref": "GoogleApiServiceusageV2betaEnableRule"
+          },
+          "type": "array"
+        },
+        "etag": {
+          "description": "Output only. An opaque tag indicating the current version of the policy, used for concurrency control.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the policy. Only the `default` policy is supported: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the policy was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaEnableRule": {
+      "description": "The consumer policy rule that defines enabled services, groups, and categories.",
+      "id": "GoogleApiServiceusageV2betaEnableRule",
+      "properties": {
+        "services": {
+          "description": "The names of the services that are enabled. Example: `services/storage.googleapis.com`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaImpact": {
+      "description": "A message to group impacts of updating a policy.",
+      "id": "GoogleApiServiceusageV2betaImpact",
+      "properties": {
+        "detail": {
+          "description": "Output only. User friendly impact detail in a free form message.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "impactType": {
+          "description": "Output only. The type of impact.",
+          "enum": [
+            "IMPACT_TYPE_UNSPECIFIED",
+            "DEPENDENCY_MISSING_DEPENDENCIES"
+          ],
+          "enumDescriptions": [
+            "Reserved Blocks (Block n contains codes from 100n to 100(n+1) -1 Block 0 - Special/Admin codes Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY Block 2 - Impact Type of ANALYSIS_TYPE_RESOURCE_USAGE ...",
+            "Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaUpdateConsumerPolicyMetadata": {
+      "description": "Metadata for the `UpdateConsumerPolicy` method.",
+      "id": "GoogleApiServiceusageV2betaUpdateConsumerPolicyMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "Http": {
       "description": "Defines the HTTP configuration for an API service. It contains a list of HttpRule, each specifying the mapping of an RPC method to one or more HTTP REST API methods.",
       "id": "Http",
@@ -2702,13 +2884,19 @@
           "description": "Output only. The type of impact.",
           "enum": [
             "IMPACT_TYPE_UNSPECIFIED",
-            "DEPENDENCY_MISSING_DEPENDENCIES"
+            "DEPENDENCY_MISSING_DEPENDENCIES",
+            "RESOURCE_EXISTENCE_PROJECT"
           ],
           "enumDescriptions": [
-            "Reserved Blocks (Block n contains codes from 100n to 100(n+1) -1 Block 0 - Special/Admin codes Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY Block 2 - Impact Type of ANALYSIS_TYPE_RESOURCE_USAGE ...",
-            "Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY"
+            "Reserved Blocks (Block n contains codes from 100n to 100(n+1) -1 Block 0 - Special/Admin codes Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY Block 2 - Impact Type of ANALYSIS_TYPE_RESOURCE_USAGE Block 3 - Impact Type of ANALYSIS_TYPE_RESOURCE_EXISTENCE ...",
+            "Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY",
+            "Block 3 - Impact Type of ANALYSIS_TYPE_RESOURCE_EXISTENCE"
           ],
           "readOnly": true,
+          "type": "string"
+        },
+        "parent": {
+          "description": "The parent resource that the analysis is based on and the service name that the analysis is for. Example: `projects/100/services/compute.googleapis.com`, folders/101/services/compute.googleapis.com` and `organizations/102/services/compute.googleapis.com`. Usually, the parent resource here is same as the parent resource of the analyzed policy. However, for some analysis types, the parent can be different. For example, for resource existence analysis, if the parent resource of the analyzed policy is a folder or an organization, the parent resource here can still be the project that contains the resources.",
           "type": "string"
         }
       },
@@ -3849,7 +4037,7 @@
           "type": "string"
         },
         "unit": {
-          "description": "Specify the unit of the quota limit. It uses the same syntax as Metric.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * \"1/min/{project}\" for quota per minute per project. Note: the order of unit components is insignificant. The \"1\" at the beginning is required to follow the metric unit syntax.",
+          "description": "Specify the unit of the quota limit. It uses the same syntax as MetricDescriptor.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * \"1/min/{project}\" for quota per minute per project. Note: the order of unit components is insignificant. The \"1\" at the beginning is required to follow the metric unit syntax.",
           "type": "string"
         },
         "values": {

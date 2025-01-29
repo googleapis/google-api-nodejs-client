@@ -233,7 +233,7 @@
               "type": "string"
             },
             "provider": {
-              "description": "Required. The parent account. Format: `accounts/{account}`",
+              "description": "Required. The aggregation service provider. Format: `providers/{providerId}`",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -265,7 +265,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Required. List of fields being updated.",
+              "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `account_name` - `adult_content` - `language_code` - `time_zone`",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -391,7 +391,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. List of fields being updated.",
+                  "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `black_owned` - `latino_owned` - `promotions_consent` - `small_business` - `veteran_owned` - `women_owned`",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -454,7 +454,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. List of fields being updated.",
+                  "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `address` - `customer_service` - `korean_business_registration_number`",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -476,7 +476,7 @@
         "emailPreferences": {
           "methods": {
             "getEmailPreferences": {
-              "description": "Returns the email preferences for a Merchant Center account user. Use the name=accounts/*/users/me/emailPreferences alias to get preferences for the authenticated user.",
+              "description": "Returns the email preferences for a Merchant Center account user. This service only permits retrieving and updating email preferences for the authenticated user. Use the name=accounts/*/users/me/emailPreferences alias to get preferences for the authenticated user.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.emailPreferences.getEmailPreferences",
@@ -517,7 +517,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. List of fields being updated.",
+                  "description": "Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `news_and_tips`",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -636,7 +636,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. List of fields being updated.",
+                  "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `uri`",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -708,7 +708,7 @@
         "onlineReturnPolicies": {
           "methods": {
             "get": {
-              "description": "Gets an existing return policy.",
+              "description": "Gets an existing return policy for a given merchant.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/onlineReturnPolicies/{onlineReturnPoliciesId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.onlineReturnPolicies.get",
@@ -733,7 +733,7 @@
               ]
             },
             "list": {
-              "description": "Lists all existing return policies.",
+              "description": "Lists all existing return policies for a given merchant.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/onlineReturnPolicies",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.onlineReturnPolicies.list",
@@ -1195,7 +1195,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes a Merchant Center account user. Executing this method requires admin access.",
+              "description": "Deletes a Merchant Center account user. Executing this method requires admin access. The user to be deleted can't be the last admin user of that account. Also a user is protected from deletion if it is managed by Business Manager\"",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}",
               "httpMethod": "DELETE",
               "id": "merchantapi.accounts.users.delete",
@@ -1297,7 +1297,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. List of fields being updated.",
+                  "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `access_rights`",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1417,7 +1417,7 @@
       }
     }
   },
-  "revision": "20241004",
+  "revision": "20250115",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Accepted": {
@@ -1440,7 +1440,7 @@
       "type": "object"
     },
     "Account": {
-      "description": "An account.",
+      "description": "The `Account` message represents a merchant's account within Shopping Ads. It's the primary entity for managing product data, settings, and interactions with Google's services and external providers. Accounts can operate as standalone entities or be part of a multi-client account (MCA) structure. In an MCA setup the parent account manages multiple sub-accounts. Establishing an account involves configuring attributes like the account name, time zone, and language preferences. The `Account` message is the parent entity for many other resources, for example, `AccountRelationship`, `Homepage`, `BusinessInfo` and so on.",
       "id": "Account",
       "properties": {
         "accountId": {
@@ -1538,7 +1538,7 @@
           "description": "The provider is an [aggregator](https://support.google.com/merchants/answer/188487) for the account. Payload for service type Account Aggregation."
         },
         "provider": {
-          "description": "Optional. The provider of the service. Format: `accounts/{account}`",
+          "description": "Required. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).",
           "type": "string"
         }
       },
@@ -1642,7 +1642,7 @@
           "type": "string"
         },
         "promotionsConsent": {
-          "description": "Optional. Whether the identity attributes may be used for promotions.",
+          "description": "Required. Whether the identity attributes may be used for promotions.",
           "enum": [
             "PROMOTIONS_CONSENT_UNSPECIFIED",
             "PROMOTIONS_CONSENT_GIVEN",
@@ -1671,12 +1671,12 @@
       "type": "object"
     },
     "BusinessInfo": {
-      "description": "Collection of information related to a business.",
+      "description": "The `BusinessInfo` message contains essential information about a merchant's business. This message captures key business details such as physical address, customer service contacts, and region-specific identifiers.",
       "id": "BusinessInfo",
       "properties": {
         "address": {
           "$ref": "PostalAddress",
-          "description": "Optional. The address of the business."
+          "description": "Optional. The address of the business. Only `region_code`, `address_lines`, `postal_code`, `administrative_area` and `locality` fields are supported. All other fields are ignored."
         },
         "customerService": {
           "$ref": "CustomerService",
@@ -1714,7 +1714,7 @@
       "type": "object"
     },
     "CarrierRate": {
-      "description": "A list of carrier rates that can be referred to by `main_table` or `single_value`.",
+      "description": "A list of carrier rates that can be referred to by `main_table` or `single_value`. Supported carrier services are defined in https://support.google.com/merchants/answer/12577710?ref_topic=12570808&sjid=10662598224319463032-NC#zippy=%2Cdelivery-cost-rate-type%2Ccarrier-rate-au-de-uk-and-us-only.",
       "id": "CarrierRate",
       "properties": {
         "carrier": {
@@ -1747,7 +1747,12 @@
     "ClaimHomepageRequest": {
       "description": "Request message for the `ClaimHomepage` method.",
       "id": "ClaimHomepageRequest",
-      "properties": {},
+      "properties": {
+        "overwrite": {
+          "description": "Optional. When set to `true`, this option removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "CreateAndConfigureAccountRequest": {
@@ -1785,7 +1790,7 @@
         },
         "user": {
           "$ref": "User",
-          "description": "Required. The user to create."
+          "description": "Optional. The user to create."
         },
         "userId": {
           "description": "Required. The email address of the user (for example, `john.doe@gmail.com`).",
@@ -2055,7 +2060,7 @@
       "type": "object"
     },
     "Homepage": {
-      "description": "A store's homepage.",
+      "description": "The `Homepage` message represents a merchant's store homepage within the system. A merchant's homepage is the primary domain where customers interact with their store. The homepage can be claimed and verified as a proof of ownership and allows the merchant to unlock features that require a verified website. For more information, see [Understanding online store URL verification](//support.google.com/merchants/answer/176793).",
       "id": "Homepage",
       "properties": {
         "claimed": {
@@ -2152,12 +2157,14 @@
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
             "PRODUCT_REVIEWS",
-            "MERCHANT_REVIEWS"
+            "MERCHANT_REVIEWS",
+            "YOUTUBE_CHECKOUT"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2190,7 +2197,8 @@
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
-            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds)."
+            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
+            "[YouTube Checkout]("
           ],
           "type": "string"
         }
@@ -2410,7 +2418,7 @@
           "type": "boolean"
         },
         "countries": {
-          "description": "The countries of sale where the return policy applies. The values must be a valid 2 letter ISO 3166 code.",
+          "description": "Required. Immutable. The countries of sale where the return policy applies. The values must be a valid 2 letter ISO 3166 code.",
           "items": {
             "type": "string"
           },
@@ -2434,7 +2442,7 @@
           "type": "array"
         },
         "label": {
-          "description": "This field represents the unique user-defined label of the return policy. It is important to note that the same label cannot be used in different return policies for the same country. Unless a product specifies a specific label attribute, policies will be automatically labeled as 'default'. To assign a custom return policy to certain product groups, follow the instructions provided in the [Return policy label] (https://support.google.com/merchants/answer/9445425). The label can contain up to 50 characters.",
+          "description": "Required. Immutable. This field represents the unique user-defined label of the return policy. It is important to note that the same label cannot be used in different return policies for the same country. Unless a product specifies a specific label attribute, policies will be automatically labeled as 'default'. To assign a custom return policy to certain product groups, follow the instructions provided in the [Return policy label] (https://support.google.com/merchants/answer/9445425). The label can contain up to 50 characters.",
           "type": "string"
         },
         "name": {
@@ -2479,12 +2487,19 @@
           "type": "string"
         },
         "returnPolicyUri": {
-          "description": "The return policy uri. This can used by Google to do a sanity check for the policy. It must be a valid URL.",
+          "description": "Required. The return policy uri. This can used by Google to do a sanity check for the policy. It must be a valid URL.",
           "type": "string"
         },
         "returnShippingFee": {
           "$ref": "ReturnShippingFee",
           "description": "The return shipping fee. Should be set only when customer need to download and print the return label."
+        },
+        "seasonalOverrides": {
+          "description": "Optional. Overrides to the general policy for orders placed during a specific set of time intervals.",
+          "items": {
+            "$ref": "SeasonalOverride"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2494,7 +2509,7 @@
       "id": "PhoneNumber",
       "properties": {
         "e164Number": {
-          "description": "The phone number, represented as a leading plus sign ('+'), followed by a phone number that uses a relaxed ITU E.164 format consisting of the country calling code (1 to 3 digits) and the subscriber number, with no additional spaces or formatting, e.g.: - correct: \"+15552220123\" - incorrect: \"+1 (555) 222-01234 x123\". The ITU E.164 format limits the latter to 12 digits, but in practice not all countries respect that, so we relax that restriction here. National-only numbers are not allowed. References: - https://www.itu.int/rec/T-REC-E.164-201011-I - https://en.wikipedia.org/wiki/E.164. - https://en.wikipedia.org/wiki/List_of_country_calling_codes",
+          "description": "The phone number, represented as a leading plus sign ('+'), followed by a phone number that uses a relaxed ITU E.164 format consisting of the country calling code (1 to 3 digits) and the subscriber number, with no additional spaces or formatting. For example: - correct: \"+15552220123\" - incorrect: \"+1 (555) 222-01234 x123\". The ITU E.164 format limits the latter to 12 digits, but in practice not all countries respect that, so we relax that restriction here. National-only numbers are not allowed. References: - https://www.itu.int/rec/T-REC-E.164-201011-I - https://en.wikipedia.org/wiki/E.164. - https://en.wikipedia.org/wiki/List_of_country_calling_codes",
           "type": "string"
         },
         "extension": {
@@ -2537,18 +2552,18 @@
       "type": "object"
     },
     "PostalAddress": {
-      "description": "Represents a postal address, e.g. for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created via user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, please see: https://support.google.com/business/answer/6397478",
+      "description": "Represents a postal address. For example for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478",
       "id": "PostalAddress",
       "properties": {
         "addressLines": {
-          "description": "Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (e.g. \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country/region of the address. In places where this can vary (e.g. Japan), address_language is used to make it explicit (e.g. \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).",
+          "description": "Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (For example \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country/region of the address. In places where this can vary (For example Japan), address_language is used to make it explicit (For example \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "administrativeArea": {
-          "description": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (e.g. \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. E.g. in Switzerland this should be left unpopulated.",
+          "description": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (For example \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. For example in Switzerland this should be left unpopulated.",
           "type": "string"
         },
         "languageCode": {
@@ -2564,7 +2579,7 @@
           "type": "string"
         },
         "postalCode": {
-          "description": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (e.g. state/zip validation in the U.S.A.).",
+          "description": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (For example state/zip validation in the U.S.A.).",
           "type": "string"
         },
         "recipients": {
@@ -2584,7 +2599,7 @@
           "type": "integer"
         },
         "sortingCode": {
-          "description": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (e.g. \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (e.g. Côte d'Ivoire).",
+          "description": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (For example \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (For example Côte d'Ivoire).",
           "type": "string"
         },
         "sublocality": {
@@ -2678,12 +2693,14 @@
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
             "PRODUCT_REVIEWS",
-            "MERCHANT_REVIEWS"
+            "MERCHANT_REVIEWS",
+            "YOUTUBE_CHECKOUT"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2716,7 +2733,8 @@
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
-            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds)."
+            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
+            "[YouTube Checkout]("
           ],
           "type": "string"
         }
@@ -2749,6 +2767,11 @@
             "$ref": "ProductChange"
           },
           "type": "array"
+        },
+        "expirationTime": {
+          "description": "The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "managingAccount": {
           "description": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`",
@@ -2964,7 +2987,7 @@
           "description": "Fixed return shipping fee amount. This value is only applicable when type is `FIXED`. We will treat the return shipping fee as free if type is `FIXED` and this value is not set."
         },
         "type": {
-          "description": "Type of return shipping fee.",
+          "description": "Required. Type of return shipping fee.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "FIXED",
@@ -2990,6 +3013,29 @@
             "$ref": "Value"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SeasonalOverride": {
+      "description": "Next: 5",
+      "id": "SeasonalOverride",
+      "properties": {
+        "begin": {
+          "$ref": "Date",
+          "description": "Required. Defines the date range when this seasonal override applies. Both begin and end are inclusive and should be in date decimal format, example 20250115. The dates of the seasonal overrides should not overlap."
+        },
+        "end": {
+          "$ref": "Date",
+          "description": "Required. seasonal override end date (inclusive)."
+        },
+        "label": {
+          "description": "Required. Display name of this seasonal override in Merchant Center.",
+          "type": "string"
+        },
+        "policy": {
+          "$ref": "Policy",
+          "description": "Required. The return policy for the given date range."
         }
       },
       "type": "object"
@@ -3096,11 +3142,11 @@
       "type": "object"
     },
     "ShortCode": {
-      "description": "An object representing a short code, which is a phone number that is typically much shorter than regular phone numbers and can be used to address messages in MMS and SMS systems, as well as for abbreviated dialing (e.g. \"Text 611 to see how many minutes you have remaining on your plan.\"). Short codes are restricted to a region and are not internationally dialable, which means the same short code can exist in different regions, with different usage and pricing, even if those regions share the same country calling code (e.g. US and CA).",
+      "description": "An object representing a short code, which is a phone number that is typically much shorter than regular phone numbers and can be used to address messages in MMS and SMS systems, as well as for abbreviated dialing (For example \"Text 611 to see how many minutes you have remaining on your plan.\"). Short codes are restricted to a region and are not internationally dialable, which means the same short code can exist in different regions, with different usage and pricing, even if those regions share the same country calling code (For example: US and CA).",
       "id": "ShortCode",
       "properties": {
         "number": {
-          "description": "Required. The short code digits, without a leading plus ('+') or country calling code, e.g. \"611\".",
+          "description": "Required. The short code digits, without a leading plus ('+') or country calling code. For example \"611\".",
           "type": "string"
         },
         "regionCode": {
@@ -3191,7 +3237,7 @@
       "type": "object"
     },
     "TermsOfService": {
-      "description": "A `TermsOfService`.",
+      "description": "The `TermsOfService` message represents a specific version of the terms of service that merchants must accept to access certain features or services (see https://support.google.com/merchants/answer/160173). This message is important for the onboarding process, ensuring that merchants agree to the necessary legal agreements for using the service. Merchants can retrieve the latest terms of service for a given `kind` and `region` through `RetrieveLatestTermsOfService`, and accept them as required through `AcceptTermsOfService`.",
       "id": "TermsOfService",
       "properties": {
         "external": {
@@ -3265,11 +3311,11 @@
       "id": "TimeZone",
       "properties": {
         "id": {
-          "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
+          "description": "IANA Time Zone Database time zone. For example \"America/New_York\".",
           "type": "string"
         },
         "version": {
-          "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
+          "description": "Optional. IANA Time Zone Database version number. For example \"2019a\".",
           "type": "string"
         }
       },
@@ -3341,7 +3387,7 @@
       "type": "object"
     },
     "User": {
-      "description": "A [user](https://support.google.com/merchants/answer/12160472).",
+      "description": "The `User` message represents a user associated with a Merchant Center account. It is used to manage user permissions and access rights within the account. For more information, see [Frequently asked questions about people and access levels](//support.google.com/merchants/answer/12160472).",
       "id": "User",
       "properties": {
         "accessRights": {
@@ -3413,7 +3459,7 @@
       "type": "object"
     },
     "Warehouse": {
-      "description": "A fulfillment warehouse, which stores and handles inventory. Next tag: 7",
+      "description": "A fulfillment warehouse, which stores and handles inventory.",
       "id": "Warehouse",
       "properties": {
         "businessDayConfig": {
@@ -3445,7 +3491,7 @@
       "id": "WarehouseBasedDeliveryTime",
       "properties": {
         "carrier": {
-          "description": "Required. Carrier, such as `\"UPS\"` or `\"Fedex\"`.",
+          "description": "Required. Carrier, such as `\"UPS\"` or `\"Fedex\"`. [supported carriers](https://support.google.com/merchants/answer/7050921#zippy=%2Ccarrier-rates-au-de-uk-and-us-only)",
           "type": "string"
         },
         "carrierService": {

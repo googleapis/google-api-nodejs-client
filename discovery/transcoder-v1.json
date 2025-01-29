@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20240626",
+  "revision": "20241009",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -565,7 +565,7 @@
           "type": "array"
         },
         "codec": {
-          "description": "The codec for this audio stream. The default is `aac`. Supported audio codecs: - `aac` - `aac-he` - `aac-he-v2` - `mp3` - `ac3` - `eac3`",
+          "description": "The codec for this audio stream. The default is `aac`. Supported audio codecs: - `aac` - `aac-he` - `aac-he-v2` - `mp3` - `ac3` - `eac3` - `vorbis`",
           "type": "string"
         },
         "displayName": {
@@ -1486,7 +1486,7 @@
       "id": "MuxStream",
       "properties": {
         "container": {
-          "description": "The container format. The default is `mp4` Supported container formats: - `ts` - `fmp4`- the corresponding file extension is `.m4s` - `mp4` - `vtt` See also: [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)",
+          "description": "The container format. The default is `mp4` Supported container formats: - `ts` - `fmp4`- the corresponding file extension is `.m4s` - `mp4` - `vtt` - `ogg` See also: [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)",
           "type": "string"
         },
         "elementaryStreams": {

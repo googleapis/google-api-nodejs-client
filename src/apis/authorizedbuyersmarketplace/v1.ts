@@ -191,6 +191,10 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     creator?: string | null;
     /**
+     * Output only. If set, this field contains the DSP specific seat id set by the media planner account that is considered the owner of this deal. The seat ID is in the calling DSP's namespace.
+     */
+    dealOwnerSeatId?: string | null;
+    /**
      * Output only. A description of the auction package.
      */
     description?: string | null;
@@ -199,7 +203,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     displayName?: string | null;
     /**
-     * Output only. If set, this field contains the list of DSP specific seat ids set by media planners that are eligible to transact on this deal. The seat ID is in the calling DSP's namespace.
+     * Output only. If set, this field identifies a seat that the media planner selected as the owner of this auction package. This is a seat ID in the DSP's namespace that was provided to the media planner.
      */
     eligibleSeatIds?: string[] | null;
     /**
@@ -867,7 +871,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     openAuctionAllowed?: boolean | null;
   }
   /**
-   * Buyers are allowed to store certain types of private data in a proposal or deal.
+   * Buyers are allowed to store certain types of private data in a proposal.
    */
   export interface Schema$PrivateData {
     /**
@@ -1213,11 +1217,11 @@ export namespace authorizedbuyersmarketplace_v1 {
    */
   export interface Schema$TimeZone {
     /**
-     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     * IANA Time Zone Database time zone. For example "America/New_York".
      */
     id?: string | null;
     /**
-     * Optional. IANA Time Zone Database version number, e.g. "2019a".
+     * Optional. IANA Time Zone Database version number. For example "2019a".
      */
     version?: string | null;
   }
@@ -4514,7 +4518,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
 
     /**
-     * Updates the proposal at the given revision number. If the revision number in the request is behind the latest one kept in the server, an error message will be returned. See FieldMask for how to use FieldMask. Only fields specified in the UpdateProposalRequest.update_mask will be updated; Fields noted as 'Immutable' or 'Output only' yet specified in the UpdateProposalRequest.update_mask will be ignored and left unchanged. Updating a private auction proposal is not allowed and will result in an error.
+     * Updates the proposal at the given revision number. If the revision number in the request is behind the latest one kept in the server, an error message will be returned. See FieldMask for how to use FieldMask. Only fields specified in the UpdateProposalRequest.update_mask will be updated; Fields noted as 'Immutable' or 'Output only' yet specified in the UpdateProposalRequest.update_mask will be ignored and left unchanged. Updating a private auction proposal is only allowed for buyer private data, all other fields are immutable.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

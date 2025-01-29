@@ -524,7 +524,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "tpu.projects.locations.operations.cancel",
@@ -887,7 +887,7 @@
       }
     }
   },
-  "revision": "20240613",
+  "revision": "20250116",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -906,7 +906,8 @@
             "V3",
             "V4",
             "V5LITE_POD",
-            "V5P"
+            "V5P",
+            "V6E"
           ],
           "enumDescriptions": [
             "Unspecified version.",
@@ -914,7 +915,8 @@
             "TPU v3.",
             "TPU v4.",
             "TPU v5lite pod.",
-            "TPU v5p"
+            "TPU v5p.",
+            "TPU v6e."
           ],
           "type": "string"
         }
@@ -1323,7 +1325,7 @@
       "id": "MultisliceParams",
       "properties": {
         "nodeCount": {
-          "description": "Required. Number of nodes with this spec. The system will attempt to provison \"node_count\" nodes as part of the request. This needs to be > 1.",
+          "description": "Required. Number of nodes with this spec. The system will attempt to provision \"node_count\" nodes as part of the request. This needs to be > 1.",
           "format": "int32",
           "type": "integer"
         },
@@ -1489,7 +1491,14 @@
         },
         "networkConfig": {
           "$ref": "NetworkConfig",
-          "description": "Network configurations for the TPU node."
+          "description": "Network configurations for the TPU node. network_config and network_configs are mutually exclusive, you can only specify one of them. If both are specified, an error will be returned."
+        },
+        "networkConfigs": {
+          "description": "Optional. Repeated network configurations for the TPU node. This field is used to specify multiple networks configs for the TPU node. network_config and network_configs are mutually exclusive, you can only specify one of them. If both are specified, an error will be returned.",
+          "items": {
+            "$ref": "NetworkConfig"
+          },
+          "type": "array"
         },
         "networkEndpoints": {
           "description": "Output only. The network endpoints where TPU workers can be accessed and sent work. It is recommended that runtime clients of the node reach out to the 0th entry in this map first.",
@@ -1537,7 +1546,8 @@
             "TERMINATED",
             "HIDING",
             "HIDDEN",
-            "UNHIDING"
+            "UNHIDING",
+            "UNKNOWN"
           ],
           "enumDescriptions": [
             "TPU node state is not known/set.",
@@ -1554,7 +1564,8 @@
             "TPU node has been terminated due to maintenance or has reached the end of its life cycle (for preemptible nodes).",
             "TPU node is currently hiding.",
             "TPU node has been hidden.",
-            "TPU node is currently unhiding."
+            "TPU node is currently unhiding.",
+            "TPU node has unknown state after a failed repair."
           ],
           "readOnly": true,
           "type": "string"

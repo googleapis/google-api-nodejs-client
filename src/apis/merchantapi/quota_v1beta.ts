@@ -133,7 +133,7 @@ export namespace merchantapi_quota_v1beta {
      */
     nextPageToken?: string | null;
     /**
-     * The methods, current quota usage and limits per each group. The quota is shared between all methods in the group. The groups are sorted in descending order based on quotaUsage.
+     * The methods, current quota usage and limits per each group. The quota is shared between all methods in the group. The groups are sorted in descending order based on quota_usage.
      */
     quotaGroups?: Schema$QuotaGroup[];
   }
@@ -195,6 +195,10 @@ export namespace merchantapi_quota_v1beta {
      * A message to describe the change that happened to the product
      */
     changes?: Schema$ProductChange[];
+    /**
+     * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     */
+    expirationTime?: string | null;
     /**
      * The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id\}`
      */

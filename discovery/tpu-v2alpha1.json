@@ -473,6 +473,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "performMaintenance": {
+                  "description": "Perform manual maintenance on a node.",
+                  "flatPath": "v2alpha1/projects/{projectsId}/locations/{locationsId}/nodes/{nodesId}:performMaintenance",
+                  "httpMethod": "POST",
+                  "id": "tpu.projects.locations.nodes.performMaintenance",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/nodes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha1/{+name}:performMaintenance",
+                  "request": {
+                    "$ref": "PerformMaintenanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "simulateMaintenanceEvent": {
                   "description": "Simulates a maintenance event.",
                   "flatPath": "v2alpha1/projects/{projectsId}/locations/{locationsId}/nodes/{nodesId}:simulateMaintenanceEvent",
@@ -562,7 +590,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v2alpha1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "tpu.projects.locations.operations.cancel",
@@ -815,6 +843,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "performMaintenanceQueuedResource": {
+                  "description": "Perform manual maintenance on specific nodes of a QueuedResource.",
+                  "flatPath": "v2alpha1/projects/{projectsId}/locations/{locationsId}/queuedResources/{queuedResourcesId}:performMaintenanceQueuedResource",
+                  "httpMethod": "POST",
+                  "id": "tpu.projects.locations.queuedResources.performMaintenanceQueuedResource",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the QueuedResource which holds the nodes to perform maintenance on.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/queuedResources/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha1/{+name}:performMaintenanceQueuedResource",
+                  "request": {
+                    "$ref": "PerformMaintenanceQueuedResourceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "reset": {
                   "description": "Resets a QueuedResource TPU instance",
                   "flatPath": "v2alpha1/projects/{projectsId}/locations/{locationsId}/queuedResources/{queuedResourcesId}:reset",
@@ -857,7 +913,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "The maximum number of items to return.",
+                      "description": "The maximum number of items to return. Defaults to 0 if not specified, which means no limit.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -965,7 +1021,7 @@
       }
     }
   },
-  "revision": "20240916",
+  "revision": "20250116",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -984,7 +1040,8 @@
             "V3",
             "V4",
             "V5LITE_POD",
-            "V5P"
+            "V5P",
+            "V6E"
           ],
           "enumDescriptions": [
             "Unspecified version.",
@@ -992,7 +1049,8 @@
             "TPU v3.",
             "TPU v4.",
             "TPU v5lite pod.",
-            "TPU v5."
+            "TPU v5.",
+            "TPU v6e."
           ],
           "type": "string"
         }
@@ -1461,6 +1519,20 @@
         "nodeIdPrefix": {
           "description": "Prefix of node_ids in case of multi-node request Should follow the `^[A-Za-z0-9_.~+%-]+$` regex format. If node_count = 3 and node_id_prefix = \"np\", node ids of nodes created will be \"np-0\", \"np-1\", \"np-2\". If this field is not provided we use queued_resource_id as the node_id_prefix.",
           "type": "string"
+        },
+        "workloadType": {
+          "description": "Optional. The workload type for the multi-node request.",
+          "enum": [
+            "WORKLOAD_TYPE_UNSPECIFIED",
+            "THROUGHPUT_OPTIMIZED",
+            "AVAILABILITY_OPTIMIZED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "All of the nodes are available most of the time. Recommended for training workloads.",
+            "Most of the nodes are available all of the time. Recommended for serving workloads."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1626,10 +1698,10 @@
         },
         "networkConfig": {
           "$ref": "NetworkConfig",
-          "description": "Network configurations for the TPU node."
+          "description": "Network configurations for the TPU node. network_config and network_configs are mutually exclusive, you can only specify one of them. If both are specified, an error will be returned."
         },
         "networkConfigs": {
-          "description": "Optional. Repeated network configurations for the TPU node.",
+          "description": "Optional. Repeated network configurations for the TPU node. This field is used to specify multiple networks configs for the TPU node. network_config and network_configs are mutually exclusive, you can only specify one of them. If both are specified, an error will be returned.",
           "items": {
             "$ref": "NetworkConfig"
           },
@@ -1681,7 +1753,8 @@
             "TERMINATED",
             "HIDING",
             "HIDDEN",
-            "UNHIDING"
+            "UNHIDING",
+            "UNKNOWN"
           ],
           "enumDescriptions": [
             "TPU node state is not known/set.",
@@ -1698,7 +1771,8 @@
             "TPU node has been terminated due to maintenance or has reached the end of its life cycle (for preemptible nodes).",
             "TPU node is currently hiding.",
             "TPU node has been hidden.",
-            "TPU node is currently unhiding."
+            "TPU node is currently unhiding.",
+            "TPU node has unknown state after a failed repair."
           ],
           "readOnly": true,
           "type": "string"
@@ -1717,6 +1791,11 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance",
+          "description": "Output only. Upcoming maintenance on this TPU node.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -1814,6 +1893,26 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "PerformMaintenanceQueuedResourceRequest": {
+      "description": "Request for PerformMaintenanceQueuedResource.",
+      "id": "PerformMaintenanceQueuedResourceRequest",
+      "properties": {
+        "nodeNames": {
+          "description": "The names of the nodes to perform maintenance on.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PerformMaintenanceRequest": {
+      "description": "Request for PerformMaintenance.",
+      "id": "PerformMaintenanceRequest",
+      "properties": {},
       "type": "object"
     },
     "ProvisioningData": {
@@ -1991,7 +2090,8 @@
           "type": "string"
         },
         "standard": {
-          "$ref": "Standard"
+          "$ref": "Standard",
+          "description": "A standard reservation."
         },
         "state": {
           "description": "Output only. The state of the Reservation.",
@@ -2120,9 +2220,11 @@
       "type": "object"
     },
     "Standard": {
+      "description": "Details of a standard reservation.",
       "id": "Standard",
       "properties": {
         "capacityUnits": {
+          "description": "Capacity units this reservation is measured in.",
           "enum": [
             "CAPACITY_UNITS_UNSPECIFIED",
             "CORES",
@@ -2149,7 +2251,8 @@
           "type": "integer"
         },
         "usage": {
-          "$ref": "Usage"
+          "$ref": "Usage",
+          "description": "The current usage of the reservation."
         }
       },
       "type": "object"
@@ -2261,7 +2364,59 @@
       },
       "type": "object"
     },
+    "UpcomingMaintenance": {
+      "description": "Upcoming Maintenance notification information.",
+      "id": "UpcomingMaintenance",
+      "properties": {
+        "canReschedule": {
+          "description": "Indicates if the maintenance can be customer triggered.",
+          "type": "boolean"
+        },
+        "latestWindowStartTime": {
+          "description": "The latest time for the planned maintenance window to start. This timestamp value is in RFC3339 text format.",
+          "type": "string"
+        },
+        "maintenanceStatus": {
+          "description": "The status of the maintenance.",
+          "enum": [
+            "UNKNOWN",
+            "PENDING",
+            "ONGOING"
+          ],
+          "enumDescriptions": [
+            "Unknown maintenance status. Do not use this value.",
+            "There is pending maintenance.",
+            "There is ongoing maintenance on this VM."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Defines the type of maintenance.",
+          "enum": [
+            "UNKNOWN_TYPE",
+            "SCHEDULED",
+            "UNSCHEDULED"
+          ],
+          "enumDescriptions": [
+            "No type specified. Do not use this value.",
+            "Scheduled maintenance (e.g. maintenance after uptime guarantee is complete).",
+            "Unscheduled maintenance (e.g. emergency maintenance during uptime guarantee)."
+          ],
+          "type": "string"
+        },
+        "windowEndTime": {
+          "description": "The time by which the maintenance disruption will be completed. This timestamp value is in RFC3339 text format.",
+          "type": "string"
+        },
+        "windowStartTime": {
+          "description": "The current start time of the maintenance window. This timestamp value is in RFC3339 text format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Usage": {
+      "description": "Usage details of a reservation.",
       "id": "Usage",
       "properties": {
         "total": {

@@ -200,7 +200,7 @@
               ]
             },
             "updateConfig": {
-              "description": "Update default config for a given project and location.",
+              "description": "Update default config for a given project and location. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields",
               "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/config",
               "httpMethod": "PATCH",
               "id": "dataform.projects.locations.updateConfig",
@@ -235,97 +235,6 @@
             }
           },
           "resources": {
-            "collections": {
-              "methods": {
-                "getIamPolicy": {
-                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}:getIamPolicy",
-                  "httpMethod": "GET",
-                  "id": "dataform.projects.locations.collections.getIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "options.requestedPolicyVersion": {
-                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+resource}:getIamPolicy",
-                  "response": {
-                    "$ref": "Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}:setIamPolicy",
-                  "httpMethod": "POST",
-                  "id": "dataform.projects.locations.collections.setIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+resource}:setIamPolicy",
-                  "request": {
-                    "$ref": "SetIamPolicyRequest"
-                  },
-                  "response": {
-                    "$ref": "Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "testIamPermissions": {
-                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}:testIamPermissions",
-                  "httpMethod": "POST",
-                  "id": "dataform.projects.locations.collections.testIamPermissions",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+resource}:testIamPermissions",
-                  "request": {
-                    "$ref": "TestIamPermissionsRequest"
-                  },
-                  "response": {
-                    "$ref": "TestIamPermissionsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
-            },
             "repositories": {
               "methods": {
                 "commit": {
@@ -467,7 +376,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory` must match the call that provided the page token.",
+                      "description": "Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory`, with the exception of `page_size`, must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     }
@@ -587,7 +496,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. Page token received from a previous `ListRepositories` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepositories` must match the call that provided the page token.",
+                      "description": "Optional. Page token received from a previous `ListRepositories` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepositories`, with the exception of `page_size`, must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -608,7 +517,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single Repository.",
+                  "description": "Updates a single Repository. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}",
                   "httpMethod": "PATCH",
                   "id": "dataform.projects.locations.repositories.patch",
@@ -669,7 +578,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents` must match the call that provided the page token.",
+                      "description": "Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents`, with the exception of `page_size`, must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -780,134 +689,6 @@
                 }
               },
               "resources": {
-                "commentThreads": {
-                  "methods": {
-                    "getIamPolicy": {
-                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/commentThreads/{commentThreadsId}:getIamPolicy",
-                      "httpMethod": "GET",
-                      "id": "dataform.projects.locations.repositories.commentThreads.getIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "options.requestedPolicyVersion": {
-                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/commentThreads/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+resource}:getIamPolicy",
-                      "response": {
-                        "$ref": "Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "setIamPolicy": {
-                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/commentThreads/{commentThreadsId}:setIamPolicy",
-                      "httpMethod": "POST",
-                      "id": "dataform.projects.locations.repositories.commentThreads.setIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/commentThreads/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+resource}:setIamPolicy",
-                      "request": {
-                        "$ref": "SetIamPolicyRequest"
-                      },
-                      "response": {
-                        "$ref": "Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  },
-                  "resources": {
-                    "comments": {
-                      "methods": {
-                        "getIamPolicy": {
-                          "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/commentThreads/{commentThreadsId}/comments/{commentsId}:getIamPolicy",
-                          "httpMethod": "GET",
-                          "id": "dataform.projects.locations.repositories.commentThreads.comments.getIamPolicy",
-                          "parameterOrder": [
-                            "resource"
-                          ],
-                          "parameters": {
-                            "options.requestedPolicyVersion": {
-                              "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-                              "format": "int32",
-                              "location": "query",
-                              "type": "integer"
-                            },
-                            "resource": {
-                              "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/commentThreads/[^/]+/comments/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1beta1/{+resource}:getIamPolicy",
-                          "response": {
-                            "$ref": "Policy"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
-                        "setIamPolicy": {
-                          "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/commentThreads/{commentThreadsId}/comments/{commentsId}:setIamPolicy",
-                          "httpMethod": "POST",
-                          "id": "dataform.projects.locations.repositories.commentThreads.comments.setIamPolicy",
-                          "parameterOrder": [
-                            "resource"
-                          ],
-                          "parameters": {
-                            "resource": {
-                              "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/commentThreads/[^/]+/comments/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1beta1/{+resource}:setIamPolicy",
-                          "request": {
-                            "$ref": "SetIamPolicyRequest"
-                          },
-                          "response": {
-                            "$ref": "Policy"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        }
-                      }
-                    }
-                  }
-                },
                 "compilationResults": {
                   "methods": {
                     "create": {
@@ -989,7 +770,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListCompilationResults` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCompilationResults` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `ListCompilationResults` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCompilationResults`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1037,7 +818,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `QueryCompilationResultActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryCompilationResultActions` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `QueryCompilationResultActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryCompilationResultActions`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         }
@@ -1153,7 +934,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1174,7 +955,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates a single ReleaseConfig.",
+                      "description": "Updates a single ReleaseConfig. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/releaseConfigs/{releaseConfigsId}",
                       "httpMethod": "PATCH",
                       "id": "dataform.projects.locations.repositories.releaseConfigs.patch",
@@ -1310,7 +1091,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListWorkflowConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowConfigs` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `ListWorkflowConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowConfigs`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1331,7 +1112,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates a single WorkflowConfig.",
+                      "description": "Updates a single WorkflowConfig. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workflowConfigs/{workflowConfigsId}",
                       "httpMethod": "PATCH",
                       "id": "dataform.projects.locations.repositories.workflowConfigs.patch",
@@ -1500,7 +1281,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListWorkflowInvocations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowInvocations` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `ListWorkflowInvocations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowInvocations`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1543,7 +1324,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `QueryWorkflowInvocationActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryWorkflowInvocationActions` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `QueryWorkflowInvocationActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryWorkflowInvocationActions`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         }
@@ -1841,7 +1622,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2017,7 +1798,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `QueryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryDirectoryContents` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `QueryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryDirectoryContents`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2182,7 +1963,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `SearchFilesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchFilesRequest` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `SearchFilesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchFilesRequest`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2295,7 +2076,7 @@
       }
     }
   },
-  "revision": "20240824",
+  "revision": "20250119",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2622,6 +2403,11 @@
           "description": "Immutable. Git commit/tag/branch name at which the repository should be compiled. Must exist in the remote repository. Examples: - a commit SHA: `12ade345` - a tag: `tag1` - a branch name: `branch1`",
           "type": "string"
         },
+        "internalMetadata": {
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Output only. The compilation result's name.",
           "readOnly": true,
@@ -2655,16 +2441,17 @@
           "$ref": "Target",
           "description": "The action's identifier if the project had been compiled without any overrides configured. Unique within the compilation result."
         },
-        "dataPreparation": {
-          "$ref": "DataPreparation",
-          "description": "The data preparation executed by this action."
-        },
         "declaration": {
           "$ref": "Declaration",
           "description": "The declaration declared by this action."
         },
         "filePath": {
           "description": "The full path including filename in which this action is located, relative to the workspace root.",
+          "type": "string"
+        },
+        "internalMetadata": {
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
+          "readOnly": true,
           "type": "string"
         },
         "notebook": {
@@ -2731,36 +2518,6 @@
         "kmsKeyVersionName": {
           "description": "The KMS key version name with which data of a resource is encrypted.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DataPreparation": {
-      "description": "Defines a compiled Data Preparation entity",
-      "id": "DataPreparation",
-      "properties": {
-        "contents": {
-          "description": "The data preparation definition, stored as a binary encoded proto.",
-          "format": "byte",
-          "type": "string"
-        },
-        "dependencyTargets": {
-          "description": "A list of actions that this action depends on.",
-          "items": {
-            "$ref": "Target"
-          },
-          "type": "array"
-        },
-        "disabled": {
-          "description": "Whether this action is disabled (i.e. should not be run).",
-          "type": "boolean"
-        },
-        "tags": {
-          "description": "Arbitrary, user-defined tags on this action.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -3383,7 +3140,7 @@
           "type": "string"
         },
         "jobId": {
-          "description": "Output only. The ID of the Vertex job that executed the notebook in contents and also the ID used for the outputs created in GCS buckets. Only set once the job has started to run.",
+          "description": "Output only. The ID of the Vertex job that executed the notebook in contents and also the ID used for the outputs created in Google Cloud Storage buckets. Only set once the job has started to run.",
           "readOnly": true,
           "type": "string"
         }
@@ -3394,7 +3151,7 @@
       "id": "NotebookRuntimeOptions",
       "properties": {
         "gcsOutputBucket": {
-          "description": "Optional. The GCS location to upload the result to. Format: `gs://bucket-name`.",
+          "description": "Optional. The Google Cloud Storage location to upload the result to. Format: `gs://bucket-name`.",
           "type": "string"
         }
       },
@@ -3410,7 +3167,7 @@
           "type": "string"
         },
         "cancelRequested": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -3771,12 +3528,17 @@
           "description": "Required. Git commit/tag/branch name at which the repository should be compiled. Must exist in the remote repository. Examples: - a commit SHA: `12ade345` - a tag: `tag1` - a branch name: `branch1`",
           "type": "string"
         },
+        "internalMetadata": {
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Identifier. The release config's name.",
           "type": "string"
         },
         "recentScheduledReleaseRecords": {
-          "description": "Output only. Records of the 10 most recent scheduled release attempts, ordered in in descending order of `release_time`. Updated whenever automatic creation of a compilation result is triggered by cron_schedule.",
+          "description": "Output only. Records of the 10 most recent scheduled release attempts, ordered in descending order of `release_time`. Updated whenever automatic creation of a compilation result is triggered by cron_schedule.",
           "items": {
             "$ref": "ScheduledReleaseRecord"
           },
@@ -3839,8 +3601,13 @@
           "$ref": "GitRemoteSettings",
           "description": "Optional. If set, configures this repository to be linked to a Git remote."
         },
+        "internalMetadata": {
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
+          "readOnly": true,
+          "type": "string"
+        },
         "kmsKeyName": {
-          "description": "Optional. The reference to a KMS encryption key. If provided, it will be used to encrypt user data in the repository and all child resources. It is not possible to add or update the encryption key after the repository is created. Example: `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`",
+          "description": "Optional. The reference to a KMS encryption key. If provided, it will be used to encrypt user data in the repository and all child resources. It is not possible to add or update the encryption key after the repository is created. Example: `projects/{kms_project}/locations/{location}/keyRings/{key_location}/cryptoKeys/{key}`",
           "type": "string"
         },
         "labels": {
@@ -4107,6 +3874,11 @@
           "description": "Optional. Optional schedule (in cron format) for automatic execution of this workflow config.",
           "type": "string"
         },
+        "internalMetadata": {
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
+          "readOnly": true,
+          "type": "string"
+        },
         "invocationConfig": {
           "$ref": "InvocationConfig",
           "description": "Optional. If left unset, a default InvocationConfig will be used."
@@ -4116,7 +3888,7 @@
           "type": "string"
         },
         "recentScheduledExecutionRecords": {
-          "description": "Output only. Records of the 10 most recent scheduled execution attempts, ordered in in descending order of `execution_time`. Updated whenever automatic creation of a workflow invocation is triggered by cron_schedule.",
+          "description": "Output only. Records of the 10 most recent scheduled execution attempts, ordered in descending order of `execution_time`. Updated whenever automatic creation of a workflow invocation is triggered by cron_schedule.",
           "items": {
             "$ref": "ScheduledExecutionRecord"
           },
@@ -4152,6 +3924,11 @@
           "$ref": "DataEncryptionState",
           "description": "Output only. Only set if the repository has a KMS Key.",
           "readOnly": true
+        },
+        "internalMetadata": {
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
+          "readOnly": true,
+          "type": "string"
         },
         "invocationConfig": {
           "$ref": "InvocationConfig",
@@ -4219,6 +3996,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "internalMetadata": {
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
+          "readOnly": true,
+          "type": "string"
+        },
         "invocationTiming": {
           "$ref": "Interval",
           "description": "Output only. This action's timing details. `start_time` will be set if the action is in [RUNNING, SUCCEEDED, CANCELLED, FAILED] state. `end_time` will be set if the action is in [SUCCEEDED, CANCELLED, FAILED] state.",
@@ -4264,10 +4046,21 @@
       "description": "Represents a Dataform Git workspace.",
       "id": "Workspace",
       "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp of when the workspace was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "dataEncryptionState": {
           "$ref": "DataEncryptionState",
           "description": "Output only. A data encryption state of a Git repository if this Workspace is protected by a KMS key.",
           "readOnly": true
+        },
+        "internalMetadata": {
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "Identifier. The workspace's name.",

@@ -1178,6 +1178,10 @@ export namespace chromemanagement_v1 {
      * Output only. Permissions of the installed app.
      */
     permissions?: string[] | null;
+    /**
+     * Output only. If available, the risk assessment data about this extension.
+     */
+    riskAssessment?: Schema$GoogleChromeManagementV1RiskAssessmentData;
   }
   /**
    * Kiosk app status report of a device. * Available for Kiosks * This field provides the app id and version number running on a kiosk device and the timestamp of when the report was last updated * Data for this field is controlled via policy: [ReportDeviceSessionStatus](https://chromeenterprise.google/policies/#ReportDeviceSessionStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_APPS_REPORT
@@ -1535,6 +1539,53 @@ export namespace chromemanagement_v1 {
      * The unique Directory API ID of the user who submitted the print job.
      */
     userId?: string | null;
+  }
+  /**
+   * Risk assessment for a Chrome extension.
+   */
+  export interface Schema$GoogleChromeManagementV1RiskAssessment {
+    /**
+     * Risk assessment for the extension. Currently, this is a numerical value, and its interpretation is specific to each risk assessment provider.
+     */
+    assessment?: string | null;
+    /**
+     * A URL that a user can navigate to for more information about the risk assessment.
+     */
+    detailsUrl?: string | null;
+    /**
+     * The version of the extension that this assessment applies to.
+     */
+    version?: string | null;
+  }
+  /**
+   * Risk assessment data about an extension/app.
+   */
+  export interface Schema$GoogleChromeManagementV1RiskAssessmentData {
+    /**
+     * Individual risk assessments.
+     */
+    entries?: Schema$GoogleChromeManagementV1RiskAssessmentEntry[];
+    /**
+     * Overall assessed risk level across all entries. This will be the highest risk level from all entries.
+     */
+    overallRiskLevel?: string | null;
+  }
+  /**
+   * One risk assessment entry.
+   */
+  export interface Schema$GoogleChromeManagementV1RiskAssessmentEntry {
+    /**
+     * The risk assessment provider from which this entry comes from.
+     */
+    provider?: string | null;
+    /**
+     * The details of the provider's risk assessment.
+     */
+    riskAssessment?: Schema$GoogleChromeManagementV1RiskAssessment;
+    /**
+     * The bucketed risk level for the risk assessment.
+     */
+    riskLevel?: string | null;
   }
   /**
    * Runtime counters retrieved from CPU. Currently the runtime counters telemetry is only supported by Intel vPro PSR on Gen 14+.
@@ -2172,6 +2223,513 @@ export namespace chromemanagement_v1 {
     justification?: string | null;
   }
   /**
+   * A certificate provisioning process.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1alpha1CertificateProvisioningProcess {
+    /**
+     * Output only. A JSON string that contains the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.
+     */
+    caConnectionAdapterConfigReference?: string | null;
+    /**
+     * Output only. The client certificate is being provisioned for a ChromeOS device. This contains information about the device.
+     */
+    chromeOsDevice?: Schema$GoogleChromeManagementVersionsV1alpha1ChromeOsDevice;
+    /**
+     * Output only. The client certificate is being provisioned for a ChromeOS user session. This contains information about the user session.
+     */
+    chromeOsUserSession?: Schema$GoogleChromeManagementVersionsV1alpha1ChromeOsUserSession;
+    /**
+     * Output only. A message describing why this `CertificateProvisioningProcess` failed. Presence of this field indicates that the `CertificateProvisioningProcess` has failed.
+     */
+    failureMessage?: string | null;
+    /**
+     * Output only. The issued certificate for this `CertificateProvisioningProcess` in PEM format.
+     */
+    issuedCertificate?: string | null;
+    /**
+     * Identifier. Resource name of the `CertificateProvisioningProcess`. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
+     */
+    name?: string | null;
+    /**
+     * Output only. A JSON string that contains the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.
+     */
+    profileAdapterConfigReference?: string | null;
+    /**
+     * Output only. The ID of the certificate provisioning profile.
+     */
+    provisioningProfileId?: string | null;
+    /**
+     * Output only. The signature of `signature_algorithm`, generated using the client's private key using `signature_algorithm`. This field is only present after the`SignData` operation has finished.
+     */
+    signature?: string | null;
+    /**
+     * Output only. The signature algorithm that the adapter expects the client and backend components to use when processing `sign_data`. This field is only present after the `SignData` operation has been initiated.
+     */
+    signatureAlgorithm?: string | null;
+    /**
+     * Output only. The data that the client was asked to sign. This field is only present after the `SignData` operation has been initiated.
+     */
+    signData?: string | null;
+    /**
+     * Output only. Server-generated timestamp of when the certificate provisioning process has been created.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The public key for which a certificate should be provisioned. Represented as a DER-encoded X.509 SubjectPublicKeyInfo.
+     */
+    subjectPublicKeyInfo?: string | null;
+  }
+  /**
+   * Describes the ChromeOS device that a `CertificateProvisioningProcess` belongs to.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1alpha1ChromeOsDevice {
+    /**
+     * Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab.
+     */
+    deviceDirectoryApiId?: string | null;
+    /**
+     * Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the ChromeOS Devices tab.
+     */
+    serialNumber?: string | null;
+  }
+  /**
+   * Describes the ChromeOS user session that a `CertificateProvisioningProcess` belongs to.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1alpha1ChromeOsUserSession {
+    /**
+     * Output only. This field contains information about the ChromeOS device that the user session is running on. It is only set if the user session is affiliated, i.e. if the user is managed by the same organization that managed the ChromeOS device.
+     */
+    chromeOsDevice?: Schema$GoogleChromeManagementVersionsV1alpha1ChromeOsDevice;
+    /**
+     * Output only. The unique Directory API ID of the user.
+     */
+    userDirectoryApiId?: string | null;
+    /**
+     * Output only. The primary e-mail address of the user.
+     */
+    userPrimaryEmail?: string | null;
+  }
+  /**
+   * Metadata for the long-running operation returned by signData.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1alpha1SignDataMetadata {
+    /**
+     * Output only. Start time of the SignData operation.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Response message for requesting a signature from the client that initated a certificate provisioning process.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1alpha1SignDataResponse {
+    /**
+     * Output only. The certificate provisioning process. The signature generated by the client will be available in the `signature` field of `CertificateProvisioningProcess`.
+     */
+    certificateProvisioningProcess?: Schema$GoogleChromeManagementVersionsV1alpha1CertificateProvisioningProcess;
+  }
+  /**
+   * Information of public key associated with a Chrome browser profile.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1AttestationCredential {
+    /**
+     * Output only. Latest rotation timestamp of the public key rotation.
+     */
+    keyRotationTime?: string | null;
+    /**
+     * Output only. Trust level of the public key.
+     */
+    keyTrustLevel?: string | null;
+    /**
+     * Output only. Type of the public key.
+     */
+    keyType?: string | null;
+    /**
+     * Output only. Value of the public key.
+     */
+    publicKey?: string | null;
+  }
+  /**
+   * A certificate provisioning process.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess {
+    /**
+     * Output only. A JSON string that contains the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.
+     */
+    caConnectionAdapterConfigReference?: string | null;
+    /**
+     * Output only. The client certificate is being provisioned for a ChromeOS device. This contains information about the device.
+     */
+    chromeOsDevice?: Schema$GoogleChromeManagementVersionsV1ChromeOsDevice;
+    /**
+     * Output only. The client certificate is being provisioned for a ChromeOS user session. This contains information about the user session.
+     */
+    chromeOsUserSession?: Schema$GoogleChromeManagementVersionsV1ChromeOsUserSession;
+    /**
+     * Output only. A message describing why this `CertificateProvisioningProcess` failed. Presence of this field indicates that the `CertificateProvisioningProcess` has failed.
+     */
+    failureMessage?: string | null;
+    /**
+     * Output only. The issued certificate for this `CertificateProvisioningProcess` in PEM format.
+     */
+    issuedCertificate?: string | null;
+    /**
+     * Identifier. Resource name of the `CertificateProvisioningProcess`. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
+     */
+    name?: string | null;
+    /**
+     * Output only. A JSON string that contains the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.
+     */
+    profileAdapterConfigReference?: string | null;
+    /**
+     * Output only. The ID of the certificate provisioning profile.
+     */
+    provisioningProfileId?: string | null;
+    /**
+     * Output only. The signature of `signature_algorithm`, generated using the client's private key using `signature_algorithm`. This field is only present after the`SignData` operation has finished.
+     */
+    signature?: string | null;
+    /**
+     * Output only. The signature algorithm that the adapter expects the client and backend components to use when processing `sign_data`. This field is only present after the `SignData` operation has been initiated.
+     */
+    signatureAlgorithm?: string | null;
+    /**
+     * Output only. The data that the client was asked to sign. This field is only present after the `SignData` operation has been initiated.
+     */
+    signData?: string | null;
+    /**
+     * Output only. Server-generated timestamp of when the certificate provisioning process has been created.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The public key for which a certificate should be provisioned. Represented as a DER-encoded X.509 SubjectPublicKeyInfo.
+     */
+    subjectPublicKeyInfo?: string | null;
+  }
+  /**
+   * A representation of a Chrome browser profile.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile {
+    /**
+     * Output only. The specific affiliation state of the profile.
+     */
+    affiliationState?: string | null;
+    /**
+     * Optional. Location of the profile annotated by the admin.
+     */
+    annotatedLocation?: string | null;
+    /**
+     * Optional. User of the profile annotated by the admin.
+     */
+    annotatedUser?: string | null;
+    /**
+     * Output only. Attestation credential information of the profile.
+     */
+    attestationCredential?: Schema$GoogleChromeManagementVersionsV1AttestationCredential;
+    /**
+     * Output only. Channel of the browser on which the profile exists.
+     */
+    browserChannel?: string | null;
+    /**
+     * Output only. Version of the browser on which the profile exists.
+     */
+    browserVersion?: string | null;
+    /**
+     * Output only. Basic information of the device on which the profile exists. This information is only available for the affiliated profiles.
+     */
+    deviceInfo?: Schema$GoogleChromeManagementVersionsV1DeviceInfo;
+    /**
+     * Output only. Profile display name set by client.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Etag of this ChromeBrowserProfile resource. This etag can be used with UPDATE operation to ensure consistency.
+     */
+    etag?: string | null;
+    /**
+     * Output only. Number of extensions installed on the profile.
+     */
+    extensionCount?: string | null;
+    /**
+     * Output only. Timestamp of the first enrollment of the profile.
+     */
+    firstEnrollmentTime?: string | null;
+    /**
+     * Output only. Identify provider of the profile.
+     */
+    identityProvider?: string | null;
+    /**
+     * Output only. Timestamp of the latest activity by the profile.
+     */
+    lastActivityTime?: string | null;
+    /**
+     * Output only. Timestamp of the latest policy fetch by the profile.
+     */
+    lastPolicyFetchTime?: string | null;
+    /**
+     * Output only. Timestamp of the latest policy sync by the profile.
+     */
+    lastPolicySyncTime?: string | null;
+    /**
+     * Output only. Timestamp of the latest status report by the profile.
+     */
+    lastStatusReportTime?: string | null;
+    /**
+     * Identifier. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}
+     */
+    name?: string | null;
+    /**
+     * Output only. OS platform of the device on which the profile exists.
+     */
+    osPlatformType?: string | null;
+    /**
+     * Output only. Major OS version of the device on which the profile exists. (i.e. Windows 10)
+     */
+    osPlatformVersion?: string | null;
+    /**
+     * Output only. OS version of the device on which the profile exists.
+     */
+    osVersion?: string | null;
+    /**
+     * Output only. Number of policies applied on the profile.
+     */
+    policyCount?: string | null;
+    /**
+     * Output only. Chrome client side profile ID.
+     */
+    profileId?: string | null;
+    /**
+     * Output only. Profile permanent ID is the unique identifier of a profile within one customer.
+     */
+    profilePermanentId?: string | null;
+    /**
+     * Output only. Detailed reporting data of the profile. This information is only available when the profile reporting policy is enabled.
+     */
+    reportingData?: Schema$GoogleChromeManagementVersionsV1ReportingData;
+    /**
+     * Output only. Email address of the user to which the profile belongs.
+     */
+    userEmail?: string | null;
+    /**
+     * Output only. Unique Directory API ID of the user that can be used in Admin SDK Users API.
+     */
+    userId?: string | null;
+  }
+  /**
+   * Describes the ChromeOS device that a `CertificateProvisioningProcess` belongs to.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ChromeOsDevice {
+    /**
+     * Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab.
+     */
+    deviceDirectoryApiId?: string | null;
+    /**
+     * Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the ChromeOS Devices tab.
+     */
+    serialNumber?: string | null;
+  }
+  /**
+   * Describes the ChromeOS user session that a `CertificateProvisioningProcess` belongs to.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ChromeOsUserSession {
+    /**
+     * Output only. This field contains information about the ChromeOS device that the user session is running on. It is only set if the user session is affiliated, i.e. if the user is managed by the same organization that managed the ChromeOS device.
+     */
+    chromeOsDevice?: Schema$GoogleChromeManagementVersionsV1ChromeOsDevice;
+    /**
+     * Output only. The unique Directory API ID of the user.
+     */
+    userDirectoryApiId?: string | null;
+    /**
+     * Output only. The primary e-mail address of the user.
+     */
+    userPrimaryEmail?: string | null;
+  }
+  /**
+   * Information of a device that runs a Chrome browser profile.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1DeviceInfo {
+    /**
+     * Output only. Device ID that identifies the affiliated device on which the profile exists. If the device type is CHROME_BROWSER, then this represents a unique Directory API ID of the device that can be used in Admin SDK Browsers API.
+     */
+    affiliatedDeviceId?: string | null;
+    /**
+     * Output only. Type of the device on which the profile exists.
+     */
+    deviceType?: string | null;
+    /**
+     * Output only. Hostname of the device on which the profile exists.
+     */
+    hostname?: string | null;
+    /**
+     * Output only. Machine name of the device on which the profile exists. On platforms which do not report the machine name (currently iOS and Android) this is instead set to the browser's device_id - but note that this is a different device_id than the |affiliated_device_id|.
+     */
+    machine?: string | null;
+  }
+  /**
+   * Response to ListChromeBrowserProfiles method.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse {
+    /**
+     * The list of profiles returned.
+     */
+    chromeBrowserProfiles?: Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile[];
+    /**
+     * The pagination token that can be used to list the next page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Total size represents an estimated number of resources returned. Not guaranteed to be accurate above 10k profiles.
+     */
+    totalSize?: string | null;
+  }
+  /**
+   * Reporting data of a Chrome browser profile.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ReportingData {
+    /**
+     * Output only. Executable path of the installed Chrome browser. A valid path is included only in affiliated profiles.
+     */
+    browserExecutablePath?: string | null;
+    /**
+     * Output only. Information of the extensions installed on the profile.
+     */
+    extensionData?: Schema$GoogleChromeManagementVersionsV1ReportingDataExtensionData[];
+    /**
+     * Output only. Information of the policies applied on the extensions.
+     */
+    extensionPolicyData?: Schema$GoogleChromeManagementVersionsV1ReportingDataExtensionPolicyData[];
+    /**
+     * Output only. Updated version of a browser, if it is different from the active browser version.
+     */
+    installedBrowserVersion?: string | null;
+    /**
+     * Output only. Information of the policies applied on the profile.
+     */
+    policyData?: Schema$GoogleChromeManagementVersionsV1ReportingDataPolicyData[];
+    /**
+     * Output only. Path of the profile. A valid path is included only in affiliated profiles.
+     */
+    profilePath?: string | null;
+  }
+  /**
+   * Information of conflicting policy applied on a Chrome browser profile.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ReportingDataConflictingPolicyData {
+    /**
+     * Output only. Source of the policy.
+     */
+    source?: string | null;
+  }
+  /**
+   * Information of an extension installed on a Chrome browser profile.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ReportingDataExtensionData {
+    /**
+     * Output only. Description of the extension.
+     */
+    description?: string | null;
+    /**
+     * Output only. ID of the extension.
+     */
+    extensionId?: string | null;
+    /**
+     * Output only. Type of the extension.
+     */
+    extensionType?: string | null;
+    /**
+     * Output only. The URL of the homepage of the extension.
+     */
+    homepageUri?: string | null;
+    /**
+     * Output only. Installation type of the extension.
+     */
+    installationType?: string | null;
+    /**
+     * Output only. Represents whether the user disabled the extension.
+     */
+    isDisabled?: boolean | null;
+    /**
+     * Output only. Represents whether the extension is from the webstore.
+     */
+    isWebstoreExtension?: boolean | null;
+    /**
+     * Output only. Manifest version of the extension.
+     */
+    manifestVersion?: number | null;
+    /**
+     * Output only. Name of the extension.
+     */
+    name?: string | null;
+    /**
+     * Output only. Permissions requested by the extension.
+     */
+    permissions?: string[] | null;
+    /**
+     * Output only. Version of the extension.
+     */
+    version?: string | null;
+  }
+  /**
+   * Information of the policies applied on an extension.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ReportingDataExtensionPolicyData {
+    /**
+     * Output only. ID of the extension.
+     */
+    extensionId?: string | null;
+    /**
+     * Output only. Name of the extension.
+     */
+    extensionName?: string | null;
+    /**
+     * Output only. Information of the policies applied on the extension.
+     */
+    policyData?: Schema$GoogleChromeManagementVersionsV1ReportingDataPolicyData[];
+  }
+  /**
+   * Information of a policy applied on a Chrome browser profile.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ReportingDataPolicyData {
+    /**
+     * Output only. Conflicting policy information.
+     */
+    conflicts?: Schema$GoogleChromeManagementVersionsV1ReportingDataConflictingPolicyData[];
+    /**
+     * Output only. Error message of the policy, if any.
+     */
+    error?: string | null;
+    /**
+     * Output only. Name of the policy.
+     */
+    name?: string | null;
+    /**
+     * Output only. Source of the policy.
+     */
+    source?: string | null;
+    /**
+     * Output only. Value of the policy.
+     */
+    value?: string | null;
+  }
+  /**
+   * Metadata for the long-running operation returned by signData.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1SignDataMetadata {
+    /**
+     * Output only. Start time of the SignData operation.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Response message for requesting a signature from the client that initated a certificate provisioning process.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1SignDataResponse {
+    /**
+     * Output only. The certificate provisioning process. The signature generated by the client will be available in the `signature` field of `CertificateProvisioningProcess`.
+     */
+    certificateProvisioningProcess?: Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
@@ -2213,11 +2771,13 @@ export namespace chromemanagement_v1 {
   export class Resource$Customers {
     context: APIRequestContext;
     apps: Resource$Customers$Apps;
+    profiles: Resource$Customers$Profiles;
     reports: Resource$Customers$Reports;
     telemetry: Resource$Customers$Telemetry;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.apps = new Resource$Customers$Apps(this.context);
+      this.profiles = new Resource$Customers$Profiles(this.context);
       this.reports = new Resource$Customers$Reports(this.context);
       this.telemetry = new Resource$Customers$Telemetry(this.context);
     }
@@ -2927,6 +3487,333 @@ export namespace chromemanagement_v1 {
      * Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
      */
     name?: string;
+  }
+
+  export class Resource$Customers$Profiles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes the data collected from a Chrome browser profile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Customers$Profiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Customers$Profiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Customers$Profiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Customers$Profiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Customers$Profiles$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Profiles$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Profiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Profiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Chrome browser profile with customer ID and profile permanent ID.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Profiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Customers$Profiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>;
+    get(
+      params: Params$Resource$Customers$Profiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Profiles$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Profiles$Get,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Profiles$Get
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Profiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Profiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists Chrome browser profiles of a customer based on the given search and sorting criteria.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Customers$Profiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Customers$Profiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>;
+    list(
+      params: Params$Resource$Customers$Profiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Profiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Profiles$List,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Profiles$List
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Profiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Profiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/profiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Profiles$Delete
+    extends StandardParameters {
+    /**
+     * Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Profiles$Get
+    extends StandardParameters {
+    /**
+     * Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Profiles$List
+    extends StandardParameters {
+    /**
+     * Optional. The filter used to filter profiles. The following fields can be used in the filter: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state - ouId Any of the above fields can be used to specify a filter, and filtering by multiple fields is supported with AND operator. String type fields and enum type fields support '=' and '!=' operators. The integer type and the timestamp type fields support '=', '!=', '<', '\>', '<=' and '\>=' operators. Timestamps expect an RFC-3339 formatted string (e.g. 2012-04-21T11:30:00-04:00). Wildcard '*' can be used with a string type field filter. In addition, string literal filtering is also supported, for example, 'ABC' as a filter maps to a filter that checks if any of the filterable string type fields contains 'ABC'. Organization unit number can be used as a filtering criteria here by specifying 'ouId = ${your_org_unit_id\}', please note that only single OU ID matching is supported.
+     */
+    filter?: string;
+    /**
+     * Optional. The fields used to specify the ordering of the results. The supported fields are: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state By default, sorting is in ascending order, to specify descending order for a field, a suffix " desc" should be added to the field name. The default ordering is the descending order of last_status_report_time.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of profiles to return. The default page size is 100 if page_size is unspecified, and the maximum page size allowed is 200.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token used to retrieve a specific page of the listing request.
+     */
+    pageToken?: string;
+    /**
+     * Required. Format: customers/{customer_id\}
+     */
+    parent?: string;
   }
 
   export class Resource$Customers$Reports {
@@ -4122,11 +5009,11 @@ export namespace chromemanagement_v1 {
      */
     customer?: string;
     /**
-     * Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name * app_id * manifest_versions
+     * Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name * app_id * manifest_versions * risk_score
      */
     filter?: string;
     /**
-     * Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * app_id * manifest_versions
+     * Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * app_id * manifest_versions * risk_score
      */
     orderBy?: string;
     /**

@@ -422,7 +422,7 @@ export namespace alertcenter_v1beta1 {
     requestInfo?: Schema$RequestInfo[];
   }
   /**
-   * Alerts from AppSettingsChanged bucket Rules configured by Admin which contain the below rules. Calendar settings changed Drive settings changed Email settings changed Mobile settings changed
+   * * Alerts from AppSettingsChanged bucket Rules configured by Admin which contain the below rules. Calendar settings changed Drive settings changed Email settings changed Mobile settings changed
    */
   export interface Schema$AppSettingsChanged {
     /**
@@ -970,7 +970,7 @@ export namespace alertcenter_v1beta1 {
     detectorName?: string | null;
   }
   /**
-   * Event occurred when primary admin changed in customer's account. The event are being received from insight forwarder
+   * * Event occurred when primary admin changed in customer's account. The event are being received from insight forwarder
    */
   export interface Schema$PrimaryAdminChangedEvent {
     /**
@@ -1150,7 +1150,7 @@ export namespace alertcenter_v1beta1 {
     notifications?: Schema$Notification[];
   }
   /**
-   * Event occurred when SSO Profile created in customer's account. The event are being received from insight forwarder
+   * * Event occurred when SSO Profile created in customer's account. The event are being received from insight forwarder
    */
   export interface Schema$SSOProfileCreatedEvent {
     /**
@@ -1159,7 +1159,7 @@ export namespace alertcenter_v1beta1 {
     inboundSsoProfileName?: string | null;
   }
   /**
-   * Event occurred when SSO Profile deleted in customer's account. The event are being received from insight forwarder
+   * * Event occurred when SSO Profile deleted in customer's account. The event are being received from insight forwarder
    */
   export interface Schema$SSOProfileDeletedEvent {
     /**
@@ -1168,7 +1168,7 @@ export namespace alertcenter_v1beta1 {
     inboundSsoProfileName?: string | null;
   }
   /**
-   * Event occurred when SSO Profile updated in customer's account. The event are being received from insight forwarder
+   * * Event occurred when SSO Profile updated in customer's account. The event are being received from insight forwarder
    */
   export interface Schema$SSOProfileUpdatedEvent {
     /**
@@ -1207,7 +1207,7 @@ export namespace alertcenter_v1beta1 {
     message?: string | null;
   }
   /**
-   * Event occurred when password was reset for super admin in customer's account. The event are being received from insight forwarder
+   * * Event occurred when password was reset for super admin in customer's account. The event are being received from insight forwarder
    */
   export interface Schema$SuperAdminPasswordResetEvent {
     /**
@@ -1339,7 +1339,7 @@ export namespace alertcenter_v1beta1 {
     emailAddress?: string | null;
   }
   /**
-   * Alerts from UserChanges bucket Rules for predefined rules which contain the below rules. Suspended user made active New user Added User suspended (by admin) User granted admin privileges User admin privileges revoked User deleted Users password changed
+   * * Alerts from UserChanges bucket Rules for predefined rules which contain the below rules. Suspended user made active New user Added User suspended (by admin) User granted admin privileges User admin privileges revoked User deleted Users password changed
    */
   export interface Schema$UserChanges {
     /**

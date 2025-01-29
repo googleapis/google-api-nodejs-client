@@ -1204,8 +1204,13 @@
                 "name"
               ],
               "parameters": {
+                "activeOnly": {
+                  "description": "Optional. If true, only metrics and monitored resource types that have recent data (within roughly 25 hours) will be included in the response. - If a metric descriptor enumerates monitored resource types, only the monitored resource types for which the metric type has recent data will be included in the returned metric descriptor, and if none of them have recent data, the metric descriptor will not be returned. - If a metric descriptor does not enumerate the compatible monitored resource types, it will be returned only if the metric type has recent data for some monitored resource type. The returned descriptor will not enumerate any monitored resource types.",
+                  "location": "query",
+                  "type": "boolean"
+                },
                 "filter": {
-                  "description": "If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the filter (https://cloud.google.com/monitoring/api/v3/filters) specifies which metric descriptors are to be returned. For example, the following filter matches all custom metrics (https://cloud.google.com/monitoring/custom-metrics): metric.type = starts_with(\"custom.googleapis.com/\") ",
+                  "description": "Optional. If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the filter (https://cloud.google.com/monitoring/api/v3/filters) specifies which metric descriptors are to be returned. For example, the following filter matches all custom metrics (https://cloud.google.com/monitoring/custom-metrics): metric.type = starts_with(\"custom.googleapis.com/\") ",
                   "location": "query",
                   "type": "string"
                 },
@@ -1217,13 +1222,13 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "A positive number that is the maximum number of results to return. The default and maximum value is 10,000. If a page_size <= 0 or > 10,000 is submitted, will instead return a maximum of 10,000 results.",
+                  "description": "Optional. A positive number that is the maximum number of results to return. The default and maximum value is 10,000. If a page_size <= 0 or > 10,000 is submitted, will instead return a maximum of 10,000 results.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.",
+                  "description": "Optional. If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.",
                   "location": "query",
                   "type": "string"
                 }
@@ -1427,7 +1432,7 @@
               ],
               "parameters": {
                 "force": {
-                  "description": "If true, the notification channel will be deleted regardless of its use in alert policies (the policies will be updated to remove the channel). If false, channels that are still referenced by an existing alerting policy will fail to be deleted in a delete operation.",
+                  "description": "If true, the notification channel will be deleted regardless of its use in alert policies (the policies will be updated to remove the channel). If false, this operation will fail if the notification channel is referenced by existing alerting policies.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -2715,7 +2720,7 @@
       }
     }
   },
-  "revision": "20240929",
+  "revision": "20250111",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2820,12 +2825,12 @@
       "type": "object"
     },
     "AlertPolicy": {
-      "description": "A description of the conditions under which some aspect of your system is considered to be \"unhealthy\" and the ways to notify people or services about this state. For an overview of alert policies, see Introduction to Alerting (https://cloud.google.com/monitoring/alerts/).",
+      "description": "A description of the conditions under which some aspect of your system is considered to be \"unhealthy\" and the ways to notify people or services about this state. For an overview of alerting policies, see Introduction to Alerting (https://cloud.google.com/monitoring/alerts/).",
       "id": "AlertPolicy",
       "properties": {
         "alertStrategy": {
           "$ref": "AlertStrategy",
-          "description": "Control over how this alert policy's notification channels are notified."
+          "description": "Control over how this alerting policy's notification channels are notified."
         },
         "combiner": {
           "description": "How to combine the results of multiple conditions to determine if an incident should be opened. If condition_time_series_query_language is present, this must be COMBINE_UNSPECIFIED.",
@@ -2882,7 +2887,7 @@
           "type": "array"
         },
         "severity": {
-          "description": "Optional. The severity of an alert policy indicates how important incidents generated by that policy are. The severity level will be displayed on the Incident detail page and in notifications.",
+          "description": "Optional. The severity of an alerting policy indicates how important incidents generated by that policy are. The severity level will be displayed on the Incident detail page and in notifications.",
           "enum": [
             "SEVERITY_UNSPECIFIED",
             "CRITICAL",
@@ -2906,7 +2911,7 @@
         },
         "validity": {
           "$ref": "Status",
-          "description": "Read-only description of how the alert policy is invalid. This field is only set when the alert policy is invalid. An invalid alert policy will not generate incidents."
+          "description": "Read-only description of how the alerting policy is invalid. This field is only set when the alerting policy is invalid. An invalid alerting policy will not generate incidents."
         }
       },
       "type": "object"
@@ -2916,7 +2921,7 @@
       "id": "AlertStrategy",
       "properties": {
         "autoClose": {
-          "description": "If an alert policy that was active has no data for this long, any open incidents will close",
+          "description": "If an alerting policy that was active has no data for this long, any open incidents will close",
           "format": "google-duration",
           "type": "string"
         },
@@ -2927,9 +2932,26 @@
           },
           "type": "array"
         },
+        "notificationPrompts": {
+          "description": "For log-based alert policies, the notification prompts is always OPENED. For non log-based alert policies, the notification prompts can be OPENED or OPENED, CLOSED.",
+          "items": {
+            "enum": [
+              "NOTIFICATION_PROMPT_UNSPECIFIED",
+              "OPENED",
+              "CLOSED"
+            ],
+            "enumDescriptions": [
+              "No strategy specified. Treated as error.",
+              "Notify when an incident is opened.",
+              "Notify when an incident is closed."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "notificationRateLimit": {
           "$ref": "NotificationRateLimit",
-          "description": "Required for log-based alert policies, i.e. policies with a LogMatch condition.This limit is not implemented for alert policies that do not have a LogMatch condition."
+          "description": "Required for log-based alerting policies, i.e. policies with a LogMatch condition.This limit is not implemented for alerting policies that do not have a LogMatch condition."
         }
       },
       "type": "object"
@@ -3256,7 +3278,7 @@
         },
         "conditionSql": {
           "$ref": "SqlCondition",
-          "description": "A condition that uses SQL to define alerts in Logs Analytics."
+          "description": "A condition that periodically evaluates a SQL query result."
         },
         "conditionThreshold": {
           "$ref": "MetricThreshold",
@@ -3417,7 +3439,7 @@
           "description": "Optional. The time of day (in UTC) at which the query should run. If left unspecified, the server picks an arbitrary time of day and runs the query at the same time each day."
         },
         "periodicity": {
-          "description": "Required. LINT.IfChange The number of days between runs. Must be greater than or equal to 1 day and less than or equal to 31 days. LINT.ThenChange(//depot/google3/cloud/monitoring/api/alerts/policy_validation.cc)",
+          "description": "Required. The number of days between runs. Must be greater than or equal to 1 day and less than or equal to 31 days.",
           "format": "int32",
           "type": "integer"
         }
@@ -3890,12 +3912,12 @@
       "id": "Hourly",
       "properties": {
         "minuteOffset": {
-          "description": "Optional. LINT.IfChange The number of minutes after the hour (in UTC) to run the query. Must be between 0 and 59 inclusive. If left unspecified, then an arbitrary offset is used. LINT.ThenChange(//depot/google3/cloud/monitoring/api/alerts/policy_validation.cc)",
+          "description": "Optional. The number of minutes after the hour (in UTC) to run the query. Must be greater than or equal to 0 minutes and less than or equal to 59 minutes. If left unspecified, then an arbitrary offset is used.",
           "format": "int32",
           "type": "integer"
         },
         "periodicity": {
-          "description": "Required. LINT.IfChange The number of hours between runs. Must be greater than or equal to 1 hour and less than or equal to 48 hours. LINT.ThenChange(//depot/google3/cloud/monitoring/api/alerts/policy_validation.cc)",
+          "description": "Required. The number of hours between runs. Must be greater than or equal to 1 hour and less than or equal to 48 hours.",
           "format": "int32",
           "type": "integer"
         }
@@ -4797,7 +4819,7 @@
       "id": "Minutes",
       "properties": {
         "periodicity": {
-          "description": "Required. LINT.IfChange Number of minutes between runs. The interval must be between 5 minutes and 1440 minutes. LINT.ThenChange(//depot/google3/cloud/monitoring/api/alerts/policy_validation.cc)",
+          "description": "Required. Number of minutes between runs. The interval must be greater than or equal to 5 minutes and less than or equal to 1440 minutes.",
           "format": "int32",
           "type": "integer"
         }
@@ -4899,7 +4921,7 @@
       "type": "object"
     },
     "MonitoringQueryLanguageCondition": {
-      "description": "A condition type that allows alert policies to be defined using Monitoring Query Language (https://cloud.google.com/monitoring/mql).",
+      "description": "A condition type that allows alerting policies to be defined using Monitoring Query Language (https://cloud.google.com/monitoring/mql).",
       "id": "MonitoringQueryLanguageCondition",
       "properties": {
         "duration": {
@@ -5108,7 +5130,7 @@
       "type": "object"
     },
     "NotificationRateLimit": {
-      "description": "Control over the rate of notifications sent to this alert policy's notification channels.",
+      "description": "Control over the rate of notifications sent to this alerting policy's notification channels.",
       "id": "NotificationRateLimit",
       "properties": {
         "period": {
@@ -5239,12 +5261,16 @@
       "type": "object"
     },
     "PrometheusQueryLanguageCondition": {
-      "description": "A condition type that allows alert policies to be defined using Prometheus Query Language (PromQL) (https://prometheus.io/docs/prometheus/latest/querying/basics/).The PrometheusQueryLanguageCondition message contains information from a Prometheus alerting rule and its associated rule group.A Prometheus alerting rule is described here (https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/). The semantics of a Prometheus alerting rule is described here (https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#rule).A Prometheus rule group is described here (https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/). The semantics of a Prometheus rule group is described here (https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#rule_group).Because Cloud Alerting has no representation of a Prometheus rule group resource, we must embed the information of the parent rule group inside each of the conditions that refer to it. We must also update the contents of all Prometheus alerts in case the information of their rule group changes.The PrometheusQueryLanguageCondition protocol buffer combines the information of the corresponding rule group and alerting rule. The structure of the PrometheusQueryLanguageCondition protocol buffer does NOT mimic the structure of the Prometheus rule group and alerting rule YAML declarations. The PrometheusQueryLanguageCondition protocol buffer may change in the future to support future rule group and/or alerting rule features. There are no new such features at the present time (2023-06-26).",
+      "description": "A condition type that allows alerting policies to be defined using Prometheus Query Language (PromQL) (https://prometheus.io/docs/prometheus/latest/querying/basics/).The PrometheusQueryLanguageCondition message contains information from a Prometheus alerting rule and its associated rule group.A Prometheus alerting rule is described here (https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/). The semantics of a Prometheus alerting rule is described here (https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#rule).A Prometheus rule group is described here (https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/). The semantics of a Prometheus rule group is described here (https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#rule_group).Because Cloud Alerting has no representation of a Prometheus rule group resource, we must embed the information of the parent rule group inside each of the conditions that refer to it. We must also update the contents of all Prometheus alerts in case the information of their rule group changes.The PrometheusQueryLanguageCondition protocol buffer combines the information of the corresponding rule group and alerting rule. The structure of the PrometheusQueryLanguageCondition protocol buffer does NOT mimic the structure of the Prometheus rule group and alerting rule YAML declarations. The PrometheusQueryLanguageCondition protocol buffer may change in the future to support future rule group and/or alerting rule features. There are no new such features at the present time (2023-06-26).",
       "id": "PrometheusQueryLanguageCondition",
       "properties": {
         "alertRule": {
           "description": "Optional. The alerting rule name of this alert in the corresponding Prometheus configuration file.Some external tools may require this field to be populated correctly in order to refer to the original Prometheus configuration file. The rule group name and the alert name are necessary to update the relevant AlertPolicies in case the definition of the rule group changes in the future.This field is optional. If this field is not empty, then it must be a valid Prometheus label name (https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels). This field may not exceed 2048 Unicode characters in length.",
           "type": "string"
+        },
+        "disableMetricValidation": {
+          "description": "Optional. Whether to disable metric existence validation for this condition.This allows alerting policies to be defined on metrics that do not yet exist, improving advanced customer workflows such as configuring alerting policies using Terraform.Users with the monitoring.alertPolicyViewer role are able to see the name of the non-existent metric in the alerting policy condition.",
+          "type": "boolean"
         },
         "duration": {
           "description": "Optional. Alerts are considered firing once their PromQL expression was evaluated to be \"true\" for this long. Alerts whose PromQL expression was not evaluated to be \"true\" for long enough are considered pending. Must be a non-negative duration or missing. This field is optional. Its default value is zero.",
@@ -5670,7 +5696,7 @@
       "type": "object"
     },
     "SqlCondition": {
-      "description": "A condition that allows alert policies to be defined using GoogleSQL. SQL conditions examine a sliding window of logs using GoogleSQL. Alert policies with SQL conditions may incur additional billing.",
+      "description": "A condition that allows alerting policies to be defined using GoogleSQL. SQL conditions examine a sliding window of logs using GoogleSQL. Alert policies with SQL conditions may incur additional billing.",
       "id": "SqlCondition",
       "properties": {
         "booleanTest": {
@@ -5690,7 +5716,7 @@
           "description": "Schedule the query to execute every so many minutes."
         },
         "query": {
-          "description": "Required. The Log Analytics SQL query to run, as a string. The query must conform to the required shape. Specifically, the query must not try to filter the input by time. A filter will automatically be applied to filter the input so that the query receives all rows received since the last time the query was run.E.g. Extract all log entries containing an HTTP request:SELECT timestamp, log_name, severity, http_request, resource, labels FROM my-project.global._Default._AllLogs WHERE http_request IS NOT NULL",
+          "description": "Required. The Log Analytics SQL query to run, as a string. The query must conform to the required shape. Specifically, the query must not try to filter the input by time. A filter will automatically be applied to filter the input so that the query receives all rows received since the last time the query was run.For example, the following query extracts all log entries containing an HTTP request: SELECT timestamp, log_name, severity, http_request, resource, labels FROM my-project.global._Default._AllLogs WHERE http_request IS NOT NULL ",
           "type": "string"
         },
         "rowCountTest": {
@@ -5787,22 +5813,22 @@
       "id": "TimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }

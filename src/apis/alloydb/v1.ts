@@ -251,6 +251,10 @@ export namespace alloydb_v1 {
      */
     state?: string | null;
     /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: ``` "123/environment": "production", "123/costCenter": "marketing" ```
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * The backup type, which suggests the trigger for the backup.
      */
     type?: string | null;
@@ -424,6 +428,10 @@ export namespace alloydb_v1 {
      */
     subscriptionType?: string | null;
     /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: ``` "123/environment": "production", "123/costCenter": "marketing" ```
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * Output only. Metadata for free trial clusters
      */
     trialMetadata?: Schema$TrialMetadata;
@@ -538,6 +546,27 @@ export namespace alloydb_v1 {
     pointInTime?: string | null;
   }
   /**
+   * Options for exporting data in CSV format.
+   */
+  export interface Schema$CsvExportOptions {
+    /**
+     * Optional. Specifies the character that should appear before a data character that needs to be escaped. The default is the same as quote character. The value of this argument has to be a character in Hex ASCII Code.
+     */
+    escapeCharacter?: string | null;
+    /**
+     * Optional. Specifies the character that separates columns within each row (line) of the file. The default is comma. The value of this argument has to be a character in Hex ASCII Code.
+     */
+    fieldDelimiter?: string | null;
+    /**
+     * Optional. Specifies the quoting character to be used when a data value is quoted. The default is double-quote. The value of this argument has to be a character in Hex ASCII Code.
+     */
+    quoteCharacter?: string | null;
+    /**
+     * Required. The SELECT query used to extract the data.
+     */
+    selectQuery?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -564,6 +593,36 @@ export namespace alloydb_v1 {
     kmsKeyVersions?: string[] | null;
   }
   /**
+   * Export cluster request.
+   */
+  export interface Schema$ExportClusterRequest {
+    /**
+     * Options for exporting data in CSV format. Required field to be set for CSV file type.
+     */
+    csvExportOptions?: Schema$CsvExportOptions;
+    /**
+     * Required. Name of the database where the export command will be executed. Note - Value provided should be the same as expected from `SELECT current_database();` and NOT as a resource reference.
+     */
+    database?: string | null;
+    /**
+     * Required. Option to export data to cloud storage.
+     */
+    gcsDestination?: Schema$GcsDestination;
+    /**
+     * Options for exporting data in SQL format. Required field to be set for SQL file type.
+     */
+    sqlExportOptions?: Schema$SqlExportOptions;
+  }
+  /**
+   * Response of export cluster rpc.
+   */
+  export interface Schema$ExportClusterResponse {
+    /**
+     * Required. Option to export data to cloud storage.
+     */
+    gcsDestination?: Schema$GcsDestination;
+  }
+  /**
    * Message for triggering failover on an Instance
    */
   export interface Schema$FailoverInstanceRequest {
@@ -575,6 +634,15 @@ export namespace alloydb_v1 {
      * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean | null;
+  }
+  /**
+   * Destination for Export. Export will be done to cloud storage.
+   */
+  export interface Schema$GcsDestination {
+    /**
+     * Required. The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form `gs://bucketName/fileName`.
+     */
+    uri?: string | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -619,19 +687,19 @@ export namespace alloydb_v1 {
    */
   export interface Schema$GoogleTypeTimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }
@@ -673,7 +741,7 @@ export namespace alloydb_v1 {
      */
     createTime?: string | null;
     /**
-     * Database flags. Set at instance level. * They are copied from primary instance on read instance creation. * Read instances can set new or override existing flags that are relevant for reads, e.g. for enabling columnar cache on a read instance. Flags set on read instance may or may not be present on primary. This is a list of "key": "value" pairs. "key": The name of the flag. These flags are passed at instance setup time, so include both server options and system variables for Postgres. Flags are specified with underscores, not hyphens. "value": The value of the flag. Booleans are set to **on** for true and **off** for false. This field must be omitted if the flag doesn't take a value.
+     * Database flags. Set at the instance level. They are copied from the primary instance on secondary instance creation. Flags that have restrictions default to the value at primary instance on read instances during creation. Read instances can set new flags or override existing flags that are relevant for reads, for example, for enabling columnar cache on a read instance. Flags set on read instance might or might not be present on the primary instance. This is a list of "key": "value" pairs. "key": The name of the flag. These flags are passed at instance setup time, so include both server options and system variables for Postgres. Flags are specified with underscores, not hyphens. "value": The value of the flag. Booleans are set to **on** for true and **off** for false. This field must be omitted if the flag doesn't take a value.
      */
     databaseFlags?: {[key: string]: string} | null;
     /**
@@ -981,19 +1049,19 @@ export namespace alloydb_v1 {
    */
   export interface Schema$Node {
     /**
-     * The identifier of the VM e.g. "test-read-0601-407e52be-ms3l".
+     * Output only. The identifier of the VM e.g. "test-read-0601-407e52be-ms3l".
      */
     id?: string | null;
     /**
-     * The private IP address of the VM e.g. "10.57.0.34".
+     * Output only. The private IP address of the VM e.g. "10.57.0.34".
      */
     ip?: string | null;
     /**
-     * Determined by state of the compute VM and postgres-service health. Compute VM state can have values listed in https://cloud.google.com/compute/docs/instances/instance-life-cycle and postgres-service health can have values: HEALTHY and UNHEALTHY.
+     * Output only. Determined by state of the compute VM and postgres-service health. Compute VM state can have values listed in https://cloud.google.com/compute/docs/instances/instance-life-cycle and postgres-service health can have values: HEALTHY and UNHEALTHY.
      */
     state?: string | null;
     /**
-     * The Compute Engine zone of the VM e.g. "us-central1-b".
+     * Output only. The Compute Engine zone of the VM e.g. "us-central1-b".
      */
     zoneId?: string | null;
   }
@@ -1039,7 +1107,7 @@ export namespace alloydb_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -1210,6 +1278,27 @@ export namespace alloydb_v1 {
      * The name of the primary cluster name with the format: * projects/{project\}/locations/{region\}/clusters/{cluster_id\}
      */
     primaryClusterName?: string | null;
+  }
+  /**
+   * Options for exporting data in SQL format.
+   */
+  export interface Schema$SqlExportOptions {
+    /**
+     * Optional. If true, output commands to DROP all the dumped database objects prior to outputting the commands for creating them.
+     */
+    cleanTargetObjects?: boolean | null;
+    /**
+     * Optional. If true, use DROP ... IF EXISTS commands to check for the object's existence before dropping it in clean_target_objects mode.
+     */
+    ifExistTargetObjects?: boolean | null;
+    /**
+     * Optional. If true, only export the schema.
+     */
+    schemaOnly?: boolean | null;
+    /**
+     * Optional. Tables to export from.
+     */
+    tables?: string[] | null;
   }
   /**
    * SSL configuration.
@@ -1438,7 +1527,7 @@ export namespace alloydb_v1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 22
+   * Common model for database resource instance metadata. Next ID: 23
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
     /**
@@ -1465,6 +1554,10 @@ export namespace alloydb_v1 {
      * Any custom metadata associated with the resource
      */
     customMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainCustomMetadataData;
+    /**
+     * Optional. Edition represents whether the instance is ENTERPRISE or ENTERPRISE_PLUS. This information is core to Cloud SQL only and is used to identify the edition of the instance.
+     */
+    edition?: string | null;
     /**
      * Entitlements associated with the resource
      */
@@ -1596,7 +1689,7 @@ export namespace alloydb_v1 {
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration {
     /**
-     * The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     * The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
      */
     cpuCount?: number | null;
     /**
@@ -1607,6 +1700,10 @@ export namespace alloydb_v1 {
      * Optional. Number of shards (if applicable).
      */
     shardCount?: number | null;
+    /**
+     * Optional. The number of vCPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     */
+    vcpuCount?: number | null;
   }
   export interface Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData {
     /**
@@ -1655,6 +1752,10 @@ export namespace alloydb_v1 {
      */
     retentionUnit?: string | null;
     timeBasedRetention?: string | null;
+    /**
+     * Timestamp based retention period i.e. 2024-05-01T00:00:00Z
+     */
+    timestampBasedRetentionTime?: string | null;
   }
   /**
    * Message type for storing tags. Tags provide a way to create annotations for resources, and in some cases conditionally allow or deny policies based on whether a resource has a specific tag.
@@ -2946,6 +3047,91 @@ export namespace alloydb_v1 {
     }
 
     /**
+     * Exports data from the cluster. Imperative only.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Clusters$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Locations$Clusters$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    export(
+      params: Params$Resource$Projects$Locations$Clusters$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Clusters$Export,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Clusters$Export,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(callback: BodyResponseCallback<Schema$Operation>): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Export
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alloydb.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Gets details of a single Cluster.
      *
      * @param params - Parameters for request
@@ -3631,6 +3817,18 @@ export namespace alloydb_v1 {
      * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Export
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the cluster.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportClusterRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Get
     extends StandardParameters {
@@ -5361,7 +5559,7 @@ export namespace alloydb_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

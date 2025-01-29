@@ -306,13 +306,75 @@ export namespace displayvideo_v3 {
     assignedTargetingOption?: Schema$AssignedTargetingOption;
   }
   /**
-   * Details of Adloox settings.
+   * Details of Adloox brand safety settings.
    */
   export interface Schema$Adloox {
     /**
-     * Adloox's brand safety settings.
+     * Optional. Adult and Explicit Sexual Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    adultExplicitSexualContent?: string | null;
+    /**
+     * Optional. Arms and Ammunition Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    armsAmmunitionContent?: string | null;
+    /**
+     * Optional. Crime and Harmful Acts Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    crimeHarmfulActsIndividualsSocietyHumanRightsViolationsContent?:
+      | string
+      | null;
+    /**
+     * Optional. Death, Injury, or Military Conflict Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    deathInjuryMilitaryConflictContent?: string | null;
+    /**
+     * Optional. Debated Sensitive Social Issue Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    debatedSensitiveSocialIssueContent?: string | null;
+    /**
+     * Optional. IAB viewability threshold for display ads.
+     */
+    displayIabViewability?: string | null;
+    /**
+     * Adloox categories to exclude.
      */
     excludedAdlooxCategories?: string[] | null;
+    /**
+     * Optional. Adloox's fraud IVT MFA categories to exclude.
+     */
+    excludedFraudIvtMfaCategories?: string[] | null;
+    /**
+     * Optional. Hate Speech and Acts of Aggression Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    hateSpeechActsAggressionContent?: string | null;
+    /**
+     * Optional. Illegal Drugs/Alcohol Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    illegalDrugsTobaccoEcigarettesVapingAlcoholContent?: string | null;
+    /**
+     * Optional. Misinformation Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    misinformationContent?: string | null;
+    /**
+     * Optional. Obscenity and Profanity Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    obscenityProfanityContent?: string | null;
+    /**
+     * Optional. Online Piracy Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    onlinePiracyContent?: string | null;
+    /**
+     * Optional. Spam or Harmful Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    spamHarmfulContent?: string | null;
+    /**
+     * Optional. Terrorism Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    terrorismContent?: string | null;
+    /**
+     * Optional. IAB viewability threshold for video ads.
+     */
+    videoIabViewability?: string | null;
   }
   /**
    * Additional URLs related to the ad, including beacons.
@@ -340,7 +402,7 @@ export namespace displayvideo_v3 {
      */
     advertiserId?: string | null;
     /**
-     * Optional. Required. Billing related settings of the advertiser.
+     * Required. Billing related settings of the advertiser.
      */
     billingConfig?: Schema$AdvertiserBillingConfig;
     /**
@@ -406,7 +468,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$AdvertiserBillingConfig {
     /**
-     * Optional. The ID of a billing profile assigned to the advertiser.
+     * Required. The ID of a billing profile assigned to the advertiser.
      */
     billingProfileId?: string | null;
   }
@@ -975,7 +1037,7 @@ export namespace displayvideo_v3 {
     userRole?: string | null;
   }
   /**
-   * Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is used as an INTERSECTION with other groups.
+   * Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is used as an INTERSECTION with other groups. NEXT_ID: 9
    */
   export interface Schema$AudienceGroupAssignedTargetingOptionDetails {
     /**
@@ -3556,7 +3618,7 @@ export namespace displayvideo_v3 {
      */
     optimizationObjective?: string | null;
     /**
-     * Required. The budget spending speed setting of the insertion order. *Warning*: Starting on **November 5, 2024**, pacing_type `PACING_TYPE_ASAP` will no longer be compatible with pacing_period `PACING_PERIOD_FLIGHT`. [Read more about this announced change](/display-video/api/deprecations#features.io_asap).
+     * Required. The budget spending speed setting of the insertion order. pacing_type `PACING_TYPE_ASAP` is not compatible with pacing_period `PACING_PERIOD_FLIGHT`.
      */
     pacing?: Schema$Pacing;
     /**
@@ -3628,7 +3690,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$IntegralAdScience {
     /**
-     * The custom segment ID provided by Integral Ad Science. The ID must be between `1000001` and `1999999`, inclusive.
+     * The custom segment ID provided by Integral Ad Science. The ID must be between `1000001` and `1999999` or `3000001` and `3999999`, inclusive.
      */
     customSegmentId?: string[] | null;
     /**
@@ -4981,7 +5043,7 @@ export namespace displayvideo_v3 {
      */
     pacingPeriod?: string | null;
     /**
-     * Required. The type of pacing that defines how the budget amount will be spent across the pacing_period. *Warning*: Starting on **November 5, 2024**, `PACING_TYPE_ASAP` will no longer be compatible with pacing_period `PACING_PERIOD_FLIGHT` for insertion orders. [Read more about this announced change](/display-video/api/deprecations#features.io_asap).
+     * Required. The type of pacing that defines how the budget amount will be spent across the pacing_period. `PACING_TYPE_ASAP` is not compatible with pacing_period `PACING_PERIOD_FLIGHT` for insertion orders.
      */
     pacingType?: string | null;
   }
@@ -18489,7 +18551,7 @@ export namespace displayvideo_v3 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `5000`. If unspecified, this value defaults to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**

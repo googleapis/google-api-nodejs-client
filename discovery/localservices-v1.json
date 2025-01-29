@@ -250,7 +250,7 @@
       }
     }
   },
-  "revision": "20240221",
+  "revision": "20241202",
   "rootUrl": "https://localservices.googleapis.com/",
   "schemas": {
     "GoogleAdsHomeservicesLocalservicesV1AccountReport": {
@@ -568,11 +568,11 @@
       "id": "GoogleTypeTimeZone",
       "properties": {
         "id": {
-          "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
+          "description": "IANA Time Zone Database time zone. For example \"America/New_York\".",
           "type": "string"
         },
         "version": {
-          "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
+          "description": "Optional. IANA Time Zone Database version number. For example \"2019a\".",
           "type": "string"
         }
       },

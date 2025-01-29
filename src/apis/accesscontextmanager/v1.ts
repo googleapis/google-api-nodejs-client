@@ -202,9 +202,9 @@ export namespace accesscontextmanager_v1 {
      */
     accessLevels?: string[] | null;
     /**
-     * Optional. Reauth settings applied to user access on a given AccessScope.
+     * Optional. Session settings applied to user access on a given AccessScope.
      */
-    reauthSettings?: Schema$ReauthSettings;
+    sessionSettings?: Schema$SessionSettings;
   }
   /**
    * Identification for an API Operation.
@@ -448,6 +448,10 @@ export namespace accesscontextmanager_v1 {
      * Defines the conditions on the ApiOperation and destination resources that cause this EgressPolicy to apply.
      */
     egressTo?: Schema$EgressTo;
+    /**
+     * Optional. Human-readable title for the egress rule. The title must be unique within the perimeter and can not exceed 100 characters. Within the access policy, the combined length of all rule titles must not exceed 240,000 characters.
+     */
+    title?: string | null;
   }
   /**
    * The source that EgressPolicy authorizes access from inside the ServicePerimeter to somewhere outside the ServicePerimeter boundaries.
@@ -457,6 +461,10 @@ export namespace accesscontextmanager_v1 {
      * An AccessLevel resource name that allows protected resources inside the ServicePerimeters to access outside the ServicePerimeter boundaries. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If an AccessLevel name is not specified, only resources within the perimeter can be accessed through Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all EgressSources will be allowed.
      */
     accessLevel?: string | null;
+    /**
+     * A Google Cloud resource that you want to allow to egress the perimeter. These resources can access data outside the perimeter. This field only supports projects. The project format is `projects/{project_number\}`. The resource can be in any Google Cloud organization, not just the organization where the perimeter is defined. You can't use `*` in this field to allow all Google Cloud resources.
+     */
+    resource?: string | null;
   }
   /**
    * Defines the conditions under which an EgressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the `resources` specified. Note that if the destination of the request is also protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed. The request must match `operations` AND `resources` fields in order to be allowed egress out of the perimeter.
@@ -521,10 +529,6 @@ export namespace accesscontextmanager_v1 {
      */
     name?: string | null;
     /**
-     * Optional. GCSL policy for the group key.
-     */
-    reauthSettings?: Schema$ReauthSettings;
-    /**
      * Optional. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.
      */
     restrictedClientApplications?: Schema$Application[];
@@ -532,9 +536,13 @@ export namespace accesscontextmanager_v1 {
      * Optional. A list of scoped access settings that set this binding's restrictions on a subset of applications. This field cannot be set if restricted_client_applications is set.
      */
     scopedAccessSettings?: Schema$ScopedAccessSettings[];
+    /**
+     * Optional. The Google Cloud session length (GCSL) policy for the group key.
+     */
+    sessionSettings?: Schema$SessionSettings;
   }
   /**
-   * Metadata of GCP Access Binding Long Running Operations.
+   * Metadata of Google Cloud Access Binding Long Running Operations.
    */
   export interface Schema$GcpUserAccessBindingOperationMetadata {}
   /**
@@ -584,6 +592,10 @@ export namespace accesscontextmanager_v1 {
      * Defines the conditions on the ApiOperation and request destination that cause this IngressPolicy to apply.
      */
     ingressTo?: Schema$IngressTo;
+    /**
+     * Optional. Human-readable title for the ingress rule. The title must be unique within the perimeter and can not exceed 100 characters. Within the access policy, the combined length of all rule titles must not exceed 240,000 characters.
+     */
+    title?: string | null;
   }
   /**
    * The source that IngressPolicy authorizes access from.
@@ -779,31 +791,6 @@ export namespace accesscontextmanager_v1 {
     version?: number | null;
   }
   /**
-   * Stores settings related to Google Cloud Session Length including session duration, the type of challenge (i.e. method) they should face when their session expires, and other related settings.
-   */
-  export interface Schema$ReauthSettings {
-    /**
-     * Optional. How long a user is allowed to take between actions before a new access token must be issued. Presently only set for Cloud Apps.
-     */
-    maxInactivity?: string | null;
-    /**
-     * Optional. Reauth method when users GCP session is up.
-     */
-    reauthMethod?: string | null;
-    /**
-     * Optional. The session length. Setting this field to zero is equal to disabling. Reauth. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param.
-     */
-    sessionLength?: string | null;
-    /**
-     * Optional. Big red button to turn off GCSL. When false, all fields set above will be disregarded and the session length is basically infinite.
-     */
-    sessionLengthEnabled?: boolean | null;
-    /**
-     * Optional. Only useful for OIDC apps. When false, the OIDC max_age param, if passed in the authentication request will be ignored. When true, the re-auth period will be the minimum of the session_length field and the max_age OIDC param.
-     */
-    useOidcMaxAge?: boolean | null;
-  }
-  /**
    * A request to replace all existing Access Levels in an Access Policy with the Access Levels provided. This is done atomically.
    */
   export interface Schema$ReplaceAccessLevelsRequest {
@@ -873,6 +860,10 @@ export namespace accesscontextmanager_v1 {
      */
     description?: string | null;
     /**
+     * Optional. An opaque identifier for the current version of the `ServicePerimeter`. This identifier does not follow any specific format. If an etag is not provided, the operation will be performed as if a valid etag is provided.
+     */
+    etag?: string | null;
+    /**
      * Identifier. Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.
      */
     name?: string | null;
@@ -925,6 +916,31 @@ export namespace accesscontextmanager_v1 {
      * Configuration for APIs allowed within Perimeter.
      */
     vpcAccessibleServices?: Schema$VpcAccessibleServices;
+  }
+  /**
+   * Stores settings related to Google Cloud Session Length including session duration, the type of challenge (i.e. method) they should face when their session expires, and other related settings.
+   */
+  export interface Schema$SessionSettings {
+    /**
+     * Optional. How long a user is allowed to take between actions before a new access token must be issued. Only set for Google Cloud apps.
+     */
+    maxInactivity?: string | null;
+    /**
+     * Optional. The session length. Setting this field to zero is equal to disabling session. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param.
+     */
+    sessionLength?: string | null;
+    /**
+     * Optional. This field enables or disables Google Cloud session length. When false, all fields set above will be disregarded and the session length is basically infinite.
+     */
+    sessionLengthEnabled?: boolean | null;
+    /**
+     * Optional. Session method when user's Google Cloud session is up.
+     */
+    sessionReauthMethod?: string | null;
+    /**
+     * Optional. Only useful for OIDC apps. When false, the OIDC max_age param, if passed in the authentication request will be ignored. When true, the re-auth period will be the minimum of the session_length field and the max_age OIDC param.
+     */
+    useOidcMaxAge?: boolean | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -3928,7 +3944,7 @@ export namespace accesscontextmanager_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4833,15 +4849,15 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Organizations$Gcpuseraccessbindings$Patch
     extends StandardParameters {
     /**
-     * Optional. This field will be used to control whether or not scoped access settings are appended to the existing list of scoped access settings. If true, the scoped access settings in the request will be appended to the existing list of scoped access settings. If false, the scoped access settings in the request replace the existing list of scoped access settings.
+     * Optional. This field controls whether or not certain repeated settings in the update request overwrite or append to existing settings on the binding. If true, then append. Otherwise overwrite. So far, only scoped_access_settings with reauth_settings supports appending. Global access_levels, access_levels in scoped_access_settings, dry_run_access_levels, reauth_settings, and session_settings are not compatible with append functionality, and the request will return an error if append=true when these settings are in the update_mask. The request will also return an error if append=true when "scoped_access_settings" is not set in the update_mask.
      */
-    appendScopedAccessSettings?: boolean;
+    append?: boolean;
     /**
      * Immutable. Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
      */
     name?: string;
     /**
-     * Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`, `reauth_settings`, `scoped_access_settings`. update_mask { paths: "access_levels" \}
+     * Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`, `reauth_settings` `session_settings`, `scoped_access_settings`. update_mask { paths: "access_levels" \}
      */
     updateMask?: string;
 

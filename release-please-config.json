@@ -304,6 +304,10 @@
     "src/apis/keep": {},
     "src/apis/css": {},
     "src/apis/oracledatabase": {},
-    "src/apis/firebasedataconnect": {}
+    "src/apis/firebasedataconnect": {},
+    "src/apis/netapp": {},
+    "src/apis/parallelstore": {},
+    "src/apis/securityposture": {},
+    "src/apis/areainsights": {}
   }
 }

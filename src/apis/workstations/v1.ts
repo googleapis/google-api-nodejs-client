@@ -181,6 +181,35 @@ export namespace workstations_v1 {
     role?: string | null;
   }
   /**
+   * A boost configuration is a set of resources that a workstation can use to increase its performance. If you specify a boost configuration, upon startup, workstation users can choose to use a VM provisioned under the boost config by passing the boost config ID in the start request. If the workstation user does not provide a boost config ID in the start request, the system will choose a VM from the pool provisioned under the default config.
+   */
+  export interface Schema$BoostConfig {
+    /**
+     * Optional. A list of the type and count of accelerator cards attached to the boost instance. Defaults to `none`.
+     */
+    accelerators?: Schema$Accelerator[];
+    /**
+     * Optional. The size of the boot disk for the VM in gigabytes (GB). The minimum boot disk size is `30` GB. Defaults to `50` GB.
+     */
+    bootDiskSizeGb?: number | null;
+    /**
+     * Optional. Whether to enable nested virtualization on boosted Cloud Workstations VMs running using this boost configuration. Defaults to false. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on boost configurations that specify a machine_type in the N1 or N2 machine series.
+     */
+    enableNestedVirtualization?: boolean | null;
+    /**
+     * Required. The ID to be used for the boost configuration.
+     */
+    id?: string | null;
+    /**
+     * Optional. The type of machine that boosted VM instances will use—for example, `e2-standard-4`. For more information about machine types that Cloud Workstations supports, see the list of [available machine types](https://cloud.google.com/workstations/docs/available-machine-types). Defaults to `e2-standard-4`.
+     */
+    machineType?: string | null;
+    /**
+     * Optional. The number of boost VMs that the system should keep idle so that workstations can be boosted quickly. Defaults to `0`.
+     */
+    poolSize?: number | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -287,6 +316,10 @@ export namespace workstations_v1 {
      */
     accelerators?: Schema$Accelerator[];
     /**
+     * Optional. A list of the boost configurations that workstations created using this workstation configuration are allowed to use. If specified, users will have the option to choose from the list of boost configs when starting a workstation.
+     */
+    boostConfigs?: Schema$BoostConfig[];
+    /**
      * Optional. The size of the boot disk for the VM in gigabytes (GB). The minimum boot disk size is `30` GB. Defaults to `50` GB.
      */
     bootDiskSizeGb?: number | null;
@@ -338,6 +371,23 @@ export namespace workstations_v1 {
      * Optional. Resource manager tags to be bound to this instance. Tag keys and values have the same definition as [resource manager tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview). Keys must be in the format `tagKeys/{tag_key_id\}`, and values are in the format `tagValues/456`.
      */
     vmTags?: {[key: string]: string} | null;
+  }
+  /**
+   * The Compute Engine instance host.
+   */
+  export interface Schema$GceInstanceHost {
+    /**
+     * Optional. Output only. The ID of the Compute Engine instance.
+     */
+    id?: string | null;
+    /**
+     * Optional. Output only. The name of the Compute Engine instance.
+     */
+    name?: string | null;
+    /**
+     * Optional. Output only. The zone of the Compute Engine instance.
+     */
+    zone?: string | null;
   }
   /**
    * An EphemeralDirectory is backed by a Compute Engine persistent disk.
@@ -640,7 +690,7 @@ export namespace workstations_v1 {
     verb?: string | null;
   }
   /**
-   * A directory to persist across workstation sessions.
+   * A directory to persist across workstation sessions. Updates to this field will not update existing workstations and will only take effect on new workstations.
    */
   export interface Schema$PersistentDirectory {
     /**
@@ -721,6 +771,15 @@ export namespace workstations_v1 {
     port?: number | null;
   }
   /**
+   * Runtime host for the workstation.
+   */
+  export interface Schema$RuntimeHost {
+    /**
+     * Specifies a Compute Engine instance as the host.
+     */
+    gceInstanceHost?: Schema$GceInstanceHost;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -737,6 +796,10 @@ export namespace workstations_v1 {
    * Request message for StartWorkstation.
    */
   export interface Schema$StartWorkstationRequest {
+    /**
+     * Optional. If set, the workstation starts using the boost configuration with the specified ID.
+     */
+    boostConfig?: string | null;
     /**
      * Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.
      */
@@ -843,6 +906,14 @@ export namespace workstations_v1 {
      */
     reconciling?: boolean | null;
     /**
+     * Optional. Output only. Runtime host for the workstation when in STATE_RUNNING.
+     */
+    runtimeHost?: Schema$RuntimeHost;
+    /**
+     * Optional. The source workstation from which this workstation's persistent directories were cloned on creation.
+     */
+    sourceWorkstation?: string | null;
+    /**
      * Output only. Time when this workstation was most recently successfully started, regardless of the workstation's initial state.
      */
     startTime?: string | null;
@@ -923,6 +994,10 @@ export namespace workstations_v1 {
      * Immutable. Name of the Compute Engine subnetwork in which instances associated with this workstation cluster will be created. Must be part of the subnetwork specified for this workstation cluster.
      */
     subnetwork?: string | null;
+    /**
+     * Optional. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
     /**
      * Output only. A system-assigned unique identifier for this workstation cluster.
      */
@@ -1277,7 +1352,7 @@ export namespace workstations_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3372,7 +3447,7 @@ export namespace workstations_v1 {
     }
 
     /**
-     * Returns a short-lived credential that can be used to send authenticated and authorized traffic to a workstation.
+     * Returns a short-lived credential that can be used to send authenticated and authorized traffic to a workstation. Once generated this token cannot be revoked and is good for the lifetime of the token.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

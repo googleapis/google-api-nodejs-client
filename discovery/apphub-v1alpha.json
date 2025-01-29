@@ -412,7 +412,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. The resource name of an Application. Format: \"projects/{host-project-id}/locations/{location}/applications/{application-id}\"",
+                      "description": "Identifier. The resource name of an Application. Format: `\"projects/{host-project-id}/locations/{location}/applications/{application-id}\"`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/applications/[^/]+$",
                       "required": true,
@@ -650,7 +650,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Identifier. The resource name of a Service. Format: \"projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}\"",
+                          "description": "Identifier. The resource name of a Service. Format: `\"projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}\"`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/applications/[^/]+/services/[^/]+$",
                           "required": true,
@@ -832,7 +832,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Identifier. The resource name of the Workload. Format: \"projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}\"",
+                          "description": "Identifier. The resource name of the Workload. Format: `\"projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}\"`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/applications/[^/]+/workloads/[^/]+$",
                           "required": true,
@@ -1170,7 +1170,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "apphub.projects.locations.operations.cancel",
@@ -1438,11 +1438,11 @@
       }
     }
   },
-  "revision": "20240417",
+  "revision": "20250115",
   "rootUrl": "https://apphub.googleapis.com/",
   "schemas": {
     "Application": {
-      "description": "Application defines the governance boundary for App Hub Entities that perform a logical end-to-end business function. App Hub supports application level IAM permission to align with governance requirements.",
+      "description": "Application defines the governance boundary for App Hub entities that perform a logical end-to-end business function. App Hub supports application level IAM permission to align with governance requirements.",
       "id": "Application",
       "properties": {
         "attributes": {
@@ -1464,7 +1464,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of an Application. Format: \"projects/{host-project-id}/locations/{location}/applications/{application-id}\"",
+          "description": "Identifier. The resource name of an Application. Format: `\"projects/{host-project-id}/locations/{location}/applications/{application-id}\"`",
           "type": "string"
         },
         "scope": {
@@ -1692,11 +1692,11 @@
       "type": "object"
     },
     "DiscoveredService": {
-      "description": "DiscoveredService is a network/api interface that exposes some functionality to clients for consumption over the network. A discovered service can be registered to a App Hub service.",
+      "description": "DiscoveredService is a network or API interface that exposes some functionality to clients for consumption over the network. A discovered service can be registered to a App Hub service.",
       "id": "DiscoveredService",
       "properties": {
         "name": {
-          "description": "Identifier. The resource name of the discovered service. Format: \"projects/{host-project-id}/locations/{location}/discoveredServices/{uuid}\"\"",
+          "description": "Identifier. The resource name of the discovered service. Format: `\"projects/{host-project-id}/locations/{location}/discoveredServices/{uuid}\"`",
           "type": "string"
         },
         "serviceProperties": {
@@ -1717,7 +1717,7 @@
       "id": "DiscoveredWorkload",
       "properties": {
         "name": {
-          "description": "Identifier. The resource name of the discovered workload. Format: \"projects/{host-project-id}/locations/{location}/discoveredWorkloads/{uuid}\"",
+          "description": "Identifier. The resource name of the discovered workload. Format: `\"projects/{host-project-id}/locations/{location}/discoveredWorkloads/{uuid}\"`",
           "type": "string"
         },
         "workloadProperties": {
@@ -2152,7 +2152,7 @@
           "type": "string"
         },
         "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2213,11 +2213,13 @@
           "description": "Required. Scope Type.",
           "enum": [
             "TYPE_UNSPECIFIED",
-            "REGIONAL"
+            "REGIONAL",
+            "GLOBAL"
           ],
           "enumDescriptions": [
             "Unspecified type.",
-            "Regional type."
+            "Regional type.",
+            "Global type."
           ],
           "type": "string"
         }
@@ -2225,7 +2227,7 @@
       "type": "object"
     },
     "Service": {
-      "description": "Service is an App Hub data model that contains a discovered service, which represents a network/api interface that exposes some functionality to clients for consumption over the network.",
+      "description": "Service is an App Hub data model that contains a discovered service, which represents a network or API interface that exposes some functionality to clients for consumption over the network.",
       "id": "Service",
       "properties": {
         "attributes": {
@@ -2251,7 +2253,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of a Service. Format: \"projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}\"",
+          "description": "Identifier. The resource name of a Service. Format: `\"projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}\"`",
           "type": "string"
         },
         "serviceProperties": {
@@ -2308,11 +2310,11 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of a ServiceProjectAttachment. Format: \"projects/{host-project-id}/locations/global/serviceProjectAttachments/{service-project-id}.\"",
+          "description": "Identifier. The resource name of a ServiceProjectAttachment. Format: `\"projects/{host-project-id}/locations/global/serviceProjectAttachments/{service-project-id}.\"`",
           "type": "string"
         },
         "serviceProject": {
-          "description": "Required. Immutable. Service project name in the format: \"projects/abc\" or \"projects/123\". As input, project name with either project id or number are accepted. As output, this field will contain project number.",
+          "description": "Required. Immutable. Service project name in the format: `\"projects/abc\"` or `\"projects/123\"`. As input, project name with either project id or number are accepted. As output, this field will contain project number.",
           "type": "string"
         },
         "state": {
@@ -2372,7 +2374,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "Output only. The underlying resource URI (For example, URI of Forwarding Rule, URL Map, and Backend Service).",
+          "description": "Output only. The underlying resource URI. For example, URI of Forwarding Rule, URL Map, and Backend Service.",
           "readOnly": true,
           "type": "string"
         }
@@ -2477,7 +2479,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the Workload. Format: \"projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}\"",
+          "description": "Identifier. The resource name of the Workload. Format: `\"projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}\"`",
           "type": "string"
         },
         "state": {
@@ -2528,17 +2530,17 @@
       "id": "WorkloadProperties",
       "properties": {
         "gcpProject": {
-          "description": "Output only. The service project identifier that the underlying cloud resource resides in. Empty for non cloud resources.",
+          "description": "Output only. The service project identifier that the underlying cloud resource resides in. Empty for non-cloud resources.",
           "readOnly": true,
           "type": "string"
         },
         "location": {
-          "description": "Output only. The location that the underlying compute resource resides in (e.g us-west1).",
+          "description": "Output only. The location that the underlying compute resource resides in (for example, us-west1).",
           "readOnly": true,
           "type": "string"
         },
         "zone": {
-          "description": "Output only. The location that the underlying compute resource resides in if it is zonal (e.g us-west1-a).",
+          "description": "Output only. The location that the underlying compute resource resides in if it is zonal (for example, us-west1-a).",
           "readOnly": true,
           "type": "string"
         }

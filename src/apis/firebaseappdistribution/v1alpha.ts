@@ -175,6 +175,14 @@ export namespace firebaseappdistribution_v1alpha {
      * A goal to be accomplished by the AI
      */
     goal?: string | null;
+    /**
+     * Optional. Hint text containing suggestions to help the agent accomplish the goal
+     */
+    hint?: string | null;
+    /**
+     * Optional. A description of criteria the agent should use to determine if the goal has been successfully completed
+     */
+    successCriteria?: string | null;
   }
   /**
    * Captures the results of an AiStep
@@ -197,6 +205,9 @@ export namespace firebaseappdistribution_v1alpha {
      */
     step?: Schema$GoogleFirebaseAppdistroV1alphaAiStep;
   }
+  /**
+   * An app.
+   */
   export interface Schema$GoogleFirebaseAppdistroV1alphaApp {
     /**
      * App bundle test certificate generated for the app.
@@ -261,12 +272,18 @@ export namespace firebaseappdistribution_v1alpha {
    * The (empty) response message for `CancelReleaseTest`.
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse {}
+  /**
+   * The request message for `CreateReleaseNotes`.
+   */
   export interface Schema$GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest {
     /**
      * The actual release notes body from the user
      */
     releaseNotes?: Schema$GoogleFirebaseAppdistroV1alphaReleaseNotes;
   }
+  /**
+   * The response message for `CreateReleaseNotes`.
+   */
   export interface Schema$GoogleFirebaseAppdistroV1alphaCreateReleaseNotesResponse {}
   /**
    * A high level action taken by the AI on the device, potentially involving multiple taps, text entries, waits, etc.
@@ -335,6 +352,10 @@ export namespace firebaseappdistribution_v1alpha {
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaDeviceInteraction {
     /**
+     * Output only. Key code for a key event action.
+     */
+    keyCode?: string | null;
+    /**
      * Output only. The screenshot used in the context of this action. The screen may have changed before the action was actually taken.
      */
     screenshot?: Schema$GoogleFirebaseAppdistroV1alphaScreenshot;
@@ -377,6 +398,9 @@ export namespace firebaseappdistribution_v1alpha {
      */
     duration?: string | null;
   }
+  /**
+   * The request message for `EnableAccessOnRelease`.
+   */
   export interface Schema$GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseRequest {
     /**
      * Optional. Ignored. Used to be build version of the app release if an instance identifier was provided for the release_id.
@@ -395,6 +419,9 @@ export namespace firebaseappdistribution_v1alpha {
      */
     groupIds?: string[] | null;
   }
+  /**
+   * The response message for `EnableAccessOnRelease`.
+   */
   export interface Schema$GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseResponse {}
   /**
    * Response object to get the release given a upload hash
@@ -414,6 +441,9 @@ export namespace firebaseappdistribution_v1alpha {
      */
     testerUdids?: Schema$GoogleFirebaseAppdistroV1alphaTesterUdid[];
   }
+  /**
+   * The response message for `GetUploadStatus`.
+   */
   export interface Schema$GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse {
     /**
      * The error code associated with (only set on "FAILURE")
@@ -437,6 +467,10 @@ export namespace firebaseappdistribution_v1alpha {
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaGoalAction {
     /**
+     * Output only. Debug information explaining why the agent to the specific action
+     */
+    debugInfo?: Schema$GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo;
+    /**
      * Output only. A high level action taken by the AI on the device.
      */
     deviceAction?: Schema$GoogleFirebaseAppdistroV1alphaDeviceAction;
@@ -450,6 +484,19 @@ export namespace firebaseappdistribution_v1alpha {
     terminalAction?: Schema$GoogleFirebaseAppdistroV1alphaTerminalAction;
   }
   /**
+   * Information to help the customer understand why the agent took this action
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo {
+    /**
+     * Output only. URI of the screenshot with elements labeled which was used by the agent
+     */
+    annotatedScreenshotUri?: string | null;
+    /**
+     * Output only. Structured data explaining the agent's choice
+     */
+    jsonUri?: string | null;
+  }
+  /**
    * Details for a goal step.
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaGoalDetails {
@@ -458,7 +505,13 @@ export namespace firebaseappdistribution_v1alpha {
      */
     goalActions?: Schema$GoogleFirebaseAppdistroV1alphaGoalAction[];
   }
+  /**
+   * A JWT token.
+   */
   export interface Schema$GoogleFirebaseAppdistroV1alphaJwt {
+    /**
+     * The JWT token (three Base64URL-encoded strings joined by dots).
+     */
     token?: string | null;
   }
   /**
@@ -473,6 +526,19 @@ export namespace firebaseappdistribution_v1alpha {
      * The tests listed.
      */
     releaseTests?: Schema$GoogleFirebaseAppdistroV1alphaReleaseTest[];
+  }
+  /**
+   * The response message for `ListTestCases`.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaListTestCasesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The test cases from the specified app.
+     */
+    testCases?: Schema$GoogleFirebaseAppdistroV1alphaTestCase[];
   }
   /**
    * Login credential for automated tests
@@ -508,6 +574,9 @@ export namespace firebaseappdistribution_v1alpha {
      */
     usernameResourceName?: string | null;
   }
+  /**
+   * The response message for `ProvisionApp`.
+   */
   export interface Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse {}
   /**
    * Proto defining a release object
@@ -558,7 +627,13 @@ export namespace firebaseappdistribution_v1alpha {
      */
     testerWithInstallCount?: number | null;
   }
+  /**
+   * Release notes for a release.
+   */
   export interface Schema$GoogleFirebaseAppdistroV1alphaReleaseNotes {
+    /**
+     * The actual release notes text from the user.
+     */
     releaseNotes?: string | null;
   }
   /**
@@ -578,6 +653,10 @@ export namespace firebaseappdistribution_v1alpha {
      */
     deviceExecutions?: Schema$GoogleFirebaseAppdistroV1alphaDeviceExecution[];
     /**
+     * Optional. Display name of the release test. Required if the release test is created with multiple goals.
+     */
+    displayName?: string | null;
+    /**
      * Optional. Input only. Login credentials for the test. Input only.
      */
     loginCredential?: Schema$GoogleFirebaseAppdistroV1alphaLoginCredential;
@@ -585,6 +664,10 @@ export namespace firebaseappdistribution_v1alpha {
      * The name of the release test resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}/tests/{test_id\}`
      */
     name?: string | null;
+    /**
+     * Optional. The test case that was used to generate this release test. Note: The test case may have changed or been deleted since the release test was created. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
+     */
+    testCase?: string | null;
     /**
      * Output only. The state of the release test.
      */
@@ -655,9 +738,34 @@ export namespace firebaseappdistribution_v1alpha {
     screenshot?: Schema$GoogleFirebaseAppdistroV1alphaScreenshot;
   }
   /**
+   * AI test cases
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaTestCase {
+    /**
+     * Optional. Instructions for AI driven test.
+     */
+    aiInstructions?: Schema$GoogleFirebaseAppdistroV1alphaAiInstructions;
+    /**
+     * Output only. Timestamp when the test case was created
+     */
+    createTime?: string | null;
+    /**
+     * Required. Display name of the test case.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The name of the test case resource. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     */
+    name?: string | null;
+  }
+  /**
    * Configuration for automated tests
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaTestConfig {
+    /**
+     * Optional. Display name of the AI driven test. Required if the release test is created with multiple goals.
+     */
+    displayName?: string | null;
     /**
      * Identifier. The name of the test configuration resource. Format: `projects/{project_number\}/apps/{app_id\}/testConfig`
      */
@@ -772,6 +880,10 @@ export namespace firebaseappdistribution_v1alpha {
      */
     result?: string | null;
   }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$GoogleProtobufEmpty {}
 
   export class Resource$Apps {
     context: APIRequestContext;
@@ -1714,9 +1826,11 @@ export namespace firebaseappdistribution_v1alpha {
   export class Resource$Projects$Apps {
     context: APIRequestContext;
     releases: Resource$Projects$Apps$Releases;
+    testCases: Resource$Projects$Apps$Testcases;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.releases = new Resource$Projects$Apps$Releases(this.context);
+      this.testCases = new Resource$Projects$Apps$Testcases(this.context);
     }
 
     /**
@@ -2383,6 +2497,550 @@ export namespace firebaseappdistribution_v1alpha {
      * Required. The name of the release resource, which is the parent of the tests Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
      */
     parent?: string;
+    /**
+     * Optional. The requested view on the returned ReleaseTests. Defaults to the basic view.
+     */
+    view?: string;
+  }
+
+  export class Resource$Projects$Apps$Testcases {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a new test case.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Apps$Testcases$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Apps$Testcases$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaTestCase>;
+    create(
+      params: Params$Resource$Projects$Apps$Testcases$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Apps$Testcases$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Apps$Testcases$Create,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Testcases$Create
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Testcases$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Testcases$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/testCases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaTestCase>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaTestCase>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Delete a test case.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Apps$Testcases$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Apps$Testcases$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Apps$Testcases$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Apps$Testcases$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Apps$Testcases$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Testcases$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Testcases$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Testcases$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Get a test case.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Apps$Testcases$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Apps$Testcases$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaTestCase>;
+    get(
+      params: Params$Resource$Projects$Apps$Testcases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Apps$Testcases$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Apps$Testcases$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Testcases$Get
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Testcases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Testcases$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaTestCase>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaTestCase>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * List test cases.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Apps$Testcases$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Apps$Testcases$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaListTestCasesResponse>;
+    list(
+      params: Params$Resource$Projects$Apps$Testcases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Apps$Testcases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaListTestCasesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaListTestCasesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Apps$Testcases$List,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaListTestCasesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaListTestCasesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Testcases$List
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaListTestCasesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaListTestCasesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaListTestCasesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaListTestCasesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Testcases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Testcases$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/testCases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaListTestCasesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaListTestCasesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a test case.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Apps$Testcases$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Apps$Testcases$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaTestCase>;
+    patch(
+      params: Params$Resource$Projects$Apps$Testcases$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Apps$Testcases$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Apps$Testcases$Patch,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Testcases$Patch
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaTestCase>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Testcases$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Testcases$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaTestCase>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaTestCase>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Apps$Testcases$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this test case will be created. Format: `projects/{project_number\}/apps/{app_id\}`
+     */
+    parent?: string;
+    /**
+     * Optional. The ID to use for the test case, which will become the final component of the test case's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     */
+    testCaseId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppdistroV1alphaTestCase;
+  }
+  export interface Params$Resource$Projects$Apps$Testcases$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the test case resource to delete. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Apps$Testcases$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the test case resource to retrieve. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Apps$Testcases$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of test cases to return. The service may return fewer than this value. If unspecified, at most 50 test cases will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListTestCases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTestCases` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource from which to list test cases. Format: `projects/{project_number\}/apps/{app_id\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Apps$Testcases$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The name of the test case resource. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppdistroV1alphaTestCase;
   }
 
   export class Resource$Projects$Testers {

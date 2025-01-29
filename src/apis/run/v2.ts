@@ -133,7 +133,7 @@ export namespace run_v2 {
      */
     breakglassJustification?: string | null;
     /**
-     * Optional. The path to a binary authorization policy. Format: projects/{project\}/platforms/cloudRun/{policy-name\}
+     * Optional. The path to a binary authorization policy. Format: `projects/{project\}/platforms/cloudRun/{policy-name\}`
      */
     policy?: string | null;
     /**
@@ -142,11 +142,65 @@ export namespace run_v2 {
     useDefault?: boolean | null;
   }
   /**
+   * Describes the Build step of the function that builds a container from the given source.
+   */
+  export interface Schema$GoogleCloudRunV2BuildConfig {
+    /**
+     * Optional. The base image used to build the function.
+     */
+    baseImage?: string | null;
+    /**
+     * Optional. Sets whether the function will receive automatic base image updates.
+     */
+    enableAutomaticUpdates?: boolean | null;
+    /**
+     * Optional. User-provided build-time environment variables for the function
+     */
+    environmentVariables?: {[key: string]: string} | null;
+    /**
+     * Optional. The name of the function (as defined in source code) that will be executed. Defaults to the resource name suffix, if not specified. For backward compatibility, if function with given name is not found, then the system will try to use function named "function".
+     */
+    functionTarget?: string | null;
+    /**
+     * Optional. Artifact Registry URI to store the built image.
+     */
+    imageUri?: string | null;
+    /**
+     * Output only. The Cloud Build name of the latest successful deployment of the function.
+     */
+    name?: string | null;
+    /**
+     * Optional. Service account to be used for building the container. The format of this field is `projects/{projectId\}/serviceAccounts/{serviceAccountEmail\}`.
+     */
+    serviceAccount?: string | null;
+    /**
+     * The Cloud Storage bucket URI where the function source code is located.
+     */
+    sourceLocation?: string | null;
+    /**
+     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the Cloud Run function. The format of this field is `projects/{project\}/locations/{region\}/workerPools/{workerPool\}` where {project\} and {region\} are the project id and region respectively where the worker pool is defined and {workerPool\} is the short name of the worker pool.
+     */
+    workerPool?: string | null;
+  }
+  /**
+   * Build information of the image.
+   */
+  export interface Schema$GoogleCloudRunV2BuildInfo {
+    /**
+     * Output only. Entry point of the function when the image is a Cloud Run function.
+     */
+    functionTarget?: string | null;
+    /**
+     * Output only. Source code location of the image.
+     */
+    sourceLocation?: string | null;
+  }
+  /**
    * Build the source using Buildpacks.
    */
   export interface Schema$GoogleCloudRunV2BuildpacksBuild {
     /**
-     * Optional. The base image used to opt into automatic base image updates.
+     * Optional. The base image to use for the build.
      */
     baseImage?: string | null;
     /**
@@ -165,6 +219,10 @@ export namespace run_v2 {
      * Optional. Name of the function target if the source is a function source. Required for function builds.
      */
     functionTarget?: string | null;
+    /**
+     * Optional. project_descriptor stores the path to the project descriptor file. When empty, it means that there is no project descriptor file in the source.
+     */
+    projectDescriptor?: string | null;
     /**
      * The runtime name, e.g. 'go113'. Leave blank for generic builds.
      */
@@ -237,6 +295,14 @@ export namespace run_v2 {
      * Arguments to the entrypoint. The docker image's CMD is used if this is not provided.
      */
     args?: string[] | null;
+    /**
+     * Base image for this container. Only supported for services. If set. it indicates that the service is enrolled into automatic base image update.
+     */
+    baseImageUri?: string | null;
+    /**
+     * Output only. The build info of the container image.
+     */
+    buildInfo?: Schema$GoogleCloudRunV2BuildInfo;
     /**
      * Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided.
      */
@@ -383,6 +449,10 @@ export namespace run_v2 {
      * Output only. Represents time when the execution was acknowledged by the execution controller. It is not guaranteed to be set in happens-before order across separate operations.
      */
     createTime?: string | null;
+    /**
+     * Output only. Email address of the authenticated creator.
+     */
+    creator?: string | null;
     /**
      * Output only. For a deleted resource, the deletion time. It is only populated as a response to a Delete request.
      */
@@ -565,6 +635,10 @@ export namespace run_v2 {
      * Cloud Storage Bucket name.
      */
     bucket?: string | null;
+    /**
+     * A list of additional flags to pass to the gcsfuse CLI. Options should be specified without the leading "--".
+     */
+    mountOptions?: string[] | null;
     /**
      * If true, the volume will be mounted as read only for all mounts.
      */
@@ -1099,6 +1173,14 @@ export namespace run_v2 {
      */
     encryptionKey?: string | null;
     /**
+     * Optional. The action to take if the encryption key is revoked.
+     */
+    encryptionKeyRevocationAction?: string | null;
+    /**
+     * Optional. If encryption_key_revocation_action is SHUTDOWN, the duration before shutting down all instances. The minimum increment is 1 hour.
+     */
+    encryptionKeyShutdownDuration?: string | null;
+    /**
      * Optional. The sandbox environment to host this Revision.
      */
     executionEnvironment?: string | null;
@@ -1111,7 +1193,7 @@ export namespace run_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Sets the maximum number of requests that each serving instance can receive. If not specified or 0, defaults to 80 when requested CPU \>= 1 and defaults to 1 when requested CPU < 1.
+     * Optional. Sets the maximum number of requests that each serving instance can receive. If not specified or 0, concurrency defaults to 80 when requested `CPU \>= 1` and defaults to 1 when requested `CPU < 1`.
      */
     maxInstanceRequestConcurrency?: number | null;
     /**
@@ -1186,7 +1268,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2SecretVolumeSource {
     /**
-     * Integer representation of mode bits to use on created files by default. Must be a value between 0000 and 0777 (octal), defaulting to 0444. Directories within the path are not affected by this setting. Notes * Internally, a umask of 0222 will be applied to any non-zero value. * This is an integer representation of the mode bits. So, the octal integer value should look exactly as the chmod numeric notation with a leading zero. Some examples: for chmod 777 (a=rwx), set to 0777 (octal) or 511 (base-10). For chmod 640 (u=rw,g=r), set to 0640 (octal) or 416 (base-10). For chmod 755 (u=rwx,g=rx,o=rx), set to 0755 (octal) or 493 (base-10). * This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. This might be in conflict with other options that affect the file mode, like fsGroup, and as a result, other mode bits could be set.
+     * Integer representation of mode bits to use on created files by default. Must be a value between 0000 and 0777 (octal), defaulting to 0444. Directories within the path are not affected by this setting. Notes * Internally, a umask of 0222 will be applied to any non-zero value. * This is an integer representation of the mode bits. So, the octal integer value should look exactly as the chmod numeric notation with a leading zero. Some examples: for chmod 640 (u=rw,g=r), set to 0640 (octal) or 416 (base-10). For chmod 755 (u=rwx,g=rx,o=rx), set to 0755 (octal) or 493 (base-10). * This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. This might be in conflict with other options that affect the file mode, like fsGroup, and as a result, other mode bits could be set.
      */
     defaultMode?: number | null;
     /**
@@ -1210,6 +1292,10 @@ export namespace run_v2 {
      * Optional. Settings for the Binary Authorization feature.
      */
     binaryAuthorization?: Schema$GoogleCloudRunV2BinaryAuthorization;
+    /**
+     * Optional. Configuration for building a Cloud Run function.
+     */
+    buildConfig?: Schema$GoogleCloudRunV2BuildConfig;
     /**
      * Arbitrary identifier for the API client.
      */
@@ -1263,7 +1349,7 @@ export namespace run_v2 {
      */
     ingress?: string | null;
     /**
-     * Optional. Disables IAM permission check for run.routes.invoke for callers of this service. This setting should not be used with external ingress.
+     * Optional. Disables IAM permission check for run.routes.invoke for callers of this service. This feature is available by invitation only. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      */
     invokerIamDisabled?: boolean | null;
     /**
@@ -1344,7 +1430,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2ServiceMesh {
     /**
-     * The Mesh resource name. Format: projects/{project\}/locations/global/meshes/{mesh\}, where {project\} can be project id or number.
+     * The Mesh resource name. Format: `projects/{project\}/locations/global/meshes/{mesh\}`, where `{project\}` can be project id or number.
      */
     mesh?: string | null;
   }
@@ -1352,6 +1438,14 @@ export namespace run_v2 {
    * Scaling settings applied at the service level rather than at the revision level.
    */
   export interface Schema$GoogleCloudRunV2ServiceScaling {
+    /**
+     * Optional. total instance count for the service in manual scaling mode. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving.
+     */
+    manualInstanceCount?: number | null;
+    /**
+     * Optional. total max instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving.
+     */
+    maxInstanceCount?: number | null;
     /**
      * Optional. total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving.
      */
@@ -1407,7 +1501,7 @@ export namespace run_v2 {
      */
     tags?: string[] | null;
     /**
-     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project\}/locations/{region\}/workerPools/{workerPool\}` where {project\} and {region\} are the project id and region respectively where the worker pool is defined and {workerPool\} is the short name of the worker pool.
+     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project\}/locations/{region\}/workerPools/{workerPool\}` where `{project\}` and `{region\}` are the project id and region respectively where the worker pool is defined and `{workerPool\}` is the short name of the worker pool.
      */
     workerPool?: string | null;
   }
@@ -1667,7 +1761,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2VersionToPath {
     /**
-     * Integer octal mode bits to use on this file, must be a value between 01 and 0777 (octal). If 0 or not set, the Volume's default mode will be used. Notes * Internally, a umask of 0222 will be applied to any non-zero value. * This is an integer representation of the mode bits. So, the octal integer value should look exactly as the chmod numeric notation with a leading zero. Some examples: for chmod 777 (a=rwx), set to 0777 (octal) or 511 (base-10). For chmod 640 (u=rw,g=r), set to 0640 (octal) or 416 (base-10). For chmod 755 (u=rwx,g=rx,o=rx), set to 0755 (octal) or 493 (base-10). * This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+     * Integer octal mode bits to use on this file, must be a value between 01 and 0777 (octal). If 0 or not set, the Volume's default mode will be used. Notes * Internally, a umask of 0222 will be applied to any non-zero value. * This is an integer representation of the mode bits. So, the octal integer value should look exactly as the chmod numeric notation with a leading zero. Some examples: for chmod 640 (u=rw,g=r), set to 0640 (octal) or 416 (base-10). For chmod 755 (u=rwx,g=rx,o=rx), set to 0755 (octal) or 493 (base-10). * This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
      */
     mode?: number | null;
     /**
@@ -1726,7 +1820,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2VpcAccess {
     /**
-     * VPC Access connector name. Format: projects/{project\}/locations/{location\}/connectors/{connector\}, where {project\} can be project id or number. For more information on sending traffic to a VPC network via a connector, visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
+     * VPC Access connector name. Format: `projects/{project\}/locations/{location\}/connectors/{connector\}`, where `{project\}` can be project id or number. For more information on sending traffic to a VPC network via a connector, visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
      */
     connector?: string | null;
     /**
@@ -1793,6 +1887,10 @@ export namespace run_v2 {
    * Artifacts produced by a build that should be uploaded upon successful completion of all build steps.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1Artifacts {
+    /**
+     * Optional. A list of Go modules to be uploaded to Artifact Registry upon successful completion of all build steps. If any objects fail to be pushed, the build is marked FAILURE.
+     */
+    goModules?: Schema$GoogleDevtoolsCloudbuildV1GoModule[];
     /**
      * A list of images to be pushed upon the successful completion of all build steps. The images will be pushed using the builder service account's credentials. The digests of the pushed images will be stored in the Build resource's results field. If any of the images fail to be pushed, the build is marked FAILURE.
      */
@@ -1985,6 +2083,10 @@ export namespace run_v2 {
      * Option to specify whether or not to apply bash style string operations to the substitutions. NOTE: this is always enabled for triggered builds and cannot be overridden in the build configuration file.
      */
     dynamicSubstitutions?: boolean | null;
+    /**
+     * Optional. Option to specify whether structured logging is enabled. If true, JSON-formatted logs are parsed as structured logs.
+     */
+    enableStructuredLogging?: boolean | null;
     /**
      * A list of global environment variable definitions that will exist for all build steps in this build. If a variable is defined in both globally and in a build step, the variable will use the build step value. The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
      */
@@ -2207,6 +2309,35 @@ export namespace run_v2 {
     url?: string | null;
   }
   /**
+   * Go module to upload to Artifact Registry upon successful completion of all build steps. A module refers to all dependencies in a go.mod file.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1GoModule {
+    /**
+     * Optional. The Go module's "module path". e.g. example.com/foo/v2
+     */
+    modulePath?: string | null;
+    /**
+     * Optional. The Go module's semantic version in the form vX.Y.Z. e.g. v0.1.1 Pre-release identifiers can also be added by appending a dash and dot separated ASCII alphanumeric characters and hyphens. e.g. v0.2.3-alpha.x.12m.5
+     */
+    moduleVersion?: string | null;
+    /**
+     * Optional. Location of the Artifact Registry repository. i.e. us-east1 Defaults to the build’s location.
+     */
+    repositoryLocation?: string | null;
+    /**
+     * Optional. Artifact Registry repository name. Specified Go modules will be zipped and uploaded to Artifact Registry with this location as a prefix. e.g. my-go-repo
+     */
+    repositoryName?: string | null;
+    /**
+     * Optional. Project ID of the Artifact Registry repository. Defaults to the build project.
+     */
+    repositoryProjectId?: string | null;
+    /**
+     * Optional. Source path of the go.mod file in the build's workspace. If not specified, this will default to the current directory. e.g. ~/code/go/mypackage
+     */
+    sourcePath?: string | null;
+  }
+  /**
    * Container message for hash values.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1Hash {
@@ -2358,6 +2489,10 @@ export namespace run_v2 {
      * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored. Note that the `$BUILDER_OUTPUT` variable is read-only and can't be substituted.
      */
     buildStepOutputs?: string[] | null;
+    /**
+     * Optional. Go module artifacts uploaded to Artifact Registry at the end of the build.
+     */
+    goModules?: Schema$GoogleDevtoolsCloudbuildV1UploadedGoModule[];
     /**
      * Container images that were built as a part of the build.
      */
@@ -2528,6 +2663,23 @@ export namespace run_v2 {
      * Start of time span.
      */
     startTime?: string | null;
+  }
+  /**
+   * A Go module artifact uploaded to Artifact Registry using the GoModule directive.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1UploadedGoModule {
+    /**
+     * Hash types and values of the Go Module Artifact.
+     */
+    fileHashes?: Schema$GoogleDevtoolsCloudbuildV1FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * URI of the uploaded artifact.
+     */
+    uri?: string | null;
   }
   /**
    * A Maven artifact uploaded using the MavenArtifact directive.
@@ -2799,23 +2951,23 @@ export namespace run_v2 {
    */
   export interface Schema$UtilStatusProto {
     /**
-     * The canonical error code (see codes.proto) that most closely corresponds to this status. This may be missing, and in the common case of the generic space, it definitely will be.
+     * The canonical error code (see codes.proto) that most closely corresponds to this status. This may be missing, and in the common case of the generic space, it definitely will be. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 canonical_code = 6;
      */
     canonicalCode?: number | null;
     /**
-     * Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto
+     * Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 code = 1;
      */
     code?: number | null;
     /**
-     * Detail message
+     * Detail message copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional string message = 3;
      */
     message?: string | null;
     /**
-     * message_set associates an arbitrary proto message with the status.
+     * message_set associates an arbitrary proto message with the status. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional proto2.bridge.MessageSet message_set = 5;
      */
     messageSet?: Schema$Proto2BridgeMessageSet;
     /**
-     * The following are usually only present when code != 0 Space to which this status belongs
+     * The following are usually only present when code != 0 Space to which this status belongs copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional string space = 2;
      */
     space?: string | null;
   }
@@ -2835,6 +2987,7 @@ export namespace run_v2 {
     jobs: Resource$Projects$Locations$Jobs;
     operations: Resource$Projects$Locations$Operations;
     services: Resource$Projects$Locations$Services;
+    workerPools: Resource$Projects$Locations$Workerpools;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.builds = new Resource$Projects$Locations$Builds(this.context);
@@ -2843,6 +2996,9 @@ export namespace run_v2 {
         this.context
       );
       this.services = new Resource$Projects$Locations$Services(this.context);
+      this.workerPools = new Resource$Projects$Locations$Workerpools(
+        this.context
+      );
     }
 
     /**
@@ -3369,7 +3525,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Builds$Submit
     extends StandardParameters {
     /**
-     * Required. The project and location to build in. Location must be a region, e.g., 'us-central1' or 'global' if the global builder is to be used. Format: projects/{project\}/locations/{location\}
+     * Required. The project and location to build in. Location must be a region, e.g., 'us-central1' or 'global' if the global builder is to be used. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
 
@@ -6848,6 +7004,348 @@ export namespace run_v2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Services$Revisions$List
+    extends StandardParameters {
+    /**
+     * Maximum number of revisions to return in this call.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from a previous call to ListRevisions. All other parameters must match.
+     */
+    pageToken?: string;
+    /**
+     * Required. The Service from which the Revisions should be listed. To list all Revisions across Services, use "-" instead of Service name. Format: projects/{project\}/locations/{location\}/services/{service\}
+     */
+    parent?: string;
+    /**
+     * If true, returns deleted (but unexpired) resources along with active ones.
+     */
+    showDeleted?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Workerpools {
+    context: APIRequestContext;
+    revisions: Resource$Projects$Locations$Workerpools$Revisions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.revisions = new Resource$Projects$Locations$Workerpools$Revisions(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Locations$Workerpools$Revisions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes a Revision.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Workerpools$Revisions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Workerpools$Revisions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Workerpools$Revisions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Workerpools$Revisions$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Workerpools$Revisions$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workerpools$Revisions$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workerpools$Revisions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workerpools$Revisions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets information about a Revision.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Workerpools$Revisions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Workerpools$Revisions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRunV2Revision>;
+    get(
+      params: Params$Resource$Projects$Locations$Workerpools$Revisions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Workerpools$Revisions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Revision>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Revision>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Workerpools$Revisions$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Revision>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GoogleCloudRunV2Revision>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workerpools$Revisions$Get
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Revision>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Revision>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Revision>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRunV2Revision>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workerpools$Revisions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workerpools$Revisions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2Revision>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2Revision>(parameters);
+      }
+    }
+
+    /**
+     * Lists Revisions from a given Service, or from a given location. Results are sorted by creation time, descending.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Workerpools$Revisions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Workerpools$Revisions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRunV2ListRevisionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Workerpools$Revisions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Workerpools$Revisions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Workerpools$Revisions$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workerpools$Revisions$List
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRunV2ListRevisionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workerpools$Revisions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workerpools$Revisions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/revisions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2ListRevisionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2ListRevisionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Workerpools$Revisions$Delete
+    extends StandardParameters {
+    /**
+     * A system-generated fingerprint for this version of the resource. This may be used to detect modification conflict during updates.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the Revision to delete. Format: projects/{project\}/locations/{location\}/services/{service\}/revisions/{revision\}
+     */
+    name?: string;
+    /**
+     * Indicates that the request should be validated without actually deleting any resources.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Workerpools$Revisions$Get
+    extends StandardParameters {
+    /**
+     * Required. The full name of the Revision. Format: projects/{project\}/locations/{location\}/services/{service\}/revisions/{revision\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Workerpools$Revisions$List
     extends StandardParameters {
     /**
      * Maximum number of revisions to return in this call.

@@ -222,7 +222,7 @@ export namespace dialogflow_v2 {
     config?: Schema$GoogleCloudDialogflowCxV3InputAudioConfig;
   }
   /**
-   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
+   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
    */
   export interface Schema$GoogleCloudDialogflowCxV3BargeInConfig {
     /**
@@ -350,7 +350,7 @@ export namespace dialogflow_v2 {
     config?: Schema$GoogleCloudDialogflowCxV3beta1InputAudioConfig;
   }
   /**
-   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
+   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1BargeInConfig {
     /**
@@ -498,6 +498,10 @@ export namespace dialogflow_v2 {
      * The type of the connected data store.
      */
     dataStoreType?: string | null;
+    /**
+     * The document processing mode for the data store connection. Should only be set for PUBLIC_WEB and UNSTRUCTURED data stores. If not set it is considered as DOCUMENTS, as this is the legacy mode.
+     */
+    documentProcessingMode?: string | null;
   }
   /**
    * Metadata returned for the Environments.DeployFlow long running operation.
@@ -2133,6 +2137,10 @@ export namespace dialogflow_v2 {
      * The type of the connected data store.
      */
     dataStoreType?: string | null;
+    /**
+     * The document processing mode for the data store connection. Should only be set for PUBLIC_WEB and UNSTRUCTURED data stores. If not set it is considered as DOCUMENTS, as this is the legacy mode.
+     */
+    documentProcessingMode?: string | null;
   }
   /**
    * Metadata returned for the Environments.DeployFlow long running operation.
@@ -3754,6 +3762,10 @@ export namespace dialogflow_v2 {
      */
     assistQueryParams?: Schema$GoogleCloudDialogflowV2AssistQueryParameters;
     /**
+     * The natural language speech audio to be processed.
+     */
+    audioInput?: Schema$GoogleCloudDialogflowV2AudioInput;
+    /**
      * Additional parameters to be put into Dialogflow CX session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. Note: this field should only be used if you are connecting to a Dialogflow CX agent.
      */
     cxParameters?: {[key: string]: any} | null;
@@ -3787,7 +3799,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2AnalyzeContentResponse {
     /**
-     * Only set if a Dialogflow automated agent has responded. Note that: AutomatedAgentReply.detect_intent_response.output_audio and AutomatedAgentReply.detect_intent_response.output_audio_config are always empty, use reply_audio instead.
+     * Only set if a Dialogflow automated agent has responded. Note that in AutomatedAgentReply.DetectIntentResponse, Sessions.DetectIntentResponse.output_audio and Sessions.DetectIntentResponse.output_audio_config are always empty, use reply_audio instead.
      */
     automatedAgentReply?: Schema$GoogleCloudDialogflowV2AutomatedAgentReply;
     /**
@@ -3862,7 +3874,7 @@ export namespace dialogflow_v2 {
     displayTime?: string | null;
   }
   /**
-   * Answer records are records to manage answer history and feedbacks for Dialogflow. Currently, answer record includes: - human agent assistant article suggestion - human agent assistant faq article It doesn't include: - `DetectIntent` intent matching - `DetectIntent` knowledge Answer records are not related to the conversation history in the Dialogflow Console. A Record is generated even when the end-user disables conversation history in the console. Records are created when there's a human agent assistant suggestion generated. A typical workflow for customers provide feedback to an answer is: 1. For human agent assistant, customers get suggestion via ListSuggestions API. Together with the answers, AnswerRecord.name are returned to the customers. 2. The customer uses the AnswerRecord.name to call the UpdateAnswerRecord method to send feedback about a specific answer that they believe is wrong.
+   * Answer records are records to manage answer history and feedbacks for Dialogflow. Currently, answer record includes: - human agent assistant article suggestion - human agent assistant faq article It doesn't include: - `DetectIntent` intent matching - `DetectIntent` knowledge Answer records are not related to the conversation history in the Dialogflow Console. A Record is generated even when the end-user disables conversation history in the console. Records are created when there's a human agent assistant suggestion generated. A typical workflow for customers provide feedback to an answer is: 1. For human agent assistant, customers get suggestion via ListSuggestions API. Together with the answers, AnswerRecord.name are returned to the customers. 2. The customer uses the AnswerRecord.name to call the AnswerRecords.UpdateAnswerRecord method to send feedback about a specific answer that they believe is wrong.
    */
   export interface Schema$GoogleCloudDialogflowV2AnswerRecord {
     /**
@@ -3924,6 +3936,19 @@ export namespace dialogflow_v2 {
      * Key-value filters on the metadata of documents returned by article suggestion. If specified, article suggestion only returns suggested documents that match all filters in their Document.metadata. Multiple values for a metadata key should be concatenated by comma. For example, filters to match all documents that have 'US' or 'CA' in their market metadata values and 'agent' in their user metadata values will be ``` documents_metadata_filters { key: "market" value: "US,CA" \} documents_metadata_filters { key: "user" value: "agent" \} ```
      */
     documentsMetadataFilters?: {[key: string]: string} | null;
+  }
+  /**
+   * Represents the natural language speech audio to be processed.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AudioInput {
+    /**
+     * Required. The natural language speech audio to be processed. A single request can contain up to 2 minutes of speech audio data. The transcribed text cannot contain more than 256 bytes for virtual agent interactions.
+     */
+    audio?: string | null;
+    /**
+     * Required. Instructs the speech recognizer how to process the speech audio.
+     */
+    config?: Schema$GoogleCloudDialogflowV2InputAudioConfig;
   }
   /**
    * Defines the Automated Agent to connect to a conversation.
@@ -4195,6 +4220,10 @@ export namespace dialogflow_v2 {
      * Payload of NEW_MESSAGE event.
      */
     newMessagePayload?: Schema$GoogleCloudDialogflowV2beta1Message;
+    /**
+     * Payload of NEW_RECOGNITION_RESULT event.
+     */
+    newRecognitionResultPayload?: Schema$GoogleCloudDialogflowV2beta1StreamingRecognitionResult;
     /**
      * Required. The type of the event that this notification refers to.
      */
@@ -5363,6 +5392,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
     /**
+     * Metadata of the document.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Text taken from that URI.
      */
     text?: string | null;
@@ -5717,6 +5750,68 @@ export namespace dialogflow_v2 {
     reply?: string | null;
   }
   /**
+   * Information for a word recognized by the speech recognizer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SpeechWordInfo {
+    /**
+     * The Speech confidence between 0.0 and 1.0 for this word. A higher number indicates an estimated greater likelihood that the recognized word is correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is not guaranteed to be fully stable over time for the same audio input. Users should also not rely on it to always be provided.
+     */
+    confidence?: number | null;
+    /**
+     * Time offset relative to the beginning of the audio that corresponds to the end of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.
+     */
+    endOffset?: string | null;
+    /**
+     * Time offset relative to the beginning of the audio that corresponds to the start of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.
+     */
+    startOffset?: string | null;
+    /**
+     * The word this info is for.
+     */
+    word?: string | null;
+  }
+  /**
+   * Contains a speech recognition result corresponding to a portion of the audio that is currently being processed or an indication that this is the end of the single requested utterance. While end-user audio is being processed, Dialogflow sends a series of results. Each result may contain a `transcript` value. A transcript represents a portion of the utterance. While the recognizer is processing audio, transcript values may be interim values or finalized values. Once a transcript is finalized, the `is_final` value is set to true and processing continues for the next transcript. If `StreamingDetectIntentRequest.query_input.audio_config.single_utterance` was true, and the recognizer has completed processing audio, the `message_type` value is set to `END_OF_SINGLE_UTTERANCE and the following (last) result contains the last finalized transcript. The complete end-user utterance is determined by concatenating the finalized transcript values received for the series of results. In the following example, single utterance is enabled. In the case where single utterance is not enabled, result 7 would not occur. ``` Num | transcript | message_type | is_final --- | ----------------------- | ----------------------- | -------- 1 | "tube" | TRANSCRIPT | false 2 | "to be a" | TRANSCRIPT | false 3 | "to be" | TRANSCRIPT | false 4 | "to be or not to be" | TRANSCRIPT | true 5 | "that's" | TRANSCRIPT | false 6 | "that is | TRANSCRIPT | false 7 | unset | END_OF_SINGLE_UTTERANCE | unset 8 | " that is the question" | TRANSCRIPT | true ``` Concatenating the finalized transcripts with `is_final` set to true, the complete utterance becomes "to be or not to be that is the question".
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1StreamingRecognitionResult {
+    /**
+     * The Speech confidence between 0.0 and 1.0 for the current portion of audio. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is typically only provided if `is_final` is true and you should not rely on it being accurate or even set.
+     */
+    confidence?: number | null;
+    /**
+     * DTMF digits. Populated if and only if `message_type` = `DTMF_DIGITS`.
+     */
+    dtmfDigits?: Schema$GoogleCloudDialogflowV2beta1TelephonyDtmfEvents;
+    /**
+     * If `false`, the `StreamingRecognitionResult` represents an interim result that may change. If `true`, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for `message_type` = `TRANSCRIPT`.
+     */
+    isFinal?: boolean | null;
+    /**
+     * Detected language code for the transcript.
+     */
+    languageCode?: string | null;
+    /**
+     * Type of the result message.
+     */
+    messageType?: string | null;
+    /**
+     * Time offset of the end of this Speech recognition result relative to the beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.
+     */
+    speechEndOffset?: string | null;
+    /**
+     * Word-specific information for the words recognized by Speech in transcript. Populated if and only if `message_type` = `TRANSCRIPT` and [InputAudioConfig.enable_word_info] is set.
+     */
+    speechWordInfo?: Schema$GoogleCloudDialogflowV2beta1SpeechWordInfo[];
+    /**
+     * An estimate of the likelihood that the speech recognizer will not change its guess about this interim recognition result: * If the value is unspecified or 0.0, Dialogflow didn't compute the stability. In particular, Dialogflow will only provide stability for `TRANSCRIPT` results with `is_final = false`. * Otherwise, the value is in (0.0, 1.0] where 0.0 means completely unstable and 1.0 means completely stable.
+     */
+    stability?: number | null;
+    /**
+     * Transcript text representing the words that the user spoke. Populated if and only if `message_type` = `TRANSCRIPT`.
+     */
+    transcript?: string | null;
+  }
+  /**
    * The response message for Participants.SuggestArticles.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse {
@@ -5835,6 +5930,15 @@ export namespace dialogflow_v2 {
     smartReplyAnswers?: Schema$GoogleCloudDialogflowV2beta1SmartReplyAnswer[];
   }
   /**
+   * A wrapper of repeated TelephonyDtmf digits.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1TelephonyDtmfEvents {
+    /**
+     * A sequence of TelephonyDtmf digits.
+     */
+    dtmfEvents?: string[] | null;
+  }
+  /**
    * The request message for a webhook call.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1WebhookRequest {
@@ -5901,7 +6005,7 @@ export namespace dialogflow_v2 {
     source?: string | null;
   }
   /**
-   * Metadata for a ConversationProfile.ClearSuggestionFeatureConfig operation.
+   * Metadata for a ConversationProfiles.ClearSuggestionFeatureConfig operation.
    */
   export interface Schema$GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata {
     /**
@@ -5922,7 +6026,7 @@ export namespace dialogflow_v2 {
     suggestionFeatureType?: string | null;
   }
   /**
-   * The request message for ConversationProfiles.ClearFeature.
+   * The request message for ConversationProfiles.ClearSuggestionFeatureConfig.
    */
   export interface Schema$GoogleCloudDialogflowV2ClearSuggestionFeatureConfigRequest {
     /**
@@ -5987,6 +6091,10 @@ export namespace dialogflow_v2 {
      * Output only. The time the conversation was started.
      */
     startTime?: string | null;
+    /**
+     * Output only. The telephony connection information.
+     */
+    telephonyConnectionInfo?: Schema$GoogleCloudDialogflowV2ConversationTelephonyConnectionInfo;
   }
   /**
    * Context of the conversation, including transcripts.
@@ -6054,6 +6162,10 @@ export namespace dialogflow_v2 {
      * Payload of NEW_MESSAGE event.
      */
     newMessagePayload?: Schema$GoogleCloudDialogflowV2Message;
+    /**
+     * Payload of NEW_RECOGNITION_RESULT event.
+     */
+    newRecognitionResultPayload?: Schema$GoogleCloudDialogflowV2StreamingRecognitionResult;
     /**
      * The type of the event that this notification refers to.
      */
@@ -6147,6 +6259,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2ConversationPhoneNumber {
     /**
+     * Output only. Desired country code for the phone number.
+     */
+    countryCode?: number | null;
+    /**
      * Output only. The phone number to connect to this conversation.
      */
     phoneNumber?: string | null;
@@ -6192,6 +6308,10 @@ export namespace dialogflow_v2 {
      */
     newMessageEventNotificationConfig?: Schema$GoogleCloudDialogflowV2NotificationConfig;
     /**
+     * Optional. Configuration for publishing transcription intermediate results. Event will be sent in format of ConversationEvent. If configured, the following information will be populated as ConversationEvent Pub/Sub message attributes: - "participant_id" - "participant_role" - "message_id"
+     */
+    newRecognitionResultNotificationConfig?: Schema$GoogleCloudDialogflowV2NotificationConfig;
+    /**
      * Configuration for publishing conversation lifecycle events.
      */
     notificationConfig?: Schema$GoogleCloudDialogflowV2NotificationConfig;
@@ -6217,7 +6337,54 @@ export namespace dialogflow_v2 {
     updateTime?: string | null;
   }
   /**
-   * Metadata for ConversationDatasets.
+   * The information about phone calls connected via phone gateway to the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ConversationTelephonyConnectionInfo {
+    /**
+     * Output only. The number dialed to connect this call in E.164 format.
+     */
+    dialedNumber?: string | null;
+    /**
+     * Output only. The mime content from the initial SIP INVITE.
+     */
+    extraMimeContents?: Schema$GoogleCloudDialogflowV2ConversationTelephonyConnectionInfoMimeContent[];
+    /**
+     * Optional. SDP of the call. It's initially the SDP answer to the endpoint, but maybe later updated for the purpose of making the link active, etc.
+     */
+    sdp?: string | null;
+    /**
+     * Output only. The SIP headers from the initial SIP INVITE.
+     */
+    sipHeaders?: Schema$GoogleCloudDialogflowV2ConversationTelephonyConnectionInfoSipHeader[];
+  }
+  /**
+   * The mime content from the initial SIP INVITE.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ConversationTelephonyConnectionInfoMimeContent {
+    /**
+     * Optional. The content payload.
+     */
+    content?: string | null;
+    /**
+     * Optional. The mime type of the content.
+     */
+    mimeType?: string | null;
+  }
+  /**
+   * The SIP headers from the initial SIP INVITE.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ConversationTelephonyConnectionInfoSipHeader {
+    /**
+     * Optional. The name of the header.
+     */
+    name?: string | null;
+    /**
+     * Optional. The value of the header.
+     */
+    value?: string | null;
+  }
+  /**
+   * Metadata for CreateConversationDataset.
    */
   export interface Schema$GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata {
     /**
@@ -6273,7 +6440,7 @@ export namespace dialogflow_v2 {
     state?: string | null;
   }
   /**
-   * Metadata for ConversationDatasets.
+   * Metadata for DeleteConversationDataset.
    */
   export interface Schema$GoogleCloudDialogflowV2DeleteConversationDatasetOperationMetadata {}
   /**
@@ -6709,7 +6876,7 @@ export namespace dialogflow_v2 {
     source?: string | null;
   }
   /**
-   * Providing examples in the generator (i.e. building a few-shot generator) helps convey the desired format of the LLM response. NEXT_ID: 10
+   * Providing examples in the generator (i.e. building a few-shot generator) helps convey the desired format of the LLM response.
    */
   export interface Schema$GoogleCloudDialogflowV2FewShotExample {
     /**
@@ -6871,7 +7038,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2GenerateStatelessSummaryResponse {
     /**
-     * Number of messages prior to and including last_conversation_message used to compile the suggestion. It may be smaller than the GenerateStatelessSummaryRequest.context_size field in the request if there weren't that many messages in the conversation.
+     * Number of messages prior to and including latest_message used to compile the suggestion. It may be smaller than the GenerateStatelessSummaryRequest.max_context_size field in the request if there weren't that many messages in the conversation.
      */
     contextSize?: number | null;
     /**
@@ -7076,6 +7243,10 @@ export namespace dialogflow_v2 {
      * Determines how recent conversation context is filtered when generating suggestions. If unspecified, no messages will be dropped.
      */
     contextFilterSettings?: Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfigContextFilterSettings;
+    /**
+     * Optional. The number of recent messages to include in the context. Supported features: KNOWLEDGE_ASSIST.
+     */
+    contextSize?: number | null;
     /**
      * Query from Dialogflow agent. It is used by DIALOGFLOW_ASSIST.
      */
@@ -7410,6 +7581,10 @@ export namespace dialogflow_v2 {
      * A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details. This field is deprecated. Please use [`speech_contexts`]() instead. If you specify both [`phrase_hints`]() and [`speech_contexts`](), Dialogflow will treat the [`phrase_hints`]() as a single additional [`SpeechContext`]().
      */
     phraseHints?: string[] | null;
+    /**
+     * A collection of phrase set resources to use for speech adaptation.
+     */
+    phraseSets?: string[] | null;
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics) for more details.
      */
@@ -8173,6 +8348,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
     /**
+     * Metadata of the document.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Text taken from that URI.
      */
     text?: string | null;
@@ -8814,6 +8993,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeAnswerAnswerSource {
     /**
+     * Metadata associated with the article.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * The relevant snippet of the article.
      */
     snippet?: string | null;
@@ -8839,6 +9022,14 @@ export namespace dialogflow_v2 {
      */
     conversationProfile?: string | null;
     /**
+     * Optional. Information about the end-user to improve the relevance and accuracy of generative answers. This will be interpreted and used by a language model, so, for good results, the data should be self-descriptive, and in a simple structure. Example: ```json { "subscription plan": "Business Premium Plus", "devices owned": [ {"model": "Google Pixel 7"\}, {"model": "Google Pixel Tablet"\} ] \} ```
+     */
+    endUserMetadata?: {[key: string]: any} | null;
+    /**
+     * Optional. Whether to search the query exactly without query rewrite.
+     */
+    exactSearch?: boolean | null;
+    /**
      * Optional. The name of the latest conversation message when the request is triggered. Format: `projects//locations//conversations//messages/`.
      */
     latestMessage?: string | null;
@@ -8851,9 +9042,116 @@ export namespace dialogflow_v2 {
      */
     query?: Schema$GoogleCloudDialogflowV2TextInput;
     /**
+     * Optional. The source of the query in the request.
+     */
+    querySource?: string | null;
+    /**
+     * Optional. Configuration specific to search queries with data stores.
+     */
+    searchConfig?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfig;
+    /**
      * Required. The ID of the search session. The session_id can be combined with Dialogflow V3 Agent ID retrieved from conversation profile or on its own to identify a search session. The search history of the same session will impact the search result. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length must not exceed 36 characters.
      */
     sessionId?: string | null;
+  }
+  /**
+   * Configuration specific to search queries with data stores.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfig {
+    /**
+     * Optional. Boost specifications for data stores.
+     */
+    boostSpecs?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecs[];
+    /**
+     * Optional. Filter specification for data store queries.
+     */
+    filterSpecs?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigFilterSpecs[];
+  }
+  /**
+   * Boost specifications for data stores.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecs {
+    /**
+     * Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}` `projects/{project\}/locations/{location\}/dataStores/{data_store\}`
+     */
+    dataStores?: string[] | null;
+    /**
+     * Optional. A list of boosting specifications.
+     */
+    spec?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpec[];
+  }
+  /**
+   * Boost specification to boost certain documents. A copy of google.cloud.discoveryengine.v1main.BoostSpec, field documentation is available at https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/BoostSpec
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpec {
+    /**
+     * Optional. Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
+     */
+    conditionBoostSpecs?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpec[];
+  }
+  /**
+   * Boost applies to documents which match a condition.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpec {
+    /**
+     * Optional. Strength of the condition boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the document a big promotion. However, it does not necessarily mean that the boosted document will be the top result at all times, nor that other documents will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant documents. Setting to -1.0 gives the document a big demotion. However, results that are deeply relevant might still be shown. The document will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored.
+     */
+    boost?: number | null;
+    /**
+     * Optional. Complex specification for custom ranking based on customer defined attribute value.
+     */
+    boostControlSpec?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpec;
+    /**
+     * Optional. An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. Examples: * To boost documents with document ID "doc_1" or "doc_2", and color "Red" or "Blue": * (id: ANY("doc_1", "doc_2")) AND (color: ANY("Red","Blue"))
+     */
+    condition?: string | null;
+  }
+  /**
+   * Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpec {
+    /**
+     * Optional. The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).
+     */
+    attributeType?: string | null;
+    /**
+     * Optional. The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.
+     */
+    controlPoints?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpecControlPoint[];
+    /**
+     * Optional. The name of the field whose value will be used to determine the boost amount.
+     */
+    fieldName?: string | null;
+    /**
+     * Optional. The interpolation type to be applied to connect the control points listed below.
+     */
+    interpolationType?: string | null;
+  }
+  /**
+   * The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpecControlPoint {
+    /**
+     * Optional. Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.
+     */
+    attributeValue?: string | null;
+    /**
+     * Optional. The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.
+     */
+    boostAmount?: number | null;
+  }
+  /**
+   * Filter specification for data store queries.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigFilterSpecs {
+    /**
+     * Optional. The data store where the filter configuration is applied. Full resource name of data store, such as projects/{project\}/locations/{location\}/collections/{collectionId\}/ dataStores/{dataStoreId\}.
+     */
+    dataStores?: string[] | null;
+    /**
+     * Optional. The filter expression to be applied. Expression syntax is documented at https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata#filter-expression-syntax
+     */
+    filter?: string | null;
   }
   /**
    * The response message for Conversations.SearchKnowledge.
@@ -8891,7 +9189,7 @@ export namespace dialogflow_v2 {
     analyzeQueryTextSentiment?: boolean | null;
   }
   /**
-   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
+   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
    */
   export interface Schema$GoogleCloudDialogflowV2SentimentAnalysisResult {
     /**
@@ -8917,7 +9215,7 @@ export namespace dialogflow_v2 {
     name?: string | null;
   }
   /**
-   * Metadata for a ConversationProfile.SetSuggestionFeatureConfig operation.
+   * Metadata for a ConversationProfiles.SetSuggestionFeatureConfig operation.
    */
   export interface Schema$GoogleCloudDialogflowV2SetSuggestionFeatureConfigOperationMetadata {
     /**
@@ -8938,7 +9236,7 @@ export namespace dialogflow_v2 {
     suggestionFeatureType?: string | null;
   }
   /**
-   * The request message for ConversationProfiles.SetSuggestionFeature.
+   * The request message for ConversationProfiles.SetSuggestionFeatureConfig.
    */
   export interface Schema$GoogleCloudDialogflowV2SetSuggestionFeatureConfigRequest {
     /**
@@ -9040,6 +9338,10 @@ export namespace dialogflow_v2 {
      */
     model?: string | null;
     /**
+     * List of names of Cloud Speech phrase sets that are used for transcription.
+     */
+    phraseSets?: string[] | null;
+    /**
      * Sample rate (in Hertz) of the audio content sent in the query. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics) for more details.
      */
     sampleRateHertz?: number | null;
@@ -9051,6 +9353,60 @@ export namespace dialogflow_v2 {
      * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
      */
     useTimeoutBasedEndpointing?: boolean | null;
+  }
+  /**
+   * Information for a word recognized by the speech recognizer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SpeechWordInfo {
+    /**
+     * The Speech confidence between 0.0 and 1.0 for this word. A higher number indicates an estimated greater likelihood that the recognized word is correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is not guaranteed to be fully stable over time for the same audio input. Users should also not rely on it to always be provided.
+     */
+    confidence?: number | null;
+    /**
+     * Time offset relative to the beginning of the audio that corresponds to the end of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.
+     */
+    endOffset?: string | null;
+    /**
+     * Time offset relative to the beginning of the audio that corresponds to the start of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.
+     */
+    startOffset?: string | null;
+    /**
+     * The word this info is for.
+     */
+    word?: string | null;
+  }
+  /**
+   * Contains a speech recognition result corresponding to a portion of the audio that is currently being processed or an indication that this is the end of the single requested utterance. While end-user audio is being processed, Dialogflow sends a series of results. Each result may contain a `transcript` value. A transcript represents a portion of the utterance. While the recognizer is processing audio, transcript values may be interim values or finalized values. Once a transcript is finalized, the `is_final` value is set to true and processing continues for the next transcript. If `StreamingDetectIntentRequest.query_input.audio_config.single_utterance` was true, and the recognizer has completed processing audio, the `message_type` value is set to `END_OF_SINGLE_UTTERANCE and the following (last) result contains the last finalized transcript. The complete end-user utterance is determined by concatenating the finalized transcript values received for the series of results. In the following example, single utterance is enabled. In the case where single utterance is not enabled, result 7 would not occur. ``` Num | transcript | message_type | is_final --- | ----------------------- | ----------------------- | -------- 1 | "tube" | TRANSCRIPT | false 2 | "to be a" | TRANSCRIPT | false 3 | "to be" | TRANSCRIPT | false 4 | "to be or not to be" | TRANSCRIPT | true 5 | "that's" | TRANSCRIPT | false 6 | "that is | TRANSCRIPT | false 7 | unset | END_OF_SINGLE_UTTERANCE | unset 8 | " that is the question" | TRANSCRIPT | true ``` Concatenating the finalized transcripts with `is_final` set to true, the complete utterance becomes "to be or not to be that is the question".
+   */
+  export interface Schema$GoogleCloudDialogflowV2StreamingRecognitionResult {
+    /**
+     * The Speech confidence between 0.0 and 1.0 for the current portion of audio. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is typically only provided if `is_final` is true and you should not rely on it being accurate or even set.
+     */
+    confidence?: number | null;
+    /**
+     * If `false`, the `StreamingRecognitionResult` represents an interim result that may change. If `true`, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for `message_type` = `TRANSCRIPT`.
+     */
+    isFinal?: boolean | null;
+    /**
+     * Detected language code for the transcript.
+     */
+    languageCode?: string | null;
+    /**
+     * Type of the result message.
+     */
+    messageType?: string | null;
+    /**
+     * Time offset of the end of this Speech recognition result relative to the beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.
+     */
+    speechEndOffset?: string | null;
+    /**
+     * Word-specific information for the words recognized by Speech in transcript. Populated if and only if `message_type` = `TRANSCRIPT` and [InputAudioConfig.enable_word_info] is set.
+     */
+    speechWordInfo?: Schema$GoogleCloudDialogflowV2SpeechWordInfo[];
+    /**
+     * Transcript text representing the words that the user spoke. Populated if and only if `message_type` = `TRANSCRIPT`.
+     */
+    transcript?: string | null;
   }
   /**
    * The request message for Participants.SuggestArticles.
@@ -9108,7 +9464,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2SuggestConversationSummaryResponse {
     /**
-     * Number of messages prior to and including last_conversation_message used to compile the suggestion. It may be smaller than the SuggestSummaryRequest.context_size field in the request if there weren't that many messages in the conversation.
+     * Number of messages prior to and including latest_message used to compile the suggestion. It may be smaller than the SuggestConversationSummaryRequest.context_size field in the request if there weren't that many messages in the conversation.
      */
     contextSize?: number | null;
     /**
@@ -19511,7 +19867,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Creates a conversation profile in the specified project. ConversationProfile.CreateTime and ConversationProfile.UpdateTime aren't populated in the response. You can retrieve them via GetConversationProfile API.
+     * Creates a conversation profile in the specified project. ConversationProfile.create_time and ConversationProfile.update_time aren't populated in the response. You can retrieve them via GetConversationProfile API.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19887,7 +20243,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Updates the specified conversation profile. ConversationProfile.CreateTime and ConversationProfile.UpdateTime aren't populated in the response. You can retrieve them via GetConversationProfile API.
+     * Updates the specified conversation profile. ConversationProfile.create_time and ConversationProfile.update_time aren't populated in the response. You can retrieve them via GetConversationProfile API.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20577,7 +20933,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Conversations$Create
     extends StandardParameters {
     /**
-     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
     conversationId?: string;
     /**
@@ -22173,7 +22529,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Generators$Create
     extends StandardParameters {
     /**
-     * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
     generatorId?: string;
     /**
@@ -32884,7 +33240,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Creates a conversation profile in the specified project. ConversationProfile.CreateTime and ConversationProfile.UpdateTime aren't populated in the response. You can retrieve them via GetConversationProfile API.
+     * Creates a conversation profile in the specified project. ConversationProfile.create_time and ConversationProfile.update_time aren't populated in the response. You can retrieve them via GetConversationProfile API.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33264,7 +33620,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Updates the specified conversation profile. ConversationProfile.CreateTime and ConversationProfile.UpdateTime aren't populated in the response. You can retrieve them via GetConversationProfile API.
+     * Updates the specified conversation profile. ConversationProfile.create_time and ConversationProfile.update_time aren't populated in the response. You can retrieve them via GetConversationProfile API.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33956,7 +34312,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Locations$Conversations$Create
     extends StandardParameters {
     /**
-     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
     conversationId?: string;
     /**
@@ -35947,7 +36303,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Locations$Generators$Create
     extends StandardParameters {
     /**
-     * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
     generatorId?: string;
     /**
@@ -35970,7 +36326,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Locations$Generators$Get
     extends StandardParameters {
     /**
-     * Required. The generator resource name to retrieve. Format: `projects//locations/`/generators/`
+     * Required. The generator resource name to retrieve. Format: `projects//locations//generators/`
      */
     name?: string;
   }
@@ -37422,7 +37778,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38083,7 +38439,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

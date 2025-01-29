@@ -3087,21 +3087,6 @@ export namespace cloudsearch_v1 {
     importance?: string | null;
   }
   /**
-   * The rewritten queries returned by Apps Search Query Understanding service.
-   */
-  export interface Schema$RewrittenQueries {
-    rewrittenQueries?: Schema$RewrittenQuery[];
-    /**
-     * The index of the selected query in `rewritten_queries` that is used by QAPI to call CSSR to get search results. If none of the queries were used (i.e. they all give empty search results), `selected_query_index` would default to -1.
-     */
-    selectedQueryIndex?: number | null;
-  }
-  export interface Schema$RewrittenQuery {
-    rewrittenQuery?: string | null;
-    score?: number | null;
-    sortBy?: string | null;
-  }
-  /**
    * IMPORTANT: It is unsafe to accept this message from an untrusted source, since it's trivial for an attacker to forge serialized messages that don't fulfill the type's safety contract -- for example, it could contain attacker controlled script. A system which receives a SafeHtmlProto implicitly trusts the producer of the SafeHtmlProto. So, it's generally safe to return this message in RPC responses, but generally unsafe to accept it in RPC requests.
    */
   export interface Schema$SafeHtmlProto {
@@ -3263,7 +3248,7 @@ export namespace cloudsearch_v1 {
     quality?: number | null;
   }
   /**
-   * The search API request.
+   * The search API request. NEXT ID: 17
    */
   export interface Schema$SearchRequest {
     /**
@@ -3301,7 +3286,7 @@ export namespace cloudsearch_v1 {
     start?: number | null;
   }
   /**
-   * The search API response.
+   * The search API response. NEXT ID: 17
    */
   export interface Schema$SearchResponse {
     /**

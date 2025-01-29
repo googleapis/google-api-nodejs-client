@@ -189,7 +189,7 @@ export namespace file_v1beta1 {
      */
     storageBytes?: string | null;
     /**
-     * Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     * Optional. Input only. Immutable. Tag key-value pairs bound to this resource. Each key must be a namespaced name and each value a short name. Example: "123456789012/environment" : "production", "123456789013/costCenter" : "marketing" See the documentation for more information: - Namespaced name: https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key - Short name: https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value
      */
     tags?: {[key: string]: string} | null;
   }
@@ -283,9 +283,9 @@ export namespace file_v1beta1 {
    */
   export interface Schema$FixedIOPS {
     /**
-     * Required. Maximum raw read IOPS.
+     * Required. Maximum IOPS.
      */
-    maxReadIops?: string | null;
+    maxIops?: string | null;
   }
   /**
    * Instance represents the interface for SLM services to actuate the state of control plane resources. Example Instance in JSON, where consumer-project-number=123456, producer-project-id=cloud-sql: ```json Instance: { "name": "projects/123456/locations/us-east1/instances/prod-instance", "create_time": { "seconds": 1526406431, \}, "labels": { "env": "prod", "foo": "bar" \}, "state": READY, "software_versions": { "software_update": "cloud-sql-09-28-2018", \}, "maintenance_policy_names": { "UpdatePolicy": "projects/123456/locations/us-east1/maintenancePolicies/prod-update-policy", \} "tenant_project_id": "cloud-sql-test-tenant", "producer_metadata": { "cloud-sql-tier": "basic", "cloud-sql-instance-size": "1G", \}, "provisioned_resources": [ { "resource-type": "compute-instance", "resource-url": "https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1", \} ], "maintenance_schedules": { "csa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \}, "ncsa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \} \}, "consumer_defined_name": "my-sql-instance1", \} ``` LINT.IfChange
@@ -505,13 +505,13 @@ export namespace file_v1beta1 {
      */
     capacityStepSizeGb?: string | null;
     /**
-     * Output only. Indicates whether this instance's performance is configurable. If enabled, adjust it using the 'performance_config' field.
-     */
-    configurablePerformanceEnabled?: boolean | null;
-    /**
      * Output only. The time when the instance was created.
      */
     createTime?: string | null;
+    /**
+     * Output only. Indicates whether this instance supports configuring its performance. If true, the user can configure the instance's performance by using the 'performance_config' field.
+     */
+    customPerformanceSupported?: boolean | null;
     /**
      * Optional. Indicates whether the instance is protected against deletion.
      */
@@ -601,7 +601,7 @@ export namespace file_v1beta1 {
      */
     suspensionReasons?: string[] | null;
     /**
-     * Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     * Optional. Input only. Immutable. Tag key-value pairs bound to this resource. Each key must be a namespaced name and each value a short name. Example: "123456789012/environment" : "production", "123456789013/costCenter" : "marketing" See the documentation for more information: - Namespaced name: https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key - Short name: https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value
      */
     tags?: {[key: string]: string} | null;
     /**
@@ -614,9 +614,9 @@ export namespace file_v1beta1 {
    */
   export interface Schema$IOPSPerTB {
     /**
-     * Required. Maximum read IOPS per TiB.
+     * Required. Maximum IOPS per TiB.
      */
-    maxReadIopsPerTb?: string | null;
+    maxIopsPerTb?: string | null;
   }
   /**
    * ListBackupsResponse is the result of ListBackupsRequest.
@@ -631,7 +631,7 @@ export namespace file_v1beta1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -648,7 +648,7 @@ export namespace file_v1beta1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -691,7 +691,7 @@ export namespace file_v1beta1 {
      */
     shares?: Schema$Share[];
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -707,6 +707,10 @@ export namespace file_v1beta1 {
      * A list of snapshots in the project for the specified instance.
      */
     snapshots?: Schema$Snapshot[];
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * A resource that represents a Google Cloud location.
@@ -880,7 +884,7 @@ export namespace file_v1beta1 {
      */
     apiVersion?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -921,6 +925,10 @@ export namespace file_v1beta1 {
    * The enforced performance limits, calculated from the instance's performance configuration.
    */
   export interface Schema$PerformanceLimits {
+    /**
+     * Output only. The max IOPS.
+     */
+    maxIops?: string | null;
     /**
      * Output only. The max read IOPS.
      */
@@ -1089,7 +1097,7 @@ export namespace file_v1beta1 {
      */
     state?: string | null;
     /**
-     * Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     * Optional. Input only. Immutable. Tag key-value pairs bound to this resource. Each key must be a namespaced name and each value a short name. Example: "123456789012/environment" : "production", "123456789013/costCenter" : "marketing" See the documentation for more information: - Namespaced name: https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key - Short name: https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value
      */
     tags?: {[key: string]: string} | null;
   }
@@ -1115,19 +1123,19 @@ export namespace file_v1beta1 {
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }
@@ -3742,6 +3750,10 @@ export namespace file_v1beta1 {
      * Required. The instance for which to retrieve snapshot information, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Instances$Snapshots$Patch
     extends StandardParameters {
@@ -3767,7 +3779,7 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

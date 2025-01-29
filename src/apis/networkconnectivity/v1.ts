@@ -177,7 +177,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$AutoAccept {
     /**
-     * A list of project ids or project numbers for which you want to enable auto-accept. The auto-accept setting is applied to spokes being created or updated in these projects.
+     * Optional. A list of project ids or project numbers for which you want to enable auto-accept. The auto-accept setting is applied to spokes being created or updated in these projects.
      */
     autoAcceptProjects?: string[] | null;
   }
@@ -210,6 +210,10 @@ export namespace networkconnectivity_v1 {
      * This is used in PSC consumer ForwardingRule to control whether the PSC endpoint can be accessed from another region.
      */
     disableGlobalAccess?: boolean | null;
+    /**
+     * The requested IP version for the PSC connection.
+     */
+    ipVersion?: string | null;
     /**
      * The resource path of the consumer network where PSC connections are allowed to be created in. Note, this network does not need be in the ConsumerPscConfig.project in the case of SharedVPC. Example: projects/{projectNumOrId\}/global/networks/{networkId\}.
      */
@@ -263,6 +267,10 @@ export namespace networkconnectivity_v1 {
      * The IP literal allocated on the consumer network for the PSC forwarding rule that is created to connect to the producer service attachment in this service connection map.
      */
     ip?: string | null;
+    /**
+     * The requested IP version for the PSC connection.
+     */
+    ipVersion?: string | null;
     /**
      * The consumer network whose PSC forwarding rule is connected to the service attachments in this service connection map. Note that the network could be on a different project (shared VPC).
      */
@@ -393,7 +401,7 @@ export namespace networkconnectivity_v1 {
      */
     domain?: string | null;
     /**
-     * Additional structured details about this error. Keys must match /a-z+/ but should ideally be lowerCamelCase. Also they must be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than {"instanceLimit": "100/request"\}, should be returned as, {"instanceLimitPerRequest": "100"\}, if the client exceeds the number of instances that can be created in a single (batch) request.
+     * Additional structured details about this error. Keys must match a regular expression of `a-z+` but should ideally be lowerCamelCase. Also, they must be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than `{"instanceLimit": "100/request"\}`, should be returned as, `{"instanceLimitPerRequest": "100"\}`, if the client exceeds the number of instances that can be created in a single (batch) request.
      */
     metadata?: {[key: string]: string} | null;
     /**
@@ -468,7 +476,7 @@ export namespace networkconnectivity_v1 {
      */
     createTime?: string | null;
     /**
-     * An optional description of the hub.
+     * Optional. An optional description of the hub.
      */
     description?: string | null;
     /**
@@ -517,6 +525,23 @@ export namespace networkconnectivity_v1 {
     updateTime?: string | null;
   }
   /**
+   * A hub status entry represents the status of a set of propagated Private Service Connect connections grouped by certain fields.
+   */
+  export interface Schema$HubStatusEntry {
+    /**
+     * The number of propagated Private Service Connect connections with this status. If the `group_by` field was not set in the request message, the value of this field is 1.
+     */
+    count?: number | null;
+    /**
+     * The fields that this entry is grouped by. This has the same value as the `group_by` field in the request message.
+     */
+    groupBy?: string | null;
+    /**
+     * The Private Service Connect propagation status.
+     */
+    pscPropagationStatus?: Schema$PscPropagationStatus;
+  }
+  /**
    * InterconnectAttachment that this route applies to.
    */
   export interface Schema$InterconnectAttachment {
@@ -526,7 +551,7 @@ export namespace networkconnectivity_v1 {
     region?: string | null;
   }
   /**
-   * The internal range resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characterstics of that range (its usage and peering behavior). Networking resources can link to this range if they are created as belonging to it.
+   * The internal range resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characteristics of that range (its usage and peering behavior). Networking resources can link to this range if they are created as belonging to it.
    */
   export interface Schema$InternalRange {
     /**
@@ -546,7 +571,7 @@ export namespace networkconnectivity_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Should be present if usage is set to FOR_MIGRATION.
+     * Optional. Must be present if usage is set to FOR_MIGRATION.
      */
     migration?: Schema$Migration;
     /**
@@ -607,14 +632,15 @@ export namespace networkconnectivity_v1 {
      */
     vpcNetwork?: string | null;
   }
-  /**
-   * Next ID: 7
-   */
   export interface Schema$LinkedProducerVpcNetwork {
     /**
      * Optional. IP ranges encompassing the subnets to be excluded from peering.
      */
     excludeExportRanges?: string[] | null;
+    /**
+     * Optional. IP ranges allowed to be included from peering.
+     */
+    includeExportRanges?: string[] | null;
     /**
      * Immutable. The URI of the Service Consumer VPC that the Producer VPC is peered with.
      */
@@ -666,7 +692,7 @@ export namespace networkconnectivity_v1 {
      */
     includeExportRanges?: string[] | null;
     /**
-     * Output only. The list of Producer VPC spokes that this VPC spoke is a service consumer VPC spoke for. These producer VPCs are connected through VPC peering to this spoke's backing VPC network.
+     * Output only. The list of Producer VPC spokes that this VPC spoke is a service consumer VPC spoke for. These producer VPCs are connected through VPC peering to this spoke's backing VPC network. Because they are directly connected throuh VPC peering, NCC export filters do not apply between the service consumer VPC spoke and any of its producer VPC spokes. This VPC spoke cannot be deleted as long as any of these producer VPC spokes are connected to the NCC Hub.
      */
     producerVpcSpokes?: string[] | null;
     /**
@@ -777,7 +803,7 @@ export namespace networkconnectivity_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Response for PolicyBasedRouting.ListPolicyBasedRoutes method.
+   * Response for PolicyBasedRoutingService.ListPolicyBasedRoutes method.
    */
   export interface Schema$ListPolicyBasedRoutesResponse {
     /**
@@ -1050,7 +1076,7 @@ export namespace networkconnectivity_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -1215,6 +1241,10 @@ export namespace networkconnectivity_v1 {
      */
     gceOperation?: string | null;
     /**
+     * The requested IP version for the PSC connection.
+     */
+    ipVersion?: string | null;
+    /**
      * Immutable. Deprecated. Use producer_instance_metadata instead. An immutable identifier for the producer instance.
      */
     producerInstanceId?: string | null;
@@ -1240,6 +1270,52 @@ export namespace networkconnectivity_v1 {
     state?: string | null;
   }
   /**
+   * The status of one or more propagated Private Service Connect connections in a hub.
+   */
+  export interface Schema$PscPropagationStatus {
+    /**
+     * The propagation status.
+     */
+    code?: string | null;
+    /**
+     * The human-readable summary of the Private Service Connect connection propagation status.
+     */
+    message?: string | null;
+    /**
+     * The name of the forwarding rule exported to the hub.
+     */
+    sourceForwardingRule?: string | null;
+    /**
+     * The name of the group that the source spoke belongs to.
+     */
+    sourceGroup?: string | null;
+    /**
+     * The name of the spoke that the source forwarding rule belongs to.
+     */
+    sourceSpoke?: string | null;
+    /**
+     * The name of the group that the target spoke belongs to.
+     */
+    targetGroup?: string | null;
+    /**
+     * The name of the spoke that the source forwarding rule propagates to.
+     */
+    targetSpoke?: string | null;
+  }
+  /**
+   * The response for HubService.QueryHubStatus.
+   */
+  export interface Schema$QueryHubStatusResponse {
+    /**
+     * The list of hub status.
+     */
+    hubStatusEntries?: Schema$HubStatusEntry[];
+    /**
+     * The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The RegionalEndpoint resource.
    */
   export interface Schema$RegionalEndpoint {
@@ -1248,7 +1324,7 @@ export namespace networkconnectivity_v1 {
      */
     accessType?: string | null;
     /**
-     * Optional. The IP Address of the Regional Endpoint. When no address is provided, an IP from the subnetwork is allocated. Use one of the following formats: * IPv4 address as in `10.0.0.1` * Address resource URI as in `projects/{project\}/regions/{region\}/addresses/{address_name\}`
+     * Optional. The IP Address of the Regional Endpoint. When no address is provided, an IP from the subnetwork is allocated. Use one of the following formats: * IPv4 address as in `10.0.0.1` * Address resource URI as in `projects/{project\}/regions/{region\}/addresses/{address_name\}` for an IPv4 or IPv6 address.
      */
     address?: string | null;
     /**
@@ -1444,7 +1520,7 @@ export namespace networkconnectivity_v1 {
     uri?: string | null;
   }
   /**
-   * The ServiceClass resource. Next id: 9
+   * The ServiceClass resource.
    */
   export interface Schema$ServiceClass {
     /**
@@ -1477,7 +1553,7 @@ export namespace networkconnectivity_v1 {
     updateTime?: string | null;
   }
   /**
-   * The ServiceConnectionMap resource. Next id: 15
+   * The ServiceConnectionMap resource.
    */
   export interface Schema$ServiceConnectionMap {
     /**
@@ -1525,7 +1601,7 @@ export namespace networkconnectivity_v1 {
      */
     serviceClassUri?: string | null;
     /**
-     * The token provided by the consumer. This token authenticates that the consumer can create a connecton within the specified project and network.
+     * The token provided by the consumer. This token authenticates that the consumer can create a connection within the specified project and network.
      */
     token?: string | null;
     /**
@@ -1534,7 +1610,7 @@ export namespace networkconnectivity_v1 {
     updateTime?: string | null;
   }
   /**
-   * The ServiceConnectionPolicy resource. Next id: 12
+   * The ServiceConnectionPolicy resource.
    */
   export interface Schema$ServiceConnectionPolicy {
     /**
@@ -1583,7 +1659,7 @@ export namespace networkconnectivity_v1 {
     updateTime?: string | null;
   }
   /**
-   * The ServiceConnectionToken resource. Next id: 10
+   * The ServiceConnectionToken resource.
    */
   export interface Schema$ServiceConnectionToken {
     /**
@@ -1645,7 +1721,7 @@ export namespace networkconnectivity_v1 {
      */
     createTime?: string | null;
     /**
-     * An optional description of the spoke.
+     * Optional. An optional description of the spoke.
      */
     description?: string | null;
     /**
@@ -1661,7 +1737,7 @@ export namespace networkconnectivity_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * VLAN attachments that are associated with the spoke.
+     * Optional. VLAN attachments that are associated with the spoke.
      */
     linkedInterconnectAttachments?: Schema$LinkedInterconnectAttachments;
     /**
@@ -1669,7 +1745,7 @@ export namespace networkconnectivity_v1 {
      */
     linkedProducerVpcNetwork?: Schema$LinkedProducerVpcNetwork;
     /**
-     * Router appliance instances that are associated with the spoke.
+     * Optional. Router appliance instances that are associated with the spoke.
      */
     linkedRouterApplianceInstances?: Schema$LinkedRouterApplianceInstances;
     /**
@@ -1677,7 +1753,7 @@ export namespace networkconnectivity_v1 {
      */
     linkedVpcNetwork?: Schema$LinkedVpcNetwork;
     /**
-     * VPN tunnels that are associated with the spoke.
+     * Optional. VPN tunnels that are associated with the spoke.
      */
     linkedVpnTunnels?: Schema$LinkedVpnTunnels;
     /**
@@ -1685,7 +1761,7 @@ export namespace networkconnectivity_v1 {
      */
     name?: string | null;
     /**
-     * Output only. The reasons for current state of the spoke. Only present when the spoke is in the `INACTIVE` state.
+     * Output only. The reasons for current state of the spoke.
      */
     reasons?: Schema$StateReason[];
     /**
@@ -2835,6 +2911,103 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
+     * Query the Private Service Connect propagation status of a Network Connectivity Center hub.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryStatus(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Querystatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    queryStatus(
+      params?: Params$Resource$Projects$Locations$Global$Hubs$Querystatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueryHubStatusResponse>;
+    queryStatus(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Querystatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryStatus(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Querystatus,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryHubStatusResponse>,
+      callback: BodyResponseCallback<Schema$QueryHubStatusResponse>
+    ): void;
+    queryStatus(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Querystatus,
+      callback: BodyResponseCallback<Schema$QueryHubStatusResponse>
+    ): void;
+    queryStatus(
+      callback: BodyResponseCallback<Schema$QueryHubStatusResponse>
+    ): void;
+    queryStatus(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Hubs$Querystatus
+        | BodyResponseCallback<Schema$QueryHubStatusResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryHubStatusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryHubStatusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$QueryHubStatusResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Hubs$Querystatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Querystatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:queryStatus').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryHubStatusResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryHubStatusResponse>(parameters);
+      }
+    }
+
+    /**
      * Rejects a Network Connectivity Center spoke from being attached to a hub. If the spoke was previously in the `ACTIVE` state, it transitions to the `INACTIVE` state and is no longer able to connect to other spokes that are attached to the hub.
      *
      * @param params - Parameters for request
@@ -3253,6 +3426,33 @@ export namespace networkconnectivity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Hub;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Querystatus
+    extends StandardParameters {
+    /**
+     * Optional. An expression that filters the list of results. The filter can be used to filter the results by the following fields: * `psc_propagation_status.source_spoke` * `psc_propagation_status.source_group` * `psc_propagation_status.source_forwarding_rule` * `psc_propagation_status.target_spoke` * `psc_propagation_status.target_group` * `psc_propagation_status.code` * `psc_propagation_status.message`
+     */
+    filter?: string;
+    /**
+     * Optional. Aggregate the results by the specified fields. A comma-separated list of any of these fields: * `psc_propagation_status.source_spoke` * `psc_propagation_status.source_group` * `psc_propagation_status.source_forwarding_rule` * `psc_propagation_status.target_spoke` * `psc_propagation_status.target_group` * `psc_propagation_status.code`
+     */
+    groupBy?: string;
+    /**
+     * Required. The name of the hub.
+     */
+    name?: string;
+    /**
+     * Optional. Sort the results in ascending order by the specified fields. A comma-separated list of any of these fields: * `psc_propagation_status.source_spoke` * `psc_propagation_status.source_group` * `psc_propagation_status.source_forwarding_rule` * `psc_propagation_status.target_spoke` * `psc_propagation_status.target_group` * `psc_propagation_status.code` If `group_by` is set, the value of the `order_by` field must be the same as or a subset of the `group_by` field.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke
     extends StandardParameters {
@@ -5696,7 +5896,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

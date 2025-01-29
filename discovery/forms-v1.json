@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20220915",
+  "revision": "20241112",
   "rootUrl": "https://forms.googleapis.com/",
   "schemas": {
     "Answer": {
@@ -1190,6 +1190,10 @@
           "description": "Read only. The question ID. On creation, it can be provided but the ID must not be already used in the form. If not provided, a new ID is assigned.",
           "type": "string"
         },
+        "ratingQuestion": {
+          "$ref": "RatingQuestion",
+          "description": "A respondent can choose a rating from a pre-defined set of icons."
+        },
         "required": {
           "description": "Whether the question must be answered in order for a respondent to submit their response.",
           "type": "boolean"
@@ -1257,6 +1261,34 @@
         "isQuiz": {
           "description": "Whether this form is a quiz or not. When true, responses are graded based on question Grading. Upon setting to false, all question Grading is deleted.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RatingQuestion": {
+      "description": "A rating question. The user has a range of icons to choose from.",
+      "id": "RatingQuestion",
+      "properties": {
+        "iconType": {
+          "description": "Required. The icon type to use for the rating.",
+          "enum": [
+            "RATING_ICON_TYPE_UNSPECIFIED",
+            "STAR",
+            "HEART",
+            "THUMB_UP"
+          ],
+          "enumDescriptions": [
+            "Default value. Unused.",
+            "A star icon.",
+            "A heart icon.",
+            "A thumbs down icon."
+          ],
+          "type": "string"
+        },
+        "ratingScaleLevel": {
+          "description": "Required. The rating scale level of the rating question.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

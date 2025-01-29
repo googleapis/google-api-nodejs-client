@@ -160,7 +160,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1alpha/accounts/{accountsId}/apps/{appsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "checks.accounts.apps.operations.cancel",
@@ -396,7 +396,115 @@
                   }
                 }
               }
+            },
+            "scans": {
+              "methods": {
+                "generate": {
+                  "description": "Uploads the results of local Code Compliance analysis and generates a scan of privacy issues. Returns a google.longrunning.Operation containing analysis and findings.",
+                  "flatPath": "v1alpha/accounts/{accountsId}/repos/{reposId}/scans:generate",
+                  "httpMethod": "POST",
+                  "id": "checks.accounts.repos.scans.generate",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Resource name of the repo. Example: `accounts/123/repos/456`",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/repos/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/scans:generate",
+                  "request": {
+                    "$ref": "GoogleChecksRepoScanV1alphaGenerateScanRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  }
+                },
+                "get": {
+                  "description": "Gets a repo scan. By default, only the name and results_uri fields are returned. You can include other fields by listing them in the `fields` URL query parameter. For example, `?fields=name,sources` will return the name and sources fields.",
+                  "flatPath": "v1alpha/accounts/{accountsId}/repos/{reposId}/scans/{scansId}",
+                  "httpMethod": "GET",
+                  "id": "checks.accounts.repos.scans.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the repo scan. Example: `accounts/123/repos/456/scans/789`",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/repos/[^/]+/scans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleChecksRepoScanV1alphaRepoScan"
+                  }
+                },
+                "list": {
+                  "description": "Lists repo scans for the specified repo.",
+                  "flatPath": "v1alpha/accounts/{accountsId}/repos/{reposId}/scans",
+                  "httpMethod": "GET",
+                  "id": "checks.accounts.repos.scans.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An [AIP-160](https://google.aip.dev/160) filter string to filter repo scans. Example: `scmMetadata.branch = main`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of repo scans to return. If unspecified, at most 10 repo scans will be returned. The maximum value is 50; values above 50 will be coerced to 50.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token received from a previous `ListRepoScans` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepoScans` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Resource name of the repo. Example: `accounts/123/repos/456`",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/repos/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/scans",
+                  "response": {
+                    "$ref": "GoogleChecksRepoScanV1alphaListRepoScansResponse"
+                  }
+                }
+              }
             }
+          }
+        }
+      }
+    },
+    "aisafety": {
+      "methods": {
+        "classifyContent": {
+          "description": "Analyze a piece of content with the provided set of policies.",
+          "flatPath": "v1alpha/aisafety:classifyContent",
+          "httpMethod": "POST",
+          "id": "checks.aisafety.classifyContent",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/aisafety:classifyContent",
+          "request": {
+            "$ref": "GoogleChecksAisafetyV1alphaClassifyContentRequest"
+          },
+          "response": {
+            "$ref": "GoogleChecksAisafetyV1alphaClassifyContentResponse"
           }
         }
       }
@@ -444,7 +552,7 @@
       }
     }
   },
-  "revision": "20240904",
+  "revision": "20241203",
   "rootUrl": "https://checks.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -488,6 +596,586 @@
         "nextPageToken": {
           "description": "A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaClassifyContentRequest": {
+      "description": "Request proto for ClassifyContent RPC.",
+      "id": "GoogleChecksAisafetyV1alphaClassifyContentRequest",
+      "properties": {
+        "classifierVersion": {
+          "description": "Optional. Version of the classifier to use. If not specified, the latest version will be used.",
+          "enum": [
+            "CLASSIFIER_VERSION_UNSPECIFIED",
+            "STABLE",
+            "LATEST"
+          ],
+          "enumDescriptions": [
+            "Unspecified version.",
+            "Stable version.",
+            "Latest version."
+          ],
+          "type": "string"
+        },
+        "context": {
+          "$ref": "GoogleChecksAisafetyV1alphaClassifyContentRequestContext",
+          "description": "Optional. Context about the input that will be used to help on the classification."
+        },
+        "input": {
+          "$ref": "GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent",
+          "description": "Required. Content to be classified."
+        },
+        "policies": {
+          "description": "Required. List of policies to classify against.",
+          "items": {
+            "$ref": "GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaClassifyContentRequestContext": {
+      "description": "Context about the input that will be used to help on the classification.",
+      "id": "GoogleChecksAisafetyV1alphaClassifyContentRequestContext",
+      "properties": {
+        "prompt": {
+          "description": "Optional. Prompt that generated the model response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent": {
+      "description": "Content to be classified.",
+      "id": "GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent",
+      "properties": {
+        "textInput": {
+          "$ref": "GoogleChecksAisafetyV1alphaTextInput",
+          "description": "Content in text format."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig": {
+      "description": "List of policies to classify against.",
+      "id": "GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig",
+      "properties": {
+        "policyType": {
+          "description": "Required. Type of the policy.",
+          "enum": [
+            "POLICY_TYPE_UNSPECIFIED",
+            "DANGEROUS_CONTENT",
+            "PII_SOLICITING_RECITING",
+            "HARASSMENT",
+            "SEXUALLY_EXPLICIT",
+            "HATE_SPEECH",
+            "MEDICAL_INFO",
+            "VIOLENCE_AND_GORE",
+            "OBSCENITY_AND_PROFANITY"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "The model facilitates, promotes or enables access to harmful goods, services, and activities.",
+            "The model reveals an individual’s personal information and data.",
+            "The model generates content that is malicious, intimidating, bullying, or abusive towards another individual.",
+            "The model generates content that is sexually explicit in nature.",
+            "The model promotes violence, hatred, discrimination on the basis of race, religion, etc.",
+            "The model provides or offers to facilitate access to medical advice or guidance.",
+            "The model generates content that contains gratuitous, realistic descriptions of violence or gore.",
+            "The model generates profanity and obscenities."
+          ],
+          "type": "string"
+        },
+        "threshold": {
+          "description": "Optional. Score threshold to use when deciding if the content is violative or non-violative. If not specified, the default 0.5 threshold for the policy will be used.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaClassifyContentResponse": {
+      "description": "Response proto for ClassifyContent RPC.",
+      "id": "GoogleChecksAisafetyV1alphaClassifyContentResponse",
+      "properties": {
+        "policyResults": {
+          "description": "Results of the classification for each policy.",
+          "items": {
+            "$ref": "GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult": {
+      "description": "Result for one policy against the corresponding input.",
+      "id": "GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult",
+      "properties": {
+        "policyType": {
+          "description": "Type of the policy.",
+          "enum": [
+            "POLICY_TYPE_UNSPECIFIED",
+            "DANGEROUS_CONTENT",
+            "PII_SOLICITING_RECITING",
+            "HARASSMENT",
+            "SEXUALLY_EXPLICIT",
+            "HATE_SPEECH",
+            "MEDICAL_INFO",
+            "VIOLENCE_AND_GORE",
+            "OBSCENITY_AND_PROFANITY"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "The model facilitates, promotes or enables access to harmful goods, services, and activities.",
+            "The model reveals an individual’s personal information and data.",
+            "The model generates content that is malicious, intimidating, bullying, or abusive towards another individual.",
+            "The model generates content that is sexually explicit in nature.",
+            "The model promotes violence, hatred, discrimination on the basis of race, religion, etc.",
+            "The model provides or offers to facilitate access to medical advice or guidance.",
+            "The model generates content that contains gratuitous, realistic descriptions of violence or gore.",
+            "The model generates profanity and obscenities."
+          ],
+          "type": "string"
+        },
+        "score": {
+          "description": "Final score for the results of this policy.",
+          "format": "float",
+          "type": "number"
+        },
+        "violationResult": {
+          "description": "Result of the classification for the policy.",
+          "enum": [
+            "VIOLATION_RESULT_UNSPECIFIED",
+            "VIOLATIVE",
+            "NON_VIOLATIVE",
+            "CLASSIFICATION_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified result.",
+            "The final score is greater or equal the input score threshold.",
+            "The final score is smaller than the input score threshold.",
+            "There was an error and the violation result could not be determined."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaTextInput": {
+      "description": "Text input to be classified.",
+      "id": "GoogleChecksAisafetyV1alphaTextInput",
+      "properties": {
+        "content": {
+          "description": "Actual piece of text to be classified.",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Optional. Language of the text in ISO 639-1 format. If the language is invalid or not specified, the system will try to detect it.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksRepoScanV1alphaCliAnalysis": {
+      "description": "The results of a Code Compliance CLI analysis.",
+      "id": "GoogleChecksRepoScanV1alphaCliAnalysis",
+      "properties": {
+        "codeScans": {
+          "description": "Optional. Requested code scans resulting from preliminary CLI analysis.",
+          "items": {
+            "$ref": "GoogleChecksRepoScanV1alphaCodeScan"
+          },
+          "type": "array"
+        },
+        "sources": {
+          "description": "Optional. Data sources detected in the scan.",
+          "items": {
+            "$ref": "GoogleChecksRepoScanV1alphaSource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksRepoScanV1alphaCodeAttribution": {
+      "description": "Source code attribution.",
+      "id": "GoogleChecksRepoScanV1alphaCodeAttribution",
+      "properties": {
+        "codeExcerpt": {
+          "description": "Optional. Code excerpt where the source was detected along with surrounding code.",
+          "type": "string"
+        },
+        "lineNumber": {
+          "description": "Required. Line number (1-based).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "path": {
+          "description": "Required. Path of the file.",
+          "type": "string"
+        },
+        "startLineNumber": {
+          "description": "Optional. Start line number of the code excerpt (1-based).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksRepoScanV1alphaCodeScan": {
+      "description": "A requested analysis of source code. Contains the source code and processing state.",
+      "id": "GoogleChecksRepoScanV1alphaCodeScan",
+      "properties": {
+        "dataTypeClassifications": {
+          "description": "Optional. Data type classification requests.",
+          "items": {
+            "$ref": "GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification"
+          },
+          "type": "array"
+        },
+        "sourceCode": {
+          "$ref": "GoogleChecksRepoScanV1alphaSourceCode",
+          "description": "Required. Source code to analyze."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification": {
+      "description": "A request to classify data types.",
+      "id": "GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification",
+      "properties": {
+        "dataType": {
+          "description": "Required. Candidate data type.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "DATA_TYPE_APPROXIMATE_LOCATION",
+            "DATA_TYPE_PRECISE_LOCATION",
+            "DATA_TYPE_PERSONAL_NAME",
+            "DATA_TYPE_EMAIL_ADDRESS",
+            "DATA_TYPE_USER_IDS",
+            "DATA_TYPE_PHYSICAL_ADDRESS",
+            "DATA_TYPE_PHONE_NUMBER",
+            "DATA_TYPE_RACE_AND_ETHNICITY",
+            "DATA_TYPE_POLITICAL_OR_RELIGIOUS_BELIEFS",
+            "DATA_TYPE_SEXUAL_ORIENTATION",
+            "DATA_TYPE_OTHER_PERSONAL_INFO",
+            "DATA_TYPE_PAYMENT_INFO",
+            "DATA_TYPE_PURCHASE_HISTORY",
+            "DATA_TYPE_CREDIT_SCORE",
+            "DATA_TYPE_OTHER_FINANCIAL_INFO",
+            "DATA_TYPE_HEALTH_INFO",
+            "DATA_TYPE_FITNESS_INFO",
+            "DATA_TYPE_EMAILS",
+            "DATA_TYPE_TEXT_MESSAGES",
+            "DATA_TYPE_OTHER_IN_APP_MESSAGES",
+            "DATA_TYPE_PHOTOS",
+            "DATA_TYPE_VIDEOS",
+            "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS",
+            "DATA_TYPE_MUSIC_FILES",
+            "DATA_TYPE_OTHER_AUDIO_FILES",
+            "DATA_TYPE_FILES_AND_DOCS",
+            "DATA_TYPE_CALENDAR_EVENTS",
+            "DATA_TYPE_CONTACTS",
+            "DATA_TYPE_APP_INTERACTIONS",
+            "DATA_TYPE_IN_APP_SEARCH_HISTORY",
+            "DATA_TYPE_INSTALLED_APPS",
+            "DATA_TYPE_OTHER_USER_GENERATED_CONTENT",
+            "DATA_TYPE_OTHER_ACTIONS",
+            "DATA_TYPE_WEB_BROWSING_HISTORY",
+            "DATA_TYPE_CRASH_LOGS",
+            "DATA_TYPE_PERFORMANCE_DIAGNOSTICS",
+            "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA",
+            "DATA_TYPE_DEVICE_OR_OTHER_IDS"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "User or device physical location to an area greater than or equal to 3 square kilometers, such as the city a user is in, or location provided by Android's ACCESS_COARSE_LOCATION permission.",
+            "User or device physical location within an area less than 3 square kilometers, such as location provided by Android's ACCESS_FINE_LOCATION permission.",
+            "How a user refers to themselves, such as their first or last name, or nickname.",
+            "A user's email address.",
+            "Identifiers that relate to an identifiable person. For example, an account ID, account number, or account name.",
+            "A user's address, such as a mailing or home address.",
+            "A user's phone number.",
+            "Information about a user's race or ethnicity.",
+            "Information about a user's political or religious beliefs.",
+            "Information about a user's sexual orientation.",
+            "Any other personal information such as date of birth, gender identity, veteran status, etc.",
+            "Information about a user's financial accounts such as credit card number.",
+            "Information about purchases or transactions a user has made.",
+            "Information about a user's credit score.",
+            "Any other financial information such as user salary or debts.",
+            "Information about a user's health, such as medical records or symptoms.",
+            "Information about a user's fitness, such as exercise or other physical activity.",
+            "A user's emails including the email subject line, sender, recipients, and the content of the email.",
+            "A user's text messages including the sender, recipients, and the content of the message.",
+            "Any other types of messages. For example, instant messages or chat content.",
+            "A user's photos.",
+            "A user's videos.",
+            "A user's voice such as a voicemail or a sound recording.",
+            "A user's music files.",
+            "Any other user-created or user-provided audio files.",
+            "A user's files or documents, or information about their files or documents such as file names.",
+            "Information from a user's calendar such as events, event notes, and attendees.",
+            "Information about the user’s contacts such as contact names, message history, and social graph information like usernames, contact recency, contact frequency, interaction duration and call history.",
+            "Information about how a user interacts with your app, such as the number of page views or taps.",
+            "Information about what a user has searched for in your app.",
+            "Inventory of apps or packages installed on the user’s device.",
+            "Any other user-generated content not listed here, or in any other section. For example, user bios, notes, or open-ended responses.",
+            "Any other user activity or actions in-app not listed here such as gameplay, likes, and dialog options.",
+            "Information about the websites a user has visited.",
+            "Crash log data from your app. For example, the number of times your app has crashed, stack traces, or other information directly related to a crash.",
+            "Information about the performance of your app. For example battery life, loading time, latency, framerate, or any technical diagnostics.",
+            "Any other app performance data not listed here.",
+            "Identifiers that relate to an individual device, browser or app. For example, an IMEI number, MAC address, Widevine Device ID, Firebase installation ID, or advertising identifier."
+          ],
+          "type": "string"
+        },
+        "lineNumber": {
+          "description": "Required. Line number (1-based).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksRepoScanV1alphaGenerateScanRequest": {
+      "description": "The request message for RepoScanService.GenerateScan.",
+      "id": "GoogleChecksRepoScanV1alphaGenerateScanRequest",
+      "properties": {
+        "cliAnalysis": {
+          "$ref": "GoogleChecksRepoScanV1alphaCliAnalysis",
+          "description": "Required. CLI analysis results."
+        },
+        "cliVersion": {
+          "description": "Required. CLI version.",
+          "type": "string"
+        },
+        "localScanPath": {
+          "description": "Required. Local scan path.",
+          "type": "string"
+        },
+        "scmMetadata": {
+          "$ref": "GoogleChecksRepoScanV1alphaScmMetadata",
+          "description": "Required. SCM metadata."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksRepoScanV1alphaListRepoScansResponse": {
+      "description": "The response message for RepoScanService.ListRepoScans.",
+      "id": "GoogleChecksRepoScanV1alphaListRepoScansResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "repoScans": {
+          "description": "The repo scans for the specified app.",
+          "items": {
+            "$ref": "GoogleChecksRepoScanV1alphaRepoScan"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksRepoScanV1alphaPullRequest": {
+      "description": "Pull request info.",
+      "id": "GoogleChecksRepoScanV1alphaPullRequest",
+      "properties": {
+        "baseBranch": {
+          "description": "Required. For PR analysis, we compare against the most recent scan of the base branch to highlight new issues.",
+          "type": "string"
+        },
+        "prNumber": {
+          "description": "Required. This can be supplied by the user or parsed automatically from predefined CI environment variables.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksRepoScanV1alphaRepoScan": {
+      "description": "Repo scan.",
+      "id": "GoogleChecksRepoScanV1alphaRepoScan",
+      "properties": {
+        "cliVersion": {
+          "description": "CLI version.",
+          "type": "string"
+        },
+        "localScanPath": {
+          "description": "Local scan path.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the scan.",
+          "type": "string"
+        },
+        "resultsUri": {
+          "description": "A URL to view results.",
+          "type": "string"
+        },
+        "scmMetadata": {
+          "$ref": "GoogleChecksRepoScanV1alphaScmMetadata",
+          "description": "SCM metadata."
+        },
+        "sources": {
+          "description": "Data sources detected.",
+          "items": {
+            "$ref": "GoogleChecksRepoScanV1alphaSource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksRepoScanV1alphaScmMetadata": {
+      "description": "SCM metadata.",
+      "id": "GoogleChecksRepoScanV1alphaScmMetadata",
+      "properties": {
+        "branch": {
+          "description": "Required. Branch name.",
+          "type": "string"
+        },
+        "pullRequest": {
+          "$ref": "GoogleChecksRepoScanV1alphaPullRequest",
+          "description": "Optional. Contains info about the associated pull request. This is only populated for pull request scans."
+        },
+        "remoteUri": {
+          "description": "Required. Git remote URL.",
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "Required. Revision ID, e.g. Git commit hash.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksRepoScanV1alphaSource": {
+      "description": "Represents a data source finding.",
+      "id": "GoogleChecksRepoScanV1alphaSource",
+      "properties": {
+        "codeAttribution": {
+          "$ref": "GoogleChecksRepoScanV1alphaCodeAttribution",
+          "description": "Optional. Source code attribution for the finding."
+        },
+        "dataType": {
+          "description": "Required. Data type.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "DATA_TYPE_APPROXIMATE_LOCATION",
+            "DATA_TYPE_PRECISE_LOCATION",
+            "DATA_TYPE_PERSONAL_NAME",
+            "DATA_TYPE_EMAIL_ADDRESS",
+            "DATA_TYPE_USER_IDS",
+            "DATA_TYPE_PHYSICAL_ADDRESS",
+            "DATA_TYPE_PHONE_NUMBER",
+            "DATA_TYPE_RACE_AND_ETHNICITY",
+            "DATA_TYPE_POLITICAL_OR_RELIGIOUS_BELIEFS",
+            "DATA_TYPE_SEXUAL_ORIENTATION",
+            "DATA_TYPE_OTHER_PERSONAL_INFO",
+            "DATA_TYPE_PAYMENT_INFO",
+            "DATA_TYPE_PURCHASE_HISTORY",
+            "DATA_TYPE_CREDIT_SCORE",
+            "DATA_TYPE_OTHER_FINANCIAL_INFO",
+            "DATA_TYPE_HEALTH_INFO",
+            "DATA_TYPE_FITNESS_INFO",
+            "DATA_TYPE_EMAILS",
+            "DATA_TYPE_TEXT_MESSAGES",
+            "DATA_TYPE_OTHER_IN_APP_MESSAGES",
+            "DATA_TYPE_PHOTOS",
+            "DATA_TYPE_VIDEOS",
+            "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS",
+            "DATA_TYPE_MUSIC_FILES",
+            "DATA_TYPE_OTHER_AUDIO_FILES",
+            "DATA_TYPE_FILES_AND_DOCS",
+            "DATA_TYPE_CALENDAR_EVENTS",
+            "DATA_TYPE_CONTACTS",
+            "DATA_TYPE_APP_INTERACTIONS",
+            "DATA_TYPE_IN_APP_SEARCH_HISTORY",
+            "DATA_TYPE_INSTALLED_APPS",
+            "DATA_TYPE_OTHER_USER_GENERATED_CONTENT",
+            "DATA_TYPE_OTHER_ACTIONS",
+            "DATA_TYPE_WEB_BROWSING_HISTORY",
+            "DATA_TYPE_CRASH_LOGS",
+            "DATA_TYPE_PERFORMANCE_DIAGNOSTICS",
+            "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA",
+            "DATA_TYPE_DEVICE_OR_OTHER_IDS"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "User or device physical location to an area greater than or equal to 3 square kilometers, such as the city a user is in, or location provided by Android's ACCESS_COARSE_LOCATION permission.",
+            "User or device physical location within an area less than 3 square kilometers, such as location provided by Android's ACCESS_FINE_LOCATION permission.",
+            "How a user refers to themselves, such as their first or last name, or nickname.",
+            "A user's email address.",
+            "Identifiers that relate to an identifiable person. For example, an account ID, account number, or account name.",
+            "A user's address, such as a mailing or home address.",
+            "A user's phone number.",
+            "Information about a user's race or ethnicity.",
+            "Information about a user's political or religious beliefs.",
+            "Information about a user's sexual orientation.",
+            "Any other personal information such as date of birth, gender identity, veteran status, etc.",
+            "Information about a user's financial accounts such as credit card number.",
+            "Information about purchases or transactions a user has made.",
+            "Information about a user's credit score.",
+            "Any other financial information such as user salary or debts.",
+            "Information about a user's health, such as medical records or symptoms.",
+            "Information about a user's fitness, such as exercise or other physical activity.",
+            "A user's emails including the email subject line, sender, recipients, and the content of the email.",
+            "A user's text messages including the sender, recipients, and the content of the message.",
+            "Any other types of messages. For example, instant messages or chat content.",
+            "A user's photos.",
+            "A user's videos.",
+            "A user's voice such as a voicemail or a sound recording.",
+            "A user's music files.",
+            "Any other user-created or user-provided audio files.",
+            "A user's files or documents, or information about their files or documents such as file names.",
+            "Information from a user's calendar such as events, event notes, and attendees.",
+            "Information about the user’s contacts such as contact names, message history, and social graph information like usernames, contact recency, contact frequency, interaction duration and call history.",
+            "Information about how a user interacts with your app, such as the number of page views or taps.",
+            "Information about what a user has searched for in your app.",
+            "Inventory of apps or packages installed on the user’s device.",
+            "Any other user-generated content not listed here, or in any other section. For example, user bios, notes, or open-ended responses.",
+            "Any other user activity or actions in-app not listed here such as gameplay, likes, and dialog options.",
+            "Information about the websites a user has visited.",
+            "Crash log data from your app. For example, the number of times your app has crashed, stack traces, or other information directly related to a crash.",
+            "Information about the performance of your app. For example battery life, loading time, latency, framerate, or any technical diagnostics.",
+            "Any other app performance data not listed here.",
+            "Identifiers that relate to an individual device, browser or app. For example, an IMEI number, MAC address, Widevine Device ID, Firebase installation ID, or advertising identifier."
+          ],
+          "type": "string"
+        },
+        "falsePositive": {
+          "description": "Optional. Whether the finding was marked as a false positive.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksRepoScanV1alphaSourceCode": {
+      "description": "Contains source code from a repo.",
+      "id": "GoogleChecksRepoScanV1alphaSourceCode",
+      "properties": {
+        "code": {
+          "description": "Required. Source code.",
+          "type": "string"
+        },
+        "endLine": {
+          "description": "Required. End line number (1-based).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "path": {
+          "description": "Required. Path of the file.",
+          "type": "string"
+        },
+        "startLine": {
+          "description": "Required. Start line number (1-based).",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -705,7 +1393,10 @@
             "DATA_MONITORING_OUTDATED_SDK_VERSION",
             "DATA_MONITORING_CRITICAL_SDK_ISSUE",
             "PRIVACY_POLICY_DATA_TYPE_SENSITIVE_INFO",
-            "DATA_MONITORING_PII_LOGCAT_LEAK"
+            "DATA_MONITORING_PII_LOGCAT_LEAK",
+            "DATA_MONITORING_MINIMIZE_PERMISSION_MEDIA",
+            "DATA_MONITORING_MINIMIZE_PERMISSION_CAMERA",
+            "DATA_MONITORING_MINIMIZE_PERMISSION_DOCUMENTS"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -796,7 +1487,10 @@
             "Checks if there are any outdated SDKs.",
             "Checks if there are any SDKs with critical issues.",
             "Checks if the Sensitive Information data type declaration matches usage.",
-            "Checks if there were any PII leaked to device logs."
+            "Checks if there were any PII leaked to device logs.",
+            "Checks if there are media (photo and video) permissions that are considered sensitive and should be minimized for Android.",
+            "Checks if there are camera use permissions that are considered sensitive and should be minimized for Android.",
+            "Checks if there are documents and file permissions that are considered sensitive and should be minimized for Android."
           ],
           "type": "string"
         }
@@ -924,6 +1618,7 @@
             "DATA_TYPE_FITNESS_INFO",
             "DATA_TYPE_EMAILS",
             "DATA_TYPE_TEXT_MESSAGES",
+            "DATA_TYPE_OTHER_IN_APP_MESSAGES",
             "DATA_TYPE_PHOTOS",
             "DATA_TYPE_VIDEOS",
             "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS",
@@ -964,6 +1659,7 @@
             "Information about a user's fitness, such as exercise or other physical activity.",
             "A user's emails including the email subject line, sender, recipients, and the content of the email.",
             "A user's text messages including the sender, recipients, and the content of the message.",
+            "Any other types of messages. For example, instant messages or chat content.",
             "A user's photos.",
             "A user's videos.",
             "A user's voice such as a voicemail or a sound recording.",
@@ -1298,6 +1994,7 @@
             "DATA_TYPE_FITNESS_INFO",
             "DATA_TYPE_EMAILS",
             "DATA_TYPE_TEXT_MESSAGES",
+            "DATA_TYPE_OTHER_IN_APP_MESSAGES",
             "DATA_TYPE_PHOTOS",
             "DATA_TYPE_VIDEOS",
             "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS",
@@ -1338,6 +2035,7 @@
             "Information about a user's fitness, such as exercise or other physical activity.",
             "A user's emails including the email subject line, sender, recipients, and the content of the email.",
             "A user's text messages including the sender, recipients, and the content of the message.",
+            "Any other types of messages. For example, instant messages or chat content.",
             "A user's photos.",
             "A user's videos.",
             "A user's voice such as a voicemail or a sound recording.",

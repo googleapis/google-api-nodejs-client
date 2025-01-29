@@ -114,6 +114,7 @@ export namespace datacatalog_v1 {
     context: APIRequestContext;
     catalog: Resource$Catalog;
     entries: Resource$Entries;
+    organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -124,6 +125,7 @@ export namespace datacatalog_v1 {
 
       this.catalog = new Resource$Catalog(this.context);
       this.entries = new Resource$Entries(this.context);
+      this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -723,6 +725,10 @@ export namespace datacatalog_v1 {
      * Identifier. The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.
      */
     name?: string | null;
+    /**
+     * Optional. When set to [true], it means DataCatalog EntryGroup was transferred to Dataplex Catalog Service. It makes EntryGroup and its Entries to be read-only in DataCatalog. However, new Tags on EntryGroup and its Entries can be created. After setting the flag to [true] it cannot be unset.
+     */
+    transferredToDataplex?: boolean | null;
   }
   /**
    * Entry overview fields for rich text descriptions of entries.
@@ -977,6 +983,19 @@ export namespace datacatalog_v1 {
     parentViewId?: string | null;
   }
   /**
+   * The configuration related to the migration to Dataplex applied to an organization or project. It is the response message for SetConfig and RetrieveEffectiveConfig.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1MigrationConfig {
+    /**
+     * Opt-in status for the UI switch to Dataplex.
+     */
+    catalogUiExperience?: string | null;
+    /**
+     * Opt-in status for the migration of Tag Templates to Dataplex.
+     */
+    tagTemplateMigration?: string | null;
+  }
+  /**
    * Specification that applies to a model. Valid only for entries with the `MODEL` type.
    */
   export interface Schema$GoogleCloudDatacatalogV1ModelSpec {
@@ -1002,6 +1021,17 @@ export namespace datacatalog_v1 {
      * Required. The new value for the Entry Overview.
      */
     entryOverview?: Schema$GoogleCloudDatacatalogV1EntryOverview;
+  }
+  /**
+   * The configuration related to the migration from Data Catalog to Dataplex that has been applied to an organization and any projects under it. It is the response message for RetrieveConfig.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1OrganizationConfig {
+    /**
+     * Map of organizations and project resource names and their configuration. The format for the map keys is `organizations/{organizationId\}` or `projects/{projectId\}`.
+     */
+    config?: {
+      [key: string]: Schema$GoogleCloudDatacatalogV1MigrationConfig;
+    } | null;
   }
   /**
    * Entry metadata relevant only to the user and private to them.
@@ -1414,6 +1444,19 @@ export namespace datacatalog_v1 {
     cloudBigtableInstanceSpec?: Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpec;
   }
   /**
+   * Request message for SetConfig.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1SetConfigRequest {
+    /**
+     * Opt-in status for the UI switch to Dataplex.
+     */
+    catalogUiExperience?: string | null;
+    /**
+     * Opt-in status for the migration of Tag Templates to Dataplex.
+     */
+    tagTemplateMigration?: string | null;
+  }
+  /**
    * Specification that applies to entries that are part `SQL_DATABASE` system (user_specified_type)
    */
   export interface Schema$GoogleCloudDatacatalogV1SqlDatabaseSystemSpec {
@@ -1485,6 +1528,10 @@ export namespace datacatalog_v1 {
      * Resources like entry can have schemas associated with them. This scope allows you to attach tags to an individual column based on that schema. To attach a tag to a nested column, separate column names with a dot (`.`). Example: `column.nested_column`.
      */
     column?: string | null;
+    /**
+     * Output only. Denotes the transfer status of the Tag Template.
+     */
+    dataplexTransferStatus?: string | null;
     /**
      * Required. Maps the ID of a tag field to its value and additional information about that field. Tag template defines valid field IDs. A tag must have at least 1 field and at most 500 fields.
      */
@@ -2111,6 +2158,341 @@ export namespace datacatalog_v1 {
     sqlResource?: string;
   }
 
+  export class Resource$Organizations {
+    context: APIRequestContext;
+    locations: Resource$Organizations$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Organizations$Locations(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Locations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the configuration related to the migration from Data Catalog to Dataplex for a specific organization, including all the projects under it which have a separate configuration set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrieveConfig(
+      params: Params$Resource$Organizations$Locations$Retrieveconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retrieveConfig(
+      params?: Params$Resource$Organizations$Locations$Retrieveconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1OrganizationConfig>;
+    retrieveConfig(
+      params: Params$Resource$Organizations$Locations$Retrieveconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrieveConfig(
+      params: Params$Resource$Organizations$Locations$Retrieveconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1OrganizationConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1OrganizationConfig>
+    ): void;
+    retrieveConfig(
+      params: Params$Resource$Organizations$Locations$Retrieveconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1OrganizationConfig>
+    ): void;
+    retrieveConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1OrganizationConfig>
+    ): void;
+    retrieveConfig(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Retrieveconfig
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1OrganizationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1OrganizationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1OrganizationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1OrganizationConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Retrieveconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Retrieveconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:retrieveConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDatacatalogV1OrganizationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDatacatalogV1OrganizationConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Retrieves the effective configuration related to the migration from Data Catalog to Dataplex for a specific organization or project. If there is no specific configuration set for the resource, the setting is checked hierarchicahlly through the ancestors of the resource, starting from the resource itself.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrieveEffectiveConfig(
+      params: Params$Resource$Organizations$Locations$Retrieveeffectiveconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retrieveEffectiveConfig(
+      params?: Params$Resource$Organizations$Locations$Retrieveeffectiveconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>;
+    retrieveEffectiveConfig(
+      params: Params$Resource$Organizations$Locations$Retrieveeffectiveconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrieveEffectiveConfig(
+      params: Params$Resource$Organizations$Locations$Retrieveeffectiveconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    ): void;
+    retrieveEffectiveConfig(
+      params: Params$Resource$Organizations$Locations$Retrieveeffectiveconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    ): void;
+    retrieveEffectiveConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    ): void;
+    retrieveEffectiveConfig(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Retrieveeffectiveconfig
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Retrieveeffectiveconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Retrieveeffectiveconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:retrieveEffectiveConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDatacatalogV1MigrationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDatacatalogV1MigrationConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Sets the configuration related to the migration to Dataplex for an organization or project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setConfig(
+      params: Params$Resource$Organizations$Locations$Setconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setConfig(
+      params?: Params$Resource$Organizations$Locations$Setconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>;
+    setConfig(
+      params: Params$Resource$Organizations$Locations$Setconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setConfig(
+      params: Params$Resource$Organizations$Locations$Setconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    ): void;
+    setConfig(
+      params: Params$Resource$Organizations$Locations$Setconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    ): void;
+    setConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    ): void;
+    setConfig(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Setconfig
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Setconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Setconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:setConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDatacatalogV1MigrationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDatacatalogV1MigrationConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Retrieveconfig
+    extends StandardParameters {
+    /**
+     * Required. The organization whose config is being retrieved.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Retrieveeffectiveconfig
+    extends StandardParameters {
+    /**
+     * Required. The resource whose effective config is being retrieved.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Setconfig
+    extends StandardParameters {
+    /**
+     * Required. The organization or project whose config is being specified.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDatacatalogV1SetConfigRequest;
+  }
+
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -2141,6 +2523,221 @@ export namespace datacatalog_v1 {
         this.context
       );
     }
+
+    /**
+     * Retrieves the effective configuration related to the migration from Data Catalog to Dataplex for a specific organization or project. If there is no specific configuration set for the resource, the setting is checked hierarchicahlly through the ancestors of the resource, starting from the resource itself.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrieveEffectiveConfig(
+      params: Params$Resource$Projects$Locations$Retrieveeffectiveconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retrieveEffectiveConfig(
+      params?: Params$Resource$Projects$Locations$Retrieveeffectiveconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>;
+    retrieveEffectiveConfig(
+      params: Params$Resource$Projects$Locations$Retrieveeffectiveconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrieveEffectiveConfig(
+      params: Params$Resource$Projects$Locations$Retrieveeffectiveconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    ): void;
+    retrieveEffectiveConfig(
+      params: Params$Resource$Projects$Locations$Retrieveeffectiveconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    ): void;
+    retrieveEffectiveConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    ): void;
+    retrieveEffectiveConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Retrieveeffectiveconfig
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Retrieveeffectiveconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Retrieveeffectiveconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:retrieveEffectiveConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDatacatalogV1MigrationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDatacatalogV1MigrationConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Sets the configuration related to the migration to Dataplex for an organization or project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setConfig(
+      params: Params$Resource$Projects$Locations$Setconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setConfig(
+      params?: Params$Resource$Projects$Locations$Setconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>;
+    setConfig(
+      params: Params$Resource$Projects$Locations$Setconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setConfig(
+      params: Params$Resource$Projects$Locations$Setconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    ): void;
+    setConfig(
+      params: Params$Resource$Projects$Locations$Setconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    ): void;
+    setConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+    ): void;
+    setConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Setconfig
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1MigrationConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Setconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Setconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:setConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDatacatalogV1MigrationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDatacatalogV1MigrationConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Retrieveeffectiveconfig
+    extends StandardParameters {
+    /**
+     * Required. The resource whose effective config is being retrieved.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Setconfig
+    extends StandardParameters {
+    /**
+     * Required. The organization or project whose config is being specified.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDatacatalogV1SetConfigRequest;
   }
 
   export class Resource$Projects$Locations$Entrygroups {
@@ -5255,7 +5852,7 @@ export namespace datacatalog_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

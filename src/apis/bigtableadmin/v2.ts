@@ -215,11 +215,11 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$AutomatedBackupPolicy {
     /**
-     * Required. How frequently automated backups should occur. The only supported value at this time is 24 hours.
+     * How frequently automated backups should occur. The only supported value at this time is 24 hours. An undefined frequency is treated as 24 hours.
      */
     frequency?: string | null;
     /**
-     * Required. How long the automated backups should be retained. The only supported value at this time is 3 days.
+     * Required. How long the automated backups should be retained. Values must be at least 3 days and at most 90 days.
      */
     retentionPeriod?: string | null;
   }
@@ -821,7 +821,7 @@ export namespace bigtableadmin_v2 {
     rowPrefixes?: string[] | null;
   }
   /**
-   * A value that combines incremental updates into a summarized value. Data is never directly written or read using type `Aggregate`. Writes will provide either the `input_type` or `state_type`, and reads will always return the `state_type` .
+   * A value that combines incremental updates into a summarized value. Data is never directly written or read using type `Aggregate`. Writes provide either the `input_type` or `state_type`, and reads always return the `state_type` .
    */
   export interface Schema$GoogleBigtableAdminV2TypeAggregate {
     /**
@@ -829,7 +829,7 @@ export namespace bigtableadmin_v2 {
      */
     hllppUniqueCount?: Schema$GoogleBigtableAdminV2TypeAggregateHyperLogLogPlusPlusUniqueCount;
     /**
-     * Type of the inputs that are accumulated by this `Aggregate`, which must specify a full encoding. Use `AddInput` mutations to accumulate new inputs.
+     * Type of the inputs that are accumulated by this `Aggregate`. Use `AddInput` mutations to accumulate new inputs.
      */
     inputType?: Schema$Type;
     /**
@@ -841,7 +841,7 @@ export namespace bigtableadmin_v2 {
      */
     min?: Schema$GoogleBigtableAdminV2TypeAggregateMin;
     /**
-     * Output only. Type that holds the internal accumulator state for the `Aggregate`. This is a function of the `input_type` and `aggregator` chosen, and will always specify a full encoding.
+     * Output only. Type that holds the internal accumulator state for the `Aggregate`. This is a function of the `input_type` and `aggregator` chosen.
      */
     stateType?: Schema$Type;
     /**
@@ -883,12 +883,12 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GoogleBigtableAdminV2TypeBytes {
     /**
-     * The encoding to use when converting to/from lower level types.
+     * The encoding to use when converting to or from lower level types.
      */
     encoding?: Schema$GoogleBigtableAdminV2TypeBytesEncoding;
   }
   /**
-   * Rules used to convert to/from lower level types.
+   * Rules used to convert to or from lower level types.
    */
   export interface Schema$GoogleBigtableAdminV2TypeBytesEncoding {
     /**
@@ -897,7 +897,7 @@ export namespace bigtableadmin_v2 {
     raw?: Schema$GoogleBigtableAdminV2TypeBytesEncodingRaw;
   }
   /**
-   * Leaves the value "as-is" * Order-preserving? Yes * Self-delimiting? No * Compatibility? N/A
+   * Leaves the value as-is. Sorted mode: all values are supported. Distinct mode: all values are supported.
    */
   export interface Schema$GoogleBigtableAdminV2TypeBytesEncodingRaw {}
   /**
@@ -917,12 +917,12 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GoogleBigtableAdminV2TypeInt64 {
     /**
-     * The encoding to use when converting to/from lower level types.
+     * The encoding to use when converting to or from lower level types.
      */
     encoding?: Schema$GoogleBigtableAdminV2TypeInt64Encoding;
   }
   /**
-   * Rules used to convert to/from lower level types.
+   * Rules used to convert to or from lower level types.
    */
   export interface Schema$GoogleBigtableAdminV2TypeInt64Encoding {
     /**
@@ -931,7 +931,7 @@ export namespace bigtableadmin_v2 {
     bigEndianBytes?: Schema$GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes;
   }
   /**
-   * Encodes the value as an 8-byte big endian twos complement `Bytes` value. * Order-preserving? No (positive values only) * Self-delimiting? Yes * Compatibility? - BigQuery Federation `BINARY` encoding - HBase `Bytes.toBytes` - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
+   * Encodes the value as an 8-byte big-endian two's complement value. Sorted mode: non-negative values are supported. Distinct mode: all values are supported. Compatible with: - BigQuery `BINARY` encoding - HBase `Bytes.toBytes` - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
    */
   export interface Schema$GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes {
     /**
@@ -957,12 +957,12 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GoogleBigtableAdminV2TypeString {
     /**
-     * The encoding to use when converting to/from lower level types.
+     * The encoding to use when converting to or from lower level types.
      */
     encoding?: Schema$GoogleBigtableAdminV2TypeStringEncoding;
   }
   /**
-   * Rules used to convert to/from lower level types.
+   * Rules used to convert to or from lower level types.
    */
   export interface Schema$GoogleBigtableAdminV2TypeStringEncoding {
     /**
@@ -975,7 +975,7 @@ export namespace bigtableadmin_v2 {
     utf8Raw?: Schema$GoogleBigtableAdminV2TypeStringEncodingUtf8Raw;
   }
   /**
-   * UTF-8 encoding * Order-preserving? Yes (code point order) * Self-delimiting? No * Compatibility? - BigQuery Federation `TEXT` encoding - HBase `Bytes.toBytes` - Java `String#getBytes(StandardCharsets.UTF_8)`
+   * UTF-8 encoding. Sorted mode: - All values are supported. - Code point order is preserved. Distinct mode: all values are supported. Compatible with: - BigQuery `TEXT` encoding - HBase `Bytes.toBytes` - Java `String#getBytes(StandardCharsets.UTF_8)`
    */
   export interface Schema$GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes {}
   /**
@@ -1434,7 +1434,7 @@ export namespace bigtableadmin_v2 {
      */
     name?: string | null;
     /**
-     * If exists, the name of the long-running operation that will be used to track the post-restore optimization process to optimize the performance of the restored table. The metadata type of the long-running operation is OptimizeRestoreTableMetadata. The response type is Empty. This long-running operation may be automatically created by the system if applicable after the RestoreTable long-running operation completes successfully. This operation may not be created if the table is already optimized or the restore was not successful.
+     * If exists, the name of the long-running operation that will be used to track the post-restore optimization process to optimize the performance of the restored table. The metadata type of the long-running operation is OptimizeRestoredTableMetadata. The response type is Empty. This long-running operation may be automatically created by the system if applicable after the RestoreTable long-running operation completes successfully. This operation may not be created if the table is already optimized or the restore was not successful.
      */
     optimizeTableOperationName?: string | null;
     /**
@@ -1623,7 +1623,7 @@ export namespace bigtableadmin_v2 {
     permissions?: string[] | null;
   }
   /**
-   * `Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to/from the underlying data. Each encoding also defines the following properties: * Order-preserving: Does the encoded value sort consistently with the original typed value? Note that Bigtable will always sort data based on the raw encoded value, *not* the decoded type. - Example: BYTES values sort in the same order as their raw encodings. - Counterexample: Encoding INT64 as a fixed-width decimal string does *not* preserve sort order when dealing with negative numbers. `INT64(1) \> INT64(-1)`, but `STRING("-00001") \> STRING("00001)`. * Self-delimiting: If we concatenate two encoded values, can we always tell where the first one ends and the second one begins? - Example: If we encode INT64s to fixed-width STRINGs, the first value will always contain exactly N digits, possibly preceded by a sign. - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have no way to tell where the first one ends. * Compatibility: Which other systems have matching encoding schemes? For example, does this encoding have a GoogleSQL equivalent? HBase? Java?
+   * `Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to or from the underlying data. Each encoding can operate in one of two modes: - Sorted: In this mode, Bigtable guarantees that `Encode(X) <= Encode(Y)` if and only if `X <= Y`. This is useful anywhere sort order is important, for example when encoding keys. - Distinct: In this mode, Bigtable guarantees that if `X != Y` then `Encode(X) != Encode(Y)`. However, the converse is not guaranteed. For example, both "{'foo': '1', 'bar': '2'\}" and "{'bar': '2', 'foo': '1'\}" are valid encodings of the same JSON value. The API clearly documents which mode is used wherever an encoding can be configured. Each encoding also documents which values are supported in which modes. For example, when encoding INT64 as a numeric STRING, negative numbers cannot be encoded in sorted mode. This is because `INT64(1) \> INT64(-1)`, but `STRING("-00001") \> STRING("00001")`.
    */
   export interface Schema$Type {
     /**

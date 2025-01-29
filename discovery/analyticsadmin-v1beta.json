@@ -334,7 +334,7 @@
           ]
         },
         "searchChangeHistoryEvents": {
-          "description": "Searches through all changes to an account or its children given the specified set of filters.",
+          "description": "Searches through all changes to an account or its children given the specified set of filters. Only returns the subset of changes supported by the API. The UI may return additional changes.",
           "flatPath": "v1beta/accounts/{accountsId}:searchChangeHistoryEvents",
           "httpMethod": "POST",
           "id": "analyticsadmin.accounts.searchChangeHistoryEvents",
@@ -1788,7 +1788,7 @@
       }
     }
   },
-  "revision": "20240916",
+  "revision": "20250114",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1betaAccessBetweenFilter": {
@@ -2575,7 +2575,7 @@
       "id": "GoogleAnalyticsAdminV1betaDataRetentionSettings",
       "properties": {
         "eventDataRetention": {
-          "description": "The length of time that event-level data is retained.",
+          "description": "Required. The length of time that event-level data is retained.",
           "enum": [
             "RETENTION_DURATION_UNSPECIFIED",
             "TWO_MONTHS",
@@ -2588,9 +2588,9 @@
             "Data retention time duration is not specified.",
             "The data retention time duration is 2 months.",
             "The data retention time duration is 14 months.",
-            "The data retention time duration is 26 months. Available to 360 properties only.",
-            "The data retention time duration is 38 months. Available to 360 properties only.",
-            "The data retention time duration is 50 months. Available to 360 properties only."
+            "The data retention time duration is 26 months. Available to 360 properties only. Available for event data only.",
+            "The data retention time duration is 38 months. Available to 360 properties only. Available for event data only.",
+            "The data retention time duration is 50 months. Available to 360 properties only. Available for event data only."
           ],
           "type": "string"
         },
@@ -2602,6 +2602,26 @@
         "resetUserDataOnNewActivity": {
           "description": "If true, reset the retention period for the user identifier with every event from that user.",
           "type": "boolean"
+        },
+        "userDataRetention": {
+          "description": "Required. The length of time that user-level data is retained.",
+          "enum": [
+            "RETENTION_DURATION_UNSPECIFIED",
+            "TWO_MONTHS",
+            "FOURTEEN_MONTHS",
+            "TWENTY_SIX_MONTHS",
+            "THIRTY_EIGHT_MONTHS",
+            "FIFTY_MONTHS"
+          ],
+          "enumDescriptions": [
+            "Data retention time duration is not specified.",
+            "The data retention time duration is 2 months.",
+            "The data retention time duration is 14 months.",
+            "The data retention time duration is 26 months. Available to 360 properties only. Available for event data only.",
+            "The data retention time duration is 38 months. Available to 360 properties only. Available for event data only.",
+            "The data retention time duration is 50 months. Available to 360 properties only. Available for event data only."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3470,7 +3490,7 @@
           "type": "string"
         },
         "pageSize": {
-          "description": "Optional. The maximum number of ChangeHistoryEvent items to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 items will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+          "description": "Optional. The maximum number of ChangeHistoryEvent items to return. If unspecified, at most 50 items will be returned. The maximum value is 200 (higher values will be coerced to the maximum). Note that the service may return a page with fewer items than this value specifies (potentially even zero), and that there still may be additional pages. If you want a particular number of items, you'll need to continue requesting additional pages using `page_token` until you get the needed number.",
           "format": "int32",
           "type": "integer"
         },
@@ -3494,6 +3514,8 @@
               "GOOGLE_SIGNALS_SETTINGS",
               "CONVERSION_EVENT",
               "MEASUREMENT_PROTOCOL_SECRET",
+              "CUSTOM_DIMENSION",
+              "CUSTOM_METRIC",
               "DATA_RETENTION_SETTINGS",
               "DISPLAY_VIDEO_360_ADVERTISER_LINK",
               "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL",
@@ -3509,6 +3531,8 @@
               "GoogleSignalsSettings resource",
               "ConversionEvent resource",
               "MeasurementProtocolSecret resource",
+              "CustomDimension resource",
+              "CustomMetric resource",
               "DataRetentionSettings resource",
               "DisplayVideo360AdvertiserLink resource",
               "DisplayVideo360AdvertiserLinkProposal resource",

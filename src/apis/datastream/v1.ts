@@ -212,6 +212,23 @@ export namespace datastream_v1 {
    */
   export interface Schema$BigQueryProfile {}
   /**
+   * Configuration to use Binary Log Parser CDC technique.
+   */
+  export interface Schema$BinaryLogParser {
+    /**
+     * Use Oracle directories.
+     */
+    logFileDirectories?: Schema$LogFileDirectories;
+    /**
+     * Use Oracle ASM.
+     */
+    oracleAsmLogFileAccess?: Schema$OracleAsmLogFileAccess;
+  }
+  /**
+   * Use Binary log position based replication.
+   */
+  export interface Schema$BinaryLogPosition {}
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -265,7 +282,7 @@ export namespace datastream_v1 {
      */
     mysqlProfile?: Schema$MysqlProfile;
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      */
     name?: string | null;
     /**
@@ -280,6 +297,14 @@ export namespace datastream_v1 {
      * Private connectivity.
      */
     privateConnectivity?: Schema$PrivateConnectivity;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * SQLServer Connection Profile configuration.
      */
@@ -495,6 +520,10 @@ export namespace datastream_v1 {
     rootPath?: string | null;
   }
   /**
+   * Use GTID based replication.
+   */
+  export interface Schema$Gtid {}
+  /**
    * JSON file format configuration.
    */
   export interface Schema$JsonFileFormat {
@@ -640,6 +669,23 @@ export namespace datastream_v1 {
     name?: string | null;
   }
   /**
+   * Configuration to specify the Oracle directories to access the log files.
+   */
+  export interface Schema$LogFileDirectories {
+    /**
+     * Required. Oracle directory for archived logs.
+     */
+    archivedLogDirectory?: string | null;
+    /**
+     * Required. Oracle directory for online logs.
+     */
+    onlineLogDirectory?: string | null;
+  }
+  /**
+   * Configuration to use LogMiner CDC method.
+   */
+  export interface Schema$LogMiner {}
+  /**
    * Request for looking up a specific stream object by its source object identifier.
    */
   export interface Schema$LookupStreamObjectRequest {
@@ -737,7 +783,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * MySQL database profile.
+   * MySQL database profile. Next ID: 7.
    */
   export interface Schema$MysqlProfile {
     /**
@@ -745,7 +791,7 @@ export namespace datastream_v1 {
      */
     hostname?: string | null;
     /**
-     * Required. Input only. Password for the MySQL connection.
+     * Optional. Input only. Password for the MySQL connection. Mutually exclusive with the `secret_manager_stored_password` field.
      */
     password?: string | null;
     /**
@@ -775,9 +821,17 @@ export namespace datastream_v1 {
    */
   export interface Schema$MysqlSourceConfig {
     /**
+     * Use Binary log position based replication.
+     */
+    binaryLogPosition?: Schema$BinaryLogPosition;
+    /**
      * MySQL objects to exclude from the stream.
      */
     excludeObjects?: Schema$MysqlRdbms;
+    /**
+     * Use GTID based replication.
+     */
+    gtid?: Schema$Gtid;
     /**
      * MySQL objects to retrieve from the source.
      */
@@ -804,7 +858,7 @@ export namespace datastream_v1 {
      */
     caCertificateSet?: boolean | null;
     /**
-     * Input only. PEM-encoded certificate that will be used by the replica to authenticate against the source database server. If this field is used then the 'client_key' and the 'ca_certificate' fields are mandatory.
+     * Optional. Input only. PEM-encoded certificate that will be used by the replica to authenticate against the source database server. If this field is used then the 'client_key' and the 'ca_certificate' fields are mandatory.
      */
     clientCertificate?: string | null;
     /**
@@ -812,7 +866,7 @@ export namespace datastream_v1 {
      */
     clientCertificateSet?: boolean | null;
     /**
-     * Input only. PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory.
+     * Optional. Input only. PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory. Mutually exclusive with the `secret_manager_stored_client_key` field.
      */
     clientKey?: string | null;
     /**
@@ -879,7 +933,7 @@ export namespace datastream_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -899,6 +953,43 @@ export namespace datastream_v1 {
      */
     verb?: string | null;
   }
+  /**
+   * Configuration for Oracle Automatic Storage Management (ASM) connection. .
+   */
+  export interface Schema$OracleAsmConfig {
+    /**
+     * Required. ASM service name for the Oracle ASM connection.
+     */
+    asmService?: string | null;
+    /**
+     * Optional. Connection string attributes
+     */
+    connectionAttributes?: {[key: string]: string} | null;
+    /**
+     * Required. Hostname for the Oracle ASM connection.
+     */
+    hostname?: string | null;
+    /**
+     * Optional. SSL configuration for the Oracle connection.
+     */
+    oracleSslConfig?: Schema$OracleSslConfig;
+    /**
+     * Optional. Password for the Oracle ASM connection.
+     */
+    password?: string | null;
+    /**
+     * Required. Port for the Oracle ASM connection.
+     */
+    port?: number | null;
+    /**
+     * Required. Username for the Oracle ASM connection.
+     */
+    username?: string | null;
+  }
+  /**
+   * Configuration to use Oracle ASM to access the log files.
+   */
+  export interface Schema$OracleAsmLogFileAccess {}
   /**
    * Oracle Column.
    */
@@ -954,7 +1045,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * Oracle database profile.
+   * Oracle database profile. Next ID: 10.
    */
   export interface Schema$OracleProfile {
     /**
@@ -970,17 +1061,25 @@ export namespace datastream_v1 {
      */
     hostname?: string | null;
     /**
+     * Optional. Configuration for Oracle ASM connection.
+     */
+    oracleAsmConfig?: Schema$OracleAsmConfig;
+    /**
      * Optional. SSL configuration for the Oracle connection.
      */
     oracleSslConfig?: Schema$OracleSslConfig;
     /**
-     * Required. Password for the Oracle connection.
+     * Optional. Password for the Oracle connection. Mutually exclusive with the `secret_manager_stored_password` field.
      */
     password?: string | null;
     /**
      * Port for the Oracle connection, default value is 1521.
      */
     port?: number | null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the Oracle connection password. Mutually exclusive with the `password` field.
+     */
+    secretManagerStoredPassword?: string | null;
     /**
      * Required. Username for the Oracle connection.
      */
@@ -1022,6 +1121,10 @@ export namespace datastream_v1 {
    */
   export interface Schema$OracleSourceConfig {
     /**
+     * Use Binary Log Parser.
+     */
+    binaryLogParser?: Schema$BinaryLogParser;
+    /**
      * Drop large object values.
      */
     dropLargeObjects?: Schema$DropLargeObjects;
@@ -1033,6 +1136,10 @@ export namespace datastream_v1 {
      * Oracle objects to include in the stream.
      */
     includeObjects?: Schema$OracleRdbms;
+    /**
+     * Use LogMiner.
+     */
+    logMiner?: Schema$LogMiner;
     /**
      * Maximum number of concurrent backfill tasks. The number should be non-negative. If not set (or set to 0), the system's default value is used.
      */
@@ -1135,13 +1242,17 @@ export namespace datastream_v1 {
      */
     hostname?: string | null;
     /**
-     * Required. Password for the PostgreSQL connection.
+     * Optional. Password for the PostgreSQL connection. Mutually exclusive with the `secret_manager_stored_password` field.
      */
     password?: string | null;
     /**
      * Port for the PostgreSQL connection, default value is 5432.
      */
     port?: number | null;
+    /**
+     * Optional. SSL configuration for the PostgreSQL connection. In case PostgresqlSslConfig is not set, the connection will use the default SSL mode, which is `prefer` (i.e. this mode will only use encryption if enabled from database side, otherwise will use unencrypted communication)
+     */
+    sslConfig?: Schema$PostgresqlSslConfig;
     /**
      * Required. Username for the PostgreSQL connection.
      */
@@ -1195,6 +1306,19 @@ export namespace datastream_v1 {
     replicationSlot?: string | null;
   }
   /**
+   * PostgreSQL SSL configuration information.
+   */
+  export interface Schema$PostgresqlSslConfig {
+    /**
+     * If this field is set, the communication will be encrypted with TLS encryption and both the server identity and the client identity will be authenticated.
+     */
+    serverAndClientVerification?: Schema$ServerAndClientVerification;
+    /**
+     *  If this field is set, the communication will be encrypted with TLS encryption and the server identity will be authenticated.
+     */
+    serverVerification?: Schema$ServerVerification;
+  }
+  /**
    * PostgreSQL table.
    */
   export interface Schema$PostgresqlTable {
@@ -1228,9 +1352,17 @@ export namespace datastream_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      */
     name?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. The state of the Private Connection.
      */
@@ -1278,7 +1410,7 @@ export namespace datastream_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      */
     name?: string | null;
     /**
@@ -1298,6 +1430,32 @@ export namespace datastream_v1 {
      * Optional. Update the stream without validating it.
      */
     force?: boolean | null;
+  }
+  /**
+   * Message represents the option where Datastream will enforce the encryption and authenticate the server identity as well as the client identity. ca_certificate, client_certificate and client_key must be set if user selects this option.
+   */
+  export interface Schema$ServerAndClientVerification {
+    /**
+     * Required. Input only. PEM-encoded server root CA certificate.
+     */
+    caCertificate?: string | null;
+    /**
+     * Required. Input only. PEM-encoded certificate used by the source database to authenticate the client identity (i.e., the Datastream's identity). This certificate is signed by either a root certificate trusted by the server or one or more intermediate certificates (which is stored with the leaf certificate) to link the this certificate to the trusted root certificate.
+     */
+    clientCertificate?: string | null;
+    /**
+     * Optional. Input only. PEM-encoded private key associated with the client certificate. This value will be used during the SSL/TLS handshake, allowing the PostgreSQL server to authenticate the client's identity, i.e. identity of the Datastream. Mutually exclusive with the `secret_manager_stored_client_key` field.
+     */
+    clientKey?: string | null;
+  }
+  /**
+   * Message represents the option where Datastream will enforce the encryption and authenticate the server identity. ca_certificate must be set if user selects this option.
+   */
+  export interface Schema$ServerVerification {
+    /**
+     * Required. Input only. PEM-encoded server root CA certificate.
+     */
+    caCertificate?: string | null;
   }
   /**
    * A single target dataset to which all data will be streamed.
@@ -1375,6 +1533,10 @@ export namespace datastream_v1 {
      * Oracle SCN to start replicating from.
      */
     oracleScnPosition?: Schema$OracleScnPosition;
+    /**
+     * SqlServer LSN to start replicating from.
+     */
+    sqlServerLsnPosition?: Schema$SqlServerLsnPosition;
   }
   /**
    * Configuration to use Change Tables CDC read method.
@@ -1418,6 +1580,15 @@ export namespace datastream_v1 {
     scale?: number | null;
   }
   /**
+   * SQL Server LSN position
+   */
+  export interface Schema$SqlServerLsnPosition {
+    /**
+     * Required. Log sequence number (LSN) from where Logs will be read
+     */
+    lsn?: string | null;
+  }
+  /**
    * SQLServer data source object identifier.
    */
   export interface Schema$SqlServerObjectIdentifier {
@@ -1431,7 +1602,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * SQLServer database profile
+   * SQLServer database profile. Next ID: 8.
    */
   export interface Schema$SqlServerProfile {
     /**
@@ -1443,7 +1614,7 @@ export namespace datastream_v1 {
      */
     hostname?: string | null;
     /**
-     * Required. Password for the SQLServer connection.
+     * Optional. Password for the SQLServer connection. Mutually exclusive with the `secret_manager_stored_password` field.
      */
     password?: string | null;
     /**
@@ -1611,9 +1782,17 @@ export namespace datastream_v1 {
      */
     lastRecoveryTime?: string | null;
     /**
-     * Output only. The stream's name.
+     * Output only. Identifier. The stream's name.
      */
     name?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Required. Source connection profile configuration.
      */
@@ -1652,7 +1831,7 @@ export namespace datastream_v1 {
      */
     errors?: Schema$Error[];
     /**
-     * Output only. The object resource's name.
+     * Output only. Identifier. The object resource's name.
      */
     name?: string | null;
     /**
@@ -2712,7 +2891,7 @@ export namespace datastream_v1 {
      */
     force?: boolean;
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      */
     name?: string;
     /**
@@ -2741,7 +2920,7 @@ export namespace datastream_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4606,7 +4785,7 @@ export namespace datastream_v1 {
      */
     force?: boolean;
     /**
-     * Output only. The stream's name.
+     * Output only. Identifier. The stream's name.
      */
     name?: string;
     /**

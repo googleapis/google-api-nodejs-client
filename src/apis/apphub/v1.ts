@@ -125,7 +125,7 @@ export namespace apphub_v1 {
   }
 
   /**
-   * Application defines the governance boundary for App Hub Entities that perform a logical end-to-end business function. App Hub supports application level IAM permission to align with governance requirements.
+   * Application defines the governance boundary for App Hub entities that perform a logical end-to-end business function. App Hub supports application level IAM permission to align with governance requirements.
    */
   export interface Schema$Application {
     /**
@@ -145,7 +145,7 @@ export namespace apphub_v1 {
      */
     displayName?: string | null;
     /**
-     * Identifier. The resource name of an Application. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}"
+     * Identifier. The resource name of an Application. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}"`
      */
     name?: string | null;
     /**
@@ -268,11 +268,11 @@ export namespace apphub_v1 {
    */
   export interface Schema$DetachServiceProjectAttachmentResponse {}
   /**
-   * DiscoveredService is a network/api interface that exposes some functionality to clients for consumption over the network. A discovered service can be registered to a App Hub service.
+   * DiscoveredService is a network or API interface that exposes some functionality to clients for consumption over the network. A discovered service can be registered to a App Hub service.
    */
   export interface Schema$DiscoveredService {
     /**
-     * Identifier. The resource name of the discovered service. Format: "projects/{host-project-id\}/locations/{location\}/discoveredServices/{uuid\}""
+     * Identifier. The resource name of the discovered service. Format: `"projects/{host-project-id\}/locations/{location\}/discoveredServices/{uuid\}"`
      */
     name?: string | null;
     /**
@@ -289,7 +289,7 @@ export namespace apphub_v1 {
    */
   export interface Schema$DiscoveredWorkload {
     /**
-     * Identifier. The resource name of the discovered workload. Format: "projects/{host-project-id\}/locations/{location\}/discoveredWorkloads/{uuid\}"
+     * Identifier. The resource name of the discovered workload. Format: `"projects/{host-project-id\}/locations/{location\}/discoveredWorkloads/{uuid\}"`
      */
     name?: string | null;
     /**
@@ -557,7 +557,7 @@ export namespace apphub_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -617,7 +617,7 @@ export namespace apphub_v1 {
     type?: string | null;
   }
   /**
-   * Service is an App Hub data model that contains a discovered service, which represents a network/api interface that exposes some functionality to clients for consumption over the network.
+   * Service is an App Hub data model that contains a discovered service, which represents a network or API interface that exposes some functionality to clients for consumption over the network.
    */
   export interface Schema$Service {
     /**
@@ -641,7 +641,7 @@ export namespace apphub_v1 {
      */
     displayName?: string | null;
     /**
-     * Identifier. The resource name of a Service. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/services/{service-id\}"
+     * Identifier. The resource name of a Service. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/services/{service-id\}"`
      */
     name?: string | null;
     /**
@@ -674,11 +674,11 @@ export namespace apphub_v1 {
      */
     createTime?: string | null;
     /**
-     * Identifier. The resource name of a ServiceProjectAttachment. Format: "projects/{host-project-id\}/locations/global/serviceProjectAttachments/{service-project-id\}."
+     * Identifier. The resource name of a ServiceProjectAttachment. Format: `"projects/{host-project-id\}/locations/global/serviceProjectAttachments/{service-project-id\}."`
      */
     name?: string | null;
     /**
-     * Required. Immutable. Service project name in the format: "projects/abc" or "projects/123". As input, project name with either project id or number are accepted. As output, this field will contain project number.
+     * Required. Immutable. Service project name in the format: `"projects/abc"` or `"projects/123"`. As input, project name with either project id or number are accepted. As output, this field will contain project number.
      */
     serviceProject?: string | null;
     /**
@@ -712,7 +712,7 @@ export namespace apphub_v1 {
    */
   export interface Schema$ServiceReference {
     /**
-     * Output only. The underlying resource URI (For example, URI of Forwarding Rule, URL Map, and Backend Service).
+     * Output only. The underlying resource URI. For example, URI of Forwarding Rule, URL Map, and Backend Service.
      */
     uri?: string | null;
   }
@@ -789,7 +789,7 @@ export namespace apphub_v1 {
      */
     displayName?: string | null;
     /**
-     * Identifier. The resource name of the Workload. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/workloads/{workload-id\}"
+     * Identifier. The resource name of the Workload. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/workloads/{workload-id\}"`
      */
     name?: string | null;
     /**
@@ -818,15 +818,15 @@ export namespace apphub_v1 {
    */
   export interface Schema$WorkloadProperties {
     /**
-     * Output only. The service project identifier that the underlying cloud resource resides in. Empty for non cloud resources.
+     * Output only. The service project identifier that the underlying cloud resource resides in. Empty for non-cloud resources.
      */
     gcpProject?: string | null;
     /**
-     * Output only. The location that the underlying compute resource resides in (e.g us-west1).
+     * Output only. The location that the underlying compute resource resides in (for example, us-west1).
      */
     location?: string | null;
     /**
-     * Output only. The location that the underlying compute resource resides in if it is zonal (e.g us-west1-a).
+     * Output only. The location that the underlying compute resource resides in if it is zonal (for example, us-west1-a).
      */
     zone?: string | null;
   }
@@ -2091,7 +2091,7 @@ export namespace apphub_v1 {
   export interface Params$Resource$Projects$Locations$Applications$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of an Application. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}"
+     * Identifier. The resource name of an Application. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}"`
      */
     name?: string;
     /**
@@ -2645,7 +2645,7 @@ export namespace apphub_v1 {
   export interface Params$Resource$Projects$Locations$Applications$Services$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of a Service. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/services/{service-id\}"
+     * Identifier. The resource name of a Service. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/services/{service-id\}"`
      */
     name?: string;
     /**
@@ -3175,7 +3175,7 @@ export namespace apphub_v1 {
   export interface Params$Resource$Projects$Locations$Applications$Workloads$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of the Workload. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/workloads/{workload-id\}"
+     * Identifier. The resource name of the Workload. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/workloads/{workload-id\}"`
      */
     name?: string;
     /**
@@ -3868,7 +3868,7 @@ export namespace apphub_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

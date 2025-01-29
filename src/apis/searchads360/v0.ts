@@ -2205,6 +2205,10 @@ export namespace searchads360_v0 {
      */
     creationTime?: string | null;
     /**
+     * Output only. The resource names of effective labels attached to this ad. An effective label is a label inherited or directly assigned to this ad.
+     */
+    effectiveLabels?: string[] | null;
+    /**
      * Output only. ID of the ad in the external engine account. This field is for Search Ads 360 account only, for example, Yahoo Japan, Microsoft, Baidu etc. For non-Search Ads 360 entity, use "ad_group_ad.ad.id" instead.
      */
     engineId?: string | null;
@@ -2228,6 +2232,27 @@ export namespace searchads360_v0 {
      * The status of the ad.
      */
     status?: string | null;
+  }
+  /**
+   * A relationship between an ad group ad and an effective label. An effective label is a label inherited or directly assigned to this ad group ad.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupAdEffectiveLabel {
+    /**
+     * Immutable. The ad group ad to which the effective label is attached.
+     */
+    adGroupAd?: string | null;
+    /**
+     * Immutable. The effective label assigned to the ad group ad.
+     */
+    label?: string | null;
+    /**
+     * Output only. The ID of the Customer which owns the effective label.
+     */
+    ownerCustomerId?: string | null;
+    /**
+     * Immutable. The resource name of the ad group ad effective label. Ad group ad effective label resource names have the form: `customers/{customer_id\}/adGroupAdEffectiveLabels/{ad_group_id\}~{ad_id\}~{label_id\}`
+     */
+    resourceName?: string | null;
   }
   /**
    * A relationship between an ad group ad and a label.
@@ -2351,6 +2376,10 @@ export namespace searchads360_v0 {
      */
     effectiveCpcBidMicros?: string | null;
     /**
+     * Output only. The resource names of effective labels attached to this ad group criterion. An effective label is a label inherited or directly assigned to this ad group criterion.
+     */
+    effectiveLabels?: string[] | null;
+    /**
      * Output only. ID of the ad group criterion in the external engine account. This field is for non-Google Ads account only, for example, Yahoo Japan, Microsoft, Baidu etc. For Google Ads entity, use "ad_group_criterion.criterion_id" instead.
      */
     engineId?: string | null;
@@ -2426,6 +2455,27 @@ export namespace searchads360_v0 {
      * Immutable. Webpage
      */
     webpage?: Schema$GoogleAdsSearchads360V0Common__WebpageInfo;
+  }
+  /**
+   * A relationship between an ad group criterion and an effective label. An effective label is a label inherited or directly assigned to this ad group criterion.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupCriterionEffectiveLabel {
+    /**
+     * Immutable. The ad group criterion to which the effective label is attached.
+     */
+    adGroupCriterion?: string | null;
+    /**
+     * Immutable. The effective label assigned to the ad group criterion.
+     */
+    label?: string | null;
+    /**
+     * Output only. The ID of the Customer which owns the effective label.
+     */
+    ownerCustomerId?: string | null;
+    /**
+     * Immutable. The resource name of the ad group criterion effective label. Ad group criterion effective label resource names have the form: `customers/{customer_id\}/adGroupCriterionEffectiveLabels/{ad_group_id\}~{criterion_id\}~{label_id\}`
+     */
+    resourceName?: string | null;
   }
   /**
    * A relationship between an ad group criterion and a label.
@@ -4049,6 +4099,23 @@ export namespace searchads360_v0 {
     type?: string | null;
   }
   /**
+   * A user location view. User Location View includes all metrics aggregated at the country level, one row per country. It reports metrics at the actual physical location of the user by targeted or not targeted location. If other segment fields are used, you may get more than one row per country.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__UserLocationView {
+    /**
+     * Output only. Criterion Id for the country.
+     */
+    countryCriterionId?: string | null;
+    /**
+     * Output only. The resource name of the user location view. UserLocation view resource names have the form: `customers/{customer_id\}/userLocationViews/{country_criterion_id\}~{targeting_location\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. Indicates whether location was targeted or not.
+     */
+    targetingLocation?: boolean | null;
+  }
+  /**
    * A visit.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__Visit {
@@ -4222,6 +4289,10 @@ export namespace searchads360_v0 {
      */
     adGroupAd?: Schema$GoogleAdsSearchads360V0Resources__AdGroupAd;
     /**
+     * The ad group ad effective label referenced in the query.
+     */
+    adGroupAdEffectiveLabel?: Schema$GoogleAdsSearchads360V0Resources__AdGroupAdEffectiveLabel;
+    /**
      * The ad group ad label referenced in the query.
      */
     adGroupAdLabel?: Schema$GoogleAdsSearchads360V0Resources__AdGroupAdLabel;
@@ -4245,6 +4316,10 @@ export namespace searchads360_v0 {
      * The criterion referenced in the query.
      */
     adGroupCriterion?: Schema$GoogleAdsSearchads360V0Resources__AdGroupCriterion;
+    /**
+     * The ad group criterion effective label referenced in the query.
+     */
+    adGroupCriterionEffectiveLabel?: Schema$GoogleAdsSearchads360V0Resources__AdGroupCriterionEffectiveLabel;
     /**
      * The ad group criterion label referenced in the query.
      */
@@ -4425,6 +4500,10 @@ export namespace searchads360_v0 {
      * The user list referenced in the query.
      */
     userList?: Schema$GoogleAdsSearchads360V0Resources__UserList;
+    /**
+     * The user location view referenced in the query.
+     */
+    userLocationView?: Schema$GoogleAdsSearchads360V0Resources__UserLocationView;
     /**
      * The event level visit referenced in the query.
      */

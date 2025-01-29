@@ -410,7 +410,7 @@ export namespace iam_v1 {
      */
     clientId?: string | null;
     /**
-     * The optional client secret. Required to enable Authorization Code flow for web sign-in.
+     * Optional. The optional client secret. Required to enable Authorization Code flow for web sign-in.
      */
     clientSecret?: Schema$GoogleIamAdminV1WorkforcePoolProviderOidcClientSecret;
     /**
@@ -418,7 +418,7 @@ export namespace iam_v1 {
      */
     issuerUri?: string | null;
     /**
-     * OIDC JWKs in JSON String format. For details on the definition of a JWK, see https://tools.ietf.org/html/rfc7517. If not set, the `jwks_uri` from the discovery document(fetched from the .well-known path of the `issuer_uri`) will be used. Currently, RSA and EC asymmetric keys are supported. The JWK must use following format and include only the following fields: { "keys": [ { "kty": "RSA/EC", "alg": "", "use": "sig", "kid": "", "n": "", "e": "", "x": "", "y": "", "crv": "" \} ] \}
+     * Optional. OIDC JWKs in JSON String format. For details on the definition of a JWK, see https://tools.ietf.org/html/rfc7517. If not set, the `jwks_uri` from the discovery document(fetched from the .well-known path of the `issuer_uri`) will be used. Currently, RSA and EC asymmetric keys are supported. The JWK must use following format and include only the following fields: { "keys": [ { "kty": "RSA/EC", "alg": "", "use": "sig", "kid": "", "n": "", "e": "", "x": "", "y": "", "crv": "" \} ] \}
      */
     jwksJson?: string | null;
     /**
@@ -440,7 +440,7 @@ export namespace iam_v1 {
    */
   export interface Schema$GoogleIamAdminV1WorkforcePoolProviderOidcClientSecretValue {
     /**
-     * Input only. The plain text of the client secret value. For security reasons, this field is only used for input and will never be populated in any response.
+     * Optional. Input only. The plain text of the client secret value. For security reasons, this field is only used for input and will never be populated in any response.
      */
     plainText?: string | null;
     /**
@@ -453,7 +453,7 @@ export namespace iam_v1 {
    */
   export interface Schema$GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfig {
     /**
-     * Additional scopes to request for in the OIDC authentication request on top of scopes requested by default. By default, the `openid`, `profile` and `email` scopes that are supported by the identity provider are requested. Each additional scope may be at most 256 characters. A maximum of 10 additional scopes may be configured.
+     * Optional. Additional scopes to request for in the OIDC authentication request on top of scopes requested by default. By default, the `openid`, `profile` and `email` scopes that are supported by the identity provider are requested. Each additional scope may be at most 256 characters. A maximum of 10 additional scopes may be configured.
      */
     additionalScopes?: string[] | null;
     /**
@@ -698,7 +698,7 @@ export namespace iam_v1 {
      */
     allowedRedirectUris?: string[] | null;
     /**
-     * Required. The list of scopes that the OauthClient is allowed to request during OAuth flows. The following scopes are supported: * `https://www.googleapis.com/auth/cloud-platform`: See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.
+     * Required. The list of scopes that the OauthClient is allowed to request during OAuth flows. The following scopes are supported: * `https://www.googleapis.com/auth/cloud-platform`: See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account. * `openid`: The OAuth client can associate you with your personal information on Google Cloud. * `email`: The OAuth client can read a federated identity's email address. * `groups`: The OAuth client can read a federated identity's groups.
      */
     allowedScopes?: string[] | null;
     /**
@@ -726,7 +726,7 @@ export namespace iam_v1 {
      */
     expireTime?: string | null;
     /**
-     * Immutable. The resource name of the OauthClient. Format:`projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}`.
+     * Immutable. Identifier. The resource name of the OauthClient. Format:`projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}`.
      */
     name?: string | null;
     /**
@@ -751,7 +751,7 @@ export namespace iam_v1 {
      */
     displayName?: string | null;
     /**
-     * Immutable. The resource name of the OauthClientCredential. Format: `projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}/credentials/{credential\}`
+     * Immutable. Identifier. The resource name of the OauthClientCredential. Format: `projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}/credentials/{credential\}`
      */
     name?: string | null;
   }
@@ -760,7 +760,7 @@ export namespace iam_v1 {
    */
   export interface Schema$Oidc {
     /**
-     * Acceptable values for the `aud` field (audience) in the OIDC token. Token exchange requests are rejected if the token audience does not match one of the configured values. Each audience may be at most 256 characters. A maximum of 10 audiences may be configured. If this list is empty, the OIDC token audience must be equal to the full canonical resource name of the WorkloadIdentityPoolProvider, with or without the HTTPS prefix. For example: ``` //iam.googleapis.com/projects//locations//workloadIdentityPools//providers/ https://iam.googleapis.com/projects//locations//workloadIdentityPools//providers/ ```
+     * Optional. Acceptable values for the `aud` field (audience) in the OIDC token. Token exchange requests are rejected if the token audience does not match one of the configured values. Each audience may be at most 256 characters. A maximum of 10 audiences may be configured. If this list is empty, the OIDC token audience must be equal to the full canonical resource name of the WorkloadIdentityPoolProvider, with or without the HTTPS prefix. For example: ``` //iam.googleapis.com/projects//locations//workloadIdentityPools//providers/ https://iam.googleapis.com/projects//locations//workloadIdentityPools//providers/ ```
      */
     allowedAudiences?: string[] | null;
     /**
@@ -806,7 +806,7 @@ export namespace iam_v1 {
      */
     apiVersion?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -850,7 +850,7 @@ export namespace iam_v1 {
      */
     customRolesSupportLevel?: string | null;
     /**
-     * A brief description of what this Permission is used for. This permission can ONLY be used in predefined roles.
+     * A brief description of what this Permission is used for.
      */
     description?: string | null;
     /**
@@ -1312,15 +1312,15 @@ export namespace iam_v1 {
      */
     accessRestrictions?: Schema$AccessRestrictions;
     /**
-     * A user-specified description of the pool. Cannot exceed 256 characters.
+     * Optional. A user-specified description of the pool. Cannot exceed 256 characters.
      */
     description?: string | null;
     /**
-     * Disables the workforce pool. You cannot use a disabled pool to exchange tokens, or use existing tokens to access resources. If the pool is re-enabled, existing tokens grant access again.
+     * Optional. Disables the workforce pool. You cannot use a disabled pool to exchange tokens, or use existing tokens to access resources. If the pool is re-enabled, existing tokens grant access again.
      */
     disabled?: boolean | null;
     /**
-     * A user-specified display name of the pool in Google Cloud Console. Cannot exceed 32 characters.
+     * Optional. A user-specified display name of the pool in Google Cloud Console. Cannot exceed 32 characters.
      */
     displayName?: string | null;
     /**
@@ -1328,7 +1328,7 @@ export namespace iam_v1 {
      */
     expireTime?: string | null;
     /**
-     * Output only. The resource name of the pool. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}`
+     * Identifier. The resource name of the pool. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}`
      */
     name?: string | null;
     /**
@@ -1336,7 +1336,7 @@ export namespace iam_v1 {
      */
     parent?: string | null;
     /**
-     * Duration that the Google Cloud access tokens, console sign-in sessions, and `gcloud` sign-in sessions from this pool are valid. Must be greater than 15 minutes (900s) and less than 12 hours (43200s). If `session_duration` is not configured, minted credentials have a default duration of one hour (3600s). For SAML providers, the lifetime of the token is the minimum of the `session_duration` and the `SessionNotOnOrAfter` claim in the SAML assertion.
+     * Optional. Duration that the Google Cloud access tokens, console sign-in sessions, and `gcloud` sign-in sessions from this pool are valid. Must be greater than 15 minutes (900s) and less than 12 hours (43200s). If `session_duration` is not configured, minted credentials have a default duration of one hour (3600s). For SAML providers, the lifetime of the token is the minimum of the `session_duration` and the `SessionNotOnOrAfter` claim in the SAML assertion.
      */
     sessionDuration?: string | null;
     /**
@@ -1349,7 +1349,7 @@ export namespace iam_v1 {
    */
   export interface Schema$WorkforcePoolProvider {
     /**
-     * A [Common Expression Language](https://opensource.google/projects/cel) expression, in plain text, to restrict what otherwise valid authentication credentials issued by the provider should not be accepted. The expression must output a boolean representing whether to allow the federation. The following keywords may be referenced in the expressions: * `assertion`: JSON representing the authentication credential issued by the provider. * `google`: The Google attributes mapped from the assertion in the `attribute_mappings`. `google.profile_photo`, `google.display_name` and `google.posix_username` are not supported. * `attribute`: The custom attributes mapped from the assertion in the `attribute_mappings`. The maximum length of the attribute condition expression is 4096 characters. If unspecified, all valid authentication credentials will be accepted. The following example shows how to only allow credentials with a mapped `google.groups` value of `admins`: ``` "'admins' in google.groups" ```
+     * Optional. A [Common Expression Language](https://opensource.google/projects/cel) expression, in plain text, to restrict what otherwise valid authentication credentials issued by the provider should not be accepted. The expression must output a boolean representing whether to allow the federation. The following keywords may be referenced in the expressions: * `assertion`: JSON representing the authentication credential issued by the provider. * `google`: The Google attributes mapped from the assertion in the `attribute_mappings`. `google.profile_photo`, `google.display_name` and `google.posix_username` are not supported. * `attribute`: The custom attributes mapped from the assertion in the `attribute_mappings`. The maximum length of the attribute condition expression is 4096 characters. If unspecified, all valid authentication credentials will be accepted. The following example shows how to only allow credentials with a mapped `google.groups` value of `admins`: ``` "'admins' in google.groups" ```
      */
     attributeCondition?: string | null;
     /**
@@ -1357,15 +1357,15 @@ export namespace iam_v1 {
      */
     attributeMapping?: {[key: string]: string} | null;
     /**
-     * A user-specified description of the provider. Cannot exceed 256 characters.
+     * Optional. A user-specified description of the provider. Cannot exceed 256 characters.
      */
     description?: string | null;
     /**
-     * Disables the workforce pool provider. You cannot use a disabled provider to exchange tokens. However, existing tokens still grant access.
+     * Optional. Disables the workforce pool provider. You cannot use a disabled provider to exchange tokens. However, existing tokens still grant access.
      */
     disabled?: boolean | null;
     /**
-     * A user-specified display name for the provider. Cannot exceed 32 characters.
+     * Optional. A user-specified display name for the provider. Cannot exceed 32 characters.
      */
     displayName?: string | null;
     /**
@@ -1377,7 +1377,7 @@ export namespace iam_v1 {
      */
     extraAttributesOauth2Client?: Schema$GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client;
     /**
-     * Output only. The resource name of the provider. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/providers/{provider_id\}`
+     * Identifier. The resource name of the provider. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/providers/{provider_id\}`
      */
     name?: string | null;
     /**
@@ -1406,7 +1406,7 @@ export namespace iam_v1 {
      */
     keyData?: Schema$KeyData;
     /**
-     * Output only. The resource name of the key.
+     * Identifier. The resource name of the key. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/providers/{provider_id\}/keys/{key_id\}`
      */
     name?: string | null;
     /**
@@ -1423,15 +1423,15 @@ export namespace iam_v1 {
    */
   export interface Schema$WorkloadIdentityPool {
     /**
-     * A description of the pool. Cannot exceed 256 characters.
+     * Optional. A description of the pool. Cannot exceed 256 characters.
      */
     description?: string | null;
     /**
-     * Whether the pool is disabled. You cannot use a disabled pool to exchange tokens, or use existing tokens to access resources. If the pool is re-enabled, existing tokens grant access again.
+     * Optional. Whether the pool is disabled. You cannot use a disabled pool to exchange tokens, or use existing tokens to access resources. If the pool is re-enabled, existing tokens grant access again.
      */
     disabled?: boolean | null;
     /**
-     * A display name for the pool. Cannot exceed 32 characters.
+     * Optional. A display name for the pool. Cannot exceed 32 characters.
      */
     displayName?: string | null;
     /**
@@ -1456,11 +1456,11 @@ export namespace iam_v1 {
    */
   export interface Schema$WorkloadIdentityPoolProvider {
     /**
-     * [A Common Expression Language](https://opensource.google/projects/cel) expression, in plain text, to restrict what otherwise valid authentication credentials issued by the provider should not be accepted. The expression must output a boolean representing whether to allow the federation. The following keywords may be referenced in the expressions: * `assertion`: JSON representing the authentication credential issued by the provider. * `google`: The Google attributes mapped from the assertion in the `attribute_mappings`. * `attribute`: The custom attributes mapped from the assertion in the `attribute_mappings`. The maximum length of the attribute condition expression is 4096 characters. If unspecified, all valid authentication credential are accepted. The following example shows how to only allow credentials with a mapped `google.groups` value of `admins`: ``` "'admins' in google.groups" ```
+     * Optional. [A Common Expression Language](https://opensource.google/projects/cel) expression, in plain text, to restrict what otherwise valid authentication credentials issued by the provider should not be accepted. The expression must output a boolean representing whether to allow the federation. The following keywords may be referenced in the expressions: * `assertion`: JSON representing the authentication credential issued by the provider. * `google`: The Google attributes mapped from the assertion in the `attribute_mappings`. * `attribute`: The custom attributes mapped from the assertion in the `attribute_mappings`. The maximum length of the attribute condition expression is 4096 characters. If unspecified, all valid authentication credential are accepted. The following example shows how to only allow credentials with a mapped `google.groups` value of `admins`: ``` "'admins' in google.groups" ```
      */
     attributeCondition?: string | null;
     /**
-     *  Maps attributes from authentication credentials issued by an external identity provider to Google Cloud attributes, such as `subject` and `segment`. Each key must be a string specifying the Google Cloud IAM attribute to map to. The following keys are supported: * `google.subject`: The principal IAM is authenticating. You can reference this value in IAM bindings. This is also the subject that appears in Cloud Logging logs. Cannot exceed 127 bytes. * `google.groups`: Groups the external identity belongs to. You can grant groups access to resources using an IAM `principalSet` binding; access applies to all members of the group. You can also provide custom attributes by specifying `attribute.{custom_attribute\}`, where `{custom_attribute\}` is the name of the custom attribute to be mapped. You can define a maximum of 50 custom attributes. The maximum length of a mapped attribute key is 100 characters, and the key may only contain the characters [a-z0-9_]. You can reference these attributes in IAM policies to define fine-grained access for a workload to Google Cloud resources. For example: * `google.subject`: `principal://iam.googleapis.com/projects/{project\}/locations/{location\}/workloadIdentityPools/{pool\}/subject/{value\}` * `google.groups`: `principalSet://iam.googleapis.com/projects/{project\}/locations/{location\}/workloadIdentityPools/{pool\}/group/{value\}` * `attribute.{custom_attribute\}`: `principalSet://iam.googleapis.com/projects/{project\}/locations/{location\}/workloadIdentityPools/{pool\}/attribute.{custom_attribute\}/{value\}` Each value must be a [Common Expression Language] (https://opensource.google/projects/cel) function that maps an identity provider credential to the normalized attribute specified by the corresponding map key. You can use the `assertion` keyword in the expression to access a JSON representation of the authentication credential issued by the provider. The maximum length of an attribute mapping expression is 2048 characters. When evaluated, the total size of all mapped attributes must not exceed 8KB. For AWS providers, if no attribute mapping is defined, the following default mapping applies: ``` { "google.subject":"assertion.arn", "attribute.aws_role": "assertion.arn.contains('assumed-role')" " ? assertion.arn.extract('{account_arn\}assumed-role/')" " + 'assumed-role/'" " + assertion.arn.extract('assumed-role/{role_name\}/')" " : assertion.arn", \} ``` If any custom attribute mappings are defined, they must include a mapping to the `google.subject` attribute. For OIDC providers, you must supply a custom mapping, which must include the `google.subject` attribute. For example, the following maps the `sub` claim of the incoming credential to the `subject` attribute on a Google token: ``` {"google.subject": "assertion.sub"\} ```
+     * Optional. Maps attributes from authentication credentials issued by an external identity provider to Google Cloud attributes, such as `subject` and `segment`. Each key must be a string specifying the Google Cloud IAM attribute to map to. The following keys are supported: * `google.subject`: The principal IAM is authenticating. You can reference this value in IAM bindings. This is also the subject that appears in Cloud Logging logs. Cannot exceed 127 bytes. * `google.groups`: Groups the external identity belongs to. You can grant groups access to resources using an IAM `principalSet` binding; access applies to all members of the group. You can also provide custom attributes by specifying `attribute.{custom_attribute\}`, where `{custom_attribute\}` is the name of the custom attribute to be mapped. You can define a maximum of 50 custom attributes. The maximum length of a mapped attribute key is 100 characters, and the key may only contain the characters [a-z0-9_]. You can reference these attributes in IAM policies to define fine-grained access for a workload to Google Cloud resources. For example: * `google.subject`: `principal://iam.googleapis.com/projects/{project\}/locations/{location\}/workloadIdentityPools/{pool\}/subject/{value\}` * `google.groups`: `principalSet://iam.googleapis.com/projects/{project\}/locations/{location\}/workloadIdentityPools/{pool\}/group/{value\}` * `attribute.{custom_attribute\}`: `principalSet://iam.googleapis.com/projects/{project\}/locations/{location\}/workloadIdentityPools/{pool\}/attribute.{custom_attribute\}/{value\}` Each value must be a [Common Expression Language] (https://opensource.google/projects/cel) function that maps an identity provider credential to the normalized attribute specified by the corresponding map key. You can use the `assertion` keyword in the expression to access a JSON representation of the authentication credential issued by the provider. The maximum length of an attribute mapping expression is 2048 characters. When evaluated, the total size of all mapped attributes must not exceed 8KB. For AWS providers, if no attribute mapping is defined, the following default mapping applies: ``` { "google.subject":"assertion.arn", "attribute.aws_role": "assertion.arn.contains('assumed-role')" " ? assertion.arn.extract('{account_arn\}assumed-role/')" " + 'assumed-role/'" " + assertion.arn.extract('assumed-role/{role_name\}/')" " : assertion.arn", \} ``` If any custom attribute mappings are defined, they must include a mapping to the `google.subject` attribute. For OIDC providers, you must supply a custom mapping, which must include the `google.subject` attribute. For example, the following maps the `sub` claim of the incoming credential to the `subject` attribute on a Google token: ``` {"google.subject": "assertion.sub"\} ```
      */
     attributeMapping?: {[key: string]: string} | null;
     /**
@@ -1468,15 +1468,15 @@ export namespace iam_v1 {
      */
     aws?: Schema$Aws;
     /**
-     * A description for the provider. Cannot exceed 256 characters.
+     * Optional. A description for the provider. Cannot exceed 256 characters.
      */
     description?: string | null;
     /**
-     * Whether the provider is disabled. You cannot use a disabled provider to exchange tokens. However, existing tokens still grant access.
+     * Optional. Whether the provider is disabled. You cannot use a disabled provider to exchange tokens. However, existing tokens still grant access.
      */
     disabled?: boolean | null;
     /**
-     * A display name for the provider. Cannot exceed 32 characters.
+     * Optional. A display name for the provider. Cannot exceed 32 characters.
      */
     displayName?: string | null;
     /**
@@ -2565,11 +2565,11 @@ export namespace iam_v1 {
   export interface Params$Resource$Locations$Workforcepools$Create
     extends StandardParameters {
     /**
-     * The location of the pool to create. Format: `locations/{location\}`.
+     * Optional. The location of the pool to create. Format: `locations/{location\}`.
      */
     location?: string;
     /**
-     * The ID to use for the pool, which becomes the final component of the resource name. The IDs must be a globally unique string of 6 to 63 lowercase letters, digits, or hyphens. It must start with a letter, and cannot have a trailing hyphen. The prefix `gcp-` is reserved for use by Google, and may not be specified.
+     * Optional. The ID to use for the pool, which becomes the final component of the resource name. The IDs must be a globally unique string of 6 to 63 lowercase letters, digits, or hyphens. It must start with a letter, and cannot have a trailing hyphen. The prefix `gcp-` is reserved for use by Google, and may not be specified.
      */
     workforcePoolId?: string;
 
@@ -2630,7 +2630,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Locations$Workforcepools$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the pool. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}`
+     * Identifier. The resource name of the pool. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}`
      */
     name?: string;
     /**
@@ -3384,7 +3384,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Locations$Workforcepools$Providers$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the provider. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/providers/{provider_id\}`
+     * Identifier. The resource name of the provider. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/providers/{provider_id\}`
      */
     name?: string;
     /**
@@ -5785,7 +5785,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Locations$Oauthclients$Patch
     extends StandardParameters {
     /**
-     * Immutable. The resource name of the OauthClient. Format:`projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}`.
+     * Immutable. Identifier. The resource name of the OauthClient. Format:`projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}`.
      */
     name?: string;
     /**
@@ -6318,7 +6318,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Locations$Oauthclients$Credentials$Patch
     extends StandardParameters {
     /**
-     * Immutable. The resource name of the OauthClientCredential. Format: `projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}/credentials/{credential\}`
+     * Immutable. Identifier. The resource name of the OauthClientCredential. Format: `projects/{project\}/locations/{location\}/oauthClients/{oauth_client\}/credentials/{credential\}`
      */
     name?: string;
     /**

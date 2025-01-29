@@ -894,7 +894,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "gkebackup.projects.locations.operations.cancel",
@@ -1713,7 +1713,7 @@
       }
     }
   },
-  "revision": "20240626",
+  "revision": "20250101",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1914,7 +1914,7 @@
           "type": "string"
         },
         "stateReason": {
-          "description": "Output only. Human-readable description of why the backup is in the current `state`.",
+          "description": "Output only. Human-readable description of why the backup is in the current `state`. This field is only meant for human readability and should not be used programmatically as this field is not guaranteed to be consistent.",
           "readOnly": true,
           "type": "string"
         },
@@ -2065,7 +2065,7 @@
           "type": "string"
         },
         "stateReason": {
-          "description": "Output only. Human-readable description of why BackupPlan is in the current `state`",
+          "description": "Output only. Human-readable description of why BackupPlan is in the current `state`. This field is only meant for human readability and should not be used programmatically as this field is not guaranteed to be consistent.",
           "readOnly": true,
           "type": "string"
         },
@@ -2141,7 +2141,7 @@
       "type": "object"
     },
     "ClusterResourceRestoreScope": {
-      "description": "Defines the scope of cluster-scoped resources to restore. Some group kinds are not reasonable choices for a restore, and will cause an error if selected here. Any scope selection that would restore \"all valid\" resources automatically excludes these group kinds. - gkebackup.gke.io/BackupJob - gkebackup.gke.io/RestoreJob - metrics.k8s.io/NodeMetrics - migration.k8s.io/StorageState - migration.k8s.io/StorageVersionMigration - Node - snapshot.storage.k8s.io/VolumeSnapshotContent - storage.k8s.io/CSINode Some group kinds are driven by restore configuration elsewhere, and will cause an error if selected here. - Namespace - PersistentVolume",
+      "description": "Defines the scope of cluster-scoped resources to restore. Some group kinds are not reasonable choices for a restore, and will cause an error if selected here. Any scope selection that would restore \"all valid\" resources automatically excludes these group kinds. - Node - ComponentStatus - gkebackup.gke.io/BackupJob - gkebackup.gke.io/RestoreJob - metrics.k8s.io/NodeMetrics - migration.k8s.io/StorageState - migration.k8s.io/StorageVersionMigration - snapshot.storage.k8s.io/VolumeSnapshotContent - storage.k8s.io/CSINode - storage.k8s.io/VolumeAttachment Some group kinds are driven by restore configuration elsewhere, and will cause an error if selected here. - Namespace - PersistentVolume",
       "id": "ClusterResourceRestoreScope",
       "properties": {
         "allGroupKinds": {
@@ -2686,7 +2686,7 @@
           "type": "string"
         },
         "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2871,7 +2871,8 @@
             "IN_PROGRESS",
             "SUCCEEDED",
             "FAILED",
-            "DELETING"
+            "DELETING",
+            "VALIDATING"
           ],
           "enumDescriptions": [
             "The Restore resource is in the process of being created.",
@@ -2879,13 +2880,14 @@
             "The gkebackup agent in the cluster has begun executing the restore operation.",
             "The restore operation has completed successfully. Restored workloads may not yet be operational.",
             "The restore operation has failed.",
-            "This Restore resource is in the process of being deleted."
+            "This Restore resource is in the process of being deleted.",
+            "The Kubernetes resources created by this Restore are being validated."
           ],
           "readOnly": true,
           "type": "string"
         },
         "stateReason": {
-          "description": "Output only. Human-readable description of why the Restore is in its current state.",
+          "description": "Output only. Human-readable description of why the Restore is in its current state. This field is only meant for human readability and should not be used programmatically as this field is not guaranteed to be consistent.",
           "readOnly": true,
           "type": "string"
         },
@@ -3099,7 +3101,7 @@
           "type": "string"
         },
         "stateReason": {
-          "description": "Output only. Human-readable description of why RestorePlan is in the current `state`",
+          "description": "Output only. Human-readable description of why RestorePlan is in the current `state`. This field is only meant for human readability and should not be used programmatically as this field is not guaranteed to be consistent.",
           "readOnly": true,
           "type": "string"
         },
@@ -3264,22 +3266,22 @@
       "id": "TimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }
@@ -3423,7 +3425,7 @@
           "type": "string"
         },
         "stateMessage": {
-          "description": "Output only. A human readable message explaining why the VolumeBackup is in its current state.",
+          "description": "Output only. A human readable message explaining why the VolumeBackup is in its current state. This field is only meant for human consumption and should not be used programmatically as this field is not guaranteed to be consistent.",
           "readOnly": true,
           "type": "string"
         },

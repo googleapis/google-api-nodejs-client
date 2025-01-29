@@ -284,10 +284,6 @@ export namespace sqladmin_v1 {
      * This is always `sql#backupContext`.
      */
     kind?: string | null;
-    /**
-     * The name of the backup. Format: projects/{project\}/backups/{backup\}
-     */
-    name?: string | null;
   }
   /**
    * Backup Reencryption Config
@@ -475,6 +471,10 @@ export namespace sqladmin_v1 {
      * `SECOND_GEN`: Cloud SQL database instance. `EXTERNAL`: A database server that is not managed by Google. This property is read-only; use the `tier` property in the `settings` object to determine the database type.
      */
     backendType?: string | null;
+    /**
+     * Custom subject alternative names for the server certificate.
+     */
+    customSubjectAlternativeNames?: string[] | null;
     /**
      * The database engine type and version. The `databaseVersion` field cannot be changed after instance creation. MySQL instances: `MYSQL_8_0`, `MYSQL_5_7` (default), or `MYSQL_5_6`. PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`, `POSTGRES_11`, `POSTGRES_12` (default), `POSTGRES_13`, or `POSTGRES_14`. SQL Server instances: `SQLSERVER_2017_STANDARD` (default), `SQLSERVER_2017_ENTERPRISE`, `SQLSERVER_2017_EXPRESS`, `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`, `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or `SQLSERVER_2019_WEB`.
      */
@@ -684,7 +684,7 @@ export namespace sqladmin_v1 {
      */
     replicaNames?: string[] | null;
     /**
-     * Optional. A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Only applicable to MySQL.
+     * Optional. A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Applicable to MySQL and PostgreSQL.
      */
     replicationCluster?: Schema$ReplicationCluster;
     /**
@@ -736,6 +736,10 @@ export namespace sqladmin_v1 {
      * Input only. Whether Cloud SQL is enabled to switch storing point-in-time recovery log files from a data disk to Cloud Storage.
      */
     switchTransactionLogsToCloudStorageEnabled?: boolean | null;
+    /**
+     * Optional. Input only. Immutable. Tag keys and tag values that are bound to this instance. You must represent each item in the map as: `"" : ""`. For example, a single resource can have the following tags: ``` "123/environment": "production", "123/costCenter": "marketing", ``` For more information on tag creation and management, see https://cloud.google.com/resource-manager/docs/tags/tags-overview.
+     */
+    tags?: {[key: string]: string} | null;
     /**
      * Output only. All database versions that are available for upgrade.
      */
@@ -951,6 +955,15 @@ export namespace sqladmin_v1 {
      * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form `gs://bucketName/fileName`. If the file already exists, the request succeeds, but the operation fails. If `fileType` is `SQL` and the filename ends with .gz, the contents are compressed.
      */
     uri?: string | null;
+  }
+  /**
+   * The selected object that Cloud SQL migrates.
+   */
+  export interface Schema$ExternalSyncSelectedObject {
+    /**
+     * The name of the database that Cloud SQL migrates.
+     */
+    database?: string | null;
   }
   /**
    * Database instance failover context.
@@ -1317,17 +1330,9 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$InstancesRestoreBackupRequest {
     /**
-     * The name of the backup to restore from in following format: projects/{project-id\}/backups/{backup-uid\} Only one of restore_backup_context or backup can be passed to the input.
-     */
-    backup?: string | null;
-    /**
      * Parameters required to perform the restore backup operation.
      */
     restoreBackupContext?: Schema$RestoreBackupContext;
-    /**
-     * Optional. Restore instance settings overrides the instance settings stored as part of the backup. Instance's major database version cannot be changed and the disk size can only be increased. This feature is only available for restores to new instances using the backup name.
-     */
-    restoreInstanceSettings?: Schema$DatabaseInstance;
   }
   /**
    * Rotate server CA request.
@@ -1369,6 +1374,10 @@ export namespace sqladmin_v1 {
      */
     authorizedNetworks?: Schema$AclEntry[];
     /**
+     * Optional. Custom Subject Alternative Name(SAN)s for a Cloud SQL instance.
+     */
+    customSubjectAlternativeNames?: string[] | null;
+    /**
      * Controls connectivity to private IP instances from Google services, such as BigQuery.
      */
     enablePrivatePathForGoogleCloudServices?: boolean | null;
@@ -1392,6 +1401,10 @@ export namespace sqladmin_v1 {
      * Specify what type of CA is used for the server certificate.
      */
     serverCaMode?: string | null;
+    /**
+     * Optional. The resource name of the server CA pool for an instance with `CUSTOMER_MANAGED_CAS_CA` as the `server_ca_mode`. Format: projects//locations//caPools/
+     */
+    serverCaPool?: string | null;
     /**
      * Specify how SSL/TLS is enforced in database connections. If you must use the `require_ssl` flag for backward compatibility, then only the following value pairs are valid: For PostgreSQL and MySQL: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` For SQL Server: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=true` The value of `ssl_mode` has priority over the value of `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`, `ssl_mode=ENCRYPTED_ONLY` means accept only SSL connections, while `require_ssl=false` means accept both non-SSL and SSL connections. In this case, MySQL and PostgreSQL databases respect `ssl_mode` and accepts only SSL connections.
      */
@@ -1547,9 +1560,17 @@ export namespace sqladmin_v1 {
      */
     password?: string | null;
     /**
+     * Optional. A list of objects that the user selects for replication from an external source instance.
+     */
+    selectedObjects?: Schema$SelectedObjects[];
+    /**
      * The reference to Cloud SQL instance if the source is Cloud SQL.
      */
     sourceInstance?: Schema$InstanceReference;
+    /**
+     * Optional. SSL option for replica connection to the on-premises source.
+     */
+    sslOption?: string | null;
     /**
      * The username for connecting to on-premises instance.
      */
@@ -1616,8 +1637,9 @@ export namespace sqladmin_v1 {
      */
     status?: string | null;
     /**
-     * Name of the database instance related to this operation.
+     * Optional. The sub operation based on the operation type.
      */
+    subOperationType?: Schema$SqlSubOperationType;
     targetId?: string | null;
     targetLink?: string | null;
     /**
@@ -1668,7 +1690,7 @@ export namespace sqladmin_v1 {
      */
     apiVersion?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -1708,10 +1730,6 @@ export namespace sqladmin_v1 {
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string | null;
-    /**
-     * List of warnings that occurred while handling the request.
-     */
-    warnings?: Schema$ApiWarning[];
   }
   /**
    * Read-only password status.
@@ -1769,6 +1787,31 @@ export namespace sqladmin_v1 {
     targetSizeGb?: string | null;
   }
   /**
+   * Settings for an automatically-setup Private Service Connect consumer endpoint that is used to connect to a Cloud SQL instance.
+   */
+  export interface Schema$PscAutoConnectionConfig {
+    /**
+     * The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project.
+     */
+    consumerNetwork?: string | null;
+    /**
+     * The connection policy status of the consumer network.
+     */
+    consumerNetworkStatus?: string | null;
+    /**
+     * This is the project ID of consumer service project of this consumer endpoint. Optional. This is only applicable if consumer_network is a shared vpc network.
+     */
+    consumerProject?: string | null;
+    /**
+     * The IP address of the consumer endpoint.
+     */
+    ipAddress?: string | null;
+    /**
+     * The connection status of the consumer endpoint.
+     */
+    status?: string | null;
+  }
+  /**
    * PSC settings for a Cloud SQL instance.
    */
   export interface Schema$PscConfig {
@@ -1776,6 +1819,10 @@ export namespace sqladmin_v1 {
      * Optional. The list of consumer projects that are allow-listed for PSC connections to this instance. This instance can be connected to with PSC from any network in these projects. Each consumer project in this list may be represented by a project number (numeric) or by a project id (alphanumeric).
      */
     allowedConsumerProjects?: string[] | null;
+    /**
+     * Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to connect to this Cloud SQL instance.
+     */
+    pscAutoConnections?: Schema$PscAutoConnectionConfig[];
     /**
      * Whether PSC connectivity is enabled for this instance.
      */
@@ -1803,7 +1850,7 @@ export namespace sqladmin_v1 {
     mysqlReplicaConfiguration?: Schema$MySqlReplicaConfiguration;
   }
   /**
-   * A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Only applicable to MySQL.
+   * A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Applicable to MySQL and PostgreSQL.
    */
   export interface Schema$ReplicationCluster {
     /**
@@ -1815,7 +1862,7 @@ export namespace sqladmin_v1 {
      */
     failoverDrReplicaName?: string | null;
     /**
-     * Output only. If set, it indicates this instance has a private service access (PSA) dns endpoint that is pointing to the primary instance of the cluster. If this instance is the primary, the dns should be pointing to this instance. After Switchover or Replica failover, this DNS endpoint points to the promoted instance. This is a read-only field, returned to the user as information. This field can exist even if a standalone instance does not yet have a replica, or had a DR replica that was deleted.
+     * Output only. If set, this field indicates this instance has a private service access (PSA) DNS endpoint that is pointing to the primary instance of the cluster. If this instance is the primary, then the DNS endpoint points to this instance. After a switchover or replica failover operation, this DNS endpoint points to the promoted instance. This is a read-only field, returned to the user as information. This field can exist even if a standalone instance doesn't have a DR replica yet or the DR replica is deleted.
      */
     psaWriteEndpoint?: string | null;
   }
@@ -1875,6 +1922,15 @@ export namespace sqladmin_v1 {
      * The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server certificate version.
      */
     nextVersion?: string | null;
+  }
+  /**
+   * A list of objects that the user selects for replication from an external source instance.
+   */
+  export interface Schema$SelectedObjects {
+    /**
+     * Required. The name of the database to migrate.
+     */
+    database?: string | null;
   }
   /**
    * Database instance settings.
@@ -1984,6 +2040,10 @@ export namespace sqladmin_v1 {
      * The pricing plan for this instance. This can be either `PER_USE` or `PACKAGE`. Only `PER_USE` is supported for Second Generation instances.
      */
     pricingPlan?: string | null;
+    /**
+     * Optional. Configuration value for recreation of replica after certain replication lag
+     */
+    replicationLagMaxSeconds?: number | null;
     /**
      * The type of replication this instance uses. This can be either `ASYNCHRONOUS` or `SYNCHRONOUS`. (Deprecated) This property was only applicable to First Generation instances.
      */
@@ -2146,6 +2206,10 @@ export namespace sqladmin_v1 {
      */
     mysqlSyncConfig?: Schema$MySqlSyncConfig;
     /**
+     * Optional. Migrate only the specified objects from the source instance. If this field is empty, then migrate all objects.
+     */
+    selectedObjects?: Schema$ExternalSyncSelectedObject[];
+    /**
      * External sync mode
      */
     syncMode?: string | null;
@@ -2256,6 +2320,15 @@ export namespace sqladmin_v1 {
      * The server roles for this user
      */
     serverRoles?: string[] | null;
+  }
+  /**
+   * The sub operation type based on the operation type.
+   */
+  export interface Schema$SqlSubOperationType {
+    /**
+     * The type of maintenance to be performed on the instance.
+     */
+    maintenanceType?: string | null;
   }
   /**
    * SslCerts Resource
@@ -3995,7 +4068,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in. For instances that have enabled Certificate Authority Service (CAS) based server CA, please use AddServerCertificate to add a new server certificate.
+     * Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in. For instances that have enabled Certificate Authority Service (CAS) based server CA, use AddServerCertificate to add a new server certificate.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4083,7 +4156,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Add a new trusted server certificate version for the specified instance using Certificate Authority Service (CAS) server CA. Required to prepare for a certificate rotation. If a server certificate version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one certificate version waiting to be rotated in. For instances not using CAS server CA, please use AddServerCa instead.
+     * Add a new trusted server certificate version for the specified instance using Certificate Authority Service (CAS) server CA. Required to prepare for a certificate rotation. If a server certificate version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one certificate version waiting to be rotated in. For instances not using CAS server CA, use AddServerCa instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5140,7 +5213,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Lists all versions of server certificates and certificate authorities (CAs) for the specified instance. There can be up to three sets of certs listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out.
+     * Lists all versions of server certificates and certificate authorities (CAs) for the specified instance. There can be up to three sets of certs listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out. For instances not using Certificate Authority Service (CAS) server CA, use ListServerCas instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5858,7 +5931,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, please use RotateServerCertificate to rotate the server certificate.
+     * Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, use RotateServerCertificate to rotate the server certificate.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5946,7 +6019,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Rotates the server certificate version to one previously added with the addServerCertificate method. For instances not using Certificate Authority Service (CAS) server CA, please use RotateServerCa instead.
+     * Rotates the server certificate version to one previously added with the addServerCertificate method. For instances not using Certificate Authority Service (CAS) server CA, use RotateServerCa instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6212,7 +6285,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Switches over from the primary instance to the designated DR replica instance.
+     * Switches over from the primary instance to the DR replica instance.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6528,22 +6601,6 @@ export namespace sqladmin_v1 {
   }
   export interface Params$Resource$Instances$Delete extends StandardParameters {
     /**
-     * Flag to opt-in for final backup. By default, it is turned off.
-     */
-    enableFinalBackup?: boolean;
-    /**
-     * Optional. The description of the final backup.
-     */
-    finalBackupDescription?: string;
-    /**
-     * Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.
-     */
-    finalBackupExpiryTime?: string;
-    /**
-     * Optional. Retention period of the final backup.
-     */
-    finalBackupTtlDays?: string;
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -6708,7 +6765,7 @@ export namespace sqladmin_v1 {
   export interface Params$Resource$Instances$Promotereplica
     extends StandardParameters {
     /**
-     * Set to true to invoke a replica failover to the designated DR replica. As part of replica failover, the promote operation attempts to add the original primary instance as a replica of the promoted DR replica when the original primary instance comes back online. If set to false or not specified, then the original primary instance becomes an independent Cloud SQL primary instance. Only applicable to MySQL.
+     * Set to true to invoke a replica failover to the DR replica. As part of replica failover, the promote operation attempts to add the original primary instance as a replica of the promoted DR replica when the original primary instance comes back online. If set to false or not specified, then the original primary instance becomes an independent Cloud SQL primary instance.
      */
     failover?: boolean;
     /**
@@ -6842,7 +6899,7 @@ export namespace sqladmin_v1 {
   export interface Params$Resource$Instances$Switchover
     extends StandardParameters {
     /**
-     * Optional. (MySQL only) Cloud SQL instance operations timeout, which is a sum of all database operations. Default value is 10 minutes and can be modified to a maximum value of 24 hours.
+     * Optional. (MySQL and PostgreSQL only) Cloud SQL instance operations timeout, which is a sum of all database operations. Default value is 10 minutes and can be modified to a maximum value of 24 hours.
      */
     dbTimeout?: string;
     /**
@@ -7180,10 +7237,6 @@ export namespace sqladmin_v1 {
     project?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Optional. A filter string that follows the rules of EBNF grammar (https://google.aip.dev/assets/misc/ebnf-filtering.txt). Cloud SQL provides filters for status, operationType, and startTime.
-     */
-    filter?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */

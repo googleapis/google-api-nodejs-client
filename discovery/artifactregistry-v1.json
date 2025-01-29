@@ -2334,7 +2334,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the rule, for example: \"projects/p1/locations/us-central1/repositories/repo1/rules/rule1\".",
+                          "description": "The name of the rule, for example: `projects/p1/locations/us-central1/repositories/repo1/rules/rule1`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/rules/[^/]+$",
                           "required": true,
@@ -2439,7 +2439,7 @@
       }
     }
   },
-  "revision": "20241001",
+  "revision": "20241205",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -2517,7 +2517,7 @@
           "type": "object"
         },
         "attachmentNamespace": {
-          "description": "The namespace this attachment belongs to. E.g. If an Attachment is created by artifact analysis, namespace is set to `artifactanalysis.googleapis.com`.",
+          "description": "The namespace this attachment belongs to. E.g. If an attachment is created by artifact analysis, namespace is set to `artifactanalysis.googleapis.com`.",
           "type": "string"
         },
         "createTime": {
@@ -2534,7 +2534,7 @@
           "type": "array"
         },
         "name": {
-          "description": "The name of the attachment. E.g. \"projects/p1/locations/us/repositories/repo/attachments/sbom\".",
+          "description": "The name of the attachment. E.g. `projects/p1/locations/us/repositories/repo/attachments/sbom`.",
           "type": "string"
         },
         "ociVersionName": {
@@ -2543,11 +2543,11 @@
           "type": "string"
         },
         "target": {
-          "description": "Required. The target the attachment is for, can be a Version, Package or Repository. E.g. \"projects/p1/locations/us-central1/repositories/repo1/packages/p1/versions/v1\".",
+          "description": "Required. The target the attachment is for, can be a Version, Package or Repository. E.g. `projects/p1/locations/us-central1/repositories/repo1/packages/p1/versions/v1`.",
           "type": "string"
         },
         "type": {
-          "description": "Type of Attachment. E.g. `application/vnd.spdx+json`",
+          "description": "Type of attachment. E.g. `application/vnd.spdx+json`",
           "type": "string"
         },
         "updateTime": {
@@ -3101,11 +3101,11 @@
       "type": "object"
     },
     "GoogleDevtoolsArtifactregistryV1Rule": {
-      "description": "A Rule applies to repository or package level. It defines the deny or allow action of the operation when the conditions in the rule are met.",
+      "description": "A rule defines the deny or allow action of the operation it applies to and the conditions required for the rule to apply. You can set one rule for an entire repository and one rule for each package within.",
       "id": "GoogleDevtoolsArtifactregistryV1Rule",
       "properties": {
         "action": {
-          "description": "The action this rule makes.",
+          "description": "The action this rule takes.",
           "enum": [
             "ACTION_UNSPECIFIED",
             "ALLOW",
@@ -3120,10 +3120,10 @@
         },
         "condition": {
           "$ref": "Expr",
-          "description": "Optional. The condition of the rule in CEL expression. If not provided, the rule matches all the objects."
+          "description": "Optional. A CEL expression for conditions that must be met in order for the rule to apply. If not provided, the rule matches all objects."
         },
         "name": {
-          "description": "The name of the rule, for example: \"projects/p1/locations/us-central1/repositories/repo1/rules/rule1\".",
+          "description": "The name of the rule, for example: `projects/p1/locations/us-central1/repositories/repo1/rules/rule1`.",
           "type": "string"
         },
         "operation": {
@@ -3138,7 +3138,7 @@
           "type": "string"
         },
         "packageId": {
-          "description": "The package ID the rule applies to. If empty, this rule applies to all the packages inside the repository.",
+          "description": "The package ID the rule applies to. If empty, this rule applies to all packages inside the repository.",
           "type": "string"
         }
       },
@@ -3404,7 +3404,7 @@
       "id": "ListAttachmentsResponse",
       "properties": {
         "attachments": {
-          "description": "The Attachments returned.",
+          "description": "The attachments returned.",
           "items": {
             "$ref": "Attachment"
           },
@@ -4006,7 +4006,7 @@
         },
         "commonRepository": {
           "$ref": "CommonRemoteRepository",
-          "description": "Common remote repository settings. Used as the RemoteRepository upstream URL instead of Predefined and Custom remote repositories. Google Cloud Console and Google Cloud CLI will map all the new remote repositories to this field."
+          "description": "Common remote repository settings. Used as the remote repository upstream URL."
         },
         "description": {
           "description": "The description of the remote source.",
@@ -4145,6 +4145,11 @@
           "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.",
           "type": "string"
         },
+        "registryUri": {
+          "description": "Output only. The repository endpoint, for example: `us-docker.pkg.dev/my-proj/my-repo`.",
+          "readOnly": true,
+          "type": "string"
+        },
         "remoteRepositoryConfig": {
           "$ref": "RemoteRepositoryConfig",
           "description": "Configuration specific for a Remote Repository."
@@ -4174,6 +4179,10 @@
         "virtualRepositoryConfig": {
           "$ref": "VirtualRepositoryConfig",
           "description": "Configuration specific for a Virtual Repository."
+        },
+        "vulnerabilityScanningConfig": {
+          "$ref": "VulnerabilityScanningConfig",
+          "description": "Optional. Config and state for vulnerability scanning of resources within this Repository."
         }
       },
       "type": "object"
@@ -4225,7 +4234,7 @@
           "type": "string"
         },
         "version": {
-          "description": "The name of the version the tag refers to, for example: \"projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811\" If the package or version ID parts contain slashes, the slashes are escaped.",
+          "description": "The name of the version the tag refers to, for example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811` If the package or version ID parts contain slashes, the slashes are escaped.",
           "type": "string"
         }
       },
@@ -4615,6 +4624,55 @@
             "$ref": "UpstreamPolicy"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VulnerabilityScanningConfig": {
+      "description": "Config on whether to perform vulnerability scanning for resources in this repository, as well as output fields describing current state.",
+      "id": "VulnerabilityScanningConfig",
+      "properties": {
+        "enablementConfig": {
+          "description": "Optional. Config for whether this repository has vulnerability scanning disabled.",
+          "enum": [
+            "ENABLEMENT_CONFIG_UNSPECIFIED",
+            "INHERITED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Not set. This will be treated as INHERITED.",
+            "Scanning is Enabled, but dependent on API enablement.",
+            "No automatic vulnerability scanning will be performed for this repository."
+          ],
+          "type": "string"
+        },
+        "enablementState": {
+          "description": "Output only. State of feature enablement, combining repository enablement config and API enablement state.",
+          "enum": [
+            "ENABLEMENT_STATE_UNSPECIFIED",
+            "SCANNING_UNSUPPORTED",
+            "SCANNING_DISABLED",
+            "SCANNING_ACTIVE"
+          ],
+          "enumDescriptions": [
+            "Enablement state is unclear.",
+            "Repository does not support vulnerability scanning.",
+            "Vulnerability scanning is disabled for this repository.",
+            "Vulnerability scanning is active for this repository."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "enablementStateReason": {
+          "description": "Output only. Reason for the repository state.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastEnableTime": {
+          "description": "Output only. The last time this repository config was enabled.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

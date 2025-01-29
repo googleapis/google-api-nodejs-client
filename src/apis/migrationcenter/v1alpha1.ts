@@ -312,6 +312,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Output only. Asset information specific for virtual machines.
+     */
+    machineDetails?: Schema$MachineDetails;
+    /**
      * Output only. The full name of the asset.
      */
     name?: string | null;
@@ -360,6 +364,10 @@ export namespace migrationcenter_v1alpha1 {
      * Labels as key value pairs.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Asset information specific for virtual and physical machines.
+     */
+    machineDetails?: Schema$MachineDetails;
     /**
      * Asset performance data samples. Samples that are from more than 40 days ago or after tomorrow are ignored.
      */
@@ -526,6 +534,10 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$AwsEc2PlatformDetails {
     /**
+     * Optional. Whether the machine is hyperthreaded.
+     */
+    hyperthreading?: string | null;
+    /**
      * The location of the machine in the AWS format.
      */
     location?: string | null;
@@ -538,6 +550,10 @@ export namespace migrationcenter_v1alpha1 {
    * Azure VM specific details.
    */
   export interface Schema$AzureVmPlatformDetails {
+    /**
+     * Whether the machine is hyperthreaded.
+     */
+    hyperthreading?: string | null;
     /**
      * The location of the machine in the Azure format.
      */
@@ -1671,6 +1687,10 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$GenericPlatformDetails {
     /**
+     * Whether the machine is hyperthreaded.
+     */
+    hyperthreading?: string | null;
+    /**
      * Free text representation of the machine location. The format of this field should not be relied on. Different VMs in the same location may have different string values for this field.
      */
     location?: string | null;
@@ -2339,6 +2359,134 @@ export namespace migrationcenter_v1alpha1 {
     name?: string | null;
   }
   /**
+   * Details of the machine architecture.
+   */
+  export interface Schema$MachineArchitectureDetails {
+    /**
+     * BIOS Details.
+     */
+    bios?: Schema$BiosDetails;
+    /**
+     * CPU architecture, e.g., "x64-based PC", "x86_64", "i686" etc.
+     */
+    cpuArchitecture?: string | null;
+    /**
+     * CPU name, e.g., "Intel Xeon E5-2690", "AMD EPYC 7571" etc.
+     */
+    cpuName?: string | null;
+    /**
+     * Number of processor sockets allocated to the machine.
+     */
+    cpuSocketCount?: number | null;
+    /**
+     * Firmware type.
+     */
+    firmwareType?: string | null;
+    /**
+     * CPU hyper-threading support.
+     */
+    hyperthreading?: string | null;
+    /**
+     * Hardware vendor.
+     */
+    vendor?: string | null;
+  }
+  /**
+   * Details of a machine.
+   */
+  export interface Schema$MachineDetails {
+    /**
+     * Architecture details (vendor, CPU architecture).
+     */
+    architecture?: Schema$MachineArchitectureDetails;
+    /**
+     * Number of logical CPU cores in the machine. Must be non-negative.
+     */
+    coreCount?: number | null;
+    /**
+     * Machine creation time.
+     */
+    createTime?: string | null;
+    /**
+     * Disk details.
+     */
+    disks?: Schema$MachineDiskDetails;
+    /**
+     * Guest OS information.
+     */
+    guestOs?: Schema$GuestOsDetails;
+    /**
+     * Machine name.
+     */
+    machineName?: string | null;
+    /**
+     * The amount of memory in the machine. Must be non-negative.
+     */
+    memoryMb?: number | null;
+    /**
+     * Network details.
+     */
+    network?: Schema$MachineNetworkDetails;
+    /**
+     * Platform specific information.
+     */
+    platform?: Schema$PlatformDetails;
+    /**
+     * Power state of the machine.
+     */
+    powerState?: string | null;
+    /**
+     * Machine unique identifier.
+     */
+    uuid?: string | null;
+  }
+  /**
+   * Details of machine disks.
+   */
+  export interface Schema$MachineDiskDetails {
+    /**
+     * List of disks.
+     */
+    disks?: Schema$DiskEntryList;
+    /**
+     * Raw disk scan result. This field is intended for human inspection. The format of this field may be lsblk output or any another raw output. The exact format may change without notice and should not be relied upon.
+     */
+    rawScanResult?: string | null;
+    /**
+     * Disk total Capacity.
+     */
+    totalCapacityBytes?: string | null;
+    /**
+     * Total disk free space.
+     */
+    totalFreeBytes?: string | null;
+  }
+  /**
+   * Details of network adapters and settings.
+   */
+  export interface Schema$MachineNetworkDetails {
+    /**
+     * Default gateway address.
+     */
+    defaultGateway?: string | null;
+    /**
+     * List of network adapters.
+     */
+    networkAdapters?: Schema$NetworkAdapterList;
+    /**
+     * The primary IP address of the machine.
+     */
+    primaryIpAddress?: string | null;
+    /**
+     * MAC address of the machine. This property is used to uniqly identify the machine.
+     */
+    primaryMacAddress?: string | null;
+    /**
+     * The public IP address of the machine.
+     */
+    publicIpAddress?: string | null;
+  }
+  /**
    * The type of machines to consider when calculating virtual machine migration insights and recommendations for GCE. Not all machine types are available in all zones and regions.
    */
   export interface Schema$MachinePreferences {
@@ -2785,6 +2933,10 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. File size in bytes.
      */
     fileSizeBytes?: number | null;
+    /**
+     * Output only. XLSX output file.
+     */
+    xlsxOutputFile?: Schema$XlsxOutputFile;
   }
   /**
    * Contains a list of output files.
@@ -2837,6 +2989,10 @@ export namespace migrationcenter_v1alpha1 {
    * Platform specific details for Physical Machines.
    */
   export interface Schema$PhysicalPlatformDetails {
+    /**
+     * Whether the machine is hyperthreaded.
+     */
+    hyperthreading?: string | null;
     /**
      * Free text representation of the machine location. The format of this field should not be relied on. Different machines in the same location may have different string values for this field.
      */
@@ -3671,6 +3827,10 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$Settings {
     /**
+     * Customer consent for Google sales to access their Cloud Migration Center project.
+     */
+    customerConsentForGoogleSalesToAccessMigrationCenter?: boolean | null;
+    /**
      * Disable Cloud Logging for the Migration Center API. Users are billed for the logs.
      */
     disableCloudLogging?: boolean | null;
@@ -3699,7 +3859,12 @@ export namespace migrationcenter_v1alpha1 {
   /**
    * Signed URI destination configuration.
    */
-  export interface Schema$SignedUriDestination {}
+  export interface Schema$SignedUriDestination {
+    /**
+     * Required. The file format to export.
+     */
+    fileFormat?: string | null;
+  }
   /**
    * Contains a list of Signed URIs.
    */
@@ -3892,11 +4057,11 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$TimeZone {
     /**
-     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     * IANA Time Zone Database time zone. For example "America/New_York".
      */
     id?: string | null;
     /**
-     * Optional. IANA Time Zone Database version number, e.g. "2019a".
+     * Optional. IANA Time Zone Database version number. For example "2019a".
      */
     version?: string | null;
   }
@@ -4125,7 +4290,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     commitmentPlan?: string | null;
     /**
-     * Compute Engine preferences concern insights and recommendations for Compute Engine target.
+     * Optional. Compute Engine preferences concern insights and recommendations for Compute Engine target.
      */
     computeEnginePreferences?: Schema$ComputeEnginePreferences;
     /**
@@ -4267,6 +4432,10 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$VmwarePlatformDetails {
     /**
+     * Whether the ESX is hyperthreaded.
+     */
+    esxHyperthreading?: string | null;
+    /**
      * ESX version.
      */
     esxVersion?: string | null;
@@ -4278,6 +4447,15 @@ export namespace migrationcenter_v1alpha1 {
      * vCenter version.
      */
     vcenterVersion?: string | null;
+  }
+  /**
+   * Contains a single output file of type XLSX.
+   */
+  export interface Schema$XlsxOutputFile {
+    /**
+     * Output only. Signed URI destination.
+     */
+    signedUri?: Schema$SignedUri;
   }
 
   export class Resource$Projects {
@@ -8670,7 +8848,7 @@ export namespace migrationcenter_v1alpha1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

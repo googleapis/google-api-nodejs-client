@@ -213,7 +213,7 @@ export namespace beyondcorp_v1alpha {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -665,7 +665,7 @@ export namespace beyondcorp_v1alpha {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -745,7 +745,7 @@ export namespace beyondcorp_v1alpha {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -840,7 +840,7 @@ export namespace beyondcorp_v1alpha {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -1015,7 +1015,7 @@ export namespace beyondcorp_v1alpha {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -1073,7 +1073,7 @@ export namespace beyondcorp_v1alpha {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -1663,9 +1663,18 @@ export namespace beyondcorp_v1alpha {
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaHub {
     /**
-     * Optional. NAT gateway setup to ensure enough NAT IP addresses are available to handle the traffic needed to access the applications. Allows to explicitly enable or disable the NAT in the Hub along with the total IPs allocated to handle the capacity limits.
+     * Optional. Internet Gateway configuration.
      */
-    natGatewayConfig?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaNatGatewayConfig;
+    internetGateway?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaInternetGateway;
+  }
+  /**
+   * Represents the Internet Gateway configuration.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaInternetGateway {
+    /**
+     * Output only. List of IP addresses assigned to the Cloud NAT.
+     */
+    assignedIps?: string[] | null;
   }
   /**
    * Message for response to listing Applications.
@@ -1700,28 +1709,6 @@ export namespace beyondcorp_v1alpha {
      * A list of locations that could not be reached.
      */
     unreachable?: string[] | null;
-  }
-  /**
-   * Represents the NAT Gateway configuration.
-   */
-  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaNatGatewayConfig {
-    /**
-     * Output only. List of NAT IPs that will be used for establishing connection to the endpoints.
-     */
-    natIps?: string[] | null;
-  }
-  /**
-   * VPC Peering details.
-   */
-  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaPeering {
-    /**
-     * Optional. List of DNS zones for DNS peering with the customer VPC network.
-     */
-    dnsZones?: string[] | null;
-    /**
-     * Required. The name of the Target VPC network name in the format: `projects/{project\}/global/networks/{network\}
-     */
-    targetVpcNetwork?: string | null;
   }
   /**
    * Information about a BeyoncCorp SecurityGateway resource.
@@ -1790,23 +1777,6 @@ export namespace beyondcorp_v1alpha {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
-  }
-  /**
-   * Set Peering request for creating a VPC peering between Google network and customer networks.
-   */
-  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSetPeeringRequest {
-    /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string | null;
-    /**
-     * Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.
-     */
-    validateOnly?: boolean | null;
-    /**
-     * Required. List of Peering connection information.
-     */
-    vpcPeerings?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaPeering[];
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -5341,7 +5311,7 @@ export namespace beyondcorp_v1alpha {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13855,7 +13825,7 @@ export namespace beyondcorp_v1alpha {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14936,102 +14906,6 @@ export namespace beyondcorp_v1alpha {
     }
 
     /**
-     * This is a custom method to allow customers to create a peering connections between Google network and customer networks. This is enabled only for the allowlisted customers.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setPeering(
-      params: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setPeering(
-      params?: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    setPeering(
-      params: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setPeering(
-      params: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    setPeering(
-      params: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    setPeering(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    setPeering(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Securitygateways$Setpeering
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Securitygateways$Setpeering;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Securitygateways$Setpeering;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+securityGateway}:setPeering').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['securityGateway'],
-        pathParams: ['securityGateway'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      *
      * @param params - Parameters for request
@@ -15237,18 +15111,6 @@ export namespace beyondcorp_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Setpeering
-    extends StandardParameters {
-    /**
-     * Required. BeyondCorp SecurityGateway name using the form: `projects/{project\}/locations/{location\}/securityGateways/{security_gateway\}`
-     */
-    securityGateway?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSetPeeringRequest;
   }
   export interface Params$Resource$Projects$Locations$Securitygateways$Testiampermissions
     extends StandardParameters {

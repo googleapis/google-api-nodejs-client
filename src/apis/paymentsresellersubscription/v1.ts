@@ -160,6 +160,23 @@ export namespace paymentsresellersubscription_v1 {
     subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
   }
   /**
+   * Intent message for creating a Subscription resource.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1CreateSubscriptionIntent {
+    /**
+     * Required. The parent resource name, which is the identifier of the partner.
+     */
+    parent?: string | null;
+    /**
+     * Required. The Subscription to be created.
+     */
+    subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+    /**
+     * Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
+     */
+    subscriptionId?: string | null;
+  }
+  /**
    * Describes the length of a period of a time.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Duration {
@@ -173,7 +190,16 @@ export namespace paymentsresellersubscription_v1 {
     unit?: string | null;
   }
   /**
-   * LINT.IfChange Partner request for entitling the previously provisioned subscription to an end user. The end user identity is inferred from the request OAuth context.
+   * Intent for entitling the previously provisioned subscription to an end user.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionIntent {
+    /**
+     * Required. The name of the subscription resource that is entitled to the current end user.
+     */
+    name?: string | null;
+  }
+  /**
+   * Partner request for entitling the previously provisioned subscription to an end user. The end user identity is inferred from the request OAuth context.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest {
     /**
@@ -286,6 +312,24 @@ export namespace paymentsresellersubscription_v1 {
     billingCycleCountLimit?: string | null;
   }
   /**
+   * [Preview only] Request to generate a user session.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionRequest {
+    /**
+     * The user intent to generate the user session.
+     */
+    intentPayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1IntentPayload;
+  }
+  /**
+   * [Preview only] Response that contains the details for generated user session.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse {
+    /**
+     * The generated user session. The token size is proportional to the size of the intent payload.
+     */
+    userSession?: Schema$GoogleCloudPaymentsResellerSubscriptionV1UserSession;
+  }
+  /**
    * Payload specific to Google One products.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload {
@@ -305,6 +349,19 @@ export namespace paymentsresellersubscription_v1 {
      * The identifier for the partner store where the subscription was sold.
      */
     storeId?: string | null;
+  }
+  /**
+   * The payload that describes the user intent.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1IntentPayload {
+    /**
+     * The request to create a subscription.
+     */
+    createIntent?: Schema$GoogleCloudPaymentsResellerSubscriptionV1CreateSubscriptionIntent;
+    /**
+     * The request to entitle a subscription.
+     */
+    entitleIntent?: Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionIntent;
   }
   /**
    * Response that contains the products.
@@ -530,6 +587,10 @@ export namespace paymentsresellersubscription_v1 {
      */
     lineItems?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem[];
     /**
+     * Output only. Describes the details of the migrated subscription. Only populated if this subscription is migrated from another system.
+     */
+    migrationDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionMigrationDetails;
+    /**
      * Identifier. Resource name of the subscription. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}". This is available for authorizeAddon, but otherwise is response only.
      */
     name?: string | null;
@@ -667,6 +728,15 @@ export namespace paymentsresellersubscription_v1 {
     servicePeriod?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod;
   }
   /**
+   * Describes the details of the migrated subscription.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionMigrationDetails {
+    /**
+     * Output only. The migrated subscription id in the legacy system.
+     */
+    migratedSubscriptionId?: string | null;
+  }
+  /**
    * Describes the spec for one promotion.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec {
@@ -712,6 +782,19 @@ export namespace paymentsresellersubscription_v1 {
      * The updated subscription resource.
      */
     subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+  }
+  /**
+   * A user session contains a short-lived token that includes information required to interact with Google Payments Reseller Platform using the following web endpoints. - A user session token should be generated dynamically for an authenticated user. You should refrain from sharing a token directly with a user in an unauthenticated context, such as SMS, or email. - You can re-generate new session tokens repeatedly for same `generate` request if necessary, regardless of the previous tokens being expired or not. You don't need to worry about multiple sessions resulting in duplicate fulfillments as guaranteed by the same subscription id. Please refer to the [Google Managed Signup](/payments/reseller/subscription/reference/index/User.Signup.Integration/Google.Managed.Signup.\(In.Preview\)) documentation for additional integration details.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1UserSession {
+    /**
+     * Output only. The time at which the user session expires.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. The encrypted token of the user session, including the information of the user's intent and request. This token should be provided when redirecting the user to Google.
+     */
+    token?: string | null;
   }
   /**
    * Payload specific to Youtube products.
@@ -771,11 +854,13 @@ export namespace paymentsresellersubscription_v1 {
     products: Resource$Partners$Products;
     promotions: Resource$Partners$Promotions;
     subscriptions: Resource$Partners$Subscriptions;
+    userSessions: Resource$Partners$Usersessions;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.products = new Resource$Partners$Products(this.context);
       this.promotions = new Resource$Partners$Promotions(this.context);
       this.subscriptions = new Resource$Partners$Subscriptions(this.context);
+      this.userSessions = new Resource$Partners$Usersessions(this.context);
     }
   }
 
@@ -1919,5 +2004,124 @@ export namespace paymentsresellersubscription_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionRequest;
+  }
+
+  export class Resource$Partners$Usersessions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * This API replaces user authorized OAuth consent based APIs (Create, Entitle). Generates a short-lived token for a user session based on the user intent. You can use the session token to redirect the user to Google to finish the signup flow. You can re-generate new session token repeatedly for the same request if necessary, regardless of the previous tokens being expired or not.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generate(
+      params: Params$Resource$Partners$Usersessions$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
+      params?: Params$Resource$Partners$Usersessions$Generate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>;
+    generate(
+      params: Params$Resource$Partners$Usersessions$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generate(
+      params: Params$Resource$Partners$Usersessions$Generate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+    ): void;
+    generate(
+      params: Params$Resource$Partners$Usersessions$Generate,
+      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+    ): void;
+    generate(
+      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+    ): void;
+    generate(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Usersessions$Generate
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Usersessions$Generate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Usersessions$Generate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://paymentsresellersubscription.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userSessions:generate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Partners$Usersessions$Generate
+    extends StandardParameters {
+    /**
+     * Required. The parent, the partner that can resell. Format: partners/{partner\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionRequest;
   }
 }

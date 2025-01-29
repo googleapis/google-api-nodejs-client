@@ -100,9 +100,9 @@ export namespace retail_v2 {
   }
 
   /**
-   * Vertex AI Search for Retail API
+   * Vertex AI Search for commerce API
    *
-   * Vertex AI Search for Retail API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.
+   * Vertex AI Search for commerce API is made up of Retail Search, Browse and Recommendations. These discovery AI solutions help you implement personalized search, browse and recommendations, based on machine learning models, across your websites and mobile applications.
    *
    * @example
    * ```js
@@ -1371,7 +1371,7 @@ export namespace retail_v2 {
      */
     gcsStagingDir?: string | null;
     /**
-     * BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format. Only supported in ImportProductsRequest.
+     * BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
      */
     partitionDate?: Schema$GoogleTypeDate;
     /**
@@ -1421,7 +1421,7 @@ export namespace retail_v2 {
      */
     indexableOption?: string | null;
     /**
-     * Output only. Indicates whether this attribute has been used by any products. `True` if at least one Product is using this attribute in Product.attributes. Otherwise, this field is `False`. CatalogAttribute can be pre-loaded by using CatalogService.AddCatalogAttribute, CatalogService.ImportCatalogAttributes, or CatalogService.UpdateAttributesConfig APIs. This field is `False` for pre-loaded CatalogAttributes. Only pre-loaded catalog attributes that are neither in use by products nor predefined can be deleted. Catalog attributes that are either in use by products or are predefined attributes cannot be deleted; however, their configuration properties will reset to default values upon removal request. After catalog changes, it takes about 10 minutes for this field to update.
+     * Output only. Indicates whether this attribute has been used by any products. `True` if at least one Product is using this attribute in Product.attributes. Otherwise, this field is `False`. CatalogAttribute can be pre-loaded by using CatalogService.AddCatalogAttribute or CatalogService.UpdateAttributesConfig APIs. This field is `False` for pre-loaded CatalogAttributes. Only pre-loaded catalog attributes that are neither in use by products nor predefined can be deleted. Catalog attributes that are either in use by products or are predefined attributes cannot be deleted; however, their configuration properties will reset to default values upon removal request. After catalog changes, it takes about 10 minutes for this field to update.
      */
     inUse?: boolean | null;
     /**
@@ -1519,11 +1519,36 @@ export namespace retail_v2 {
     rerankFacet?: boolean | null;
   }
   /**
+   * Request message for CollectUserEvent method.
+   */
+  export interface Schema$GoogleCloudRetailV2CollectUserEventRequest {
+    /**
+     * The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
+     */
+    ets?: string | null;
+    /**
+     * The prebuilt rule name that can convert a specific type of raw_json. For example: "ga4_bq" rule for the GA4 user event schema.
+     */
+    prebuiltRule?: string | null;
+    /**
+     * An arbitrary serialized JSON string that contains necessary information that can comprise a user event. When this field is specified, the user_event field will be ignored. Note: line-delimited JSON is not supported, a single JSON only.
+     */
+    rawJson?: string | null;
+    /**
+     * The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for 3rd party requests.
+     */
+    uri?: string | null;
+    /**
+     * Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.
+     */
+    userEvent?: string | null;
+  }
+  /**
    * The color information of a Product.
    */
   export interface Schema$GoogleCloudRetailV2ColorInfo {
     /**
-     * The standard color families. Strongly recommended to use the following standard color groups: "Red", "Pink", "Orange", "Yellow", "Purple", "Green", "Cyan", "Blue", "Brown", "White", "Gray", "Black" and "Mixed". Normally it is expected to have only 1 color family. May consider using single "Mixed" instead of multiple values. A maximum of 5 values are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [color](https://support.google.com/merchants/answer/6324487). Schema.org property [Product.color](https://schema.org/color).
+     * The standard color families. Strongly recommended to use the following standard color groups: "Red", "Pink", "Orange", "Yellow", "Purple", "Green", "Cyan", "Blue", "Brown", "White", "Gray", "Black" and "Mixed". Normally it is expected to have only 1 color family. May consider using single "Mixed" instead of multiple values. A maximum of 5 values are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [color](https://support.google.com/merchants/answer/6324487). Schema.org property [Product.color](https://schema.org/color). The colorFamilies field as a system attribute is not a required field but strongly recommended to be specified. Google Search models treat this field as more important than a custom product attribute when specified.
      */
     colorFamilies?: string[] | null;
     /**
@@ -1557,9 +1582,12 @@ export namespace retail_v2 {
     recentSearchResults?: Schema$GoogleCloudRetailV2CompleteQueryResponseRecentSearchResult[];
   }
   /**
-   * Resource that represents attribute results. The list of suggestions for the attribute.
+   * Resource that represents attribute results.
    */
   export interface Schema$GoogleCloudRetailV2CompleteQueryResponseAttributeResult {
+    /**
+     * The list of suggestions for the attribute.
+     */
     suggestions?: string[] | null;
   }
   /**
@@ -1764,7 +1792,7 @@ export namespace retail_v2 {
     text?: string[] | null;
   }
   /**
-   * Metadata for active A/B testing Experiment.
+   * Metadata for active A/B testing experiment.
    */
   export interface Schema$GoogleCloudRetailV2ExperimentInfo {
     /**
@@ -1781,7 +1809,7 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2ExperimentInfoServingConfigExperiment {
     /**
-     * The fully qualified resource name of the serving config Experiment.VariantArm.serving_config_id responsible for generating the search response. For example: `projects/x/locations/x/catalogs/x/servingConfigs/x`.
+     * The fully qualified resource name of the serving config `Experiment.VariantArm.serving_config_id` responsible for generating the search response. For example: `projects/x/locations/x/catalogs/x/servingConfigs/x`.
      */
     experimentServingConfig?: string | null;
     /**
@@ -1944,7 +1972,7 @@ export namespace retail_v2 {
     setTime?: string | null;
   }
   /**
-   * Product image. Recommendations AI and Retail Search do not use product images to improve prediction and search results. However, product images can be returned in results, and are shown in prediction or search previews in the console.
+   * Product image. Recommendations AI and Retail Search use product images to improve prediction and search results. Product images can be returned in results, and are shown in prediction or search previews in the console. Please try to provide correct product images and avoid using images with size too small.
    */
   export interface Schema$GoogleCloudRetailV2Image {
     /**
@@ -2192,21 +2220,25 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2LocalInventory {
     /**
-     * Additional local inventory attributes, for example, store name, promotion tags, etc. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * At most 30 attributes are allowed. * The key must be a UTF-8 encoded string with a length limit of 32 characters. * The key must match the pattern: `a-zA-Z0-9*`. For example, key0LikeThis or KEY_1_LIKE_THIS. * The attribute values must be of the same type (text or number). * Only 1 value is allowed for each attribute. * For text values, the length limit is 256 UTF-8 characters. * The attribute does not support search. The `searchable` field should be unset or set to false. * The max summed total bytes of custom attribute keys and values per product is 5MiB.
+     * Optional. Additional local inventory attributes, for example, store name, promotion tags, etc. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * At most 30 attributes are allowed. * The key must be a UTF-8 encoded string with a length limit of 32 characters. * The key must match the pattern: `a-zA-Z0-9*`. For example, key0LikeThis or KEY_1_LIKE_THIS. * The attribute values must be of the same type (text or number). * Only 1 value is allowed for each attribute. * For text values, the length limit is 256 UTF-8 characters. * The attribute does not support search. The `searchable` field should be unset or set to false. * The max summed total bytes of custom attribute keys and values per product is 5MiB.
      */
     attributes?: {
       [key: string]: Schema$GoogleCloudRetailV2CustomAttribute;
     } | null;
     /**
-     * Input only. Supported fulfillment types. Valid fulfillment type values include commonly used types (such as pickup in store and same day delivery), and custom types. Customers have to map custom types to their display names before rendering UI. Supported values: * "pickup-in-store" * "ship-to-store" * "same-day-delivery" * "next-day-delivery" * "custom-type-1" * "custom-type-2" * "custom-type-3" * "custom-type-4" * "custom-type-5" If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned. All the elements must be distinct. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Optional. The availability of the Product at this place_id. Default to Availability.IN_STOCK. For primary products with variants set the availability of the primary as Availability.OUT_OF_STOCK and set the true availability at the variant level. This way the primary product will be considered "in stock" as long as it has at least one variant in stock. For primary products with no variants set the true availability at the primary level. Corresponding properties: Google Merchant Center property [availability](https://support.google.com/merchants/answer/6324448). Schema.org property [Offer.availability](https://schema.org/availability).
+     */
+    availability?: string | null;
+    /**
+     * Optional. Supported fulfillment types. Valid fulfillment type values include commonly used types (such as pickup in store and same day delivery), and custom types. Customers have to map custom types to their display names before rendering UI. Supported values: * "pickup-in-store" * "ship-to-store" * "same-day-delivery" * "next-day-delivery" * "custom-type-1" * "custom-type-2" * "custom-type-3" * "custom-type-4" * "custom-type-5" If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned. All the elements must be distinct. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     fulfillmentTypes?: string[] | null;
     /**
-     * The place ID for the current set of inventory information.
+     * Required. The place ID for the current set of inventory information.
      */
     placeId?: string | null;
     /**
-     * Product price and cost information. Google Merchant Center property [price](https://support.google.com/merchants/answer/6324371).
+     * Optional. Product price and cost information. Google Merchant Center property [price](https://support.google.com/merchants/answer/6324371).
      */
     priceInfo?: Schema$GoogleCloudRetailV2PriceInfo;
   }
@@ -2358,6 +2390,32 @@ export namespace retail_v2 {
    * Request for pausing training of a model.
    */
   export interface Schema$GoogleCloudRetailV2PauseModelRequest {}
+  /**
+   * Metadata for pinning to be returned in the response. This is used for distinguishing between applied vs dropped pins.
+   */
+  export interface Schema$GoogleCloudRetailV2PinControlMetadata {
+    /**
+     * Map of all matched pins, keyed by pin position.
+     */
+    allMatchedPins?: {
+      [key: string]: Schema$GoogleCloudRetailV2PinControlMetadataProductPins;
+    } | null;
+    /**
+     * Map of pins that were dropped due to overlap with other matching pins, keyed by pin position.
+     */
+    droppedPins?: {
+      [key: string]: Schema$GoogleCloudRetailV2PinControlMetadataProductPins;
+    } | null;
+  }
+  /**
+   * List of product ids which have associated pins.
+   */
+  export interface Schema$GoogleCloudRetailV2PinControlMetadataProductPins {
+    /**
+     * List of product ids which have associated pins.
+     */
+    productId?: string[] | null;
+  }
   /**
    * Request message for Predict method.
    */
@@ -2582,7 +2640,7 @@ export namespace retail_v2 {
      */
     rating?: Schema$GoogleCloudRetailV2Rating;
     /**
-     * Indicates which fields in the Products are returned in SearchResponse. Supported fields for all types: * audience * availability * brands * color_info * conditions * gtin * materials * name * patterns * price_info * rating * sizes * title * uri Supported fields only for Type.PRIMARY and Type.COLLECTION: * categories * description * images Supported fields only for Type.VARIANT: * Only the first image in images To mark attributes as retrievable, include paths of the form "attributes.key" where "key" is the key of a custom attribute, as specified in attributes. For Type.PRIMARY and Type.COLLECTION, the following fields are always returned in SearchResponse by default: * name For Type.VARIANT, the following fields are always returned in by default: * name * color_info The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is returned. Note: Returning more fields in SearchResponse can increase response payload size and serving latency. This field is deprecated. Use the retrievable site-wide control instead.
+     * Indicates which fields in the Products are returned in SearchResponse. Supported fields for all types: * audience * availability * brands * color_info * conditions * gtin * materials * name * patterns * price_info * rating * sizes * title * uri Supported fields only for Type.PRIMARY and Type.COLLECTION: * categories * description * images Supported fields only for Type.VARIANT: * Only the first image in images To mark attributes as retrievable, include paths of the form "attributes.key" where "key" is the key of a custom attribute, as specified in attributes. For Type.PRIMARY and Type.COLLECTION, the following fields are always returned in SearchResponse by default: * name For Type.VARIANT, the following fields are always returned in by default: * name * color_info Note: Returning more fields in SearchResponse can increase response payload size and serving latency. This field is deprecated. Use the retrievable site-wide control instead.
      */
     retrievableFields?: string | null;
     /**
@@ -2960,6 +3018,10 @@ export namespace retail_v2 {
      */
     onewaySynonymsAction?: Schema$GoogleCloudRetailV2RuleOnewaySynonymsAction;
     /**
+     * Pins one or more specified products to a specific position in the results.
+     */
+    pinAction?: Schema$GoogleCloudRetailV2RulePinAction;
+    /**
      * Redirects a shopper to a specific page.
      */
     redirectAction?: Schema$GoogleCloudRetailV2RuleRedirectAction;
@@ -3062,6 +3124,15 @@ export namespace retail_v2 {
      * Defines a set of synonyms. Cannot contain duplicates. Can specify up to 100 synonyms.
      */
     synonyms?: string[] | null;
+  }
+  /**
+   * Pins one or more specified products to a specific position in the results. * Rule Condition: Must specify non-empty Condition.query_terms (for search only) or Condition.page_categories (for browse only), but can't specify both. * Action Input: mapping of `[pin_position, product_id]` pairs (pin position uses 1-based indexing). * Action Result: Will pin products with matching ids to the position specified in the final result order. Example: Suppose the query is `shoes`, the Condition.query_terms is `shoes` and the pin_map has `{1, "pid1"\}`, then product with `pid1` will be pinned to the top position in the final results. If multiple PinActions are matched to a single request the actions will be processed from most to least recently updated. Pins to positions larger than the max allowed page size of 120 are not allowed.
+   */
+  export interface Schema$GoogleCloudRetailV2RulePinAction {
+    /**
+     * Required. A map of positions to product_ids. Partial matches per action are allowed, if a certain position in the map is already filled that `[position, product_id]` pair will be ignored but the rest may still be applied. This case will only occur if multiple pin actions are matched to a single request, as the map guarantees that pin positions are unique within the same action. Duplicate product_ids are not permitted within a single pin map. The max size of this map is 120, equivalent to the max [request page size](https://cloud.google.com/retail/docs/reference/rest/v2/projects.locations.catalogs.placements/search#request-body).
+     */
+    pinMap?: {[key: string]: string} | null;
   }
   /**
    * Redirects a shopper to a specific page. * Rule Condition: Must specify Condition.query_terms. * Action Input: Request Query * Action Result: Redirects shopper to provided uri.
@@ -3409,7 +3480,7 @@ export namespace retail_v2 {
      */
     correctedQuery?: string | null;
     /**
-     * Metadata related to A/B testing Experiment associated with this response. Only exists when an experiment is triggered.
+     * Metadata related to A/B testing experiment associated with this response. Only exists when an experiment is triggered.
      */
     experimentInfo?: Schema$GoogleCloudRetailV2ExperimentInfo[];
     /**
@@ -3424,6 +3495,10 @@ export namespace retail_v2 {
      * A token that can be sent as SearchRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+    /**
+     * Metadata for pin controls which were applicable to the request. This contains two map fields, one for all matched pins and one for pins which were matched but not applied. The two maps are keyed by pin position, and the values are the product ids which were matched to that pin.
+     */
+    pinControlMetadata?: Schema$GoogleCloudRetailV2PinControlMetadata;
     /**
      * Query expansion information for the returned results.
      */
@@ -3906,7 +3981,7 @@ export namespace retail_v2 {
      */
     ipAddress?: string | null;
     /**
-     * User agent as included in the HTTP header. Required for getting SearchResponse.sponsored_results. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.
+     * User agent as included in the HTTP header. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.
      */
     userAgent?: string | null;
     /**
@@ -10444,7 +10519,7 @@ export namespace retail_v2 {
     }
 
     /**
-     * Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a 3rd party domain. This method is used only by the Retail API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
+     * Writes a single user event from the browser. For larger user event payload over 16 KB, the POST method should be used instead, otherwise a 400 Bad Request error is returned. This method is used only by the Retail API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10515,7 +10590,7 @@ export namespace retail_v2 {
               /([^:]\/)\/+/g,
               '$1'
             ),
-            method: 'GET',
+            method: 'POST',
             apiVersion: '',
           },
           options
@@ -10925,29 +11000,14 @@ export namespace retail_v2 {
   export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Collect
     extends StandardParameters {
     /**
-     * The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
-     */
-    ets?: string;
-    /**
      * Required. The parent catalog name, such as `projects/1234/locations/global/catalogs/default_catalog`.
      */
     parent?: string;
+
     /**
-     * The prebuilt rule name that can convert a specific type of raw_json. For example: "ga4_bq" rule for the GA4 user event schema.
+     * Request body metadata
      */
-    prebuiltRule?: string;
-    /**
-     * An arbitrary serialized JSON string that contains necessary information that can comprise a user event. When this field is specified, the user_event field will be ignored. Note: line-delimited JSON is not supported, a single JSON only.
-     */
-    rawJson?: string;
-    /**
-     * The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for 3rd party requests.
-     */
-    uri?: string;
-    /**
-     * Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.
-     */
-    userEvent?: string;
+    requestBody?: Schema$GoogleCloudRetailV2CollectUserEventRequest;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Import
     extends StandardParameters {

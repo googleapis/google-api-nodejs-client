@@ -697,6 +697,10 @@ export namespace assuredworkloads_v1beta1 {
      * Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored. This will always be true while creating the workload.
      */
     violationNotificationsEnabled?: boolean | null;
+    /**
+     * Optional. Options to be set for the given created workload.
+     */
+    workloadOptions?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadWorkloadOptions;
   }
   /**
    * Settings specific to resources needed for CJIS.
@@ -741,7 +745,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     ekmProvisioningErrorMapping?: string | null;
     /**
-     * Indicates Ekm enrollment Provisioning of a given workload.
+     * Output only. Indicates Ekm enrollment Provisioning of a given workload.
      */
     ekmProvisioningState?: string | null;
   }
@@ -798,7 +802,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     assuredWorkloadsMonitoring?: boolean | null;
     /**
-     * Allow the partner to view inspectability logs and monitoring violations.
+     * Optional. Allow the partner to view inspectability logs and monitoring violations.
      */
     dataLogsViewer?: boolean | null;
     /**
@@ -811,7 +815,7 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo {
     /**
-     * Resource identifier. For a project this represents project_number.
+     * Output only. Resource identifier. For a project this represents project_number.
      */
     resourceId?: string | null;
     /**
@@ -845,7 +849,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     setupErrors?: string[] | null;
     /**
-     * Indicates SAA enrollment status of a given workload.
+     * Output only. Indicates SAA enrollment status of a given workload.
      */
     setupStatus?: string | null;
   }
@@ -873,6 +877,15 @@ export namespace assuredworkloads_v1beta1 {
      * The time the update was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Options to be set for the given created workload.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadWorkloadOptions {
+    /**
+     * Optional. Specifies type of KAJ Enrollment if provided.
+     */
+    kajEnrollmentType?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.

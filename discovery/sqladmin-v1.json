@@ -609,7 +609,7 @@
     "instances": {
       "methods": {
         "ListServerCertificates": {
-          "description": "Lists all versions of server certificates and certificate authorities (CAs) for the specified instance. There can be up to three sets of certs listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out.",
+          "description": "Lists all versions of server certificates and certificate authorities (CAs) for the specified instance. There can be up to three sets of certs listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out. For instances not using Certificate Authority Service (CAS) server CA, use ListServerCas instead.",
           "flatPath": "v1/projects/{project}/instances/{instance}/listServerCertificates",
           "httpMethod": "GET",
           "id": "sql.instances.ListServerCertificates",
@@ -641,7 +641,7 @@
           ]
         },
         "RotateServerCertificate": {
-          "description": "Rotates the server certificate version to one previously added with the addServerCertificate method. For instances not using Certificate Authority Service (CAS) server CA, please use RotateServerCa instead.",
+          "description": "Rotates the server certificate version to one previously added with the addServerCertificate method. For instances not using Certificate Authority Service (CAS) server CA, use RotateServerCa instead.",
           "flatPath": "v1/projects/{project}/instances/{instance}/rotateServerCertificate",
           "httpMethod": "POST",
           "id": "sql.instances.RotateServerCertificate",
@@ -711,7 +711,7 @@
           ]
         },
         "addServerCa": {
-          "description": "Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in. For instances that have enabled Certificate Authority Service (CAS) based server CA, please use AddServerCertificate to add a new server certificate.",
+          "description": "Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in. For instances that have enabled Certificate Authority Service (CAS) based server CA, use AddServerCertificate to add a new server certificate.",
           "flatPath": "v1/projects/{project}/instances/{instance}/addServerCa",
           "httpMethod": "POST",
           "id": "sql.instances.addServerCa",
@@ -743,7 +743,7 @@
           ]
         },
         "addServerCertificate": {
-          "description": "Add a new trusted server certificate version for the specified instance using Certificate Authority Service (CAS) server CA. Required to prepare for a certificate rotation. If a server certificate version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one certificate version waiting to be rotated in. For instances not using CAS server CA, please use AddServerCa instead.",
+          "description": "Add a new trusted server certificate version for the specified instance using Certificate Authority Service (CAS) server CA. Required to prepare for a certificate rotation. If a server certificate version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one certificate version waiting to be rotated in. For instances not using CAS server CA, use AddServerCa instead.",
           "flatPath": "v1/projects/{project}/instances/{instance}/addServerCertificate",
           "httpMethod": "POST",
           "id": "sql.instances.addServerCertificate",
@@ -819,28 +819,6 @@
             "instance"
           ],
           "parameters": {
-            "enableFinalBackup": {
-              "description": "Flag to opt-in for final backup. By default, it is turned off.",
-              "location": "query",
-              "type": "boolean"
-            },
-            "finalBackupDescription": {
-              "description": "Optional. The description of the final backup.",
-              "location": "query",
-              "type": "string"
-            },
-            "finalBackupExpiryTime": {
-              "description": "Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.",
-              "format": "google-datetime",
-              "location": "query",
-              "type": "string"
-            },
-            "finalBackupTtlDays": {
-              "description": "Optional. Retention period of the final backup.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            },
             "instance": {
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
@@ -1215,7 +1193,7 @@
           ],
           "parameters": {
             "failover": {
-              "description": "Set to true to invoke a replica failover to the designated DR replica. As part of replica failover, the promote operation attempts to add the original primary instance as a replica of the promoted DR replica when the original primary instance comes back online. If set to false or not specified, then the original primary instance becomes an independent Cloud SQL primary instance. Only applicable to MySQL.",
+              "description": "Set to true to invoke a replica failover to the DR replica. As part of replica failover, the promote operation attempts to add the original primary instance as a replica of the promoted DR replica when the original primary instance comes back online. If set to false or not specified, then the original primary instance becomes an independent Cloud SQL primary instance.",
               "location": "query",
               "type": "boolean"
             },
@@ -1408,7 +1386,7 @@
           ]
         },
         "rotateServerCa": {
-          "description": "Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, please use RotateServerCertificate to rotate the server certificate.",
+          "description": "Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, use RotateServerCertificate to rotate the server certificate.",
           "flatPath": "v1/projects/{project}/instances/{instance}/rotateServerCa",
           "httpMethod": "POST",
           "id": "sql.instances.rotateServerCa",
@@ -1507,7 +1485,7 @@
           ]
         },
         "switchover": {
-          "description": "Switches over from the primary instance to the designated DR replica instance.",
+          "description": "Switches over from the primary instance to the DR replica instance.",
           "flatPath": "v1/projects/{project}/instances/{instance}/switchover",
           "httpMethod": "POST",
           "id": "sql.instances.switchover",
@@ -1517,7 +1495,7 @@
           ],
           "parameters": {
             "dbTimeout": {
-              "description": "Optional. (MySQL only) Cloud SQL instance operations timeout, which is a sum of all database operations. Default value is 10 minutes and can be modified to a maximum value of 24 hours.",
+              "description": "Optional. (MySQL and PostgreSQL only) Cloud SQL instance operations timeout, which is a sum of all database operations. Default value is 10 minutes and can be modified to a maximum value of 24 hours.",
               "format": "google-duration",
               "location": "query",
               "type": "string"
@@ -1691,11 +1669,6 @@
             "project"
           ],
           "parameters": {
-            "filter": {
-              "description": "Optional. A filter string that follows the rules of EBNF grammar (https://google.aip.dev/assets/misc/ebnf-filtering.txt). Cloud SQL provides filters for status, operationType, and startTime.",
-              "location": "query",
-              "type": "string"
-            },
             "instance": {
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "query",
@@ -2393,7 +2366,7 @@
       }
     }
   },
-  "revision": "20240925",
+  "revision": "20250117",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2583,10 +2556,6 @@
         "kind": {
           "description": "This is always `sql#backupContext`.",
           "type": "string"
-        },
-        "name": {
-          "description": "The name of the backup. Format: projects/{project}/backups/{backup}",
-          "type": "string"
         }
       },
       "type": "object"
@@ -2654,8 +2623,8 @@
           ],
           "enumDescriptions": [
             "This is an unknown BackupKind.",
-            "The snapshot based backups",
-            "Physical backups"
+            "Snapshot-based backups.",
+            "Physical backups."
           ],
           "type": "string"
         },
@@ -2887,6 +2856,13 @@
           ],
           "type": "string"
         },
+        "customSubjectAlternativeNames": {
+          "description": "Custom subject alternative names for the server certificate.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "databaseVersion": {
           "description": "The database engine type and version. The `databaseVersion` field cannot be changed after instance creation. MySQL instances: `MYSQL_8_0`, `MYSQL_5_7` (default), or `MYSQL_5_6`. PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`, `POSTGRES_11`, `POSTGRES_12` (default), `POSTGRES_13`, or `POSTGRES_14`. SQL Server instances: `SQLSERVER_2017_STANDARD` (default), `SQLSERVER_2017_ENTERPRISE`, `SQLSERVER_2017_EXPRESS`, `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`, `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or `SQLSERVER_2019_WEB`.",
           "enum": [
@@ -2895,19 +2871,6 @@
             "MYSQL_5_5",
             "MYSQL_5_6",
             "MYSQL_5_7",
-            "SQLSERVER_2017_STANDARD",
-            "SQLSERVER_2017_ENTERPRISE",
-            "SQLSERVER_2017_EXPRESS",
-            "SQLSERVER_2017_WEB",
-            "POSTGRES_9_6",
-            "POSTGRES_10",
-            "POSTGRES_11",
-            "POSTGRES_12",
-            "POSTGRES_13",
-            "POSTGRES_14",
-            "POSTGRES_15",
-            "POSTGRES_16",
-            "POSTGRES_17",
             "MYSQL_8_0",
             "MYSQL_8_0_18",
             "MYSQL_8_0_26",
@@ -2925,7 +2888,22 @@
             "MYSQL_8_0_38",
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
+            "MYSQL_8_0_41",
+            "MYSQL_8_0_42",
             "MYSQL_8_4",
+            "SQLSERVER_2017_STANDARD",
+            "SQLSERVER_2017_ENTERPRISE",
+            "SQLSERVER_2017_EXPRESS",
+            "SQLSERVER_2017_WEB",
+            "POSTGRES_9_6",
+            "POSTGRES_10",
+            "POSTGRES_11",
+            "POSTGRES_12",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16",
+            "POSTGRES_17",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -2946,20 +2924,22 @@
             false,
             false,
             false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -2987,19 +2967,6 @@
             "The database version is MySQL 5.5.",
             "The database version is MySQL 5.6.",
             "The database version is MySQL 5.7.",
-            "The database version is SQL Server 2017 Standard.",
-            "The database version is SQL Server 2017 Enterprise.",
-            "The database version is SQL Server 2017 Express.",
-            "The database version is SQL Server 2017 Web.",
-            "The database version is PostgreSQL 9.6.",
-            "The database version is PostgreSQL 10.",
-            "The database version is PostgreSQL 11.",
-            "The database version is PostgreSQL 12.",
-            "The database version is PostgreSQL 13.",
-            "The database version is PostgreSQL 14.",
-            "The database version is PostgreSQL 15.",
-            "The database version is PostgreSQL 16.",
-            "The database version is PostgreSQL 17.",
             "The database version is MySQL 8.",
             "The database major version is MySQL 8.0 and the minor version is 18.",
             "The database major version is MySQL 8.0 and the minor version is 26.",
@@ -3017,7 +2984,22 @@
             "The database major version is MySQL 8.0 and the minor version is 38.",
             "The database major version is MySQL 8.0 and the minor version is 39.",
             "The database major version is MySQL 8.0 and the minor version is 40.",
+            "The database major version is MySQL 8.0 and the minor version is 41.",
+            "The database major version is MySQL 8.0 and the minor version is 42.",
             "The database version is MySQL 8.4.",
+            "The database version is SQL Server 2017 Standard.",
+            "The database version is SQL Server 2017 Enterprise.",
+            "The database version is SQL Server 2017 Express.",
+            "The database version is SQL Server 2017 Web.",
+            "The database version is PostgreSQL 9.6.",
+            "The database version is PostgreSQL 10.",
+            "The database version is PostgreSQL 11.",
+            "The database version is PostgreSQL 12.",
+            "The database version is PostgreSQL 13.",
+            "The database version is PostgreSQL 14.",
+            "The database version is PostgreSQL 15.",
+            "The database version is PostgreSQL 16.",
+            "The database version is PostgreSQL 17.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -3204,19 +3186,6 @@
             "MYSQL_5_5",
             "MYSQL_5_6",
             "MYSQL_5_7",
-            "SQLSERVER_2017_STANDARD",
-            "SQLSERVER_2017_ENTERPRISE",
-            "SQLSERVER_2017_EXPRESS",
-            "SQLSERVER_2017_WEB",
-            "POSTGRES_9_6",
-            "POSTGRES_10",
-            "POSTGRES_11",
-            "POSTGRES_12",
-            "POSTGRES_13",
-            "POSTGRES_14",
-            "POSTGRES_15",
-            "POSTGRES_16",
-            "POSTGRES_17",
             "MYSQL_8_0",
             "MYSQL_8_0_18",
             "MYSQL_8_0_26",
@@ -3234,7 +3203,22 @@
             "MYSQL_8_0_38",
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
+            "MYSQL_8_0_41",
+            "MYSQL_8_0_42",
             "MYSQL_8_4",
+            "SQLSERVER_2017_STANDARD",
+            "SQLSERVER_2017_ENTERPRISE",
+            "SQLSERVER_2017_EXPRESS",
+            "SQLSERVER_2017_WEB",
+            "POSTGRES_9_6",
+            "POSTGRES_10",
+            "POSTGRES_11",
+            "POSTGRES_12",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16",
+            "POSTGRES_17",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -3255,20 +3239,22 @@
             false,
             false,
             false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3296,19 +3282,6 @@
             "The database version is MySQL 5.5.",
             "The database version is MySQL 5.6.",
             "The database version is MySQL 5.7.",
-            "The database version is SQL Server 2017 Standard.",
-            "The database version is SQL Server 2017 Enterprise.",
-            "The database version is SQL Server 2017 Express.",
-            "The database version is SQL Server 2017 Web.",
-            "The database version is PostgreSQL 9.6.",
-            "The database version is PostgreSQL 10.",
-            "The database version is PostgreSQL 11.",
-            "The database version is PostgreSQL 12.",
-            "The database version is PostgreSQL 13.",
-            "The database version is PostgreSQL 14.",
-            "The database version is PostgreSQL 15.",
-            "The database version is PostgreSQL 16.",
-            "The database version is PostgreSQL 17.",
             "The database version is MySQL 8.",
             "The database major version is MySQL 8.0 and the minor version is 18.",
             "The database major version is MySQL 8.0 and the minor version is 26.",
@@ -3326,7 +3299,22 @@
             "The database major version is MySQL 8.0 and the minor version is 38.",
             "The database major version is MySQL 8.0 and the minor version is 39.",
             "The database major version is MySQL 8.0 and the minor version is 40.",
+            "The database major version is MySQL 8.0 and the minor version is 41.",
+            "The database major version is MySQL 8.0 and the minor version is 42.",
             "The database version is MySQL 8.4.",
+            "The database version is SQL Server 2017 Standard.",
+            "The database version is SQL Server 2017 Enterprise.",
+            "The database version is SQL Server 2017 Express.",
+            "The database version is SQL Server 2017 Web.",
+            "The database version is PostgreSQL 9.6.",
+            "The database version is PostgreSQL 10.",
+            "The database version is PostgreSQL 11.",
+            "The database version is PostgreSQL 12.",
+            "The database version is PostgreSQL 13.",
+            "The database version is PostgreSQL 14.",
+            "The database version is PostgreSQL 15.",
+            "The database version is PostgreSQL 16.",
+            "The database version is PostgreSQL 17.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -3467,7 +3455,7 @@
         },
         "replicationCluster": {
           "$ref": "ReplicationCluster",
-          "description": "Optional. A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Only applicable to MySQL."
+          "description": "Optional. A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Applicable to MySQL and PostgreSQL."
         },
         "rootPassword": {
           "description": "Initial root password. Use only on creation. You must set root passwords before you can connect to PostgreSQL instances.",
@@ -3577,6 +3565,13 @@
         "switchTransactionLogsToCloudStorageEnabled": {
           "description": "Input only. Whether Cloud SQL is enabled to switch storing point-in-time recovery log files from a data disk to Cloud Storage.",
           "type": "boolean"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys and tag values that are bound to this instance. You must represent each item in the map as: `\"\" : \"\"`. For example, a single resource can have the following tags: ``` \"123/environment\": \"production\", \"123/costCenter\": \"marketing\", ``` For more information on tag creation and management, see https://cloud.google.com/resource-manager/docs/tags/tags-overview.",
+          "type": "object"
         },
         "upgradableDatabaseVersions": {
           "description": "Output only. All database versions that are available for upgrade.",
@@ -3924,6 +3919,17 @@
       },
       "type": "object"
     },
+    "ExternalSyncSelectedObject": {
+      "description": "The selected object that Cloud SQL migrates.",
+      "id": "ExternalSyncSelectedObject",
+      "properties": {
+        "database": {
+          "description": "The name of the database that Cloud SQL migrates.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FailoverContext": {
       "description": "Database instance failover context.",
       "id": "FailoverContext",
@@ -3968,19 +3974,6 @@
               "MYSQL_5_5",
               "MYSQL_5_6",
               "MYSQL_5_7",
-              "SQLSERVER_2017_STANDARD",
-              "SQLSERVER_2017_ENTERPRISE",
-              "SQLSERVER_2017_EXPRESS",
-              "SQLSERVER_2017_WEB",
-              "POSTGRES_9_6",
-              "POSTGRES_10",
-              "POSTGRES_11",
-              "POSTGRES_12",
-              "POSTGRES_13",
-              "POSTGRES_14",
-              "POSTGRES_15",
-              "POSTGRES_16",
-              "POSTGRES_17",
               "MYSQL_8_0",
               "MYSQL_8_0_18",
               "MYSQL_8_0_26",
@@ -3998,7 +3991,22 @@
               "MYSQL_8_0_38",
               "MYSQL_8_0_39",
               "MYSQL_8_0_40",
+              "MYSQL_8_0_41",
+              "MYSQL_8_0_42",
               "MYSQL_8_4",
+              "SQLSERVER_2017_STANDARD",
+              "SQLSERVER_2017_ENTERPRISE",
+              "SQLSERVER_2017_EXPRESS",
+              "SQLSERVER_2017_WEB",
+              "POSTGRES_9_6",
+              "POSTGRES_10",
+              "POSTGRES_11",
+              "POSTGRES_12",
+              "POSTGRES_13",
+              "POSTGRES_14",
+              "POSTGRES_15",
+              "POSTGRES_16",
+              "POSTGRES_17",
               "SQLSERVER_2019_STANDARD",
               "SQLSERVER_2019_ENTERPRISE",
               "SQLSERVER_2019_EXPRESS",
@@ -4019,20 +4027,22 @@
               false,
               false,
               false,
-              false,
-              false,
-              false,
-              false,
-              false,
-              false,
-              false,
-              false,
-              false,
-              false,
-              false,
-              false,
-              false,
               true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
               false,
               false,
               false,
@@ -4060,19 +4070,6 @@
               "The database version is MySQL 5.5.",
               "The database version is MySQL 5.6.",
               "The database version is MySQL 5.7.",
-              "The database version is SQL Server 2017 Standard.",
-              "The database version is SQL Server 2017 Enterprise.",
-              "The database version is SQL Server 2017 Express.",
-              "The database version is SQL Server 2017 Web.",
-              "The database version is PostgreSQL 9.6.",
-              "The database version is PostgreSQL 10.",
-              "The database version is PostgreSQL 11.",
-              "The database version is PostgreSQL 12.",
-              "The database version is PostgreSQL 13.",
-              "The database version is PostgreSQL 14.",
-              "The database version is PostgreSQL 15.",
-              "The database version is PostgreSQL 16.",
-              "The database version is PostgreSQL 17.",
               "The database version is MySQL 8.",
               "The database major version is MySQL 8.0 and the minor version is 18.",
               "The database major version is MySQL 8.0 and the minor version is 26.",
@@ -4090,7 +4087,22 @@
               "The database major version is MySQL 8.0 and the minor version is 38.",
               "The database major version is MySQL 8.0 and the minor version is 39.",
               "The database major version is MySQL 8.0 and the minor version is 40.",
+              "The database major version is MySQL 8.0 and the minor version is 41.",
+              "The database major version is MySQL 8.0 and the minor version is 42.",
               "The database version is MySQL 8.4.",
+              "The database version is SQL Server 2017 Standard.",
+              "The database version is SQL Server 2017 Enterprise.",
+              "The database version is SQL Server 2017 Express.",
+              "The database version is SQL Server 2017 Web.",
+              "The database version is PostgreSQL 9.6.",
+              "The database version is PostgreSQL 10.",
+              "The database version is PostgreSQL 11.",
+              "The database version is PostgreSQL 12.",
+              "The database version is PostgreSQL 13.",
+              "The database version is PostgreSQL 14.",
+              "The database version is PostgreSQL 15.",
+              "The database version is PostgreSQL 16.",
+              "The database version is PostgreSQL 17.",
               "The database version is SQL Server 2019 Standard.",
               "The database version is SQL Server 2019 Enterprise.",
               "The database version is SQL Server 2019 Express.",
@@ -4628,17 +4640,9 @@
       "description": "Database instance restore backup request.",
       "id": "InstancesRestoreBackupRequest",
       "properties": {
-        "backup": {
-          "description": "The name of the backup to restore from in following format: projects/{project-id}/backups/{backup-uid} Only one of restore_backup_context or backup can be passed to the input.",
-          "type": "string"
-        },
         "restoreBackupContext": {
           "$ref": "RestoreBackupContext",
           "description": "Parameters required to perform the restore backup operation."
-        },
-        "restoreInstanceSettings": {
-          "$ref": "DatabaseInstance",
-          "description": "Optional. Restore instance settings overrides the instance settings stored as part of the backup. Instance's major database version cannot be changed and the disk size can only be increased. This feature is only available for restores to new instances using the backup name."
         }
       },
       "type": "object"
@@ -4691,6 +4695,13 @@
           },
           "type": "array"
         },
+        "customSubjectAlternativeNames": {
+          "description": "Optional. Custom Subject Alternative Name(SAN)s for a Cloud SQL instance.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "enablePrivatePathForGoogleCloudServices": {
           "description": "Controls connectivity to private IP instances from Google services, such as BigQuery.",
           "type": "boolean"
@@ -4716,13 +4727,19 @@
           "enum": [
             "CA_MODE_UNSPECIFIED",
             "GOOGLE_MANAGED_INTERNAL_CA",
-            "GOOGLE_MANAGED_CAS_CA"
+            "GOOGLE_MANAGED_CAS_CA",
+            "CUSTOMER_MANAGED_CAS_CA"
           ],
           "enumDescriptions": [
-            "CA mode is unknown.",
+            "CA mode is unspecified. It is effectively the same as `GOOGLE_MANAGED_INTERNAL_CA`.",
             "Google-managed self-signed internal CA.",
-            "Google-managed regional CA part of root CA hierarchy hosted on Google Cloud's Certificate Authority Service (CAS)."
+            "Google-managed regional CA part of root CA hierarchy hosted on Google Cloud's Certificate Authority Service (CAS).",
+            "Customer-managed CA hosted on Google Cloud's Certificate Authority Service (CAS)."
           ],
+          "type": "string"
+        },
+        "serverCaPool": {
+          "description": "Optional. The resource name of the server CA pool for an instance with `CUSTOMER_MANAGED_CAS_CA` as the `server_ca_mode`. Format: projects//locations//caPools/",
           "type": "string"
         },
         "sslMode": {
@@ -4938,9 +4955,32 @@
           "description": "The password for connecting to on-premises instance.",
           "type": "string"
         },
+        "selectedObjects": {
+          "description": "Optional. A list of objects that the user selects for replication from an external source instance.",
+          "items": {
+            "$ref": "SelectedObjects"
+          },
+          "type": "array"
+        },
         "sourceInstance": {
           "$ref": "InstanceReference",
           "description": "The reference to Cloud SQL instance if the source is Cloud SQL."
+        },
+        "sslOption": {
+          "description": "Optional. SSL option for replica connection to the on-premises source.",
+          "enum": [
+            "SSL_OPTION_UNSPECIFIED",
+            "DISABLE",
+            "REQUIRE",
+            "VERIFY_CA"
+          ],
+          "enumDescriptions": [
+            "Unknown SSL option i.e. SSL option not specified by user.",
+            "SSL is not used for replica connection to the on-premises source.",
+            "SSL is required for replica connection to the on-premises source.",
+            "Verify CA is required for replica connection to the on-premises source."
+          ],
+          "type": "string"
         },
         "username": {
           "description": "The username for connecting to on-premises instance.",
@@ -5037,14 +5077,14 @@
             "AUTO_RESTART",
             "REENCRYPT",
             "SWITCHOVER",
-            "UPDATE_BACKUP",
             "ACQUIRE_SSRS_LEASE",
             "RELEASE_SSRS_LEASE",
             "RECONFIGURE_OLD_PRIMARY",
             "CLUSTER_MAINTENANCE",
             "SELF_SERVICE_MAINTENANCE",
             "SWITCHOVER_TO_REPLICA",
-            "MAJOR_VERSION_UPGRADE"
+            "MAJOR_VERSION_UPGRADE",
+            "ADVANCED_BACKUP"
           ],
           "enumDeprecated": [
             false,
@@ -5089,9 +5129,9 @@
             false,
             false,
             false,
+            true,
+            true,
             false,
-            true,
-            true,
             false,
             false
           ],
@@ -5135,14 +5175,14 @@
             "Performs auto-restart of an HA-enabled Cloud SQL database for auto recovery.",
             "Re-encrypts CMEK instances with latest key version.",
             "Switches the roles of the primary and replica pair. The target instance should be the replica.",
-            "Update a backup.",
             "Acquire a lease for the setup of SQL Server Reporting Services (SSRS).",
             "Release a lease for the setup of SQL Server Reporting Services (SSRS).",
             "Reconfigures old primary after a promote replica operation. Effect of a promote operation to the old primary is executed in this operation, asynchronously from the promote replica operation executed to the replica.",
             "Indicates that the instance, its read replicas, and its cascading replicas are in maintenance. Maintenance typically gets initiated on groups of replicas first, followed by the primary instance. For each instance, maintenance typically causes the instance to be unavailable for 1-3 minutes.",
             "Indicates that the instance (and any of its replicas) are currently in maintenance. This is initiated as a self-service request by using SSM. Maintenance typically causes the instance to be unavailable for 1-3 minutes.",
             "Switches a primary instance to a replica. This operation runs as part of a switchover operation to the original primary instance.",
-            "Updates the major version of a Cloud SQL instance."
+            "Updates the major version of a Cloud SQL instance.",
+            "Creates a backup for an Advanced BackupTier Cloud SQL instance."
           ],
           "type": "string"
         },
@@ -5171,8 +5211,11 @@
           ],
           "type": "string"
         },
+        "subOperationType": {
+          "$ref": "SqlSubOperationType",
+          "description": "Optional. The sub operation based on the operation type."
+        },
         "targetId": {
-          "description": "Name of the database instance related to this operation.",
           "type": "string"
         },
         "targetLink": {
@@ -5236,7 +5279,7 @@
           "type": "string"
         },
         "cancelRequested": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -5288,13 +5331,6 @@
         "nextPageToken": {
           "description": "The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.",
           "type": "string"
-        },
-        "warnings": {
-          "description": "List of warnings that occurred while handling the request.",
-          "items": {
-            "$ref": "ApiWarning"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -5374,6 +5410,33 @@
       },
       "type": "object"
     },
+    "PscAutoConnectionConfig": {
+      "description": "Settings for an automatically-setup Private Service Connect consumer endpoint that is used to connect to a Cloud SQL instance.",
+      "id": "PscAutoConnectionConfig",
+      "properties": {
+        "consumerNetwork": {
+          "description": "The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project.",
+          "type": "string"
+        },
+        "consumerNetworkStatus": {
+          "description": "The connection policy status of the consumer network.",
+          "type": "string"
+        },
+        "consumerProject": {
+          "description": "This is the project ID of consumer service project of this consumer endpoint. Optional. This is only applicable if consumer_network is a shared vpc network.",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "The IP address of the consumer endpoint.",
+          "type": "string"
+        },
+        "status": {
+          "description": "The connection status of the consumer endpoint.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PscConfig": {
       "description": "PSC settings for a Cloud SQL instance.",
       "id": "PscConfig",
@@ -5382,6 +5445,13 @@
           "description": "Optional. The list of consumer projects that are allow-listed for PSC connections to this instance. This instance can be connected to with PSC from any network in these projects. Each consumer project in this list may be represented by a project number (numeric) or by a project id (alphanumeric).",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "pscAutoConnections": {
+          "description": "Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to connect to this Cloud SQL instance.",
+          "items": {
+            "$ref": "PscAutoConnectionConfig"
           },
           "type": "array"
         },
@@ -5416,7 +5486,7 @@
       "type": "object"
     },
     "ReplicationCluster": {
-      "description": "A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Only applicable to MySQL.",
+      "description": "A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Applicable to MySQL and PostgreSQL.",
       "id": "ReplicationCluster",
       "properties": {
         "drReplica": {
@@ -5429,7 +5499,7 @@
           "type": "string"
         },
         "psaWriteEndpoint": {
-          "description": "Output only. If set, it indicates this instance has a private service access (PSA) dns endpoint that is pointing to the primary instance of the cluster. If this instance is the primary, the dns should be pointing to this instance. After Switchover or Replica failover, this DNS endpoint points to the promoted instance. This is a read-only field, returned to the user as information. This field can exist even if a standalone instance does not yet have a replica, or had a DR replica that was deleted.",
+          "description": "Output only. If set, this field indicates this instance has a private service access (PSA) DNS endpoint that is pointing to the primary instance of the cluster. If this instance is the primary, then the DNS endpoint points to this instance. After a switchover or replica failover operation, this DNS endpoint points to the promoted instance. This is a read-only field, returned to the user as information. This field can exist even if a standalone instance doesn't have a DR replica yet or the DR replica is deleted.",
           "readOnly": true,
           "type": "string"
         }
@@ -5512,6 +5582,17 @@
         },
         "nextVersion": {
           "description": "The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server certificate version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SelectedObjects": {
+      "description": "A list of objects that the user selects for replication from an external source instance.",
+      "id": "SelectedObjects",
+      "properties": {
+        "database": {
+          "description": "Required. The name of the database to migrate.",
           "type": "string"
         }
       },
@@ -5615,19 +5696,22 @@
             "SQL_DATA_DISK_TYPE_UNSPECIFIED",
             "PD_SSD",
             "PD_HDD",
-            "OBSOLETE_LOCAL_SSD"
+            "OBSOLETE_LOCAL_SSD",
+            "HYPERDISK_BALANCED"
           ],
           "enumDeprecated": [
             false,
             false,
             false,
-            true
+            true,
+            false
           ],
           "enumDescriptions": [
             "This is an unknown data disk type.",
             "An SSD data disk.",
             "An HDD data disk.",
-            "This field is deprecated and will be removed from a future version of the API."
+            "This field is deprecated and will be removed from a future version of the API.",
+            "A Hyperdisk Balanced data disk."
           ],
           "type": "string"
         },
@@ -5712,6 +5796,11 @@
             "The instance is billed per usage."
           ],
           "type": "string"
+        },
+        "replicationLagMaxSeconds": {
+          "description": "Optional. Configuration value for recreation of replica after certain replication lag",
+          "format": "int32",
+          "type": "integer"
         },
         "replicationType": {
           "deprecated": true,
@@ -5846,7 +5935,8 @@
             "UNSUPPORTED_COLUMNS",
             "USERS_NOT_CREATED_IN_REPLICA",
             "UNSUPPORTED_SYSTEM_OBJECTS",
-            "UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY"
+            "UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY",
+            "SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE"
           ],
           "enumDescriptions": [
             "",
@@ -5901,7 +5991,8 @@
             "The source database has generated columns that can't be migrated. Please change them to regular columns before migration.",
             "The source database has users that aren't created in the replica. First, create all users, which are in the pg_user_mappings table of the source database, in the destination instance. Then, perform the migration.",
             "The selected objects include system objects that aren't supported for migration.",
-            "The source database has tables with the FULL or NOTHING replica identity. Before starting your migration, either remove the identity or change it to DEFAULT. Note that this is an error and will block the migration."
+            "The source database has tables with the FULL or NOTHING replica identity. Before starting your migration, either remove the identity or change it to DEFAULT. Note that this is an error and will block the migration.",
+            "The selected objects don't exist on the source instance."
           ],
           "type": "string"
         }
@@ -6063,6 +6154,13 @@
         "mysqlSyncConfig": {
           "$ref": "MySqlSyncConfig",
           "description": "Optional. MySQL-specific settings for start external sync."
+        },
+        "selectedObjects": {
+          "description": "Optional. Migrate only the specified objects from the source instance. If this field is empty, then migrate all objects.",
+          "items": {
+            "$ref": "ExternalSyncSelectedObject"
+          },
+          "type": "array"
         },
         "syncMode": {
           "description": "External sync mode",
@@ -6236,6 +6334,31 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SqlSubOperationType": {
+      "description": "The sub operation type based on the operation type.",
+      "id": "SqlSubOperationType",
+      "properties": {
+        "maintenanceType": {
+          "description": "The type of maintenance to be performed on the instance.",
+          "enum": [
+            "SQL_MAINTENANCE_TYPE_UNSPECIFIED",
+            "INSTANCE_MAINTENANCE",
+            "REPLICA_INCLUDED_MAINTENANCE",
+            "INSTANCE_SELF_SERVICE_MAINTENANCE",
+            "REPLICA_INCLUDED_SELF_SERVICE_MAINTENANCE"
+          ],
+          "enumDescriptions": [
+            "Maintenance type is unspecified.",
+            "Indicates that a standalone instance is undergoing maintenance. The instance can be either a primary instance or a replica.",
+            "Indicates that the primary instance and all of its replicas, including cascading replicas, are undergoing maintenance. Maintenance is performed on groups of replicas first, followed by the primary instance.",
+            "Indicates that the standalone instance is undergoing maintenance, initiated by self-service. The instance can be either a primary instance or a replica.",
+            "Indicates that the primary instance and all of its replicas are undergoing maintenance, initiated by self-service. Maintenance is performed on groups of replicas first, followed by the primary instance."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

@@ -409,6 +409,35 @@ export namespace datastore_v1 {
     propertyFilter?: Schema$PropertyFilter;
   }
   /**
+   * Nearest Neighbors search config. The ordering provided by FindNearest supersedes the order_by stage. If multiple documents have the same vector distance, the returned document order is not guaranteed to be stable between queries.
+   */
+  export interface Schema$FindNearest {
+    /**
+     * Required. The Distance Measure to use, required.
+     */
+    distanceMeasure?: string | null;
+    /**
+     * Optional. Optional name of the field to output the result of the vector distance calculation. Must conform to entity property limitations.
+     */
+    distanceResultProperty?: string | null;
+    /**
+     * Optional. Option to specify a threshold for which no less similar documents will be returned. The behavior of the specified `distance_measure` will affect the meaning of the distance threshold. Since DOT_PRODUCT distances increase when the vectors are more similar, the comparison is inverted. * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold * For DOT_PRODUCT: WHERE distance \>= distance_threshold
+     */
+    distanceThreshold?: number | null;
+    /**
+     * Required. The number of nearest neighbors to return. Must be a positive integer of no more than 100.
+     */
+    limit?: number | null;
+    /**
+     * Required. The query vector that we are searching on. Must be a vector of no more than 2048 dimensions.
+     */
+    queryVector?: Schema$Value;
+    /**
+     * Required. An indexed vector property to search upon. Only documents which contain vectors whose dimensionality match the query_vector can be returned.
+     */
+    vectorProperty?: Schema$PropertyReference;
+  }
+  /**
    * Metadata common to all Datastore Admin operations.
    */
   export interface Schema$GoogleDatastoreAdminV1beta1CommonMetadata {
@@ -953,6 +982,10 @@ export namespace datastore_v1 {
      */
     baseVersion?: string | null;
     /**
+     * The strategy to use when a conflict is detected. Defaults to `SERVER_VALUE`. If this is set, then `conflict_detection_strategy` must also be set.
+     */
+    conflictResolutionStrategy?: string | null;
+    /**
      * The key of the entity to delete. The entity may or may not already exist. Must have a complete key path and must not be reserved/read-only.
      */
     delete?: Schema$Key;
@@ -964,6 +997,10 @@ export namespace datastore_v1 {
      * The properties to write in this mutation. None of the properties in the mask may have a reserved name, except for `__key__`. This field is ignored for `delete`. If the entity already exists, only properties referenced in the mask are updated, others are left untouched. Properties referenced in the mask but not in the entity are deleted.
      */
     propertyMask?: Schema$PropertyMask;
+    /**
+     * Optional. The transforms to perform on the entity. This field can be set only when the operation is `insert`, `update`, or `upsert`. If present, the transforms are be applied to the entity regardless of the property mask, in order, after the operation.
+     */
+    propertyTransforms?: Schema$PropertyTransform[];
     /**
      * The entity to update. The entity must already exist. Must have a complete key path.
      */
@@ -993,6 +1030,10 @@ export namespace datastore_v1 {
      * The automatically allocated key. Set only when the mutation allocated a key.
      */
     key?: Schema$Key;
+    /**
+     * The results of applying each PropertyTransform, in the same order of the request.
+     */
+    transformResults?: Schema$Value[];
     /**
      * The update time of the entity on the server after processing the mutation. If the mutation doesn't change anything on the server, then the timestamp will be the update timestamp of the current entity. This field will not be set after a 'delete'.
      */
@@ -1103,7 +1144,40 @@ export namespace datastore_v1 {
     name?: string | null;
   }
   /**
-   * A query for entities.
+   * A transformation of an entity property.
+   */
+  export interface Schema$PropertyTransform {
+    /**
+     * Appends the given elements in order if they are not already present in the current property value. If the property is not an array, or if the property does not yet exist, it is first set to the empty array. Equivalent numbers of different types (e.g. 3L and 3.0) are considered equal when checking if a value is missing. NaN is equal to NaN, and the null value is equal to the null value. If the input contains multiple equivalent values, only the first will be considered. The corresponding transform result will be the null value.
+     */
+    appendMissingElements?: Schema$ArrayValue;
+    /**
+     * Adds the given value to the property's current value. This must be an integer or a double value. If the property is not an integer or double, or if the property does not yet exist, the transformation will set the property to the given value. If either of the given value or the current property value are doubles, both values will be interpreted as doubles. Double arithmetic and representation of double values follows IEEE 754 semantics. If there is positive/negative integer overflow, the property is resolved to the largest magnitude positive/negative integer.
+     */
+    increment?: Schema$Value;
+    /**
+     * Sets the property to the maximum of its current value and the given value. This must be an integer or a double value. If the property is not an integer or double, or if the property does not yet exist, the transformation will set the property to the given value. If a maximum operation is applied where the property and the input value are of mixed types (that is - one is an integer and one is a double) the property takes on the type of the larger operand. If the operands are equivalent (e.g. 3 and 3.0), the property does not change. 0, 0.0, and -0.0 are all zero. The maximum of a zero stored value and zero input value is always the stored value. The maximum of any numeric value x and NaN is NaN.
+     */
+    maximum?: Schema$Value;
+    /**
+     * Sets the property to the minimum of its current value and the given value. This must be an integer or a double value. If the property is not an integer or double, or if the property does not yet exist, the transformation will set the property to the input value. If a minimum operation is applied where the property and the input value are of mixed types (that is - one is an integer and one is a double) the property takes on the type of the smaller operand. If the operands are equivalent (e.g. 3 and 3.0), the property does not change. 0, 0.0, and -0.0 are all zero. The minimum of a zero stored value and zero input value is always the stored value. The minimum of any numeric value x and NaN is NaN.
+     */
+    minimum?: Schema$Value;
+    /**
+     * Optional. The name of the property. Property paths (a list of property names separated by dots (`.`)) may be used to refer to properties inside entity values. For example `foo.bar` means the property `bar` inside the entity property `foo`. If a property name contains a dot `.` or a backlslash `\`, then that name must be escaped.
+     */
+    property?: string | null;
+    /**
+     * Removes all of the given elements from the array in the property. If the property is not an array, or if the property does not yet exist, it is set to the empty array. Equivalent numbers of different types (e.g. 3L and 3.0) are considered equal when deciding whether an element should be removed. NaN is equal to NaN, and the null value is equal to the null value. This will remove all equivalent values if there are duplicates. The corresponding transform result will be the null value.
+     */
+    removeAllFromArray?: Schema$ArrayValue;
+    /**
+     * Sets the property to the given server value.
+     */
+    setToServerValue?: string | null;
+  }
+  /**
+   * A query for entities. The query stages are executed in the following order: 1. kind 2. filter 3. projection 4. order + start_cursor + end_cursor 5. offset 6. limit 7. find_nearest
    */
   export interface Schema$Query {
     /**
@@ -1118,6 +1192,10 @@ export namespace datastore_v1 {
      * The filter to apply.
      */
     filter?: Schema$Filter;
+    /**
+     * Optional. A potential Nearest Neighbors Search. Applies after all other filters and ordering. Finds the closest vector embeddings to the given query vector.
+     */
+    findNearest?: Schema$FindNearest;
     /**
      * The kinds to query (if empty, returns entities of all kinds). Currently at most 1 kind may be specified.
      */
@@ -2940,7 +3018,7 @@ export namespace datastore_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

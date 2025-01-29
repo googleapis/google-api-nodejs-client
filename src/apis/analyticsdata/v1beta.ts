@@ -518,6 +518,10 @@ export namespace analyticsdata_v1beta {
     value?: string | null;
   }
   /**
+   * Filter for empty values.
+   */
+  export interface Schema$EmptyFilter {}
+  /**
    * An expression to filter dimension or metric values.
    */
   export interface Schema$Filter {
@@ -525,6 +529,10 @@ export namespace analyticsdata_v1beta {
      * A filter for two values.
      */
     betweenFilter?: Schema$BetweenFilter;
+    /**
+     * A filter for empty values such as "(not set)" and "" values.
+     */
+    emptyFilter?: Schema$EmptyFilter;
     /**
      * The dimension name or metric name. In most methods, dimensions & metrics can be used for the first time in this field. However in a RunPivotReportRequest, this field must be additionally specified by name in the RunPivotReportRequest's dimensions or metrics.
      */

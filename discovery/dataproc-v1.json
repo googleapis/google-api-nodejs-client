@@ -4978,7 +4978,7 @@
       }
     }
   },
-  "revision": "20240928",
+  "revision": "20250111",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -6075,7 +6075,8 @@
             "STOPPING",
             "STOPPED",
             "STARTING",
-            "REPAIRING"
+            "REPAIRING",
+            "SCHEDULED"
           ],
           "enumDescriptions": [
             "The cluster state is unknown.",
@@ -6088,7 +6089,8 @@
             "The cluster is being stopped. It cannot be used.",
             "The cluster is currently stopped. It is not ready for use.",
             "The cluster is being started. It is not ready for use.",
-            "The cluster is being repaired. It is not ready for use."
+            "The cluster is being repaired. It is not ready for use.",
+            "Cluster creation is currently waiting for resources to be available. Once all resources are available, it will transition to CREATING and then RUNNING."
           ],
           "readOnly": true,
           "type": "string"
@@ -6305,12 +6307,12 @@
       "id": "DiskConfig",
       "properties": {
         "bootDiskProvisionedIops": {
-          "description": "Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Note: This field is only supported if boot_disk_type is hyperdisk-balanced.",
+          "description": "Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. This field is supported only if boot_disk_type is hyperdisk-balanced.",
           "format": "int64",
           "type": "string"
         },
         "bootDiskProvisionedThroughput": {
-          "description": "Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be greater than or equal to 1. Note: This field is only supported if boot_disk_type is hyperdisk-balanced.",
+          "description": "Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be greater than or equal to 1. This field is supported only if boot_disk_type is hyperdisk-balanced.",
           "format": "int64",
           "type": "string"
         },
@@ -9032,7 +9034,7 @@
       "type": "object"
     },
     "PySparkJob": {
-      "description": "A Dataproc job for running Apache PySpark (https://spark.apache.org/docs/0.9.0/python-programming-guide.html) applications on YARN.",
+      "description": "A Dataproc job for running Apache PySpark (https://spark.apache.org/docs/latest/api/python/index.html#pyspark-overview) applications on YARN.",
       "id": "PySparkJob",
       "properties": {
         "archiveUris": {
