@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/config",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "config",
   "main": "build/index.js",
   "types": "build/index.d.ts",

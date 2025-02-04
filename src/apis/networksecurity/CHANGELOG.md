@@ -1,5 +1,14 @@
 # Changelog
 
+## [8.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v8.3.0...networksecurity-v8.4.0) (2025-02-04)
+
+
+### Features
+
+* **networksecurity:** update the API ([f981b68](https://github.com/googleapis/google-api-nodejs-client/commit/f981b68b336640c6bcace049efdc3a4491064e38))
+* **networksecurity:** update the API ([349d271](https://github.com/googleapis/google-api-nodejs-client/commit/349d2715c4afd188ea81378c89836dd88027585f))
+* **networksecurity:** update the API ([238ef95](https://github.com/googleapis/google-api-nodejs-client/commit/238ef9545f1ab7413d19ec66b2a87b7ec6acba94))
+
 ## [8.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v8.2.0...networksecurity-v8.3.0) (2024-10-30)
 
 

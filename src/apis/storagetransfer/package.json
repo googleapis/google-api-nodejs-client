@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/storagetransfer",
-  "version": "7.2.1",
+  "version": "7.2.2",
   "description": "storagetransfer",
   "main": "build/index.js",
   "types": "build/index.d.ts",
