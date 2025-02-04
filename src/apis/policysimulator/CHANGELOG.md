@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v12.0.0...policysimulator-v12.1.0) (2025-02-04)
+
+
+### Features
+
+* **policysimulator:** update the API ([c5b31ef](https://github.com/googleapis/google-api-nodejs-client/commit/c5b31efe477760bd9bb2932e15847292efaea1ca))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v11.0.0...policysimulator-v12.0.0) (2024-08-16)
 
 
