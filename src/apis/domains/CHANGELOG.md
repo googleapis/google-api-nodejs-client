@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.1](https://github.com/googleapis/google-api-nodejs-client/compare/domains-v1.8.0...domains-v1.8.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* **domains:** update the API ([5131cc4](https://github.com/googleapis/google-api-nodejs-client/commit/5131cc4ec3b25f69be27d3b9d64ca9a8018dc0a9))
+
 ## [1.8.0](https://github.com/googleapis/google-api-nodejs-client/compare/domains-v1.7.0...domains-v1.8.0) (2024-08-16)
 
 

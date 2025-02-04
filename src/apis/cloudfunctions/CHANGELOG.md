@@ -1,5 +1,22 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v5.0.0...cloudfunctions-v6.0.0) (2025-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloudfunctions:** This release has breaking changes.
+
+### Features
+
+* **cloudfunctions:** update the API ([2a4141f](https://github.com/googleapis/google-api-nodejs-client/commit/2a4141fc63d8bbcffaadffeb066b5543fbe1660f))
+* **cloudfunctions:** update the API ([05a90c1](https://github.com/googleapis/google-api-nodejs-client/commit/05a90c1d0794776d76838f3ed5cd20153456a488))
+
+
+### Bug Fixes
+
+* **cloudfunctions:** update the API ([158373f](https://github.com/googleapis/google-api-nodejs-client/commit/158373f1d84156c77b347f5925fa1bcde28acc8a))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v4.3.1...cloudfunctions-v5.0.0) (2024-10-30)
 
 

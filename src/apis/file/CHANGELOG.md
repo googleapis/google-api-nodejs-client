@@ -1,5 +1,18 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/file-v8.1.0...file-v9.0.0) (2025-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **file:** This release has breaking changes.
+
+### Features
+
+* **file:** update the API ([32d7900](https://github.com/googleapis/google-api-nodejs-client/commit/32d790028ea56a10c8e158a3717e481cd5241b7c))
+* **file:** update the API ([748b48e](https://github.com/googleapis/google-api-nodejs-client/commit/748b48ef6e76438bdea374b199c23129e24f5a62))
+* **file:** update the API ([e0820ea](https://github.com/googleapis/google-api-nodejs-client/commit/e0820ea3a61c2e1a1c2a774723048f298108526d))
+
 ## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/file-v8.0.0...file-v8.1.0) (2024-10-30)
 
 
