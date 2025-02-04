@@ -1,5 +1,22 @@
 # Changelog
 
+## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigtableadmin-v24.0.0...bigtableadmin-v25.0.0) (2025-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **bigtableadmin:** This release has breaking changes.
+
+### Features
+
+* **bigtableadmin:** update the API ([d2f7565](https://github.com/googleapis/google-api-nodejs-client/commit/d2f7565f2ccdcfcdfbc731fb410aed27ca7a038e))
+* **bigtableadmin:** update the API ([454cff7](https://github.com/googleapis/google-api-nodejs-client/commit/454cff707f5d8741c461ae40aa227c63b43af37a))
+
+
+### Bug Fixes
+
+* **bigtableadmin:** update the API ([669bf0a](https://github.com/googleapis/google-api-nodejs-client/commit/669bf0aaf3115f68ba23e533c369a77ebe3b874a))
+
 ## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigtableadmin-v23.0.0...bigtableadmin-v24.0.0) (2024-10-30)
 
 

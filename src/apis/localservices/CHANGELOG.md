@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v4.0.0...localservices-v4.0.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* **localservices:** update the API ([744f5e0](https://github.com/googleapis/google-api-nodejs-client/commit/744f5e0b9618f7b08dfe4d7b149d14f8826898ed))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v3.0.1...localservices-v4.0.0) (2024-05-02)
 
 

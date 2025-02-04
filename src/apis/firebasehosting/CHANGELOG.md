@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v9.0.0...firebasehosting-v9.0.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* **firebasehosting:** update the API ([f806d34](https://github.com/googleapis/google-api-nodejs-client/commit/f806d34b363759e1a6887f21a0f9c34176af2909))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v8.0.1...firebasehosting-v9.0.0) (2024-05-02)
 
 
