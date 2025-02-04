@@ -143,7 +143,7 @@ console.log(createResponse.data);
 
 ### Samples
 There are a lot of [samples](https://github.com/googleapis/google-api-nodejs-client/tree/main/samples) 🤗  If you're trying to figure out how to use an API ... look there first! You can also search for a given API's
-REST documentation on cloud.google.com, as well as documentation embedded in the source code comments (under src/apis/<API>/<version>).
+REST documentation on cloud.google.com, as well as documentation embedded in the source code comments (under src/apis/api-name/version).
 
 ### API Reference
 This library has a full set of [API Reference Documentation](https://googleapis.dev/nodejs/googleapis/latest). This documentation is auto-generated, and the location may change.
