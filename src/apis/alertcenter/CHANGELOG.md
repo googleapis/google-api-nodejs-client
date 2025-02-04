@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v9.5.0...alertcenter-v9.5.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* **alertcenter:** update the API ([d38d3f0](https://github.com/googleapis/google-api-nodejs-client/commit/d38d3f06f0a697e8b73f013de7ac368d32d5af08))
+
 ## [9.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v9.4.0...alertcenter-v9.5.0) (2024-05-02)
 
 

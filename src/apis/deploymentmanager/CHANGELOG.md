@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v14.0.0...deploymentmanager-v14.1.0) (2025-02-04)
+
+
+### Features
+
+* **deploymentmanager:** update the API ([20cb6c3](https://github.com/googleapis/google-api-nodejs-client/commit/20cb6c37060d419ab7c077aac4806eef519ea8e5))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v13.0.1...deploymentmanager-v14.0.0) (2024-05-02)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudtasks",
-  "version": "15.0.2",
+  "version": "15.0.3",
   "description": "cloudtasks",
   "main": "build/index.js",
   "types": "build/index.d.ts",

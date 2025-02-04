@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/contentwarehouse",
-  "version": "9.3.0",
+  "version": "9.3.1",
   "description": "contentwarehouse",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,25 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v12.1.0...retail-v13.0.0) (2025-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **retail:** This release has breaking changes.
+* **retail:** This release has breaking changes.
+
+### Features
+
+* **retail:** update the API ([a614ab2](https://github.com/googleapis/google-api-nodejs-client/commit/a614ab2f5428da6ded521b4bf3d2ff5e9f4a9af1))
+* **retail:** update the API ([ee326f7](https://github.com/googleapis/google-api-nodejs-client/commit/ee326f7812dfb6ebbd955a2c13a5990f0e5bd9ea))
+* **retail:** update the API ([dab474d](https://github.com/googleapis/google-api-nodejs-client/commit/dab474d9a5384fa72f3a3e773443a2bcac42c1a3))
+
+
+### Bug Fixes
+
+* **retail:** update the API ([f2c43de](https://github.com/googleapis/google-api-nodejs-client/commit/f2c43de9cf0fb7f398ae00147c7578bde1bdca5a))
+* **retail:** update the API ([2179668](https://github.com/googleapis/google-api-nodejs-client/commit/2179668e37934ee952551833881bfa1d7b2056bd))
+
 ## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v12.0.1...retail-v12.1.0) (2024-10-30)
 
 

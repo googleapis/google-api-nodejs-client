@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/blockchainnodeengine-v6.1.0...blockchainnodeengine-v6.1.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* **blockchainnodeengine:** update the API ([ccc84f5](https://github.com/googleapis/google-api-nodejs-client/commit/ccc84f5110fac3450671136fffa4fd31b03483a4))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/blockchainnodeengine-v6.0.0...blockchainnodeengine-v6.1.0) (2024-05-02)
 
 

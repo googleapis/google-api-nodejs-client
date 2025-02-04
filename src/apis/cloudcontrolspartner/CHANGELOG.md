@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudcontrolspartner-v0.3.2...cloudcontrolspartner-v0.4.0) (2025-02-04)
+
+
+### Features
+
+* **cloudcontrolspartner:** update the API ([e287d0f](https://github.com/googleapis/google-api-nodejs-client/commit/e287d0ff5618507b7fbd8b8f530fc2a4587c6489))
+
 ## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudcontrolspartner-v0.3.1...cloudcontrolspartner-v0.3.2) (2024-10-30)
 
 

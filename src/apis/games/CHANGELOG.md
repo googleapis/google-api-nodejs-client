@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/games-v8.0.0...games-v8.0.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* **games:** update the API ([8d53438](https://github.com/googleapis/google-api-nodejs-client/commit/8d534387fdbe996aa2711de71dee2c30697a9112))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v7.0.0...games-v8.0.0) (2024-08-16)
 
 

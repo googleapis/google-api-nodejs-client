@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v5.9.0...androidenterprise-v6.0.0) (2025-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **androidenterprise:** This release has breaking changes.
+
+### Features
+
+* **androidenterprise:** update the API ([775e9ff](https://github.com/googleapis/google-api-nodejs-client/commit/775e9ff465cb3704449ca7ee421bd0270f536696))
+
 ## [5.9.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v5.8.1...androidenterprise-v5.9.0) (2024-08-27)
 
 

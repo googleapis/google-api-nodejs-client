@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v6.1.2...firebasestorage-v7.0.0) (2025-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firebasestorage:** This release has breaking changes.
+
+### Features
+
+* **firebasestorage:** update the API ([d1b06fe](https://github.com/googleapis/google-api-nodejs-client/commit/d1b06fe91d9851582c62c50205f775367725862c))
+
 ## [6.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v6.1.1...firebasestorage-v6.1.2) (2024-05-02)
 
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## [20.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v20.1.0...connectors-v20.2.0) (2025-02-04)
+
+
+### Features
+
+* **connectors:** update the API ([091f392](https://github.com/googleapis/google-api-nodejs-client/commit/091f392b5b8903c2175fafc9ea3ce1fb29c72809))
+* **connectors:** update the API ([f22271c](https://github.com/googleapis/google-api-nodejs-client/commit/f22271c5ab3278c85844508c39bb2bb8aa7b0948))
+* **connectors:** update the API ([e313580](https://github.com/googleapis/google-api-nodejs-client/commit/e313580d2d6bdcb4a90a00376b12b6dba101300b))
+
 ## [20.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v20.0.0...connectors-v20.1.0) (2024-10-30)
 
 

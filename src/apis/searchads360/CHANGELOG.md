@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchads360-v6.2.0...searchads360-v6.3.0) (2025-02-04)
+
+
+### Features
+
+* **searchads360:** update the API ([340ca02](https://github.com/googleapis/google-api-nodejs-client/commit/340ca02817f5ac4ea62e8bd127f77cd7227e28c3))
+* **searchads360:** update the API ([5d3283e](https://github.com/googleapis/google-api-nodejs-client/commit/5d3283e785c592c97d49eb49b268d5b2a22d31eb))
+* **searchads360:** update the API ([44d0e72](https://github.com/googleapis/google-api-nodejs-client/commit/44d0e72d60589a4640760f4025c479af340d57a2))
+
 ## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchads360-v6.1.0...searchads360-v6.2.0) (2024-10-30)
 
 

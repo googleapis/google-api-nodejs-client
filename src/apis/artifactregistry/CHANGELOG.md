@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v13.0.0...artifactregistry-v13.1.0) (2025-02-04)
+
+
+### Features
+
+* **artifactregistry:** update the API ([4b68c95](https://github.com/googleapis/google-api-nodejs-client/commit/4b68c953b9c2622642b9cfd57bd7af0b7fb49801))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v12.1.0...artifactregistry-v13.0.0) (2024-10-30)
 
 

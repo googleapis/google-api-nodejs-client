@@ -1,5 +1,19 @@
 # Changelog
 
+## [13.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v13.1.0...dlp-v13.2.0) (2025-02-04)
+
+
+### Features
+
+* **dlp:** update the API ([b4234fe](https://github.com/googleapis/google-api-nodejs-client/commit/b4234fe7fd656692d8221d49e4d74dc20d0b7b1a))
+* **dlp:** update the API ([24861fd](https://github.com/googleapis/google-api-nodejs-client/commit/24861fdd152272da7323e31252a0ec447565c253))
+
+
+### Bug Fixes
+
+* **dlp:** update the API ([c227be2](https://github.com/googleapis/google-api-nodejs-client/commit/c227be2055b763cac8183dac1231adb7a5d25484))
+* **dlp:** update the API ([52cf151](https://github.com/googleapis/google-api-nodejs-client/commit/52cf151b18840bfdd8b04b08dd5f99b55a0eb2bd))
+
 ## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v13.0.0...dlp-v13.1.0) (2024-10-30)
 
 

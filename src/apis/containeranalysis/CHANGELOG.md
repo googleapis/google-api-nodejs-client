@@ -1,5 +1,13 @@
 # Changelog
 
+## [11.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v11.1.0...containeranalysis-v11.2.0) (2025-02-04)
+
+
+### Features
+
+* **containeranalysis:** update the API ([40cb106](https://github.com/googleapis/google-api-nodejs-client/commit/40cb10646a1bf2be6e2013a59021f3b2213095ff))
+* **containeranalysis:** update the API ([f67b2f1](https://github.com/googleapis/google-api-nodejs-client/commit/f67b2f199f41f639f824f6872a5dc1f36b0e9bc4))
+
 ## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v11.0.0...containeranalysis-v11.1.0) (2024-10-30)
 
 

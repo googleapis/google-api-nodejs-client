@@ -1,5 +1,18 @@
 # Changelog
 
+## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v23.0.0...androidpublisher-v24.0.0) (2025-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **androidpublisher:** This release has breaking changes.
+
+### Features
+
+* **androidpublisher:** update the API ([4276bda](https://github.com/googleapis/google-api-nodejs-client/commit/4276bdaafcbeef5ad66299dbf835350482e6d96f))
+* **androidpublisher:** update the API ([011238e](https://github.com/googleapis/google-api-nodejs-client/commit/011238ec85f4bfdbb33216b92af60d447893c8cf))
+* **androidpublisher:** update the API ([39227ab](https://github.com/googleapis/google-api-nodejs-client/commit/39227abcc4e15f60b66eba06e8f12e4f988ad008))
+
 ## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v22.0.0...androidpublisher-v23.0.0) (2024-10-30)
 
 

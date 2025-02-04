@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v15.0.0...dataflow-v15.1.0) (2025-02-04)
+
+
+### Features
+
+* **dataflow:** update the API ([2e630c7](https://github.com/googleapis/google-api-nodejs-client/commit/2e630c7ae98eda437bf8cb01b27ee4dfedd99779))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v14.1.0...dataflow-v15.0.0) (2024-08-27)
 
 

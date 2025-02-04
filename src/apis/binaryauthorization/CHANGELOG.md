@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/binaryauthorization-v6.2.0...binaryauthorization-v7.0.0) (2025-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **binaryauthorization:** This release has breaking changes.
+
+### Features
+
+* **binaryauthorization:** update the API ([56cdcf6](https://github.com/googleapis/google-api-nodejs-client/commit/56cdcf6db0fe5feb262b6468922b595eb02f5772))
+
 ## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/binaryauthorization-v6.1.0...binaryauthorization-v6.2.0) (2024-08-16)
 
 

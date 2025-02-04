@@ -1,5 +1,21 @@
 # Changelog
 
+## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v21.1.0...compute-v22.0.0) (2025-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **compute:** This release has breaking changes.
+* **compute:** This release has breaking changes.
+* **compute:** This release has breaking changes.
+
+### Features
+
+* **compute:** update the API ([5a1e08c](https://github.com/googleapis/google-api-nodejs-client/commit/5a1e08cf4c87db21bbd7a4fdde0a7cf480fee496))
+* **compute:** update the API ([d17c4da](https://github.com/googleapis/google-api-nodejs-client/commit/d17c4da1b00762ba782cc4970eb10882bc6837bf))
+* **compute:** update the API ([42c636d](https://github.com/googleapis/google-api-nodejs-client/commit/42c636d95a50083214fa77604de496f03b96d784))
+* **compute:** update the API ([07afb29](https://github.com/googleapis/google-api-nodejs-client/commit/07afb29aacc1065a71c07c2f3fac9add8aa2b824))
+
 ## [21.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v21.0.0...compute-v21.1.0) (2024-10-30)
 
 
