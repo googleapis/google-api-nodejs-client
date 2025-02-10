@@ -12,7 +12,7 @@
   "baseUrl": "https://realtimebidding.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Real-time Bidding",
-  "description": "Allows external bidders to manage their RTB integration with Google. This includes managing bidder endpoints, QPS quotas, configuring what ad inventory to receive via pretargeting, submitting creatives for verification, and accessing creative metadata such as approval status.",
+  "description": "Allows external bidders to manage their RTB integration with Google. This includes managing bidder endpoints, QPS quotas, configuring what ad inventory to receive with pretargeting, submitting creatives for verification, and accessing creative metadata such as approval status.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/authorized-buyers/apis/realtimebidding/reference/rest/",
   "fullyEncodeReservedExpansion": true,
@@ -1305,7 +1305,7 @@
       }
     }
   },
-  "revision": "20240930",
+  "revision": "20250203",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -1529,7 +1529,7 @@
       "id": "Bidder",
       "properties": {
         "bypassNonguaranteedDealsPretargeting": {
-          "description": "Output only. An option to bypass pretargeting for private auctions and preferred deals. When true, bid requests from these nonguaranteed deals will always be sent. When false, bid requests will be subject to regular pretargeting configurations. Programmatic Guaranteed deals will always be sent to the bidder, regardless of the value for this flag. Auction packages are not impacted by this value and are subject to the regular pretargeting configurations.",
+          "description": "Output only. An option to bypass pretargeting for private auctions and preferred deals. When true, bid requests from these nonguaranteed deals will always be sent. When false, bid requests will be subject to regular pretargeting configurations. Programmatic Guaranteed deals will always be sent to the bidder, regardless of the value for this option. Auction packages are not impacted by this value and are subject to the regular pretargeting configurations.",
           "readOnly": true,
           "type": "boolean"
         },
