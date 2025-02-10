@@ -785,6 +785,10 @@ export namespace servicemanagement_v1 {
      * Enables generation of asynchronous REST clients if `rest` transport is enabled. By default, asynchronous REST clients will not be generated. This feature will be enabled by default 1 month after launching the feature in preview packages.
      */
     restAsyncIoEnabled?: boolean | null;
+    /**
+     * Disables generation of an unversioned Python package for this client library. This means that the module names will need to be versioned in import statements. For example `import google.cloud.library_v2` instead of `import google.cloud.library`.
+     */
+    unversionedPackageDisabled?: boolean | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -1502,7 +1506,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$Page {
     /**
-     * The Markdown content of the page. You can use (== include {path\} ==) to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page.
+     * The Markdown content of the page. You can use ```(== include {path\} ==)``` to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page.
      */
     content?: string | null;
     /**
@@ -1723,6 +1727,10 @@ export namespace servicemanagement_v1 {
    * This message is used to configure the generation of a subset of the RPCs in a service for client libraries.
    */
   export interface Schema$SelectiveGapicGeneration {
+    /**
+     * Setting this to true indicates to the client generators that methods that would be excluded from the generation should instead be generated in a way that indicates these methods should not be consumed by end users. How this is expressed is up to individual language implementations to decide. Some examples may be: added annotations, obfuscated identifiers, or other language idiomatic patterns.
+     */
+    generateOmittedAsInternal?: boolean | null;
     /**
      * An allowlist of the fully qualified names of RPCs that should be included on public client surfaces.
      */
