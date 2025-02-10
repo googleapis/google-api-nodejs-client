@@ -2681,7 +2681,7 @@
       }
     }
   },
-  "revision": "20250120",
+  "revision": "20250127",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuthzExtension": {
@@ -3151,8 +3151,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
-          "readOnly": true,
+          "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
           "type": "string"
         },
         "gateways": {
@@ -3453,8 +3452,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
-          "readOnly": true,
+          "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
           "type": "string"
         },
         "gateways": {
@@ -4955,8 +4953,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
-          "readOnly": true,
+          "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
           "type": "string"
         },
         "gateways": {
@@ -5092,8 +5089,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
-          "readOnly": true,
+          "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
           "type": "string"
         },
         "gateways": {
@@ -5178,7 +5174,7 @@
       "type": "object"
     },
     "TlsRouteRouteMatch": {
-      "description": "RouteMatch defines the predicate used to match requests to a given action. Multiple match types are \"AND\"ed for evaluation. If no routeMatch field is specified, this rule will unconditionally match traffic.",
+      "description": "RouteMatch defines the predicate used to match requests to a given action. Multiple match types are \"AND\"ed for evaluation.",
       "id": "TlsRouteRouteMatch",
       "properties": {
         "alpn": {
@@ -5207,7 +5203,7 @@
           "description": "Required. The detailed rule defining how to route matched traffic."
         },
         "matches": {
-          "description": "Required. RouteMatch defines the predicate used to match requests to a given action. Multiple match types are \"OR\"ed for evaluation.",
+          "description": "Required. RouteMatch defines the predicate used to match requests to a given action. Multiple match types are \"OR\"ed for evaluation. Atleast one RouteMatch must be supplied.",
           "items": {
             "$ref": "TlsRouteRouteMatch"
           },
