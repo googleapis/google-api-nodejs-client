@@ -838,7 +838,7 @@ export namespace sqladmin_v1beta4 {
      */
     clientCertificate?: string | null;
     /**
-     * PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8.
+     * PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8.
      */
     clientKey?: string | null;
     /**
@@ -1485,7 +1485,7 @@ export namespace sqladmin_v1beta4 {
      */
     clientCertificate?: string | null;
     /**
-     * PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate.
+     * PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate.
      */
     clientKey?: string | null;
     /**
@@ -1543,7 +1543,7 @@ export namespace sqladmin_v1beta4 {
      */
     clientCertificate?: string | null;
     /**
-     * PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate.
+     * PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate.
      */
     clientKey?: string | null;
     /**

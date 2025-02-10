@@ -2366,7 +2366,7 @@
       }
     }
   },
-  "revision": "20250117",
+  "revision": "20250129",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -3680,7 +3680,7 @@
           "type": "string"
         },
         "clientKey": {
-          "description": "PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8.",
+          "description": "PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8.",
           "type": "string"
         },
         "kind": {
@@ -4872,7 +4872,7 @@
           "type": "string"
         },
         "clientKey": {
-          "description": "PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate.",
+          "description": "PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate.",
           "type": "string"
         },
         "connectRetryInterval": {
@@ -4939,7 +4939,7 @@
           "type": "string"
         },
         "clientKey": {
-          "description": "PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate.",
+          "description": "PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate.",
           "type": "string"
         },
         "dumpFilePath": {
@@ -5087,7 +5087,8 @@
             "SELF_SERVICE_MAINTENANCE",
             "SWITCHOVER_TO_REPLICA",
             "MAJOR_VERSION_UPGRADE",
-            "ADVANCED_BACKUP"
+            "ADVANCED_BACKUP",
+            "MANAGE_BACKUP"
           ],
           "enumDeprecated": [
             false,
@@ -5134,6 +5135,7 @@
             false,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -5185,7 +5187,8 @@
             "Indicates that the instance (and any of its replicas) are currently in maintenance. This is initiated as a self-service request by using SSM. Maintenance typically causes the instance to be unavailable for 1-3 minutes.",
             "Switches a primary instance to a replica. This operation runs as part of a switchover operation to the original primary instance.",
             "Updates the major version of a Cloud SQL instance.",
-            "Creates a backup for an Advanced BackupTier Cloud SQL instance."
+            "Creates a backup for an Advanced BackupTier Cloud SQL instance.",
+            "Changes the BackupTier of a Cloud SQL instance."
           ],
           "type": "string"
         },
