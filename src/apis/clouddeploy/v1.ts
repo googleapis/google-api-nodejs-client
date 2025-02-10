@@ -1397,7 +1397,7 @@ export namespace clouddeploy_v1 {
      */
     jobId?: string | null;
     /**
-     * Identifier. Name of the `JobRun`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{releases\}/rollouts/{rollouts\}/jobRuns/{uuid\}`.
+     * Output only. Name of the `JobRun`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{releases\}/rollouts/{rollouts\}/jobRuns/{uuid\}`.
      */
     name?: string | null;
     /**
