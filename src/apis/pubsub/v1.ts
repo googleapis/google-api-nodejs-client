@@ -514,6 +514,19 @@ export namespace pubsub_v1 {
     platformLogsSettings?: Schema$PlatformLogsSettings;
   }
   /**
+   * User-defined JavaScript function that can transform or filter a Pub/Sub message.
+   */
+  export interface Schema$JavaScriptUDF {
+    /**
+     * Required. JavaScript code that contains a function `function_name` with the below signature: /x* * Transforms a Pub/Sub message. * @return {(Object)\>|null)\} - To * filter a message, return `null`. To transform a message return a map * with the following keys: * - (required) 'data' : {string\} * - (optional) 'attributes' : {Object\} * Returning empty `attributes` will remove all attributes from the * message. * * @param {(Object)\>\} Pub/Sub * message. Keys: * - (required) 'data' : {string\} * - (required) 'attributes' : {Object\} * * @param {Object\} metadata - Pub/Sub message metadata. * Keys: * - (required) 'message_id' : {string\} * - (optional) 'publish_time': {string\} YYYY-MM-DDTHH:MM:SSZ format * - (optional) 'ordering_key': {string\} x/ function (message, metadata) { \}
+     */
+    code?: string | null;
+    /**
+     * Required. Name of the JavasScript function that should applied to Pub/Sub messages.
+     */
+    functionName?: string | null;
+  }
+  /**
    * Response for the `ListSchemaRevisions` method.
    */
   export interface Schema$ListSchemaRevisionsResponse {
@@ -616,6 +629,19 @@ export namespace pubsub_v1 {
      * Optional. If true, `allowed_persistence_regions` is also used to enforce in-transit guarantees for messages. That is, Pub/Sub will fail Publish operations on this topic and subscribe operations on any subscription attached to this topic in any region that is not in `allowed_persistence_regions`.
      */
     enforceInTransit?: boolean | null;
+  }
+  /**
+   * All supported message transforms types.
+   */
+  export interface Schema$MessageTransform {
+    /**
+     * Optional. If set to true, the transform is enabled. If false, the transform is disabled and will not be applied to messages. Defaults to `true`.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's are specified on a resource, each must have a unique `function_name`.
+     */
+    javascriptUdf?: Schema$JavaScriptUDF;
   }
   /**
    * Request for the ModifyAckDeadline method.
@@ -970,6 +996,10 @@ export namespace pubsub_v1 {
      */
     messageRetentionDuration?: string | null;
     /**
+     * Optional. Transforms to be applied to messages before they are delivered to subscribers. Transforms are applied in the order specified.
+     */
+    messageTransforms?: Schema$MessageTransform[];
+    /**
      * Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string | null;
@@ -1053,6 +1083,10 @@ export namespace pubsub_v1 {
      * Optional. Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not present, then no constraints are in effect.
      */
     messageStoragePolicy?: Schema$MessageStoragePolicy;
+    /**
+     * Optional. Transforms to be applied to messages published to the topic. Transforms are applied in the order specified.
+     */
+    messageTransforms?: Schema$MessageTransform[];
     /**
      * Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
