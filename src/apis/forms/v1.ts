@@ -432,6 +432,10 @@ export namespace forms_v1 {
    */
   export interface Schema$FormSettings {
     /**
+     * Optional. Kind of email collection configured in the form.
+     */
+    emailCollectionType?: string | null;
+    /**
      * Settings related to quiz forms and grading.
      */
     quizSettings?: Schema$QuizSettings;

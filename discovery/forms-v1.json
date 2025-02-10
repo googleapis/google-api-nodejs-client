@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20241112",
+  "revision": "20250121",
   "rootUrl": "https://forms.googleapis.com/",
   "schemas": {
     "Answer": {
@@ -863,6 +863,22 @@
       "description": "A form's settings.",
       "id": "FormSettings",
       "properties": {
+        "emailCollectionType": {
+          "description": "Optional. Kind of email collection configured in the form.",
+          "enum": [
+            "EMAIL_COLLECTION_TYPE_UNSPECIFIED",
+            "DO_NOT_COLLECT",
+            "VERIFIED",
+            "RESPONDER_INPUT"
+          ],
+          "enumDescriptions": [
+            "Default value. The default for forms owned by Google Workspace users is VERIFIED. For forms owned by other types of Google accounts, the default is DO_NO_COLLECT.",
+            "Email Field is not collected for the user.",
+            "Email Field is collected automatically from the logged in user.",
+            "Email Field needs to be manually filled."
+          ],
+          "type": "string"
+        },
         "quizSettings": {
           "$ref": "QuizSettings",
           "description": "Settings related to quiz forms and grading."
