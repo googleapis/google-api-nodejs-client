@@ -512,7 +512,7 @@
       }
     }
   },
-  "revision": "20241205",
+  "revision": "20250129",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -555,7 +555,7 @@
       "type": "object"
     },
     "ContactCenter": {
-      "description": "Message describing ContactCenter object Next ID: 24",
+      "description": "Message describing ContactCenter object",
       "id": "ContactCenter",
       "properties": {
         "adminUser": {
