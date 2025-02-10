@@ -757,6 +757,15 @@ export namespace datastream_v1 {
     mysqlTables?: Schema$MysqlTable[];
   }
   /**
+   * MySQL GTID position
+   */
+  export interface Schema$MysqlGtidPosition {
+    /**
+     * Required. The gtid set to start replication from.
+     */
+    gtidSet?: string | null;
+  }
+  /**
    * MySQL log position
    */
   export interface Schema$MysqlLogPosition {
@@ -783,7 +792,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * MySQL database profile. Next ID: 7.
+   * MySQL database profile.
    */
   export interface Schema$MysqlProfile {
     /**
@@ -954,7 +963,7 @@ export namespace datastream_v1 {
     verb?: string | null;
   }
   /**
-   * Configuration for Oracle Automatic Storage Management (ASM) connection. .
+   * Configuration for Oracle Automatic Storage Management (ASM) connection.
    */
   export interface Schema$OracleAsmConfig {
     /**
@@ -1045,7 +1054,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * Oracle database profile. Next ID: 10.
+   * Oracle database profile.
    */
   export interface Schema$OracleProfile {
     /**
@@ -1526,6 +1535,10 @@ export namespace datastream_v1 {
    */
   export interface Schema$SpecificStartPosition {
     /**
+     * MySQL GTID set to start replicating from.
+     */
+    mysqlGtidPosition?: Schema$MysqlGtidPosition;
+    /**
      * MySQL specific log position to start replicating from.
      */
     mysqlLogPosition?: Schema$MysqlLogPosition;
@@ -1602,7 +1615,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * SQLServer database profile. Next ID: 8.
+   * SQLServer database profile.
    */
   export interface Schema$SqlServerProfile {
     /**

@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20250115",
+  "revision": "20250202",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -2093,6 +2093,17 @@
       },
       "type": "object"
     },
+    "MysqlGtidPosition": {
+      "description": "MySQL GTID position",
+      "id": "MysqlGtidPosition",
+      "properties": {
+        "gtidSet": {
+          "description": "Required. The gtid set to start replication from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MysqlLogPosition": {
       "description": "MySQL log position",
       "id": "MysqlLogPosition",
@@ -2125,7 +2136,7 @@
       "type": "object"
     },
     "MysqlProfile": {
-      "description": "MySQL database profile. Next ID: 7.",
+      "description": "MySQL database profile.",
       "id": "MysqlProfile",
       "properties": {
         "hostname": {
@@ -2342,7 +2353,7 @@
       "type": "object"
     },
     "OracleAsmConfig": {
-      "description": "Configuration for Oracle Automatic Storage Management (ASM) connection. .",
+      "description": "Configuration for Oracle Automatic Storage Management (ASM) connection.",
       "id": "OracleAsmConfig",
       "properties": {
         "asmService": {
@@ -2449,7 +2460,7 @@
       "type": "object"
     },
     "OracleProfile": {
-      "description": "Oracle database profile. Next ID: 10.",
+      "description": "Oracle database profile.",
       "id": "OracleProfile",
       "properties": {
         "connectionAttributes": {
@@ -3048,6 +3059,10 @@
       "description": "CDC strategy to start replicating from a specific position in the source.",
       "id": "SpecificStartPosition",
       "properties": {
+        "mysqlGtidPosition": {
+          "$ref": "MysqlGtidPosition",
+          "description": "MySQL GTID set to start replicating from."
+        },
         "mysqlLogPosition": {
           "$ref": "MysqlLogPosition",
           "description": "MySQL specific log position to start replicating from."
@@ -3139,7 +3154,7 @@
       "type": "object"
     },
     "SqlServerProfile": {
-      "description": "SQLServer database profile. Next ID: 8.",
+      "description": "SQLServer database profile.",
       "id": "SqlServerProfile",
       "properties": {
         "database": {
