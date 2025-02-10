@@ -265,6 +265,10 @@ export namespace spanner_v1 {
      */
     incrementalBackupChainId?: string | null;
     /**
+     * Output only. The instance partition(s) storing the backup. This is the same as the list of the instance partition(s) that the database had footprint in at the backup's `version_time`.
+     */
+    instancePartitions?: Schema$BackupInstancePartition[];
+    /**
      * Output only. The max allowed expiration time of the backup, with microseconds granularity. A backup's expiration time can be configured in multiple APIs: CreateBackup, UpdateBackup, CopyBackup. When updating or copying an existing backup, the expiration time specified must be less than `Backup.max_expire_time`.
      */
     maxExpireTime?: string | null;
@@ -319,11 +323,20 @@ export namespace spanner_v1 {
     versionTime?: string | null;
   }
   /**
+   * Instance partition information for the backup.
+   */
+  export interface Schema$BackupInstancePartition {
+    /**
+     * A unique identifier for the instance partition. Values are of the form `projects//instances//instancePartitions/`
+     */
+    instancePartition?: string | null;
+  }
+  /**
    * BackupSchedule expresses the automated backup creation specification for a Spanner database.
    */
   export interface Schema$BackupSchedule {
     /**
-     * Optional. The encryption configuration that will be used to encrypt the backup. If this field is not specified, the backup will use the same encryption configuration as the database.
+     * Optional. The encryption configuration that is used to encrypt the backup. If this field is not specified, the backup uses the same encryption configuration as the database.
      */
     encryptionConfig?: Schema$CreateBackupEncryptionConfig;
     /**
@@ -828,19 +841,19 @@ export namespace spanner_v1 {
     session?: Schema$Session;
   }
   /**
-   * CrontabSpec can be used to specify the version time and frequency at which the backup should be created.
+   * CrontabSpec can be used to specify the version time and frequency at which the backup is created.
    */
   export interface Schema$CrontabSpec {
     /**
-     * Output only. Schedule backups will contain an externally consistent copy of the database at the version time specified in `schedule_spec.cron_spec`. However, Spanner may not initiate the creation of the scheduled backups at that version time. Spanner will initiate the creation of scheduled backups within the time window bounded by the version_time specified in `schedule_spec.cron_spec` and version_time + `creation_window`.
+     * Output only. Scheduled backups contain an externally consistent copy of the database at the version time specified in `schedule_spec.cron_spec`. However, Spanner might not initiate the creation of the scheduled backups at that version time. Spanner initiates the creation of scheduled backups within the time window bounded by the version_time specified in `schedule_spec.cron_spec` and version_time + `creation_window`.
      */
     creationWindow?: string | null;
     /**
-     * Required. Textual representation of the crontab. User can customize the backup frequency and the backup version time using the cron expression. The version time must be in UTC timezone. The backup will contain an externally consistent copy of the database at the version time. Full backups must be scheduled a minimum of 12 hours apart and incremental backups must be scheduled a minimum of 4 hours apart. Examples of valid cron specifications: * `0 2/12 * * *` : every 12 hours at (2, 14) hours past midnight in UTC. * `0 2,14 * * *` : every 12 hours at (2,14) hours past midnight in UTC. * `0 x/4 * * *` : (incremental backups only) every 4 hours at (0, 4, 8, 12, 16, 20) hours past midnight in UTC. * `0 2 * * *` : once a day at 2 past midnight in UTC. * `0 2 * * 0` : once a week every Sunday at 2 past midnight in UTC. * `0 2 8 * *` : once a month on 8th day at 2 past midnight in UTC.
+     * Required. Textual representation of the crontab. User can customize the backup frequency and the backup version time using the cron expression. The version time must be in UTC timezone. The backup will contain an externally consistent copy of the database at the version time. Full backups must be scheduled a minimum of 12 hours apart and incremental backups must be scheduled a minimum of 4 hours apart. Examples of valid cron specifications: * `0 2/12 * * *` : every 12 hours at (2, 14) hours past midnight in UTC. * `0 2,14 * * *` : every 12 hours at (2, 14) hours past midnight in UTC. * `0 x/4 * * *` : (incremental backups only) every 4 hours at (0, 4, 8, 12, 16, 20) hours past midnight in UTC. * `0 2 * * *` : once a day at 2 past midnight in UTC. * `0 2 * * 0` : once a week every Sunday at 2 past midnight in UTC. * `0 2 8 * *` : once a month on 8th day at 2 past midnight in UTC.
      */
     text?: string | null;
     /**
-     * Output only. The time zone of the times in `CrontabSpec.text`. Currently only UTC is supported.
+     * Output only. The time zone of the times in `CrontabSpec.text`. Currently, only UTC is supported.
      */
     timeZone?: string | null;
   }

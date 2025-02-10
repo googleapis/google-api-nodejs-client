@@ -2609,7 +2609,7 @@
       }
     }
   },
-  "revision": "20250106",
+  "revision": "20250127",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -4156,6 +4156,7 @@
           "enum": [
             "DIMENSION_KEY_UNSPECIFIED",
             "ISSUE",
+            "ISSUE_NAME",
             "AGENT",
             "AGENT_TEAM",
             "QA_QUESTION_ID",
@@ -4165,6 +4166,7 @@
           "enumDescriptions": [
             "The key of the dimension is unspecified.",
             "The dimension is keyed by issues.",
+            "The dimension is keyed by issue names.",
             "The dimension is keyed by agents.",
             "The dimension is keyed by agent teams.",
             "The dimension is keyed by QaQuestionIds. Note that: We only group by the QuestionId and not the revision-id of the scorecard this question is a part of. This allows for showing stats for the same question across different scorecard revisions.",
@@ -7846,6 +7848,7 @@
           "enum": [
             "DIMENSION_KEY_UNSPECIFIED",
             "ISSUE",
+            "ISSUE_NAME",
             "AGENT",
             "AGENT_TEAM",
             "QA_QUESTION_ID",
@@ -7855,6 +7858,7 @@
           "enumDescriptions": [
             "The key of the dimension is unspecified.",
             "The dimension is keyed by issues.",
+            "The dimension is keyed by issue names.",
             "The dimension is keyed by agents.",
             "The dimension is keyed by agent teams.",
             "The dimension is keyed by QaQuestionIds. Note that: We only group by the QuestionId and not the revision-id of the scorecard this question is a part of. This allows for showing stats for the same question across different scorecard revisions.",

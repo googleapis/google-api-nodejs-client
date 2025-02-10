@@ -568,6 +568,10 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts {
     /**
+     * Optional. A list of Go modules to be uploaded to Artifact Registry upon successful completion of all build steps. If any objects fail to be pushed, the build is marked FAILURE.
+     */
+    goModules?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule[];
+    /**
      * A list of images to be pushed upon the successful completion of all build steps. The images will be pushed using the builder service account's credentials. The digests of the pushed images will be stored in the Build resource's results field. If any of the images fail to be pushed, the build is marked FAILURE.
      */
     images?: string[] | null;
@@ -604,6 +608,35 @@ export namespace containeranalysis_v1beta1 {
      * Output only. Stores timing information for pushing all artifact objects.
      */
     timing?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
+  }
+  /**
+   * Go module to upload to Artifact Registry upon successful completion of all build steps. A module refers to all dependencies in a go.mod file.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule {
+    /**
+     * Optional. The Go module's "module path". e.g. example.com/foo/v2
+     */
+    modulePath?: string | null;
+    /**
+     * Optional. The Go module's semantic version in the form vX.Y.Z. e.g. v0.1.1 Pre-release identifiers can also be added by appending a dash and dot separated ASCII alphanumeric characters and hyphens. e.g. v0.2.3-alpha.x.12m.5
+     */
+    moduleVersion?: string | null;
+    /**
+     * Optional. Location of the Artifact Registry repository. i.e. us-east1 Defaults to the build’s location.
+     */
+    repositoryLocation?: string | null;
+    /**
+     * Optional. Artifact Registry repository name. Specified Go modules will be zipped and uploaded to Artifact Registry with this location as a prefix. e.g. my-go-repo
+     */
+    repositoryName?: string | null;
+    /**
+     * Optional. Project ID of the Artifact Registry repository. Defaults to the build project.
+     */
+    repositoryProjectId?: string | null;
+    /**
+     * Optional. Source path of the go.mod file in the build's workspace. If not specified, this will default to the current directory. e.g. ~/code/go/mypackage
+     */
+    sourcePath?: string | null;
   }
   /**
    * A Maven artifact to upload to Artifact Registry upon successful completion of all build steps.
@@ -833,6 +866,10 @@ export namespace containeranalysis_v1beta1 {
      * Option to specify whether or not to apply bash style string operations to the substitutions. NOTE: this is always enabled for triggered builds and cannot be overridden in the build configuration file.
      */
     dynamicSubstitutions?: boolean | null;
+    /**
+     * Optional. Option to specify whether structured logging is enabled. If true, JSON-formatted logs are parsed as structured logs.
+     */
+    enableStructuredLogging?: boolean | null;
     /**
      * A list of global environment variable definitions that will exist for all build steps in this build. If a variable is defined in both globally and in a build step, the variable will use the build step value. The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
      */
@@ -1156,6 +1193,10 @@ export namespace containeranalysis_v1beta1 {
      */
     buildStepOutputs?: string[] | null;
     /**
+     * Optional. Go module artifacts uploaded to Artifact Registry at the end of the build.
+     */
+    goModules?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule[];
+    /**
      * Container images that were built as a part of the build.
      */
     images?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage[];
@@ -1327,6 +1368,23 @@ export namespace containeranalysis_v1beta1 {
      * Start of time span.
      */
     startTime?: string | null;
+  }
+  /**
+   * A Go module artifact uploaded to Artifact Registry using the GoModule directive.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule {
+    /**
+     * Hash types and values of the Go Module Artifact.
+     */
+    fileHashes?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * URI of the uploaded artifact.
+     */
+    uri?: string | null;
   }
   /**
    * A Maven artifact uploaded using the MavenArtifact directive.

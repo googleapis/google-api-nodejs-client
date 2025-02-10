@@ -5,6 +5,12 @@
         "https://www.googleapis.com/auth/chrome.management.appdetails.readonly": {
           "description": "See detailed information about apps installed on Chrome browsers and devices managed by your organization"
         },
+        "https://www.googleapis.com/auth/chrome.management.profiles": {
+          "description": "See, edit, delete, and take other necessary actions on Chrome browser profiles managed by your organization"
+        },
+        "https://www.googleapis.com/auth/chrome.management.profiles.readonly": {
+          "description": "See Chrome browser profiles managed by your organization"
+        },
         "https://www.googleapis.com/auth/chrome.management.reports.readonly": {
           "description": "See reports about devices and Chrome browsers managed within your organization"
         },
@@ -366,7 +372,10 @@
               "path": "v1/{+name}",
               "response": {
                 "$ref": "GoogleProtobufEmpty"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.profiles"
+              ]
             },
             "get": {
               "description": "Gets a Chrome browser profile with customer ID and profile permanent ID.",
@@ -388,7 +397,11 @@
               "path": "v1/{+name}",
               "response": {
                 "$ref": "GoogleChromeManagementVersionsV1ChromeBrowserProfile"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.profiles",
+                "https://www.googleapis.com/auth/chrome.management.profiles.readonly"
+              ]
             },
             "list": {
               "description": "Lists Chrome browser profiles of a customer based on the given search and sorting criteria.",
@@ -431,7 +444,11 @@
               "path": "v1/{+parent}/profiles",
               "response": {
                 "$ref": "GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.profiles",
+                "https://www.googleapis.com/auth/chrome.management.profiles.readonly"
+              ]
             }
           }
         },
@@ -1263,7 +1280,7 @@
       }
     }
   },
-  "revision": "20250122",
+  "revision": "20250126",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {

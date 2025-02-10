@@ -597,10 +597,6 @@ export namespace firebaseml_v2beta {
      */
     temperature?: number | null;
     /**
-     * Optional. Config for thinking features. An error will be returned if this field is set for models that don't support thinking.
-     */
-    thinkingConfig?: Schema$GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig;
-    /**
      * Optional. If specified, top-k sampling will be used.
      */
     topK?: number | null;
@@ -639,15 +635,6 @@ export namespace firebaseml_v2beta {
      * The model name to use. Only the public LLM models are accepted. e.g. 'gemini-1.5-pro-001'.
      */
     modelName?: string | null;
-  }
-  /**
-   * Config for thinking features.
-   */
-  export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig {
-    /**
-     * Optional. Indicates whether to include thoughts in the response. If true, thoughts are returned only when available.
-     */
-    includeThoughts?: boolean | null;
   }
   /**
    * Tool to retrieve public web data for grounding, powered by Google.

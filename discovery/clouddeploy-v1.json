@@ -2348,7 +2348,7 @@
       }
     }
   },
-  "revision": "20250101",
+  "revision": "20250122",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -4275,7 +4275,8 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. Name of the `JobRun`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.",
+          "description": "Output only. Name of the `JobRun`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.",
+          "readOnly": true,
           "type": "string"
         },
         "phaseId": {

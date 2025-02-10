@@ -3431,7 +3431,7 @@
       }
     }
   },
-  "revision": "20241202",
+  "revision": "20250126",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -5155,6 +5155,12 @@
         },
         "customMirroringProfile": {
           "description": "Optional. Reference to a SecurityProfile with the CustomMirroring configuration.",
+          "type": "string"
+        },
+        "dataPathId": {
+          "description": "Output only. Identifier used by the data-path. Unique within {container, location}.",
+          "format": "uint64",
+          "readOnly": true,
           "type": "string"
         },
         "description": {

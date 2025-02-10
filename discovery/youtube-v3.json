@@ -4100,7 +4100,7 @@
       }
     }
   },
-  "revision": "20250122",
+  "revision": "20250128",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -5528,6 +5528,10 @@
       "description": "JSON template for the status part of a channel.",
       "id": "ChannelStatus",
       "properties": {
+        "isChannelMonetizationEnabled": {
+          "description": "Whether the channel is considered ypp monetization enabled. See go/yppornot for more details.",
+          "type": "boolean"
+        },
         "isLinked": {
           "description": "If true, then the user is linked to either a YouTube username or G+ account. Otherwise, the user doesn't have a public YouTube identity.",
           "type": "boolean"

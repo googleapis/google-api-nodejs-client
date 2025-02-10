@@ -507,20 +507,20 @@ export namespace networksecurity_v1beta1 {
     sourceAddressGroup?: string | null;
   }
   /**
-   * CustomInterceptProfile defines the Packet Intercept Endpoint Group used to intercept traffic to a third-party firewall in a Firewall rule.
+   * CustomInterceptProfile defines in-band integration behavior (intercept). It is used by firewall rules with an APPLY_SECURITY_PROFILE_GROUP action.
    */
   export interface Schema$CustomInterceptProfile {
     /**
-     * Required. The InterceptEndpointGroup to which traffic associated with the SP should be mirrored.
+     * Required. The target InterceptEndpointGroup. When a firewall rule with this security profile attached matches a packet, the packet will be intercepted to the location-local target in this group.
      */
     interceptEndpointGroup?: string | null;
   }
   /**
-   * CustomMirroringProfile defines an action for mirroring traffic to a collector's EndpointGroup
+   * CustomMirroringProfile defines out-of-band integration behavior (mirroring). It is used by mirroring rules with a MIRROR action.
    */
   export interface Schema$CustomMirroringProfile {
     /**
-     * Required. The MirroringEndpointGroup to which traffic associated with the SP should be mirrored.
+     * Required. The target MirroringEndpointGroup. When a mirroring rule with this security profile attached matches a packet, a replica will be mirrored to the location-local target in this group.
      */
     mirroringEndpointGroup?: string | null;
   }
@@ -1475,6 +1475,10 @@ export namespace networksecurity_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Optional. User-provided description of the deployment. Used as additional context for the deployment.
+     */
+    description?: string | null;
+    /**
      * Required. Immutable. The regional load balancer which the mirrored traffic should be forwarded to. Format is: projects/{project\}/regions/{region\}/forwardingRules/{forwardingRule\}
      */
     forwardingRule?: string | null;
@@ -1515,6 +1519,10 @@ export namespace networksecurity_v1beta1 {
      * Output only. [Output only] Create time stamp
      */
     createTime?: string | null;
+    /**
+     * Optional. User-provided description of the deployment group. Used as additional context for the deployment group.
+     */
+    description?: string | null;
     /**
      * Optional. Labels as key value pairs
      */
@@ -1561,6 +1569,10 @@ export namespace networksecurity_v1beta1 {
      * Output only. [Output only] Create time stamp
      */
     createTime?: string | null;
+    /**
+     * Optional. User-provided description of the endpoint group. Used as additional context for the endpoint group.
+     */
+    description?: string | null;
     /**
      * Optional. Labels as key value pairs
      */
@@ -1819,6 +1831,10 @@ export namespace networksecurity_v1beta1 {
      * Optional. Reference to a SecurityProfile with the CustomMirroring configuration.
      */
     customMirroringProfile?: string | null;
+    /**
+     * Output only. Identifier used by the data-path. Unique within {container, location\}.
+     */
+    dataPathId?: string | null;
     /**
      * Optional. An optional description of the profile group. Max length 2048 characters.
      */

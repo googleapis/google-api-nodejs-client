@@ -301,9 +301,6 @@ export namespace analyticshub_v1beta1 {
      */
     location?: string | null;
   }
-  /**
-   * Contains the reference that identifies a destination bigquery dataset.
-   */
   export interface Schema$GoogleCloudBigqueryDataexchangeV1beta1DestinationDatasetReference {
     /**
      * Required. A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.

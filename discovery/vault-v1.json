@@ -1203,7 +1203,7 @@
       }
     }
   },
-  "revision": "20241121",
+  "revision": "20250130",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -1346,13 +1346,15 @@
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
             "PST",
-            "ICS"
+            "ICS",
+            "XML"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
-            "Export as ICS. Only available for Calendar."
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini."
           ],
           "type": "string"
         }
@@ -1587,7 +1589,7 @@
       "type": "object"
     },
     "DriveOptions": {
-      "description": "Additional options for Drive search",
+      "description": "Additional options for Drive search.",
       "id": "DriveOptions",
       "properties": {
         "clientSideEncryptedOption": {
@@ -1607,6 +1609,7 @@
           "type": "string"
         },
         "includeSharedDrives": {
+          "deprecated": true,
           "description": "Set to **true** to include shared drives.",
           "type": "boolean"
         },
@@ -1706,6 +1709,10 @@
           "$ref": "DriveExportOptions",
           "description": "Options for Drive exports."
         },
+        "geminiOptions": {
+          "$ref": "GeminiExportOptions",
+          "description": "Option available for Gemini export."
+        },
         "groupsOptions": {
           "$ref": "GroupsExportOptions",
           "description": "Options for Groups exports."
@@ -1763,6 +1770,37 @@
       },
       "type": "object"
     },
+    "GeminiExportOptions": {
+      "description": "The options for Gemini exports.",
+      "id": "GeminiExportOptions",
+      "properties": {
+        "exportFormat": {
+          "description": "The file format for exported messages.",
+          "enum": [
+            "EXPORT_FORMAT_UNSPECIFIED",
+            "MBOX",
+            "PST",
+            "ICS",
+            "XML"
+          ],
+          "enumDescriptions": [
+            "No export format specified.",
+            "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GeminiOptions": {
+      "description": "Additional options for Gemini search",
+      "id": "GeminiOptions",
+      "properties": {},
+      "type": "object"
+    },
     "GroupsCountResult": {
       "description": "Groups specific count metrics.",
       "id": "GroupsCountResult",
@@ -1811,13 +1849,15 @@
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
             "PST",
-            "ICS"
+            "ICS",
+            "XML"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
-            "Export as ICS. Only available for Calendar."
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini."
           ],
           "type": "string"
         }
@@ -1834,13 +1874,15 @@
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
             "PST",
-            "ICS"
+            "ICS",
+            "XML"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
-            "Export as ICS. Only available for Calendar."
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini."
           ],
           "type": "string"
         }
@@ -2037,7 +2079,8 @@
             "GROUPS",
             "HANGOUTS_CHAT",
             "VOICE",
-            "CALENDAR"
+            "CALENDAR",
+            "GEMINI"
           ],
           "enumDescriptions": [
             "No service specified.",
@@ -2046,7 +2089,8 @@
             "Groups.",
             "For export, Google Chat only. For holds, Google Chat and classic Hangouts.",
             "Google Voice.",
-            "Calendar."
+            "Calendar.",
+            "Gemini."
           ],
           "type": "string"
         },
@@ -2226,13 +2270,15 @@
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
             "PST",
-            "ICS"
+            "ICS",
+            "XML"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
-            "Export as ICS. Only available for Calendar."
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini."
           ],
           "type": "string"
         },
@@ -2428,7 +2474,8 @@
             "GROUPS",
             "HANGOUTS_CHAT",
             "VOICE",
-            "CALENDAR"
+            "CALENDAR",
+            "GEMINI"
           ],
           "enumDescriptions": [
             "No service specified.",
@@ -2437,7 +2484,8 @@
             "Groups.",
             "For export, Google Chat only. For holds, Google Chat and classic Hangouts.",
             "Google Voice.",
-            "Calendar."
+            "Calendar.",
+            "Gemini."
           ],
           "type": "string"
         },
@@ -2465,6 +2513,10 @@
           "description": "The end time for the search query. Specify in GMT. The value is rounded to 12 AM on the specified date.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "geminiOptions": {
+          "$ref": "GeminiOptions",
+          "description": "Set Gemini search-specific options."
         },
         "hangoutsChatInfo": {
           "$ref": "HangoutsChatInfo",
@@ -2770,13 +2822,15 @@
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
             "PST",
-            "ICS"
+            "ICS",
+            "XML"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
-            "Export as ICS. Only available for Calendar."
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini."
           ],
           "type": "string"
         }

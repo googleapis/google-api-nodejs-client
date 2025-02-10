@@ -2540,7 +2540,7 @@
       }
     }
   },
-  "revision": "20241228",
+  "revision": "20250128",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2802,7 +2802,7 @@
           "type": "string"
         },
         "documentationUrl": {
-          "description": "A URL to a public documnetation, which addresses resolving this issue.",
+          "description": "A URL to a public documentation, which addresses resolving this issue.",
           "type": "string"
         },
         "incompatibilityType": {
@@ -3045,7 +3045,7 @@
       "id": "CertificateAuthorityDomainConfig",
       "properties": {
         "fqdns": {
-          "description": "List of fully qualified domain names (FQDN). Specifying port is supported. Wilcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000",
+          "description": "List of fully qualified domain names (FQDN). Specifying port is supported. Wildcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000",
           "items": {
             "type": "string"
           },
@@ -4503,7 +4503,7 @@
       "type": "object"
     },
     "GetJSONWebKeysResponse": {
-      "description": "GetJSONWebKeysResponse is a valid JSON Web Key Set as specififed in rfc 7517",
+      "description": "GetJSONWebKeysResponse is a valid JSON Web Key Set as specified in rfc 7517",
       "id": "GetJSONWebKeysResponse",
       "properties": {
         "cacheHeader": {
@@ -4934,7 +4934,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse kernel.shmmni kernel.shmmax kernel.shmall",
+          "description": "The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall vm.max_map_count",
           "type": "object"
         }
       },
@@ -5213,7 +5213,7 @@
           "type": "boolean"
         },
         "gcpPublicCidrsAccessEnabled": {
-          "description": "Whether master is accessbile via Google Compute Engine Public IP addresses.",
+          "description": "Whether master is accessible via Google Compute Engine Public IP addresses.",
           "type": "boolean"
         },
         "privateEndpointEnforcementEnabled": {
@@ -5409,7 +5409,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network",
+          "description": "Output only. The relative name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network",
           "readOnly": true,
           "type": "string"
         },
@@ -5644,7 +5644,7 @@
           "type": "integer"
         },
         "localSsdEncryptionMode": {
-          "description": "Specifies which method should be used for encrypting the Local SSDs attahced to the node.",
+          "description": "Specifies which method should be used for encrypting the Local SSDs attached to the node.",
           "enum": [
             "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
             "STANDARD_ENCRYPTION",
@@ -5801,6 +5801,22 @@
       "description": "Node kubelet configs.",
       "id": "NodeKubeletConfig",
       "properties": {
+        "allowedUnsafeSysctls": {
+          "description": "Optional. Defines a comma-separated allowlist of unsafe sysctls or sysctl patterns (ending in `*`). The unsafe namespaced sysctl groups are `kernel.shm*`, `kernel.msg*`, `kernel.sem`, `fs.mqueue.*`, and `net.*`. Leaving this allowlist empty means they cannot be set on Pods. To allow certain sysctls or sysctl patterns to be set on Pods, list them separated by commas. For example: `kernel.msg*,net.ipv4.route.min_pmtu`. See https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/ for more details.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "containerLogMaxFiles": {
+          "description": "Optional. Defines the maximum number of container log files that can be present for a container. See https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation The value must be an integer between 2 and 10, inclusive. The default value is 5 if unspecified.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "containerLogMaxSize": {
+          "description": "Optional. Defines the maximum size of the container log file before it is rotated. See https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation Valid format is positive number + unit, e.g. 100Ki, 10Mi. Valid units are Ki, Mi, Gi. The value must be between 10Mi and 500Mi, inclusive. Note that the total container log size (container_log_max_size * container_log_max_files) cannot exceed 1% of the total storage of the node, to avoid disk pressure caused by log files. The default value is 10Mi if unspecified.",
+          "type": "string"
+        },
         "cpuCfsQuota": {
           "description": "Enable CPU CFS quota enforcement for containers that specify CPU limits. This option is enabled by default which makes kubelet use CFS quota (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to enforce container CPU limits. Otherwise, CPU limits will not be enforced at all. Disable this option to mitigate CPU throttling problems while still having your pods to be in Guaranteed QoS class by specifying the CPU limits. The default value is 'true' if unspecified.",
           "type": "boolean"
@@ -5811,6 +5827,24 @@
         },
         "cpuManagerPolicy": {
           "description": "Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. * \"none\": the default, which represents the existing scheduling behavior. * \"static\": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.",
+          "type": "string"
+        },
+        "imageGcHighThresholdPercent": {
+          "description": "Optional. Defines the percent of disk usage after which image garbage collection is always run. The percent is calculated as this field value out of 100. The value must be between 10 and 85, inclusive and greater than image_gc_low_threshold_percent. The default value is 85 if unspecified.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "imageGcLowThresholdPercent": {
+          "description": "Optional. Defines the percent of disk usage before which image garbage collection is never run. Lowest disk usage to garbage collect to. The percent is calculated as this field value out of 100. The value must be between 10 and 85, inclusive and smaller than image_gc_high_threshold_percent. The default value is 80 if unspecified.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "imageMaximumGcAge": {
+          "description": "Optional. Defines the maximum age an image can be unused before it is garbage collected. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as \"300s\", \"1.5h\", and \"2h45m\". Valid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\". The value must be a positive duration greater than image_minimum_gc_age or \"0s\". The default value is \"0s\" if unspecified, which disables this field, meaning images won't be garbage collected based on being unused for too long.",
+          "type": "string"
+        },
+        "imageMinimumGcAge": {
+          "description": "Optional. Defines the minimum age for an unused image before it is garbage collected. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as \"300s\", \"1.5h\", and \"2h45m\". Valid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\". The value must be a positive duration less than or equal to 2 minutes. The default value is \"2m0s\" if unspecified.",
           "type": "string"
         },
         "insecureKubeletReadonlyPortEnabled": {
@@ -8331,6 +8365,10 @@
       "properties": {
         "allowNetAdmin": {
           "description": "If true, workloads can use NET_ADMIN capability.",
+          "type": "boolean"
+        },
+        "autopilotCompatibilityAuditingEnabled": {
+          "description": "If true, enables the GCW Auditor that audits workloads on standard clusters.",
           "type": "boolean"
         }
       },

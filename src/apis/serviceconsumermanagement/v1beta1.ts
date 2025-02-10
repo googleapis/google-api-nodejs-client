@@ -1171,7 +1171,7 @@ export namespace serviceconsumermanagement_v1beta1 {
    */
   export interface Schema$Page {
     /**
-     * The Markdown content of the page. You can use (== include {path\} ==) to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page.
+     * The Markdown content of the page. You can use ```(== include {path\} ==)``` to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page.
      */
     content?: string | null;
     /**
@@ -1325,6 +1325,10 @@ export namespace serviceconsumermanagement_v1beta1 {
    * This message is used to configure the generation of a subset of the RPCs in a service for client libraries.
    */
   export interface Schema$SelectiveGapicGeneration {
+    /**
+     * Setting this to true indicates to the client generators that methods that would be excluded from the generation should instead be generated in a way that indicates these methods should not be consumed by end users. How this is expressed is up to individual language implementations to decide. Some examples may be: added annotations, obfuscated identifiers, or other language idiomatic patterns.
+     */
+    generateOmittedAsInternal?: boolean | null;
     /**
      * An allowlist of the fully qualified names of RPCs that should be included on public client surfaces.
      */

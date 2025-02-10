@@ -1314,6 +1314,10 @@ export namespace networksecurity_v1 {
      */
     customMirroringProfile?: string | null;
     /**
+     * Output only. Identifier used by the data-path. Unique within {container, location\}.
+     */
+    dataPathId?: string | null;
+    /**
      * Optional. An optional description of the profile group. Max length 2048 characters.
      */
     description?: string | null;

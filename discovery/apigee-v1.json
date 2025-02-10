@@ -1393,6 +1393,46 @@
             }
           },
           "resources": {
+            "debugsessions": {
+              "methods": {
+                "list": {
+                  "description": "Lists debug sessions that are currently active in the given API Proxy.",
+                  "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/debugsessions",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.apis.debugsessions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number of debug sessions to return. The page size defaults to 25.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token, returned from a previous ListApiDebugSessions call, that you can use to retrieve the next page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The name of the API Proxy for which to list debug sessions. Must be of the form: `organizations/{organization}/apis/{api}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/apis/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/debugsessions",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListApiDebugSessionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "deployments": {
               "methods": {
                 "list": {
@@ -10385,7 +10425,7 @@
       }
     }
   },
-  "revision": "20241213",
+  "revision": "20250129",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -11745,13 +11785,13 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestIncludeAll": {
-      "description": "Message for include_all option.",
+      "description": "Message for include_all_resources option.",
       "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestIncludeAll",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray": {
-      "description": "An array of resource messages.",
+      "description": "Message for the array of resources. For Apigee, the proxies are resources.",
       "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray",
       "properties": {
         "resources": {
@@ -14473,6 +14513,24 @@
         "status": {
           "description": "Status of the operation.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListApiDebugSessionsResponse": {
+      "description": "Response for ListApiDebugSessions.",
+      "id": "GoogleCloudApigeeV1ListApiDebugSessionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Page token that you can include in a ListApiDebugSessionsRequest to retrieve the next page. If omitted, no subsequent pages exist.",
+          "type": "string"
+        },
+        "sessions": {
+          "description": "Session info that includes debug session ID and the first transaction creation timestamp.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Session"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -17362,7 +17420,6 @@
           "type": "integer"
         },
         "severity": {
-          "description": "The severity of the assessment.",
           "enum": [
             "SEVERITY_UNSPECIFIED",
             "LOW",

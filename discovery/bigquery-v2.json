@@ -1392,6 +1392,153 @@
     },
     "rowAccessPolicies": {
       "methods": {
+        "batchDelete": {
+          "description": "Deletes provided row access policies.",
+          "flatPath": "projects/{projectsId}/datasets/{datasetsId}/tables/{tablesId}/rowAccessPolicies:batchDelete",
+          "httpMethod": "POST",
+          "id": "bigquery.rowAccessPolicies.batchDelete",
+          "parameterOrder": [
+            "projectId",
+            "datasetId",
+            "tableId"
+          ],
+          "parameters": {
+            "datasetId": {
+              "description": "Required. Dataset ID of the table to delete the row access policies.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "projectId": {
+              "description": "Required. Project ID of the table to delete the row access policies.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "tableId": {
+              "description": "Required. Table ID of the table to delete the row access policies.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies:batchDelete",
+          "request": {
+            "$ref": "BatchDeleteRowAccessPoliciesRequest"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/bigquery",
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a row access policy.",
+          "flatPath": "projects/{projectsId}/datasets/{datasetsId}/tables/{tablesId}/rowAccessPolicies/{rowAccessPoliciesId}",
+          "httpMethod": "DELETE",
+          "id": "bigquery.rowAccessPolicies.delete",
+          "parameterOrder": [
+            "projectId",
+            "datasetId",
+            "tableId",
+            "policyId"
+          ],
+          "parameters": {
+            "datasetId": {
+              "description": "Required. Dataset ID of the table to delete the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "force": {
+              "description": "If set to true, it deletes the row access policy even if it's the last row access policy on the table and the deletion will widen the access rather narrowing it.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "policyId": {
+              "description": "Required. Policy ID of the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "projectId": {
+              "description": "Required. Project ID of the table to delete the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "tableId": {
+              "description": "Required. Table ID of the table to delete the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}",
+          "scopes": [
+            "https://www.googleapis.com/auth/bigquery",
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "get": {
+          "description": "Gets the specified row access policy by policy ID.",
+          "flatPath": "projects/{projectsId}/datasets/{datasetsId}/tables/{tablesId}/rowAccessPolicies/{rowAccessPoliciesId}",
+          "httpMethod": "GET",
+          "id": "bigquery.rowAccessPolicies.get",
+          "parameterOrder": [
+            "projectId",
+            "datasetId",
+            "tableId",
+            "policyId"
+          ],
+          "parameters": {
+            "datasetId": {
+              "description": "Required. Dataset ID of the table to get the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "policyId": {
+              "description": "Required. Policy ID of the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "projectId": {
+              "description": "Required. Project ID of the table to get the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "tableId": {
+              "description": "Required. Table ID of the table to get the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}",
+          "response": {
+            "$ref": "RowAccessPolicy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/bigquery",
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
         "getIamPolicy": {
           "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
           "flatPath": "projects/{projectsId}/datasets/{datasetsId}/tables/{tablesId}/rowAccessPolicies/{rowAccessPoliciesId}:getIamPolicy",
@@ -1415,6 +1562,52 @@
           },
           "response": {
             "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/bigquery",
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "insert": {
+          "description": "Creates a row access policy.",
+          "flatPath": "projects/{projectsId}/datasets/{datasetsId}/tables/{tablesId}/rowAccessPolicies",
+          "httpMethod": "POST",
+          "id": "bigquery.rowAccessPolicies.insert",
+          "parameterOrder": [
+            "projectId",
+            "datasetId",
+            "tableId"
+          ],
+          "parameters": {
+            "datasetId": {
+              "description": "Required. Dataset ID of the table to get the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "projectId": {
+              "description": "Required. Project ID of the table to get the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "tableId": {
+              "description": "Required. Table ID of the table to get the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies",
+          "request": {
+            "$ref": "RowAccessPolicy"
+          },
+          "response": {
+            "$ref": "RowAccessPolicy"
           },
           "scopes": [
             "https://www.googleapis.com/auth/bigquery",
@@ -1499,6 +1692,60 @@
           },
           "response": {
             "$ref": "TestIamPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/bigquery",
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "update": {
+          "description": "Updates a row access policy.",
+          "flatPath": "projects/{projectsId}/datasets/{datasetsId}/tables/{tablesId}/rowAccessPolicies/{rowAccessPoliciesId}",
+          "httpMethod": "PUT",
+          "id": "bigquery.rowAccessPolicies.update",
+          "parameterOrder": [
+            "projectId",
+            "datasetId",
+            "tableId",
+            "policyId"
+          ],
+          "parameters": {
+            "datasetId": {
+              "description": "Required. Dataset ID of the table to get the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "policyId": {
+              "description": "Required. Policy ID of the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "projectId": {
+              "description": "Required. Project ID of the table to get the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "tableId": {
+              "description": "Required. Table ID of the table to get the row access policy.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}",
+          "request": {
+            "$ref": "RowAccessPolicy"
+          },
+          "response": {
+            "$ref": "RowAccessPolicy"
           },
           "scopes": [
             "https://www.googleapis.com/auth/bigquery",
@@ -2009,7 +2256,7 @@
       }
     }
   },
-  "revision": "20250112",
+  "revision": "20250128",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2498,6 +2745,24 @@
         "useAvroLogicalTypes": {
           "description": "Optional. If sourceFormat is set to \"AVRO\", indicates whether to interpret logical types as the corresponding BigQuery data type (for example, TIMESTAMP), instead of using the raw type (for example, INTEGER).",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "BatchDeleteRowAccessPoliciesRequest": {
+      "description": "Request message for the BatchDeleteRowAccessPoliciesRequest method.",
+      "id": "BatchDeleteRowAccessPoliciesRequest",
+      "properties": {
+        "force": {
+          "description": "If set to true, it deletes the row access policy even if it's the last row access policy on the table and the deletion will widen the access rather narrowing it.",
+          "type": "boolean"
+        },
+        "policyIds": {
+          "description": "Required. Policy IDs of the row access policies.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5388,6 +5653,10 @@
         "writeDisposition": {
           "description": "Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the data, removes the constraints, and uses the schema from the query result. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.",
           "type": "string"
+        },
+        "writeIncrementalResults": {
+          "description": "Optional. This is only supported for a SELECT query using a temporary table. If set, the query is allowed to write results incrementally to the temporary result table. This may incur a performance penalty. This option cannot be used with Legacy SQL. This feature is not yet available.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7270,6 +7539,10 @@
           "default": "true",
           "description": "Optional. Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. The default value is true.",
           "type": "boolean"
+        },
+        "writeIncrementalResults": {
+          "description": "Optional. This is only supported for SELECT query. If set, the query is allowed to write results incrementally to the temporary result table. This may incur a performance penalty. This option cannot be used with Legacy SQL. This feature is not yet available.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7833,6 +8106,13 @@
           "description": "Required. A SQL boolean expression that represents the rows defined by this row access policy, similar to the boolean expression in a WHERE clause of a SELECT query on a table. References to other tables, routines, and temporary functions are not supported. Examples: region=\"EU\" date_field = CAST('2019-9-27' as DATE) nullable_field is not NULL numeric_field BETWEEN 1.0 AND 5.0",
           "type": "string"
         },
+        "grantees": {
+          "description": "Optional. Input only. The optional list of iam_member users or groups that specifies the initial members that the row-level access policy should be created with. grantees types: - \"user:alice@example.com\": An email address that represents a specific Google account. - \"serviceAccount:my-other-app@appspot.gserviceaccount.com\": An email address that represents a service account. - \"group:admins@example.com\": An email address that represents a Google group. - \"domain:example.com\":The Google Workspace domain (primary) that represents all the users of that domain. - \"allAuthenticatedUsers\": A special identifier that represents all service accounts and all users on the internet who have authenticated with a Google Account. This identifier includes accounts that aren't connected to a Google Workspace or Cloud Identity domain, such as personal Gmail accounts. Users who aren't authenticated, such as anonymous visitors, aren't included. - \"allUsers\":A special identifier that represents anyone who is on the internet, including authenticated and unauthenticated users. Because BigQuery requires authentication before a user can access the service, allUsers includes only authenticated users.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "lastModifiedTime": {
           "description": "Output only. The time when this row access policy was last modified, in milliseconds since the epoch.",
           "format": "google-datetime",
@@ -8395,6 +8675,68 @@
         "serdeInfo": {
           "$ref": "SerDeInfo",
           "description": "Optional. Serializer and deserializer information."
+        }
+      },
+      "type": "object"
+    },
+    "StoredColumnsUnusedReason": {
+      "description": "If the stored column was not used, explain why.",
+      "id": "StoredColumnsUnusedReason",
+      "properties": {
+        "code": {
+          "description": "Specifies the high-level reason for the unused scenario, each reason must have a code associated.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "STORED_COLUMNS_COVER_INSUFFICIENT",
+            "BASE_TABLE_HAS_RLS",
+            "BASE_TABLE_HAS_CLS",
+            "UNSUPPORTED_PREFILTER",
+            "INTERNAL_ERROR",
+            "OTHER_REASON"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "If stored columns do not fully cover the columns.",
+            "If the base table has RLS (Row Level Security).",
+            "If the base table has CLS (Column Level Security).",
+            "If the provided prefilter is not supported.",
+            "If an internal error is preventing stored columns from being used.",
+            "Indicates that the reason stored columns cannot be used in the query is not covered by any of the other StoredColumnsUnusedReason options."
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "Specifies the detailed description for the scenario.",
+          "type": "string"
+        },
+        "uncoveredColumns": {
+          "description": "Specifies which columns were not covered by the stored columns for the specified code up to 20 columns. This is populated when the code is STORED_COLUMNS_COVER_INSUFFICIENT and BASE_TABLE_HAS_CLS.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "StoredColumnsUsage": {
+      "description": "Indicates the stored columns usage in the query.",
+      "id": "StoredColumnsUsage",
+      "properties": {
+        "baseTable": {
+          "$ref": "TableReference",
+          "description": "Specifies the base table."
+        },
+        "isQueryAccelerated": {
+          "description": "Specifies whether the query was accelerated with stored columns.",
+          "type": "boolean"
+        },
+        "storedColumnsUnusedReasons": {
+          "description": "If stored columns were not used, explain why.",
+          "items": {
+            "$ref": "StoredColumnsUnusedReason"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -9584,6 +9926,16 @@
           "description": "Whether the model should include intercept during model training.",
           "type": "boolean"
         },
+        "forecastLimitLowerBound": {
+          "description": "The forecast limit lower bound that was used during ARIMA model training with limits. To see more details of the algorithm: https://otexts.com/fpp2/limits.html",
+          "format": "double",
+          "type": "number"
+        },
+        "forecastLimitUpperBound": {
+          "description": "The forecast limit upper bound that was used during ARIMA model training with limits.",
+          "format": "double",
+          "type": "number"
+        },
         "hiddenUnits": {
           "description": "Hidden units for dnn models.",
           "items": {
@@ -10423,6 +10775,13 @@
             "The entire vector search query used vector indexes."
           ],
           "type": "string"
+        },
+        "storedColumnsUsages": {
+          "description": "Specifies the usage of stored columns in the query when stored columns are used in the query.",
+          "items": {
+            "$ref": "StoredColumnsUsage"
+          },
+          "type": "array"
         }
       },
       "type": "object"

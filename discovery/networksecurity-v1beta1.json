@@ -4887,7 +4887,7 @@
       }
     }
   },
-  "revision": "20250118",
+  "revision": "20250202",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -5457,22 +5457,22 @@
       "type": "object"
     },
     "CustomInterceptProfile": {
-      "description": "CustomInterceptProfile defines the Packet Intercept Endpoint Group used to intercept traffic to a third-party firewall in a Firewall rule.",
+      "description": "CustomInterceptProfile defines in-band integration behavior (intercept). It is used by firewall rules with an APPLY_SECURITY_PROFILE_GROUP action.",
       "id": "CustomInterceptProfile",
       "properties": {
         "interceptEndpointGroup": {
-          "description": "Required. The InterceptEndpointGroup to which traffic associated with the SP should be mirrored.",
+          "description": "Required. The target InterceptEndpointGroup. When a firewall rule with this security profile attached matches a packet, the packet will be intercepted to the location-local target in this group.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "CustomMirroringProfile": {
-      "description": "CustomMirroringProfile defines an action for mirroring traffic to a collector's EndpointGroup",
+      "description": "CustomMirroringProfile defines out-of-band integration behavior (mirroring). It is used by mirroring rules with a MIRROR action.",
       "id": "CustomMirroringProfile",
       "properties": {
         "mirroringEndpointGroup": {
-          "description": "Required. The MirroringEndpointGroup to which traffic associated with the SP should be mirrored.",
+          "description": "Required. The target MirroringEndpointGroup. When a mirroring rule with this security profile attached matches a packet, a replica will be mirrored to the location-local target in this group.",
           "type": "string"
         }
       },
@@ -6941,6 +6941,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "description": {
+          "description": "Optional. User-provided description of the deployment. Used as additional context for the deployment.",
+          "type": "string"
+        },
         "forwardingRule": {
           "description": "Required. Immutable. The regional load balancer which the mirrored traffic should be forwarded to. Format is: projects/{project}/regions/{region}/forwardingRules/{forwardingRule}",
           "type": "string"
@@ -7011,6 +7015,10 @@
           "description": "Output only. [Output only] Create time stamp",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the deployment group. Used as additional context for the deployment group.",
           "type": "string"
         },
         "labels": {
@@ -7087,6 +7095,10 @@
           "description": "Output only. [Output only] Create time stamp",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the endpoint group. Used as additional context for the endpoint group.",
           "type": "string"
         },
         "labels": {
@@ -7483,6 +7495,12 @@
         },
         "customMirroringProfile": {
           "description": "Optional. Reference to a SecurityProfile with the CustomMirroring configuration.",
+          "type": "string"
+        },
+        "dataPathId": {
+          "description": "Output only. Identifier used by the data-path. Unique within {container, location}.",
+          "format": "uint64",
+          "readOnly": true,
           "type": "string"
         },
         "description": {

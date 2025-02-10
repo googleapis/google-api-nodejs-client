@@ -181,7 +181,7 @@
           ]
         },
         "list": {
-          "description": "Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns accounts the user is directly added to.",
+          "description": "Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns accounts the user is directly added to. This method is eventually consistent, meaning changes such as creating, updating an account or a change of relationships between accounts may not show up in the results immediately. Instead, these changes propagate over a short period, after which the updated information can match the associated predicates. That means, that searching by account name might not return a recently changed account even though it satisfies the predicate.",
           "flatPath": "accounts/v1beta/accounts",
           "httpMethod": "GET",
           "id": "merchantapi.accounts.list",
@@ -1417,7 +1417,7 @@
       }
     }
   },
-  "revision": "20250115",
+  "revision": "20250203",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Accepted": {
@@ -1539,6 +1539,21 @@
         },
         "provider": {
           "description": "Required. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddUser": {
+      "description": "Instruction for adding a user to the account during creation.",
+      "id": "AddUser",
+      "properties": {
+        "user": {
+          "$ref": "User",
+          "description": "Optional. Details about the user to be added. At the moment, only access rights may be specified."
+        },
+        "userId": {
+          "description": "Required. The email address of the user (for example, `john.doe@gmail.com`).",
           "type": "string"
         }
       },
@@ -1770,8 +1785,16 @@
           },
           "type": "array"
         },
-        "users": {
+        "user": {
           "description": "Optional. Users to be added to the account.",
+          "items": {
+            "$ref": "AddUser"
+          },
+          "type": "array"
+        },
+        "users": {
+          "deprecated": true,
+          "description": "Optional. Users to be added to the account. This field is deprecated and will not exist after the API evolves out of beta. Use the `user` field instead.",
           "items": {
             "$ref": "CreateUserRequest"
           },
@@ -2153,6 +2176,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -2164,6 +2188,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2193,6 +2218,7 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
@@ -2689,6 +2715,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -2700,6 +2727,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2729,6 +2757,7 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",

@@ -296,7 +296,7 @@ export namespace run_v2 {
      */
     args?: string[] | null;
     /**
-     * Base image for this container. Only supported for services. If set. it indicates that the service is enrolled into automatic base image update.
+     * Base image for this container. Only supported for services. If set, it indicates that the service is enrolled into automatic base image update.
      */
     baseImageUri?: string | null;
     /**
@@ -1337,7 +1337,7 @@ export namespace run_v2 {
      */
     etag?: string | null;
     /**
-     * Output only. For a deleted resource, the time after which it will be permamently deleted.
+     * Output only. For a deleted resource, the time after which it will be permanently deleted.
      */
     expireTime?: string | null;
     /**
@@ -1381,7 +1381,7 @@ export namespace run_v2 {
      */
     observedGeneration?: string | null;
     /**
-     * Output only. Returns true if the Service is currently being acted upon by the system to bring it into the desired state. When a new Service is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Service to the desired serving state. This process is called reconciliation. While reconciliation is in process, `observed_generation`, `latest_ready_revison`, `traffic_statuses`, and `uri` will have transient values that might mismatch the intended state: Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the serving state matches the Service, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`. If reconciliation succeeded, the following fields will match: `traffic` and `traffic_statuses`, `observed_generation` and `generation`, `latest_ready_revision` and `latest_created_revision`. If reconciliation failed, `traffic_statuses`, `observed_generation`, and `latest_ready_revision` will have the state of the last serving revision, or empty for newly created Services. Additional information on the failure can be found in `terminal_condition` and `conditions`.
+     * Output only. Returns true if the Service is currently being acted upon by the system to bring it into the desired state. When a new Service is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Service to the desired serving state. This process is called reconciliation. While reconciliation is in process, `observed_generation`, `latest_ready_revision`, `traffic_statuses`, and `uri` will have transient values that might mismatch the intended state: Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the serving state matches the Service, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`. If reconciliation succeeded, the following fields will match: `traffic` and `traffic_statuses`, `observed_generation` and `generation`, `latest_ready_revision` and `latest_created_revision`. If reconciliation failed, `traffic_statuses`, `observed_generation`, and `latest_ready_revision` will have the state of the last serving revision, or empty for newly created Services. Additional information on the failure can be found in `terminal_condition` and `conditions`.
      */
     reconciling?: boolean | null;
     /**
@@ -2107,6 +2107,10 @@ export namespace run_v2 {
      * Optional. Specification for execution on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information.
      */
     pool?: Schema$GoogleDevtoolsCloudbuildV1PoolOption;
+    /**
+     * Optional. Option to specify the Pub/Sub topic to receive build status updates.
+     */
+    pubsubTopic?: string | null;
     /**
      * Requested verifiability options.
      */

@@ -8613,6 +8613,40 @@
         }
       }
     },
+    "sdfuploadtasks": {
+      "resources": {
+        "operations": {
+          "methods": {
+            "get": {
+              "description": "Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.",
+              "flatPath": "v3/sdfuploadtasks/operations/{operationsId}",
+              "httpMethod": "GET",
+              "id": "displayvideo.sdfuploadtasks.operations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The name of the operation resource.",
+                  "location": "path",
+                  "pattern": "^sdfuploadtasks/operations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video",
+                "https://www.googleapis.com/auth/doubleclickbidmanager"
+              ]
+            }
+          }
+        }
+      }
+    },
     "targetingTypes": {
       "resources": {
         "targetingOptions": {
@@ -9222,7 +9256,7 @@
       }
     }
   },
-  "revision": "20250124",
+  "revision": "20250129",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -21059,6 +21093,89 @@
         },
         "version": {
           "description": "The SDF version used to execute this download task.",
+          "enum": [
+            "SDF_VERSION_UNSPECIFIED",
+            "SDF_VERSION_3_1",
+            "SDF_VERSION_4",
+            "SDF_VERSION_4_1",
+            "SDF_VERSION_4_2",
+            "SDF_VERSION_5",
+            "SDF_VERSION_5_1",
+            "SDF_VERSION_5_2",
+            "SDF_VERSION_5_3",
+            "SDF_VERSION_5_4",
+            "SDF_VERSION_5_5",
+            "SDF_VERSION_6",
+            "SDF_VERSION_7",
+            "SDF_VERSION_7_1",
+            "SDF_VERSION_8"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "SDF version value is not specified or is unknown in this version.",
+            "SDF version 3.1",
+            "SDF version 4",
+            "SDF version 4.1",
+            "SDF version 4.2",
+            "SDF version 5.",
+            "SDF version 5.1",
+            "SDF version 5.2",
+            "SDF version 5.3",
+            "SDF version 5.4",
+            "SDF version 5.5",
+            "SDF version 6",
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SdfUploadTask": {
+      "description": "Type for the response returned by [SdfUploadTaskService.CreateSdfUploadTask].",
+      "id": "SdfUploadTask",
+      "properties": {
+        "resourceName": {
+          "description": "A resource name to be used in media.download to Download the script files. Or media.upload to Upload the script files. Resource names have the format `download/sdfuploadtasks/media/{media_id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SdfUploadTaskMetadata": {
+      "description": "Type for the metadata returned by [SdfUploadTaskService.CreateSdfUploadTask].",
+      "id": "SdfUploadTaskMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time when the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time when execution was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "version": {
+          "description": "The SDF version used to execute this upload task.",
           "enum": [
             "SDF_VERSION_UNSPECIFIED",
             "SDF_VERSION_3_1",

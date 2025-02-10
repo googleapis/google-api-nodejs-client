@@ -203,7 +203,7 @@
       }
     }
   },
-  "revision": "20241119",
+  "revision": "20250204",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -252,9 +252,9 @@
             "Free gift with description only.",
             "Free gift with monetary value.",
             "Free gift with item ID.",
-            "Standard free shipping coupon value type.",
-            "Overnight free shipping coupon value type.",
-            "Two day free shipping coupon value type."
+            "Standard free shipping coupon value type. Only available for online promotions.",
+            "Overnight free shipping coupon value type. Only available for online promotions.",
+            "Two day free shipping coupon value type. Only available for online promotions."
           ],
           "type": "string"
         },
@@ -407,11 +407,11 @@
               "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
               "[YouTube Shopping](https://support.google.com/merchants/answer/12362804).",
               "Youtube shopping checkout.",
-              "Youtube affiliate.",
-              "Free vehicle listings.",
-              "Vehicle ads.",
-              "Cloud retail.",
-              "Local cloud retail."
+              "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
+              "[Free vehicle listings](https://support.google.com/merchants/answer/11189169).",
+              "[Vehicle ads](https://support.google.com/merchants/answer/11189169).",
+              "[Cloud retail](https://cloud.google.com/solutions/retail).",
+              "[Local cloud retail](https://cloud.google.com/solutions/retail)."
             ],
             "type": "string"
           },
@@ -501,6 +501,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -512,6 +513,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -541,6 +543,7 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
@@ -661,6 +664,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -672,6 +676,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -701,6 +706,7 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
@@ -801,6 +807,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -812,6 +819,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -841,6 +849,7 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",

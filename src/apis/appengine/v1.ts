@@ -225,6 +225,10 @@ export namespace appengine_v1 {
      * Serving status of this application.
      */
     servingStatus?: string | null;
+    /**
+     * The SSL policy that will be applied to the application. If set to Modern it will restrict traffic with TLS < 1.2 and allow only Modern Ciphers suite
+     */
+    sslPolicy?: string | null;
   }
   /**
    * An SSL certificate that a user has been authorized to administer. A user is authorized to administer any certificate that applies to one of their authorized domains.

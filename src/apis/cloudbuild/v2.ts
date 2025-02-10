@@ -3001,7 +3001,7 @@ export namespace cloudbuild_v2 {
      */
     parent?: string;
     /**
-     * Arbitrary additional key to find the maching repository for a webhook event if needed.
+     * Arbitrary additional key to find the matching repository for a webhook event if needed.
      */
     webhookKey?: string;
 

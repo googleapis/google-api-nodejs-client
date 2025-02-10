@@ -1025,6 +1025,10 @@ export namespace run_v1 {
      */
     pool?: Schema$GoogleDevtoolsCloudbuildV1PoolOption;
     /**
+     * Optional. Option to specify the Pub/Sub topic to receive build status updates.
+     */
+    pubsubTopic?: string | null;
+    /**
      * Requested verifiability options.
      */
     requestedVerifyOption?: string | null;

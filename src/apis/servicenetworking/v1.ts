@@ -326,6 +326,19 @@ export namespace servicenetworking_v1 {
     version?: string | null;
   }
   /**
+   * Aspect represents Generic aspect. It is used to configure an aspect without making direct changes to service.proto
+   */
+  export interface Schema$Aspect {
+    /**
+     * The type of this aspect configuration.
+     */
+    kind?: string | null;
+    /**
+     * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `apiserving/configaspects/proto`.
+     */
+    spec?: {[key: string]: any} | null;
+  }
+  /**
    * `Authentication` defines the authentication configuration for API methods provided by an API service. Example: name: calendar.googleapis.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: "*" requirements: provider_id: google_calendar_auth - selector: google.calendar.Delegate oauth: canonical_scopes: https://www.googleapis.com/auth/calendar.read
    */
   export interface Schema$Authentication {
@@ -999,6 +1012,10 @@ export namespace servicenetworking_v1 {
      * Enables generation of asynchronous REST clients if `rest` transport is enabled. By default, asynchronous REST clients will not be generated. This feature will be enabled by default 1 month after launching the feature in preview packages.
      */
     restAsyncIoEnabled?: boolean | null;
+    /**
+     * Disables generation of an unversioned Python package for this client library. This means that the module names will need to be versioned in import statements. For example `import google.cloud.library_v2` instead of `import google.cloud.library`.
+     */
+    unversionedPackageDisabled?: boolean | null;
   }
   /**
    * A single field of a message type.
@@ -1652,7 +1669,7 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$Page {
     /**
-     * The Markdown content of the page. You can use (== include {path\} ==) to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page.
+     * The Markdown content of the page. You can use ```(== include {path\} ==)``` to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page.
      */
     content?: string | null;
     /**
@@ -1983,6 +2000,10 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$SelectiveGapicGeneration {
     /**
+     * Setting this to true indicates to the client generators that methods that would be excluded from the generation should instead be generated in a way that indicates these methods should not be consumed by end users. How this is expressed is up to individual language implementations to decide. Some examples may be: added annotations, obfuscated identifiers, or other language idiomatic patterns.
+     */
+    generateOmittedAsInternal?: boolean | null;
+    /**
      * An allowlist of the fully qualified names of RPCs that should be included on public client surfaces.
      */
     methods?: string[] | null;
@@ -1995,6 +2016,10 @@ export namespace servicenetworking_v1 {
      * A list of API interfaces exported by this service. Only the `name` field of the google.protobuf.Api needs to be provided by the configuration author, as the remaining fields will be derived from the IDL during the normalization process. It is an error to specify an API interface here which cannot be resolved against the associated IDL files.
      */
     apis?: Schema$Api[];
+    /**
+     * Configuration aspects. This is a repeated field to allow multiple aspects to be configured. The kind field in each ConfigAspect specifies the type of aspect. The spec field contains the configuration for that aspect. The schema for the spec field is defined by the backend service owners.
+     */
+    aspects?: Schema$Aspect[];
     /**
      * Auth configuration.
      */

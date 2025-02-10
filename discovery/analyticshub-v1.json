@@ -1022,7 +1022,7 @@
       }
     }
   },
-  "revision": "20250115",
+  "revision": "20250203",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AnalyticsHubSubscriptionInfo": {
@@ -1160,7 +1160,7 @@
       "id": "BigQueryDatasetSource",
       "properties": {
         "dataset": {
-          "description": "Resource name of the dataset source for this listing. e.g. `projects/myproject/datasets/123`",
+          "description": "Optional. Resource name of the dataset source for this listing. e.g. `projects/myproject/datasets/123`",
           "type": "string"
         },
         "restrictedExportPolicy": {
@@ -1412,7 +1412,6 @@
       "type": "object"
     },
     "DestinationDatasetReference": {
-      "description": "Contains the reference that identifies a destination bigquery dataset.",
       "id": "DestinationDatasetReference",
       "properties": {
         "datasetId": {
@@ -1621,6 +1620,13 @@
           "format": "google-duration",
           "type": "string"
         },
+        "messageTransforms": {
+          "description": "Optional. Transforms to be applied to messages before they are delivered to subscribers. Transforms are applied in the order specified.",
+          "items": {
+            "$ref": "MessageTransform"
+          },
+          "type": "array"
+        },
         "name": {
           "description": "Required. Name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.",
           "type": "string"
@@ -1656,6 +1662,21 @@
           "description": "Output only. Indicates the minimum duration for which a message is retained after it is published to the subscription's topic. If this field is set, messages published to the subscription's topic in the last `topic_message_retention_duration` are always available to subscribers. See the `message_retention_duration` field in `Topic`. This field is set only in responses from the server; it is ignored if it is set in any requests.",
           "format": "google-duration",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "JavaScriptUDF": {
+      "description": "User-defined JavaScript function that can transform or filter a Pub/Sub message.",
+      "id": "JavaScriptUDF",
+      "properties": {
+        "code": {
+          "description": "Required. JavaScript code that contains a function `function_name` with the below signature: ``` /** * Transforms a Pub/Sub message. * @return {(Object)>|null)} - To * filter a message, return `null`. To transform a message return a map * with the following keys: * - (required) 'data' : {string} * - (optional) 'attributes' : {Object} * Returning empty `attributes` will remove all attributes from the * message. * * @param {(Object)>} Pub/Sub * message. Keys: * - (required) 'data' : {string} * - (required) 'attributes' : {Object} * * @param {Object} metadata - Pub/Sub message metadata. * Keys: * - (required) 'message_id' : {string} * - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format * - (optional) 'ordering_key': {string} */ function (message, metadata) { } ```",
+          "type": "string"
+        },
+        "functionName": {
+          "description": "Required. Name of the JavasScript function that should applied to Pub/Sub messages.",
           "type": "string"
         }
       },
@@ -1924,6 +1945,21 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MessageTransform": {
+      "description": "All supported message transforms types.",
+      "id": "MessageTransform",
+      "properties": {
+        "enabled": {
+          "description": "Optional. If set to true, the transform is enabled. If false, the transform is disabled and will not be applied to messages. Defaults to `true`.",
+          "type": "boolean"
+        },
+        "javascriptUdf": {
+          "$ref": "JavaScriptUDF",
+          "description": "Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's are specified on a resource, each must have a unique `function_name`."
         }
       },
       "type": "object"

@@ -653,7 +653,7 @@
                       "type": "string"
                     },
                     "webhookKey": {
-                      "description": "Arbitrary additional key to find the maching repository for a webhook event if needed.",
+                      "description": "Arbitrary additional key to find the matching repository for a webhook event if needed.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1061,7 +1061,7 @@
       }
     }
   },
-  "revision": "20250114",
+  "revision": "20250129",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {

@@ -654,7 +654,7 @@
       }
     }
   },
-  "revision": "20241204",
+  "revision": "20250204",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2609,7 +2609,7 @@
       "properties": {
         "batch": {
           "$ref": "QueryResultBatch",
-          "description": "A batch of query results (always present)."
+          "description": "A batch of query results. This is always present unless running a query under explain-only mode: RunQueryRequest.explain_options was provided and ExplainOptions.analyze was set to false."
         },
         "explainMetrics": {
           "$ref": "ExplainMetrics",

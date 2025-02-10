@@ -125,6 +125,7 @@ export namespace displayvideo_v3 {
     media: Resource$Media;
     partners: Resource$Partners;
     sdfdownloadtasks: Resource$Sdfdownloadtasks;
+    sdfuploadtasks: Resource$Sdfuploadtasks;
     targetingTypes: Resource$Targetingtypes;
     users: Resource$Users;
 
@@ -152,6 +153,7 @@ export namespace displayvideo_v3 {
       this.media = new Resource$Media(this.context);
       this.partners = new Resource$Partners(this.context);
       this.sdfdownloadtasks = new Resource$Sdfdownloadtasks(this.context);
+      this.sdfuploadtasks = new Resource$Sdfuploadtasks(this.context);
       this.targetingTypes = new Resource$Targetingtypes(this.context);
       this.users = new Resource$Users(this.context);
     }
@@ -5569,6 +5571,32 @@ export namespace displayvideo_v3 {
     endTime?: string | null;
     /**
      * The SDF version used to execute this download task.
+     */
+    version?: string | null;
+  }
+  /**
+   * Type for the response returned by [SdfUploadTaskService.CreateSdfUploadTask].
+   */
+  export interface Schema$SdfUploadTask {
+    /**
+     * A resource name to be used in media.download to Download the script files. Or media.upload to Upload the script files. Resource names have the format `download/sdfuploadtasks/media/{media_id\}`.
+     */
+    resourceName?: string | null;
+  }
+  /**
+   * Type for the metadata returned by [SdfUploadTaskService.CreateSdfUploadTask].
+   */
+  export interface Schema$SdfUploadTaskMetadata {
+    /**
+     * The time when the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time when execution was completed.
+     */
+    endTime?: string | null;
+    /**
+     * The SDF version used to execute this upload task.
      */
     version?: string | null;
   }
@@ -23664,6 +23692,115 @@ export namespace displayvideo_v3 {
   }
 
   export interface Params$Resource$Sdfdownloadtasks$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+
+  export class Resource$Sdfuploadtasks {
+    context: APIRequestContext;
+    operations: Resource$Sdfuploadtasks$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Sdfuploadtasks$Operations(this.context);
+    }
+  }
+
+  export class Resource$Sdfuploadtasks$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Sdfuploadtasks$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Sdfuploadtasks$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Sdfuploadtasks$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Sdfuploadtasks$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Sdfuploadtasks$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sdfuploadtasks$Operations$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sdfuploadtasks$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sdfuploadtasks$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Sdfuploadtasks$Operations$Get
     extends StandardParameters {
     /**
      * The name of the operation resource.

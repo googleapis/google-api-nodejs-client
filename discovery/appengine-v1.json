@@ -1825,7 +1825,7 @@
       }
     }
   },
-  "revision": "20241205",
+  "revision": "20250127",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -2003,6 +2003,20 @@
             "Application is serving.",
             "Application has been disabled by the user.",
             "Application has been disabled by the system."
+          ],
+          "type": "string"
+        },
+        "sslPolicy": {
+          "description": "The SSL policy that will be applied to the application. If set to Modern it will restrict traffic with TLS < 1.2 and allow only Modern Ciphers suite",
+          "enum": [
+            "SSL_POLICY_UNSPECIFIED",
+            "DEFAULT",
+            "MODERN"
+          ],
+          "enumDescriptions": [
+            "Required by linter. Will work same as DEFAULT",
+            "DEFAULT is to allow all TLS versions and cipher suites supported by App Engine",
+            "MODERN is to allow only TLS 1.2 and TLS 1.3 along with Modern cipher suites only"
           ],
           "type": "string"
         }

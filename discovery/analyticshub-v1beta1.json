@@ -695,7 +695,7 @@
       }
     }
   },
-  "revision": "20241213",
+  "revision": "20250126",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -928,7 +928,6 @@
       "type": "object"
     },
     "GoogleCloudBigqueryDataexchangeV1beta1DestinationDatasetReference": {
-      "description": "Contains the reference that identifies a destination bigquery dataset.",
       "id": "GoogleCloudBigqueryDataexchangeV1beta1DestinationDatasetReference",
       "properties": {
         "datasetId": {

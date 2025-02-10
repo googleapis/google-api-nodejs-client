@@ -248,6 +248,19 @@ export namespace merchantapi_accounts_v1beta {
     streetAddress?: string | null;
   }
   /**
+   * Instruction for adding a user to the account during creation.
+   */
+  export interface Schema$AddUser {
+    /**
+     * Optional. Details about the user to be added. At the moment, only access rights may be specified.
+     */
+    user?: Schema$User;
+    /**
+     * Required. The email address of the user (for example, `john.doe@gmail.com`).
+     */
+    userId?: string | null;
+  }
+  /**
    * Collection of information related to the [autofeed](https://support.google.com/merchants/answer/7538732) settings.
    */
   export interface Schema$AutofeedSettings {
@@ -387,6 +400,10 @@ export namespace merchantapi_accounts_v1beta {
     service?: Schema$AddAccountService[];
     /**
      * Optional. Users to be added to the account.
+     */
+    user?: Schema$AddUser[];
+    /**
+     * Optional. Users to be added to the account. This field is deprecated and will not exist after the API evolves out of beta. Use the `user` field instead.
      */
     users?: Schema$CreateUserRequest[];
   }
@@ -1848,7 +1865,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns accounts the user is directly added to.
+     * Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns accounts the user is directly added to. This method is eventually consistent, meaning changes such as creating, updating an account or a change of relationships between accounts may not show up in the results immediately. Instead, these changes propagate over a short period, after which the updated information can match the associated predicates. That means, that searching by account name might not return a recently changed account even though it satisfies the predicate.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

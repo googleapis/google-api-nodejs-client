@@ -964,7 +964,7 @@
       }
     }
   },
-  "revision": "20241219",
+  "revision": "20250130",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -3774,7 +3774,7 @@
       "id": "Page",
       "properties": {
         "content": {
-          "description": "The Markdown content of the page. You can use (== include {path} ==) to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page.",
+          "description": "The Markdown content of the page. You can use ```(== include {path} ==)``` to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page.",
           "type": "string"
         },
         "name": {
@@ -4137,6 +4137,10 @@
       "description": "This message is used to configure the generation of a subset of the RPCs in a service for client libraries.",
       "id": "SelectiveGapicGeneration",
       "properties": {
+        "generateOmittedAsInternal": {
+          "description": "Setting this to true indicates to the client generators that methods that would be excluded from the generation should instead be generated in a way that indicates these methods should not be consumed by end users. How this is expressed is up to individual language implementations to decide. Some examples may be: added annotations, obfuscated identifiers, or other language idiomatic patterns.",
+          "type": "boolean"
+        },
         "methods": {
           "description": "An allowlist of the fully qualified names of RPCs that should be included on public client surfaces.",
           "items": {

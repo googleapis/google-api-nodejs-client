@@ -11,6 +11,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://sts.us-east7.rep.googleapis.com/",
       "location": "us-east7"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://sts.us-east4.rep.sandbox.googleapis.com/",
+      "location": "us-east4"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -123,7 +128,7 @@
       }
     }
   },
-  "revision": "20241106",
+  "revision": "20250127",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIamV1Binding": {

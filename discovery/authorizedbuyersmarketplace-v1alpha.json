@@ -1550,7 +1550,7 @@
       }
     }
   },
-  "revision": "20250113",
+  "revision": "20250205",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -1974,7 +1974,7 @@
       "properties": {
         "cpmFee": {
           "$ref": "Money",
-          "description": "Optional. This will be charged when other accounts use this data segment. For example, when other accounts add this data segment to a deal or auction package. Once set, the currency code cannot be changed."
+          "description": "Required. This will be charged when other accounts use this data segment. For example, when other accounts add this data segment to a deal or auction package. Once set, the currency code cannot be changed."
         },
         "createTime": {
           "description": "Output only. Time the data segment was created.",

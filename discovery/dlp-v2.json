@@ -230,6 +230,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://dlp.us-west8.rep.googleapis.com/",
       "location": "us-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dlp.us.rep.googleapis.com/",
+      "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dlp.eu.rep.googleapis.com/",
+      "location": "eu"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -5015,7 +5025,7 @@
       }
     }
   },
-  "revision": "20250119",
+  "revision": "20250126",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {

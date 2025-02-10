@@ -451,7 +451,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     source?: string | null;
     /**
-     * Immutable. Resource path of the target resource. The target project can be different, as in the cases when migrating to peer networks. The resource For example: /projects/{project\}/regions/{region\}/subnetworks/{subnet\}
+     * Immutable. Resource path of the target resource. The target project can be different, as in the cases when migrating to peer networks. For example: /projects/{project\}/regions/{region\}/subnetworks/{subnet\}
      */
     target?: string | null;
   }

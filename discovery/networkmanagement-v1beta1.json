@@ -589,7 +589,7 @@
             "vpcFlowLogsConfigs": {
               "methods": {
                 "create": {
-                  "description": "Creates a new `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Creating a configuration with state=DISABLED will fail. 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - creating another configuration with the same fields but different values for the following fields will fail as well: - name - create_time - update_time - labels - description ",
+                  "description": "Creates a new `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Creating a configuration with state=DISABLED will fail 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - creating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/vpcFlowLogsConfigs",
                   "httpMethod": "POST",
                   "id": "networkmanagement.projects.locations.vpcFlowLogsConfigs.create",
@@ -718,7 +718,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates an existing `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Updating a configuration with state=DISABLED will fail. 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - updating another configuration with the same fields but different values for the following fields will fail as well: - name - create_time - update_time - labels - description ",
+                  "description": "Creates a new `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Creating a configuration with state=DISABLED will fail 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - creating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/vpcFlowLogsConfigs/{vpcFlowLogsConfigsId}",
                   "httpMethod": "PATCH",
                   "id": "networkmanagement.projects.locations.vpcFlowLogsConfigs.patch",
@@ -758,7 +758,7 @@
       }
     }
   },
-  "revision": "20250108",
+  "revision": "20250129",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {

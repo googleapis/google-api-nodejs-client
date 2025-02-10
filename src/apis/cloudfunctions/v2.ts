@@ -369,6 +369,10 @@ export namespace cloudfunctions_v2 {
     /**
      * Output only. Reserved for future use.
      */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
     satisfiesPzs?: boolean | null;
     /**
      * Describes the Service being deployed. Currently deploys services to Cloud Run (fully managed).
@@ -1025,7 +1029,7 @@ export namespace cloudfunctions_v2 {
     permissions?: string[] | null;
   }
   /**
-   * Information related to: * A function's eligibility for 1st Gen to 2nd Gen migration and 2nd Gen to CRf detach. * Current state of migration for function undergoing migration/detach.
+   * Information related to: * A function's eligibility for 1st Gen to 2nd Gen migration. * Current state of migration for function undergoing migration.
    */
   export interface Schema$UpgradeInfo {
     /**
@@ -2762,7 +2766,7 @@ export namespace cloudfunctions_v2 {
      */
     filter?: string;
     /**
-     * The sorting order of the resources returned. Value should be a comma separated list of fields. The default sorting oder is ascending. See https://google.aip.dev/132#ordering.
+     * The sorting order of the resources returned. Value should be a comma separated list of fields. The default sorting order is ascending. See https://google.aip.dev/132#ordering.
      */
     orderBy?: string;
     /**

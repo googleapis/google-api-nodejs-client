@@ -3895,7 +3895,7 @@
       }
     }
   },
-  "revision": "20241204",
+  "revision": "20250129",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5124,6 +5124,10 @@
       "description": "Represents the link between a custom template and an entry on the Community Template Gallery site.",
       "id": "GalleryReference",
       "properties": {
+        "galleryTemplateId": {
+          "description": "ID for the gallery template that is generated once during first sync and travels with the template redirects.",
+          "type": "string"
+        },
         "host": {
           "description": "The name of the host for the community gallery template.",
           "type": "string"

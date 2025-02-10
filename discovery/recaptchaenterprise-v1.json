@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20241208",
+  "revision": "20250202",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1177,7 +1177,7 @@
           "enumDescriptions": [
             "Default, unspecified setting. `fraud_prevention_assessment` is returned if `transaction_data` is present in `Event` and Fraud Prevention is enabled in the Google Cloud console.",
             "Enable Fraud Prevention for this assessment, if Fraud Prevention is enabled in the Google Cloud console.",
-            "Disable Fraud Prevention for this assessment, regardless of Google Cloud console settings."
+            "Disable Fraud Prevention for this assessment, regardless of the Google Cloud console settings."
           ],
           "type": "string"
         },
@@ -1195,7 +1195,11 @@
           "type": "array"
         },
         "ja3": {
-          "description": "Optional. JA3 fingerprint for SSL clients.",
+          "description": "Optional. JA3 fingerprint for SSL clients. To learn how to compute this fingerprint, please refer to https://github.com/salesforce/ja3.",
+          "type": "string"
+        },
+        "ja4": {
+          "description": "Optional. JA4 fingerprint for SSL clients. To learn how to compute this fingerprint, please refer to https://github.com/FoxIO-LLC/ja4.",
           "type": "string"
         },
         "requestedUri": {

@@ -5987,6 +5987,229 @@
               }
             },
             "identityMappingStores": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new Identity Mapping Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/identityMappingStores",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "cmekConfigName": {
+                      "description": "Resource name of the CmekConfig to use for protecting this Identity Mapping Store.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "disableCmek": {
+                      "description": "Identity Mapping Store without CMEK protections. If a default CmekConfig is set for the project, setting this field will override the default CmekConfig as well.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "identityMappingStoreId": {
+                      "description": "Required. The ID of the Identity Mapping Store to create. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 63 characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent collection resource name, such as `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/identityMappingStores",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1IdentityMappingStore"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1IdentityMappingStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the Identity Mapping Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/identityMappingStores/{identityMappingStoresId}",
+                  "httpMethod": "DELETE",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Identity Mapping Store to delete. Format: `projects/{project}/locations/{location}/identityMappingStores/{identityMappingStore}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/identityMappingStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the Identity Mapping Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/identityMappingStores/{identityMappingStoresId}",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Identity Mapping Store to get. Format: `projects/{project}/locations/{location}/identityMappingStores/{identityMappingStore}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/identityMappingStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1IdentityMappingStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "importIdentityMappings": {
+                  "description": "Imports a list of Identity Mapping Entries to an Identity Mapping Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/identityMappingStores/{identityMappingStoresId}:importIdentityMappings",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.importIdentityMappings",
+                  "parameterOrder": [
+                    "identityMappingStore"
+                  ],
+                  "parameters": {
+                    "identityMappingStore": {
+                      "description": "Required. The name of the Identity Mapping Store to import Identity Mapping Entries to. Format: `projects/{project}/locations/{location}/identityMappingStores/{identityMappingStore}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/identityMappingStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+identityMappingStore}:importIdentityMappings",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1ImportIdentityMappingsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all Identity Mapping Stores.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/identityMappingStores",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of IdentityMappingStores to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListIdentityMappingStores` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIdentityMappingStores` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent of the Identity Mapping Stores to list. Format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/identityMappingStores",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1ListIdentityMappingStoresResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "listIdentityMappings": {
+                  "description": "Lists Identity Mappings in an Identity Mapping Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/identityMappingStores/{identityMappingStoresId}:listIdentityMappings",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.listIdentityMappings",
+                  "parameterOrder": [
+                    "identityMappingStore"
+                  ],
+                  "parameters": {
+                    "identityMappingStore": {
+                      "description": "Required. The name of the Identity Mapping Store to list Identity Mapping Entries in. Format: `projects/{project}/locations/{location}/identityMappingStores/{identityMappingStore}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/identityMappingStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Maximum number of IdentityMappings to return. If unspecified, defaults to 2000. The maximum allowed value is 10000. Values above 10000 will be coerced to 10000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListIdentityMappings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIdentityMappings` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+identityMappingStore}:listIdentityMappings",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1ListIdentityMappingsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "purgeIdentityMappings": {
+                  "description": "Purges specified or all Identity Mapping Entries from an Identity Mapping Store.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/identityMappingStores/{identityMappingStoresId}:purgeIdentityMappings",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.purgeIdentityMappings",
+                  "parameterOrder": [
+                    "identityMappingStore"
+                  ],
+                  "parameters": {
+                    "identityMappingStore": {
+                      "description": "Required. The name of the Identity Mapping Store to purge Identity Mapping Entries from. Format: `projects/{project}/locations/{location}/identityMappingStores/{identityMappingStore}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/identityMappingStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+identityMappingStore}:purgeIdentityMappings",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1PurgeIdentityMappingsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -6371,7 +6594,7 @@
       }
     }
   },
-  "revision": "20250121",
+  "revision": "20250130",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -8302,7 +8525,7 @@
           "type": "string"
         },
         "endPos": {
-          "description": "Position indicating the end of the claim in the answer candidate, exclusive.",
+          "description": "Position indicating the end of the claim in the answer candidate, exclusive, in bytes. Note that this is not measured in characters and, therefore, must be rendered as such. For example, if the claim text contains non-ASCII characters, the start and end positions vary when measured in characters (programming-language-dependent) and when measured in bytes (programming-language-independent).",
           "format": "int32",
           "type": "integer"
         },
@@ -8311,7 +8534,7 @@
           "type": "boolean"
         },
         "startPos": {
-          "description": "Position indicating the start of the claim in the answer candidate, measured in bytes.",
+          "description": "Position indicating the start of the claim in the answer candidate, measured in bytes. Note that this is not measured in characters and, therefore, must be rendered in the user interface keeping in mind that some characters may take more than one byte. For example, if the claim text contains non-ASCII characters, the start and end positions vary when measured in characters (programming-language-dependent) and when measured in bytes (programming-language-independent).",
           "format": "int32",
           "type": "integer"
         }
@@ -8511,6 +8734,7 @@
             "ACTIVE",
             "KEY_ISSUE",
             "DELETING",
+            "DELETE_FAILED",
             "UNUSABLE",
             "ACTIVE_ROTATING"
           ],
@@ -8520,6 +8744,7 @@
             "The CmekConfig can be used with DataStores.",
             "The CmekConfig is unavailable, most likely due to the KMS Key being revoked.",
             "The CmekConfig is deleting.",
+            "The CmekConfig deletion process failed.",
             "The CmekConfig is not usable, most likely due to some internal issue.",
             "The KMS key version is being rotated."
           ],
@@ -8784,6 +9009,70 @@
         },
         "fixedBoost": {
           "description": "Optional. Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0 (No-op).",
+          "format": "float",
+          "type": "number"
+        },
+        "interpolationBoostSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpec",
+          "description": "Optional. Complex specification for custom ranking based on customer defined attribute value."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpec": {
+      "description": "Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.",
+      "id": "GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpec",
+      "properties": {
+        "attributeType": {
+          "description": "Optional. The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).",
+          "enum": [
+            "ATTRIBUTE_TYPE_UNSPECIFIED",
+            "NUMERICAL",
+            "FRESHNESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified AttributeType.",
+            "The value of the numerical field will be used to dynamically update the boost amount. In this case, the attribute_value (the x value) of the control point will be the actual value of the numerical field for which the boost_amount is specified.",
+            "For the freshness use case the attribute value will be the duration between the current time and the date in the datetime field specified. The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`. For example, `5D`, `3DT12H30M`, `T24H`."
+          ],
+          "type": "string"
+        },
+        "controlPoints": {
+          "description": "Optional. The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpecControlPoint"
+          },
+          "type": "array"
+        },
+        "fieldName": {
+          "description": "Optional. The name of the field whose value will be used to determine the boost amount.",
+          "type": "string"
+        },
+        "interpolationType": {
+          "description": "Optional. The interpolation type to be applied to connect the control points listed below.",
+          "enum": [
+            "INTERPOLATION_TYPE_UNSPECIFIED",
+            "LINEAR"
+          ],
+          "enumDescriptions": [
+            "Interpolation type is unspecified. In this case, it defaults to Linear.",
+            "Piecewise linear interpolation will be applied."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpecControlPoint": {
+      "description": "The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).",
+      "id": "GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpecControlPoint",
+      "properties": {
+        "attributeValue": {
+          "description": "Optional. Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.",
+          "type": "string"
+        },
+        "boostAmount": {
+          "description": "Optional. The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.",
           "format": "float",
           "type": "number"
         }
@@ -9223,6 +9512,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfig",
           "description": "Configuration for Document understanding and enrichment."
         },
+        "healthcareFhirConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1HealthcareFhirConfig",
+          "description": "Optional. Configuration for `HEALTHCARE_FHIR` vertical."
+        },
         "industryVertical": {
           "description": "Immutable. The industry vertical that the data store registers.",
           "enum": [
@@ -9331,6 +9624,23 @@
         "disabledForServing": {
           "description": "If set true, the DataStore will not be available for serving search requests.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DeleteCmekConfigMetadata": {
+      "description": "Metadata related to the progress of the CmekConfigService.DeleteCmekConfig operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1DeleteCmekConfigMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -10462,6 +10772,82 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1HealthcareFhirConfig": {
+      "description": "Config to data store for `HEALTHCARE_FHIR` vertical.",
+      "id": "GoogleCloudDiscoveryengineV1HealthcareFhirConfig",
+      "properties": {
+        "enableConfigurableSchema": {
+          "description": "Whether to enable configurable schema for `HEALTHCARE_FHIR` vertical. If set to `true`, the predefined healthcare fhir schema can be extended for more customized searching and filtering.",
+          "type": "boolean"
+        },
+        "enableStaticIndexingForBatchIngestion": {
+          "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1IdentityMappingEntry": {
+      "description": "Identity Mapping Entry that maps an external identity to an internal identity.",
+      "id": "GoogleCloudDiscoveryengineV1IdentityMappingEntry",
+      "properties": {
+        "externalIdentity": {
+          "description": "Required. Identity outside the customer identity provider. The length limit of external identity will be of 100 characters.",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "Group identifier. For Google Workspace user account, group_id should be the google workspace group email. For non-google identity provider, group_id is the mapped group identifier configured during the workforcepool config.",
+          "type": "string"
+        },
+        "userId": {
+          "description": "User identifier. For Google Workspace user account, user_id should be the google workspace user email. For non-google identity provider, user_id is the mapped user identifier configured during the workforcepool config.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1IdentityMappingEntryOperationMetadata": {
+      "description": "IdentityMappingEntry LongRunningOperation metadata for [IdentityMappingStoreService.ImportIdentityMappings] and [IdentityMappingStoreService.PurgeIdentityMappings]",
+      "id": "GoogleCloudDiscoveryengineV1IdentityMappingEntryOperationMetadata",
+      "properties": {
+        "failureCount": {
+          "description": "The number of IdentityMappingEntries that failed to be processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of IdentityMappingEntries that were successfully processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalCount": {
+          "description": "The total number of IdentityMappingEntries that were processed.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1IdentityMappingStore": {
+      "description": "Identity Mapping Store which contains Identity Mapping Entries.",
+      "id": "GoogleCloudDiscoveryengineV1IdentityMappingStore",
+      "properties": {
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1CmekConfig",
+          "description": "Output only. CMEK-related information for the Identity Mapping Store.",
+          "readOnly": true
+        },
+        "kmsKeyName": {
+          "description": "Input only. The KMS key to be used to protect this Identity Mapping Store at creation time. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the Identity Mapping Store will be protected by the KMS key, as indicated in the cmek_config field.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the identity mapping store. Format: `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1ImportCompletionSuggestionsMetadata": {
       "description": "Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1ImportCompletionSuggestionsMetadata",
@@ -10693,6 +11079,45 @@
         "gcsPrefix": {
           "description": "Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ImportIdentityMappingsRequest": {
+      "description": "Request message for IdentityMappingStoreService.ImportIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1ImportIdentityMappingsRequest",
+      "properties": {
+        "inlineSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1ImportIdentityMappingsRequestInlineSource",
+          "description": "The inline source to import identity mapping entries from."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ImportIdentityMappingsRequestInlineSource": {
+      "description": "The inline source to import identity mapping entries from.",
+      "id": "GoogleCloudDiscoveryengineV1ImportIdentityMappingsRequestInlineSource",
+      "properties": {
+        "identityMappingEntries": {
+          "description": "A maximum of 10000 entries can be imported at one time",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1IdentityMappingEntry"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ImportIdentityMappingsResponse": {
+      "description": "Response message for IdentityMappingStoreService.ImportIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1ImportIdentityMappingsResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -10985,6 +11410,42 @@
         },
         "nextPageToken": {
           "description": "Not supported.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ListIdentityMappingStoresResponse": {
+      "description": "Response message for IdentityMappingStoreService.ListIdentityMappingStores",
+      "id": "GoogleCloudDiscoveryengineV1ListIdentityMappingStoresResponse",
+      "properties": {
+        "identityMappingStores": {
+          "description": "The Identity Mapping Stores.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1IdentityMappingStore"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ListIdentityMappingsResponse": {
+      "description": "Response message for IdentityMappingStoreService.ListIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1ListIdentityMappingsResponse",
+      "properties": {
+        "identityMappingEntries": {
+          "description": "The Identity Mapping Entries.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1IdentityMappingEntry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -11355,6 +11816,39 @@
         "gcsPrefix": {
           "description": "Cloud Storage prefix for purge errors. This must be an empty, existing Cloud Storage directory. Purge errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1PurgeIdentityMappingsRequest": {
+      "description": "Request message for IdentityMappingStoreService.PurgeIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1PurgeIdentityMappingsRequest",
+      "properties": {
+        "filter": {
+          "description": "Filter matching identity mappings to purge. The eligible field for filtering is: * `update_time`: in ISO 8601 \"zulu\" format. * `external_id` Examples: * Deleting all identity mappings updated in a time range: `update_time > \"2012-04-23T18:25:43.511Z\" AND update_time < \"2012-04-23T18:30:43.511Z\"` * Deleting all identity mappings for a given external_id: `external_id = \"id1\"` * Deleting all identity mappings inside an identity mapping store: `*` The filtering fields are assumed to have an implicit AND. Should not be used with source. An error will be thrown, if both are provided.",
+          "type": "string"
+        },
+        "force": {
+          "description": "Actually performs the purge. If `force` is set to false, return the expected purge count without deleting any identity mappings. This field is only supported for purge with filter. For input source this field is ignored and data will be purged regardless of the value of this field.",
+          "type": "boolean"
+        },
+        "inlineSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1PurgeIdentityMappingsRequestInlineSource",
+          "description": "The inline source to purge identity mapping entries from."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1PurgeIdentityMappingsRequestInlineSource": {
+      "description": "The inline source to purge identity mapping entries from.",
+      "id": "GoogleCloudDiscoveryengineV1PurgeIdentityMappingsRequestInlineSource",
+      "properties": {
+        "identityMappingEntries": {
+          "description": "A maximum of 10000 entries can be purged at one time",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1IdentityMappingEntry"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -11884,7 +12378,7 @@
         },
         "userInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1UserInfo",
-          "description": "Information about the end user. Highly recommended for analytics. UserInfo.user_agent is used to deduce `device_type` for analytics."
+          "description": "Information about the end user. Highly recommended for analytics and personalization. UserInfo.user_agent is used to deduce `device_type` for analytics."
         },
         "userLabels": {
           "additionalProperties": {
@@ -14174,6 +14668,7 @@
             "ACTIVE",
             "KEY_ISSUE",
             "DELETING",
+            "DELETE_FAILED",
             "UNUSABLE",
             "ACTIVE_ROTATING"
           ],
@@ -14183,6 +14678,7 @@
             "The CmekConfig can be used with DataStores.",
             "The CmekConfig is unavailable, most likely due to the KMS Key being revoked.",
             "The CmekConfig is deleting.",
+            "The CmekConfig deletion process failed.",
             "The CmekConfig is not usable, most likely due to some internal issue.",
             "The KMS key version is being rotated."
           ],
@@ -14562,6 +15058,70 @@
           "description": "Optional. Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0 (No-op).",
           "format": "float",
           "type": "number"
+        },
+        "interpolationBoostSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaControlBoostActionInterpolationBoostSpec",
+          "description": "Optional. Complex specification for custom ranking based on customer defined attribute value."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaControlBoostActionInterpolationBoostSpec": {
+      "description": "Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.",
+      "id": "GoogleCloudDiscoveryengineV1alphaControlBoostActionInterpolationBoostSpec",
+      "properties": {
+        "attributeType": {
+          "description": "Optional. The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).",
+          "enum": [
+            "ATTRIBUTE_TYPE_UNSPECIFIED",
+            "NUMERICAL",
+            "FRESHNESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified AttributeType.",
+            "The value of the numerical field will be used to dynamically update the boost amount. In this case, the attribute_value (the x value) of the control point will be the actual value of the numerical field for which the boost_amount is specified.",
+            "For the freshness use case the attribute value will be the duration between the current time and the date in the datetime field specified. The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`. For example, `5D`, `3DT12H30M`, `T24H`."
+          ],
+          "type": "string"
+        },
+        "controlPoints": {
+          "description": "Optional. The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaControlBoostActionInterpolationBoostSpecControlPoint"
+          },
+          "type": "array"
+        },
+        "fieldName": {
+          "description": "Optional. The name of the field whose value will be used to determine the boost amount.",
+          "type": "string"
+        },
+        "interpolationType": {
+          "description": "Optional. The interpolation type to be applied to connect the control points listed below.",
+          "enum": [
+            "INTERPOLATION_TYPE_UNSPECIFIED",
+            "LINEAR"
+          ],
+          "enumDescriptions": [
+            "Interpolation type is unspecified. In this case, it defaults to Linear.",
+            "Piecewise linear interpolation will be applied."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaControlBoostActionInterpolationBoostSpecControlPoint": {
+      "description": "The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).",
+      "id": "GoogleCloudDiscoveryengineV1alphaControlBoostActionInterpolationBoostSpecControlPoint",
+      "properties": {
+        "attributeValue": {
+          "description": "Optional. Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.",
+          "type": "string"
+        },
+        "boostAmount": {
+          "description": "Optional. The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -14857,7 +15417,8 @@
             "ACTIVE",
             "FAILED",
             "RUNNING",
-            "WARNING"
+            "WARNING",
+            "INITIALIZATION_FAILED"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -14865,7 +15426,8 @@
             "The connector is successfully set up and awaiting next sync run.",
             "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
             "The connector is actively syncing records from the data source.",
-            "The connector has completed a sync run, but encountered non-fatal errors."
+            "The connector has completed a sync run, but encountered non-fatal errors.",
+            "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types)."
           ],
           "readOnly": true,
           "type": "string"
@@ -14990,6 +15552,10 @@
         "documentProcessingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig",
           "description": "Configuration for Document understanding and enrichment."
+        },
+        "healthcareFhirConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig",
+          "description": "Optional. Configuration for `HEALTHCARE_FHIR` vertical."
         },
         "idpConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaIdpConfig",
@@ -15127,6 +15693,23 @@
         "userTriggeredCrawlRate": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries",
           "description": "Vertex AI's dedicated crawl rate time series of user triggered crawl, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is set, and user triggered crawl rate is for deterministic use cases like crawling urls or sitemaps specified by users."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata": {
+      "description": "Metadata related to the progress of the CmekConfigService.DeleteCmekConfig operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -16089,6 +16672,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig": {
+      "description": "Config to data store for `HEALTHCARE_FHIR` vertical.",
+      "id": "GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig",
+      "properties": {
+        "enableConfigurableSchema": {
+          "description": "Whether to enable configurable schema for `HEALTHCARE_FHIR` vertical. If set to `true`, the predefined healthcare fhir schema can be extended for more customized searching and filtering.",
+          "type": "boolean"
+        },
+        "enableStaticIndexingForBatchIngestion": {
+          "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaIdentityMappingEntryOperationMetadata": {
+      "description": "IdentityMappingEntry LongRunningOperation metadata for [IdentityMappingStoreService.ImportIdentityMappings] and [IdentityMappingStoreService.PurgeIdentityMappings]",
+      "id": "GoogleCloudDiscoveryengineV1alphaIdentityMappingEntryOperationMetadata",
+      "properties": {
+        "failureCount": {
+          "description": "The number of IdentityMappingEntries that failed to be processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of IdentityMappingEntries that were successfully processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalCount": {
+          "description": "The total number of IdentityMappingEntries that were processed.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaIdentityScheduleConfig": {
       "description": "The configuration for the identity data synchronization runs.",
       "id": "GoogleCloudDiscoveryengineV1alphaIdentityScheduleConfig",
@@ -16243,6 +16863,20 @@
         "gcsPrefix": {
           "description": "Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaImportIdentityMappingsResponse": {
+      "description": "Response message for IdentityMappingStoreService.ImportIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1alphaImportIdentityMappingsResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -16892,6 +17526,18 @@
           "format": "int32",
           "type": "integer"
         },
+        "noindexUris": {
+          "description": "URIs that have no index meta tag. Sample limited to 1000.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "noindexUrisCount": {
+          "description": "Total number of URIs that have no index meta tag.",
+          "format": "int32",
+          "type": "integer"
+        },
         "pendingCount": {
           "description": "Total number of URIs that have yet to be crawled.",
           "format": "int32",
@@ -17332,7 +17978,7 @@
         },
         "userInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaUserInfo",
-          "description": "Information about the end user. Highly recommended for analytics. UserInfo.user_agent is used to deduce `device_type` for analytics."
+          "description": "Information about the end user. Highly recommended for analytics and personalization. UserInfo.user_agent is used to deduce `device_type` for analytics."
         },
         "userLabels": {
           "additionalProperties": {
@@ -18497,6 +19143,7 @@
             "ACTIVE",
             "KEY_ISSUE",
             "DELETING",
+            "DELETE_FAILED",
             "UNUSABLE",
             "ACTIVE_ROTATING"
           ],
@@ -18506,6 +19153,7 @@
             "The CmekConfig can be used with DataStores.",
             "The CmekConfig is unavailable, most likely due to the KMS Key being revoked.",
             "The CmekConfig is deleting.",
+            "The CmekConfig deletion process failed.",
             "The CmekConfig is not usable, most likely due to some internal issue.",
             "The KMS key version is being rotated."
           ],
@@ -18677,6 +19325,70 @@
         },
         "fixedBoost": {
           "description": "Optional. Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0 (No-op).",
+          "format": "float",
+          "type": "number"
+        },
+        "interpolationBoostSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpec",
+          "description": "Optional. Complex specification for custom ranking based on customer defined attribute value."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpec": {
+      "description": "Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.",
+      "id": "GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpec",
+      "properties": {
+        "attributeType": {
+          "description": "Optional. The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).",
+          "enum": [
+            "ATTRIBUTE_TYPE_UNSPECIFIED",
+            "NUMERICAL",
+            "FRESHNESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified AttributeType.",
+            "The value of the numerical field will be used to dynamically update the boost amount. In this case, the attribute_value (the x value) of the control point will be the actual value of the numerical field for which the boost_amount is specified.",
+            "For the freshness use case the attribute value will be the duration between the current time and the date in the datetime field specified. The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`. For example, `5D`, `3DT12H30M`, `T24H`."
+          ],
+          "type": "string"
+        },
+        "controlPoints": {
+          "description": "Optional. The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpecControlPoint"
+          },
+          "type": "array"
+        },
+        "fieldName": {
+          "description": "Optional. The name of the field whose value will be used to determine the boost amount.",
+          "type": "string"
+        },
+        "interpolationType": {
+          "description": "Optional. The interpolation type to be applied to connect the control points listed below.",
+          "enum": [
+            "INTERPOLATION_TYPE_UNSPECIFIED",
+            "LINEAR"
+          ],
+          "enumDescriptions": [
+            "Interpolation type is unspecified. In this case, it defaults to Linear.",
+            "Piecewise linear interpolation will be applied."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpecControlPoint": {
+      "description": "The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).",
+      "id": "GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpecControlPoint",
+      "properties": {
+        "attributeValue": {
+          "description": "Optional. Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.",
+          "type": "string"
+        },
+        "boostAmount": {
+          "description": "Optional. The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.",
           "format": "float",
           "type": "number"
         }
@@ -18883,6 +19595,10 @@
         "documentProcessingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig",
           "description": "Configuration for Document understanding and enrichment."
+        },
+        "healthcareFhirConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig",
+          "description": "Optional. Configuration for `HEALTHCARE_FHIR` vertical."
         },
         "industryVertical": {
           "description": "Immutable. The industry vertical that the data store registers.",
@@ -19555,6 +20271,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig": {
+      "description": "Config to data store for `HEALTHCARE_FHIR` vertical.",
+      "id": "GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig",
+      "properties": {
+        "enableConfigurableSchema": {
+          "description": "Whether to enable configurable schema for `HEALTHCARE_FHIR` vertical. If set to `true`, the predefined healthcare fhir schema can be extended for more customized searching and filtering.",
+          "type": "boolean"
+        },
+        "enableStaticIndexingForBatchIngestion": {
+          "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaIdentityMappingEntryOperationMetadata": {
+      "description": "IdentityMappingEntry LongRunningOperation metadata for [IdentityMappingStoreService.ImportIdentityMappings] and [IdentityMappingStoreService.PurgeIdentityMappings]",
+      "id": "GoogleCloudDiscoveryengineV1betaIdentityMappingEntryOperationMetadata",
+      "properties": {
+        "failureCount": {
+          "description": "The number of IdentityMappingEntries that failed to be processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of IdentityMappingEntries that were successfully processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalCount": {
+          "description": "The total number of IdentityMappingEntries that were processed.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaImportCompletionSuggestionsMetadata": {
       "description": "Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1betaImportCompletionSuggestionsMetadata",
@@ -19657,6 +20410,20 @@
         "gcsPrefix": {
           "description": "Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaImportIdentityMappingsResponse": {
+      "description": "Response message for IdentityMappingStoreService.ImportIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1betaImportIdentityMappingsResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -20299,7 +21066,7 @@
         },
         "userInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1betaUserInfo",
-          "description": "Information about the end user. Highly recommended for analytics. UserInfo.user_agent is used to deduce `device_type` for analytics."
+          "description": "Information about the end user. Highly recommended for analytics and personalization. UserInfo.user_agent is used to deduce `device_type` for analytics."
         },
         "userLabels": {
           "additionalProperties": {

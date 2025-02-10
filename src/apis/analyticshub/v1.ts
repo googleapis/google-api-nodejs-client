@@ -216,7 +216,7 @@ export namespace analyticshub_v1 {
    */
   export interface Schema$BigQueryDatasetSource {
     /**
-     * Resource name of the dataset source for this listing. e.g. `projects/myproject/datasets/123`
+     * Optional. Resource name of the dataset source for this listing. e.g. `projects/myproject/datasets/123`
      */
     dataset?: string | null;
     /**
@@ -403,9 +403,6 @@ export namespace analyticshub_v1 {
      */
     location?: string | null;
   }
-  /**
-   * Contains the reference that identifies a destination bigquery dataset.
-   */
   export interface Schema$DestinationDatasetReference {
     /**
      * Required. A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
@@ -570,6 +567,10 @@ export namespace analyticshub_v1 {
      */
     messageRetentionDuration?: string | null;
     /**
+     * Optional. Transforms to be applied to messages before they are delivered to subscribers. Transforms are applied in the order specified.
+     */
+    messageTransforms?: Schema$MessageTransform[];
+    /**
      * Required. Name of the subscription. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     name?: string | null;
@@ -593,6 +594,19 @@ export namespace analyticshub_v1 {
      * Output only. Indicates the minimum duration for which a message is retained after it is published to the subscription's topic. If this field is set, messages published to the subscription's topic in the last `topic_message_retention_duration` are always available to subscribers. See the `message_retention_duration` field in `Topic`. This field is set only in responses from the server; it is ignored if it is set in any requests.
      */
     topicMessageRetentionDuration?: string | null;
+  }
+  /**
+   * User-defined JavaScript function that can transform or filter a Pub/Sub message.
+   */
+  export interface Schema$JavaScriptUDF {
+    /**
+     * Required. JavaScript code that contains a function `function_name` with the below signature: ``` /x* * Transforms a Pub/Sub message. * @return {(Object)\>|null)\} - To * filter a message, return `null`. To transform a message return a map * with the following keys: * - (required) 'data' : {string\} * - (optional) 'attributes' : {Object\} * Returning empty `attributes` will remove all attributes from the * message. * * @param {(Object)\>\} Pub/Sub * message. Keys: * - (required) 'data' : {string\} * - (required) 'attributes' : {Object\} * * @param {Object\} metadata - Pub/Sub message metadata. * Keys: * - (required) 'message_id' : {string\} * - (optional) 'publish_time': {string\} YYYY-MM-DDTHH:MM:SSZ format * - (optional) 'ordering_key': {string\} x/ function (message, metadata) { \} ```
+     */
+    code?: string | null;
+    /**
+     * Required. Name of the JavasScript function that should applied to Pub/Sub messages.
+     */
+    functionName?: string | null;
   }
   /**
    * Reference to a linked resource tracked by this Subscription.
@@ -748,6 +762,19 @@ export namespace analyticshub_v1 {
      * The list of subscriptions.
      */
     subscriptions?: Schema$Subscription[];
+  }
+  /**
+   * All supported message transforms types.
+   */
+  export interface Schema$MessageTransform {
+    /**
+     * Optional. If set to true, the transform is enabled. If false, the transform is disabled and will not be applied to messages. Defaults to `true`.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's are specified on a resource, each must have a unique `function_name`.
+     */
+    javascriptUdf?: Schema$JavaScriptUDF;
   }
   /**
    * Sets the `data` field as the HTTP body for delivery.

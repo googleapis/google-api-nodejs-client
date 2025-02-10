@@ -2716,7 +2716,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ImportItem {
     /**
-     * The aspects to modify. Supports the following syntaxes: {aspect_type_reference\}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference\}@{path\}: matches aspects that belong to the specified aspect type and path. @* : matches aspects of the given type for all paths. *@path : matches aspects of all types on the given path. Replace {aspect_type_reference\} with a reference to the aspect type, in the format {project_id_or_number\}.{location_id\}.{aspect_type_id\}.If you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry.In FULL entry sync mode, Dataplex implicitly adds the keys for all of the required aspects of an entry.
+     * The aspects to modify. Supports the following syntaxes: {aspect_type_reference\}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference\}@{path\}: matches aspects that belong to the specified aspect type and path. {aspect_type_reference\}@* : matches aspects of the given type for all paths. *@path : matches aspects of all types on the given path.Replace {aspect_type_reference\} with a reference to the aspect type, in the format {project_id_or_number\}.{location_id\}.{aspect_type_id\}.In FULL entry sync mode, if you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry. Dataplex implicitly adds the keys for all of the required aspects of an entry.
      */
     aspectKeys?: string[] | null;
     /**
@@ -2724,7 +2724,7 @@ export namespace dataplex_v1 {
      */
     entry?: Schema$GoogleCloudDataplexV1Entry;
     /**
-     * The fields to update, in paths that are relative to the Entry resource. Separate each field with a comma.In FULL entry sync mode, Dataplex includes the paths of all of the fields for an entry that can be modified, including aspects. This means that Dataplex replaces the existing entry with the entry in the metadata import file. All modifiable fields are updated, regardless of the fields that are listed in the update mask, and regardless of whether a field is present in the entry object.The update_mask field is ignored when an entry is created or re-created.Dataplex also determines which entries and aspects to modify by comparing the values and timestamps that you provide in the metadata import file with the values and timestamps that exist in your project. For more information, see Comparison logic (https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
+     * The fields to update, in paths that are relative to the Entry resource. Separate each field with a comma.In FULL entry sync mode, Dataplex includes the paths of all of the fields for an entry that can be modified, including aspects. This means that Dataplex replaces the existing entry with the entry in the metadata import file. All modifiable fields are updated, regardless of the fields that are listed in the update mask, and regardless of whether a field is present in the entry object.The update_mask field is ignored when an entry is created or re-created.In an aspect-only metadata job (when entry sync mode is NONE), set this value to aspects.Dataplex also determines which entries and aspects to modify by comparing the values and timestamps that you provide in the metadata import file with the values and timestamps that exist in your project. For more information, see Comparison logic (https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
      */
     updateMask?: string | null;
   }
@@ -3293,15 +3293,15 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * Job specification for a metadata import job
+   * Job specification for a metadata import job.You can run the following kinds of metadata import jobs: Full sync of entries with incremental import of their aspects. Supported for custom entries. Incremental import of aspects only. Supported for aspects that belong to custom entries and system entries. For custom entries, you can modify both optional aspects and required aspects. For system entries, you can modify optional aspects.
    */
   export interface Schema$GoogleCloudDataplexV1MetadataJobImportJobSpec {
     /**
-     * Required. The sync mode for aspects. Only INCREMENTAL mode is supported for aspects. An aspect is modified only if the metadata import file includes a reference to the aspect in the update_mask field and the aspect_keys field.
+     * Required. The sync mode for aspects.
      */
     aspectSyncMode?: string | null;
     /**
-     * Required. The sync mode for entries. Only FULL mode is supported for entries. All entries in the job's scope are modified. If an entry exists in Dataplex but isn't included in the metadata import file, the entry is deleted when you run the metadata job.
+     * Required. The sync mode for entries.
      */
     entrySyncMode?: string | null;
     /**
@@ -3326,15 +3326,15 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1MetadataJobImportJobSpecImportJobScope {
     /**
-     * Optional. The aspect types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}. The job modifies only the aspects that belong to these aspect types.If the metadata import file attempts to modify an aspect whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an aspect type must either match the location of the job, or the aspect type must be global.
+     * Optional. The aspect types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}. The job modifies only the aspects that belong to these aspect types.This field is required when creating an aspect-only import job.If the metadata import file attempts to modify an aspect whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an aspect type must either match the location of the job, or the aspect type must be global.
      */
     aspectTypes?: string[] | null;
     /**
-     * Required. The entry group that is in scope for the import job, specified as a relative resource name in the format projects/{project_number_or_id\}/locations/{location_id\}/entryGroups/{entry_group_id\}. Only entries that belong to the specified entry group are affected by the job.Must contain exactly one element. The entry group and the job must be in the same location.
+     * Required. The entry group that is in scope for the import job, specified as a relative resource name in the format projects/{project_number_or_id\}/locations/{location_id\}/entryGroups/{entry_group_id\}. Only entries and aspects that belong to the specified entry group are affected by the job.Must contain exactly one element. The entry group and the job must be in the same location.
      */
     entryGroups?: string[] | null;
     /**
-     * Required. The entry types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/entryTypes/{entry_type_id\}. The job modifies only the entries that belong to these entry types.If the metadata import file attempts to modify an entry whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an entry type must either match the location of the job, or the entry type must be global.
+     * Required. The entry types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/entryTypes/{entry_type_id\}. The job modifies only the entries and aspects that belong to these entry types.If the metadata import file attempts to modify an entry whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an entry type must either match the location of the job, or the entry type must be global.
      */
     entryTypes?: string[] | null;
   }

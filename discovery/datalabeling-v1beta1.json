@@ -233,7 +233,7 @@
         "datasets": {
           "methods": {
             "create": {
-              "description": "Creates dataset. If success return a Dataset resource.",
+              "description": " Creates dataset. If success return a Dataset resource.",
               "flatPath": "v1beta1/projects/{projectsId}/datasets",
               "httpMethod": "POST",
               "id": "datalabeling.projects.datasets.create",
@@ -677,7 +677,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Get a FeedbackThread object.",
+                      "description": " Get a FeedbackThread object.",
                       "flatPath": "v1beta1/projects/{projectsId}/datasets/{datasetsId}/annotatedDatasets/{annotatedDatasetsId}/feedbackThreads/{feedbackThreadsId}",
                       "httpMethod": "GET",
                       "id": "datalabeling.projects.datasets.annotatedDatasets.feedbackThreads.get",
@@ -934,7 +934,7 @@
             "evaluations": {
               "methods": {
                 "get": {
-                  "description": "Gets an evaluation by resource name (to search, use projects.evaluations.search).",
+                  "description": " Gets an evaluation by resource name (to search, use projects.evaluations.search).",
                   "flatPath": "v1beta1/projects/{projectsId}/datasets/{datasetsId}/evaluations/{evaluationsId}",
                   "httpMethod": "GET",
                   "id": "datalabeling.projects.datasets.evaluations.get",
@@ -997,7 +997,7 @@
             "image": {
               "methods": {
                 "label": {
-                  "description": "Starts a labeling task for image. The type of image labeling task is configured by feature in the request.",
+                  "description": " Starts a labeling task for image. The type of image labeling task is configured by feature in the request.",
                   "flatPath": "v1beta1/projects/{projectsId}/datasets/{datasetsId}/image:label",
                   "httpMethod": "POST",
                   "id": "datalabeling.projects.datasets.image.label",
@@ -1095,7 +1095,7 @@
         "evaluationJobs": {
           "methods": {
             "create": {
-              "description": "Creates an evaluation job.",
+              "description": " Creates an evaluation job.",
               "flatPath": "v1beta1/projects/{projectsId}/evaluationJobs",
               "httpMethod": "POST",
               "id": "datalabeling.projects.evaluationJobs.create",
@@ -1596,7 +1596,7 @@
       }
     }
   },
-  "revision": "20241117",
+  "revision": "20250127",
   "rootUrl": "https://datalabeling.googleapis.com/",
   "schemas": {
     "GoogleCloudDatalabelingV1alpha1CreateInstructionMetadata": {
@@ -2560,7 +2560,7 @@
       "type": "object"
     },
     "GoogleCloudDatalabelingV1beta1CreateEvaluationJobRequest": {
-      "description": "Request message for CreateEvaluationJob.",
+      "description": " Request message for CreateEvaluationJob.",
       "id": "GoogleCloudDatalabelingV1beta1CreateEvaluationJobRequest",
       "properties": {
         "job": {
@@ -3614,7 +3614,7 @@
       "type": "object"
     },
     "GoogleCloudDatalabelingV1beta1LabelImageRequest": {
-      "description": "Request message for starting an image labeling task.",
+      "description": " Request message for starting an image labeling task.",
       "id": "GoogleCloudDatalabelingV1beta1LabelImageRequest",
       "properties": {
         "basicConfig": {
@@ -3868,7 +3868,7 @@
       "type": "object"
     },
     "GoogleCloudDatalabelingV1beta1LabelVideoRequest": {
-      "description": "Request message for LabelVideo.",
+      "description": " Request message for LabelVideo.",
       "id": "GoogleCloudDatalabelingV1beta1LabelVideoRequest",
       "properties": {
         "basicConfig": {

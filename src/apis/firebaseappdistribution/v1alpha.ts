@@ -155,10 +155,6 @@ export namespace firebaseappdistribution_v1alpha {
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaAiInstructions {
     /**
-     * Optional. Describes the app to give the AI some context
-     */
-    appDescription?: string | null;
-    /**
      * Required. Steps to be accomplished by the AI
      */
     steps?: Schema$GoogleFirebaseAppdistroV1alphaAiStep[];
