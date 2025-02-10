@@ -1067,7 +1067,7 @@
       }
     }
   },
-  "revision": "20250121",
+  "revision": "20250123",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -3768,7 +3768,8 @@
             "STORAGE_UTILIZATION",
             "STORAGE_USED_BYTES",
             "NODE_COUNT",
-            "MEMORY_USED_BYTES"
+            "MEMORY_USED_BYTES",
+            "PROCESSING_UNIT_COUNT"
           ],
           "enumDescriptions": [
             "Unspecified metric type.",
@@ -3777,8 +3778,9 @@
             "Number of network connections for a resource.",
             "Storage utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
             "Sotrage used by a resource.",
-            "Node count for a resource. It represents the number of nodes units in a bigtable/spanner instance.",
-            "Memory used by a resource (in bytes)."
+            "Node count for a resource. It represents the number of node units in a bigtable/spanner instance.",
+            "Memory used by a resource (in bytes).",
+            "Processing units used by a resource. It represents the number of processing units in a spanner instance."
           ],
           "type": "string"
         },

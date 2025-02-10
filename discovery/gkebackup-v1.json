@@ -1713,7 +1713,7 @@
       }
     }
   },
-  "revision": "20250101",
+  "revision": "20250122",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3410,7 +3410,8 @@
             "UPLOADING",
             "SUCCEEDED",
             "FAILED",
-            "DELETING"
+            "DELETING",
+            "CLEANED_UP"
           ],
           "enumDescriptions": [
             "This is an illegal state and should not be encountered.",
@@ -3419,7 +3420,8 @@
             "The snapshot phase of the volume backup operation has completed and the snapshot is now being uploaded to backup storage.",
             "The volume backup operation has completed successfully.",
             "The volume backup operation has failed.",
-            "This VolumeBackup resource (and its associated artifacts) is in the process of being deleted."
+            "This VolumeBackup resource (and its associated artifacts) is in the process of being deleted.",
+            "The underlying artifacts of a volume backup (eg: persistent disk snapshots) are deleted."
           ],
           "readOnly": true,
           "type": "string"

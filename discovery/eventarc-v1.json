@@ -2460,7 +2460,7 @@
       }
     }
   },
-  "revision": "20250103",
+  "revision": "20250124",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3734,6 +3734,7 @@
         },
         "etag": {
           "description": "Output only. This checksum is computed by the server based on the value of other fields, and might be sent only on create requests to ensure that the client has an up-to-date value before proceeding.",
+          "readOnly": true,
           "type": "string"
         },
         "inputPayloadFormat": {

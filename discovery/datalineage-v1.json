@@ -113,6 +113,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://datalineage.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://datalineage.europe-west2.rep.googleapis.com/",
       "location": "europe-west2"
     },
@@ -1035,7 +1040,7 @@
       }
     }
   },
-  "revision": "20241202",
+  "revision": "20250131",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
     "GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest": {

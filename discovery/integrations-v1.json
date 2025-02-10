@@ -4553,7 +4553,7 @@
       }
     }
   },
-  "revision": "20250113",
+  "revision": "20250128",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -13133,8 +13133,34 @@
       "description": "Request for replaying an execution.",
       "id": "GoogleCloudIntegrationsV1alphaReplayExecutionRequest",
       "properties": {
+        "modifiedParameters": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudIntegrationsV1alphaValueType"
+          },
+          "description": "Optional. The modified input parameters for replay. - Provide values for all the fields in the 'update_mask'. Any field not present in the 'update_mask' will be ignored and its value will be taken from the original execution. - If the 'update_mask' is not specified, all the parameters from original execution will be ignored and only the `modified_parameters` will be used.",
+          "type": "object"
+        },
+        "replayMode": {
+          "description": "Optional. The mode of the replay.",
+          "enum": [
+            "REPLAY_MODE_UNSPECIFIED",
+            "REPLAY_MODE_FROM_BEGINNING",
+            "REPLAY_MODE_POINT_OF_FAILURE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Replay the original execution.",
+            "Replay the execution with the modified parameters."
+          ],
+          "type": "string"
+        },
         "replayReason": {
           "description": "Required. The user provided reason for replaying the execution.",
+          "type": "string"
+        },
+        "updateMask": {
+          "description": "Optional. The list of parameters to be updated. - If the `update_mask` is not specified, all the parameters from original execution will be ignored and only the `modified_parameters` will be used. - It is an error to include a parameter in `update_mask` but not in `modified_parameters`. - Updating nested fields in a JSON parameter is not supported, please provide the complete JSON in the `modified_parameters`.",
+          "format": "google-fieldmask",
           "type": "string"
         }
       },
