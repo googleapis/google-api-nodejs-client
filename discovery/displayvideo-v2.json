@@ -8010,7 +8010,7 @@
       }
     }
   },
-  "revision": "20250124",
+  "revision": "20250205",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -11425,15 +11425,11 @@
           "description": "Required. Immutable. The type of custom bidding algorithm.",
           "enum": [
             "CUSTOM_BIDDING_ALGORITHM_TYPE_UNSPECIFIED",
-            "SCRIPT_BASED",
-            "ADS_DATA_HUB_BASED",
-            "GOAL_BUILDER_BASED"
+            "SCRIPT_BASED"
           ],
           "enumDescriptions": [
             "Algorithm type is not specified or is unknown in this version.",
-            "Algorithm generated through customer-uploaded custom bidding script files.",
-            "Algorithm created through Ads Data Hub product.",
-            "Algorithm created through goal builder in DV3 UI."
+            "Algorithm generated through customer-uploaded custom bidding script files."
           ],
           "type": "string"
         },
