@@ -1052,7 +1052,7 @@
             "reactions": {
               "methods": {
                 "create": {
-                  "description": "Creates a reaction and adds it to a message. Only unicode emojis are supported. For an example, see [Add a reaction to a message](https://developers.google.com/workspace/chat/create-reactions). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
+                  "description": "Creates a reaction and adds it to a message. For an example, see [Add a reaction to a message](https://developers.google.com/workspace/chat/create-reactions). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
                   "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}/reactions",
                   "httpMethod": "POST",
                   "id": "chat.spaces.messages.reactions.create",
@@ -1083,7 +1083,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a reaction to a message. Only unicode emojis are supported. For an example, see [Delete a reaction](https://developers.google.com/workspace/chat/delete-reactions). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
+                  "description": "Deletes a reaction to a message. For an example, see [Delete a reaction](https://developers.google.com/workspace/chat/delete-reactions). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
                   "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}/reactions/{reactionsId}",
                   "httpMethod": "DELETE",
                   "id": "chat.spaces.messages.reactions.delete",
@@ -1344,7 +1344,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250130",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -1497,6 +1497,10 @@
       "description": "Output only. Annotations associated with the plain-text body of the message. To add basic formatting to a text message, see [Format text messages](https://developers.google.com/workspace/chat/format-messages). Example plain-text message body: ``` Hello @FooBot how are you!\" ``` The corresponding annotations metadata: ``` \"annotations\":[{ \"type\":\"USER_MENTION\", \"startIndex\":6, \"length\":7, \"userMention\": { \"user\": { \"name\":\"users/{user}\", \"displayName\":\"FooBot\", \"avatarUrl\":\"https://goo.gl/aeDtrS\", \"type\":\"BOT\" }, \"type\":\"MENTION\" } }] ```",
       "id": "Annotation",
       "properties": {
+        "customEmojiMetadata": {
+          "$ref": "CustomEmojiMetadata",
+          "description": "The metadata for a custom emoji."
+        },
         "length": {
           "description": "Length of the substring in the plain-text message body this annotation corresponds to.",
           "format": "int32",
@@ -1521,13 +1525,15 @@
             "ANNOTATION_TYPE_UNSPECIFIED",
             "USER_MENTION",
             "SLASH_COMMAND",
-            "RICH_LINK"
+            "RICH_LINK",
+            "CUSTOM_EMOJI"
           ],
           "enumDescriptions": [
             "Default value for the enum. Don't use.",
             "A user is mentioned.",
             "A slash command is invoked.",
-            "A rich link annotation."
+            "A rich link annotation.",
+            "A custom emoji annotation."
           ],
           "type": "string"
         },
@@ -1910,6 +1916,17 @@
       },
       "type": "object"
     },
+    "CustomEmojiMetadata": {
+      "description": "Annotation metadata for custom emoji.",
+      "id": "CustomEmojiMetadata",
+      "properties": {
+        "customEmoji": {
+          "$ref": "CustomEmoji",
+          "description": "The custom emoji."
+        }
+      },
+      "type": "object"
+    },
     "DateInput": {
       "description": "Date input values.",
       "id": "DateInput",
@@ -1984,7 +2001,7 @@
           "description": "Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/workspace/chat/dialogs), like data entered on a card."
         },
         "configCompleteRedirectUrl": {
-          "description": "For `MESSAGE` interaction events, the URL that users must be redirected to after they complete an authorization or configuration flow outside of Google Chat. For more information, see [Connect a Chat app with other services and tools](https://developers.google.com/workspace/chat/connect-web-services-tools).",
+          "description": "This URL is populated for `MESSAGE` and `ADDED_TO_SPACE` interaction events. After completing an authorization or configuration flow outside of Google Chat, users must be redirected to this URL to signal to Google Chat that the authorization or configuration flow was successful. For more information, see [Connect a Chat app with other services and tools](https://developers.google.com/workspace/chat/connect-web-services-tools). In [Developer Preview](https://developers.google.com/workspace/preview), this URL is also populated for `APP_COMMAND` interaction events.",
           "type": "string"
         },
         "dialogEventType": {
@@ -2113,8 +2130,7 @@
       "properties": {
         "customEmoji": {
           "$ref": "CustomEmoji",
-          "description": "Output only. A custom emoji.",
-          "readOnly": true
+          "description": "A custom emoji."
         },
         "unicode": {
           "description": "Optional. A basic emoji represented by a unicode string.",
