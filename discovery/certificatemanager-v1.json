@@ -1314,7 +1314,7 @@
       }
     }
   },
-  "revision": "20241204",
+  "revision": "20250203",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AllowlistedCertificate": {
@@ -1456,6 +1456,14 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "usedBy": {
+          "description": "Output only. The list of resources that use this Certificate.",
+          "items": {
+            "$ref": "UsedBy"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -2296,6 +2304,18 @@
             "$ref": "TrustAnchor"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UsedBy": {
+      "description": "Defines a resource that uses the certificate.",
+      "id": "UsedBy",
+      "properties": {
+        "name": {
+          "description": "Output only. Full name of the resource https://google.aip.dev/122#full-resource-names, e.g. `//certificatemanager.googleapis.com/projects/*/locations/*/certificateMaps/*/certificateMapEntries/*` or `//compute.googleapis.com/projects/*/locations/*/targetHttpsProxies/*`.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
