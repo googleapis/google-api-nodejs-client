@@ -1233,6 +1233,10 @@ export namespace dataproc_v1 {
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
+     * Optional. Resource manager tags to add to all instances (see Resource manager tags resources (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing)).
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
+    /**
      * Optional. The Dataproc service account (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_dataproc) (also see VM Data Plane identity (https://cloud.google.com/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity)) used by Dataproc cluster VM instances to access Google Cloud Platform services.If not specified, the Compute Engine default service account (https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.
      */
     serviceAccount?: string | null;
@@ -3148,7 +3152,7 @@ export namespace dataproc_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The resource name of the session.
+     * Identifier. The resource name of the session.
      */
     name?: string | null;
     /**
