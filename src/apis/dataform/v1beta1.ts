@@ -207,6 +207,9 @@ export namespace dataform_v1beta1 {
      * Optional. The default BigQuery location to use. Defaults to "US". See the BigQuery docs for a full list of locations: https://cloud.google.com/bigquery/docs/locations.
      */
     defaultLocation?: string | null;
+    /**
+     * Optional. The default notebook runtime options.
+     */
     defaultNotebookRuntimeOptions?: Schema$NotebookRuntimeOptions;
     /**
      * Optional. The default schema (BigQuery dataset ID).
@@ -298,7 +301,7 @@ export namespace dataform_v1beta1 {
      */
     commitMetadata?: Schema$CommitMetadata;
     /**
-     * A map to the path of the file to the operation. The path is the full file path including filename, from repository root.
+     * Optional. A map to the path of the file to the operation. The path is the full file path including filename, from repository root.
      */
     fileOperations?: {[key: string]: Schema$FileOperation} | null;
     /**
@@ -470,7 +473,7 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$DataEncryptionState {
     /**
-     * The KMS key version name with which data of a resource is encrypted.
+     * Required. The KMS key version name with which data of a resource is encrypted.
      */
     kmsKeyVersionName?: string | null;
   }
@@ -900,6 +903,9 @@ export namespace dataform_v1beta1 {
    * `MoveFile` response message.
    */
   export interface Schema$MoveFileResponse {}
+  /**
+   * Represents a notebook.
+   */
   export interface Schema$Notebook {
     /**
      * The contents of the notebook.
@@ -931,6 +937,9 @@ export namespace dataform_v1beta1 {
      */
     jobId?: string | null;
   }
+  /**
+   * Configures various aspects of Dataform notebook runtime.
+   */
   export interface Schema$NotebookRuntimeOptions {
     /**
      * Optional. The Google Cloud Storage location to upload the result to. Format: `gs://bucket-name`.
@@ -1320,7 +1329,7 @@ export namespace dataform_v1beta1 {
      */
     errorStatus?: Schema$Status;
     /**
-     * The timestamp of this execution attempt.
+     * Output only. The timestamp of this execution attempt.
      */
     executionTime?: string | null;
     /**
@@ -1341,7 +1350,7 @@ export namespace dataform_v1beta1 {
      */
     errorStatus?: Schema$Status;
     /**
-     * The timestamp of this release attempt.
+     * Output only. The timestamp of this release attempt.
      */
     releaseTime?: string | null;
   }
@@ -1415,15 +1424,15 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$Target {
     /**
-     * The action's database (Google Cloud project ID) .
+     * Optional. The action's database (Google Cloud project ID) .
      */
     database?: string | null;
     /**
-     * The action's name, within `database` and `schema`.
+     * Optional. The action's name, within `database` and `schema`.
      */
     name?: string | null;
     /**
-     * The action's schema (BigQuery dataset ID), within `database`.
+     * Optional. The action's schema (BigQuery dataset ID), within `database`.
      */
     schema?: string | null;
   }
@@ -1454,7 +1463,7 @@ export namespace dataform_v1beta1 {
      */
     path?: string | null;
     /**
-     * Indicates the status of the file.
+     * Output only. Indicates the status of the file.
      */
     state?: string | null;
   }
@@ -3420,7 +3429,7 @@ export namespace dataform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Delete
     extends StandardParameters {
     /**
-     * If set to true, any child resources of this repository will also be deleted. (Otherwise, the request will only succeed if the repository has no child resources.)
+     * Optional. If set to true, any child resources of this repository will also be deleted. (Otherwise, the request will only succeed if the repository has no child resources.)
      */
     force?: boolean;
     /**

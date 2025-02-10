@@ -333,7 +333,7 @@
                   ],
                   "parameters": {
                     "force": {
-                      "description": "If set to true, any child resources of this repository will also be deleted. (Otherwise, the request will only succeed if the repository has no child resources.)",
+                      "description": "Optional. If set to true, any child resources of this repository will also be deleted. (Otherwise, the request will only succeed if the repository has no child resources.)",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -2076,7 +2076,7 @@
       }
     }
   },
-  "revision": "20250119",
+  "revision": "20250202",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2182,7 +2182,8 @@
           "type": "string"
         },
         "defaultNotebookRuntimeOptions": {
-          "$ref": "NotebookRuntimeOptions"
+          "$ref": "NotebookRuntimeOptions",
+          "description": "Optional. The default notebook runtime options."
         },
         "defaultSchema": {
           "description": "Optional. The default schema (BigQuery dataset ID).",
@@ -2297,7 +2298,7 @@
           "additionalProperties": {
             "$ref": "FileOperation"
           },
-          "description": "A map to the path of the file to the operation. The path is the full file path including filename, from repository root.",
+          "description": "Optional. A map to the path of the file to the operation. The path is the full file path including filename, from repository root.",
           "type": "object"
         },
         "requiredHeadCommitSha": {
@@ -2516,7 +2517,7 @@
       "id": "DataEncryptionState",
       "properties": {
         "kmsKeyVersionName": {
-          "description": "The KMS key version name with which data of a resource is encrypted.",
+          "description": "Required. The KMS key version name with which data of a resource is encrypted.",
           "type": "string"
         }
       },
@@ -3103,6 +3104,7 @@
       "type": "object"
     },
     "Notebook": {
+      "description": "Represents a notebook.",
       "id": "Notebook",
       "properties": {
         "contents": {
@@ -3148,6 +3150,7 @@
       "type": "object"
     },
     "NotebookRuntimeOptions": {
+      "description": "Configures various aspects of Dataform notebook runtime.",
       "id": "NotebookRuntimeOptions",
       "properties": {
         "gcsOutputBucket": {
@@ -3667,8 +3670,9 @@
           "description": "The error status encountered upon this attempt to create the workflow invocation, if the attempt was unsuccessful."
         },
         "executionTime": {
-          "description": "The timestamp of this execution attempt.",
+          "description": "Output only. The timestamp of this execution attempt.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "workflowInvocation": {
@@ -3691,8 +3695,9 @@
           "description": "The error status encountered upon this attempt to create the compilation result, if the attempt was unsuccessful."
         },
         "releaseTime": {
-          "description": "The timestamp of this release attempt.",
+          "description": "Output only. The timestamp of this release attempt.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3789,15 +3794,15 @@
       "id": "Target",
       "properties": {
         "database": {
-          "description": "The action's database (Google Cloud project ID) .",
+          "description": "Optional. The action's database (Google Cloud project ID) .",
           "type": "string"
         },
         "name": {
-          "description": "The action's name, within `database` and `schema`.",
+          "description": "Optional. The action's name, within `database` and `schema`.",
           "type": "string"
         },
         "schema": {
-          "description": "The action's schema (BigQuery dataset ID), within `database`.",
+          "description": "Optional. The action's schema (BigQuery dataset ID), within `database`.",
           "type": "string"
         }
       },
@@ -3840,7 +3845,7 @@
           "type": "string"
         },
         "state": {
-          "description": "Indicates the status of the file.",
+          "description": "Output only. Indicates the status of the file.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ADDED",
@@ -3855,6 +3860,7 @@
             "The file has been modified.",
             "The file contains merge conflicts."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
