@@ -2264,7 +2264,7 @@
       }
     }
   },
-  "revision": "20250123",
+  "revision": "20250129",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -3254,6 +3254,24 @@
       "description": "Metadata for a given google.cloud.location.Location.",
       "id": "LocationMetadata",
       "properties": {
+        "supportedFlexPerformance": {
+          "description": "Output only. Supported flex performance in a location.",
+          "items": {
+            "enum": [
+              "FLEX_PERFORMANCE_UNSPECIFIED",
+              "FLEX_PERFORMANCE_DEFAULT",
+              "FLEX_PERFORMANCE_CUSTOM"
+            ],
+            "enumDescriptions": [
+              "Unspecified flex performance.",
+              "Flex Storage Pool with default performance.",
+              "Flex Storage Pool with custom performance."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "supportedServiceLevels": {
           "description": "Output only. Supported service levels in a location.",
           "items": {
