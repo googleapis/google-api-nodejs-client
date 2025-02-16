@@ -10118,7 +10118,7 @@
               "youtube.playlistItems.update"
             ]
           },
-          "description": "The ID that YouTube uses to uniquely identify thGe playlist that the playlist item is in.",
+          "description": "The ID that YouTube uses to uniquely identify the playlist that the playlist item is in.",
           "type": "string"
         },
         "position": {
