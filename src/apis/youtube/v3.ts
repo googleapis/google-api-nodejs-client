@@ -3225,7 +3225,7 @@ export namespace youtube_v3 {
      */
     description?: string | null;
     /**
-     * The ID that YouTube uses to uniquely identify thGe playlist that the playlist item is in.
+     * The ID that YouTube uses to uniquely identify the playlist that the playlist item is in.
      */
     playlistId?: string | null;
     /**
