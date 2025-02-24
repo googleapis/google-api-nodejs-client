@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatatransfer-v1.7.0...bigquerydatatransfer-v1.8.0) (2025-02-04)
+
+
+### Features
+
+* **bigquerydatatransfer:** update the API ([1c6359c](https://github.com/googleapis/google-api-nodejs-client/commit/1c6359c4477d7a9c48c2d591ee7cc5cfff3fc6b0))
+
 ## [1.7.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatatransfer-v1.6.0...bigquerydatatransfer-v1.7.0) (2024-10-30)
 
 

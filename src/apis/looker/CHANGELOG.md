@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/looker-v2.2.0...looker-v2.3.0) (2025-02-04)
+
+
+### Features
+
+* **looker:** update the API ([9ce6a87](https://github.com/googleapis/google-api-nodejs-client/commit/9ce6a87b11a9572fc1f4e771770525e0fbfeed1e))
+
 ## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/looker-v2.1.0...looker-v2.2.0) (2024-10-30)
 
 

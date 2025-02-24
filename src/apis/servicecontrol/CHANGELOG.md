@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v4.2.0...servicecontrol-v5.0.0) (2025-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **servicecontrol:** This release has breaking changes.
+
+### Features
+
+* **servicecontrol:** update the API ([63c47c4](https://github.com/googleapis/google-api-nodejs-client/commit/63c47c4cd85d7a564ca30d010251a4ab9bc7e474))
+
 ## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v4.1.1...servicecontrol-v4.2.0) (2024-08-16)
 
 

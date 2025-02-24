@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/webfonts-v1.4.0...webfonts-v1.5.0) (2025-02-04)
+
+
+### Features
+
+* **webfonts:** update the API ([4bf4239](https://github.com/googleapis/google-api-nodejs-client/commit/4bf42394a8c5abe2d469795845a052e3eab02051))
+
 ## [1.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/webfonts-v1.3.0...webfonts-v1.4.0) (2024-06-21)
 
 

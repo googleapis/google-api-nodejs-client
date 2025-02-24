@@ -1,5 +1,15 @@
 # Changelog
 
+## [23.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v23.2.0...healthcare-v23.3.0) (2025-02-04)
+
+
+### Features
+
+* **healthcare:** update the API ([f853121](https://github.com/googleapis/google-api-nodejs-client/commit/f85312152cd265039b96fd0434d3a51a984e3ada))
+* **healthcare:** update the API ([851bba1](https://github.com/googleapis/google-api-nodejs-client/commit/851bba19f73f656f97fcbf224538de4001a08c03))
+* **healthcare:** update the API ([4767f7a](https://github.com/googleapis/google-api-nodejs-client/commit/4767f7ac66946a69e766b3560d36142f52681be9))
+* **healthcare:** update the API ([f267f00](https://github.com/googleapis/google-api-nodejs-client/commit/f267f00de372bb5ea2a2a8e53a80f71fa4939c4a))
+
 ## [23.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v23.1.0...healthcare-v23.2.0) (2024-10-30)
 
 

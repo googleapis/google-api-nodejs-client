@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v8.1.0...logging-v8.2.0) (2025-02-04)
+
+
+### Features
+
+* **logging:** update the API ([195ac69](https://github.com/googleapis/google-api-nodejs-client/commit/195ac69647342a7f36cf73ff8c3b1f6a60f4c35b))
+
+
+### Bug Fixes
+
+* **logging:** update the API ([52b7e88](https://github.com/googleapis/google-api-nodejs-client/commit/52b7e8828e1e8c5fb10576758d80f936bcc5f25d))
+
 ## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v8.0.0...logging-v8.1.0) (2024-10-30)
 
 

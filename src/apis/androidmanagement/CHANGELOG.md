@@ -1,5 +1,15 @@
 # Changelog
 
+## [17.11.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v17.10.0...androidmanagement-v17.11.0) (2025-02-04)
+
+
+### Features
+
+* **androidmanagement:** update the API ([8b40261](https://github.com/googleapis/google-api-nodejs-client/commit/8b40261d1dd8b8a4360a6e00515834228dc7ce76))
+* **androidmanagement:** update the API ([c74b1f2](https://github.com/googleapis/google-api-nodejs-client/commit/c74b1f2bb7917bcf7d7781bf578cf0162c044e92))
+* **androidmanagement:** update the API ([fcffb8f](https://github.com/googleapis/google-api-nodejs-client/commit/fcffb8fc4f39a54d3540e9284791c775fcc6a141))
+* **androidmanagement:** update the API ([5366254](https://github.com/googleapis/google-api-nodejs-client/commit/5366254d09e981b9e0dd97a7d66bec74dc362099))
+
 ## [17.10.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v17.9.0...androidmanagement-v17.10.0) (2024-10-30)
 
 

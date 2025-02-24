@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v6.0.0...datacatalog-v6.1.0) (2025-02-04)
+
+
+### Features
+
+* **datacatalog:** update the API ([4eedeb4](https://github.com/googleapis/google-api-nodejs-client/commit/4eedeb44447d00f8fe6d3394131f237eb47abc27))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v5.0.1...datacatalog-v6.0.0) (2024-05-02)
 
 
