@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20250115",
+  "revision": "20250223",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -855,7 +855,8 @@
             "EV_CONNECTOR_TYPE_CCS_COMBO_2",
             "EV_CONNECTOR_TYPE_TESLA",
             "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T",
-            "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET"
+            "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET",
+            "EV_CONNECTOR_TYPE_NACS"
           ],
           "enumDescriptions": [
             "Unspecified connector.",
@@ -867,7 +868,8 @@
             "Combined Charging System (AC and DC). Based on Type-2 Mennekes connector",
             "The generic TESLA connector. This is NACS in the North America but can be non-NACS in other parts of the world (e.g. CCS Combo 2 (CCS2) or GB/T). This value is less representative of an actual connector type, and more represents the ability to charge a Tesla brand vehicle at a Tesla owned charging station.",
             "GB/T type corresponds to the GB/T standard in China. This type covers all GB_T types.",
-            "Unspecified wall outlet."
+            "Unspecified wall outlet.",
+            "The North American Charging System (NACS), standardized as SAE J3400."
           ],
           "type": "string"
         }
@@ -2145,7 +2147,8 @@
               "EV_CONNECTOR_TYPE_CCS_COMBO_2",
               "EV_CONNECTOR_TYPE_TESLA",
               "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T",
-              "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET"
+              "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET",
+              "EV_CONNECTOR_TYPE_NACS"
             ],
             "enumDescriptions": [
               "Unspecified connector.",
@@ -2157,7 +2160,8 @@
               "Combined Charging System (AC and DC). Based on Type-2 Mennekes connector",
               "The generic TESLA connector. This is NACS in the North America but can be non-NACS in other parts of the world (e.g. CCS Combo 2 (CCS2) or GB/T). This value is less representative of an actual connector type, and more represents the ability to charge a Tesla brand vehicle at a Tesla owned charging station.",
               "GB/T type corresponds to the GB/T standard in China. This type covers all GB_T types.",
-              "Unspecified wall outlet."
+              "Unspecified wall outlet.",
+              "The North American Charging System (NACS), standardized as SAE J3400."
             ],
             "type": "string"
           },
