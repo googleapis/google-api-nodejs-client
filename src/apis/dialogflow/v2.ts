@@ -1827,7 +1827,7 @@ export namespace dialogflow_v2 {
      */
     clientId?: string | null;
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      */
     clientSecret?: string | null;
     /**
@@ -3415,7 +3415,7 @@ export namespace dialogflow_v2 {
      */
     clientId?: string | null;
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      */
     clientSecret?: string | null;
     /**
@@ -3669,7 +3669,7 @@ export namespace dialogflow_v2 {
      */
     answerRelevance?: string | null;
     /**
-     * Optional. Whether or not the information in the document is correct. For example: * Query: "Can I return the package in 2 days once received?" * Suggested document says: "Items must be returned/exchanged within 60 days of the purchase date." * Ground truth: "No return or exchange is allowed." * [document_correctness]: INCORRECT
+     * Optional. Whether or not the information in the document is correct. For example: * Query: "Can I return the package in 2 days once received?" * Suggested document says: "Items must be returned/exchanged within 60 days of the purchase date." * Ground truth: "No return or exchange is allowed." * document_correctness: INCORRECT
      */
     documentCorrectness?: string | null;
     /**
@@ -5616,7 +5616,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction {}
   /**
-   * Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
+   * Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a Dialogflow CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff {
     /**
@@ -6246,7 +6246,7 @@ export namespace dialogflow_v2 {
      */
     name?: string | null;
     /**
-     * Output only. Human eval template in csv format. It tooks real-world conversations provided through input dataset, generates example suggestions for customer to verify quality of the model. For Smart Reply, the generated csv file contains columns of Context, (Suggestions,Q1,Q2)*3, Actual reply. Context contains at most 10 latest messages in the conversation prior to the current suggestion. Q1: "Would you send it as the next message of agent?" Evaluated based on whether the suggest is appropriate to be sent by agent in current context. Q2: "Does the suggestion move the conversation closer to resolution?" Evaluated based on whether the suggestion provide solutions, or answers customer's question or collect information from customer to resolve the customer's issue. Actual reply column contains the actual agent reply sent in the context.
+     * Output only. Human eval template in csv format. It takes real-world conversations provided through input dataset, generates example suggestions for customer to verify quality of the model. For Smart Reply, the generated csv file contains columns of Context, (Suggestions,Q1,Q2)*3, Actual reply. Context contains at most 10 latest messages in the conversation prior to the current suggestion. Q1: "Would you send it as the next message of agent?" Evaluated based on whether the suggest is appropriate to be sent by agent in current context. Q2: "Does the suggestion move the conversation closer to resolution?" Evaluated based on whether the suggestion provide solutions, or answers customer's question or collect information from customer to resolve the customer's issue. Actual reply column contains the actual agent reply sent in the context.
      */
     rawHumanEvalTemplateCsv?: string | null;
     /**
@@ -6747,11 +6747,11 @@ export namespace dialogflow_v2 {
      */
     datasets?: Schema$GoogleCloudDialogflowV2InputDataset[];
     /**
-     * Configuration for smart compose model evalution.
+     * Configuration for smart compose model evaluation.
      */
     smartComposeConfig?: Schema$GoogleCloudDialogflowV2EvaluationConfigSmartComposeConfig;
     /**
-     * Configuration for smart reply model evalution.
+     * Configuration for smart reply model evaluation.
      */
     smartReplyConfig?: Schema$GoogleCloudDialogflowV2EvaluationConfigSmartReplyConfig;
   }
@@ -9587,7 +9587,7 @@ export namespace dialogflow_v2 {
      */
     latestMessage?: string | null;
     /**
-     * Optional. The previously suggested query for the given conversation. This helps identify whether the next suggestion we generate is resonably different from the previous one. This is useful to avoid similar suggestions within the conversation.
+     * Optional. The previously suggested query for the given conversation. This helps identify whether the next suggestion we generate is reasonably different from the previous one. This is useful to avoid similar suggestions within the conversation.
      */
     previousSuggestedQuery?: string | null;
   }
@@ -18537,7 +18537,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Answerrecords$List
     extends StandardParameters {
     /**
-     * Optional. Filters to restrict results to specific answer records. Marked deprecated as it hasn't been, and isn't currently, supported. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. Filters to restrict results to specific answer records. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * conversation_id with equals(=) operator Examples: * "conversation_id=bar" matches answer records in the projects/foo/locations/global/conversations/bar conversation (assuming the parent is projects/foo/locations/global). For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
     filter?: string;
     /**
@@ -31585,7 +31585,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Locations$Answerrecords$List
     extends StandardParameters {
     /**
-     * Optional. Filters to restrict results to specific answer records. Marked deprecated as it hasn't been, and isn't currently, supported. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. Filters to restrict results to specific answer records. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * conversation_id with equals(=) operator Examples: * "conversation_id=bar" matches answer records in the projects/foo/locations/global/conversations/bar conversation (assuming the parent is projects/foo/locations/global). For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
     filter?: string;
     /**

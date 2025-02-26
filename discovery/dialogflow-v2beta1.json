@@ -2645,8 +2645,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "deprecated": true,
-                  "description": "Optional. Filters to restrict results to specific answer records. For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                  "description": "Optional. Filters to restrict results to specific answer records. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * conversation_id with equals(=) operator Examples: * \"conversation_id=bar\" matches answer records in the projects/foo/locations/global/conversations/bar conversation (assuming the parent is projects/foo/locations/global). For more information about filtering, see [API Filtering](https://aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -6294,8 +6293,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "deprecated": true,
-                      "description": "Optional. Filters to restrict results to specific answer records. For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                      "description": "Optional. Filters to restrict results to specific answer records. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * conversation_id with equals(=) operator Examples: * \"conversation_id=bar\" matches answer records in the projects/foo/locations/global/conversations/bar conversation (assuming the parent is projects/foo/locations/global). For more information about filtering, see [API Filtering](https://aip.dev/160).",
                       "location": "query",
                       "type": "string"
                     },
@@ -7822,6 +7820,142 @@
                 }
               }
             },
+            "phoneNumbers": {
+              "methods": {
+                "delete": {
+                  "description": "Requests deletion of a `PhoneNumber`. The `PhoneNumber` is moved into the DELETE_REQUESTED state immediately, and is deleted approximately 30 days later. This method may only be called on a `PhoneNumber` in the ACTIVE state.",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/phoneNumbers/{phoneNumbersId}",
+                  "httpMethod": "DELETE",
+                  "id": "dialogflow.projects.locations.phoneNumbers.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The unique identifier of the `PhoneNumber` to delete. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/phoneNumbers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2beta1PhoneNumber"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "list": {
+                  "description": "Returns the list of all phone numbers in the specified project.",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/phoneNumbers",
+                  "httpMethod": "GET",
+                  "id": "dialogflow.projects.locations.phoneNumbers.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return in a single page. The default value is 100. The maximum value is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The next_page_token value returned from a previous list request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project to list all `PhoneNumber` resources from. Format: `projects/`. Format: `projects//locations/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "showDeleted": {
+                      "description": "Optional. Controls whether `PhoneNumber` resources in the DELETE_REQUESTED state should be returned. Defaults to false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v2beta1/{+parent}/phoneNumbers",
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the specified `PhoneNumber`.",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/phoneNumbers/{phoneNumbersId}",
+                  "httpMethod": "PATCH",
+                  "id": "dialogflow.projects.locations.phoneNumbers.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Optional. The unique identifier of this phone number. Required for PhoneNumbers.UpdatePhoneNumber method. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/phoneNumbers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The mask to control which fields get updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2beta1PhoneNumber"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2beta1PhoneNumber"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "undelete": {
+                  "description": "Cancels the deletion request for a `PhoneNumber`. This method may only be called on a `PhoneNumber` in the DELETE_REQUESTED state.",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/phoneNumbers/{phoneNumbersId}:undelete",
+                  "httpMethod": "POST",
+                  "id": "dialogflow.projects.locations.phoneNumbers.undelete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The unique identifier of the `PhoneNumber` to delete. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/phoneNumbers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+name}:undelete",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2beta1UndeletePhoneNumberRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2beta1PhoneNumber"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                }
+              }
+            },
             "sipTrunks": {
               "methods": {
                 "create": {
@@ -8174,6 +8308,142 @@
             }
           }
         },
+        "phoneNumbers": {
+          "methods": {
+            "delete": {
+              "description": "Requests deletion of a `PhoneNumber`. The `PhoneNumber` is moved into the DELETE_REQUESTED state immediately, and is deleted approximately 30 days later. This method may only be called on a `PhoneNumber` in the ACTIVE state.",
+              "flatPath": "v2beta1/projects/{projectsId}/phoneNumbers/{phoneNumbersId}",
+              "httpMethod": "DELETE",
+              "id": "dialogflow.projects.phoneNumbers.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The unique identifier of the `PhoneNumber` to delete. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/phoneNumbers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudDialogflowV2beta1PhoneNumber"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/dialogflow"
+              ]
+            },
+            "list": {
+              "description": "Returns the list of all phone numbers in the specified project.",
+              "flatPath": "v2beta1/projects/{projectsId}/phoneNumbers",
+              "httpMethod": "GET",
+              "id": "dialogflow.projects.phoneNumbers.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of items to return in a single page. The default value is 100. The maximum value is 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. The next_page_token value returned from a previous list request.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The project to list all `PhoneNumber` resources from. Format: `projects/`. Format: `projects//locations/`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "showDeleted": {
+                  "description": "Optional. Controls whether `PhoneNumber` resources in the DELETE_REQUESTED state should be returned. Defaults to false.",
+                  "location": "query",
+                  "type": "boolean"
+                }
+              },
+              "path": "v2beta1/{+parent}/phoneNumbers",
+              "response": {
+                "$ref": "GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/dialogflow"
+              ]
+            },
+            "patch": {
+              "description": "Updates the specified `PhoneNumber`.",
+              "flatPath": "v2beta1/projects/{projectsId}/phoneNumbers/{phoneNumbersId}",
+              "httpMethod": "PATCH",
+              "id": "dialogflow.projects.phoneNumbers.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Optional. The unique identifier of this phone number. Required for PhoneNumbers.UpdatePhoneNumber method. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/phoneNumbers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The mask to control which fields get updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudDialogflowV2beta1PhoneNumber"
+              },
+              "response": {
+                "$ref": "GoogleCloudDialogflowV2beta1PhoneNumber"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/dialogflow"
+              ]
+            },
+            "undelete": {
+              "description": "Cancels the deletion request for a `PhoneNumber`. This method may only be called on a `PhoneNumber` in the DELETE_REQUESTED state.",
+              "flatPath": "v2beta1/projects/{projectsId}/phoneNumbers/{phoneNumbersId}:undelete",
+              "httpMethod": "POST",
+              "id": "dialogflow.projects.phoneNumbers.undelete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The unique identifier of the `PhoneNumber` to delete. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/phoneNumbers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/{+name}:undelete",
+              "request": {
+                "$ref": "GoogleCloudDialogflowV2beta1UndeletePhoneNumberRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudDialogflowV2beta1PhoneNumber"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/dialogflow"
+              ]
+            }
+          }
+        },
         "suggestions": {
           "methods": {
             "generateStatelessSummary": {
@@ -8239,7 +8509,7 @@
       }
     }
   },
-  "revision": "20250121",
+  "revision": "20250213",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -10325,7 +10595,7 @@
           "type": "string"
         },
         "clientSecret": {
-          "description": "Required. The client secret provided by the 3rd party platform.",
+          "description": "Optional. The client secret provided by the 3rd party platform.",
           "type": "string"
         },
         "scopes": {
@@ -12700,7 +12970,7 @@
           "type": "string"
         },
         "clientSecret": {
-          "description": "Required. The client secret provided by the 3rd party platform.",
+          "description": "Optional. The client secret provided by the 3rd party platform.",
           "type": "string"
         },
         "scopes": {
@@ -15462,7 +15732,7 @@
           "type": "string"
         },
         "documentCorrectness": {
-          "description": "Optional. Whether or not the information in the document is correct. For example: * Query: \"Can I return the package in 2 days once received?\" * Suggested document says: \"Items must be returned/exchanged within 60 days of the purchase date.\" * Ground truth: \"No return or exchange is allowed.\" * [document_correctness]: INCORRECT",
+          "description": "Optional. Whether or not the information in the document is correct. For example: * Query: \"Can I return the package in 2 days once received?\" * Suggested document says: \"Items must be returned/exchanged within 60 days of the purchase date.\" * Ground truth: \"No return or exchange is allowed.\" * document_correctness: INCORRECT",
           "enum": [
             "DOCUMENT_CORRECTNESS_UNSPECIFIED",
             "INCORRECT",
@@ -15603,7 +15873,7 @@
           "description": "The natural language speech audio to be processed."
         },
         "cxCurrentPage": {
-          "description": "The unique identifier of the CX page to override the `current_page` in the session. Format: `projects//locations//agents//flows//pages/`. If `cx_current_page` is specified, the previous state of the session will be ignored by Dialogflow CX, including the previous page and the previous session parameters. In most cases, `cx_current_page` and `cx_parameters` should be configured together to direct a session to a specific state. Note: this field should only be used if you are connecting to a Dialogflow CX agent.",
+          "description": "The unique identifier of the Dialogflow CX page to override the `current_page` in the session. Format: `projects//locations//agents//flows//pages/`. If `cx_current_page` is specified, the previous state of the session will be ignored by Dialogflow CX, including the previous page and the previous session parameters. In most cases, `cx_current_page` and `cx_parameters` should be configured together to direct a session to a specific state. Note: this field should only be used if you are connecting to a Dialogflow CX agent.",
           "type": "string"
         },
         "cxParameters": {
@@ -19832,6 +20102,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse": {
+      "description": "The response message for PhoneNumbers.ListPhoneNumbers.",
+      "id": "GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "phoneNumbers": {
+          "description": "The list of `PhoneNumber` resources. There is a maximum number of items returned based on the page_size field in the request.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1PhoneNumber"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse": {
       "description": "The response message for SessionEntityTypes.ListSessionEntityTypes.",
       "id": "GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse",
@@ -20179,6 +20467,41 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1PhoneNumber": {
+      "description": "Represents a phone number. `PhoneNumber` resources enable phone calls to be answered by Dialogflow services and are added to a project through a PhoneNumberOrder.",
+      "id": "GoogleCloudDialogflowV2beta1PhoneNumber",
+      "properties": {
+        "conversationProfile": {
+          "description": "Optional. The conversation profile calls to this `PhoneNumber` should use. The project ID here should be the same as the one in name. Format: `projects//conversationProfiles/`. Format: `projects//locations//conversationProfiles/`.",
+          "type": "string"
+        },
+        "lifecycleState": {
+          "description": "Output only. The state of the `PhoneNumber`. Defaults to `ACTIVE`. `PhoneNumber` objects set to `DELETE_REQUESTED` always decline incoming calls and can be removed completely within 30 days.",
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETE_REQUESTED"
+          ],
+          "enumDescriptions": [
+            "This value is never used.",
+            "Number is active and can receive phone calls.",
+            "Number is pending deletion, and cannot receive calls."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Optional. The unique identifier of this phone number. Required for PhoneNumbers.UpdatePhoneNumber method. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Output only. Phone number in [E.164](https://en.wikipedia.org/wiki/E.164) format. An example of a correctly formatted phone number: +15556767888.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1QueryInput": {
       "description": "Represents the query input. It can contain either: 1. An audio config which instructs the speech recognizer how to process the speech audio. 2. A conversational query in the form of text. 3. An event that specifies which intent to trigger.",
       "id": "GoogleCloudDialogflowV2beta1QueryInput",
@@ -20424,7 +20747,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff": {
-      "description": "Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.",
+      "description": "Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a Dialogflow CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.",
       "id": "GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff",
       "properties": {
         "metadata": {
@@ -21426,7 +21749,7 @@
           "type": "string"
         },
         "previousSuggestedQuery": {
-          "description": "Optional. The previously suggested query for the given conversation. This helps identify whether the next suggestion we generate is resonably different from the previous one. This is useful to avoid similar suggestions within the conversation.",
+          "description": "Optional. The previously suggested query for the given conversation. This helps identify whether the next suggestion we generate is reasonably different from the previous one. This is useful to avoid similar suggestions within the conversation.",
           "type": "string"
         }
       },
@@ -21951,6 +22274,12 @@
     "GoogleCloudDialogflowV2beta1TrainAgentRequest": {
       "description": "The request message for Agents.TrainAgent.",
       "id": "GoogleCloudDialogflowV2beta1TrainAgentRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1UndeletePhoneNumberRequest": {
+      "description": "The request message for PhoneNumbers.UndeletePhoneNumber.",
+      "id": "GoogleCloudDialogflowV2beta1UndeletePhoneNumberRequest",
       "properties": {},
       "type": "object"
     },
