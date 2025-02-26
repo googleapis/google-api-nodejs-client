@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20250106",
+  "revision": "20250211",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -4970,7 +4970,7 @@
       "properties": {
         "range": {
           "$ref": "GridRange",
-          "description": "The range to insert new cells into."
+          "description": "The range to insert new cells into. The range is constrained to the current sheet boundaries."
         },
         "shiftDimension": {
           "description": "The dimension which will be shifted when inserting cells. If ROWS, existing cells will be shifted down. If COLUMNS, existing cells will be shifted right.",
