@@ -202,6 +202,81 @@
             }
           },
           "resources": {
+            "announcements": {
+              "methods": {
+                "get": {
+                  "description": "Retrieves a `Announcement` by its resource name.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/announcements/{announcementsId}",
+                  "httpMethod": "GET",
+                  "id": "vmwareengine.projects.locations.announcements.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the announcement to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/announcements/announcement-uuid`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/announcements/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Announcement"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists `Announcements` for a given region and project",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/announcements",
+                  "httpMethod": "GET",
+                  "id": "vmwareengine.projects.locations.announcements.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `>`, or `<`. For example, if you are filtering a list of announcement runs, you can exclude the ones named `example-announcement` by specifying `name != \"example-announcement\"`. You can also filter nested fields. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = \"example-announcement\") (createTime > \"2021-04-12T08:15:10.40Z\") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = \"announcement-1\") AND (createTime > \"2021-04-12T08:15:10.40Z\") OR (name = \"announcement-2\") ```",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy=\"name desc\"`. Currently, only ordering by `name` is supported.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of announcements to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListAnnouncements` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAnnouncements` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the location to be queried for announcements. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/announcements",
+                  "response": {
+                    "$ref": "ListAnnouncementsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "dnsBindPermission": {
               "methods": {
                 "grant": {
@@ -2754,6 +2829,120 @@
                       ]
                     }
                   }
+                },
+                "upgrades": {
+                  "methods": {
+                    "get": {
+                      "description": "Retrieves a private cloud `Upgrade` resource by its resource name.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}/upgrades/{upgradesId}",
+                      "httpMethod": "GET",
+                      "id": "vmwareengine.projects.locations.privateClouds.upgrades.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the `Upgrade` resource to be retrieved. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/upgrades/my-upgrade`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/privateClouds/[^/]+/upgrades/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Upgrade"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists past, ongoing and upcoming `Upgrades` for the given private cloud.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}/upgrades",
+                      "httpMethod": "GET",
+                      "id": "vmwareengine.projects.locations.privateClouds.upgrades.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `>`, or `<`. For example, if you are filtering a list of upgrades, you can exclude the ones named `example-upgrade1` by specifying `name != \"example-upgrade1\"`. You can also filter nested fields. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = \"example-upgrade\") (createTime > \"2021-04-12T08:15:10.40Z\") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = \"upgrade-1\") AND (createTime > \"2021-04-12T08:15:10.40Z\") OR (name = \"upgrade-2\") ```",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy=\"name desc\"`. Currently, only ordering by `name` is supported.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of `Upgrades` to return in one page. The service may return fewer resources than this value. The maximum value is coerced to 1000. The default value of this field is 500.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous `ListUpgrades` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUpgrades` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Query a list of `Upgrades` for the given private cloud resource name. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/privateClouds/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/upgrades",
+                      "response": {
+                        "$ref": "ListUpgradesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Update the private cloud `Upgrade` resource. Only `schedule` field can updated. The schedule can only be updated when the upgrade has not started and schedule edit window is open. Only fields specified in `update_mask` are considered.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}/upgrades/{upgradesId}",
+                      "httpMethod": "PATCH",
+                      "id": "vmwareengine.projects.locations.privateClouds.upgrades.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. Identifier. The resource name of the private cloud `Upgrade`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/upgrades/my-upgrade`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/privateClouds/[^/]+/upgrades/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Field mask is used to specify the fields to be overwritten in the `Upgrade` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "Upgrade"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -3173,9 +3362,86 @@
       }
     }
   },
-  "revision": "20241009",
+  "revision": "20250218",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
+    "Announcement": {
+      "description": "Announcement for the resources of Vmware Engine.",
+      "id": "Announcement",
+      "properties": {
+        "activityType": {
+          "description": "Optional. Activity type of the announcement There can be only one active announcement for a given activity type and target resource.",
+          "type": "string"
+        },
+        "cluster": {
+          "description": "A Cluster resource name.",
+          "type": "string"
+        },
+        "code": {
+          "description": "Required. Code of the announcement. Indicates the presence of a VMware Engine related announcement and corresponds to a related message in the `description` field.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Creation time of this resource. It also serves as start time of notification.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. Description of the announcement.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Additional structured details about this announcement.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The resource name of the announcement. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/announcements/my-announcement-id`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "privateCloud": {
+          "description": "A Private Cloud resource name.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the resource. New values may be added to this enum when appropriate.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "INACTIVE",
+            "DELETING",
+            "CREATING"
+          ],
+          "enumDescriptions": [
+            "The default value. This value should never be used.",
+            "Active announcement which should be visible to user.",
+            "Inactive announcement which should not be visible to user.",
+            "Announcement which is being deleted",
+            "Announcement which being created"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetResourceType": {
+          "description": "Output only. Target Resource Type defines the type of the target for the announcement",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last update time of this resource.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AuditConfig": {
       "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.",
       "id": "AuditConfig",
@@ -3373,6 +3639,30 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Constraints": {
+      "description": "Constraints to be applied while editing a schedule. These constraints ensure that `Upgrade` specific requirements are met.",
+      "id": "Constraints",
+      "properties": {
+        "minHoursDay": {
+          "description": "Output only. Minimum number of hours must be allotted for the upgrade activities for each selected day. This is a minimum; the upgrade schedule can allot more hours for the given day.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "minHoursWeek": {
+          "description": "Output only. The minimum number of weekly hours must be allotted for the upgrade activities. This is just a minimum; the schedule can assign more weekly hours.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "rescheduleDateRange": {
+          "$ref": "Interval",
+          "description": "Output only. Output Only. The user can only reschedule an upgrade that starts within this range.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -3768,6 +4058,23 @@
       },
       "type": "object"
     },
+    "Interval": {
+      "description": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.",
+      "id": "Interval",
+      "properties": {
+        "endTime": {
+          "description": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IpRange": {
       "description": "An IP range provided in any one of the supported formats.",
       "id": "IpRange",
@@ -3783,6 +4090,31 @@
         "ipAddressRange": {
           "description": "An IP address range in the CIDR format. For example: `10.0.0.0/24`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAnnouncementsResponse": {
+      "description": "Response message for VmwareEngine.ListAnnouncements",
+      "id": "ListAnnouncementsResponse",
+      "properties": {
+        "announcements": {
+          "description": "A list of announcement runs.",
+          "items": {
+            "$ref": "Announcement"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "list of unreachable locations",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4171,6 +4503,31 @@
           "description": "Locations that could not be reached when making an aggregated query using wildcards.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListUpgradesResponse": {
+      "description": "Response message for VmwareEngine.ListUpgrades.",
+      "id": "ListUpgradesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "List of unreachable resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "upgrades": {
+          "description": "A list of `Upgrades`.",
+          "items": {
+            "$ref": "Upgrade"
           },
           "type": "array"
         }
@@ -5307,6 +5664,50 @@
       },
       "type": "object"
     },
+    "Schedule": {
+      "description": "Schedule for the upgrade.",
+      "id": "Schedule",
+      "properties": {
+        "constraints": {
+          "$ref": "Constraints",
+          "description": "Output only. Output Only. Constraints applied to the schedule. These constraints should be applicable at the time of any rescheduling.",
+          "readOnly": true
+        },
+        "editWindow": {
+          "$ref": "Interval",
+          "description": "Output only. Output Only. The schedule is open for edits during this time interval or window.",
+          "readOnly": true
+        },
+        "lastEditor": {
+          "description": "Output only. Output Only. Indicates who most recently edited the upgrade schedule. The value is updated whenever the upgrade is rescheduled.",
+          "enum": [
+            "EDITOR_UNSPECIFIED",
+            "SYSTEM",
+            "USER"
+          ],
+          "enumDescriptions": [
+            "The default value. This value should never be used.",
+            "The upgrade is scheduled by the System or internal service.",
+            "The upgrade is scheduled by the end user."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Required. The scheduled start time for the upgrade.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "weeklyWindows": {
+          "description": "Required. Weekly time windows for upgrade activities. The server performs upgrade activities during these time windows to minimize disruptions.",
+          "items": {
+            "$ref": "TimeWindow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -5464,12 +5865,208 @@
       },
       "type": "object"
     },
+    "TimeOfDay": {
+      "description": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.",
+      "id": "TimeOfDay",
+      "properties": {
+        "hours": {
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TimeWindow": {
+      "description": "Represents the time window to perform upgrade activities.",
+      "id": "TimeWindow",
+      "properties": {
+        "dayOfWeek": {
+          "description": "Required. Day of the week for this window.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "type": "string"
+        },
+        "duration": {
+          "description": "Required. The duration of the window. The max allowed duration for any window is 24 hours.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "startTime": {
+          "$ref": "TimeOfDay",
+          "description": "Required. Time in UTC when the window starts."
+        }
+      },
+      "type": "object"
+    },
     "UndeletePrivateCloudRequest": {
       "description": "Request message for VmwareEngine.UndeletePrivateCloud",
       "id": "UndeletePrivateCloudRequest",
       "properties": {
         "requestId": {
           "description": "Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Upgrade": {
+      "description": "Describes Private cloud Upgrade.",
+      "id": "Upgrade",
+      "properties": {
+        "componentUpgrades": {
+          "description": "Output only. Output Only. The list of component upgrades.",
+          "items": {
+            "$ref": "VmwareUpgradeComponent"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. Output Only. Creation time of this resource.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. Output Only. The description of the upgrade. This is used to provide additional information about the private cloud upgrade, such as the upgrade's purpose, the changes included in the upgrade, or any other relevant information about the upgrade.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. Output Only. End time of the upgrade.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "estimatedDuration": {
+          "description": "Output only. Output Only. The estimated total duration of the upgrade. This information can be used to plan or schedule upgrades to minimize disruptions. Please note that the estimated duration is only an estimate. The actual upgrade duration may vary.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "The etag for the upgrade resource. If this is provided on update, it must match the server's etag.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. The resource name of the private cloud `Upgrade`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/upgrades/my-upgrade`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "schedule": {
+          "$ref": "Schedule",
+          "description": "Schedule details for the upgrade."
+        },
+        "startVersion": {
+          "description": "Output only. Output Only. The start version",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the upgrade.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SCHEDULED",
+            "ONGOING",
+            "SUCCEEDED",
+            "PAUSED",
+            "FAILED",
+            "CANCELLING",
+            "CANCELLED",
+            "RESCHEDULING"
+          ],
+          "enumDescriptions": [
+            "The default value. This value should never be used.",
+            "The upgrade is scheduled but not started yet.",
+            "The upgrade is currently in progress and has not completed yet.",
+            "The upgrade completed successfully.",
+            "The upgrade is currently paused.",
+            "The upgrade failed.",
+            "The upgrade is in process of being canceled.",
+            "The upgrade is canceled.",
+            "The upgrade is in process of being rescheduled."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetVersion": {
+          "description": "Output only. Output Only. The target version",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. Output Only. The type of upgrade.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "VSPHERE_UPGRADE",
+            "VSPHERE_PATCH",
+            "WORKAROUND",
+            "FIRMWARE_UPGRADE",
+            "SWITCH_UPGRADE",
+            "OTHER",
+            "INFRASTRUCTURE_UPGRADE"
+          ],
+          "enumDescriptions": [
+            "The default value. This value should never be used.",
+            "Upgrade of vmware components when a major version is available. 7.0u2 -> 7.0u3.",
+            "Patching of vmware components when a minor version is available. 7.0u2c -> 7.0u2d.",
+            "Workarounds are hotfixes for vulnerabilities or issues applied to mitigate the known vulnerability or issue until a patch or update is released. The description of the upgrade will have more details.",
+            "Firmware upgrade for VMware product used in the private cloud.",
+            "Switch upgrade.",
+            "The upgrade type that doesn't fall into any other category.",
+            "Infrastructure upgrade in BM node maintenance."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System-generated unique identifier for the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Output Only. Last update time of this resource.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "Output only. ",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5583,6 +6180,73 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VmwareUpgradeComponent": {
+      "description": "Per component upgrade resource",
+      "id": "VmwareUpgradeComponent",
+      "properties": {
+        "componentType": {
+          "description": "Output only. Type of component",
+          "enum": [
+            "VMWARE_COMPONENT_TYPE_UNSPECIFIED",
+            "VCENTER",
+            "ESXI",
+            "NSXT_UC",
+            "NSXT_EDGE",
+            "NSXT_MGR",
+            "HCX",
+            "VSAN",
+            "DVS",
+            "NAMESERVER_VM",
+            "KMS_VM",
+            "WITNESS_VM",
+            "NSXT",
+            "CLUSTER"
+          ],
+          "enumDescriptions": [
+            "The default value. This value should never be used.",
+            "vcenter",
+            "esxi nodes + transport nodes",
+            "nsxt upgrade coordinator",
+            "nsxt edges cluster",
+            "nsxt managers/management plane",
+            "hcx",
+            "VSAN cluster",
+            "DVS switch",
+            "Nameserver VMs",
+            "KMS VM used for vsan encryption",
+            "witness VM in case of stretch PC",
+            "nsxt",
+            "Cluster is used in case of BM"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Component's upgrade state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "PAUSED",
+            "SUCCEEDED",
+            "FAILED",
+            "NOT_STARTED",
+            "NOT_APPLICABLE"
+          ],
+          "enumDescriptions": [
+            "The default value. This value should never be used.",
+            "Component's upgrade is in progress",
+            "The component's upgrade is paused. Will be resumed when upgrade job is resumed",
+            "The component's upgrade is successfully completed",
+            "The component's upgrade has failed. This will move to resume if upgrade is resumed or stay as is",
+            "Component's upgrade has not started yet",
+            "Component's upgrade is not applicable in this upgrade. It will be skipped."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
