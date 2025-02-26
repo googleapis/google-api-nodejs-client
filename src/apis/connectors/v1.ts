@@ -1289,6 +1289,15 @@ export namespace connectors_v1 {
     updateTime?: string | null;
   }
   /**
+   * Data enrichment configuration.
+   */
+  export interface Schema$EnrichmentConfig {
+    /**
+     * Optional. Append ACL to the event.
+     */
+    appendAcl?: boolean | null;
+  }
+  /**
    * EnumOption definition
    */
   export interface Schema$EnumOption {
@@ -1317,6 +1326,10 @@ export namespace connectors_v1 {
      * Optional. Dead letter configuration for eventing of a connection.
      */
     deadLetterConfig?: Schema$DeadLetterConfig;
+    /**
+     * Optional. Data enrichment configuration.
+     */
+    enrichmentConfig?: Schema$EnrichmentConfig;
     /**
      * Optional. Enrichment Enabled.
      */
@@ -1523,6 +1536,10 @@ export namespace connectors_v1 {
      * OPTION 1: Hit an endpoint when we receive an event.
      */
     endpoint?: Schema$EndPoint;
+    /**
+     * OPTION 3: Write the event to Pub/Sub topic.
+     */
+    pubsub?: Schema$PubSub;
     /**
      * Service account needed for runtime plane to trigger IP workflow.
      */
@@ -1864,6 +1881,10 @@ export namespace connectors_v1 {
    * JsonSchema representation of schema metadata
    */
   export interface Schema$JsonSchema {
+    /**
+     * Additional details apart from standard json schema fields, this gives flexibility to store metadata about the schema
+     */
+    additionalDetails?: {[key: string]: any} | null;
     /**
      * The default value of the field or object described by this schema.
      */
@@ -2621,9 +2642,17 @@ export namespace connectors_v1 {
      */
     demoUri?: string | null;
     /**
+     * Output only. Has dynamic open api spec uri.
+     */
+    hasDynamicSpecUri?: boolean | null;
+    /**
      * Required. Integration example templates for the custom connector.
      */
     integrationTemplates?: string | null;
+    /**
+     * Output only. Local spec path. Required if has_dynamic_spec_uri is true.
+     */
+    localSpecPath?: string | null;
     /**
      * Optional. Marketplace product name.
      */
@@ -2784,6 +2813,27 @@ export namespace connectors_v1 {
     publishTime?: string | null;
   }
   /**
+   * Pub/Sub message includes details of the Destination Pub/Sub topic.
+   */
+  export interface Schema$PubSub {
+    /**
+     * Optional. Pub/Sub message attributes to be added to the Pub/Sub message.
+     */
+    attributes?: {[key: string]: string} | null;
+    /**
+     * Optional. Configuration for configuring the trigger
+     */
+    configVariables?: Schema$ConfigVariable[];
+    /**
+     * Required. The project id which has the Pub/Sub topic.
+     */
+    projectId?: string | null;
+    /**
+     * Required. The topic id of the Pub/Sub topic.
+     */
+    topicId?: string | null;
+  }
+  /**
    * Request message for ConnectorsService.RefreshConnectionSchemaMetadata.
    */
   export interface Schema$RefreshConnectionSchemaMetadataRequest {}
@@ -2893,7 +2943,7 @@ export namespace connectors_v1 {
      */
     helperTextTemplate?: string | null;
     /**
-     * Optional. Prinicipal/Identity for whom the role need to assigned.
+     * Optional. Principal/Identity for whom the role need to assigned.
      */
     principal?: string | null;
     /**
@@ -3154,7 +3204,7 @@ export namespace connectors_v1 {
    */
   export interface Schema$Source {
     /**
-     * Field identifier. For example config vaiable name.
+     * Field identifier. For example config variable name.
      */
     fieldId?: string | null;
     /**
