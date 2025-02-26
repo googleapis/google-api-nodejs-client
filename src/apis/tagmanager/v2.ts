@@ -857,6 +857,10 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$GalleryReference {
     /**
+     * ID for the gallery template that is generated once during first sync and travels with the template redirects.
+     */
+    galleryTemplateId?: string | null;
+    /**
      * The name of the host for the community gallery template.
      */
     host?: string | null;
@@ -886,6 +890,10 @@ export namespace tagmanager_v2 {
     version?: string | null;
   }
   export interface Schema$GetContainerSnippetResponse {
+    /**
+     * Server container config param for manually provisioning a tagging server.
+     */
+    containerConfig?: string | null;
     /**
      * Tagging snippet for a Container.
      */
