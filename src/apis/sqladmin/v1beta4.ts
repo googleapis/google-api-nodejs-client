@@ -113,6 +113,7 @@ export namespace sqladmin_v1beta4 {
   export class Sqladmin {
     context: APIRequestContext;
     backupRuns: Resource$Backupruns;
+    backups: Resource$Backups;
     connect: Resource$Connect;
     databases: Resource$Databases;
     flags: Resource$Flags;
@@ -130,6 +131,7 @@ export namespace sqladmin_v1beta4 {
       };
 
       this.backupRuns = new Resource$Backupruns(this.context);
+      this.backups = new Resource$Backups(this.context);
       this.connect = new Resource$Connect(this.context);
       this.databases = new Resource$Databases(this.context);
       this.flags = new Resource$Flags(this.context);
@@ -228,6 +230,91 @@ export namespace sqladmin_v1beta4 {
     name?: string | null;
   }
   /**
+   * A backup resource.
+   */
+  export interface Schema$Backup {
+    /**
+     * Output only. This output contains the following values: start_time: All database writes up to this time are available. end_time: Any database writes after this time aren't available.
+     */
+    backupInterval?: Schema$Interval;
+    /**
+     * Output only. Specifies the kind of backup, PHYSICAL or DEFAULT_SNAPSHOT.
+     */
+    backupKind?: string | null;
+    /**
+     * Output only. The mapping to backup run resource used for IAM validations.
+     */
+    backupRun?: string | null;
+    /**
+     * The description of this backup.
+     */
+    description?: string | null;
+    /**
+     * Output only. Information about why the backup operation fails (for example, when the backup state fails).
+     */
+    error?: Schema$OperationError;
+    /**
+     * Backup expiration time. A UTC timestamp of when this resource expired.
+     */
+    expiryTime?: string | null;
+    /**
+     * The name of the database instance.
+     */
+    instance?: string | null;
+    /**
+     * Output only. This is always `sql#backup`.
+     */
+    kind?: string | null;
+    /**
+     * Output only. This output contains the encryption configuration for a backup and the resource name of the KMS key for disk encryption.
+     */
+    kmsKey?: string | null;
+    /**
+     * Output only. This output contains the encryption status for a backup and the version of the KMS key that's used to encrypt the Cloud SQL instance.
+     */
+    kmsKeyVersion?: string | null;
+    /**
+     * The storage location of the backups. The location can be multi-regional.
+     */
+    location?: string | null;
+    /**
+     * Output only. The maximum chargeable bytes for the backup.
+     */
+    maxChargeableBytes?: string | null;
+    /**
+     * Output only. The resource name of the backup. Format: projects/{project\}/backups/{backup\}
+     */
+    name?: string | null;
+    /**
+     * Output only. This status indicates whether the backup satisfies PZI. The status is reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. This status indicates whether the backup satisfies PZS. The status is reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
+     * Output only. The URI of this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. The state of this backup.
+     */
+    state?: string | null;
+    /**
+     * Output only. This output contains a backup time zone. If a Cloud SQL for SQL Server instance has a different time zone from the backup's time zone, then restores to the instance won't happen.
+     */
+    timeZone?: string | null;
+    /**
+     * Input only. The time-to-live (TTL) interval for this resource (in days). For example: ttlDays:7 means 7 days.
+     */
+    ttlDays?: string | null;
+    /**
+     * Output only. The type of this backup. The type can be "AUTOMATED", "ON_DEMAND", or “FINAL”.
+     */
+    type?: string | null;
+  }
+  /**
    * Database instance backup configuration.
    */
   export interface Schema$BackupConfiguration {
@@ -284,6 +371,10 @@ export namespace sqladmin_v1beta4 {
      * This is always `sql#backupContext`.
      */
     kind?: string | null;
+    /**
+     * The name of the backup. Format: projects/{project\}/backups/{backup\}
+     */
+    name?: string | null;
   }
   /**
    * Backup Reencryption Config
@@ -620,6 +711,10 @@ export namespace sqladmin_v1beta4 {
      */
     geminiConfig?: Schema$GeminiInstanceConfig;
     /**
+     * Input only. Determines whether an in-place major version upgrade of replicas happens when an in-place major version upgrade of a primary instance is initiated.
+     */
+    includeReplicasForMajorVersionUpgrade?: boolean | null;
+    /**
      * The instance type.
      */
     instanceType?: string | null;
@@ -838,7 +933,7 @@ export namespace sqladmin_v1beta4 {
      */
     clientCertificate?: string | null;
     /**
-     * PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8.
+     * PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8.
      */
     clientKey?: string | null;
     /**
@@ -953,6 +1048,15 @@ export namespace sqladmin_v1beta4 {
       schemaOnly?: boolean;
       tables?: string[];
       threads?: number;
+    } | null;
+    /**
+     * Optional. Export parameters specific to SQL Server TDE certificates
+     */
+    tdeExportOptions?: {
+      certificatePath?: string;
+      name?: string;
+      privateKeyPassword?: string;
+      privateKeyPath?: string;
     } | null;
     /**
      * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form `gs://bucketName/fileName`. If the file already exists, the request succeeds, but the operation fails. If `fileType` is `SQL` and the filename ends with .gz, the contents are compressed.
@@ -1109,6 +1213,7 @@ export namespace sqladmin_v1beta4 {
       bakType?: string;
       encryptionOptions?: {
         certPath?: string;
+        keepEncrypted?: boolean;
         pvkPassword?: string;
         pvkPath?: string;
       };
@@ -1152,6 +1257,15 @@ export namespace sqladmin_v1beta4 {
       parallel?: boolean;
       postgresImportOptions?: {clean?: boolean; ifExists?: boolean};
       threads?: number;
+    } | null;
+    /**
+     * Optional. Import parameters specific to SQL Server .TDE files Import parameters specific to SQL Server TDE certificates
+     */
+    tdeImportOptions?: {
+      certificatePath?: string;
+      name?: string;
+      privateKeyPassword?: string;
+      privateKeyPath?: string;
     } | null;
     /**
      * Path to the import file in Cloud Storage, in the form `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported when `fileType` is `SQL`. The instance must have write permissions to the bucket and read access to the file.
@@ -1333,9 +1447,17 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$InstancesRestoreBackupRequest {
     /**
+     * The name of the backup that's used to restore a Cloud SQL instance: Format: projects/{project-id\}/backups/{backup-uid\}. Only one of restore_backup_context, backup, backupdr_backup can be passed to the input.
+     */
+    backup?: string | null;
+    /**
      * Parameters required to perform the restore backup operation.
      */
     restoreBackupContext?: Schema$RestoreBackupContext;
+    /**
+     * Optional. By using this parameter, Cloud SQL overrides any instance settings that it stored with the instance settings that you want to restore. You can't change the Instance's major database version and you can only increase the disk size. You can use this field to restore new instances only.
+     */
+    restoreInstanceSettings?: Schema$DatabaseInstance;
   }
   /**
    * Rotate Server CA request.
@@ -1363,6 +1485,19 @@ export namespace sqladmin_v1beta4 {
      * Contains details about the truncate log operation.
      */
     truncateLogContext?: Schema$TruncateLogContext;
+  }
+  /**
+   * Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.
+   */
+  export interface Schema$Interval {
+    /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    startTime?: string | null;
   }
   /**
    * IP Management configuration.
@@ -1431,6 +1566,23 @@ export namespace sqladmin_v1beta4 {
     type?: string | null;
   }
   /**
+   * The response payload containing a list of the backups.
+   */
+  export interface Schema$ListBackupsResponse {
+    /**
+     * A list of backups.
+     */
+    backups?: Schema$Backup[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, then there aren't subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * If a region isn't unavailable or if an unknown error occurs, then a warning message is returned.
+     */
+    warnings?: Schema$ApiWarning[];
+  }
+  /**
    * Preferred location. This specifies where a Cloud SQL instance is located. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified.
    */
   export interface Schema$LocationPreference {
@@ -1485,7 +1637,7 @@ export namespace sqladmin_v1beta4 {
      */
     clientCertificate?: string | null;
     /**
-     * PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate.
+     * PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate.
      */
     clientKey?: string | null;
     /**
@@ -1543,7 +1695,7 @@ export namespace sqladmin_v1beta4 {
      */
     clientCertificate?: string | null;
     /**
-     * PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate.
+     * PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate.
      */
     clientKey?: string | null;
     /**
@@ -3014,6 +3166,520 @@ export namespace sqladmin_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+  }
+
+  export class Resource$Backups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a backup for a Cloud SQL instance. This API can be used only to create on-demand backups.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createBackup(
+      params: Params$Resource$Backups$Createbackup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createBackup(
+      params?: Params$Resource$Backups$Createbackup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    createBackup(
+      params: Params$Resource$Backups$Createbackup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createBackup(
+      params: Params$Resource$Backups$Createbackup,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createBackup(
+      params: Params$Resource$Backups$Createbackup,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createBackup(callback: BodyResponseCallback<Schema$Operation>): void;
+    createBackup(
+      paramsOrCallback?:
+        | Params$Resource$Backups$Createbackup
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Backups$Createbackup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Backups$Createbackup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/sql/v1beta4/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the backup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteBackup(
+      params: Params$Resource$Backups$Deletebackup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteBackup(
+      params?: Params$Resource$Backups$Deletebackup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    deleteBackup(
+      params: Params$Resource$Backups$Deletebackup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteBackup(
+      params: Params$Resource$Backups$Deletebackup,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    deleteBackup(
+      params: Params$Resource$Backups$Deletebackup,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    deleteBackup(callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteBackup(
+      paramsOrCallback?:
+        | Params$Resource$Backups$Deletebackup
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Backups$Deletebackup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Backups$Deletebackup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/sql/v1beta4/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a resource containing information about a backup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getBackup(
+      params: Params$Resource$Backups$Getbackup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getBackup(
+      params?: Params$Resource$Backups$Getbackup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Backup>;
+    getBackup(
+      params: Params$Resource$Backups$Getbackup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getBackup(
+      params: Params$Resource$Backups$Getbackup,
+      options: MethodOptions | BodyResponseCallback<Schema$Backup>,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    getBackup(
+      params: Params$Resource$Backups$Getbackup,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    getBackup(callback: BodyResponseCallback<Schema$Backup>): void;
+    getBackup(
+      paramsOrCallback?:
+        | Params$Resource$Backups$Getbackup
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Backups$Getbackup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Backups$Getbackup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/sql/v1beta4/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Backup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Backup>(parameters);
+      }
+    }
+
+    /**
+     * Lists all backups associated with the project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listBackups(
+      params: Params$Resource$Backups$Listbackups,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listBackups(
+      params?: Params$Resource$Backups$Listbackups,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    listBackups(
+      params: Params$Resource$Backups$Listbackups,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listBackups(
+      params: Params$Resource$Backups$Listbackups,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBackupsResponse>,
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    listBackups(
+      params: Params$Resource$Backups$Listbackups,
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    listBackups(
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    listBackups(
+      paramsOrCallback?:
+        | Params$Resource$Backups$Listbackups
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBackupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Backups$Listbackups;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Backups$Listbackups;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/sql/v1beta4/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBackupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBackupsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the retention period and the description of the backup. You can use this API to update final backups only.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateBackup(
+      params: Params$Resource$Backups$Updatebackup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateBackup(
+      params?: Params$Resource$Backups$Updatebackup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateBackup(
+      params: Params$Resource$Backups$Updatebackup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateBackup(
+      params: Params$Resource$Backups$Updatebackup,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateBackup(
+      params: Params$Resource$Backups$Updatebackup,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateBackup(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateBackup(
+      paramsOrCallback?:
+        | Params$Resource$Backups$Updatebackup
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Backups$Updatebackup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Backups$Updatebackup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/sql/v1beta4/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Backups$Createbackup
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this backup is created. Format: projects/{project\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Backup;
+  }
+  export interface Params$Resource$Backups$Deletebackup
+    extends StandardParameters {
+    /**
+     * Required. The name of the backup to delete. Format: projects/{project\}/backups/{backup\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Backups$Getbackup
+    extends StandardParameters {
+    /**
+     * Required. The name of the backup to retrieve. Format: projects/{project\}/backups/{backup\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Backups$Listbackups
+    extends StandardParameters {
+    /**
+     * Multiple filter queries are separated by spaces. For example, 'instance:abc type:FINAL. You can filter by type, instance name, creation time, or location.
+     */
+    filter?: string;
+    /**
+     * The maximum number of backups to return per response. The service might return fewer backups than this value. If a value for this parameter isn't specified, then, at most, 500 backups are returned. The maximum value is 2,000. Any values that you set, which are greater than 2,000, are changed to 2,000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListBackups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent that owns this collection of backups. Format: projects/{project\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Backups$Updatebackup
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the backup. Format: projects/{project\}/backups/{backup\}
+     */
+    name?: string;
+    /**
+     * The list of fields that you can update. You can update only the description and retention period of the final backup.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Backup;
   }
 
   export class Resource$Connect {
@@ -6607,6 +7273,22 @@ export namespace sqladmin_v1beta4 {
     requestBody?: Schema$InstancesCloneRequest;
   }
   export interface Params$Resource$Instances$Delete extends StandardParameters {
+    /**
+     * Flag to opt-in for final backup. By default, it is turned off.
+     */
+    enableFinalBackup?: boolean;
+    /**
+     * Optional. The description of the final backup.
+     */
+    finalBackupDescription?: string;
+    /**
+     * Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.
+     */
+    finalBackupExpiryTime?: string;
+    /**
+     * Optional. Retention period of the final backup.
+     */
+    finalBackupTtlDays?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */

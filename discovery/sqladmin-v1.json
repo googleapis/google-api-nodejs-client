@@ -108,6 +108,168 @@
   },
   "protocol": "rest",
   "resources": {
+    "Backups": {
+      "methods": {
+        "CreateBackup": {
+          "description": "Creates a backup for a Cloud SQL instance. This API can be used only to create on-demand backups.",
+          "flatPath": "v1/projects/{projectsId}/backups",
+          "httpMethod": "POST",
+          "id": "sql.Backups.CreateBackup",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. The parent resource where this backup is created. Format: projects/{project}",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+parent}/backups",
+          "request": {
+            "$ref": "Backup"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "DeleteBackup": {
+          "description": "Deletes the backup.",
+          "flatPath": "v1/projects/{projectsId}/backups/{backupsId}",
+          "httpMethod": "DELETE",
+          "id": "sql.Backups.DeleteBackup",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the backup to delete. Format: projects/{project}/backups/{backup}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/backups/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "GetBackup": {
+          "description": "Retrieves a resource containing information about a backup.",
+          "flatPath": "v1/projects/{projectsId}/backups/{backupsId}",
+          "httpMethod": "GET",
+          "id": "sql.Backups.GetBackup",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the backup to retrieve. Format: projects/{project}/backups/{backup}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/backups/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "Backup"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "ListBackups": {
+          "description": "Lists all backups associated with the project.",
+          "flatPath": "v1/projects/{projectsId}/backups",
+          "httpMethod": "GET",
+          "id": "sql.Backups.ListBackups",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "Multiple filter queries are separated by spaces. For example, 'instance:abc type:FINAL. You can filter by type, instance name, creation time or location.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of backups to return per response. The service might return fewer backups than this value. If a value for this parameter isn't specified, then, at most, 500 backups are returned. The maximum value is 2,000. Any values that you set, which are greater than 2,000, are changed to 2,000.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A page token, received from a previous `ListBackups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The parent that owns this collection of backups. Format: projects/{project}",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+parent}/backups",
+          "response": {
+            "$ref": "ListBackupsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "UpdateBackup": {
+          "description": "Updates the retention period and description of the backup. You can use this API to update final backups only.",
+          "flatPath": "v1/projects/{projectsId}/backups/{backupsId}",
+          "httpMethod": "PATCH",
+          "id": "sql.Backups.UpdateBackup",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Output only. The resource name of the backup. Format: projects/{project}/backups/{backup}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/backups/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "The list of fields that you can update. You can update only the description and retention period of the final backup.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "request": {
+            "$ref": "Backup"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        }
+      }
+    },
     "backupRuns": {
       "methods": {
         "delete": {
@@ -819,6 +981,28 @@
             "instance"
           ],
           "parameters": {
+            "enableFinalBackup": {
+              "description": "Flag to opt-in for final backup. By default, it is turned off.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "finalBackupDescription": {
+              "description": "Optional. The description of the final backup.",
+              "location": "query",
+              "type": "string"
+            },
+            "finalBackupExpiryTime": {
+              "description": "Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.",
+              "format": "google-datetime",
+              "location": "query",
+              "type": "string"
+            },
+            "finalBackupTtlDays": {
+              "description": "Optional. Retention period of the final backup.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
             "instance": {
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
@@ -2366,7 +2550,7 @@
       }
     }
   },
-  "revision": "20250117",
+  "revision": "20250205",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2481,6 +2665,151 @@
       },
       "type": "object"
     },
+    "Backup": {
+      "description": "A backup resource.",
+      "id": "Backup",
+      "properties": {
+        "backupInterval": {
+          "$ref": "Interval",
+          "description": "Output only. This output contains the following values: start_time: All database writes up to this time are available. end_time: Any database writes after this time aren't available.",
+          "readOnly": true
+        },
+        "backupKind": {
+          "description": "Output only. Specifies the kind of backup, PHYSICAL or DEFAULT_SNAPSHOT.",
+          "enum": [
+            "SQL_BACKUP_KIND_UNSPECIFIED",
+            "SNAPSHOT",
+            "PHYSICAL"
+          ],
+          "enumDescriptions": [
+            "This is an unknown BackupKind.",
+            "Snapshot-based backups.",
+            "Physical backups."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "backupRun": {
+          "description": "Output only. The mapping to backup run resource used for IAM validations.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of this backup.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "OperationError",
+          "description": "Output only. Information about why the backup operation fails (for example, when the backup state fails).",
+          "readOnly": true
+        },
+        "expiryTime": {
+          "description": "Backup expiration time. A UTC timestamp of when this backup expired.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "instance": {
+          "description": "The name of the source database instance.",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Output only. This is always `sql#backup`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kmsKey": {
+          "description": "Output only. This output contains the encryption configuration for a backup and the resource name of the KMS key for disk encryption.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kmsKeyVersion": {
+          "description": "Output only. This output contains the encryption status for a backup and the version of the KMS key that's used to encrypt the Cloud SQL instance.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "location": {
+          "description": "The storage location of the backups. The location can be multi-regional.",
+          "type": "string"
+        },
+        "maxChargeableBytes": {
+          "description": "Output only. The maximum chargeable bytes for the backup.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the backup. Format: projects/{project}/backups/{backup}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. This status indicates whether the backup satisfies PZI. The status is reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. This status indicates whether the backup satisfies PZS. The status is reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "selfLink": {
+          "description": "Output only. The URI of this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The status of this backup.",
+          "enum": [
+            "SQL_BACKUP_STATE_UNSPECIFIED",
+            "ENQUEUED",
+            "RUNNING",
+            "FAILED",
+            "SUCCESSFUL",
+            "DELETING",
+            "DELETION_FAILED"
+          ],
+          "enumDescriptions": [
+            "The state of the backup is unknown.",
+            "The backup that's added to a queue.",
+            "The backup is in progress.",
+            "The backup failed.",
+            "The backup is successful.",
+            "The backup is being deleted.",
+            "Deletion of the backup failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Output only. This output contains a backup time zone. If a Cloud SQL for SQL Server instance has a different time zone from the backup's time zone, then restores to the instance won't happen.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ttlDays": {
+          "description": "Input only. The time-to-live (TTL) interval for this resource (in days). For example: ttlDays:7 means 7 days.",
+          "format": "int64",
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of this backup. The type can be \"AUTOMATED\", \"ON_DEMAND\" or “FINAL”.",
+          "enum": [
+            "SQL_BACKUP_TYPE_UNSPECIFIED",
+            "AUTOMATED",
+            "ON_DEMAND",
+            "FINAL"
+          ],
+          "enumDescriptions": [
+            "This is an unknown backup type.",
+            "The backup schedule triggers a backup automatically.",
+            "The user triggers a backup manually.",
+            "The backup created when instance is deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BackupConfiguration": {
       "description": "Database instance backup configuration.",
       "id": "BackupConfiguration",
@@ -2555,6 +2884,10 @@
         },
         "kind": {
           "description": "This is always `sql#backupContext`.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the backup. Format: projects/{project}/backups/{backup}",
           "type": "string"
         }
       },
@@ -3365,6 +3698,10 @@
           "$ref": "GeminiInstanceConfig",
           "description": "Gemini instance configuration."
         },
+        "includeReplicasForMajorVersionUpgrade": {
+          "description": "Input only. Determines whether an in-place major version upgrade of replicas happens when an in-place major version upgrade of a primary instance is initiated.",
+          "type": "boolean"
+        },
         "instanceType": {
           "description": "The instance type.",
           "enum": [
@@ -3677,7 +4014,7 @@
           "type": "string"
         },
         "clientKey": {
-          "description": "PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8.",
+          "description": "PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8.",
           "type": "string"
         },
         "kind": {
@@ -3908,6 +4245,28 @@
               "description": "Optional. The number of threads to use for parallel export.",
               "format": "int32",
               "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "tdeExportOptions": {
+          "description": "Optional. Export parameters specific to SQL Server TDE certificates",
+          "properties": {
+            "certificatePath": {
+              "description": "Required. Path to the TDE certificate public key in the form gs://bucketName/fileName. The instance must have write access to the bucket. Applicable only for SQL Server instances.",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. Certificate name. Applicable only for SQL Server instances.",
+              "type": "string"
+            },
+            "privateKeyPassword": {
+              "description": "Required. Password that encrypts the private key.",
+              "type": "string"
+            },
+            "privateKeyPath": {
+              "description": "Required. Path to the TDE certificate private key in the form gs://bucketName/fileName. The instance must have write access to the location. Applicable only for SQL Server instances.",
+              "type": "string"
             }
           },
           "type": "object"
@@ -4289,6 +4648,10 @@
                   "description": "Path to the Certificate (.cer) in Cloud Storage, in the form `gs://bucketName/fileName`. The instance must have write permissions to the bucket and read access to the file.",
                   "type": "string"
                 },
+                "keepEncrypted": {
+                  "description": "Optional. Whether the imported file remains encrypted.",
+                  "type": "boolean"
+                },
                 "pvkPassword": {
                   "description": "Password that encrypts the private key",
                   "type": "string"
@@ -4410,6 +4773,28 @@
               "description": "Optional. The number of threads to use for parallel import.",
               "format": "int32",
               "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "tdeImportOptions": {
+          "description": "Optional. Import parameters specific to SQL Server TDE certificates",
+          "properties": {
+            "certificatePath": {
+              "description": "Required. Path to the TDE certificate public key in the form gs://bucketName/fileName. The instance must have read access to the file. Applicable only for SQL Server instances.",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. Certificate name. Applicable only for SQL Server instances.",
+              "type": "string"
+            },
+            "privateKeyPassword": {
+              "description": "Required. Password that encrypts the private key.",
+              "type": "string"
+            },
+            "privateKeyPath": {
+              "description": "Required. Path to the TDE certificate private key in the form gs://bucketName/fileName. The instance must have read access to the file. Applicable only for SQL Server instances.",
+              "type": "string"
             }
           },
           "type": "object"
@@ -4640,9 +5025,17 @@
       "description": "Database instance restore backup request.",
       "id": "InstancesRestoreBackupRequest",
       "properties": {
+        "backup": {
+          "description": "The name of the backup that's used to restore a Cloud SQL instance: Format: projects/{project-id}/backups/{backup-uid}. Only one of restore_backup_context, backup, backupdr_backup can be passed to the input.",
+          "type": "string"
+        },
         "restoreBackupContext": {
           "$ref": "RestoreBackupContext",
           "description": "Parameters required to perform the restore backup operation."
+        },
+        "restoreInstanceSettings": {
+          "$ref": "DatabaseInstance",
+          "description": "Optional. By using this parameter, Cloud SQL overrides the instance settings existed at time of backup with the instance settings that you want to restore. You can't change the Instance's major database version and you can only increase the disk size. You can use this field to restore new instances only."
         }
       },
       "type": "object"
@@ -4676,6 +5069,23 @@
         "truncateLogContext": {
           "$ref": "TruncateLogContext",
           "description": "Contains details about the truncate log operation."
+        }
+      },
+      "type": "object"
+    },
+    "Interval": {
+      "description": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.",
+      "id": "Interval",
+      "properties": {
+        "endTime": {
+          "description": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4795,6 +5205,31 @@
       },
       "type": "object"
     },
+    "ListBackupsResponse": {
+      "description": "The response payload containing a list of the backups.",
+      "id": "ListBackupsResponse",
+      "properties": {
+        "backups": {
+          "description": "A list of backups.",
+          "items": {
+            "$ref": "Backup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, then there aren't subsequent pages.",
+          "type": "string"
+        },
+        "warnings": {
+          "description": "If a region isn't unavailable or if an unknown error occurs, then a warning message is returned.",
+          "items": {
+            "$ref": "ApiWarning"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "LocationPreference": {
       "description": "Preferred location. This specifies where a Cloud SQL instance is located. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified.",
       "id": "LocationPreference",
@@ -4869,7 +5304,7 @@
           "type": "string"
         },
         "clientKey": {
-          "description": "PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate.",
+          "description": "PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate.",
           "type": "string"
         },
         "connectRetryInterval": {
@@ -4936,7 +5371,7 @@
           "type": "string"
         },
         "clientKey": {
-          "description": "PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate.",
+          "description": "PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate.",
           "type": "string"
         },
         "dumpFilePath": {
@@ -5077,6 +5512,7 @@
             "AUTO_RESTART",
             "REENCRYPT",
             "SWITCHOVER",
+            "UPDATE_BACKUP",
             "ACQUIRE_SSRS_LEASE",
             "RELEASE_SSRS_LEASE",
             "RECONFIGURE_OLD_PRIMARY",
@@ -5084,7 +5520,8 @@
             "SELF_SERVICE_MAINTENANCE",
             "SWITCHOVER_TO_REPLICA",
             "MAJOR_VERSION_UPGRADE",
-            "ADVANCED_BACKUP"
+            "ADVANCED_BACKUP",
+            "MANAGE_BACKUP"
           ],
           "enumDeprecated": [
             false,
@@ -5129,8 +5566,10 @@
             false,
             false,
             false,
+            false,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -5175,6 +5614,7 @@
             "Performs auto-restart of an HA-enabled Cloud SQL database for auto recovery.",
             "Re-encrypts CMEK instances with latest key version.",
             "Switches the roles of the primary and replica pair. The target instance should be the replica.",
+            "Update a backup.",
             "Acquire a lease for the setup of SQL Server Reporting Services (SSRS).",
             "Release a lease for the setup of SQL Server Reporting Services (SSRS).",
             "Reconfigures old primary after a promote replica operation. Effect of a promote operation to the old primary is executed in this operation, asynchronously from the promote replica operation executed to the replica.",
@@ -5182,7 +5622,8 @@
             "Indicates that the instance (and any of its replicas) are currently in maintenance. This is initiated as a self-service request by using SSM. Maintenance typically causes the instance to be unavailable for 1-3 minutes.",
             "Switches a primary instance to a replica. This operation runs as part of a switchover operation to the original primary instance.",
             "Updates the major version of a Cloud SQL instance.",
-            "Creates a backup for an Advanced BackupTier Cloud SQL instance."
+            "Creates a backup for an Advanced BackupTier Cloud SQL instance.",
+            "Changes the BackupTier of a Cloud SQL instance."
           ],
           "type": "string"
         },
