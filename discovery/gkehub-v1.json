@@ -2111,7 +2111,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250209",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -6151,7 +6151,7 @@
       "type": "object"
     },
     "ServiceMeshCondition": {
-      "description": "Condition being reported.",
+      "description": "Condition being reported. TODO b/395151419: Remove this message once the membership-level conditions field uses the common Condition message.",
       "id": "ServiceMeshCondition",
       "properties": {
         "code": {
@@ -6192,7 +6192,8 @@
             "MODERNIZATION_SCHEDULED",
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
-            "MODERNIZATION_ABORTED"
+            "MODERNIZATION_ABORTED",
+            "MODERNIZATION_WILL_BE_SCHEDULED"
           ],
           "enumDescriptions": [
             "Default Unspecified code",
@@ -6230,7 +6231,8 @@
             "Modernization is scheduled for a cluster.",
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
-            "Modernization is aborted for a cluster."
+            "Modernization is aborted for a cluster.",
+            "Modernization will be scheduled for a fleet."
           ],
           "type": "string"
         },
@@ -6409,7 +6411,7 @@
       "id": "ServiceMeshMembershipState",
       "properties": {
         "conditions": {
-          "description": "Output only. List of conditions reported for this membership.",
+          "description": "Output only. List of conditions reported for this membership. TODO b/395151419: Use the common Condition message.",
           "items": {
             "$ref": "ServiceMeshCondition"
           },
