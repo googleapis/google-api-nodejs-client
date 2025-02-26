@@ -179,6 +179,34 @@
           "resources": {
             "jobs": {
               "methods": {
+                "cancel": {
+                  "description": "Cancel a Job.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/jobs/{jobsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "batch.projects.locations.jobs.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Job name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:cancel",
+                  "request": {
+                    "$ref": "CancelJobRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Create a Job.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/jobs",
@@ -561,7 +589,7 @@
       }
     }
   },
-  "revision": "20241204",
+  "revision": "20250122",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1059,6 +1087,17 @@
       },
       "type": "object"
     },
+    "CancelJobRequest": {
+      "description": "CancelJob Request.",
+      "id": "CancelJobRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -1434,7 +1473,9 @@
             "RUNNING",
             "SUCCEEDED",
             "FAILED",
-            "DELETION_IN_PROGRESS"
+            "DELETION_IN_PROGRESS",
+            "CANCELLATION_IN_PROGRESS",
+            "CANCELLED"
           ],
           "enumDescriptions": [
             "Job state unspecified.",
@@ -1443,7 +1484,9 @@
             "Resource allocation has been successful. At least one Task in the Job is RUNNING.",
             "All Tasks in the Job have finished successfully.",
             "At least one Task in the Job has failed.",
-            "The Job will be deleted, but has not been deleted yet. Typically this is because resources used by the Job are still being cleaned up."
+            "The Job will be deleted, but has not been deleted yet. Typically this is because resources used by the Job are still being cleaned up.",
+            "The Job cancellation is in progress, this is because the resources used by the Job are still being cleaned up.",
+            "The Job has been cancelled, the task executions were stopped and the resources were cleaned up."
           ],
           "type": "string"
         },
@@ -1678,7 +1721,9 @@
             "RUNNING",
             "SUCCEEDED",
             "FAILED",
-            "DELETION_IN_PROGRESS"
+            "DELETION_IN_PROGRESS",
+            "CANCELLATION_IN_PROGRESS",
+            "CANCELLED"
           ],
           "enumDescriptions": [
             "Job state unspecified.",
@@ -1687,7 +1732,9 @@
             "Resource allocation has been successful. At least one Task in the Job is RUNNING.",
             "All Tasks in the Job have finished successfully.",
             "At least one Task in the Job has failed.",
-            "The Job will be deleted, but has not been deleted yet. Typically this is because resources used by the Job are still being cleaned up."
+            "The Job will be deleted, but has not been deleted yet. Typically this is because resources used by the Job are still being cleaned up.",
+            "The Job cancellation is in progress, this is because the resources used by the Job are still being cleaned up.",
+            "The Job has been cancelled, the task executions were stopped and the resources were cleaned up."
           ],
           "type": "string"
         },
