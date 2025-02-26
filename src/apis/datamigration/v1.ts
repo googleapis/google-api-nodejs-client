@@ -961,9 +961,17 @@ export namespace datamigration_v1 {
      */
     ddl?: string | null;
     /**
+     * The DDL Kind selected for apply, or SOURCE if getting the source tree.
+     */
+    ddlKind?: string | null;
+    /**
      * Type of DDL (Create, Alter).
      */
     ddlType?: string | null;
+    /**
+     * If ddl_kind is USER_EDIT, this holds the DDL kind of the original content - DETERMINISTIC or AI. Otherwise, this is DDL_KIND_UNSPECIFIED.
+     */
+    editedDdlKind?: string | null;
     /**
      * The name of the database entity the ddl refers to.
      */
