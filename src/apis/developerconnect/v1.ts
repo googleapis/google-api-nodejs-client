@@ -125,6 +125,60 @@ export namespace developerconnect_v1 {
   }
 
   /**
+   * Configuration for connections to an instance of Bitbucket Cloud.
+   */
+  export interface Schema$BitbucketCloudConfig {
+    /**
+     * Required. An access token with the minimum `repository`, `pullrequest` and `webhook` scope access. It can either be a workspace, project or repository access token. This is needed to create webhooks. It's recommended to use a system account to generate these credentials.
+     */
+    authorizerCredential?: Schema$UserCredential;
+    /**
+     * Required. An access token with the minimum `repository` access. It can either be a workspace, project or repository access token. It's recommended to use a system account to generate the credentials.
+     */
+    readAuthorizerCredential?: Schema$UserCredential;
+    /**
+     * Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/x/secrets/x/versions/x`. This is used to validate and create webhooks.
+     */
+    webhookSecretSecretVersion?: string | null;
+    /**
+     * Required. The Bitbucket Cloud Workspace ID to be connected to Google Cloud Platform.
+     */
+    workspace?: string | null;
+  }
+  /**
+   * Configuration for connections to an instance of Bitbucket Data Center.
+   */
+  export interface Schema$BitbucketDataCenterConfig {
+    /**
+     * Required. An http access token with the minimum `Repository admin` scope access. This is needed to create webhooks. It's recommended to use a system account to generate these credentials.
+     */
+    authorizerCredential?: Schema$UserCredential;
+    /**
+     * Required. The URI of the Bitbucket Data Center host this connection is for.
+     */
+    hostUri?: string | null;
+    /**
+     * Required. An http access token with the minimum `Repository read` access. It's recommended to use a system account to generate the credentials.
+     */
+    readAuthorizerCredential?: Schema$UserCredential;
+    /**
+     * Output only. Version of the Bitbucket Data Center server running on the `host_uri`.
+     */
+    serverVersion?: string | null;
+    /**
+     * Optional. Configuration for using Service Directory to privately connect to a Bitbucket Data Center instance. This should only be set if the Bitbucket Data Center is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the Bitbucket Data Center will be made over the public internet.
+     */
+    serviceDirectoryConfig?: Schema$ServiceDirectoryConfig;
+    /**
+     * Optional. SSL certificate authority to trust when making requests to Bitbucket Data Center.
+     */
+    sslCaCertificate?: string | null;
+    /**
+     * Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/x/secrets/x/versions/x`. This is used to validate webhooks.
+     */
+    webhookSecretSecretVersion?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -136,6 +190,14 @@ export namespace developerconnect_v1 {
      * Optional. Allows clients to store small amounts of arbitrary data.
      */
     annotations?: {[key: string]: string} | null;
+    /**
+     * Configuration for connections to an instance of Bitbucket Clouds.
+     */
+    bitbucketCloudConfig?: Schema$BitbucketCloudConfig;
+    /**
+     * Configuration for connections to an instance of Bitbucket Data Center.
+     */
+    bitbucketDataCenterConfig?: Schema$BitbucketDataCenterConfig;
     /**
      * Output only. [Output only] Create timestamp
      */
@@ -172,6 +234,10 @@ export namespace developerconnect_v1 {
      * Configuration for connections to an instance of GitLab Enterprise.
      */
     gitlabEnterpriseConfig?: Schema$GitLabEnterpriseConfig;
+    /**
+     * Optional. Configuration for the git proxy feature. Enabling the git proxy allows clients to perform git operations on the repositories linked in the connection.
+     */
+    gitProxyConfig?: Schema$GitProxyConfig;
     /**
      * Output only. Installation state of the Connection.
      */
@@ -404,6 +470,15 @@ export namespace developerconnect_v1 {
     webhookSecretSecretVersion?: string | null;
   }
   /**
+   * The git proxy configuration.
+   */
+  export interface Schema$GitProxyConfig {
+    /**
+     * Optional. Setting this to true allows the git proxy to be used for performing git operations on the repositories linked in the connection.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * Message describing the GitRepositoryLink object
    */
   export interface Schema$GitRepositoryLink {
@@ -427,6 +502,10 @@ export namespace developerconnect_v1 {
      * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
+    /**
+     * Output only. URI to access the linked repository through the Git Proxy. This field is only populated if the git proxy is enabled for the connection.
+     */
+    gitProxyUri?: string | null;
     /**
      * Optional. Labels as key value pairs
      */
@@ -667,6 +746,24 @@ export namespace developerconnect_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * RPC request object accepted by the ProcessBitbucketCloudWebhook RPC method.
+   */
+  export interface Schema$ProcessBitbucketCloudWebhookRequest {
+    /**
+     * Required. HTTP request body.
+     */
+    body?: Schema$HttpBody;
+  }
+  /**
+   * RPC request object accepted by the ProcessBitbucketDataCenterWebhook RPC method.
+   */
+  export interface Schema$ProcessBitbucketDataCenterWebhookRequest {
+    /**
+     * Required. HTTP request body.
+     */
+    body?: Schema$HttpBody;
   }
   /**
    * RPC request object accepted by the ProcessGitHubEnterpriseWebhook RPC method.
@@ -2506,6 +2603,189 @@ export namespace developerconnect_v1 {
     }
 
     /**
+     * ProcessBitbucketCloudWebhook is called by the external Bitbucket Cloud instances for notifying events.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    processBitbucketCloudWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    processBitbucketCloudWebhook(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    processBitbucketCloudWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    processBitbucketCloudWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processBitbucketCloudWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processBitbucketCloudWebhook(
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processBitbucketCloudWebhook(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:processBitbucketCloudWebhook').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * ProcessBitbucketDataCenterWebhook is called by the external Bitbucket Data Center instances for notifying events.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    processBitbucketDataCenterWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    processBitbucketDataCenterWebhook(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    processBitbucketDataCenterWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    processBitbucketDataCenterWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processBitbucketDataCenterWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processBitbucketDataCenterWebhook(
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processBitbucketDataCenterWebhook(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+name}:processBitbucketDataCenterWebhook'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * ProcessGitLabEnterpriseWebhook is called by the external GitLab Enterprise instances for notifying events.
      *
      * @param params - Parameters for request
@@ -2802,6 +3082,30 @@ export namespace developerconnect_v1 {
      * Required. Parent value for ListGitRepositoryLinksRequest
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketcloudwebhook
+    extends StandardParameters {
+    /**
+     * Required. The GitRepositoryLink where the webhook will be received. Format: `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProcessBitbucketCloudWebhookRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processbitbucketdatacenterwebhook
+    extends StandardParameters {
+    /**
+     * Required. The GitRepositoryLink where the webhook will be received. Format: `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProcessBitbucketDataCenterWebhookRequest;
   }
   export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook
     extends StandardParameters {
