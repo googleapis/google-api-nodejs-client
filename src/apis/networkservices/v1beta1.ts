@@ -425,10 +425,6 @@ export namespace networkservices_v1beta1 {
      */
     description?: string | null;
     /**
-     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string | null;
-    /**
      * Optional. Gateways defines a list of gateways this GrpcRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
     gateways?: string[] | null;
@@ -640,10 +636,6 @@ export namespace networkservices_v1beta1 {
      * Optional. A free-text description of the resource. Max length 1024 characters.
      */
     description?: string | null;
-    /**
-     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string | null;
     /**
      * Optional. Gateways defines a list of gateways this HttpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
@@ -1699,10 +1691,6 @@ export namespace networkservices_v1beta1 {
      */
     description?: string | null;
     /**
-     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string | null;
-    /**
      * Optional. Gateways defines a list of gateways this TcpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
     gateways?: string[] | null;
@@ -1800,10 +1788,6 @@ export namespace networkservices_v1beta1 {
      */
     description?: string | null;
     /**
-     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string | null;
-    /**
      * Optional. Gateways defines a list of gateways this TlsRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
     gateways?: string[] | null;
@@ -1859,7 +1843,7 @@ export namespace networkservices_v1beta1 {
     weight?: number | null;
   }
   /**
-   * RouteMatch defines the predicate used to match requests to a given action. Multiple match types are "AND"ed for evaluation. If no routeMatch field is specified, this rule will unconditionally match traffic.
+   * RouteMatch defines the predicate used to match requests to a given action. Multiple match types are "AND"ed for evaluation.
    */
   export interface Schema$TlsRouteRouteMatch {
     /**
@@ -1880,7 +1864,7 @@ export namespace networkservices_v1beta1 {
      */
     action?: Schema$TlsRouteRouteAction;
     /**
-     * Required. RouteMatch defines the predicate used to match requests to a given action. Multiple match types are "OR"ed for evaluation.
+     * Required. RouteMatch defines the predicate used to match requests to a given action. Multiple match types are "OR"ed for evaluation. Atleast one RouteMatch must be supplied.
      */
     matches?: Schema$TlsRouteRouteMatch[];
   }
@@ -4563,10 +4547,6 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Grpcroutes$Delete
     extends StandardParameters {
     /**
-     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string;
-    /**
      * Required. A name of the GrpcRoute to delete. Must be in the format `projects/x/locations/global/grpcRoutes/x`.
      */
     name?: string;
@@ -5076,10 +5056,6 @@ export namespace networkservices_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Httproutes$Delete
     extends StandardParameters {
-    /**
-     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string;
     /**
      * Required. A name of the HttpRoute to delete. Must be in the format `projects/x/locations/global/httpRoutes/x`.
      */
@@ -8734,10 +8710,6 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tcproutes$Delete
     extends StandardParameters {
     /**
-     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string;
-    /**
      * Required. A name of the TcpRoute to delete. Must be in the format `projects/x/locations/global/tcpRoutes/x`.
      */
     name?: string;
@@ -9247,10 +9219,6 @@ export namespace networkservices_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Tlsroutes$Delete
     extends StandardParameters {
-    /**
-     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string;
     /**
      * Required. A name of the TlsRoute to delete. Must be in the format `projects/x/locations/global/tlsRoutes/x`.
      */
