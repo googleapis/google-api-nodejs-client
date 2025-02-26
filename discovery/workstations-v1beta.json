@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20250101",
+  "revision": "20250122",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -2096,11 +2096,24 @@
           "readOnly": true,
           "type": "array"
         },
+        "conditions": {
+          "description": "Output only. Status conditions describing the workstation's current state.",
+          "items": {
+            "$ref": "Status"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. Time when this workstation was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "degraded": {
+          "description": "Output only. Whether this workstation is in degraded mode, in which case it may require user action to restore full functionality. Details can be found in conditions.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "deleteTime": {
           "description": "Output only. Time when this workstation was soft-deleted.",
