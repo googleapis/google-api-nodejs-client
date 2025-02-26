@@ -2243,6 +2243,14 @@ export namespace chromemanagement_v1 {
      */
     failureMessage?: string | null;
     /**
+     * Output only. The CA connection is a generic CA connection.
+     */
+    genericCaConnection?: Schema$GoogleChromeManagementVersionsV1alpha1GenericCaConnection;
+    /**
+     * Output only. The profile is a generic certificate provisioning profile.
+     */
+    genericProfile?: Schema$GoogleChromeManagementVersionsV1alpha1GenericProfile;
+    /**
      * Output only. The issued certificate for this `CertificateProvisioningProcess` in PEM format.
      */
     issuedCertificate?: string | null;
@@ -2310,6 +2318,24 @@ export namespace chromemanagement_v1 {
     userPrimaryEmail?: string | null;
   }
   /**
+   * Describes a generic Certificate Authority Connection.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1alpha1GenericCaConnection {
+    /**
+     * Output only. A string that references the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.
+     */
+    caConnectionAdapterConfigReference?: string | null;
+  }
+  /**
+   * Describes a generic certificate provisioning profile.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1alpha1GenericProfile {
+    /**
+     * Output only. A string that references the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.
+     */
+    profileAdapterConfigReference?: string | null;
+  }
+  /**
    * Metadata for the long-running operation returned by signData.
    */
   export interface Schema$GoogleChromeManagementVersionsV1alpha1SignDataMetadata {
@@ -2368,6 +2394,14 @@ export namespace chromemanagement_v1 {
      * Output only. A message describing why this `CertificateProvisioningProcess` failed. Presence of this field indicates that the `CertificateProvisioningProcess` has failed.
      */
     failureMessage?: string | null;
+    /**
+     * Output only. The CA connection is a generic CA connection.
+     */
+    genericCaConnection?: Schema$GoogleChromeManagementVersionsV1GenericCaConnection;
+    /**
+     * Output only. The profile is a generic certificate provisioning profile.
+     */
+    genericProfile?: Schema$GoogleChromeManagementVersionsV1GenericProfile;
     /**
      * Output only. The issued certificate for this `CertificateProvisioningProcess` in PEM format.
      */
@@ -2564,6 +2598,24 @@ export namespace chromemanagement_v1 {
      * Output only. Machine name of the device on which the profile exists. On platforms which do not report the machine name (currently iOS and Android) this is instead set to the browser's device_id - but note that this is a different device_id than the |affiliated_device_id|.
      */
     machine?: string | null;
+  }
+  /**
+   * Describes a generic Certificate Authority Connection.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1GenericCaConnection {
+    /**
+     * Output only. A string that references the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.
+     */
+    caConnectionAdapterConfigReference?: string | null;
+  }
+  /**
+   * Describes a generic certificate provisioning profile.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1GenericProfile {
+    /**
+     * Output only. A string that references the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.
+     */
+    profileAdapterConfigReference?: string | null;
   }
   /**
    * Response to ListChromeBrowserProfiles method.
