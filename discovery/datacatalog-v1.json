@@ -106,8 +106,10 @@
   "protocol": "rest",
   "resources": {
     "catalog": {
+      "deprecated": true,
       "methods": {
         "search": {
+          "deprecated": true,
           "description": "Searches Data Catalog for multiple resources like entries and tags that match a query. This is a [Custom Method] (https://cloud.google.com/apis/design/custom_methods) that doesn't return all information on a resource, only its ID and high level fields. To get more information, you can subsequently call specific get methods. Note: Data Catalog search queries don't guarantee full recall. Results that match your query might not be returned, even in subsequent result pages. Additionally, returned (and not returned) results can vary if you repeat search queries. For more information, see [Data Catalog search syntax] (https://cloud.google.com/data-catalog/docs/how-to/search-reference).",
           "flatPath": "v1/catalog:search",
           "httpMethod": "POST",
@@ -128,8 +130,10 @@
       }
     },
     "entries": {
+      "deprecated": true,
       "methods": {
         "lookup": {
+          "deprecated": true,
           "description": "Gets an entry by its target resource name. The resource name comes from the source Google Cloud Platform service.",
           "flatPath": "v1/entries:lookup",
           "httpMethod": "GET",
@@ -175,8 +179,10 @@
     "organizations": {
       "resources": {
         "locations": {
+          "deprecated": true,
           "methods": {
             "retrieveConfig": {
+              "deprecated": true,
               "description": "Retrieves the configuration related to the migration from Data Catalog to Dataplex for a specific organization, including all the projects under it which have a separate configuration set.",
               "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}:retrieveConfig",
               "httpMethod": "GET",
@@ -202,6 +208,7 @@
               ]
             },
             "retrieveEffectiveConfig": {
+              "deprecated": true,
               "description": "Retrieves the effective configuration related to the migration from Data Catalog to Dataplex for a specific organization or project. If there is no specific configuration set for the resource, the setting is checked hierarchicahlly through the ancestors of the resource, starting from the resource itself.",
               "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}:retrieveEffectiveConfig",
               "httpMethod": "GET",
@@ -227,6 +234,7 @@
               ]
             },
             "setConfig": {
+              "deprecated": true,
               "description": "Sets the configuration related to the migration to Dataplex for an organization or project.",
               "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}:setConfig",
               "httpMethod": "POST",
@@ -263,6 +271,7 @@
         "locations": {
           "methods": {
             "retrieveEffectiveConfig": {
+              "deprecated": true,
               "description": "Retrieves the effective configuration related to the migration from Data Catalog to Dataplex for a specific organization or project. If there is no specific configuration set for the resource, the setting is checked hierarchicahlly through the ancestors of the resource, starting from the resource itself.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:retrieveEffectiveConfig",
               "httpMethod": "GET",
@@ -288,6 +297,7 @@
               ]
             },
             "setConfig": {
+              "deprecated": true,
               "description": "Sets the configuration related to the migration to Dataplex for an organization or project.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:setConfig",
               "httpMethod": "POST",
@@ -320,6 +330,7 @@
             "entryGroups": {
               "methods": {
                 "create": {
+                  "deprecated": true,
                   "description": "Creates an entry group. An entry group contains logically related entries together with [Cloud Identity and Access Management](/data-catalog/docs/concepts/iam) policies. These policies specify users who can create, edit, and view entries within entry groups. Data Catalog automatically creates entry groups with names that start with the `@` symbol for the following resources: * BigQuery entries (`@bigquery`) * Pub/Sub topics (`@pubsub`) * Dataproc Metastore services (`@dataproc_metastore_{SERVICE_NAME_HASH}`) You can create your own entry groups for Cloud Storage fileset entries and custom entries together with the corresponding IAM policies. User-created entry groups can't contain the `@` symbol, it is reserved for automatically created groups. Entry groups, like entries, can be searched. A maximum of 10,000 entry groups may be created per organization across all locations. You must enable the Data Catalog API in the project identified by the `parent` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups",
                   "httpMethod": "POST",
@@ -353,6 +364,7 @@
                   ]
                 },
                 "delete": {
+                  "deprecated": true,
                   "description": "Deletes an entry group. You must enable the Data Catalog API in the project identified by the `name` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}",
                   "httpMethod": "DELETE",
@@ -383,6 +395,7 @@
                   ]
                 },
                 "get": {
+                  "deprecated": true,
                   "description": "Gets an entry group.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}",
                   "httpMethod": "GET",
@@ -414,6 +427,7 @@
                   ]
                 },
                 "getIamPolicy": {
+                  "deprecated": true,
                   "description": "Gets the access control policy for a resource. May return: * A`NOT_FOUND` error if the resource doesn't exist or you don't have the permission to view it. * An empty policy if the resource exists but doesn't have a set policy. Supported resources are: - Tag templates - Entry groups Note: This method doesn't get policies from Google Cloud Platform resources ingested into Data Catalog. To call this method, you must have the following Google IAM permissions: - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag templates. - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}:getIamPolicy",
                   "httpMethod": "POST",
@@ -442,6 +456,7 @@
                   ]
                 },
                 "list": {
+                  "deprecated": true,
                   "description": "Lists entry groups.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups",
                   "httpMethod": "GET",
@@ -478,6 +493,7 @@
                   ]
                 },
                 "patch": {
+                  "deprecated": true,
                   "description": "Updates an entry group. You must enable the Data Catalog API in the project identified by the `entry_group.name` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}",
                   "httpMethod": "PATCH",
@@ -512,6 +528,7 @@
                   ]
                 },
                 "setIamPolicy": {
+                  "deprecated": true,
                   "description": "Sets an access control policy for a resource. Replaces any existing policy. Supported resources are: - Tag templates - Entry groups Note: This method sets policies only within Data Catalog and can't be used to manage policies in BigQuery, Pub/Sub, Dataproc Metastore, and any external Google Cloud Platform resources synced with the Data Catalog. To call this method, you must have the following Google IAM permissions: - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag templates. - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}:setIamPolicy",
                   "httpMethod": "POST",
@@ -540,6 +557,7 @@
                   ]
                 },
                 "testIamPermissions": {
+                  "deprecated": true,
                   "description": "Gets your permissions on a resource. Returns an empty set of permissions if the resource doesn't exist. Supported resources are: - Tag templates - Entry groups Note: This method gets policies only within Data Catalog and can't be used to get policies from BigQuery, Pub/Sub, Dataproc Metastore, and any external Google Cloud Platform resources ingested into Data Catalog. No Google IAM permissions are required to call this method.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}:testIamPermissions",
                   "httpMethod": "POST",
@@ -572,6 +590,7 @@
                 "entries": {
                   "methods": {
                     "create": {
+                      "deprecated": true,
                       "description": "Creates an entry. You can create entries only with 'FILESET', 'CLUSTER', 'DATA_STREAM', or custom types. Data Catalog automatically creates entries with other types during metadata ingestion from integrated systems. You must enable the Data Catalog API in the project identified by the `parent` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project). An entry group can have a maximum of 100,000 entries.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries",
                       "httpMethod": "POST",
@@ -605,6 +624,7 @@
                       ]
                     },
                     "delete": {
+                      "deprecated": true,
                       "description": "Deletes an existing entry. You can delete only the entries created by the CreateEntry method. You must enable the Data Catalog API in the project identified by the `name` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}",
                       "httpMethod": "DELETE",
@@ -630,6 +650,7 @@
                       ]
                     },
                     "get": {
+                      "deprecated": true,
                       "description": "Gets an entry.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}",
                       "httpMethod": "GET",
@@ -655,6 +676,7 @@
                       ]
                     },
                     "getIamPolicy": {
+                      "deprecated": true,
                       "description": "Gets the access control policy for a resource. May return: * A`NOT_FOUND` error if the resource doesn't exist or you don't have the permission to view it. * An empty policy if the resource exists but doesn't have a set policy. Supported resources are: - Tag templates - Entry groups Note: This method doesn't get policies from Google Cloud Platform resources ingested into Data Catalog. To call this method, you must have the following Google IAM permissions: - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag templates. - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}:getIamPolicy",
                       "httpMethod": "POST",
@@ -683,6 +705,7 @@
                       ]
                     },
                     "import": {
+                      "deprecated": true,
                       "description": "Imports entries from a source, such as data previously dumped into a Cloud Storage bucket, into Data Catalog. Import of entries is a sync operation that reconciles the state of the third-party system with the Data Catalog. `ImportEntries` accepts source data snapshots of a third-party system. Snapshot should be delivered as a .wire or base65-encoded .txt file containing a sequence of Protocol Buffer messages of DumpItem type. `ImportEntries` returns a long-running operation resource that can be queried with Operations.GetOperation to return ImportEntriesMetadata and an ImportEntriesResponse message.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries:import",
                       "httpMethod": "POST",
@@ -711,6 +734,7 @@
                       ]
                     },
                     "list": {
+                      "deprecated": true,
                       "description": "Lists entries. Note: Currently, this method can list only custom entries. To get a list of both custom and automatically created entries, use SearchCatalog.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries",
                       "httpMethod": "GET",
@@ -753,6 +777,7 @@
                       ]
                     },
                     "modifyEntryContacts": {
+                      "deprecated": true,
                       "description": "Modifies contacts, part of the business context of an Entry. To call this method, you must have the `datacatalog.entries.updateContacts` IAM permission on the corresponding project.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}:modifyEntryContacts",
                       "httpMethod": "POST",
@@ -781,6 +806,7 @@
                       ]
                     },
                     "modifyEntryOverview": {
+                      "deprecated": true,
                       "description": "Modifies entry overview, part of the business context of an Entry. To call this method, you must have the `datacatalog.entries.updateOverview` IAM permission on the corresponding project.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}:modifyEntryOverview",
                       "httpMethod": "POST",
@@ -809,6 +835,7 @@
                       ]
                     },
                     "patch": {
+                      "deprecated": true,
                       "description": "Updates an existing entry. You must enable the Data Catalog API in the project identified by the `entry.name` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}",
                       "httpMethod": "PATCH",
@@ -843,6 +870,7 @@
                       ]
                     },
                     "star": {
+                      "deprecated": true,
                       "description": "Marks an Entry as starred by the current user. Starring information is private to each user.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}:star",
                       "httpMethod": "POST",
@@ -871,6 +899,7 @@
                       ]
                     },
                     "testIamPermissions": {
+                      "deprecated": true,
                       "description": "Gets your permissions on a resource. Returns an empty set of permissions if the resource doesn't exist. Supported resources are: - Tag templates - Entry groups Note: This method gets policies only within Data Catalog and can't be used to get policies from BigQuery, Pub/Sub, Dataproc Metastore, and any external Google Cloud Platform resources ingested into Data Catalog. No Google IAM permissions are required to call this method.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}:testIamPermissions",
                       "httpMethod": "POST",
@@ -899,6 +928,7 @@
                       ]
                     },
                     "unstar": {
+                      "deprecated": true,
                       "description": "Marks an Entry as NOT starred by the current user. Starring information is private to each user.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}:unstar",
                       "httpMethod": "POST",
@@ -929,8 +959,10 @@
                   },
                   "resources": {
                     "tags": {
+                      "deprecated": true,
                       "methods": {
                         "create": {
+                          "deprecated": true,
                           "description": "Creates a tag and assigns it to: * An Entry if the method name is `projects.locations.entryGroups.entries.tags.create`. * Or EntryGroupif the method name is `projects.locations.entryGroups.tags.create`. Note: The project identified by the `parent` parameter for the [tag] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be in the same organization.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}/tags",
                           "httpMethod": "POST",
@@ -959,6 +991,7 @@
                           ]
                         },
                         "delete": {
+                          "deprecated": true,
                           "description": "Deletes a tag.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}/tags/{tagsId}",
                           "httpMethod": "DELETE",
@@ -984,6 +1017,7 @@
                           ]
                         },
                         "list": {
+                          "deprecated": true,
                           "description": "Lists tags assigned to an Entry. The columns in the response are lowercased.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}/tags",
                           "httpMethod": "GET",
@@ -1020,6 +1054,7 @@
                           ]
                         },
                         "patch": {
+                          "deprecated": true,
                           "description": "Updates an existing tag.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}/tags/{tagsId}",
                           "httpMethod": "PATCH",
@@ -1054,6 +1089,7 @@
                           ]
                         },
                         "reconcile": {
+                          "deprecated": true,
                           "description": "`ReconcileTags` creates or updates a list of tags on the entry. If the ReconcileTagsRequest.force_delete_missing parameter is set, the operation deletes tags not included in the input tag list. `ReconcileTags` returns a long-running operation resource that can be queried with Operations.GetOperation to return ReconcileTagsMetadata and a ReconcileTagsResponse message.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}/tags:reconcile",
                           "httpMethod": "POST",
@@ -1086,8 +1122,10 @@
                   }
                 },
                 "tags": {
+                  "deprecated": true,
                   "methods": {
                     "create": {
+                      "deprecated": true,
                       "description": "Creates a tag and assigns it to: * An Entry if the method name is `projects.locations.entryGroups.entries.tags.create`. * Or EntryGroupif the method name is `projects.locations.entryGroups.tags.create`. Note: The project identified by the `parent` parameter for the [tag] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be in the same organization.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/tags",
                       "httpMethod": "POST",
@@ -1116,6 +1154,7 @@
                       ]
                     },
                     "delete": {
+                      "deprecated": true,
                       "description": "Deletes a tag.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/tags/{tagsId}",
                       "httpMethod": "DELETE",
@@ -1141,6 +1180,7 @@
                       ]
                     },
                     "list": {
+                      "deprecated": true,
                       "description": "Lists tags assigned to an Entry. The columns in the response are lowercased.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/tags",
                       "httpMethod": "GET",
@@ -1177,6 +1217,7 @@
                       ]
                     },
                     "patch": {
+                      "deprecated": true,
                       "description": "Updates an existing tag.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/tags/{tagsId}",
                       "httpMethod": "PATCH",
@@ -1337,6 +1378,7 @@
             "tagTemplates": {
               "methods": {
                 "create": {
+                  "deprecated": true,
                   "description": "Creates a tag template. You must enable the Data Catalog API in the project identified by the `parent` parameter. For more information, see [Data Catalog resource project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tagTemplates",
                   "httpMethod": "POST",
@@ -1370,6 +1412,7 @@
                   ]
                 },
                 "delete": {
+                  "deprecated": true,
                   "description": "Deletes a tag template and all tags that use it. You must enable the Data Catalog API in the project identified by the `name` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tagTemplates/{tagTemplatesId}",
                   "httpMethod": "DELETE",
@@ -1400,6 +1443,7 @@
                   ]
                 },
                 "get": {
+                  "deprecated": true,
                   "description": "Gets a tag template.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tagTemplates/{tagTemplatesId}",
                   "httpMethod": "GET",
@@ -1425,6 +1469,7 @@
                   ]
                 },
                 "getIamPolicy": {
+                  "deprecated": true,
                   "description": "Gets the access control policy for a resource. May return: * A`NOT_FOUND` error if the resource doesn't exist or you don't have the permission to view it. * An empty policy if the resource exists but doesn't have a set policy. Supported resources are: - Tag templates - Entry groups Note: This method doesn't get policies from Google Cloud Platform resources ingested into Data Catalog. To call this method, you must have the following Google IAM permissions: - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag templates. - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tagTemplates/{tagTemplatesId}:getIamPolicy",
                   "httpMethod": "POST",
@@ -1453,6 +1498,7 @@
                   ]
                 },
                 "patch": {
+                  "deprecated": true,
                   "description": "Updates a tag template. You can't update template fields with this method. These fields are separate resources with their own create, update, and delete methods. You must enable the Data Catalog API in the project identified by the `tag_template.name` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tagTemplates/{tagTemplatesId}",
                   "httpMethod": "PATCH",
@@ -1487,6 +1533,7 @@
                   ]
                 },
                 "setIamPolicy": {
+                  "deprecated": true,
                   "description": "Sets an access control policy for a resource. Replaces any existing policy. Supported resources are: - Tag templates - Entry groups Note: This method sets policies only within Data Catalog and can't be used to manage policies in BigQuery, Pub/Sub, Dataproc Metastore, and any external Google Cloud Platform resources synced with the Data Catalog. To call this method, you must have the following Google IAM permissions: - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag templates. - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tagTemplates/{tagTemplatesId}:setIamPolicy",
                   "httpMethod": "POST",
@@ -1515,6 +1562,7 @@
                   ]
                 },
                 "testIamPermissions": {
+                  "deprecated": true,
                   "description": "Gets your permissions on a resource. Returns an empty set of permissions if the resource doesn't exist. Supported resources are: - Tag templates - Entry groups Note: This method gets policies only within Data Catalog and can't be used to get policies from BigQuery, Pub/Sub, Dataproc Metastore, and any external Google Cloud Platform resources ingested into Data Catalog. No Google IAM permissions are required to call this method.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tagTemplates/{tagTemplatesId}:testIamPermissions",
                   "httpMethod": "POST",
@@ -1547,6 +1595,7 @@
                 "fields": {
                   "methods": {
                     "create": {
+                      "deprecated": true,
                       "description": "Creates a field in a tag template. You must enable the Data Catalog API in the project identified by the `parent` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tagTemplates/{tagTemplatesId}/fields",
                       "httpMethod": "POST",
@@ -1580,6 +1629,7 @@
                       ]
                     },
                     "delete": {
+                      "deprecated": true,
                       "description": "Deletes a field in a tag template and all uses of this field from the tags based on this template. You must enable the Data Catalog API in the project identified by the `name` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tagTemplates/{tagTemplatesId}/fields/{fieldsId}",
                       "httpMethod": "DELETE",
@@ -1610,6 +1660,7 @@
                       ]
                     },
                     "patch": {
+                      "deprecated": true,
                       "description": "Updates a field in a tag template. You can't update the field type with this method. You must enable the Data Catalog API in the project identified by the `name` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tagTemplates/{tagTemplatesId}/fields/{fieldsId}",
                       "httpMethod": "PATCH",
@@ -1644,6 +1695,7 @@
                       ]
                     },
                     "rename": {
+                      "deprecated": true,
                       "description": "Renames a field in a tag template. You must enable the Data Catalog API in the project identified by the `name` parameter. For more information, see [Data Catalog resource project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tagTemplates/{tagTemplatesId}/fields/{fieldsId}:rename",
                       "httpMethod": "POST",
@@ -1674,8 +1726,10 @@
                   },
                   "resources": {
                     "enumValues": {
+                      "deprecated": true,
                       "methods": {
                         "rename": {
+                          "deprecated": true,
                           "description": "Renames an enum value in a tag template. Within a single enum field, enum values must be unique.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tagTemplates/{tagTemplatesId}/fields/{fieldsId}/enumValues/{enumValuesId}:rename",
                           "httpMethod": "POST",
@@ -2285,7 +2339,7 @@
       }
     }
   },
-  "revision": "20241202",
+  "revision": "20250212",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2765,7 +2819,7 @@
       "properties": {
         "databaseViewSpec": {
           "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec",
-          "description": "Spec what aplies to tables that are actually views. Not set for \"real\" tables."
+          "description": "Spec what applies to tables that are actually views. Not set for \"real\" tables."
         },
         "dataplexTable": {
           "$ref": "GoogleCloudDatacatalogV1DataplexTableSpec",
@@ -3203,7 +3257,7 @@
       "id": "GoogleCloudDatacatalogV1FeatureOnlineStoreSpec",
       "properties": {
         "storageType": {
-          "description": "Output only. Type of underelaying storage for the FeatureOnlineStore.",
+          "description": "Output only. Type of underlying storage for the FeatureOnlineStore.",
           "enum": [
             "STORAGE_TYPE_UNSPECIFIED",
             "BIGTABLE",
@@ -3212,7 +3266,7 @@
           "enumDescriptions": [
             "Should not be used.",
             "Underlsying storgae is Bigtable.",
-            "Underlaying is optimized online server (Lightning)."
+            "Underlying is optimized online server (Lightning)."
           ],
           "readOnly": true,
           "type": "string"
