@@ -1397,7 +1397,7 @@ export namespace clouddeploy_v1 {
      */
     jobId?: string | null;
     /**
-     * Identifier. Name of the `JobRun`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{releases\}/rollouts/{rollouts\}/jobRuns/{uuid\}`.
+     * Output only. Name of the `JobRun`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{releases\}/rollouts/{rollouts\}/jobRuns/{uuid\}`.
      */
     name?: string | null;
     /**
@@ -1629,7 +1629,7 @@ export namespace clouddeploy_v1 {
     unreachable?: string[] | null;
   }
   /**
-   * ListRolloutsResponse is the response object reutrned by `ListRollouts`.
+   * ListRolloutsResponse is the response object returned by `ListRollouts`.
    */
   export interface Schema$ListRolloutsResponse {
     /**
@@ -2706,7 +2706,7 @@ export namespace clouddeploy_v1 {
      */
     destinationIds?: string[] | null;
     /**
-     * Optional. Whether to propagate the Kubernetes Service to the route destination clusters. The Service will always be deployed to the Target cluster even if the HTTPRoute is not. This option may be used to facilitiate successful DNS lookup in the route destination clusters. Can only be set to true if destinations are specified.
+     * Optional. Whether to propagate the Kubernetes Service to the route destination clusters. The Service will always be deployed to the Target cluster even if the HTTPRoute is not. This option may be used to facilitate successful DNS lookup in the route destination clusters. Can only be set to true if destinations are specified.
      */
     propagateService?: boolean | null;
   }
