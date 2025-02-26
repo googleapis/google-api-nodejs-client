@@ -1998,6 +1998,168 @@
                 }
               }
             },
+            "backendAuthenticationConfigs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new BackendAuthenticationConfig in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "backendAuthenticationConfigId": {
+                      "description": "Required. Short name of the BackendAuthenticationConfig resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. \"backend-auth-config\".",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the BackendAuthenticationConfig. Must be in the format `projects/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/backendAuthenticationConfigs",
+                  "request": {
+                    "$ref": "BackendAuthenticationConfig"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single BackendAuthenticationConfig to BackendAuthenticationConfig.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs/{backendAuthenticationConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. A name of the BackendAuthenticationConfig to delete. Must be in the format `projects/*/locations/{location}/backendAuthenticationConfigs/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backendAuthenticationConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single BackendAuthenticationConfig to BackendAuthenticationConfig.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs/{backendAuthenticationConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the BackendAuthenticationConfig to get. Must be in the format `projects/*/locations/{location}/backendAuthenticationConfigs/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backendAuthenticationConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "BackendAuthenticationConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists BackendAuthenticationConfigs in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of BackendAuthenticationConfigs to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListBackendAuthenticationConfigsResponse` Indicates that this is a continuation of a prior `ListBackendAuthenticationConfigs` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the BackendAuthenticationConfigs should be listed, specified in the format `projects/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/backendAuthenticationConfigs",
+                  "response": {
+                    "$ref": "ListBackendAuthenticationConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single BackendAuthenticationConfig to BackendAuthenticationConfig.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs/{backendAuthenticationConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the BackendAuthenticationConfig resource. It matches the pattern `projects/*/locations/{location}/backendAuthenticationConfigs/{backend_authentication_config}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backendAuthenticationConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the BackendAuthenticationConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "BackendAuthenticationConfig"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "clientTlsPolicies": {
               "methods": {
                 "create": {
@@ -3619,7 +3781,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. Then name of the MirroringDeploymentGroup.",
+                      "description": "Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeploymentGroups/[^/]+$",
                       "required": true,
@@ -3653,7 +3815,7 @@
             "mirroringDeployments": {
               "methods": {
                 "create": {
-                  "description": "Creates a new MirroringDeployment in a given project and location.",
+                  "description": "Creates a deployment in a given project and location. See https://google.aip.dev/133.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.mirroringDeployments.create",
@@ -3691,7 +3853,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single MirroringDeployment.",
+                  "description": "Deletes a deployment. See https://google.aip.dev/135.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments/{mirroringDeploymentsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.mirroringDeployments.delete",
@@ -3721,7 +3883,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single MirroringDeployment.",
+                  "description": "Gets a specific deployment. See https://google.aip.dev/131.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments/{mirroringDeploymentsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringDeployments.get",
@@ -3746,7 +3908,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists MirroringDeployments in a given project and location.",
+                  "description": "Lists deployments in a given project and location. See https://google.aip.dev/132.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringDeployments.list",
@@ -3792,7 +3954,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single MirroringDeployment.",
+                  "description": "Updates a deployment. See https://google.aip.dev/134.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments/{mirroringDeploymentsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.mirroringDeployments.patch",
@@ -3801,7 +3963,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. The name of the MirroringDeployment.",
+                      "description": "Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/mirroringDeployments/my-dep`. See https://google.aip.dev/122 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeployments/[^/]+$",
                       "required": true,
@@ -3835,7 +3997,7 @@
             "mirroringEndpointGroupAssociations": {
               "methods": {
                 "create": {
-                  "description": "Creates a new MirroringEndpointGroupAssociation in a given project and location.",
+                  "description": "Creates an association in a given project and location. See https://google.aip.dev/133.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.create",
@@ -3844,12 +4006,12 @@
                   ],
                   "parameters": {
                     "mirroringEndpointGroupAssociationId": {
-                      "description": "Optional. Id of the requesting object If auto-generating Id server-side, remove this field and mirroring_endpoint_group_association_id from the method_signature of Create RPC",
+                      "description": "Optional. ID for the new association. If not provided, the server will generate a unique ID. The ID must be a valid RFC 1035 resource name. The ID must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Value for parent.",
+                      "description": "Required. Container (project and location) where the association will be created, e.g. `projects/123456789/locations/global`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3873,7 +4035,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single MirroringEndpointGroupAssociation.",
+                  "description": "Deletes a single association. See https://google.aip.dev/135.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociationsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.delete",
@@ -3882,7 +4044,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. Full resource name of the association to delete, e.g. projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroupAssociations/[^/]+$",
                       "required": true,
@@ -3903,7 +4065,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single MirroringEndpointGroupAssociation.",
+                  "description": "Gets a specific association. See https://google.aip.dev/131.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociationsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.get",
@@ -3912,7 +4074,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. Full resource name of the association to get, e.g. projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroupAssociations/[^/]+$",
                       "required": true,
@@ -3928,7 +4090,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists MirroringEndpointGroupAssociations in a given project and location.",
+                  "description": "Lists associations in a given project and location. See https://google.aip.dev/132.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.list",
@@ -3937,7 +4099,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filtering results",
+                      "description": "Optional. A filter expression that filters the results listed in the response. See https://google.aip.dev/160.",
                       "location": "query",
                       "type": "string"
                     },
@@ -3947,18 +4109,18 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "description": "Optional. A token identifying a page of results the server should return. See https://google.aip.dev/158.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListMirroringEndpointGroupAssociationsRequest",
+                      "description": "Required. Parent container (project and location) of the associations to list, e.g. `projects/123456789/locations/global`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3974,7 +4136,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single MirroringEndpointGroupAssociation.",
+                  "description": "Updates an association. See https://google.aip.dev/134.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociationsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.patch",
@@ -3983,7 +4145,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. The name of the MirroringEndpointGroupAssociation.",
+                      "description": "Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroupAssociations/[^/]+$",
                       "required": true,
@@ -3995,7 +4157,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the MirroringEndpointGroupAssociation resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the association by the update. See https://google.aip.dev/161.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -4017,7 +4179,7 @@
             "mirroringEndpointGroups": {
               "methods": {
                 "create": {
-                  "description": "Creates a new MirroringEndpointGroup in a given project and location.",
+                  "description": "Creates an endpoint group in a given project and location. See https://google.aip.dev/133.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroups.create",
@@ -4055,7 +4217,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single MirroringEndpointGroup.",
+                  "description": "Deletes an endpoint group. See https://google.aip.dev/135.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups/{mirroringEndpointGroupsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroups.delete",
@@ -4085,7 +4247,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single MirroringEndpointGroup.",
+                  "description": "Gets a specific endpoint group. See https://google.aip.dev/131.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups/{mirroringEndpointGroupsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroups.get",
@@ -4110,7 +4272,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists MirroringEndpointGroups in a given project and location.",
+                  "description": "Lists endpoint groups in a given project and location. See https://google.aip.dev/132.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroups.list",
@@ -4156,7 +4318,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single MirroringEndpointGroup.",
+                  "description": "Updates an endpoint group. See https://google.aip.dev/134.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups/{mirroringEndpointGroupsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroups.patch",
@@ -4165,7 +4327,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. Next ID: 11 The name of the MirroringEndpointGroup.",
+                      "description": "Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroups/[^/]+$",
                       "required": true,
@@ -4887,7 +5049,7 @@
       }
     }
   },
-  "revision": "20250118",
+  "revision": "20250211",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -4985,6 +5147,55 @@
           "description": "Output only. The timestamp when the resource was updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AntivirusOverride": {
+      "description": "Defines what action to take for antivirus threats per protocol.",
+      "id": "AntivirusOverride",
+      "properties": {
+        "action": {
+          "description": "Required. Threat action override. For some threat types, only a subset of actions applies.",
+          "enum": [
+            "THREAT_ACTION_UNSPECIFIED",
+            "DEFAULT_ACTION",
+            "ALLOW",
+            "ALERT",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Threat action not specified.",
+            "The default action (as specified by the vendor) is taken.",
+            "The packet matching this rule will be allowed to transmit.",
+            "The packet matching this rule will be allowed to transmit, but a threat_log entry will be sent to the consumer project.",
+            "The packet matching this rule will be dropped, and a threat_log entry will be sent to the consumer project."
+          ],
+          "type": "string"
+        },
+        "protocol": {
+          "description": "Required. Protocol to match.",
+          "enum": [
+            "PROTOCOL_UNSPECIFIED",
+            "SMTP",
+            "SMB",
+            "POP3",
+            "IMAP",
+            "HTTP2",
+            "HTTP",
+            "FTP"
+          ],
+          "enumDescriptions": [
+            "Protocol not specified.",
+            "SMTP prtocol",
+            "SMB protocol",
+            "POP3 protocol",
+            "IMAP protocol",
+            "HTTP2 protocol",
+            "HTTP protocol",
+            "FTP protocol"
+          ],
           "type": "string"
         }
       },
@@ -5375,6 +5586,67 @@
       },
       "type": "object"
     },
+    "BackendAuthenticationConfig": {
+      "description": "BackendAuthenticationConfig message groups the TrustConfig together with other settings that control how the load balancer authenticates, and expresses its identity to, the backend: * `trustConfig` is the attached TrustConfig. * `wellKnownRoots` indicates whether the load balance should trust backend server certificates that are issued by public certificate authorities, in addition to certificates trusted by the TrustConfig. * `clientCertificate` is a client certificate that the load balancer uses to express its identity to the backend, if the connection to the backend uses mTLS. You can attach the BackendAuthenticationConfig to the load balancer’s BackendService directly determining how that BackendService negotiates TLS.",
+      "id": "BackendAuthenticationConfig",
+      "properties": {
+        "clientCertificate": {
+          "description": "Optional. A reference to a certificatemanager.googleapis.com.Certificate resource. This is a relative resource path following the form \"projects/{project}/locations/{location}/certificates/{certificate}\". Used by a BackendService to negotiate mTLS when the backend connection uses TLS and the backend requests a client certificate. Must have a CLIENT_AUTH scope.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Free-text description of the resource.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. Etag of the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Set of label tags associated with the resource.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. Name of the BackendAuthenticationConfig resource. It matches the pattern `projects/*/locations/{location}/backendAuthenticationConfigs/{backend_authentication_config}`",
+          "type": "string"
+        },
+        "trustConfig": {
+          "description": "Optional. A reference to a TrustConfig resource from the certificatemanager.googleapis.com namespace. This is a relative resource path following the form \"projects/{project}/locations/{location}/trustConfigs/{trust_config}\". A BackendService uses the chain of trust represented by this TrustConfig, if specified, to validate the server certificates presented by the backend. Required unless wellKnownRoots is set to PUBLIC_ROOTS.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "wellKnownRoots": {
+          "description": "Well known roots to use for server certificate validation.",
+          "enum": [
+            "WELL_KNOWN_ROOTS_UNSPECIFIED",
+            "NONE",
+            "PUBLIC_ROOTS"
+          ],
+          "enumDescriptions": [
+            "Equivalent to NONE.",
+            "The BackendService will only validate server certificates against roots specified in TrustConfig.",
+            "The BackendService uses a set of well-known public roots, in addition to any roots specified in the trustConfig field, when validating the server certificates presented by the backend. Validation with these roots is only considered when the TlsSettings.sni field in the BackendService is set. The well-known roots are a set of root CAs managed by Google. CAs in this set can be added or removed without notice."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -5457,22 +5729,22 @@
       "type": "object"
     },
     "CustomInterceptProfile": {
-      "description": "CustomInterceptProfile defines the Packet Intercept Endpoint Group used to intercept traffic to a third-party firewall in a Firewall rule.",
+      "description": "CustomInterceptProfile defines in-band integration behavior (intercept). It is used by firewall rules with an APPLY_SECURITY_PROFILE_GROUP action.",
       "id": "CustomInterceptProfile",
       "properties": {
         "interceptEndpointGroup": {
-          "description": "Required. The InterceptEndpointGroup to which traffic associated with the SP should be mirrored.",
+          "description": "Required. The target InterceptEndpointGroup. When a firewall rule with this security profile attached matches a packet, the packet will be intercepted to the location-local target in this group.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "CustomMirroringProfile": {
-      "description": "CustomMirroringProfile defines an action for mirroring traffic to a collector's EndpointGroup",
+      "description": "CustomMirroringProfile defines out-of-band integration behavior (mirroring). It is used by mirroring rules with a MIRROR action.",
       "id": "CustomMirroringProfile",
       "properties": {
         "mirroringEndpointGroup": {
-          "description": "Required. The MirroringEndpointGroup to which traffic associated with the SP should be mirrored.",
+          "description": "Required. The target MirroringEndpointGroup. When a mirroring rule with this security profile attached matches a packet, a replica will be mirrored to the location-local target in this group.",
           "type": "string"
         }
       },
@@ -5588,6 +5860,16 @@
         },
         "reconciling": {
           "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. [Output Only] Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. [Output Only] Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -6056,7 +6338,7 @@
       "type": "object"
     },
     "InterceptDeploymentGroup": {
-      "description": "Message describing InterceptDeploymentGroup object NEXT ID: 10",
+      "description": "Message describing InterceptDeploymentGroup object",
       "id": "InterceptDeploymentGroup",
       "properties": {
         "connectedEndpointGroups": {
@@ -6449,6 +6731,31 @@
       },
       "type": "object"
     },
+    "ListBackendAuthenticationConfigsResponse": {
+      "description": "Response returned by the ListBackendAuthenticationConfigs method.",
+      "id": "ListBackendAuthenticationConfigsResponse",
+      "properties": {
+        "backendAuthenticationConfigs": {
+          "description": "List of BackendAuthenticationConfig resources.",
+          "items": {
+            "$ref": "BackendAuthenticationConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListClientTlsPoliciesResponse": {
       "description": "Response returned by the ListClientTlsPolicies method.",
       "id": "ListClientTlsPoliciesResponse",
@@ -6708,18 +7015,18 @@
       "type": "object"
     },
     "ListMirroringEndpointGroupAssociationsResponse": {
-      "description": "Message for response to listing MirroringEndpointGroupAssociations",
+      "description": "Response message for listing associations.",
       "id": "ListMirroringEndpointGroupAssociationsResponse",
       "properties": {
         "mirroringEndpointGroupAssociations": {
-          "description": "The list of MirroringEndpointGroupAssociation",
+          "description": "The list of associations returned.",
           "items": {
             "$ref": "MirroringEndpointGroupAssociation"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
+          "description": "A token identifying a page of results the server should return. See https://google.aip.dev/158.",
           "type": "string"
         }
       },
@@ -6932,41 +7239,45 @@
       "type": "object"
     },
     "MirroringDeployment": {
-      "description": "Message describing MirroringDeployment object NEXT ID: 10",
+      "description": "A deployment represents a zonal mirroring backend ready to accept GENEVE-encapsulated replica traffic, e.g. a zonal instance group fronted by an internal passthrough load balancer. Deployments are always part of a global deployment group which represents a global mirroring service.",
       "id": "MirroringDeployment",
       "properties": {
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
+        "description": {
+          "description": "Optional. User-provided description of the deployment. Used as additional context for the deployment.",
+          "type": "string"
+        },
         "forwardingRule": {
-          "description": "Required. Immutable. The regional load balancer which the mirrored traffic should be forwarded to. Format is: projects/{project}/regions/{region}/forwardingRules/{forwardingRule}",
+          "description": "Required. Immutable. The regional forwarding rule that fronts the mirroring collectors, for example: `projects/123456789/regions/us-central1/forwardingRules/my-rule`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
           "type": "object"
         },
         "mirroringDeploymentGroup": {
-          "description": "Required. Immutable. The Mirroring Deployment Group that this resource is part of. Format is: `projects/{project}/locations/global/mirroringDeploymentGroups/{mirroringDeploymentGroup}`",
+          "description": "Required. Immutable. The deployment group that this deployment is a part of, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Identifier. The name of the MirroringDeployment.",
+          "description": "Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/mirroringDeployments/my-dep`. See https://google.aip.dev/122 for more details.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. linking a new association to the parent group). See https://google.aip.dev/128.",
           "readOnly": true,
           "type": "boolean"
         },
         "state": {
-          "description": "Output only. Current state of the deployment.",
+          "description": "Output only. The current state of the deployment. See https://google.aip.dev/216.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -6976,18 +7287,18 @@
             "DELETE_FAILED"
           ],
           "enumDescriptions": [
-            "Not set.",
-            "Ready.",
-            "Being created.",
-            "Being deleted.",
-            "The underlying data plane is out of sync with the deployment. The deployment is not expected to be usable. This state can result in undefined behavior.",
-            "An attempt to delete the deployment has failed. This is a terminal state and the deployment is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the deployment."
+            "State not set (this is not a valid state).",
+            "The deployment is ready and in sync with the parent group.",
+            "The deployment is being created.",
+            "The deployment is being deleted.",
+            "The deployment is out of sync with the parent group. In most cases, this is a result of a transient issue within the system (e.g. a delayed data-path config) and the system is expected to recover automatically. See the parent deployment group's state for more details.",
+            "An attempt to delete the deployment has failed. This is a terminal state and the deployment is not expected to recover. The only permitted operation is to retry deleting the deployment."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6996,11 +7307,11 @@
       "type": "object"
     },
     "MirroringDeploymentGroup": {
-      "description": "Message describing MirroringDeploymentGroup object NEXT ID: 10",
+      "description": "A deployment group aggregates many zonal mirroring backends (deployments) into a single global mirroring service. Consumers can connect this service using an endpoint group.",
       "id": "MirroringDeploymentGroup",
       "properties": {
         "connectedEndpointGroups": {
-          "description": "Output only. The list of Mirroring Endpoint Groups that are connected to this resource.",
+          "description": "Output only. The list of endpoint groups that are connected to this resource.",
           "items": {
             "$ref": "MirroringDeploymentGroupConnectedEndpointGroup"
           },
@@ -7008,33 +7319,37 @@
           "type": "array"
         },
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the deployment group. Used as additional context for the deployment group.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
           "type": "object"
         },
         "name": {
-          "description": "Immutable. Identifier. Then name of the MirroringDeploymentGroup.",
+          "description": "Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.",
           "type": "string"
         },
         "network": {
-          "description": "Required. Immutable. The network that is being used for the deployment. Format is: projects/{project}/global/networks/{network}.",
+          "description": "Required. Immutable. The network that will be used for all child deployments, for example: `projects/{project}/global/networks/{network}`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new deployment to the group) See https://google.aip.dev/128.",
           "readOnly": true,
           "type": "boolean"
         },
         "state": {
-          "description": "Output only. Current state of the deployment group.",
+          "description": "Output only. The current state of the deployment group. See https://google.aip.dev/216.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -7042,16 +7357,16 @@
             "DELETING"
           ],
           "enumDescriptions": [
-            "Not set.",
-            "Ready.",
-            "Being created.",
-            "Being deleted."
+            "State not set (this is not a valid state).",
+            "The deployment group is ready.",
+            "The deployment group is being created.",
+            "The deployment group is being deleted."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -7064,7 +7379,7 @@
       "id": "MirroringDeploymentGroupConnectedEndpointGroup",
       "properties": {
         "name": {
-          "description": "Output only. A connected mirroring endpoint group.",
+          "description": "Output only. The connected endpoint group's resource name, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/124.",
           "readOnly": true,
           "type": "string"
         }
@@ -7072,11 +7387,11 @@
       "type": "object"
     },
     "MirroringEndpointGroup": {
-      "description": "Message describing MirroringEndpointGroup object.",
+      "description": "An endpoint group is a consumer frontend for a deployment group (backend). In order to configure mirroring for a network, consumers must create: - An association between their network and the endpoint group. - A security profile that points to the endpoint group. - A mirroring rule that references the security profile (group).",
       "id": "MirroringEndpointGroup",
       "properties": {
         "associations": {
-          "description": "Output only. List of Mirroring Endpoint Group Associations that are associated to this endpoint group.",
+          "description": "Output only. List of associations to this endpoint group.",
           "items": {
             "$ref": "MirroringEndpointGroupAssociationDetails"
           },
@@ -7084,33 +7399,37 @@
           "type": "array"
         },
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the endpoint group. Used as additional context for the endpoint group.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
           "type": "object"
         },
         "mirroringDeploymentGroup": {
-          "description": "Required. Immutable. The Mirroring Deployment Group that this resource is connected to. Format is: `projects/{project}/locations/global/mirroringDeploymentGroups/{mirroringDeploymentGroup}`",
+          "description": "Immutable. The deployment group that this DIRECT endpoint group is connected to, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Identifier. Next ID: 11 The name of the MirroringEndpointGroup.",
+          "description": "Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new association to the group). See https://google.aip.dev/128.",
           "readOnly": true,
           "type": "boolean"
         },
         "state": {
-          "description": "Output only. Current state of the endpoint group.",
+          "description": "Output only. The current state of the endpoint group. See https://google.aip.dev/216.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -7121,19 +7440,19 @@
             "DELETE_FAILED"
           ],
           "enumDescriptions": [
-            "Not set.",
-            "Ready.",
-            "The deployment group has been deleted and mirroring is disabled.",
-            "Being created.",
-            "Being deleted.",
-            "The underlying data plane is out of sync with the endpoint group. Some associations might not be usable.",
-            "An attempt to delete the endpoint group has failed. This is a terminal state and the endpoint group is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the endpoint group."
+            "State not set (this is not a valid state).",
+            "The endpoint group is ready and in sync with the target deployment group.",
+            "The deployment group backing this endpoint group has been force-deleted. This endpoint group cannot be used and mirroring is effectively disabled.",
+            "The endpoint group is being created.",
+            "The endpoint group is being deleted.",
+            "The endpoint group is out of sync with the backing deployment group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. See the associations field for details per network and location.",
+            "An attempt to delete the endpoint group has failed. This is a terminal state and the endpoint group is not expected to recover. The only permitted operation is to retry deleting the endpoint group."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -7142,11 +7461,11 @@
       "type": "object"
     },
     "MirroringEndpointGroupAssociation": {
-      "description": "Message describing MirroringEndpointGroupAssociation object",
+      "description": "An endpoint group association represents a link between a network and an endpoint group in the organization. Creating an association creates the networking infrastructure linking the network to the endpoint group, but does not enable mirroring by itself. To enable mirroring, the user must also create a network firewall policy containing mirroring rules and associate it with the network.",
       "id": "MirroringEndpointGroupAssociation",
       "properties": {
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -7155,11 +7474,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
           "type": "object"
         },
         "locationsDetails": {
-          "description": "Output only. The list of locations that this association is in and its details.",
+          "description": "Output only. The list of locations where the association is present. This information is retrieved from the linked endpoint group, and not configured as part of the association itself.",
           "items": {
             "$ref": "MirroringEndpointGroupAssociationLocationDetails"
           },
@@ -7167,19 +7486,19 @@
           "type": "array"
         },
         "mirroringEndpointGroup": {
-          "description": "Required. Immutable. The Mirroring Endpoint Group that this resource is connected to. Format is: `projects/{project}/locations/global/mirroringEndpointGroups/{mirroringEndpointGroup}`",
+          "description": "Immutable. The endpoint group that this association is connected to, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Identifier. The name of the MirroringEndpointGroupAssociation.",
+          "description": "Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.",
           "type": "string"
         },
         "network": {
-          "description": "Required. Immutable. The VPC network associated. Format: projects/{project}/global/networks/{network}.",
+          "description": "Immutable. The VPC network that is associated. for example: `projects/123456789/global/networks/my-network`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. adding a new location to the target deployment group). See https://google.aip.dev/128.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -7196,18 +7515,18 @@
           ],
           "enumDescriptions": [
             "Not set.",
-            "Ready.",
+            "The association is ready and in sync with the linked endpoint group.",
             "Being created.",
             "Being deleted.",
             "Mirroring is disabled due to an operation on another resource.",
-            "The underlying data plane is out of sync with the association. The association is not expected to be usable. This state can result in undefined behavior. See the `locations_details` field for more details.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. Check the `locations_details` field for more details.",
             "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -7216,21 +7535,21 @@
       "type": "object"
     },
     "MirroringEndpointGroupAssociationDetails": {
-      "description": "This is a subset of the MirroringEndpointGroupAssociation message, containing fields to be used by the consumer.",
+      "description": "The endpoint group's view of a connected association.",
       "id": "MirroringEndpointGroupAssociationDetails",
       "properties": {
         "name": {
-          "description": "Output only. The resource name of the MirroringEndpointGroupAssociation. Format: projects/{project}/locations/{location}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociation}",
+          "description": "Output only. The connected association's resource name, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-ega`. See https://google.aip.dev/124.",
           "readOnly": true,
           "type": "string"
         },
         "network": {
-          "description": "Output only. The VPC network associated. Format: projects/{project}/global/networks/{name}.",
+          "description": "Output only. The associated network, for example: projects/123456789/global/networks/my-network. See https://google.aip.dev/124.",
           "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Output only. Current state of the association.",
+          "description": "Output only. Most recent known state of the association.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -7242,11 +7561,11 @@
           ],
           "enumDescriptions": [
             "Not set.",
-            "Ready.",
+            "The association is ready and in sync with the linked endpoint group.",
             "Being created.",
             "Being deleted.",
             "Mirroring is disabled due to an operation on another resource.",
-            "The underlying data plane is out of sync with the association. The association is not expected to be usable. This state can result in undefined behavior. See the `locations_details` field for more details.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. Check the `locations_details` field for more details.",
             "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
           ],
           "readOnly": true,
@@ -7256,16 +7575,16 @@
       "type": "object"
     },
     "MirroringEndpointGroupAssociationLocationDetails": {
-      "description": "Details about the association status in a specific cloud location.",
+      "description": "Contains details about the state of an association in a specific cloud location.",
       "id": "MirroringEndpointGroupAssociationLocationDetails",
       "properties": {
         "location": {
-          "description": "Output only. The cloud location.",
+          "description": "Output only. The cloud location, e.g. \"us-central1-a\" or \"asia-south1\".",
           "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Output only. The association state in this location.",
+          "description": "Output only. The current state of the association in this location.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -7273,8 +7592,8 @@
           ],
           "enumDescriptions": [
             "Not set.",
-            "Ready.",
-            "The data plane is out of sync with the association in this location."
+            "The association is ready and in sync with the linked endpoint group.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically."
           ],
           "readOnly": true,
           "type": "string"
@@ -7483,6 +7802,12 @@
         },
         "customMirroringProfile": {
           "description": "Optional. Reference to a SecurityProfile with the CustomMirroring configuration.",
+          "type": "string"
+        },
+        "dataPathId": {
+          "description": "Output only. Identifier used by the data-path. Unique within {container, location}.",
+          "format": "uint64",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -7711,6 +8036,13 @@
       "description": "ThreatPreventionProfile defines an action for specific threat signatures or severity levels.",
       "id": "ThreatPreventionProfile",
       "properties": {
+        "antivirusOverrides": {
+          "description": "Optional. Configuration for overriding antivirus actions per protocol.",
+          "items": {
+            "$ref": "AntivirusOverride"
+          },
+          "type": "array"
+        },
         "severityOverrides": {
           "description": "Optional. Configuration for overriding threats actions by severity match.",
           "items": {
