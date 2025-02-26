@@ -1119,7 +1119,7 @@
       }
     }
   },
-  "revision": "20241210",
+  "revision": "20250223",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -1153,7 +1153,7 @@
           "type": "string"
         },
         "cidr": {
-          "description": "Required. The subnet CIDR range for the Autonmous Database.",
+          "description": "Optional. The subnet CIDR range for the Autonmous Database.",
           "type": "string"
         },
         "createTime": {
@@ -1187,7 +1187,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Required. The name of the VPC network used by the Autonomous Database in the following format: projects/{project}/global/networks/{network}",
+          "description": "Optional. The name of the VPC network used by the Autonomous Database in the following format: projects/{project}/global/networks/{network}",
           "type": "string"
         },
         "properties": {
@@ -3068,14 +3068,16 @@
             "ACCOUNT_NOT_LINKED",
             "ACCOUNT_NOT_ACTIVE",
             "ACTIVE",
-            "ACCOUNT_SUSPENDED"
+            "ACCOUNT_SUSPENDED",
+            "NOT_APPROVED_IN_PRIVATE_MARKETPLACE"
           ],
           "enumDescriptions": [
             "Default unspecified value.",
             "Account not linked.",
             "Account is linked but not active.",
             "Entitlement and Account are active.",
-            "Account is suspended."
+            "Account is suspended.",
+            "Entitlement is not approved in private marketplace."
           ],
           "readOnly": true,
           "type": "string"

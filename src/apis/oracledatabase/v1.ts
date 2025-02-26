@@ -150,7 +150,7 @@ export namespace oracledatabase_v1 {
      */
     adminPassword?: string | null;
     /**
-     * Required. The subnet CIDR range for the Autonmous Database.
+     * Optional. The subnet CIDR range for the Autonmous Database.
      */
     cidr?: string | null;
     /**
@@ -178,7 +178,7 @@ export namespace oracledatabase_v1 {
      */
     name?: string | null;
     /**
-     * Required. The name of the VPC network used by the Autonomous Database in the following format: projects/{project\}/global/networks/{network\}
+     * Optional. The name of the VPC network used by the Autonomous Database in the following format: projects/{project\}/global/networks/{network\}
      */
     network?: string | null;
     /**
