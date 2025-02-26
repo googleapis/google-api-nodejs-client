@@ -359,7 +359,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
    */
   export interface Schema$DataSegment {
     /**
-     * Optional. This will be charged when other accounts use this data segment. For example, when other accounts add this data segment to a deal or auction package. Once set, the currency code cannot be changed.
+     * Required. This will be charged when other accounts use this data segment. For example, when other accounts add this data segment to a deal or auction package. Once set, the currency code cannot be changed.
      */
     cpmFee?: Schema$Money;
     /**
