@@ -1203,7 +1203,7 @@
       }
     }
   },
-  "revision": "20241121",
+  "revision": "20250212",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -1346,13 +1346,15 @@
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
             "PST",
-            "ICS"
+            "ICS",
+            "XML"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
-            "Export as ICS. Only available for Calendar."
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini."
           ],
           "type": "string"
         }
@@ -1575,6 +1577,31 @@
       },
       "type": "object"
     },
+    "DriveDocumentIds": {
+      "description": "Specify Drive documents by document ID.",
+      "id": "DriveDocumentIds",
+      "properties": {
+        "ids": {
+          "description": "Required. A list of Drive document IDs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DriveDocumentInfo": {
+      "description": "The Drive documents to search.",
+      "id": "DriveDocumentInfo",
+      "properties": {
+        "documentIds": {
+          "$ref": "DriveDocumentIds",
+          "description": "Specify Drive documents by document ID."
+        }
+      },
+      "type": "object"
+    },
     "DriveExportOptions": {
       "description": "Options for Drive exports.",
       "id": "DriveExportOptions",
@@ -1587,7 +1614,7 @@
       "type": "object"
     },
     "DriveOptions": {
-      "description": "Additional options for Drive search",
+      "description": "Additional options for Drive search.",
       "id": "DriveOptions",
       "properties": {
         "clientSideEncryptedOption": {
@@ -1607,6 +1634,7 @@
           "type": "string"
         },
         "includeSharedDrives": {
+          "deprecated": true,
           "description": "Set to **true** to include shared drives.",
           "type": "boolean"
         },
@@ -1706,6 +1734,10 @@
           "$ref": "DriveExportOptions",
           "description": "Options for Drive exports."
         },
+        "geminiOptions": {
+          "$ref": "GeminiExportOptions",
+          "description": "Option available for Gemini export."
+        },
         "groupsOptions": {
           "$ref": "GroupsExportOptions",
           "description": "Options for Groups exports."
@@ -1763,6 +1795,37 @@
       },
       "type": "object"
     },
+    "GeminiExportOptions": {
+      "description": "The options for Gemini exports.",
+      "id": "GeminiExportOptions",
+      "properties": {
+        "exportFormat": {
+          "description": "The file format for exported messages.",
+          "enum": [
+            "EXPORT_FORMAT_UNSPECIFIED",
+            "MBOX",
+            "PST",
+            "ICS",
+            "XML"
+          ],
+          "enumDescriptions": [
+            "No export format specified.",
+            "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GeminiOptions": {
+      "description": "Additional options for Gemini search",
+      "id": "GeminiOptions",
+      "properties": {},
+      "type": "object"
+    },
     "GroupsCountResult": {
       "description": "Groups specific count metrics.",
       "id": "GroupsCountResult",
@@ -1811,13 +1874,15 @@
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
             "PST",
-            "ICS"
+            "ICS",
+            "XML"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
-            "Export as ICS. Only available for Calendar."
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini."
           ],
           "type": "string"
         }
@@ -1834,13 +1899,15 @@
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
             "PST",
-            "ICS"
+            "ICS",
+            "XML"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
-            "Export as ICS. Only available for Calendar."
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini."
           ],
           "type": "string"
         }
@@ -2037,7 +2104,8 @@
             "GROUPS",
             "HANGOUTS_CHAT",
             "VOICE",
-            "CALENDAR"
+            "CALENDAR",
+            "GEMINI"
           ],
           "enumDescriptions": [
             "No service specified.",
@@ -2046,7 +2114,8 @@
             "Groups.",
             "For export, Google Chat only. For holds, Google Chat and classic Hangouts.",
             "Google Voice.",
-            "Calendar."
+            "Calendar.",
+            "Gemini."
           ],
           "type": "string"
         },
@@ -2226,13 +2295,15 @@
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
             "PST",
-            "ICS"
+            "ICS",
+            "XML"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
-            "Export as ICS. Only available for Calendar."
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini."
           ],
           "type": "string"
         },
@@ -2428,7 +2499,8 @@
             "GROUPS",
             "HANGOUTS_CHAT",
             "VOICE",
-            "CALENDAR"
+            "CALENDAR",
+            "GEMINI"
           ],
           "enumDescriptions": [
             "No service specified.",
@@ -2437,7 +2509,8 @@
             "Groups.",
             "For export, Google Chat only. For holds, Google Chat and classic Hangouts.",
             "Google Voice.",
-            "Calendar."
+            "Calendar.",
+            "Gemini."
           ],
           "type": "string"
         },
@@ -2457,6 +2530,10 @@
           ],
           "type": "string"
         },
+        "driveDocumentInfo": {
+          "$ref": "DriveDocumentInfo",
+          "description": "Required when **SearchMethod** is **DRIVE_DOCUMENT**."
+        },
         "driveOptions": {
           "$ref": "DriveOptions",
           "description": "Set Drive search-specific options."
@@ -2465,6 +2542,10 @@
           "description": "The end time for the search query. Specify in GMT. The value is rounded to 12 AM on the specified date.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "geminiOptions": {
+          "$ref": "GeminiOptions",
+          "description": "Set Gemini search-specific options."
         },
         "hangoutsChatInfo": {
           "$ref": "HangoutsChatInfo",
@@ -2488,13 +2569,15 @@
             "ENTIRE_ORG",
             "ROOM",
             "SITES_URL",
-            "SHARED_DRIVE"
+            "SHARED_DRIVE",
+            "DRIVE_DOCUMENT"
           ],
           "enumDeprecated": [
             false,
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2508,7 +2591,8 @@
             "Search the data of all accounts in the organization. Supported only for Gmail. When specified, you don't need to specify **AccountInfo** or **OrgUnitInfo**.",
             "Search messages in the Chat spaces specified in [HangoutsChatInfo](https://developers.google.com/vault/reference/rest/v1/Query#hangoutschatinfo).",
             "Search for sites by the published site URLs specified in [SitesUrlInfo](https://developers.google.com/vault/reference/rest/v1/Query#sitesurlinfo).",
-            "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/vault/reference/rest/v1/Query#shareddriveinfo)."
+            "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/vault/reference/rest/v1/Query#shareddriveinfo).",
+            "Retrieve the documents specified in DriveDocumentInfo."
           ],
           "type": "string"
         },
@@ -2527,13 +2611,15 @@
             "ENTIRE_ORG",
             "ROOM",
             "SITES_URL",
-            "SHARED_DRIVE"
+            "SHARED_DRIVE",
+            "DRIVE_DOCUMENT"
           ],
           "enumDeprecated": [
             false,
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2547,7 +2633,8 @@
             "Search the data of all accounts in the organization. Supported only for Gmail. When specified, you don't need to specify **AccountInfo** or **OrgUnitInfo**.",
             "Search messages in the Chat spaces specified in [HangoutsChatInfo](https://developers.google.com/vault/reference/rest/v1/Query#hangoutschatinfo).",
             "Search for sites by the published site URLs specified in [SitesUrlInfo](https://developers.google.com/vault/reference/rest/v1/Query#sitesurlinfo).",
-            "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/vault/reference/rest/v1/Query#shareddriveinfo)."
+            "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/vault/reference/rest/v1/Query#shareddriveinfo).",
+            "Retrieve the documents specified in DriveDocumentInfo."
           ],
           "type": "string"
         },
@@ -2770,13 +2857,15 @@
             "EXPORT_FORMAT_UNSPECIFIED",
             "MBOX",
             "PST",
-            "ICS"
+            "ICS",
+            "XML"
           ],
           "enumDescriptions": [
             "No export format specified.",
             "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
             "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar.",
-            "Export as ICS. Only available for Calendar."
+            "Export as ICS. Only available for Calendar.",
+            "Export as XML. Only available for Gemini."
           ],
           "type": "string"
         }
