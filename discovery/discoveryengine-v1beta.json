@@ -188,6 +188,90 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "obtainCrawlRate": {
+              "description": "Obtains the time series data of organic or dedicated crawl rate for monitoring. When dedicated crawl rate is not set, it will return vertex AI's organic crawl rate time series. Organic crawl means Google automatically crawl the internet at its own convenience. When dedicated crawl rate is set, it will return vertex AI's dedicated crawl rate time series.",
+              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}:obtainCrawlRate",
+              "httpMethod": "POST",
+              "id": "discoveryengine.projects.locations.obtainCrawlRate",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "Required. The location resource where crawl rate management will be performed. Format: `projects/{project}/locations/{location}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+location}:obtainCrawlRate",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1betaObtainCrawlRateRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1betaObtainCrawlRateResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "removeDedicatedCrawlRate": {
+              "description": "Removes the dedicated crawl rate for a craw_rate_scope. If the dedicated crawl rate was set, this will disable vertex AI's crawl bot from using the dedicated crawl rate for crawling. If the dedicated crawl rate was not set, this is a no-op.",
+              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}:removeDedicatedCrawlRate",
+              "httpMethod": "POST",
+              "id": "discoveryengine.projects.locations.removeDedicatedCrawlRate",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "Required. The location resource where crawl rate management will be performed. Format: `projects/{project}/locations/{location}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+location}:removeDedicatedCrawlRate",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1betaRemoveDedicatedCrawlRateRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "setDedicatedCrawlRate": {
+              "description": "Sets the dedicated crawl rate for a crawl_rate_scope. If the dedicated crawl rate was not set, this will enable vertex AI's crawl bot to use the new dedicated crawl rate for crawling. If the dedicated crawl rate was set, vertex AI's crawl bot will try to update the rate to the new value. If the new value is too high, the crawl bot may crawl at a lower rate to avoid overloading the user's website.",
+              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}:setDedicatedCrawlRate",
+              "httpMethod": "POST",
+              "id": "discoveryengine.projects.locations.setDedicatedCrawlRate",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "Required. The location resource where crawl rate management will be performed. Format: `projects/{project}/locations/{location}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+location}:setDedicatedCrawlRate",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           },
           "resources": {
@@ -2464,6 +2548,37 @@
                               "scopes": [
                                 "https://www.googleapis.com/auth/cloud-platform"
                               ]
+                            },
+                            "fetch": {
+                              "description": "Fetch Sitemaps in a DataStore.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/sitemaps:fetch",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.sitemaps.fetch",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "matcher.urisMatcher.uris": {
+                                  "description": "The Sitemap uris.",
+                                  "location": "query",
+                                  "repeated": true,
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. Parent resource name of the SiteSearchEngine, such as `projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine`.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+parent}/sitemaps:fetch",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
                             }
                           }
                         },
@@ -3182,6 +3297,34 @@
                           },
                           "response": {
                             "$ref": "GoogleCloudDiscoveryengineV1betaAdvancedCompleteQueryResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "removeSuggestion": {
+                          "description": "Removes the search history suggestion in an engine for a user. This will remove the suggestion from being returned in the AdvancedCompleteQueryResponse.recent_search_suggestions for this user. If the user searches the same suggestion again, the new history will override and suggest this suggestion again.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/completionConfig:removeSuggestion",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.completionConfig.removeSuggestion",
+                          "parameterOrder": [
+                            "completionConfig"
+                          ],
+                          "parameters": {
+                            "completionConfig": {
+                              "description": "Required. The completion_config of the parent engine resource name for which the search history suggestion is to be removed, such as `projects/*/locations/global/collections/default_collection/engines/*/completionConfig`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/completionConfig$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+completionConfig}:removeSuggestion",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaRemoveSuggestionRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaRemoveSuggestionResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -6655,6 +6798,229 @@
               }
             },
             "identityMappingStores": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new Identity Mapping Store.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/identityMappingStores",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "cmekConfigName": {
+                      "description": "Resource name of the CmekConfig to use for protecting this Identity Mapping Store.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "disableCmek": {
+                      "description": "Identity Mapping Store without CMEK protections. If a default CmekConfig is set for the project, setting this field will override the default CmekConfig as well.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "identityMappingStoreId": {
+                      "description": "Required. The ID of the Identity Mapping Store to create. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 63 characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent collection resource name, such as `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/identityMappingStores",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaIdentityMappingStore"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaIdentityMappingStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the Identity Mapping Store.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/identityMappingStores/{identityMappingStoresId}",
+                  "httpMethod": "DELETE",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Identity Mapping Store to delete. Format: `projects/{project}/locations/{location}/identityMappingStores/{identityMappingStore}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/identityMappingStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the Identity Mapping Store.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/identityMappingStores/{identityMappingStoresId}",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Identity Mapping Store to get. Format: `projects/{project}/locations/{location}/identityMappingStores/{identityMappingStore}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/identityMappingStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaIdentityMappingStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "importIdentityMappings": {
+                  "description": "Imports a list of Identity Mapping Entries to an Identity Mapping Store.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/identityMappingStores/{identityMappingStoresId}:importIdentityMappings",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.importIdentityMappings",
+                  "parameterOrder": [
+                    "identityMappingStore"
+                  ],
+                  "parameters": {
+                    "identityMappingStore": {
+                      "description": "Required. The name of the Identity Mapping Store to import Identity Mapping Entries to. Format: `projects/{project}/locations/{location}/identityMappingStores/{identityMappingStore}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/identityMappingStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+identityMappingStore}:importIdentityMappings",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaImportIdentityMappingsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all Identity Mapping Stores.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/identityMappingStores",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of IdentityMappingStores to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListIdentityMappingStores` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIdentityMappingStores` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent of the Identity Mapping Stores to list. Format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/identityMappingStores",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaListIdentityMappingStoresResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "listIdentityMappings": {
+                  "description": "Lists Identity Mappings in an Identity Mapping Store.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/identityMappingStores/{identityMappingStoresId}:listIdentityMappings",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.listIdentityMappings",
+                  "parameterOrder": [
+                    "identityMappingStore"
+                  ],
+                  "parameters": {
+                    "identityMappingStore": {
+                      "description": "Required. The name of the Identity Mapping Store to list Identity Mapping Entries in. Format: `projects/{project}/locations/{location}/identityMappingStores/{identityMappingStore}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/identityMappingStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Maximum number of IdentityMappings to return. If unspecified, defaults to 2000. The maximum allowed value is 10000. Values above 10000 will be coerced to 10000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListIdentityMappings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIdentityMappings` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+identityMappingStore}:listIdentityMappings",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaListIdentityMappingsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "purgeIdentityMappings": {
+                  "description": "Purges specified or all Identity Mapping Entries from an Identity Mapping Store.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/identityMappingStores/{identityMappingStoresId}:purgeIdentityMappings",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.identityMappingStores.purgeIdentityMappings",
+                  "parameterOrder": [
+                    "identityMappingStore"
+                  ],
+                  "parameters": {
+                    "identityMappingStore": {
+                      "description": "Required. The name of the Identity Mapping Store to purge Identity Mapping Entries from. Format: `projects/{project}/locations/{location}/identityMappingStores/{identityMappingStore}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/identityMappingStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+identityMappingStore}:purgeIdentityMappings",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaPurgeIdentityMappingsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -7384,7 +7750,7 @@
       }
     }
   },
-  "revision": "20250121",
+  "revision": "20250222",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -7815,11 +8181,11 @@
           "type": "boolean"
         },
         "kmsKey": {
-          "description": "Kms key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "description": "KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
         },
         "kmsKeyVersion": {
-          "description": "Kms key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "description": "KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
           "type": "string"
         },
         "lastRotationTimestampMicros": {
@@ -7829,7 +8195,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Name of the CmekConfig, of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+          "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
           "type": "string"
         },
         "singleRegionKeys": {
@@ -7840,13 +8206,14 @@
           "type": "array"
         },
         "state": {
-          "description": "Output only. State of the CmekConfig.",
+          "description": "Output only. The states of the CmekConfig.",
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
             "KEY_ISSUE",
             "DELETING",
+            "DELETE_FAILED",
             "UNUSABLE",
             "ACTIVE_ROTATING"
           ],
@@ -7856,6 +8223,7 @@
             "The CmekConfig can be used with DataStores.",
             "The CmekConfig is unavailable, most likely due to the KMS Key being revoked.",
             "The CmekConfig is deleting.",
+            "The CmekConfig deletion process failed.",
             "The CmekConfig is not usable, most likely due to some internal issue.",
             "The KMS key version is being rotated."
           ],
@@ -8029,6 +8397,70 @@
           "description": "Optional. Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0 (No-op).",
           "format": "float",
           "type": "number"
+        },
+        "interpolationBoostSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpec",
+          "description": "Optional. Complex specification for custom ranking based on customer defined attribute value."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpec": {
+      "description": "Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.",
+      "id": "GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpec",
+      "properties": {
+        "attributeType": {
+          "description": "Optional. The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).",
+          "enum": [
+            "ATTRIBUTE_TYPE_UNSPECIFIED",
+            "NUMERICAL",
+            "FRESHNESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified AttributeType.",
+            "The value of the numerical field will be used to dynamically update the boost amount. In this case, the attribute_value (the x value) of the control point will be the actual value of the numerical field for which the boost_amount is specified.",
+            "For the freshness use case the attribute value will be the duration between the current time and the date in the datetime field specified. The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`. For example, `5D`, `3DT12H30M`, `T24H`."
+          ],
+          "type": "string"
+        },
+        "controlPoints": {
+          "description": "Optional. The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpecControlPoint"
+          },
+          "type": "array"
+        },
+        "fieldName": {
+          "description": "Optional. The name of the field whose value will be used to determine the boost amount.",
+          "type": "string"
+        },
+        "interpolationType": {
+          "description": "Optional. The interpolation type to be applied to connect the control points listed below.",
+          "enum": [
+            "INTERPOLATION_TYPE_UNSPECIFIED",
+            "LINEAR"
+          ],
+          "enumDescriptions": [
+            "Interpolation type is unspecified. In this case, it defaults to Linear.",
+            "Piecewise linear interpolation will be applied."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpecControlPoint": {
+      "description": "The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).",
+      "id": "GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpecControlPoint",
+      "properties": {
+        "attributeValue": {
+          "description": "Optional. Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.",
+          "type": "string"
+        },
+        "boostAmount": {
+          "description": "Optional. The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -8139,6 +8571,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1CreateSitemapMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.CreateSitemap operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1CreateSitemapMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1CreateTargetSiteMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.CreateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1CreateTargetSiteMetadata",
@@ -8199,7 +8648,7 @@
           "type": "string"
         },
         "defaultSchemaId": {
-          "description": "Output only. The id of the default Schema asscociated to this data store.",
+          "description": "Output only. The id of the default Schema associated to this data store.",
           "readOnly": true,
           "type": "string"
         },
@@ -8210,6 +8659,14 @@
         "documentProcessingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfig",
           "description": "Configuration for Document understanding and enrichment."
+        },
+        "healthcareFhirConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1HealthcareFhirConfig",
+          "description": "Optional. Configuration for `HEALTHCARE_FHIR` vertical."
+        },
+        "identityMappingStore": {
+          "description": "Immutable. The fully qualified resource name of the associated IdentityMappingStore. This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or `GSUITE` IdP. Format: `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`.",
+          "type": "string"
         },
         "industryVertical": {
           "description": "Immutable. The industry vertical that the data store registers.",
@@ -8323,6 +8780,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1DeleteCmekConfigMetadata": {
+      "description": "Metadata related to the progress of the CmekConfigService.DeleteCmekConfig operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1DeleteCmekConfigMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1DeleteDataStoreMetadata": {
       "description": "Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1DeleteDataStoreMetadata",
@@ -8377,6 +8851,23 @@
     "GoogleCloudDiscoveryengineV1DeleteSchemaMetadata": {
       "description": "Metadata for DeleteSchema LRO.",
       "id": "GoogleCloudDiscoveryengineV1DeleteSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DeleteSitemapMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.DeleteSitemap operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1DeleteSitemapMetadata",
       "properties": {
         "createTime": {
           "description": "Operation create time.",
@@ -8654,6 +9145,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1EngineChatEngineConfigAgentCreationConfig",
           "description": "The configurationt generate the Dialogflow agent that is associated to this Engine. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation."
         },
+        "allowCrossRegion": {
+          "description": "Optional. If the flag set to true, we allow the agent and engine are in different locations, otherwise the agent and engine are required to be in the same location. The flag is set to false by default. Note that the `allow_cross_region` are one-time consumed by and passed to EngineService.CreateEngine. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation.",
+          "type": "boolean"
+        },
         "dialogflowAgentToLink": {
           "description": "The resource name of an exist Dialogflow agent to link to this Chat Engine. Customers can either provide `agent_creation_config` to create agent or provide an agent name that links the agent with the Chat engine. Format: `projects//locations//agents/`. Note that the `dialogflow_agent_to_link` are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. Use ChatEngineMetadata.dialogflow_agent for actual agent association after Engine is created.",
           "type": "string"
@@ -8737,6 +9232,43 @@
             "Standard tier.",
             "Enterprise tier."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1HealthcareFhirConfig": {
+      "description": "Config to data store for `HEALTHCARE_FHIR` vertical.",
+      "id": "GoogleCloudDiscoveryengineV1HealthcareFhirConfig",
+      "properties": {
+        "enableConfigurableSchema": {
+          "description": "Whether to enable configurable schema for `HEALTHCARE_FHIR` vertical. If set to `true`, the predefined healthcare fhir schema can be extended for more customized searching and filtering.",
+          "type": "boolean"
+        },
+        "enableStaticIndexingForBatchIngestion": {
+          "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1IdentityMappingEntryOperationMetadata": {
+      "description": "IdentityMappingEntry LongRunningOperation metadata for IdentityMappingStoreService.ImportIdentityMappings and IdentityMappingStoreService.PurgeIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1IdentityMappingEntryOperationMetadata",
+      "properties": {
+        "failureCount": {
+          "description": "The number of IdentityMappingEntries that failed to be processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of IdentityMappingEntries that were successfully processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalCount": {
+          "description": "The total number of IdentityMappingEntries that were processed.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -8844,6 +9376,20 @@
         "gcsPrefix": {
           "description": "Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ImportIdentityMappingsResponse": {
+      "description": "Response message for IdentityMappingStoreService.ImportIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1ImportIdentityMappingsResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -9581,6 +10127,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1Sitemap": {
+      "description": "A sitemap for the SiteSearchEngine.",
+      "id": "GoogleCloudDiscoveryengineV1Sitemap",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The sitemap's creation time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The fully qualified resource name of the sitemap. `projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine/sitemaps/*` The `sitemap_id` suffix is system-generated.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Public URI for the sitemap, e.g. `www.example.com/sitemap.xml`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1TargetSite": {
       "description": "A target site for the SiteSearchEngine.",
       "id": "GoogleCloudDiscoveryengineV1TargetSite",
@@ -10012,7 +10580,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaAnswerCitation",
       "properties": {
         "endIndex": {
-          "description": "End of the attributed segment, exclusive.",
+          "description": "End of the attributed segment, exclusive. Measured in bytes (UTF-8 unicode). If there are multi-byte characters,such as non-ASCII characters, the index measurement is longer than the string length.",
           "format": "int64",
           "type": "string"
         },
@@ -10024,7 +10592,7 @@
           "type": "array"
         },
         "startIndex": {
-          "description": "Index indicates the start of the segment, measured in bytes (UTF-8 unicode).",
+          "description": "Index indicates the start of the segment, measured in bytes (UTF-8 unicode). If there are multi-byte characters,such as non-ASCII characters, the index measurement is longer than the string length.",
           "format": "int64",
           "type": "string"
         }
@@ -10207,6 +10775,16 @@
           },
           "description": "Structured search data.",
           "type": "object"
+        },
+        "title": {
+          "description": "Output only. The title of the document.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Output only. The URI of the document.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -10418,6 +10996,30 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaBAPConfig": {
+      "description": "The configuration for the BAP connector.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBAPConfig",
+      "properties": {
+        "supportedConnectorModes": {
+          "description": "Required. The supported connector modes for the associated BAP connection.",
+          "items": {
+            "enum": [
+              "CONNECTOR_MODE_UNSPECIFIED",
+              "DATA_INGESTION",
+              "ACTIONS"
+            ],
+            "enumDescriptions": [
+              "Connector mode unspecified.",
+              "Connector utilized for data ingestion.",
+              "Connector utilized for Actions"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSiteMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSiteMetadata",
@@ -10459,11 +11061,11 @@
           "type": "boolean"
         },
         "kmsKey": {
-          "description": "Kms key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "description": "KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
         },
         "kmsKeyVersion": {
-          "description": "Kms key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "description": "KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
           "type": "string"
         },
         "lastRotationTimestampMicros": {
@@ -10473,7 +11075,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Name of the CmekConfig, of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+          "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
           "type": "string"
         },
         "singleRegionKeys": {
@@ -10484,13 +11086,14 @@
           "type": "array"
         },
         "state": {
-          "description": "Output only. State of the CmekConfig.",
+          "description": "Output only. The states of the CmekConfig.",
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
             "KEY_ISSUE",
             "DELETING",
+            "DELETE_FAILED",
             "UNUSABLE",
             "ACTIVE_ROTATING"
           ],
@@ -10500,6 +11103,7 @@
             "The CmekConfig can be used with DataStores.",
             "The CmekConfig is unavailable, most likely due to the KMS Key being revoked.",
             "The CmekConfig is deleting.",
+            "The CmekConfig deletion process failed.",
             "The CmekConfig is not usable, most likely due to some internal issue.",
             "The KMS key version is being rotated."
           ],
@@ -10690,6 +11294,11 @@
       "description": "Represents an entity that was synced in this ConnectorRun.",
       "id": "GoogleCloudDiscoveryengineV1alphaConnectorRunEntityRun",
       "properties": {
+        "deletedRecordCount": {
+          "description": "The number of documents deleted.",
+          "format": "int64",
+          "type": "string"
+        },
         "entityName": {
           "description": "The name of the source entity.",
           "type": "string"
@@ -10879,6 +11488,70 @@
           "description": "Optional. Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0 (No-op).",
           "format": "float",
           "type": "number"
+        },
+        "interpolationBoostSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaControlBoostActionInterpolationBoostSpec",
+          "description": "Optional. Complex specification for custom ranking based on customer defined attribute value."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaControlBoostActionInterpolationBoostSpec": {
+      "description": "Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.",
+      "id": "GoogleCloudDiscoveryengineV1alphaControlBoostActionInterpolationBoostSpec",
+      "properties": {
+        "attributeType": {
+          "description": "Optional. The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).",
+          "enum": [
+            "ATTRIBUTE_TYPE_UNSPECIFIED",
+            "NUMERICAL",
+            "FRESHNESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified AttributeType.",
+            "The value of the numerical field will be used to dynamically update the boost amount. In this case, the attribute_value (the x value) of the control point will be the actual value of the numerical field for which the boost_amount is specified.",
+            "For the freshness use case the attribute value will be the duration between the current time and the date in the datetime field specified. The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`. For example, `5D`, `3DT12H30M`, `T24H`."
+          ],
+          "type": "string"
+        },
+        "controlPoints": {
+          "description": "Optional. The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaControlBoostActionInterpolationBoostSpecControlPoint"
+          },
+          "type": "array"
+        },
+        "fieldName": {
+          "description": "Optional. The name of the field whose value will be used to determine the boost amount.",
+          "type": "string"
+        },
+        "interpolationType": {
+          "description": "Optional. The interpolation type to be applied to connect the control points listed below.",
+          "enum": [
+            "INTERPOLATION_TYPE_UNSPECIFIED",
+            "LINEAR"
+          ],
+          "enumDescriptions": [
+            "Interpolation type is unspecified. In this case, it defaults to Linear.",
+            "Piecewise linear interpolation will be applied."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaControlBoostActionInterpolationBoostSpecControlPoint": {
+      "description": "The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).",
+      "id": "GoogleCloudDiscoveryengineV1alphaControlBoostActionInterpolationBoostSpecControlPoint",
+      "properties": {
+        "attributeValue": {
+          "description": "Optional. Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.",
+          "type": "string"
+        },
+        "boostAmount": {
+          "description": "Optional. The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -11063,6 +11736,10 @@
           "description": "Indicates whether the connector is disabled for auto run. It can be used to pause periodical and real time sync.",
           "type": "boolean"
         },
+        "bapConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaBAPConfig",
+          "description": "Optional. The configuration for establishing a BAP connection."
+        },
         "blockingReasons": {
           "description": "Output only. User actions that must be completed before the connector can start syncing data.",
           "items": {
@@ -11174,7 +11851,8 @@
             "ACTIVE",
             "FAILED",
             "RUNNING",
-            "WARNING"
+            "WARNING",
+            "INITIALIZATION_FAILED"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -11182,7 +11860,8 @@
             "The connector is successfully set up and awaiting next sync run.",
             "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
             "The connector is actively syncing records from the data source.",
-            "The connector has completed a sync run, but encountered non-fatal errors."
+            "The connector has completed a sync run, but encountered non-fatal errors.",
+            "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types)."
           ],
           "readOnly": true,
           "type": "string"
@@ -11202,10 +11881,12 @@
         "syncMode": {
           "description": "The data synchronization mode supported by the data connector.",
           "enum": [
-            "PERIODIC"
+            "PERIODIC",
+            "STREAMING"
           ],
           "enumDescriptions": [
-            "The connector will sync data periodically based on the refresh_interval. Use it with auto_run_disabled to pause the periodic sync, or indicate a one-time sync."
+            "The connector will sync data periodically based on the refresh_interval. Use it with auto_run_disabled to pause the periodic sync, or indicate a one-time sync.",
+            "The data will be synced in real time."
           ],
           "type": "string"
         },
@@ -11231,6 +11912,10 @@
           "description": "The name of the entity. Supported values by data source: * Salesforce: `Lead`, `Opportunity`, `Contact`, `Account`, `Case`, `Contract`, `Campaign` * Jira: `Issue` * Confluence: `Content`, `Space`",
           "type": "string"
         },
+        "healthcareFhirConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig",
+          "description": "Optional. Configuration for `HEALTHCARE_FHIR` vertical."
+        },
         "keyPropertyMappings": {
           "additionalProperties": {
             "type": "string"
@@ -11245,6 +11930,10 @@
           },
           "description": "The parameters for the entity to facilitate data ingestion. E.g. for BigQuery connectors: * Key: `document_id_column` * Value: type STRING. The value of the column ID.",
           "type": "object"
+        },
+        "startingSchema": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSchema",
+          "description": "Optional. The start schema to use for the DataStore created from this SourceEntity. If unset, a default vertical specialized schema will be used. This field is only used by SetUpDataConnector API, and will be ignored if used in other APIs. This field will be omitted from all API responses including GetDataConnector API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema)."
         }
       },
       "type": "object"
@@ -11296,7 +11985,7 @@
           "type": "string"
         },
         "defaultSchemaId": {
-          "description": "Output only. The id of the default Schema asscociated to this data store.",
+          "description": "Output only. The id of the default Schema associated to this data store.",
           "readOnly": true,
           "type": "string"
         },
@@ -11307,6 +11996,14 @@
         "documentProcessingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig",
           "description": "Configuration for Document understanding and enrichment."
+        },
+        "healthcareFhirConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig",
+          "description": "Optional. Configuration for `HEALTHCARE_FHIR` vertical."
+        },
+        "identityMappingStore": {
+          "description": "Immutable. The fully qualified resource name of the associated IdentityMappingStore. This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or `GSUITE` IdP. Format: `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`.",
+          "type": "string"
         },
         "idpConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaIdpConfig",
@@ -11444,6 +12141,23 @@
         "userTriggeredCrawlRate": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries",
           "description": "Vertex AI's dedicated crawl rate time series of user triggered crawl, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is set, and user triggered crawl rate is for deterministic use cases like crawling urls or sitemaps specified by users."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata": {
+      "description": "Metadata related to the progress of the CmekConfigService.DeleteCmekConfig operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteCmekConfigMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11879,6 +12593,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfigAgentCreationConfig",
           "description": "The configurationt generate the Dialogflow agent that is associated to this Engine. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation."
         },
+        "allowCrossRegion": {
+          "description": "Optional. If the flag set to true, we allow the agent and engine are in different locations, otherwise the agent and engine are required to be in the same location. The flag is set to false by default. Note that the `allow_cross_region` are one-time consumed by and passed to EngineService.CreateEngine. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation.",
+          "type": "boolean"
+        },
         "dialogflowAgentToLink": {
           "description": "The resource name of an exist Dialogflow agent to link to this Chat Engine. Customers can either provide `agent_creation_config` to create agent or provide an agent name that links the agent with the Chat engine. Format: `projects//locations//agents/`. Note that the `dialogflow_agent_to_link` are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. Use ChatEngineMetadata.dialogflow_agent for actual agent association after Engine is created.",
           "type": "string"
@@ -12191,31 +12909,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponse": {
-      "description": "Response message for SiteSearchEngineService.FetchSitemaps method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponse",
-      "properties": {
-        "sitemapsMetadata": {
-          "description": "List of Sitemaps fetched.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponseSitemapMetadata"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponseSitemapMetadata": {
-      "description": "Contains a Sitemap and its metadata.",
-      "id": "GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponseSitemapMetadata",
-      "properties": {
-        "sitemap": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaSitemap",
-          "description": "The Sitemap."
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1alphaFieldConfig": {
       "description": "Configurations for fields of a schema. For example, configuring a field is indexable, or searchable.",
       "id": "GoogleCloudDiscoveryengineV1alphaFieldConfig",
@@ -12406,6 +13099,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig": {
+      "description": "Config to data store for `HEALTHCARE_FHIR` vertical.",
+      "id": "GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig",
+      "properties": {
+        "enableConfigurableSchema": {
+          "description": "Whether to enable configurable schema for `HEALTHCARE_FHIR` vertical. If set to `true`, the predefined healthcare fhir schema can be extended for more customized searching and filtering.",
+          "type": "boolean"
+        },
+        "enableStaticIndexingForBatchIngestion": {
+          "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaIdentityMappingEntryOperationMetadata": {
+      "description": "IdentityMappingEntry LongRunningOperation metadata for IdentityMappingStoreService.ImportIdentityMappings and IdentityMappingStoreService.PurgeIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1alphaIdentityMappingEntryOperationMetadata",
+      "properties": {
+        "failureCount": {
+          "description": "The number of IdentityMappingEntries that failed to be processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of IdentityMappingEntries that were successfully processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalCount": {
+          "description": "The total number of IdentityMappingEntries that were processed.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaIdentityScheduleConfig": {
       "description": "The configuration for the identity data synchronization runs.",
       "id": "GoogleCloudDiscoveryengineV1alphaIdentityScheduleConfig",
@@ -12560,6 +13290,20 @@
         "gcsPrefix": {
           "description": "Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaImportIdentityMappingsResponse": {
+      "description": "Response message for IdentityMappingStoreService.ImportIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1alphaImportIdentityMappingsResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -13209,6 +13953,18 @@
           "format": "int32",
           "type": "integer"
         },
+        "noindexUris": {
+          "description": "URIs that have no index meta tag. Sample limited to 1000.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "noindexUrisCount": {
+          "description": "Total number of URIs that have no index meta tag.",
+          "format": "int32",
+          "type": "integer"
+        },
         "pendingCount": {
           "description": "Total number of URIs that have yet to be crawled.",
           "format": "int32",
@@ -13528,6 +14284,10 @@
           },
           "type": "array"
         },
+        "displaySpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestDisplaySpec",
+          "description": "Optional. Config for display feature, like match highlighting on search results."
+        },
         "embeddingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestEmbeddingSpec",
           "description": "Uses the provided embedding to do additional semantic document retrieval. The retrieval is based on the dot product of SearchRequest.EmbeddingSpec.EmbeddingVector.vector and the document embedding that is provided in SearchRequest.EmbeddingSpec.EmbeddingVector.field_path. If SearchRequest.EmbeddingSpec.EmbeddingVector.field_path is not provided, it will use ServingConfig.EmbeddingConfig.field_path."
@@ -13598,15 +14358,33 @@
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
         },
         "rankingExpression": {
-          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The ranking expression is a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.",
+          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking expression is not provided or set to BYOE, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking expression is set to CLEARBOX, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double > 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result",
+          "type": "string"
+        },
+        "rankingExpressionBackend": {
+          "description": "Optional. The backend to use for the ranking expression evaluation.",
+          "enum": [
+            "UNKNOWN",
+            "BYOE",
+            "CLEARBOX"
+          ],
+          "enumDescriptions": [
+            "Default option for unspecified/unknown values.",
+            "Bring your own embedding (BYOE), the default way to evaluate the ranking expression.",
+            "The expression is compiled into a Clearbox formula."
+          ],
           "type": "string"
         },
         "regionCode": {
           "description": "The Unicode country/region code (CLDR) of a location, such as \"US\" and \"419\". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). If set, then results will be boosted based on the region_code provided.",
           "type": "string"
         },
+        "relevanceScoreSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceScoreSpec",
+          "description": "Optional. The specification for returning the relevance score."
+        },
         "relevanceThreshold": {
-          "description": "The relevance threshold of the search results. Default to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information.",
+          "description": "The relevance threshold of the search results. Default to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. This feature is not supported for healthcare search.",
           "enum": [
             "RELEVANCE_THRESHOLD_UNSPECIFIED",
             "LOWEST",
@@ -13649,7 +14427,7 @@
         },
         "userInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaUserInfo",
-          "description": "Information about the end user. Highly recommended for analytics. UserInfo.user_agent is used to deduce `device_type` for analytics."
+          "description": "Information about the end user. Highly recommended for analytics and personalization. UserInfo.user_agent is used to deduce `device_type` for analytics."
         },
         "userLabels": {
           "additionalProperties": {
@@ -13955,6 +14733,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaSearchRequestDisplaySpec": {
+      "description": "Specifies features for display, like match highlighting.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestDisplaySpec",
+      "properties": {
+        "matchHighlightingCondition": {
+          "description": "The condition under which match highlighting should occur.",
+          "enum": [
+            "MATCH_HIGHLIGHTING_CONDITION_UNSPECIFIED",
+            "MATCH_HIGHLIGHTING_DISABLED",
+            "MATCH_HIGHLIGHTING_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Server behavior is the same as `MATCH_HIGHLIGHTING_DISABLED`.",
+            "Disables match highlighting on all documents.",
+            "Enables match highlighting on all documents."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaSearchRequestEmbeddingSpec": {
       "description": "The specification that uses customized query embedding vector to do semantic document retrieval.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestEmbeddingSpec",
@@ -14147,6 +14946,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceScoreSpec": {
+      "description": "The specification for returning the document relevance score.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceScoreSpec",
+      "properties": {
+        "returnRelevanceScore": {
+          "description": "Optional. Whether to return the relevance score for search results. The higher the score, the more relevant the document is to the query.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAsYouTypeSpec": {
       "description": "Specification for search as you type in search requests.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAsYouTypeSpec",
@@ -14156,12 +14966,14 @@
           "enum": [
             "CONDITION_UNSPECIFIED",
             "DISABLED",
-            "ENABLED"
+            "ENABLED",
+            "AUTO"
           ],
           "enumDescriptions": [
             "Server behavior defaults to Condition.DISABLED.",
             "Disables Search As You Type.",
-            "Enables Search As You Type."
+            "Enables Search As You Type.",
+            "Automatic switching between search-as-you-type and standard search modes, ideal for single-API implementations (e.g., debouncing)."
           ],
           "type": "string"
         }
@@ -14177,7 +14989,7 @@
           "type": "string"
         },
         "searchResultPersistenceCount": {
-          "description": "The number of top search results to persist. The persisted search results can be used for the subsequent /answer api call. This field is simliar to the `summary_result_count` field in SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count. At most 10 results for documents mode, or 50 for chunks mode.",
+          "description": "The number of top search results to persist. The persisted search results can be used for the subsequent /answer api call. This field is similar to the `summary_result_count` field in SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count. At most 10 results for documents mode, or 50 for chunks mode.",
           "format": "int32",
           "type": "integer"
         }
@@ -14743,7 +15555,7 @@
           "type": "string"
         },
         "queryModel": {
-          "description": "Specifies the autocomplete data model. This overrides any model specified in the Configuration > Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.",
+          "description": "Specifies the autocomplete query model, which only applies to the QUERY SuggestionType. This overrides any model specified in the Configuration > Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.",
           "type": "string"
         },
         "suggestionTypeSpecs": {
@@ -14910,9 +15722,22 @@
           "description": "The name of the dataStore that this suggestion belongs to.",
           "type": "string"
         },
+        "destinationUri": {
+          "description": "The destination uri of the content suggestion.",
+          "type": "string"
+        },
         "document": {
           "$ref": "GoogleCloudDiscoveryengineV1betaDocument",
           "description": "The document data snippet in the suggestion. Only a subset of fields will be populated."
+        },
+        "iconUri": {
+          "description": "The icon uri of the content suggestion.",
+          "type": "string"
+        },
+        "score": {
+          "description": "The score of each suggestion. The score is in the range of [0, 1].",
+          "format": "double",
+          "type": "number"
         },
         "suggestion": {
           "description": "The suggestion for the query.",
@@ -14927,6 +15752,14 @@
       "properties": {
         "dataStore": {
           "description": "The name of the dataStore that this suggestion belongs to.",
+          "type": "string"
+        },
+        "destinationUri": {
+          "description": "The destination uri of the person suggestion.",
+          "type": "string"
+        },
+        "displayPhotoUri": {
+          "description": "The photo uri of the person suggestion.",
           "type": "string"
         },
         "document": {
@@ -14946,6 +15779,11 @@
             "The suggestion is from a THIRD_PARTY_IDENTITY source."
           ],
           "type": "string"
+        },
+        "score": {
+          "description": "The score of each suggestion. The score is in the range of [0, 1].",
+          "format": "double",
+          "type": "number"
         },
         "suggestion": {
           "description": "The suggestion for the query.",
@@ -14972,6 +15810,11 @@
           },
           "type": "array"
         },
+        "score": {
+          "description": "The score of each suggestion. The score is in the range of [0, 1].",
+          "format": "double",
+          "type": "number"
+        },
         "suggestion": {
           "description": "The suggestion for the query.",
           "type": "string"
@@ -14987,6 +15830,11 @@
           "description": "The time when this recent rearch happened.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "score": {
+          "description": "The score of each suggestion. The score is in the range of [0, 1].",
+          "format": "double",
+          "type": "number"
         },
         "suggestion": {
           "description": "The suggestion for the query.",
@@ -15173,7 +16021,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaAnswerCitation",
       "properties": {
         "endIndex": {
-          "description": "End of the attributed segment, exclusive.",
+          "description": "End of the attributed segment, exclusive. Measured in bytes (UTF-8 unicode). If there are multi-byte characters,such as non-ASCII characters, the index measurement is longer than the string length.",
           "format": "int64",
           "type": "string"
         },
@@ -15185,7 +16033,7 @@
           "type": "array"
         },
         "startIndex": {
-          "description": "Index indicates the start of the segment, measured in bytes (UTF-8 unicode).",
+          "description": "Index indicates the start of the segment, measured in bytes (UTF-8 unicode). If there are multi-byte characters,such as non-ASCII characters, the index measurement is longer than the string length.",
           "format": "int64",
           "type": "string"
         }
@@ -15956,6 +16804,16 @@
           },
           "description": "Structured search data.",
           "type": "object"
+        },
+        "title": {
+          "description": "Output only. The title of the document.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Output only. The URI of the document.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -16555,7 +17413,7 @@
           "type": "string"
         },
         "endPos": {
-          "description": "Position indicating the end of the claim in the answer candidate, exclusive.",
+          "description": "Position indicating the end of the claim in the answer candidate, exclusive, in bytes. Note that this is not measured in characters and, therefore, must be rendered as such. For example, if the claim text contains non-ASCII characters, the start and end positions vary when measured in characters (programming-language-dependent) and when measured in bytes (programming-language-independent).",
           "format": "int32",
           "type": "integer"
         },
@@ -16564,7 +17422,7 @@
           "type": "boolean"
         },
         "startPos": {
-          "description": "Position indicating the start of the claim in the answer candidate, measured in bytes.",
+          "description": "Position indicating the start of the claim in the answer candidate, measured in bytes. Note that this is not measured in characters and, therefore, must be rendered in the user interface keeping in mind that some characters may take more than one byte. For example, if the claim text contains non-ASCII characters, the start and end positions vary when measured in characters (programming-language-dependent) and when measured in bytes (programming-language-independent).",
           "format": "int32",
           "type": "integer"
         }
@@ -16732,11 +17590,11 @@
           "type": "boolean"
         },
         "kmsKey": {
-          "description": "Kms key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "description": "KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
         },
         "kmsKeyVersion": {
-          "description": "Kms key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "description": "KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
           "type": "string"
         },
         "lastRotationTimestampMicros": {
@@ -16746,7 +17604,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Name of the CmekConfig, of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+          "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
           "type": "string"
         },
         "singleRegionKeys": {
@@ -16757,13 +17615,14 @@
           "type": "array"
         },
         "state": {
-          "description": "Output only. State of the CmekConfig.",
+          "description": "Output only. The states of the CmekConfig.",
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
             "KEY_ISSUE",
             "DELETING",
+            "DELETE_FAILED",
             "UNUSABLE",
             "ACTIVE_ROTATING"
           ],
@@ -16773,6 +17632,7 @@
             "The CmekConfig can be used with DataStores.",
             "The CmekConfig is unavailable, most likely due to the KMS Key being revoked.",
             "The CmekConfig is deleting.",
+            "The CmekConfig deletion process failed.",
             "The CmekConfig is not usable, most likely due to some internal issue.",
             "The KMS key version is being rotated."
           ],
@@ -17039,6 +17899,70 @@
           "description": "Optional. Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0 (No-op).",
           "format": "float",
           "type": "number"
+        },
+        "interpolationBoostSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpec",
+          "description": "Optional. Complex specification for custom ranking based on customer defined attribute value."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpec": {
+      "description": "Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.",
+      "id": "GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpec",
+      "properties": {
+        "attributeType": {
+          "description": "Optional. The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).",
+          "enum": [
+            "ATTRIBUTE_TYPE_UNSPECIFIED",
+            "NUMERICAL",
+            "FRESHNESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified AttributeType.",
+            "The value of the numerical field will be used to dynamically update the boost amount. In this case, the attribute_value (the x value) of the control point will be the actual value of the numerical field for which the boost_amount is specified.",
+            "For the freshness use case the attribute value will be the duration between the current time and the date in the datetime field specified. The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`. For example, `5D`, `3DT12H30M`, `T24H`."
+          ],
+          "type": "string"
+        },
+        "controlPoints": {
+          "description": "Optional. The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpecControlPoint"
+          },
+          "type": "array"
+        },
+        "fieldName": {
+          "description": "Optional. The name of the field whose value will be used to determine the boost amount.",
+          "type": "string"
+        },
+        "interpolationType": {
+          "description": "Optional. The interpolation type to be applied to connect the control points listed below.",
+          "enum": [
+            "INTERPOLATION_TYPE_UNSPECIFIED",
+            "LINEAR"
+          ],
+          "enumDescriptions": [
+            "Interpolation type is unspecified. In this case, it defaults to Linear.",
+            "Piecewise linear interpolation will be applied."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpecControlPoint": {
+      "description": "The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).",
+      "id": "GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpecControlPoint",
+      "properties": {
+        "attributeValue": {
+          "description": "Optional. Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.",
+          "type": "string"
+        },
+        "boostAmount": {
+          "description": "Optional. The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -17252,6 +18176,17 @@
             "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSearchResult"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaCrawlRateTimeSeries": {
+      "description": "The historical crawl rate timeseries data, used for monitoring.",
+      "id": "GoogleCloudDiscoveryengineV1betaCrawlRateTimeSeries",
+      "properties": {
+        "qpsTimeSeries": {
+          "$ref": "GoogleMonitoringV3TimeSeries",
+          "description": "The QPS of the crawl rate."
         }
       },
       "type": "object"
@@ -17494,7 +18429,7 @@
           "type": "string"
         },
         "defaultSchemaId": {
-          "description": "Output only. The id of the default Schema asscociated to this data store.",
+          "description": "Output only. The id of the default Schema associated to this data store.",
           "readOnly": true,
           "type": "string"
         },
@@ -17505,6 +18440,14 @@
         "documentProcessingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig",
           "description": "Configuration for Document understanding and enrichment."
+        },
+        "healthcareFhirConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig",
+          "description": "Optional. Configuration for `HEALTHCARE_FHIR` vertical."
+        },
+        "identityMappingStore": {
+          "description": "Immutable. The fully qualified resource name of the associated IdentityMappingStore. This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or `GSUITE` IdP. Format: `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`.",
+          "type": "string"
         },
         "industryVertical": {
           "description": "Immutable. The industry vertical that the data store registers.",
@@ -17622,6 +18565,21 @@
         "disabledForServing": {
           "description": "If set true, the DataStore will not be available for serving search requests.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDedicatedCrawlRateTimeSeries": {
+      "description": "The historical dedicated crawl rate timeseries data, used for monitoring. Dedicated crawl is used by Vertex AI to crawl the user's website when dedicate crawl is set.",
+      "id": "GoogleCloudDiscoveryengineV1betaDedicatedCrawlRateTimeSeries",
+      "properties": {
+        "autoRefreshCrawlRate": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaCrawlRateTimeSeries",
+          "description": "Vertex AI's dedicated crawl rate time series of auto-refresh, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is set, and the crawl rate is for best effort use cases like refreshing urls periodically."
+        },
+        "userTriggeredCrawlRate": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaCrawlRateTimeSeries",
+          "description": "Vertex AI's dedicated crawl rate time series of user triggered crawl, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is set, and user triggered crawl rate is for deterministic use cases like crawling urls or sitemaps specified by users."
         }
       },
       "type": "object"
@@ -18154,6 +19112,10 @@
         "agentCreationConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineChatEngineConfigAgentCreationConfig",
           "description": "The configurationt generate the Dialogflow agent that is associated to this Engine. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation."
+        },
+        "allowCrossRegion": {
+          "description": "Optional. If the flag set to true, we allow the agent and engine are in different locations, otherwise the agent and engine are required to be in the same location. The flag is set to false by default. Note that the `allow_cross_region` are one-time consumed by and passed to EngineService.CreateEngine. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation.",
+          "type": "boolean"
         },
         "dialogflowAgentToLink": {
           "description": "The resource name of an exist Dialogflow agent to link to this Chat Engine. Customers can either provide `agent_creation_config` to create agent or provide an agent name that links the agent with the Chat engine. Format: `projects//locations//agents/`. Note that the `dialogflow_agent_to_link` are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. Use ChatEngineMetadata.dialogflow_agent for actual agent association after Engine is created.",
@@ -18911,6 +19873,82 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig": {
+      "description": "Config to data store for `HEALTHCARE_FHIR` vertical.",
+      "id": "GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig",
+      "properties": {
+        "enableConfigurableSchema": {
+          "description": "Whether to enable configurable schema for `HEALTHCARE_FHIR` vertical. If set to `true`, the predefined healthcare fhir schema can be extended for more customized searching and filtering.",
+          "type": "boolean"
+        },
+        "enableStaticIndexingForBatchIngestion": {
+          "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaIdentityMappingEntry": {
+      "description": "Identity Mapping Entry that maps an external identity to an internal identity.",
+      "id": "GoogleCloudDiscoveryengineV1betaIdentityMappingEntry",
+      "properties": {
+        "externalIdentity": {
+          "description": "Required. Identity outside the customer identity provider. The length limit of external identity will be of 100 characters.",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "Group identifier. For Google Workspace user account, group_id should be the google workspace group email. For non-google identity provider, group_id is the mapped group identifier configured during the workforcepool config.",
+          "type": "string"
+        },
+        "userId": {
+          "description": "User identifier. For Google Workspace user account, user_id should be the google workspace user email. For non-google identity provider, user_id is the mapped user identifier configured during the workforcepool config.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaIdentityMappingEntryOperationMetadata": {
+      "description": "IdentityMappingEntry LongRunningOperation metadata for IdentityMappingStoreService.ImportIdentityMappings and IdentityMappingStoreService.PurgeIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1betaIdentityMappingEntryOperationMetadata",
+      "properties": {
+        "failureCount": {
+          "description": "The number of IdentityMappingEntries that failed to be processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of IdentityMappingEntries that were successfully processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalCount": {
+          "description": "The total number of IdentityMappingEntries that were processed.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaIdentityMappingStore": {
+      "description": "Identity Mapping Store which contains Identity Mapping Entries.",
+      "id": "GoogleCloudDiscoveryengineV1betaIdentityMappingStore",
+      "properties": {
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaCmekConfig",
+          "description": "Output only. CMEK-related information for the Identity Mapping Store.",
+          "readOnly": true
+        },
+        "kmsKeyName": {
+          "description": "Input only. The KMS key to be used to protect this Identity Mapping Store at creation time. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the Identity Mapping Store will be protected by the KMS key, as indicated in the cmek_config field.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the identity mapping store. Format: `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaImportCompletionSuggestionsMetadata": {
       "description": "Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1betaImportCompletionSuggestionsMetadata",
@@ -19142,6 +20180,45 @@
         "gcsPrefix": {
           "description": "Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaImportIdentityMappingsRequest": {
+      "description": "Request message for IdentityMappingStoreService.ImportIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1betaImportIdentityMappingsRequest",
+      "properties": {
+        "inlineSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaImportIdentityMappingsRequestInlineSource",
+          "description": "The inline source to import identity mapping entries from."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaImportIdentityMappingsRequestInlineSource": {
+      "description": "The inline source to import identity mapping entries from.",
+      "id": "GoogleCloudDiscoveryengineV1betaImportIdentityMappingsRequestInlineSource",
+      "properties": {
+        "identityMappingEntries": {
+          "description": "A maximum of 10000 entries can be imported at one time",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaIdentityMappingEntry"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaImportIdentityMappingsResponse": {
+      "description": "Response message for IdentityMappingStoreService.ImportIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1betaImportIdentityMappingsResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -19605,6 +20682,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaListIdentityMappingStoresResponse": {
+      "description": "Response message for IdentityMappingStoreService.ListIdentityMappingStores",
+      "id": "GoogleCloudDiscoveryengineV1betaListIdentityMappingStoresResponse",
+      "properties": {
+        "identityMappingStores": {
+          "description": "The Identity Mapping Stores.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaIdentityMappingStore"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaListIdentityMappingsResponse": {
+      "description": "Response message for IdentityMappingStoreService.ListIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1betaListIdentityMappingsResponse",
+      "properties": {
+        "identityMappingEntries": {
+          "description": "The Identity Mapping Entries.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaIdentityMappingEntry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaListSampleQueriesResponse": {
       "description": "Response message for SampleQueryService.ListSampleQueries method.",
       "id": "GoogleCloudDiscoveryengineV1betaListSampleQueriesResponse",
@@ -19752,6 +20865,66 @@
             "Natural Language Query Understanding is enabled."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaObtainCrawlRateRequest": {
+      "description": "Request message for CrawlRateManagementService.ObtainCrawlRate method.",
+      "id": "GoogleCloudDiscoveryengineV1betaObtainCrawlRateRequest",
+      "properties": {
+        "crawlRateScope": {
+          "description": "Required. The scope of the crawl rate that the user wants to monitor. Currently, only domain and host name are supported. A domain name example: `example.com`. A host name example: `www.example.com`. Please do not include `/` in the domain or host name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaObtainCrawlRateResponse": {
+      "description": "Response message for CrawlRateManagementService.ObtainCrawlRate method. The response contains organcic or dedicated crawl rate time series data for monitoring, depending on whether dedicated crawl rate is set.",
+      "id": "GoogleCloudDiscoveryengineV1betaObtainCrawlRateResponse",
+      "properties": {
+        "dedicatedCrawlRateTimeSeries": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDedicatedCrawlRateTimeSeries",
+          "description": "The historical dedicated crawl rate timeseries data, used for monitoring."
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Errors from service when handling the request."
+        },
+        "organicCrawlRateTimeSeries": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaOrganicCrawlRateTimeSeries",
+          "description": "The historical organic crawl rate timeseries data, used for monitoring."
+        },
+        "state": {
+          "description": "Output only. The state of the response.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The state is successful.",
+            "The state is failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaOrganicCrawlRateTimeSeries": {
+      "description": "The historical organic crawl rate timeseries data, used for monitoring. Organic crawl is auto-determined by Google to crawl the user's website when dedicate crawl is not set. Crawl rate is the QPS of crawl request Google sends to the user's website.",
+      "id": "GoogleCloudDiscoveryengineV1betaOrganicCrawlRateTimeSeries",
+      "properties": {
+        "googleOrganicCrawlRate": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaCrawlRateTimeSeries",
+          "description": "Google's organic crawl rate time series, which is the sum of all googlebots' crawl rate. Please refer to https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers for more details about googlebots."
+        },
+        "vertexAiOrganicCrawlRate": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaCrawlRateTimeSeries",
+          "description": "Vertex AI's organic crawl rate time series, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is not set. Please refer to https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers#google-cloudvertexbot for more details about Google-CloudVertexBot."
         }
       },
       "type": "object"
@@ -20016,6 +21189,39 @@
         "gcsPrefix": {
           "description": "Cloud Storage prefix for purge errors. This must be an empty, existing Cloud Storage directory. Purge errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaPurgeIdentityMappingsRequest": {
+      "description": "Request message for IdentityMappingStoreService.PurgeIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1betaPurgeIdentityMappingsRequest",
+      "properties": {
+        "filter": {
+          "description": "Filter matching identity mappings to purge. The eligible field for filtering is: * `update_time`: in ISO 8601 \"zulu\" format. * `external_id` Examples: * Deleting all identity mappings updated in a time range: `update_time > \"2012-04-23T18:25:43.511Z\" AND update_time < \"2012-04-23T18:30:43.511Z\"` * Deleting all identity mappings for a given external_id: `external_id = \"id1\"` * Deleting all identity mappings inside an identity mapping store: `*` The filtering fields are assumed to have an implicit AND. Should not be used with source. An error will be thrown, if both are provided.",
+          "type": "string"
+        },
+        "force": {
+          "description": "Actually performs the purge. If `force` is set to false, return the expected purge count without deleting any identity mappings. This field is only supported for purge with filter. For input source this field is ignored and data will be purged regardless of the value of this field.",
+          "type": "boolean"
+        },
+        "inlineSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaPurgeIdentityMappingsRequestInlineSource",
+          "description": "The inline source to purge identity mapping entries from."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaPurgeIdentityMappingsRequestInlineSource": {
+      "description": "The inline source to purge identity mapping entries from.",
+      "id": "GoogleCloudDiscoveryengineV1betaPurgeIdentityMappingsRequestInlineSource",
+      "properties": {
+        "identityMappingEntries": {
+          "description": "A maximum of 10000 entries can be purged at one time",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaIdentityMappingEntry"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -20316,7 +21522,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaRecrawlUrisRequest",
       "properties": {
         "siteCredential": {
-          "description": "Optional. Full resource name of the `SiteCredential`, such as `projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine/siteCredentials/*`. Only set to crawl private URIs.",
+          "description": "Optional. Credential id to use for crawling.",
           "type": "string"
         },
         "uris": {
@@ -20327,6 +21533,94 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaRemoveDedicatedCrawlRateMetadata": {
+      "description": "Metadata related to the progress of the CrawlRateManagementService.RemoveDedicatedCrawlRate operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaRemoveDedicatedCrawlRateMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaRemoveDedicatedCrawlRateRequest": {
+      "description": "Request message for CrawlRateManagementService.RemoveDedicatedCrawlRate method. The user can remove the dedicated crawl rate for a crawl_rate_scope they own, and Google will fall back to organic crawl, and the crawl rate will be determined by Google.",
+      "id": "GoogleCloudDiscoveryengineV1betaRemoveDedicatedCrawlRateRequest",
+      "properties": {
+        "crawlRateScope": {
+          "description": "Required. The scope of the crawl rate change. Currently, only domain and host name are supported. A domain name example: `example.com`. A host name example: `www.example.com`. Please do not include `/` in the domain or host name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaRemoveDedicatedCrawlRateResponse": {
+      "description": "Response message for CrawlRateManagementService.RemoveDedicatedCrawlRate method. It simply returns the state of the response, and an error message if the state is FAILED.",
+      "id": "GoogleCloudDiscoveryengineV1betaRemoveDedicatedCrawlRateResponse",
+      "properties": {
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Errors from service when handling the request."
+        },
+        "state": {
+          "description": "Output only. The state of the response.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The state is successful.",
+            "The state is failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaRemoveSuggestionRequest": {
+      "description": "Request message for CompletionService.RemoveSuggestion method.",
+      "id": "GoogleCloudDiscoveryengineV1betaRemoveSuggestionRequest",
+      "properties": {
+        "removeAllSearchHistorySuggestions": {
+          "description": "Remove all search history suggestions for the user.",
+          "type": "boolean"
+        },
+        "removeTime": {
+          "description": "Required. Time at which the suggestion was removed. If not set, the current time will be used.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "searchHistorySuggestion": {
+          "description": "The search history suggestion to be removed.",
+          "type": "string"
+        },
+        "userInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaUserInfo",
+          "description": "Optional. Information about the end user. This should be the same identifier information as UserEvent.user_info and SearchRequest.user_info."
+        },
+        "userPseudoId": {
+          "description": "Required. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaRemoveSuggestionResponse": {
+      "description": "Response message for CompletionService.RemoveSuggestion method.",
+      "id": "GoogleCloudDiscoveryengineV1betaRemoveSuggestionResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaReply": {
@@ -20723,15 +22017,33 @@
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
         },
         "rankingExpression": {
-          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The ranking expression is a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.",
+          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking expression is not provided or set to BYOE, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking expression is set to CLEARBOX, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double > 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result",
+          "type": "string"
+        },
+        "rankingExpressionBackend": {
+          "description": "Optional. The backend to use for the ranking expression evaluation.",
+          "enum": [
+            "UNKNOWN",
+            "BYOE",
+            "CLEARBOX"
+          ],
+          "enumDescriptions": [
+            "Default option for unspecified/unknown values.",
+            "Bring your own embedding (BYOE), the default way to evaluate the ranking expression.",
+            "The expression is compiled into a Clearbox formula."
+          ],
           "type": "string"
         },
         "regionCode": {
           "description": "The Unicode country/region code (CLDR) of a location, such as \"US\" and \"419\". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). If set, then results will be boosted based on the region_code provided.",
           "type": "string"
         },
+        "relevanceScoreSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceScoreSpec",
+          "description": "Optional. The specification for returning the relevance score."
+        },
         "relevanceThreshold": {
-          "description": "The relevance threshold of the search results. Default to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information.",
+          "description": "The relevance threshold of the search results. Default to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. This feature is not supported for healthcare search.",
           "enum": [
             "RELEVANCE_THRESHOLD_UNSPECIFIED",
             "LOWEST",
@@ -20774,7 +22086,7 @@
         },
         "userInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1betaUserInfo",
-          "description": "Information about the end user. Highly recommended for analytics. UserInfo.user_agent is used to deduce `device_type` for analytics."
+          "description": "Information about the end user. Highly recommended for analytics and personalization. UserInfo.user_agent is used to deduce `device_type` for analytics."
         },
         "userLabels": {
           "additionalProperties": {
@@ -21272,6 +22584,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceScoreSpec": {
+      "description": "The specification for returning the document relevance score.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceScoreSpec",
+      "properties": {
+        "returnRelevanceScore": {
+          "description": "Optional. Whether to return the relevance score for search results. The higher the score, the more relevant the document is to the query.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaSearchRequestSearchAsYouTypeSpec": {
       "description": "Specification for search as you type in search requests.",
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestSearchAsYouTypeSpec",
@@ -21281,12 +22604,14 @@
           "enum": [
             "CONDITION_UNSPECIFIED",
             "DISABLED",
-            "ENABLED"
+            "ENABLED",
+            "AUTO"
           ],
           "enumDescriptions": [
             "Server behavior defaults to Condition.DISABLED.",
             "Disables Search As You Type.",
-            "Enables Search As You Type."
+            "Enables Search As You Type.",
+            "Automatic switching between search-as-you-type and standard search modes, ideal for single-API implementations (e.g., debouncing)."
           ],
           "type": "string"
         }
@@ -21302,7 +22627,7 @@
           "type": "string"
         },
         "searchResultPersistenceCount": {
-          "description": "The number of top search results to persist. The persisted search results can be used for the subsequent /answer api call. This field is simliar to the `summary_result_count` field in SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count. At most 10 results for documents mode, or 50 for chunks mode.",
+          "description": "The number of top search results to persist. The persisted search results can be used for the subsequent /answer api call. This field is similar to the `summary_result_count` field in SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count. At most 10 results for documents mode, or 50 for chunks mode.",
           "format": "int32",
           "type": "integer"
         }
@@ -21776,7 +23101,8 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1betaDoubleList"
           },
-          "description": "Google provided available scores.",
+          "description": "Output only. Google provided available scores.",
+          "readOnly": true,
           "type": "object"
         }
       },
@@ -22230,6 +23556,93 @@
         "query": {
           "$ref": "GoogleCloudDiscoveryengineV1betaQuery",
           "description": "The user query."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateMetadata": {
+      "description": "Metadata related to the progress of the CrawlRateManagementService.SetDedicatedCrawlRate operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateRequest": {
+      "description": "Request message for CrawlRateManagementService.SetDedicatedCrawlRate method. The user can set the crawl rate for a crawl_rate_scope they own. They can set up an overall crawl rate, or set up a user-triggered crawl rate and a auto-refresh crawl rate separately. If an overall crawl rate is set, Vertex AI will automatically splits crawl_rate into user-triggered and auto-refresh.",
+      "id": "GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateRequest",
+      "properties": {
+        "crawlRate": {
+          "description": "Optional. The crawl QPS set by the user. It is not guaranteed that Vertex crawl bot will crawl at this QPS. If the crawl rate is too high, the real QPS may be lower than the value set by the user to avoid overloading the user's website.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "crawlRateScope": {
+          "description": "Required. The scope of the crawl rate that the user wants to config. Currently, only domain and host name are supported. A domain name example: `example.com`. A host name example: `www.example.com`. Please do not include `/` in the domain or host name.",
+          "type": "string"
+        },
+        "crawlType": {
+          "description": "Optional. Whether it's the crawl rate of user-triggered or auto-refresh.",
+          "enum": [
+            "CRAWL_TYPE_UNSPECIFIED",
+            "USER_TRIGGERED",
+            "AUTO_REFRESH"
+          ],
+          "enumDescriptions": [
+            "The crawl type is unspecified.",
+            "The crawl type is user-triggered.",
+            "The crawl type is auto-refresh."
+          ],
+          "type": "string"
+        },
+        "mode": {
+          "description": "Optional. Whether the rate is explicitly set by users, or set by vertex AI.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "AUTOMATIC",
+            "EXPLICIT"
+          ],
+          "enumDescriptions": [
+            "The mode is unspecified. If the user does not specify the mode, default to AUTOMATIC.",
+            "Vertex AI automatically splits crawl_rate into user-triggered and auto-refresh. Users don't need to specify SetDedicatedCrawlRateRequest.CrawlType if the mode is AUTOMATIC.",
+            "Users explicitly set user-triggered or auto-refresh crawl rate."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateResponse": {
+      "description": "Response message for CrawlRateManagementService.SetDedicatedCrawlRate method. It simply returns the state of the response, and an error message if the state is FAILED.",
+      "id": "GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateResponse",
+      "properties": {
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Errors from service when handling the request."
+        },
+        "state": {
+          "description": "Output only. The state of the response.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The state is successful.",
+            "The state is failed."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
