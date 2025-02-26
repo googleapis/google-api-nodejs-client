@@ -575,6 +575,10 @@ export namespace androidenterprise_v1 {
      */
     administrator?: Schema$Administrator[];
     /**
+     * The type of the enterprise.
+     */
+    enterpriseType?: string | null;
+    /**
      * Output only. Settings for Google-provided user authentication.
      */
     googleAuthenticationSettings?: Schema$GoogleAuthenticationSettings;
@@ -582,6 +586,10 @@ export namespace androidenterprise_v1 {
      * The unique ID for the enterprise.
      */
     id?: string | null;
+    /**
+     * The type of managed Google domain
+     */
+    managedGoogleDomainType?: string | null;
     /**
      * The name of the enterprise, for example, "Example, Inc".
      */
