@@ -202,6 +202,10 @@ export namespace chat_v1 {
    */
   export interface Schema$Annotation {
     /**
+     * The metadata for a custom emoji.
+     */
+    customEmojiMetadata?: Schema$CustomEmojiMetadata;
+    /**
      * Length of the substring in the plain-text message body this annotation corresponds to.
      */
     length?: number | null;
@@ -225,6 +229,19 @@ export namespace chat_v1 {
      * The metadata of user mention.
      */
     userMention?: Schema$UserMentionMetadata;
+  }
+  /**
+   * Metadata about a [Chat app command](https://developers.google.com/workspace/chat/commands).
+   */
+  export interface Schema$AppCommandMetadata {
+    /**
+     * The ID for the command specified in the Chat API configuration.
+     */
+    appCommandId?: number | null;
+    /**
+     * The type of Chat app command.
+     */
+    appCommandType?: string | null;
   }
   /**
    * A GIF image that's specified by a URL.
@@ -483,6 +500,15 @@ export namespace chat_v1 {
     uid?: string | null;
   }
   /**
+   * Annotation metadata for custom emoji.
+   */
+  export interface Schema$CustomEmojiMetadata {
+    /**
+     * The custom emoji.
+     */
+    customEmoji?: Schema$CustomEmoji;
+  }
+  /**
    * Date input values.
    */
   export interface Schema$DateInput {
@@ -526,11 +552,15 @@ export namespace chat_v1 {
      */
     action?: Schema$FormAction;
     /**
+     * Metadata about a Chat app command.
+     */
+    appCommandMetadata?: Schema$AppCommandMetadata;
+    /**
      * Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/workspace/chat/dialogs), like data entered on a card.
      */
     common?: Schema$CommonEventObject;
     /**
-     * For `MESSAGE` interaction events, the URL that users must be redirected to after they complete an authorization or configuration flow outside of Google Chat. For more information, see [Connect a Chat app with other services and tools](https://developers.google.com/workspace/chat/connect-web-services-tools).
+     * This URL is populated for `MESSAGE`, `ADDED_TO_SPACE`, and `APP_COMMAND` interaction events. After completing an authorization or configuration flow outside of Google Chat, users must be redirected to this URL to signal to Google Chat that the authorization or configuration flow was successful. For more information, see [Connect a Chat app with other services and tools](https://developers.google.com/workspace/chat/connect-web-services-tools).
      */
     configCompleteRedirectUrl?: string | null;
     /**
@@ -553,6 +583,10 @@ export namespace chat_v1 {
      * The space in which the user interacted with the Chat app.
      */
     space?: Schema$Space;
+    /**
+     * The thread in which the user interacted with the Chat app. This could be in a new thread created by a newly sent message. This field is populated if the interaction event is associated with a specific message or thread.
+     */
+    thread?: Schema$Thread;
     /**
      * The Chat app-defined key for the thread related to the interaction event. See [`spaces.messages.thread.threadKey`](/chat/api/reference/rest/v1/spaces.messages#Thread.FIELDS.thread_key) for more information.
      */
@@ -619,7 +653,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Emoji {
     /**
-     * Output only. A custom emoji.
+     * A custom emoji.
      */
     customEmoji?: Schema$CustomEmoji;
     /**
@@ -2263,11 +2297,11 @@ export namespace chat_v1 {
     space?: Schema$Space;
   }
   /**
-   * A [slash command](https://developers.google.com/workspace/chat/slash-commands) in Google Chat.
+   * Metadata about a [slash command](https://developers.google.com/workspace/chat/commands) in Google Chat.
    */
   export interface Schema$SlashCommand {
     /**
-     * The ID of the slash command invoked.
+     * The ID of the slash command.
      */
     commandId?: string | null;
   }
@@ -5126,7 +5160,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Creates a reaction and adds it to a message. Only unicode emojis are supported. For an example, see [Add a reaction to a message](https://developers.google.com/workspace/chat/create-reactions). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Creates a reaction and adds it to a message. For an example, see [Add a reaction to a message](https://developers.google.com/workspace/chat/create-reactions). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5214,7 +5248,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Deletes a reaction to a message. Only unicode emojis are supported. For an example, see [Delete a reaction](https://developers.google.com/workspace/chat/delete-reactions). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Deletes a reaction to a message. For an example, see [Delete a reaction](https://developers.google.com/workspace/chat/delete-reactions). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
