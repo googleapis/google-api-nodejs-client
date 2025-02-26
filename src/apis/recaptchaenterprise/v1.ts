@@ -367,9 +367,13 @@ export namespace recaptchaenterprise_v1 {
      */
     headers?: string[] | null;
     /**
-     * Optional. JA3 fingerprint for SSL clients.
+     * Optional. JA3 fingerprint for SSL clients. To learn how to compute this fingerprint, please refer to https://github.com/salesforce/ja3.
      */
     ja3?: string | null;
+    /**
+     * Optional. JA4 fingerprint for SSL clients. To learn how to compute this fingerprint, please refer to https://github.com/FoxIO-LLC/ja4.
+     */
+    ja4?: string | null;
     /**
      * Optional. The URI resource the user requested that triggered an assessment.
      */
@@ -752,7 +756,7 @@ export namespace recaptchaenterprise_v1 {
      */
     scoreMetrics?: Schema$GoogleCloudRecaptchaenterpriseV1ScoreMetrics[];
     /**
-     * Inclusive start time aligned to a day (UTC).
+     * Inclusive start time aligned to a day in the America/Los_Angeles (Pacific) timezone.
      */
     startTime?: string | null;
   }

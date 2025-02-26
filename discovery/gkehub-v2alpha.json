@@ -471,7 +471,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250209",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceState": {
@@ -2935,7 +2935,8 @@
             "MODERNIZATION_SCHEDULED",
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
-            "MODERNIZATION_ABORTED"
+            "MODERNIZATION_ABORTED",
+            "MODERNIZATION_WILL_BE_SCHEDULED"
           ],
           "enumDescriptions": [
             "Default Unspecified code",
@@ -2973,7 +2974,8 @@
             "Modernization is scheduled for a cluster.",
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
-            "Modernization is aborted for a cluster."
+            "Modernization is aborted for a cluster.",
+            "Modernization will be scheduled for a fleet."
           ],
           "type": "string"
         },

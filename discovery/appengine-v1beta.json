@@ -1084,6 +1084,11 @@
                   "required": true,
                   "type": "string"
                 },
+                "force": {
+                  "description": "Optional. If set to true, any versions of this service will also be deleted. (Otherwise, the request will only succeed if the service has no versions.)",
+                  "location": "query",
+                  "type": "boolean"
+                },
                 "servicesId": {
                   "description": "Part of `name`. See documentation of `appsId`.",
                   "location": "path",
@@ -1838,6 +1843,11 @@
                           "required": true,
                           "type": "string"
                         },
+                        "force": {
+                          "description": "Optional. If set to true, any versions of this service will also be deleted. (Otherwise, the request will only succeed if the service has no versions.)",
+                          "location": "query",
+                          "type": "boolean"
+                        },
                         "locationsId": {
                           "description": "Part of `name`. See documentation of `projectsId`.",
                           "location": "path",
@@ -2025,7 +2035,7 @@
       }
     }
   },
-  "revision": "20241205",
+  "revision": "20250217",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -2203,6 +2213,20 @@
             "Application is serving.",
             "Application has been disabled by the user.",
             "Application has been disabled by the system."
+          ],
+          "type": "string"
+        },
+        "sslPolicy": {
+          "description": "The SSL policy that will be applied to the application. If set to Modern it will restrict traffic with TLS < 1.2 and allow only Modern Ciphers suite",
+          "enum": [
+            "SSL_POLICY_UNSPECIFIED",
+            "DEFAULT",
+            "MODERN"
+          ],
+          "enumDescriptions": [
+            "Required by linter. Will work same as DEFAULT",
+            "DEFAULT is to allow all TLS versions and cipher suites supported by App Engine",
+            "MODERN is to allow only TLS 1.2 and TLS 1.3 along with Modern cipher suites only"
           ],
           "type": "string"
         }
@@ -4146,7 +4170,7 @@
           ],
           "enumDescriptions": [
             "SSL support for this domain is configured automatically. The mapped SSL certificate will be automatically renewed.",
-            "SSL support for this domain is configured manually by the user. Either the domain has no SSL support or a user-obtained SSL certificate has been explictly mapped to this domain."
+            "SSL support for this domain is configured manually by the user. Either the domain has no SSL support or a user-obtained SSL certificate has been explicitly mapped to this domain."
           ],
           "type": "string"
         }
@@ -4158,7 +4182,7 @@
       "id": "StandardSchedulerSettings",
       "properties": {
         "maxInstances": {
-          "description": "Maximum number of instances to run for this version. Set to zero to disable max_instances configuration.",
+          "description": "Maximum number of instances to run for this version. Set to 2147483647 to disable max_instances configuration.",
           "format": "int32",
           "type": "integer"
         },

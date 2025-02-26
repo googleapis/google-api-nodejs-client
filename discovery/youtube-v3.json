@@ -4100,7 +4100,7 @@
       }
     }
   },
-  "revision": "20250122",
+  "revision": "20250224",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -5528,6 +5528,10 @@
       "description": "JSON template for the status part of a channel.",
       "id": "ChannelStatus",
       "properties": {
+        "isChannelMonetizationEnabled": {
+          "description": "Whether the channel is considered ypp monetization enabled. See go/yppornot for more details.",
+          "type": "boolean"
+        },
         "isLinked": {
           "description": "If true, then the user is linked to either a YouTube username or G+ account. Otherwise, the user doesn't have a public YouTube identity.",
           "type": "boolean"
@@ -6486,7 +6490,11 @@
               "djctqIllegalDrugs",
               "djctqInappropriateLanguage",
               "djctqCriminalActs",
-              "djctqImpactingContent"
+              "djctqImpactingContent",
+              "djctqFear",
+              "djctqMedicalProcedures",
+              "djctqSensitiveTopics",
+              "djctqFantasyViolence"
             ],
             "enumDescriptions": [
               "",
@@ -6501,7 +6509,11 @@
               "Drogas Ilícitas (Illegal drugs)",
               "Linguagem Imprópria (Inappropriate language)",
               "Atos Criminosos (Criminal Acts)",
-              "Conteúdo Impactante (Impacting content)"
+              "Conteúdo Impactante (Impacting content)",
+              "Temer (Fear)",
+              "Procedimentos médicos (Medical Procedures)",
+              "Tópicos sensíveis (Sensitive Topics)",
+              "Fantasia Violência (Fantasy Violence)"
             ],
             "type": "string"
           },

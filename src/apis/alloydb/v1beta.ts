@@ -596,6 +596,31 @@ export namespace alloydb_v1beta {
     selectQuery?: string | null;
   }
   /**
+   * Options for importing data in CSV format.
+   */
+  export interface Schema$CsvImportOptions {
+    /**
+     * Optional. The columns to which CSV data is imported. If not specified, all columns of the database table are loaded with CSV data.
+     */
+    columns?: string[] | null;
+    /**
+     * Optional. Specifies the character that should appear before a data character that needs to be escaped. The default is same as quote character. The value of this argument has to be a character in Hex ASCII Code.
+     */
+    escapeCharacter?: string | null;
+    /**
+     * Optional. Specifies the character that separates columns within each row (line) of the file. The default is comma. The value of this argument has to be a character in Hex ASCII Code.
+     */
+    fieldDelimiter?: string | null;
+    /**
+     * Optional. Specifies the quoting character to be used when a data value is quoted. The default is double-quote. The value of this argument has to be a character in Hex ASCII Code.
+     */
+    quoteCharacter?: string | null;
+    /**
+     * Required. The database table to import CSV file into.
+     */
+    table?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -740,6 +765,31 @@ export namespace alloydb_v1beta {
      * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
+  }
+  /**
+   * Import cluster request.
+   */
+  export interface Schema$ImportClusterRequest {
+    /**
+     * Options for importing data in CSV format.
+     */
+    csvImportOptions?: Schema$CsvImportOptions;
+    /**
+     * Optional. Name of the database to which the import will be done. For import from SQL file, this is required only if the file does not specify a database. Note - Value provided should be the same as expected from `SELECT current_database();` and NOT as a resource reference.
+     */
+    database?: string | null;
+    /**
+     * Required. The path to the file in Google Cloud Storage where the source file for import will be stored. The URI is in the form `gs://bucketName/fileName`.
+     */
+    gcsUri?: string | null;
+    /**
+     * Options for importing data in SQL format.
+     */
+    sqlImportOptions?: Schema$SqlImportOptions;
+    /**
+     * Optional. Database user to be used for importing the data. Note - Value provided should be the same as expected from `SELECT current_user;` and NOT as a resource reference.
+     */
+    user?: string | null;
   }
   /**
    * Message for triggering fault injection on an instance
@@ -1248,6 +1298,10 @@ export namespace alloydb_v1beta {
      * Optional. Create an instance that allows connections from Private Service Connect endpoints to the instance.
      */
     pscEnabled?: boolean | null;
+    /**
+     * Output only. The project number that needs to be allowlisted on the network attachment to enable outbound connectivity.
+     */
+    serviceOwnedProjectNumber?: string | null;
   }
   /**
    * PscInstanceConfig contains PSC related configuration at an instance level.
@@ -1262,9 +1316,22 @@ export namespace alloydb_v1beta {
      */
     pscDnsName?: string | null;
     /**
+     * Optional. Configurations for setting up PSC interfaces attached to the instance which are used for outbound connectivity. Only primary instances can have PSC interface attached. Currently we only support 0 or 1 PSC interface.
+     */
+    pscInterfaceConfigs?: Schema$PscInterfaceConfig[];
+    /**
      * Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`
      */
     serviceAttachmentLink?: string | null;
+  }
+  /**
+   * Configuration for setting up a PSC interface to enable outbound connectivity.
+   */
+  export interface Schema$PscInterfaceConfig {
+    /**
+     * The network attachment resource created in the consumer network to which the PSC interface will be linked. This is of the format: "projects/${CONSUMER_PROJECT\}/regions/${REGION\}/networkAttachments/${NETWORK_ATTACHMENT_NAME\}". The network attachment must be in the same region as the instance.
+     */
+    networkAttachmentResource?: string | null;
   }
   /**
    * A backup's position in a quantity-based retention queue, of backups with the same source cluster and type, with length, retention, specified by the backup's retention policy. Once the position is greater than the retention, the backup is eligible to be garbage collected. Example: 5 backups from the same source cluster and type with a quantity-based retention of 3 and denoted by backup_id (position, retention). Safe: backup_5 (1, 3), backup_4, (2, 3), backup_3 (3, 3). Awaiting garbage collection: backup_2 (4, 3), backup_1 (5, 3)
@@ -1408,6 +1475,10 @@ export namespace alloydb_v1beta {
      */
     tables?: string[] | null;
   }
+  /**
+   * Options for importing data in SQL format.
+   */
+  export interface Schema$SqlImportOptions {}
   /**
    * SSL configuration.
    */
@@ -1635,7 +1706,7 @@ export namespace alloydb_v1beta {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 23
+   * Common model for database resource instance metadata. Next ID: 24
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
     /**
@@ -1711,6 +1782,10 @@ export namespace alloydb_v1beta {
      */
     resourceName?: string | null;
     /**
+     * Suspension reason for the resource.
+     */
+    suspensionReason?: string | null;
+    /**
      * Optional. Tags associated with this resources.
      */
     tagsSet?: Schema$StorageDatabasecenterPartnerapiV1mainTags;
@@ -1785,6 +1860,10 @@ export namespace alloydb_v1beta {
      * Information about the last backup attempt for this database
      */
     backupRun?: Schema$StorageDatabasecenterPartnerapiV1mainBackupRun;
+    /**
+     * Whether deletion protection is enabled for this internal resource.
+     */
+    isDeletionProtectionEnabled?: boolean | null;
     product?: Schema$StorageDatabasecenterProtoCommonProduct;
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
@@ -3336,6 +3415,94 @@ export namespace alloydb_v1beta {
     }
 
     /**
+     * Imports data to the cluster. Imperative only.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Clusters$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Clusters$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Clusters$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Clusters$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Clusters$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Import
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alloydb.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Lists Clusters in a given project and location.
      *
      * @param params - Parameters for request
@@ -4047,6 +4214,18 @@ export namespace alloydb_v1beta {
      * Optional. The view of the cluster to return. Returns all default fields if not set.
      */
     view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Import
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the cluster.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportClusterRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$List
     extends StandardParameters {

@@ -547,6 +547,10 @@ export namespace migrationcenter_v1alpha1 {
     machineTypeLabel?: string | null;
   }
   /**
+   * Specific details for an AWS RDS database deployment.
+   */
+  export interface Schema$AwsRds {}
+  /**
    * Azure VM specific details.
    */
   export interface Schema$AzureVmPlatformDetails {
@@ -988,6 +992,10 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. Aggregated stats for the database deployment.
      */
     aggregatedStats?: Schema$DatabaseDeploymentDetailsAggregatedStats;
+    /**
+     * Optional. Details of an AWS RDS instance.
+     */
+    awsRds?: Schema$AwsRds;
     /**
      * The database deployment edition.
      */
@@ -1474,7 +1482,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     freeBytes?: string | null;
     /**
-     * Mount pount (Linux/Windows) or drive letter (Windows).
+     * Mount point (Linux/Windows) or drive letter (Windows).
      */
     mountPoint?: string | null;
     /**
@@ -1491,6 +1499,23 @@ export namespace migrationcenter_v1alpha1 {
     uuid?: string | null;
   }
   /**
+   * Disk partition details.
+   */
+  export interface Schema$DiskPartitionDetails {
+    /**
+     * Output only. Total free space of all partitions.
+     */
+    freeSpaceBytes?: string | null;
+    /**
+     * Optional. List of partitions.
+     */
+    partitions?: Schema$DiskPartitionList;
+    /**
+     * Output only. Total capacity of all partitions.
+     */
+    totalCapacityBytes?: string | null;
+  }
+  /**
    * Disk partition list.
    */
   export interface Schema$DiskPartitionList {
@@ -1504,15 +1529,15 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$DiskUsageSample {
     /**
-     * Average IOPS sampled over a short window. Must be non-negative. Must be equal to the sum of read and write if one of them is positive. if both read and write are zero they are ignored.
+     * Average IOPS sampled over a short window. Must be non-negative. If read or write are set, the sum of read and write will override the value of the average_iops.
      */
     averageIops?: number | null;
     /**
-     * Average read IOPS sampled over a short window. Must be non-negative.
+     * Average read IOPS sampled over a short window. Must be non-negative. If both read and write are zero they are ignored.
      */
     averageReadIops?: number | null;
     /**
-     * Average write IOPS sampled over a short window. Must be non-negative.
+     * Average write IOPS sampled over a short window. Must be non-negative. If both read and write are zero they are ignored.
      */
     averageWriteIops?: number | null;
   }
@@ -2407,6 +2432,10 @@ export namespace migrationcenter_v1alpha1 {
      * Machine creation time.
      */
     createTime?: string | null;
+    /**
+     * Optional. Disk partitions details. Note: Partitions are not necessarily mounted on local disks and therefore might not have a one-to-one correspondence with local disks.
+     */
+    diskPartitions?: Schema$DiskPartitionDetails;
     /**
      * Disk details.
      */
@@ -4174,6 +4203,10 @@ export namespace migrationcenter_v1alpha1 {
      * VM creation timestamp.
      */
     createTime?: string | null;
+    /**
+     * Optional. Disk partitions details. Note: Partitions are not necessarily mounted on local disks and therefore might not have a one-to-one correspondence with local disks.
+     */
+    diskPartitions?: Schema$DiskPartitionDetails;
     /**
      * Guest OS information.
      */

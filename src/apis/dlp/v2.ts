@@ -1898,6 +1898,10 @@ export namespace dlp_v2 {
      */
     otherCloudStartingLocation?: Schema$GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation;
     /**
+     * Optional. Processing location configuration. Vertex AI dataset scanning will set processing_location.image_fallback_type to MultiRegionProcessing by default.
+     */
+    processingLocation?: Schema$GooglePrivacyDlpV2ProcessingLocation;
+    /**
      * Required. A status for this configuration.
      */
     status?: string | null;
@@ -2063,6 +2067,53 @@ export namespace dlp_v2 {
      * Discovery target that looks for credentials and secrets stored in cloud resource metadata and reports them as vulnerabilities to Security Command Center. Only one target of this type is allowed.
      */
     secretsTarget?: Schema$GooglePrivacyDlpV2SecretsDiscoveryTarget;
+    /**
+     * Vertex AI dataset target for Discovery. The first target to match a dataset will be the one applied. Note that discovery for Vertex AI can incur Cloud Storage Class B operation charges for storage.objects.get operations and retrieval fees. For more information, see [Cloud Storage pricing](https://cloud.google.com/storage/pricing#price-tables). Note that discovery for Vertex AI dataset will not be able to scan images unless DiscoveryConfig.processing_location.image_fallback_location has multi_region_processing or global_processing configured.
+     */
+    vertexDatasetTarget?: Schema$GooglePrivacyDlpV2VertexDatasetDiscoveryTarget;
+  }
+  /**
+   * Requirements that must be true before a dataset is profiled for the first time.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryVertexDatasetConditions {
+    /**
+     * Vertex AI dataset must have been created after this date. Used to avoid backfilling.
+     */
+    createdAfter?: string | null;
+    /**
+     * Minimum age a Vertex AI dataset must have. If set, the value must be 1 hour or greater.
+     */
+    minAge?: string | null;
+  }
+  /**
+   * Determines what datasets will have profiles generated within an organization or project. Includes the ability to filter by regular expression patterns on project ID or dataset regex.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryVertexDatasetFilter {
+    /**
+     * A specific set of Vertex AI datasets for this filter to apply to.
+     */
+    collection?: Schema$GooglePrivacyDlpV2VertexDatasetCollection;
+    /**
+     * Catch-all. This should always be the last target in the list because anything above it will apply first. Should only appear once in a configuration. If none is specified, a default one will be added automatically.
+     */
+    others?: Schema$GooglePrivacyDlpV2AllOtherResources;
+    /**
+     * The dataset resource to scan. Targets including this can only include one target (the target with this dataset resource reference).
+     */
+    vertexDatasetResourceReference?: Schema$GooglePrivacyDlpV2VertexDatasetResourceReference;
+  }
+  /**
+   * How often existing datasets should have their profiles refreshed. New datasets are scanned as quickly as possible depending on system capacity.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence {
+    /**
+     * Governs when to update data profiles when the inspection rules defined by the `InspectTemplate` change. If not set, changing the template will not cause a data profile to be updated.
+     */
+    inspectTemplateModifiedCadence?: Schema$GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence;
+    /**
+     * If you set this field, profiles are refreshed at this frequency regardless of whether the underlying datasets have changed. Defaults to never.
+     */
+    refreshFrequency?: string | null;
   }
   /**
    * Combines all of the information about a DLP job.
@@ -2369,7 +2420,7 @@ export namespace dlp_v2 {
      */
     fileStoreLocation?: string | null;
     /**
-     * The file store path. * Cloud Storage: `gs://{bucket\}` * Amazon S3: `s3://{bucket\}`
+     * The file store path. * Cloud Storage: `gs://{bucket\}` * Amazon S3: `s3://{bucket\}` * Vertex AI dataset: `projects/{project_number\}/locations/{location\}/datasets/{dataset_id\}`
      */
     fileStorePath?: string | null;
     /**
@@ -2404,6 +2455,10 @@ export namespace dlp_v2 {
      * The Google Cloud project ID that owns the resource. For Amazon S3 buckets, this is the AWS Account Id.
      */
     projectId?: string | null;
+    /**
+     * Resources related to this profile.
+     */
+    relatedResources?: Schema$GooglePrivacyDlpV2RelatedResource[];
     /**
      * Attributes of the resource being profiled. Currently used attributes: * customer_managed_encryption: boolean - true: the resource is encrypted with a customer-managed key. - false: the resource is encrypted with a provider-managed key.
      */
@@ -2548,6 +2603,10 @@ export namespace dlp_v2 {
     upperBound?: Schema$GooglePrivacyDlpV2Value;
   }
   /**
+   * Processing will happen in the global region.
+   */
+  export interface Schema$GooglePrivacyDlpV2GlobalProcessing {}
+  /**
    * The rule that adjusts the likelihood of findings within a certain proximity of hotwords.
    */
   export interface Schema$GooglePrivacyDlpV2HotwordRule {
@@ -2661,6 +2720,19 @@ export namespace dlp_v2 {
      * If the container is a table, additional information to make findings meaningful such as the columns that are primary keys.
      */
     tableOptions?: Schema$GooglePrivacyDlpV2TableOptions;
+  }
+  /**
+   * Configure image processing to fall back to the configured processing option below if unavailable in the request location.
+   */
+  export interface Schema$GooglePrivacyDlpV2ImageFallbackLocation {
+    /**
+     * Processing will happen in the global region.
+     */
+    globalProcessing?: Schema$GooglePrivacyDlpV2GlobalProcessing;
+    /**
+     * Processing will happen in a multi-region that contains the current region if available.
+     */
+    multiRegionProcessing?: Schema$GooglePrivacyDlpV2MultiRegionProcessing;
   }
   /**
    * Location of the finding within an image.
@@ -3546,6 +3618,10 @@ export namespace dlp_v2 {
     type?: string | null;
   }
   /**
+   * Processing will happen in a multi-region that contains the current region if available.
+   */
+  export interface Schema$GooglePrivacyDlpV2MultiRegionProcessing {}
+  /**
    * Compute numerical stats over an individual column, including min, max, and quantiles.
    */
   export interface Schema$GooglePrivacyDlpV2NumericalStatsConfig {
@@ -3808,6 +3884,15 @@ export namespace dlp_v2 {
      * Numerical stats
      */
     numericalStatsConfig?: Schema$GooglePrivacyDlpV2NumericalStatsConfig;
+  }
+  /**
+   * Configure processing location for discovery and inspection. For example, image OCR is only provided in limited regions but configuring ProcessingLocation will redirect OCR to a location where OCR is provided.
+   */
+  export interface Schema$GooglePrivacyDlpV2ProcessingLocation {
+    /**
+     * Image processing will fall back using this configuration.
+     */
+    imageFallbackLocation?: Schema$GooglePrivacyDlpV2ImageFallbackLocation;
   }
   /**
    * Success or errors for the profile generation.
@@ -4199,6 +4284,15 @@ export namespace dlp_v2 {
      * An overview of the changes that were made to the `item`.
      */
     overview?: Schema$GooglePrivacyDlpV2TransformationOverview;
+  }
+  /**
+   * A related resource. Examples: * The source BigQuery table for a Vertex AI dataset. * The source Cloud Storage bucket for a Vertex AI dataset.
+   */
+  export interface Schema$GooglePrivacyDlpV2RelatedResource {
+    /**
+     * The full resource name of the related resource.
+     */
+    fullResource?: string | null;
   }
   /**
    * Replace each input value with a value randomly selected from the dictionary.
@@ -4641,6 +4735,10 @@ export namespace dlp_v2 {
      * The resource name of the project data profile for this table.
      */
     projectDataProfile?: string | null;
+    /**
+     * Resources related to this profile.
+     */
+    relatedResources?: Schema$GooglePrivacyDlpV2RelatedResource[];
     /**
      * The labels applied to the resource at the time the profile was generated.
      */
@@ -5144,6 +5242,63 @@ export namespace dlp_v2 {
      * Name of the version
      */
     version?: string | null;
+  }
+  /**
+   * Match dataset resources using regex filters.
+   */
+  export interface Schema$GooglePrivacyDlpV2VertexDatasetCollection {
+    /**
+     * The regex used to filter dataset resources.
+     */
+    vertexDatasetRegexes?: Schema$GooglePrivacyDlpV2VertexDatasetRegexes;
+  }
+  /**
+   * Target used to match against for discovery with Vertex AI datasets.
+   */
+  export interface Schema$GooglePrivacyDlpV2VertexDatasetDiscoveryTarget {
+    /**
+     * In addition to matching the filter, these conditions must be true before a profile is generated.
+     */
+    conditions?: Schema$GooglePrivacyDlpV2DiscoveryVertexDatasetConditions;
+    /**
+     * Disable profiling for datasets that match this filter.
+     */
+    disabled?: Schema$GooglePrivacyDlpV2Disabled;
+    /**
+     * Required. The datasets the discovery cadence applies to. The first target with a matching filter will be the one to apply to a dataset.
+     */
+    filter?: Schema$GooglePrivacyDlpV2DiscoveryVertexDatasetFilter;
+    /**
+     * How often and when to update profiles. New datasets that match both the filter and conditions are scanned as quickly as possible depending on system capacity.
+     */
+    generationCadence?: Schema$GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence;
+  }
+  /**
+   * A pattern to match against one or more dataset resources.
+   */
+  export interface Schema$GooglePrivacyDlpV2VertexDatasetRegex {
+    /**
+     * For organizations, if unset, will match all projects. Has no effect for configurations created within a project.
+     */
+    projectIdRegex?: string | null;
+  }
+  /**
+   * A collection of regular expressions to determine what datasets to match against.
+   */
+  export interface Schema$GooglePrivacyDlpV2VertexDatasetRegexes {
+    /**
+     * Required. The group of regular expression patterns to match against one or more datasets. Maximum of 100 entries. The sum of the lengths of all regular expressions can't exceed 10 KiB.
+     */
+    patterns?: Schema$GooglePrivacyDlpV2VertexDatasetRegex[];
+  }
+  /**
+   * Identifies a single Vertex AI dataset.
+   */
+  export interface Schema$GooglePrivacyDlpV2VertexDatasetResourceReference {
+    /**
+     * Required. The name of the dataset resource. If set within a project-level configuration, the specified resource must be within the project.
+     */
+    datasetResourceName?: string | null;
   }
   /**
    * Message defining a list of words or phrases to search for in the data.

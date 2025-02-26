@@ -302,6 +302,27 @@ export namespace bigqueryreservation_v1 {
     destinationId?: string | null;
   }
   /**
+   * Disaster Recovery(DR) replication status of the reservation.
+   */
+  export interface Schema$ReplicationStatus {
+    /**
+     * Output only. The last error encountered while trying to replicate changes from the primary to the secondary. This field is only available if the replication has not succeeded since.
+     */
+    error?: Schema$Status;
+    /**
+     * Output only. The time at which the last error was encountered while trying to replicate changes from the primary to the secondary. This field is only available if the replication has not succeeded since.
+     */
+    lastErrorTime?: string | null;
+    /**
+     * Output only. A timestamp corresponding to the last change on the primary that was successfully replicated to the secondary.
+     */
+    lastReplicationTime?: string | null;
+    /**
+     * Output only. The time at which a soft failover for the reservation and its associated datasets was initiated. After this field is set, all subsequent changes to the reservation will be rejected unless a hard failover overrides this operation. This field will be cleared once the failover is complete.
+     */
+    softFailoverStartTime?: string | null;
+  }
+  /**
    * A reservation is a mechanism used to guarantee slots to users.
    */
   export interface Schema$Reservation {
@@ -345,6 +366,10 @@ export namespace bigqueryreservation_v1 {
      * Output only. The current location of the reservation's primary replica. This field is only set for reservations using the managed disaster recovery feature.
      */
     primaryLocation?: string | null;
+    /**
+     * Output only. The Disater Recovery(DR) replication status of the reservation. This is only available for the primary replica of DR/failover reservations and provides information about the both the staleness of the secondary and the last error encountered while trying to replicate changes from the primary to the secondary.
+     */
+    replicationStatus?: Schema$ReplicationStatus;
     /**
      * Optional. The current location of the reservation's secondary replica. This field is only set for reservations using the managed disaster recovery feature. Users can set this in create reservation calls to create a failover reservation or in update reservation calls to convert a non-failover reservation to a failover reservation(or vice versa).
      */

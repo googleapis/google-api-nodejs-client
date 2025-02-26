@@ -127,11 +127,50 @@ export namespace spanner_v1 {
   }
 
   /**
+   * A session in the Cloud Spanner Adapter API.
+   */
+  export interface Schema$AdapterSession {
+    /**
+     * Identifier. The name of the session. This is always system-assigned.
+     */
+    name?: string | null;
+  }
+  /**
+   * Message sent by the client to the adapter.
+   */
+  export interface Schema$AdaptMessageRequest {
+    /**
+     * Optional. Opaque request state passed by the client to the server.
+     */
+    attachments?: {[key: string]: string} | null;
+    /**
+     * Optional. Uninterpreted bytes from the underlying wire protocol.
+     */
+    payload?: string | null;
+    /**
+     * Required. Identifier for the underlying wire protocol.
+     */
+    protocol?: string | null;
+  }
+  /**
+   * Message sent by the adapter to the client.
+   */
+  export interface Schema$AdaptMessageResponse {
+    /**
+     * Optional. Uninterpreted bytes from the underlying wire protocol.
+     */
+    payload?: string | null;
+    /**
+     * Optional. Opaque state updates to be applied by the client.
+     */
+    stateUpdates?: {[key: string]: string} | null;
+  }
+  /**
    * The request for AddSplitPoints.
    */
   export interface Schema$AddSplitPointsRequest {
     /**
-     * Optional. A user-supplied tag associated with the split points. For example, "intital_data_load", "special_event_1". Defaults to "CloudAddSplitPointsAPI" if not specified. The length of the tag must not exceed 50 characters,else will be trimmed. Only valid UTF8 characters are allowed.
+     * Optional. A user-supplied tag associated with the split points. For example, "initial_data_load", "special_event_1". Defaults to "CloudAddSplitPointsAPI" if not specified. The length of the tag must not exceed 50 characters,else will be trimmed. Only valid UTF8 characters are allowed.
      */
     initiator?: string | null;
     /**
@@ -265,6 +304,10 @@ export namespace spanner_v1 {
      */
     incrementalBackupChainId?: string | null;
     /**
+     * Output only. The instance partition(s) storing the backup. This is the same as the list of the instance partition(s) that the database had footprint in at the backup's `version_time`.
+     */
+    instancePartitions?: Schema$BackupInstancePartition[];
+    /**
      * Output only. The max allowed expiration time of the backup, with microseconds granularity. A backup's expiration time can be configured in multiple APIs: CreateBackup, UpdateBackup, CopyBackup. When updating or copying an existing backup, the expiration time specified must be less than `Backup.max_expire_time`.
      */
     maxExpireTime?: string | null;
@@ -319,11 +362,20 @@ export namespace spanner_v1 {
     versionTime?: string | null;
   }
   /**
+   * Instance partition information for the backup.
+   */
+  export interface Schema$BackupInstancePartition {
+    /**
+     * A unique identifier for the instance partition. Values are of the form `projects//instances//instancePartitions/`
+     */
+    instancePartition?: string | null;
+  }
+  /**
    * BackupSchedule expresses the automated backup creation specification for a Spanner database.
    */
   export interface Schema$BackupSchedule {
     /**
-     * Optional. The encryption configuration that will be used to encrypt the backup. If this field is not specified, the backup will use the same encryption configuration as the database.
+     * Optional. The encryption configuration that is used to encrypt the backup. If this field is not specified, the backup uses the same encryption configuration as the database.
      */
     encryptionConfig?: Schema$CreateBackupEncryptionConfig;
     /**
@@ -828,19 +880,19 @@ export namespace spanner_v1 {
     session?: Schema$Session;
   }
   /**
-   * CrontabSpec can be used to specify the version time and frequency at which the backup should be created.
+   * CrontabSpec can be used to specify the version time and frequency at which the backup is created.
    */
   export interface Schema$CrontabSpec {
     /**
-     * Output only. Schedule backups will contain an externally consistent copy of the database at the version time specified in `schedule_spec.cron_spec`. However, Spanner may not initiate the creation of the scheduled backups at that version time. Spanner will initiate the creation of scheduled backups within the time window bounded by the version_time specified in `schedule_spec.cron_spec` and version_time + `creation_window`.
+     * Output only. Scheduled backups contain an externally consistent copy of the database at the version time specified in `schedule_spec.cron_spec`. However, Spanner might not initiate the creation of the scheduled backups at that version time. Spanner initiates the creation of scheduled backups within the time window bounded by the version_time specified in `schedule_spec.cron_spec` and version_time + `creation_window`.
      */
     creationWindow?: string | null;
     /**
-     * Required. Textual representation of the crontab. User can customize the backup frequency and the backup version time using the cron expression. The version time must be in UTC timezone. The backup will contain an externally consistent copy of the database at the version time. Full backups must be scheduled a minimum of 12 hours apart and incremental backups must be scheduled a minimum of 4 hours apart. Examples of valid cron specifications: * `0 2/12 * * *` : every 12 hours at (2, 14) hours past midnight in UTC. * `0 2,14 * * *` : every 12 hours at (2,14) hours past midnight in UTC. * `0 x/4 * * *` : (incremental backups only) every 4 hours at (0, 4, 8, 12, 16, 20) hours past midnight in UTC. * `0 2 * * *` : once a day at 2 past midnight in UTC. * `0 2 * * 0` : once a week every Sunday at 2 past midnight in UTC. * `0 2 8 * *` : once a month on 8th day at 2 past midnight in UTC.
+     * Required. Textual representation of the crontab. User can customize the backup frequency and the backup version time using the cron expression. The version time must be in UTC timezone. The backup will contain an externally consistent copy of the database at the version time. Full backups must be scheduled a minimum of 12 hours apart and incremental backups must be scheduled a minimum of 4 hours apart. Examples of valid cron specifications: * `0 2/12 * * *` : every 12 hours at (2, 14) hours past midnight in UTC. * `0 2,14 * * *` : every 12 hours at (2, 14) hours past midnight in UTC. * `0 x/4 * * *` : (incremental backups only) every 4 hours at (0, 4, 8, 12, 16, 20) hours past midnight in UTC. * `0 2 * * *` : once a day at 2 past midnight in UTC. * `0 2 * * 0` : once a week every Sunday at 2 past midnight in UTC. * `0 2 8 * *` : once a month on 8th day at 2 past midnight in UTC.
      */
     text?: string | null;
     /**
-     * Output only. The time zone of the times in `CrontabSpec.text`. Currently only UTC is supported.
+     * Output only. The time zone of the times in `CrontabSpec.text`. Currently, only UTC is supported.
      */
     timeZone?: string | null;
   }
@@ -1320,11 +1372,11 @@ export namespace spanner_v1 {
      */
     name?: string | null;
     /**
-     * The number of nodes allocated to this instance. At most, one of either `node_count` or `processing_units` should be present in the message. Users can set the `node_count` field to specify the target number of nodes allocated to the instance. If autoscaling is enabled, `node_count` is treated as an `OUTPUT_ONLY` field and reflects the current number of nodes allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. For more information, see [Compute capacity, nodes, and processing units](https://cloud.google.com/spanner/docs/compute-capacity).
+     * The number of nodes allocated to this instance. At most, one of either `node_count` or `processing_units` should be present in the message. Users can set the `node_count` field to specify the target number of nodes allocated to the instance. If autoscaling is enabled, `node_count` is treated as an `OUTPUT_ONLY` field and reflects the current number of nodes allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. If the instance has varying node count across replicas (achieved by setting `asymmetric_autoscaling_options` in the autoscaling configuration), the `node_count` set here is the maximum node count across all replicas. For more information, see [Compute capacity, nodes, and processing units](https://cloud.google.com/spanner/docs/compute-capacity).
      */
     nodeCount?: number | null;
     /**
-     * The number of processing units allocated to this instance. At most, one of either `processing_units` or `node_count` should be present in the message. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance. If autoscaling is enabled, `processing_units` is treated as an `OUTPUT_ONLY` field and reflects the current number of processing units allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. For more information, see [Compute capacity, nodes and processing units](https://cloud.google.com/spanner/docs/compute-capacity).
+     * The number of processing units allocated to this instance. At most, one of either `processing_units` or `node_count` should be present in the message. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance. If autoscaling is enabled, `processing_units` is treated as an `OUTPUT_ONLY` field and reflects the current number of processing units allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. If the instance has varying processing units per replica (achieved by setting `asymmetric_autoscaling_options` in the autoscaling configuration), the `processing_units` set here is the maximum processing units across all replicas. For more information, see [Compute capacity, nodes and processing units](https://cloud.google.com/spanner/docs/compute-capacity).
      */
     processingUnits?: number | null;
     /**
@@ -2603,7 +2655,7 @@ export namespace spanner_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. If true, specifies a multiplexed session. Use a multiplexed session for multiple, concurrent read-only operations. Don't use them for read-write transactions, partitioned reads, or partitioned queries. Use CreateSession to create multiplexed sessions. Don't use BatchCreateSessions to create a multiplexed session. You can't delete or list multiplexed sessions.
+     * Optional. If true, specifies a multiplexed session. Use a multiplexed session for multiple, concurrent read-only operations. Don't use them for read-write transactions, partitioned reads, or partitioned queries. Use `sessions.create` to create multiplexed sessions. Don't use BatchCreateSessions to create a multiplexed session. You can't delete or list multiplexed sessions.
      */
     multiplexed?: boolean | null;
     /**
@@ -9910,6 +9962,191 @@ export namespace spanner_v1 {
     }
 
     /**
+     * Creates a new session to be used for requests made by the adapter. A session identifies a specific incarnation of a database resource and is meant to be reused across many `AdaptMessage` calls.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    adapter(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Adapter,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    adapter(
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Adapter,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdapterSession>;
+    adapter(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Adapter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    adapter(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Adapter,
+      options: MethodOptions | BodyResponseCallback<Schema$AdapterSession>,
+      callback: BodyResponseCallback<Schema$AdapterSession>
+    ): void;
+    adapter(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Adapter,
+      callback: BodyResponseCallback<Schema$AdapterSession>
+    ): void;
+    adapter(callback: BodyResponseCallback<Schema$AdapterSession>): void;
+    adapter(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Adapter
+        | BodyResponseCallback<Schema$AdapterSession>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdapterSession>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdapterSession>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdapterSession> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Adapter;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Databases$Sessions$Adapter;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/sessions:adapter').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdapterSession>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdapterSession>(parameters);
+      }
+    }
+
+    /**
+     * Handles a single message from the client and returns the result as a stream. The server will interpret the message frame and respond with message frames to the client.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    adaptMessage(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    adaptMessage(
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdaptMessageResponse>;
+    adaptMessage(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    adaptMessage(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdaptMessageResponse>,
+      callback: BodyResponseCallback<Schema$AdaptMessageResponse>
+    ): void;
+    adaptMessage(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage,
+      callback: BodyResponseCallback<Schema$AdaptMessageResponse>
+    ): void;
+    adaptMessage(
+      callback: BodyResponseCallback<Schema$AdaptMessageResponse>
+    ): void;
+    adaptMessage(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage
+        | BodyResponseCallback<Schema$AdaptMessageResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdaptMessageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdaptMessageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdaptMessageResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:adaptMessage').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdaptMessageResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdaptMessageResponse>(parameters);
+      }
+    }
+
+    /**
      * Creates multiple new sessions. This API can be used to initialize a session cache on the clients. See https://goo.gl/TgSFN2 for best practices on session cache management.
      *
      * @param params - Parameters for request
@@ -11364,6 +11601,30 @@ export namespace spanner_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Adapter
+    extends StandardParameters {
+    /**
+     * Required. The database in which the new session is created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AdapterSession;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage
+    extends StandardParameters {
+    /**
+     * Required. The database session in which the adapter request is processed.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AdaptMessageRequest;
+  }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate
     extends StandardParameters {
     /**

@@ -329,6 +329,19 @@ export namespace cloudkms_v1 {
     googlePartitionCerts?: string[] | null;
   }
   /**
+   * Data with integrity verification field.
+   */
+  export interface Schema$ChecksummedData {
+    /**
+     * Integrity verification field. A CRC32C checksum of the returned ChecksummedData.data. An integrity check of ChecksummedData.data can be performed by computing the CRC32C checksum of ChecksummedData.data and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed `2^32-1`, and can be safely downconverted to uint32 in languages that support this type.
+     */
+    crc32cChecksum?: string | null;
+    /**
+     * Raw Data.
+     */
+    data?: string | null;
+  }
+  /**
    * A CryptoKey represents a logical key that can be used for cryptographic operations. A CryptoKey is made up of zero or more versions, which represent the actual key material used in cryptographic operations.
    */
   export interface Schema$CryptoKey {
@@ -1104,13 +1117,21 @@ export namespace cloudkms_v1 {
      */
     pem?: string | null;
     /**
-     * Integrity verification field. A CRC32C checksum of the returned PublicKey.pem. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
+     * Integrity verification field. A CRC32C checksum of the returned PublicKey.pem. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed `2^32-1`, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     pemCrc32c?: string | null;
     /**
      * The ProtectionLevel of the CryptoKeyVersion public key.
      */
     protectionLevel?: string | null;
+    /**
+     * This field contains the public key (with integrity verification), formatted according to the public_key_format field.
+     */
+    publicKey?: Schema$ChecksummedData;
+    /**
+     * The PublicKey format specified by the customer through the public_key_format field.
+     */
+    publicKeyFormat?: string | null;
   }
   /**
    * Request message for KeyManagementService.RawDecrypt.
@@ -6695,6 +6716,10 @@ export namespace cloudkms_v1 {
      * Required. The name of the CryptoKeyVersion public key to get.
      */
     name?: string;
+    /**
+     * Optional. The PublicKey format specified by the user. This field is required for PQC algorithms. If specified, the public key will be exported through the public_key field in the requested format. Otherwise, the pem field will be populated for non-PQC algorithms, and an error will be returned for PQC algorithms.
+     */
+    publicKeyFormat?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import
     extends StandardParameters {

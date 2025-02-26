@@ -29,7 +29,7 @@
   "canonicalName": "Forms",
   "description": "Reads and writes Google Forms and responses.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/forms/api",
+  "documentationLink": "https://developers.google.com/workspace/forms/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20241112",
+  "revision": "20250218",
   "rootUrl": "https://forms.googleapis.com/",
   "schemas": {
     "Answer": {
@@ -863,6 +863,22 @@
       "description": "A form's settings.",
       "id": "FormSettings",
       "properties": {
+        "emailCollectionType": {
+          "description": "Optional. The setting that determines whether the form collects email addresses from respondents.",
+          "enum": [
+            "EMAIL_COLLECTION_TYPE_UNSPECIFIED",
+            "DO_NOT_COLLECT",
+            "VERIFIED",
+            "RESPONDER_INPUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value is unused.",
+            "The form doesn't collect email addresses. Default value if the form owner uses a Google account.",
+            "The form collects email addresses automatically based on the account of the signed-in user. Default value if the form owner uses a Google Workspace account.",
+            "The form collects email addresses using a field that the respondent completes on the form."
+          ],
+          "type": "string"
+        },
         "quizSettings": {
           "$ref": "QuizSettings",
           "description": "Settings related to quiz forms and grading."

@@ -2740,6 +2740,734 @@
                 }
               }
             },
+            "mirroringDeploymentGroups": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new MirroringDeploymentGroup in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringDeploymentGroups",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.mirroringDeploymentGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "mirroringDeploymentGroupId": {
+                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and mirroring_deployment_group_id from the method_signature of Create RPC",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/mirroringDeploymentGroups",
+                  "request": {
+                    "$ref": "MirroringDeploymentGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single MirroringDeploymentGroup.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringDeploymentGroups/{mirroringDeploymentGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.mirroringDeploymentGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeploymentGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single MirroringDeploymentGroup.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringDeploymentGroups/{mirroringDeploymentGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.mirroringDeploymentGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeploymentGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "MirroringDeploymentGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists MirroringDeploymentGroups in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringDeploymentGroups",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.mirroringDeploymentGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListMirroringDeploymentGroupsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/mirroringDeploymentGroups",
+                  "response": {
+                    "$ref": "ListMirroringDeploymentGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a single MirroringDeploymentGroup.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringDeploymentGroups/{mirroringDeploymentGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.mirroringDeploymentGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeploymentGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the MirroringDeploymentGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "MirroringDeploymentGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "mirroringDeployments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a deployment in a given project and location. See https://google.aip.dev/133.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.mirroringDeployments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "mirroringDeploymentId": {
+                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and mirroring_deployment_id from the method_signature of Create RPC",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/mirroringDeployments",
+                  "request": {
+                    "$ref": "MirroringDeployment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a deployment. See https://google.aip.dev/135.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments/{mirroringDeploymentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.mirroringDeployments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a specific deployment. See https://google.aip.dev/131.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments/{mirroringDeploymentsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.mirroringDeployments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "MirroringDeployment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists deployments in a given project and location. See https://google.aip.dev/132.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.mirroringDeployments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListMirroringDeploymentsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/mirroringDeployments",
+                  "response": {
+                    "$ref": "ListMirroringDeploymentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a deployment. See https://google.aip.dev/134.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments/{mirroringDeploymentsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.mirroringDeployments.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/mirroringDeployments/my-dep`. See https://google.aip.dev/122 for more details.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the MirroringDeployment resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "MirroringDeployment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "mirroringEndpointGroupAssociations": {
+              "methods": {
+                "create": {
+                  "description": "Creates an association in a given project and location. See https://google.aip.dev/133.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "mirroringEndpointGroupAssociationId": {
+                      "description": "Optional. ID for the new association. If not provided, the server will generate a unique ID. The ID must be a valid RFC 1035 resource name. The ID must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Container (project and location) where the association will be created, e.g. `projects/123456789/locations/global`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/mirroringEndpointGroupAssociations",
+                  "request": {
+                    "$ref": "MirroringEndpointGroupAssociation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single association. See https://google.aip.dev/135.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Full resource name of the association to delete, e.g. projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroupAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a specific association. See https://google.aip.dev/131.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociationsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Full resource name of the association to get, e.g. projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroupAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "MirroringEndpointGroupAssociation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists associations in a given project and location. See https://google.aip.dev/132.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter expression that filters the results listed in the response. See https://google.aip.dev/160.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return. See https://google.aip.dev/158.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent container (project and location) of the associations to list, e.g. `projects/123456789/locations/global`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/mirroringEndpointGroupAssociations",
+                  "response": {
+                    "$ref": "ListMirroringEndpointGroupAssociationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an association. See https://google.aip.dev/134.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociationsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroupAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the association by the update. See https://google.aip.dev/161.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "MirroringEndpointGroupAssociation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "mirroringEndpointGroups": {
+              "methods": {
+                "create": {
+                  "description": "Creates an endpoint group in a given project and location. See https://google.aip.dev/133.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.mirroringEndpointGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "mirroringEndpointGroupId": {
+                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and mirroring_endpoint_group_id from the method_signature of Create RPC",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/mirroringEndpointGroups",
+                  "request": {
+                    "$ref": "MirroringEndpointGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an endpoint group. See https://google.aip.dev/135.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups/{mirroringEndpointGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.mirroringEndpointGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a specific endpoint group. See https://google.aip.dev/131.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups/{mirroringEndpointGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.mirroringEndpointGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "MirroringEndpointGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists endpoint groups in a given project and location. See https://google.aip.dev/132.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.mirroringEndpointGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListMirroringEndpointGroupsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/mirroringEndpointGroups",
+                  "response": {
+                    "$ref": "ListMirroringEndpointGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an endpoint group. See https://google.aip.dev/134.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups/{mirroringEndpointGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.mirroringEndpointGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the MirroringEndpointGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "MirroringEndpointGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -3431,7 +4159,7 @@
       }
     }
   },
-  "revision": "20241202",
+  "revision": "20250211",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -3529,6 +4257,55 @@
           "description": "Output only. The timestamp when the resource was updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AntivirusOverride": {
+      "description": "Defines what action to take for antivirus threats per protocol.",
+      "id": "AntivirusOverride",
+      "properties": {
+        "action": {
+          "description": "Required. Threat action override. For some threat types, only a subset of actions applies.",
+          "enum": [
+            "THREAT_ACTION_UNSPECIFIED",
+            "DEFAULT_ACTION",
+            "ALLOW",
+            "ALERT",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Threat action not specified.",
+            "The default action (as specified by the vendor) is taken.",
+            "The packet matching this rule will be allowed to transmit.",
+            "The packet matching this rule will be allowed to transmit, but a threat_log entry will be sent to the consumer project.",
+            "The packet matching this rule will be dropped, and a threat_log entry will be sent to the consumer project."
+          ],
+          "type": "string"
+        },
+        "protocol": {
+          "description": "Required. Protocol to match.",
+          "enum": [
+            "PROTOCOL_UNSPECIFIED",
+            "SMTP",
+            "SMB",
+            "POP3",
+            "IMAP",
+            "HTTP2",
+            "HTTP",
+            "FTP"
+          ],
+          "enumDescriptions": [
+            "Protocol not specified.",
+            "SMTP prtocol",
+            "SMB protocol",
+            "POP3 protocol",
+            "IMAP protocol",
+            "HTTP2 protocol",
+            "HTTP protocol",
+            "FTP protocol"
+          ],
           "type": "string"
         }
       },
@@ -4001,22 +4778,22 @@
       "type": "object"
     },
     "CustomInterceptProfile": {
-      "description": "CustomInterceptProfile defines the Packet Intercept Endpoint Group used to intercept traffic to a third-party firewall in a Firewall rule.",
+      "description": "CustomInterceptProfile defines in-band integration behavior (intercept). It is used by firewall rules with an APPLY_SECURITY_PROFILE_GROUP action.",
       "id": "CustomInterceptProfile",
       "properties": {
         "interceptEndpointGroup": {
-          "description": "Required. The InterceptEndpointGroup to which traffic associated with the SP should be mirrored.",
+          "description": "Required. The target InterceptEndpointGroup. When a firewall rule with this security profile attached matches a packet, the packet will be intercepted to the location-local target in this group.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "CustomMirroringProfile": {
-      "description": "CustomMirroringProfile defines an action for mirroring traffic to a collector's EndpointGroup",
+      "description": "CustomMirroringProfile defines out-of-band integration behavior (mirroring). It is used by mirroring rules with a MIRROR action.",
       "id": "CustomMirroringProfile",
       "properties": {
         "mirroringEndpointGroup": {
-          "description": "Required. The MirroringEndpointGroup to which traffic associated with the SP should be mirrored.",
+          "description": "Required. The target MirroringEndpointGroup. When a mirroring rule with this security profile attached matches a packet, a replica will be mirrored to the location-local target in this group.",
           "type": "string"
         }
       },
@@ -4132,6 +4909,16 @@
         },
         "reconciling": {
           "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. [Output Only] Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. [Output Only] Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -4766,6 +5553,85 @@
       },
       "type": "object"
     },
+    "ListMirroringDeploymentGroupsResponse": {
+      "description": "Message for response to listing MirroringDeploymentGroups",
+      "id": "ListMirroringDeploymentGroupsResponse",
+      "properties": {
+        "mirroringDeploymentGroups": {
+          "description": "The list of MirroringDeploymentGroup",
+          "items": {
+            "$ref": "MirroringDeploymentGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListMirroringDeploymentsResponse": {
+      "description": "Message for response to listing MirroringDeployments",
+      "id": "ListMirroringDeploymentsResponse",
+      "properties": {
+        "mirroringDeployments": {
+          "description": "The list of MirroringDeployment",
+          "items": {
+            "$ref": "MirroringDeployment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListMirroringEndpointGroupAssociationsResponse": {
+      "description": "Response message for listing associations.",
+      "id": "ListMirroringEndpointGroupAssociationsResponse",
+      "properties": {
+        "mirroringEndpointGroupAssociations": {
+          "description": "The list of associations returned.",
+          "items": {
+            "$ref": "MirroringEndpointGroupAssociation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return. See https://google.aip.dev/158.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListMirroringEndpointGroupsResponse": {
+      "description": "Message for response to listing MirroringEndpointGroups",
+      "id": "ListMirroringEndpointGroupsResponse",
+      "properties": {
+        "mirroringEndpointGroups": {
+          "description": "The list of MirroringEndpointGroup",
+          "items": {
+            "$ref": "MirroringEndpointGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListOperationsResponse": {
       "description": "The response message for Operations.ListOperations.",
       "id": "ListOperationsResponse",
@@ -4949,6 +5815,369 @@
         },
         "clientValidationTrustConfig": {
           "description": "Reference to the TrustConfig from certificatemanager.googleapis.com namespace. If specified, the chain validation will be performed against certificates configured in the given TrustConfig. Allowed only if the policy is to be used with Application Load Balancers.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MirroringDeployment": {
+      "description": "A deployment represents a zonal mirroring backend ready to accept GENEVE-encapsulated replica traffic, e.g. a zonal instance group fronted by an internal passthrough load balancer. Deployments are always part of a global deployment group which represents a global mirroring service.",
+      "id": "MirroringDeployment",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the deployment. Used as additional context for the deployment.",
+          "type": "string"
+        },
+        "forwardingRule": {
+          "description": "Required. Immutable. The regional forwarding rule that fronts the mirroring collectors, for example: `projects/123456789/regions/us-central1/forwardingRules/my-rule`. See https://google.aip.dev/124.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
+          "type": "object"
+        },
+        "mirroringDeploymentGroup": {
+          "description": "Required. Immutable. The deployment group that this deployment is a part of, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/mirroringDeployments/my-dep`. See https://google.aip.dev/122 for more details.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. linking a new association to the parent group). See https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. The current state of the deployment. See https://google.aip.dev/216.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "State not set (this is not a valid state).",
+            "The deployment is ready and in sync with the parent group.",
+            "The deployment is being created.",
+            "The deployment is being deleted.",
+            "The deployment is out of sync with the parent group. In most cases, this is a result of a transient issue within the system (e.g. a delayed data-path config) and the system is expected to recover automatically. See the parent deployment group's state for more details.",
+            "An attempt to delete the deployment has failed. This is a terminal state and the deployment is not expected to recover. The only permitted operation is to retry deleting the deployment."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MirroringDeploymentGroup": {
+      "description": "A deployment group aggregates many zonal mirroring backends (deployments) into a single global mirroring service. Consumers can connect this service using an endpoint group.",
+      "id": "MirroringDeploymentGroup",
+      "properties": {
+        "connectedEndpointGroups": {
+          "description": "Output only. The list of endpoint groups that are connected to this resource.",
+          "items": {
+            "$ref": "MirroringDeploymentGroupConnectedEndpointGroup"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the deployment group. Used as additional context for the deployment group.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.",
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. Immutable. The network that will be used for all child deployments, for example: `projects/{project}/global/networks/{network}`. See https://google.aip.dev/124.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new deployment to the group) See https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. The current state of the deployment group. See https://google.aip.dev/216.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "State not set (this is not a valid state).",
+            "The deployment group is ready.",
+            "The deployment group is being created.",
+            "The deployment group is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MirroringDeploymentGroupConnectedEndpointGroup": {
+      "description": "An endpoint group connected to this deployment group.",
+      "id": "MirroringDeploymentGroupConnectedEndpointGroup",
+      "properties": {
+        "name": {
+          "description": "Output only. The connected endpoint group's resource name, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/124.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MirroringEndpointGroup": {
+      "description": "An endpoint group is a consumer frontend for a deployment group (backend). In order to configure mirroring for a network, consumers must create: - An association between their network and the endpoint group. - A security profile that points to the endpoint group. - A mirroring rule that references the security profile (group).",
+      "id": "MirroringEndpointGroup",
+      "properties": {
+        "associations": {
+          "description": "Output only. List of associations to this endpoint group.",
+          "items": {
+            "$ref": "MirroringEndpointGroupAssociationDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the endpoint group. Used as additional context for the endpoint group.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
+          "type": "object"
+        },
+        "mirroringDeploymentGroup": {
+          "description": "Immutable. The deployment group that this DIRECT endpoint group is connected to, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new association to the group). See https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. The current state of the endpoint group. See https://google.aip.dev/216.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CLOSED",
+            "CREATING",
+            "DELETING",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "State not set (this is not a valid state).",
+            "The endpoint group is ready and in sync with the target deployment group.",
+            "The deployment group backing this endpoint group has been force-deleted. This endpoint group cannot be used and mirroring is effectively disabled.",
+            "The endpoint group is being created.",
+            "The endpoint group is being deleted.",
+            "The endpoint group is out of sync with the backing deployment group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. See the associations field for details per network and location.",
+            "An attempt to delete the endpoint group has failed. This is a terminal state and the endpoint group is not expected to recover. The only permitted operation is to retry deleting the endpoint group."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MirroringEndpointGroupAssociation": {
+      "description": "An endpoint group association represents a link between a network and an endpoint group in the organization. Creating an association creates the networking infrastructure linking the network to the endpoint group, but does not enable mirroring by itself. To enable mirroring, the user must also create a network firewall policy containing mirroring rules and associate it with the network.",
+      "id": "MirroringEndpointGroupAssociation",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
+          "type": "object"
+        },
+        "locationsDetails": {
+          "description": "Output only. The list of locations where the association is present. This information is retrieved from the linked endpoint group, and not configured as part of the association itself.",
+          "items": {
+            "$ref": "MirroringEndpointGroupAssociationLocationDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "mirroringEndpointGroup": {
+          "description": "Immutable. The endpoint group that this association is connected to, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/124.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.",
+          "type": "string"
+        },
+        "network": {
+          "description": "Immutable. The VPC network that is associated. for example: `projects/123456789/global/networks/my-network`. See https://google.aip.dev/124.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. adding a new location to the target deployment group). See https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. Current state of the endpoint group association.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "CLOSED",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "The association is ready and in sync with the linked endpoint group.",
+            "Being created.",
+            "Being deleted.",
+            "Mirroring is disabled due to an operation on another resource.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. Check the `locations_details` field for more details.",
+            "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MirroringEndpointGroupAssociationDetails": {
+      "description": "The endpoint group's view of a connected association.",
+      "id": "MirroringEndpointGroupAssociationDetails",
+      "properties": {
+        "name": {
+          "description": "Output only. The connected association's resource name, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-ega`. See https://google.aip.dev/124.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "network": {
+          "description": "Output only. The associated network, for example: projects/123456789/global/networks/my-network. See https://google.aip.dev/124.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Most recent known state of the association.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "CLOSED",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "The association is ready and in sync with the linked endpoint group.",
+            "Being created.",
+            "Being deleted.",
+            "Mirroring is disabled due to an operation on another resource.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. Check the `locations_details` field for more details.",
+            "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MirroringEndpointGroupAssociationLocationDetails": {
+      "description": "Contains details about the state of an association in a specific cloud location.",
+      "id": "MirroringEndpointGroupAssociationLocationDetails",
+      "properties": {
+        "location": {
+          "description": "Output only. The cloud location, e.g. \"us-central1-a\" or \"asia-south1\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the association in this location.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OUT_OF_SYNC"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "The association is ready and in sync with the linked endpoint group.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5155,6 +6384,12 @@
         },
         "customMirroringProfile": {
           "description": "Optional. Reference to a SecurityProfile with the CustomMirroring configuration.",
+          "type": "string"
+        },
+        "dataPathId": {
+          "description": "Output only. Identifier used by the data-path. Unique within {container, location}.",
+          "format": "uint64",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -5383,6 +6618,13 @@
       "description": "ThreatPreventionProfile defines an action for specific threat signatures or severity levels.",
       "id": "ThreatPreventionProfile",
       "properties": {
+        "antivirusOverrides": {
+          "description": "Optional. Configuration for overriding antivirus actions per protocol.",
+          "items": {
+            "$ref": "AntivirusOverride"
+          },
+          "type": "array"
+        },
         "severityOverrides": {
           "description": "Optional. Configuration for overriding threats actions by severity match.",
           "items": {

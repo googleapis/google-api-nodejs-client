@@ -868,7 +868,7 @@ export namespace datalabeling_v1beta1 {
     dataset?: Schema$GoogleCloudDatalabelingV1beta1Dataset;
   }
   /**
-   * Request message for CreateEvaluationJob.
+   *  Request message for CreateEvaluationJob.
    */
   export interface Schema$GoogleCloudDatalabelingV1beta1CreateEvaluationJobRequest {
     /**
@@ -1622,7 +1622,7 @@ export namespace datalabeling_v1beta1 {
     basicConfig?: Schema$GoogleCloudDatalabelingV1beta1HumanAnnotationConfig;
   }
   /**
-   * Request message for starting an image labeling task.
+   *  Request message for starting an image labeling task.
    */
   export interface Schema$GoogleCloudDatalabelingV1beta1LabelImageRequest {
     /**
@@ -1817,7 +1817,7 @@ export namespace datalabeling_v1beta1 {
     basicConfig?: Schema$GoogleCloudDatalabelingV1beta1HumanAnnotationConfig;
   }
   /**
-   * Request message for LabelVideo.
+   *  Request message for LabelVideo.
    */
   export interface Schema$GoogleCloudDatalabelingV1beta1LabelVideoRequest {
     /**
@@ -3695,7 +3695,7 @@ export namespace datalabeling_v1beta1 {
     }
 
     /**
-     * Creates dataset. If success return a Dataset resource.
+     *  Creates dataset. If success return a Dataset resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5225,7 +5225,7 @@ export namespace datalabeling_v1beta1 {
     }
 
     /**
-     * Get a FeedbackThread object.
+     *  Get a FeedbackThread object.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6112,7 +6112,7 @@ export namespace datalabeling_v1beta1 {
     }
 
     /**
-     * Gets an evaluation by resource name (to search, use projects.evaluations.search).
+     *  Gets an evaluation by resource name (to search, use projects.evaluations.search).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6338,7 +6338,7 @@ export namespace datalabeling_v1beta1 {
     }
 
     /**
-     * Starts a labeling task for image. The type of image labeling task is configured by feature in the request.
+     *  Starts a labeling task for image. The type of image labeling task is configured by feature in the request.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6683,7 +6683,7 @@ export namespace datalabeling_v1beta1 {
     }
 
     /**
-     * Creates an evaluation job.
+     *  Creates an evaluation job.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -2819,7 +2819,7 @@ export namespace admin_directory_v1 {
      */
     kind?: string | null;
     /**
-     * Token used to access next page of this result.
+     * Token used to access next page of this result. The page token is only valid for three days.
      */
     nextPageToken?: string | null;
     /**
@@ -14683,7 +14683,7 @@ export namespace admin_directory_v1 {
      */
     orderBy?: string;
     /**
-     * Token to specify next page in the list
+     * Token to specify next page in the list. The page token is only valid for three days.
      */
     pageToken?: string;
     /**

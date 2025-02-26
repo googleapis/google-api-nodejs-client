@@ -1827,7 +1827,7 @@ export namespace dialogflow_v2beta1 {
      */
     clientId?: string | null;
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      */
     clientSecret?: string | null;
     /**
@@ -3415,7 +3415,7 @@ export namespace dialogflow_v2beta1 {
      */
     clientId?: string | null;
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      */
     clientSecret?: string | null;
     /**
@@ -3742,7 +3742,7 @@ export namespace dialogflow_v2beta1 {
      */
     answerRelevance?: string | null;
     /**
-     * Optional. Whether or not the information in the document is correct. For example: * Query: "Can I return the package in 2 days once received?" * Suggested document says: "Items must be returned/exchanged within 60 days of the purchase date." * Ground truth: "No return or exchange is allowed." * [document_correctness]: INCORRECT
+     * Optional. Whether or not the information in the document is correct. For example: * Query: "Can I return the package in 2 days once received?" * Suggested document says: "Items must be returned/exchanged within 60 days of the purchase date." * Ground truth: "No return or exchange is allowed." * document_correctness: INCORRECT
      */
     documentCorrectness?: string | null;
     /**
@@ -3839,7 +3839,7 @@ export namespace dialogflow_v2beta1 {
      */
     audioInput?: Schema$GoogleCloudDialogflowV2beta1AudioInput;
     /**
-     * The unique identifier of the CX page to override the `current_page` in the session. Format: `projects//locations//agents//flows//pages/`. If `cx_current_page` is specified, the previous state of the session will be ignored by Dialogflow CX, including the previous page and the previous session parameters. In most cases, `cx_current_page` and `cx_parameters` should be configured together to direct a session to a specific state. Note: this field should only be used if you are connecting to a Dialogflow CX agent.
+     * The unique identifier of the Dialogflow CX page to override the `current_page` in the session. Format: `projects//locations//agents//flows//pages/`. If `cx_current_page` is specified, the previous state of the session will be ignored by Dialogflow CX, including the previous page and the previous session parameters. In most cases, `cx_current_page` and `cx_parameters` should be configured together to direct a session to a specific state. Note: this field should only be used if you are connecting to a Dialogflow CX agent.
      */
     cxCurrentPage?: string | null;
     /**
@@ -6831,6 +6831,19 @@ export namespace dialogflow_v2beta1 {
     participants?: Schema$GoogleCloudDialogflowV2beta1Participant[];
   }
   /**
+   * The response message for PhoneNumbers.ListPhoneNumbers.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of `PhoneNumber` resources. There is a maximum number of items returned based on the page_size field in the request.
+     */
+    phoneNumbers?: Schema$GoogleCloudDialogflowV2beta1PhoneNumber[];
+  }
+  /**
    * The response message for SessionEntityTypes.ListSessionEntityTypes.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse {
@@ -7052,6 +7065,27 @@ export namespace dialogflow_v2beta1 {
     role?: string | null;
   }
   /**
+   * Represents a phone number. `PhoneNumber` resources enable phone calls to be answered by Dialogflow services and are added to a project through a PhoneNumberOrder.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1PhoneNumber {
+    /**
+     * Optional. The conversation profile calls to this `PhoneNumber` should use. The project ID here should be the same as the one in name. Format: `projects//conversationProfiles/`. Format: `projects//locations//conversationProfiles/`.
+     */
+    conversationProfile?: string | null;
+    /**
+     * Output only. The state of the `PhoneNumber`. Defaults to `ACTIVE`. `PhoneNumber` objects set to `DELETE_REQUESTED` always decline incoming calls and can be removed completely within 30 days.
+     */
+    lifecycleState?: string | null;
+    /**
+     * Optional. The unique identifier of this phone number. Required for PhoneNumbers.UpdatePhoneNumber method. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Phone number in [E.164](https://en.wikipedia.org/wiki/E.164) format. An example of a correctly formatted phone number: +15556767888.
+     */
+    phoneNumber?: string | null;
+  }
+  /**
    * Represents the query input. It can contain either: 1. An audio config which instructs the speech recognizer how to process the speech audio. 2. A conversational query in the form of text. 3. An event that specifies which intent to trigger.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1QueryInput {
@@ -7241,7 +7275,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction {}
   /**
-   * Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
+   * Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a Dialogflow CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff {
     /**
@@ -8062,7 +8096,7 @@ export namespace dialogflow_v2beta1 {
      */
     latestMessage?: string | null;
     /**
-     * Optional. The previously suggested query for the given conversation. This helps identify whether the next suggestion we generate is resonably different from the previous one. This is useful to avoid similar suggestions within the conversation.
+     * Optional. The previously suggested query for the given conversation. This helps identify whether the next suggestion we generate is reasonably different from the previous one. This is useful to avoid similar suggestions within the conversation.
      */
     previousSuggestedQuery?: string | null;
   }
@@ -8260,6 +8294,10 @@ export namespace dialogflow_v2beta1 {
    * The request message for Agents.TrainAgent.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1TrainAgentRequest {}
+  /**
+   * The request message for PhoneNumbers.UndeletePhoneNumber.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1UndeletePhoneNumberRequest {}
   /**
    * Represents a single validation error.
    */
@@ -10157,6 +10195,7 @@ export namespace dialogflow_v2beta1 {
     knowledgeBases: Resource$Projects$Knowledgebases;
     locations: Resource$Projects$Locations;
     operations: Resource$Projects$Operations;
+    phoneNumbers: Resource$Projects$Phonenumbers;
     suggestions: Resource$Projects$Suggestions;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -10170,6 +10209,7 @@ export namespace dialogflow_v2beta1 {
       this.knowledgeBases = new Resource$Projects$Knowledgebases(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
       this.operations = new Resource$Projects$Operations(this.context);
+      this.phoneNumbers = new Resource$Projects$Phonenumbers(this.context);
       this.suggestions = new Resource$Projects$Suggestions(this.context);
     }
 
@@ -18701,7 +18741,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Answerrecords$List
     extends StandardParameters {
     /**
-     * Optional. Filters to restrict results to specific answer records. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. Filters to restrict results to specific answer records. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * conversation_id with equals(=) operator Examples: * "conversation_id=bar" matches answer records in the projects/foo/locations/global/conversations/bar conversation (assuming the parent is projects/foo/locations/global). For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
     filter?: string;
     /**
@@ -23180,6 +23220,7 @@ export namespace dialogflow_v2beta1 {
     generators: Resource$Projects$Locations$Generators;
     knowledgeBases: Resource$Projects$Locations$Knowledgebases;
     operations: Resource$Projects$Locations$Operations;
+    phoneNumbers: Resource$Projects$Locations$Phonenumbers;
     sipTrunks: Resource$Projects$Locations$Siptrunks;
     statelessSuggestion: Resource$Projects$Locations$Statelesssuggestion;
     suggestions: Resource$Projects$Locations$Suggestions;
@@ -23204,6 +23245,9 @@ export namespace dialogflow_v2beta1 {
         this.context
       );
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.phoneNumbers = new Resource$Projects$Locations$Phonenumbers(
         this.context
       );
       this.sipTrunks = new Resource$Projects$Locations$Siptrunks(this.context);
@@ -30890,7 +30934,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Locations$Answerrecords$List
     extends StandardParameters {
     /**
-     * Optional. Filters to restrict results to specific answer records. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. Filters to restrict results to specific answer records. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * conversation_id with equals(=) operator Examples: * "conversation_id=bar" matches answer records in the projects/foo/locations/global/conversations/bar conversation (assuming the parent is projects/foo/locations/global). For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
     filter?: string;
     /**
@@ -35891,6 +35935,450 @@ export namespace dialogflow_v2beta1 {
     pageToken?: string;
   }
 
+  export class Resource$Projects$Locations$Phonenumbers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Requests deletion of a `PhoneNumber`. The `PhoneNumber` is moved into the DELETE_REQUESTED state immediately, and is deleted approximately 30 days later. This method may only be called on a `PhoneNumber` in the ACTIVE state.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Phonenumbers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Phonenumbers$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>;
+    delete(
+      params: Params$Resource$Projects$Locations$Phonenumbers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Phonenumbers$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Phonenumbers$Delete,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Phonenumbers$Delete
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Phonenumbers$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Phonenumbers$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all phone numbers in the specified project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Phonenumbers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Phonenumbers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Phonenumbers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Phonenumbers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Phonenumbers$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Phonenumbers$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Phonenumbers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Phonenumbers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/phoneNumbers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified `PhoneNumber`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Phonenumbers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Phonenumbers$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>;
+    patch(
+      params: Params$Resource$Projects$Locations$Phonenumbers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Phonenumbers$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Phonenumbers$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Phonenumbers$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Phonenumbers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Phonenumbers$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Cancels the deletion request for a `PhoneNumber`. This method may only be called on a `PhoneNumber` in the DELETE_REQUESTED state.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Projects$Locations$Phonenumbers$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Projects$Locations$Phonenumbers$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>;
+    undelete(
+      params: Params$Resource$Projects$Locations$Phonenumbers$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Locations$Phonenumbers$Undelete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Locations$Phonenumbers$Undelete,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    undelete(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Phonenumbers$Undelete
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Phonenumbers$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Phonenumbers$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Phonenumbers$Delete
+    extends StandardParameters {
+    /**
+     * Required. The unique identifier of the `PhoneNumber` to delete. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Phonenumbers$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return in a single page. The default value is 100. The maximum value is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project to list all `PhoneNumber` resources from. Format: `projects/`. Format: `projects//locations/`.
+     */
+    parent?: string;
+    /**
+     * Optional. Controls whether `PhoneNumber` resources in the DELETE_REQUESTED state should be returned. Defaults to false.
+     */
+    showDeleted?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Phonenumbers$Patch
+    extends StandardParameters {
+    /**
+     * Optional. The unique identifier of this phone number. Required for PhoneNumbers.UpdatePhoneNumber method. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.
+     */
+    name?: string;
+    /**
+     * Optional. The mask to control which fields get updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1PhoneNumber;
+  }
+  export interface Params$Resource$Projects$Locations$Phonenumbers$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The unique identifier of the `PhoneNumber` to delete. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1UndeletePhoneNumberRequest;
+  }
+
   export class Resource$Projects$Locations$Siptrunks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -37089,6 +37577,450 @@ export namespace dialogflow_v2beta1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Phonenumbers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Requests deletion of a `PhoneNumber`. The `PhoneNumber` is moved into the DELETE_REQUESTED state immediately, and is deleted approximately 30 days later. This method may only be called on a `PhoneNumber` in the ACTIVE state.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Phonenumbers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Phonenumbers$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>;
+    delete(
+      params: Params$Resource$Projects$Phonenumbers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Phonenumbers$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Phonenumbers$Delete,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Phonenumbers$Delete
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Phonenumbers$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Phonenumbers$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all phone numbers in the specified project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Phonenumbers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Phonenumbers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>;
+    list(
+      params: Params$Resource$Projects$Phonenumbers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Phonenumbers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Phonenumbers$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Phonenumbers$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Phonenumbers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Phonenumbers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/phoneNumbers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified `PhoneNumber`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Phonenumbers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Phonenumbers$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>;
+    patch(
+      params: Params$Resource$Projects$Phonenumbers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Phonenumbers$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Phonenumbers$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Phonenumbers$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Phonenumbers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Phonenumbers$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Cancels the deletion request for a `PhoneNumber`. This method may only be called on a `PhoneNumber` in the DELETE_REQUESTED state.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Projects$Phonenumbers$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Projects$Phonenumbers$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>;
+    undelete(
+      params: Params$Resource$Projects$Phonenumbers$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Phonenumbers$Undelete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Phonenumbers$Undelete,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    undelete(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+    ): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Phonenumbers$Undelete
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Phonenumbers$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Phonenumbers$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1PhoneNumber>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Phonenumbers$Delete
+    extends StandardParameters {
+    /**
+     * Required. The unique identifier of the `PhoneNumber` to delete. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Phonenumbers$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return in a single page. The default value is 100. The maximum value is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project to list all `PhoneNumber` resources from. Format: `projects/`. Format: `projects//locations/`.
+     */
+    parent?: string;
+    /**
+     * Optional. Controls whether `PhoneNumber` resources in the DELETE_REQUESTED state should be returned. Defaults to false.
+     */
+    showDeleted?: boolean;
+  }
+  export interface Params$Resource$Projects$Phonenumbers$Patch
+    extends StandardParameters {
+    /**
+     * Optional. The unique identifier of this phone number. Required for PhoneNumbers.UpdatePhoneNumber method. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.
+     */
+    name?: string;
+    /**
+     * Optional. The mask to control which fields get updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1PhoneNumber;
+  }
+  export interface Params$Resource$Projects$Phonenumbers$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The unique identifier of the `PhoneNumber` to delete. Format: `projects//phoneNumbers/`. Format: `projects//locations//phoneNumbers/`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1UndeletePhoneNumberRequest;
   }
 
   export class Resource$Projects$Suggestions {

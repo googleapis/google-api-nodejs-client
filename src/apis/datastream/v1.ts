@@ -149,6 +149,10 @@ export namespace datastream_v1 {
      */
     postgresqlExcludedObjects?: Schema$PostgresqlRdbms;
     /**
+     * Salesforce data source objects to avoid backfilling
+     */
+    salesforceExcludedObjects?: Schema$SalesforceOrg;
+    /**
      * SQLServer data source objects to avoid backfilling
      */
     sqlServerExcludedObjects?: Schema$SqlServerRdbms;
@@ -191,6 +195,10 @@ export namespace datastream_v1 {
      */
     appendOnly?: Schema$AppendOnly;
     /**
+     * Optional. Big Lake Managed Tables (BLMT) configuration.
+     */
+    blmtConfig?: Schema$BlmtConfig;
+    /**
      * The guaranteed data freshness (in seconds) when querying tables created by the stream. Editing this field will only affect new tables created in the future, but existing tables will not be impacted. Lower values mean that queries will return fresher data, but may result in higher cost.
      */
     dataFreshness?: string | null;
@@ -228,6 +236,31 @@ export namespace datastream_v1 {
    * Use Binary log position based replication.
    */
   export interface Schema$BinaryLogPosition {}
+  /**
+   * The configuration for BLMT.
+   */
+  export interface Schema$BlmtConfig {
+    /**
+     * Required. The Cloud Storage bucket name.
+     */
+    bucket?: string | null;
+    /**
+     * Required. The bigquery connection. Format: `{project\}.{location\}.{name\}`
+     */
+    connectionName?: string | null;
+    /**
+     * Required. The file format.
+     */
+    fileFormat?: string | null;
+    /**
+     * The root path inside the Cloud Storage bucket.
+     */
+    rootPath?: string | null;
+    /**
+     * Required. The table format.
+     */
+    tableFormat?: string | null;
+  }
   /**
    * The request message for Operations.CancelOperation.
    */
@@ -297,6 +330,10 @@ export namespace datastream_v1 {
      * Private connectivity.
      */
     privateConnectivity?: Schema$PrivateConnectivity;
+    /**
+     * Salesforce Connection Profile configuration.
+     */
+    salesforceProfile?: Schema$SalesforceProfile;
     /**
      * Output only. Reserved for future use.
      */
@@ -757,6 +794,15 @@ export namespace datastream_v1 {
     mysqlTables?: Schema$MysqlTable[];
   }
   /**
+   * MySQL GTID position
+   */
+  export interface Schema$MysqlGtidPosition {
+    /**
+     * Required. The gtid set to start replication from.
+     */
+    gtidSet?: string | null;
+  }
+  /**
    * MySQL log position
    */
   export interface Schema$MysqlLogPosition {
@@ -783,7 +829,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * MySQL database profile. Next ID: 7.
+   * MySQL database profile.
    */
   export interface Schema$MysqlProfile {
     /**
@@ -892,6 +938,23 @@ export namespace datastream_v1 {
    */
   export interface Schema$NextAvailableStartPosition {}
   /**
+   * OAuth2 Client Credentials.
+   */
+  export interface Schema$Oauth2ClientCredentials {
+    /**
+     * Required. Client ID for Salesforce OAuth2 Client Credentials.
+     */
+    clientId?: string | null;
+    /**
+     * Optional. Client secret for Salesforce OAuth2 Client Credentials. Mutually exclusive with the `secret_manager_stored_client_secret` field.
+     */
+    clientSecret?: string | null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the Salesforce OAuth2 client_secret. Mutually exclusive with the `client_secret` field.
+     */
+    secretManagerStoredClientSecret?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -954,7 +1017,7 @@ export namespace datastream_v1 {
     verb?: string | null;
   }
   /**
-   * Configuration for Oracle Automatic Storage Management (ASM) connection. .
+   * Configuration for Oracle Automatic Storage Management (ASM) connection.
    */
   export interface Schema$OracleAsmConfig {
     /**
@@ -1045,7 +1108,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * Oracle database profile. Next ID: 10.
+   * Oracle database profile.
    */
   export interface Schema$OracleProfile {
     /**
@@ -1432,6 +1495,88 @@ export namespace datastream_v1 {
     force?: boolean | null;
   }
   /**
+   * Salesforce field.
+   */
+  export interface Schema$SalesforceField {
+    /**
+     * The data type.
+     */
+    dataType?: string | null;
+    /**
+     * Field name.
+     */
+    name?: string | null;
+    /**
+     * Indicates whether the field can accept nil values.
+     */
+    nillable?: boolean | null;
+  }
+  /**
+   * Salesforce object.
+   */
+  export interface Schema$SalesforceObject {
+    /**
+     * Salesforce fields. When unspecified as part of include objects, includes everything, when unspecified as part of exclude objects, excludes nothing.
+     */
+    fields?: Schema$SalesforceField[];
+    /**
+     * Object name.
+     */
+    objectName?: string | null;
+  }
+  /**
+   * Salesforce data source object identifier.
+   */
+  export interface Schema$SalesforceObjectIdentifier {
+    /**
+     * Required. The object name.
+     */
+    objectName?: string | null;
+  }
+  /**
+   * Salesforce organization structure.
+   */
+  export interface Schema$SalesforceOrg {
+    /**
+     * Salesforce objects in the database server.
+     */
+    objects?: Schema$SalesforceObject[];
+  }
+  /**
+   * Salesforce profile
+   */
+  export interface Schema$SalesforceProfile {
+    /**
+     * Required. Domain endpoint for the Salesforce connection.
+     */
+    domain?: string | null;
+    /**
+     * Connected app authentication.
+     */
+    oauth2ClientCredentials?: Schema$Oauth2ClientCredentials;
+    /**
+     * User-password authentication.
+     */
+    userCredentials?: Schema$UserCredentials;
+  }
+  /**
+   * Salesforce source configuration
+   */
+  export interface Schema$SalesforceSourceConfig {
+    /**
+     * Salesforce objects to exclude from the stream.
+     */
+    excludeObjects?: Schema$SalesforceOrg;
+    /**
+     * Salesforce objects to retrieve from the source.
+     */
+    includeObjects?: Schema$SalesforceOrg;
+    /**
+     * Required. Salesforce objects polling interval. The interval at which new changes will be polled for each object. The duration must be between 5 minutes and 24 hours.
+     */
+    pollingInterval?: string | null;
+  }
+  /**
    * Message represents the option where Datastream will enforce the encryption and authenticate the server identity as well as the client identity. ca_certificate, client_certificate and client_key must be set if user selects this option.
    */
   export interface Schema$ServerAndClientVerification {
@@ -1483,6 +1628,10 @@ export namespace datastream_v1 {
      */
     postgresqlSourceConfig?: Schema$PostgresqlSourceConfig;
     /**
+     * Salesforce data source configuration.
+     */
+    salesforceSourceConfig?: Schema$SalesforceSourceConfig;
+    /**
      * Required. Source connection profile resoource. Format: `projects/{project\}/locations/{location\}/connectionProfiles/{name\}`
      */
     sourceConnectionProfile?: string | null;
@@ -1517,6 +1666,10 @@ export namespace datastream_v1 {
      */
     postgresqlIdentifier?: Schema$PostgresqlObjectIdentifier;
     /**
+     * Salesforce data source object identifier.
+     */
+    salesforceIdentifier?: Schema$SalesforceObjectIdentifier;
+    /**
      * SQLServer data source object identifier.
      */
     sqlServerIdentifier?: Schema$SqlServerObjectIdentifier;
@@ -1525,6 +1678,10 @@ export namespace datastream_v1 {
    * CDC strategy to start replicating from a specific position in the source.
    */
   export interface Schema$SpecificStartPosition {
+    /**
+     * MySQL GTID set to start replicating from.
+     */
+    mysqlGtidPosition?: Schema$MysqlGtidPosition;
     /**
      * MySQL specific log position to start replicating from.
      */
@@ -1602,7 +1759,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * SQLServer database profile. Next ID: 8.
+   * SQLServer database profile.
    */
   export interface Schema$SqlServerProfile {
     /**
@@ -1842,6 +1999,31 @@ export namespace datastream_v1 {
      * Output only. The last update time of the object.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Username-password credentials.
+   */
+  export interface Schema$UserCredentials {
+    /**
+     * Optional. Password for the Salesforce connection. Mutually exclusive with the `secret_manager_stored_password` field.
+     */
+    password?: string | null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the Salesforce connection's password. Mutually exclusive with the `password` field.
+     */
+    secretManagerStoredPassword?: string | null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the Salesforce connection's security token. Mutually exclusive with the `security_token` field.
+     */
+    secretManagerStoredSecurityToken?: string | null;
+    /**
+     * Optional. Security token for the Salesforce connection. Mutually exclusive with the `secret_manager_stored_security_token` field.
+     */
+    securityToken?: string | null;
+    /**
+     * Required. Username for the Salesforce connection.
+     */
+    username?: string | null;
   }
   /**
    * A validation to perform on a stream.

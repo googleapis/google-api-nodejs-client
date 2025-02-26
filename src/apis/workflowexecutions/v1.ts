@@ -216,7 +216,7 @@ export namespace workflowexecutions_v1 {
      */
     error?: Schema$Error;
     /**
-     * Optional. Describes the level of the execution history feature to apply to this execution. If not specified, the level of the execution history feature will be determined by its workflow's execution history level. If the value is different from its workflow's value, it will override the workflow's execution history level for this exeuction.
+     * Optional. Describes the execution history level to apply to this execution. If not specified, the execution history level is determined by its workflow's execution history level. If the levels are different, the executionHistoryLevel overrides the workflow's execution history level for this execution.
      */
     executionHistoryLevel?: string | null;
     /**
@@ -449,7 +449,7 @@ export namespace workflowexecutions_v1 {
      */
     name?: string | null;
     /**
-     * Output only. The NavigationInfo associated to this step.
+     * Output only. The NavigationInfo associated with this step.
      */
     navigationInfo?: Schema$NavigationInfo;
     /**
@@ -465,7 +465,7 @@ export namespace workflowexecutions_v1 {
      */
     step?: string | null;
     /**
-     * Output only. The StepEntryMetadata associated to this step.
+     * Output only. The StepEntryMetadata associated with this step.
      */
     stepEntryMetadata?: Schema$StepEntryMetadata;
     /**
@@ -477,7 +477,7 @@ export namespace workflowexecutions_v1 {
      */
     updateTime?: string | null;
     /**
-     * Output only. The VariableData associated to this step.
+     * Output only. The VariableData associated with this step.
      */
     variableData?: Schema$VariableData;
   }

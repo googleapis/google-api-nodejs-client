@@ -1464,7 +1464,7 @@
       }
     }
   },
-  "revision": "20241121",
+  "revision": "20250204",
   "rootUrl": "https://toolresults.googleapis.com/",
   "schemas": {
     "ANR": {
@@ -2635,6 +2635,7 @@
           "type": "integer"
         },
         "list": {
+          "deprecated": true,
           "description": "Which list this API appears on",
           "enum": [
             "NONE",

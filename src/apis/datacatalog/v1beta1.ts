@@ -1139,7 +1139,7 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1DatabaseTableSpec {
     /**
-     * Spec what aplies to tables that are actually views. Not set for "real" tables.
+     * Spec what applies to tables that are actually views. Not set for "real" tables.
      */
     databaseViewSpec?: Schema$GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec;
     /**
@@ -1423,7 +1423,7 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1FeatureOnlineStoreSpec {
     /**
-     * Output only. Type of underelaying storage for the FeatureOnlineStore.
+     * Output only. Type of underlying storage for the FeatureOnlineStore.
      */
     storageType?: string | null;
   }

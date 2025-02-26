@@ -3669,6 +3669,10 @@ export namespace dataflow_v1b3 {
      * Optional. Indicates if the streaming template supports exactly once mode.
      */
     supportsExactlyOnce?: boolean | null;
+    /**
+     * Optional. For future use.
+     */
+    yamlDefinition?: string | null;
   }
   /**
    * Global topology of the streaming Dataflow job, including all computations and their sharded locations.

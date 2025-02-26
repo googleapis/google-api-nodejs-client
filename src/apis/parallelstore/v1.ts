@@ -209,7 +209,11 @@ export namespace parallelstore_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The deployment type of the instance. Allowed values are: * `SCRATCH`: the instance is a scratch instance. * `PERSISTENT`: the instance is a persistent instance.
+     * Output only. Deprecated 'daos_version' field. Output only. The version of DAOS software running in the instance.
+     */
+    daosVersion?: string | null;
+    /**
+     * Optional. Immutable. The deployment type of the instance. Allowed values are: * `SCRATCH`: the instance is a scratch instance. * `PERSISTENT`: the instance is a persistent instance.
      */
     deploymentType?: string | null;
     /**
@@ -217,7 +221,7 @@ export namespace parallelstore_v1 {
      */
     description?: string | null;
     /**
-     * Optional. Stripe level for directories. Allowed values are: * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a small number of files. * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large directories. * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large number of files.
+     * Optional. Immutable. Stripe level for directories. Allowed values are: * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a small number of files. * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large directories. * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large number of files.
      */
     directoryStripeLevel?: string | null;
     /**
@@ -225,7 +229,7 @@ export namespace parallelstore_v1 {
      */
     effectiveReservedIpRange?: string | null;
     /**
-     * Optional. Stripe level for files. Allowed values are: * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size files. * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large files. * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
+     * Optional. Immutable. Stripe level for files. Allowed values are: * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size files. * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large files. * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
      */
     fileStripeLevel?: string | null;
     /**

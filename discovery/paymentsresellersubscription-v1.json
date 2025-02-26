@@ -467,7 +467,7 @@
       }
     }
   },
-  "revision": "20241211",
+  "revision": "20250212",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -765,6 +765,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload": {
+      "description": "Payload specific for Google Home products.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload",
+      "properties": {
+        "partnerStructureId": {
+          "description": "Optional. This identifies the structure ID on partner side that the subscription should be applied to. Only required when the partner requires structure mapping.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload": {
       "description": "Payload specific to Google One products.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload",
@@ -965,6 +976,10 @@
       "description": "Specifies product specific payload.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1ProductPayload",
       "properties": {
+        "googleHomePayload": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload",
+          "description": "Payload specific to Google Home products."
+        },
         "googleOnePayload": {
           "$ref": "GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload",
           "description": "Product-specific payloads. Payload specific to Google One products."

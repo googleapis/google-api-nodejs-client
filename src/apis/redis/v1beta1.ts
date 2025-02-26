@@ -368,7 +368,7 @@ export namespace redis_v1beta1 {
      */
     backupCollection?: string | null;
     /**
-     * Optional. A list of cluster enpoints.
+     * Optional. A list of cluster endpoints.
      */
     clusterEndpoints?: Schema$ClusterEndpoint[];
     /**
@@ -481,7 +481,7 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$ClusterEndpoint {
     /**
-     * A group of PSC connections. They are created in the same VPC network, one for each service attachment in the cluster.
+     * Required. A group of PSC connections. They are created in the same VPC network, one for each service attachment in the cluster.
      */
     connections?: Schema$ConnectionDetail[];
   }
@@ -503,7 +503,7 @@ export namespace redis_v1beta1 {
     weeklyMaintenanceWindow?: Schema$ClusterWeeklyMaintenanceWindow[];
   }
   /**
-   * Upcoming maitenance schedule.
+   * Upcoming maintenance schedule.
    */
   export interface Schema$ClusterMaintenanceSchedule {
     /**
@@ -706,7 +706,7 @@ export namespace redis_v1beta1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 23
+   * Common model for database resource instance metadata. Next ID: 25
    */
   export interface Schema$DatabaseResourceMetadata {
     /**
@@ -746,6 +746,10 @@ export namespace redis_v1beta1 {
      */
     expectedState?: string | null;
     /**
+     * GCBDR configuration for the resource.
+     */
+    gcbdrConfiguration?: Schema$GCBDRConfiguration;
+    /**
      * Required. Unique identifier for a Database resource
      */
     id?: Schema$DatabaseResourceId;
@@ -781,6 +785,10 @@ export namespace redis_v1beta1 {
      * Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named "ABC" is deleted, the name "ABC" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
      */
     resourceName?: string | null;
+    /**
+     * Optional. Suspension reason for the resource.
+     */
+    suspensionReason?: string | null;
     /**
      * Optional. Tags associated with this resources.
      */
@@ -923,11 +931,20 @@ export namespace redis_v1beta1 {
     startTime?: Schema$TimeOfDay;
   }
   /**
+   * GCBDR Configuration for the resource.
+   */
+  export interface Schema$GCBDRConfiguration {
+    /**
+     * Whether the resource is managed by GCBDR.
+     */
+    gcbdrManaged?: boolean | null;
+  }
+  /**
    * Backups stored in Cloud Storage buckets. The Cloud Storage buckets need to be the same region as the clusters.
    */
   export interface Schema$GcsBackupSource {
     /**
-     * Optional. URIs of the GCS objects to import. Example: gs://bucket1/object1, gs://bucket2/folder2/object2
+     * Optional. URIs of the Cloud Storage objects to import. Example: gs://bucket1/object1, gs://bucket2/folder2/object2
      */
     uris?: string[] | null;
   }
@@ -1189,6 +1206,10 @@ export namespace redis_v1beta1 {
      * Information about the last backup attempt for this database
      */
     backupRun?: Schema$BackupRun;
+    /**
+     * Whether deletion protection is enabled for this internal resource.
+     */
+    isDeletionProtectionEnabled?: boolean | null;
     product?: Schema$Product;
     resourceId?: Schema$DatabaseResourceId;
     /**
@@ -1624,6 +1645,10 @@ export namespace redis_v1beta1 {
      */
     network?: string | null;
     /**
+     * Output only. The port number of the exposed discovery endpoint.
+     */
+    port?: number | null;
+    /**
      * Optional. Project ID of the consumer project where the forwarding rule is created in.
      */
     projectId?: string | null;
@@ -1840,6 +1865,10 @@ export namespace redis_v1beta1 {
    * Represents information about an updating cluster.
    */
   export interface Schema$UpdateInfo {
+    /**
+     * Target node type for redis cluster.
+     */
+    targetNodeType?: string | null;
     /**
      * Target number of replica nodes per shard.
      */
@@ -3487,7 +3516,7 @@ export namespace redis_v1beta1 {
      */
     parent?: string;
     /**
-     * Idempotent request UUID.
+     * Optional. Idempotent request UUID.
      */
     requestId?: string;
 
@@ -3503,7 +3532,7 @@ export namespace redis_v1beta1 {
      */
     name?: string;
     /**
-     * Idempotent request UUID.
+     * Optional. Idempotent request UUID.
      */
     requestId?: string;
   }
@@ -3543,7 +3572,7 @@ export namespace redis_v1beta1 {
      */
     name?: string;
     /**
-     * Idempotent request UUID.
+     * Optional. Idempotent request UUID.
      */
     requestId?: string;
     /**

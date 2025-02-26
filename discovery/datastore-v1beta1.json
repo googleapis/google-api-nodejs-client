@@ -168,7 +168,7 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20250212",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "GoogleDatastoreAdminV1CommonMetadata": {
@@ -496,7 +496,7 @@
       "id": "GoogleDatastoreAdminV1RedirectWritesStepDetails",
       "properties": {
         "concurrencyMode": {
-          "description": "Ths concurrency mode for this database.",
+          "description": "The concurrency mode for this database.",
           "enum": [
             "CONCURRENCY_MODE_UNSPECIFIED",
             "PESSIMISTIC",

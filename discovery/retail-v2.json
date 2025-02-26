@@ -2223,7 +2223,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250221",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -5181,6 +5181,10 @@
           "description": "The labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. For more information, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) in the Resource Manager documentation.",
           "type": "object"
         },
+        "languageCode": {
+          "description": "Optional. The BCP-47 language code, such as \"en-US\" or \"sr-Latn\" [list](https://www.unicode.org/cldr/charts/46/summary/root.html). For more information, see [Standardized codes](https://google.aip.dev/143). This field helps to better interpret the query. If a value isn't specified, the query language code is automatically detected, which may not be accurate.",
+          "type": "string"
+        },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Products deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an INVALID_ARGUMENT is returned.",
           "format": "int32",
@@ -5217,6 +5221,10 @@
         "queryExpansionSpec": {
           "$ref": "GoogleCloudRetailV2SearchRequestQueryExpansionSpec",
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs. For more information, see [Query expansion](https://cloud.google.com/retail/docs/result-size#query_expansion)."
+        },
+        "regionCode": {
+          "description": "Optional. The Unicode country/region code (CLDR) of a location, such as \"US\" and \"419\" [list](https://www.unicode.org/cldr/charts/46/supplemental/territory_information.html). For more information, see [Standardized codes](https://google.aip.dev/143). If set, then results will be boosted based on the region_code provided.",
+          "type": "string"
         },
         "searchMode": {
           "description": "The search mode of the search request. If not specified, a single search request triggers both product search and faceted search.",
@@ -5520,7 +5528,7 @@
       "id": "GoogleCloudRetailV2SearchRequestTileNavigationSpec",
       "properties": {
         "appliedTiles": {
-          "description": "This field specifies the tiles which are already clicked in client side. NOTE: This field is not being used for filtering search products. Client side should also put all the applied tiles in SearchRequest.filter.",
+          "description": "This optional field specifies the tiles which are already clicked in client side. While the feature works without this field set, particularly for an initial query, it is highly recommended to set this field because it can improve the quality of the search response and removes possible duplicate tiles. NOTE: This field is not being used for filtering search products. Client side should also put all the applied tiles in SearchRequest.filter.",
           "items": {
             "$ref": "GoogleCloudRetailV2Tile"
           },
@@ -6080,7 +6088,7 @@
           "type": "string"
         },
         "eventType": {
-          "description": "Required. User event type. Allowed values are: * `add-to-cart`: Products being added to cart. * `remove-from-cart`: Products being removed from cart. * `category-page-view`: Special pages such as sale or promotion pages viewed. * `detail-page-view`: Products detail page viewed. * `home-page-view`: Homepage viewed. * `promotion-offered`: Promotion is offered to a user. * `promotion-not-offered`: Promotion is not offered to a user. * `purchase-complete`: User finishing a purchase. * `search`: Product search. * `shopping-cart-page-view`: User viewing a shopping cart.",
+          "description": "Required. User event type. Allowed values are: * `add-to-cart`: Products being added to cart. * `remove-from-cart`: Products being removed from cart. * `category-page-view`: Special pages such as sale or promotion pages viewed. * `detail-page-view`: Products detail page viewed. * `home-page-view`: Homepage viewed. * `purchase-complete`: User finishing a purchase. * `search`: Product search. * `shopping-cart-page-view`: User viewing a shopping cart.",
           "type": "string"
         },
         "experimentIds": {

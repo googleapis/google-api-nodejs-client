@@ -767,7 +767,7 @@
                         "Unspecified view. Defaults to basic view.",
                         "Default view. Does not return DDLs or Issues.",
                         "Return full entity details including mappings, ddl and issues.",
-                        "Top-most (Database, Schema) nodes which are returned contains summary details for their decendents such as the number of entities per type and issues rollups. When this view is used, only a single page of result is returned and the page_size property of the request is ignored. The returned page will only include the top-most node types."
+                        "Top-most (Database, Schema) nodes which are returned contains summary details for their descendants such as the number of entities per type and issues rollups. When this view is used, only a single page of result is returned and the page_size property of the request is ignored. The returned page will only include the top-most node types."
                       ],
                       "location": "query",
                       "type": "string"
@@ -2332,7 +2332,7 @@
       }
     }
   },
-  "revision": "20250115",
+  "revision": "20250207",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -3651,8 +3651,44 @@
           "description": "The actual ddl code.",
           "type": "string"
         },
+        "ddlKind": {
+          "description": "The DDL Kind selected for apply, or SOURCE if getting the source tree.",
+          "enum": [
+            "DDL_KIND_UNSPECIFIED",
+            "SOURCE",
+            "DETERMINISTIC",
+            "AI",
+            "USER_EDIT"
+          ],
+          "enumDescriptions": [
+            "The kind of the DDL is unknown.",
+            "DDL of the source entity",
+            "Deterministic converted DDL",
+            "Gemini AI converted DDL",
+            "User edited DDL"
+          ],
+          "type": "string"
+        },
         "ddlType": {
           "description": "Type of DDL (Create, Alter).",
+          "type": "string"
+        },
+        "editedDdlKind": {
+          "description": "If ddl_kind is USER_EDIT, this holds the DDL kind of the original content - DETERMINISTIC or AI. Otherwise, this is DDL_KIND_UNSPECIFIED.",
+          "enum": [
+            "DDL_KIND_UNSPECIFIED",
+            "SOURCE",
+            "DETERMINISTIC",
+            "AI",
+            "USER_EDIT"
+          ],
+          "enumDescriptions": [
+            "The kind of the DDL is unknown.",
+            "DDL of the source entity",
+            "Deterministic converted DDL",
+            "Gemini AI converted DDL",
+            "User edited DDL"
+          ],
           "type": "string"
         },
         "entity": {

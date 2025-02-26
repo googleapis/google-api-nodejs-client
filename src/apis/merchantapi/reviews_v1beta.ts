@@ -591,6 +591,10 @@ export namespace merchantapi_reviews_v1beta {
      */
     changes?: Schema$ProductChange[];
     /**
+     * The time at which the event was generated.
+     */
+    eventTime?: string | null;
+    /**
      * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;

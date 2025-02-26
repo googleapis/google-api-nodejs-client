@@ -181,14 +181,14 @@
           ]
         },
         "list": {
-          "description": "Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns accounts the user is directly added to.",
+          "description": "Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns all the accounts the user has access to. This method is eventually consistent, meaning changes such as creating, updating an account or a change of relationships between accounts may not show up in the results immediately. Instead, these changes propagate over a short period, after which the updated information can match the associated predicates. That means, that searching by account name might not return a recently changed account even though it satisfies the predicate.",
           "flatPath": "accounts/v1beta/accounts",
           "httpMethod": "GET",
           "id": "merchantapi.accounts.list",
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "Optional. Returns only accounts that match the [filter](/merchant/api/guides/accounts/filter). For more details, see the [filter syntax reference](/merchant/api/guides/accounts/filter-syntax).",
+              "description": "Optional. Returns only accounts that match the [filter](https://developers.google.com/merchant/api/guides/accounts/filter). For more details, see the [filter syntax reference](https://developers.google.com/merchant/api/guides/accounts/filter-syntax).",
               "location": "query",
               "type": "string"
             },
@@ -1417,7 +1417,7 @@
       }
     }
   },
-  "revision": "20250115",
+  "revision": "20250220",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Accepted": {
@@ -1454,7 +1454,7 @@
           "type": "string"
         },
         "adultContent": {
-          "description": "Whether this account contains adult content.",
+          "description": "Optional. Whether this account contains adult content.",
           "type": "boolean"
         },
         "languageCode": {
@@ -1539,6 +1539,21 @@
         },
         "provider": {
           "description": "Required. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddUser": {
+      "description": "Instruction for adding a user to the account during creation.",
+      "id": "AddUser",
+      "properties": {
+        "user": {
+          "$ref": "User",
+          "description": "Optional. Details about the user to be added. At the moment, only access rights may be specified."
+        },
+        "userId": {
+          "description": "Required. The email address of the user (for example, `john.doe@gmail.com`).",
           "type": "string"
         }
       },
@@ -1770,8 +1785,16 @@
           },
           "type": "array"
         },
-        "users": {
+        "user": {
           "description": "Optional. Users to be added to the account.",
+          "items": {
+            "$ref": "AddUser"
+          },
+          "type": "array"
+        },
+        "users": {
+          "deprecated": true,
+          "description": "Optional. Users to be added to the account. This field is deprecated and will not exist after the API evolves out of beta. Use the `user` field instead.",
           "items": {
             "$ref": "CreateUserRequest"
           },
@@ -2153,6 +2176,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -2164,6 +2188,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2193,6 +2218,7 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
@@ -2689,6 +2715,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -2700,6 +2727,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2729,6 +2757,7 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
@@ -2768,6 +2797,11 @@
           },
           "type": "array"
         },
+        "eventTime": {
+          "description": "The time at which the event was generated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "expirationTime": {
           "description": "The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
           "format": "google-datetime",
@@ -2801,7 +2835,7 @@
       "type": "object"
     },
     "Program": {
-      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/topic/9240261?ref_topic=7257954,7259405,&sjid=796648681813264022-EU) program, which enables products from a merchant's store to be shown across Google for free.",
+      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/topic/9240261?ref_topic=7257954,7259405,&sjid=796648681813264022-EU) program, which enables products from a merchant's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`",
       "id": "Program",
       "properties": {
         "activeRegionCodes": {
@@ -3018,7 +3052,6 @@
       "type": "object"
     },
     "SeasonalOverride": {
-      "description": "Next: 5",
       "id": "SeasonalOverride",
       "properties": {
         "begin": {
@@ -3035,7 +3068,17 @@
         },
         "policy": {
           "$ref": "Policy",
-          "description": "Required. The return policy for the given date range."
+          "deprecated": true,
+          "description": "The return policy for the given date range."
+        },
+        "returnDays": {
+          "description": "Number of days (from the delivery date) that the product can be returned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "returnUntilDate": {
+          "$ref": "Date",
+          "description": "Fixed end date until which the product can be returned."
         }
       },
       "type": "object"
@@ -3391,7 +3434,7 @@
       "id": "User",
       "properties": {
         "accessRights": {
-          "description": "Optional. The [access rights](https://support.google.com/merchants/answer/12160472?sjid=6789834943175119429-EU#accesstypes) the user has.",
+          "description": "Required. The [access rights](https://support.google.com/merchants/answer/12160472?sjid=6789834943175119429-EU#accesstypes) the user has.",
           "items": {
             "enum": [
               "ACCESS_RIGHT_UNSPECIFIED",

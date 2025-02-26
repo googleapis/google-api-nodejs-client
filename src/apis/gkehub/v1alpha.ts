@@ -3099,7 +3099,7 @@ export namespace gkehub_v1alpha {
     type?: Schema$ServiceMeshType;
   }
   /**
-   * Condition being reported.
+   * Condition being reported. TODO b/395151419: Remove this message once the membership-level conditions field uses the common Condition message.
    */
   export interface Schema$ServiceMeshCondition {
     /**
@@ -3150,6 +3150,27 @@ export namespace gkehub_v1alpha {
     state?: string | null;
   }
   /**
+   * Condition being reported. TODO b/395151419: This message should be used to replace the membership-level Condition message.
+   */
+  export interface Schema$ServiceMeshFeatureCondition {
+    /**
+     * Unique identifier of the condition which describes the condition recognizable to the user.
+     */
+    code?: string | null;
+    /**
+     * A short summary about the issue.
+     */
+    details?: string | null;
+    /**
+     * Links contains actionable information.
+     */
+    documentationLink?: string | null;
+    /**
+     * Severity level of the condition.
+     */
+    severity?: string | null;
+  }
+  /**
    * **Service Mesh**: State for the whole Hub, as analyzed by the Service Mesh Hub Controller.
    */
   export interface Schema$ServiceMeshFeatureState {
@@ -3157,6 +3178,10 @@ export namespace gkehub_v1alpha {
      * Output only. Results of running Service Mesh analyzers.
      */
     analysisMessages?: Schema$ServiceMeshAnalysisMessage[];
+    /**
+     * Output only. List of conditions reported for this feature.
+     */
+    conditions?: Schema$ServiceMeshFeatureCondition[];
   }
   /**
    * **Service Mesh**: Spec for a single Membership for the servicemesh feature
@@ -3188,7 +3213,7 @@ export namespace gkehub_v1alpha {
      */
     analysisMessages?: Schema$ServiceMeshAnalysisMessage[];
     /**
-     * Output only. List of conditions reported for this membership.
+     * Output only. List of conditions reported for this membership. TODO b/395151419: Use the common Condition message.
      */
     conditions?: Schema$ServiceMeshCondition[];
     /**

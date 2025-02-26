@@ -512,7 +512,7 @@
       }
     }
   },
-  "revision": "20241205",
+  "revision": "20250205",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -555,7 +555,7 @@
       "type": "object"
     },
     "ContactCenter": {
-      "description": "Message describing ContactCenter object Next ID: 24",
+      "description": "Message describing ContactCenter object",
       "id": "ContactCenter",
       "properties": {
         "adminUser": {
@@ -786,7 +786,6 @@
             "STANDARD_XLARGE",
             "STANDARD_2XLARGE",
             "STANDARD_3XLARGE",
-            "DEV_XSMALL",
             "MULTIREGION_SMALL",
             "MULTIREGION_MEDIUM",
             "MULTIREGION_LARGE",
@@ -806,7 +805,6 @@
             "Instance Size STANDARD_XLARGE.",
             "Instance Size STANDARD_2XLARGE.",
             "Instance Size STANDARD_3XLARGE.",
-            "Instance Size DEV_EXTRA_SMALL.",
             "Instance Size MULTIREGION_SMALL",
             "Instance Size MULTIREGION_MEDIUM",
             "Instance Size MULTIREGION_LARGE",
@@ -1078,7 +1076,6 @@
             "STANDARD_XLARGE",
             "STANDARD_2XLARGE",
             "STANDARD_3XLARGE",
-            "DEV_XSMALL",
             "MULTIREGION_SMALL",
             "MULTIREGION_MEDIUM",
             "MULTIREGION_LARGE",
@@ -1098,7 +1095,6 @@
             "Instance Size STANDARD_XLARGE.",
             "Instance Size STANDARD_2XLARGE.",
             "Instance Size STANDARD_3XLARGE.",
-            "Instance Size DEV_EXTRA_SMALL.",
             "Instance Size MULTIREGION_SMALL",
             "Instance Size MULTIREGION_MEDIUM",
             "Instance Size MULTIREGION_LARGE",

@@ -133,7 +133,7 @@ export namespace areainsights_v1 {
      */
     latLng?: Schema$LatLng;
     /**
-     * The Place resource name of the center of the circle. Only point places are supported.
+     * **Format:** Must be in the format `places/PLACE_ID`, where `PLACE_ID` is the unique identifier of a place. For example: `places/ChIJgUbEo8cfqokR5lP9_Wh_DaM`.
      */
     place?: string | null;
     /**

@@ -380,6 +380,33 @@
       }
     },
     "projects": {
+      "methods": {
+        "getTestQuota": {
+          "description": "Get information about the quota for `ReleaseTests`.",
+          "flatPath": "v1alpha/projects/{projectsId}/testQuota",
+          "httpMethod": "GET",
+          "id": "firebaseappdistribution.projects.getTestQuota",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the `TestQuota` resource to retrieve. Format: `projects/{project_number}/testQuota`",
+              "location": "path",
+              "pattern": "^projects/[^/]+/testQuota$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "response": {
+            "$ref": "GoogleFirebaseAppdistroV1alphaTestQuota"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      },
       "resources": {
         "apps": {
           "methods": {
@@ -776,7 +803,7 @@
       }
     }
   },
-  "revision": "20250123",
+  "revision": "20250219",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -907,11 +934,6 @@
       "description": "Instructions for AI driven test",
       "id": "GoogleFirebaseAppdistroV1alphaAiInstructions",
       "properties": {
-        "appDescription": {
-          "deprecated": true,
-          "description": "Optional. Describes the app to give the AI some context",
-          "type": "string"
-        },
         "steps": {
           "description": "Required. Steps to be accomplished by the AI",
           "items": {
@@ -1402,7 +1424,8 @@
             "APP_NAME_TOO_LONG",
             "AAB_DEVELOPER_ACCOUNT_NOT_LINKED",
             "AAB_NO_APP_WITH_GIVEN_PACKAGE_NAME_IN_ACCOUNT",
-            "AAB_UPLOAD_ERROR"
+            "AAB_UPLOAD_ERROR",
+            "APP_NOT_FOUND"
           ],
           "enumDescriptions": [
             "",
@@ -1426,7 +1449,8 @@
             "",
             "",
             "",
-            ""
+            "",
+            "Happens if the Firebase app no longer exists by the time of extraction"
           ],
           "type": "string"
         },
@@ -1902,6 +1926,29 @@
         },
         "version": {
           "description": "Required. The version of the device (API level on Android).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaTestQuota": {
+      "description": "Customer quota information for `ReleaseTests`. Note: This quota only applies to tests with `AiInstructions` and is separate from the quota which might apply to the device time used by any tests.",
+      "id": "GoogleFirebaseAppdistroV1alphaTestQuota",
+      "properties": {
+        "limit": {
+          "description": "Output only. Maximum number of `ReleaseTests` allotted for the current month.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the `TestQuota` resource. Format: `projects/{project_number}/testQuota`",
+          "type": "string"
+        },
+        "usage": {
+          "description": "Output only. Number of `ReleaseTests` run in the current month",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },

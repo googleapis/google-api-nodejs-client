@@ -845,9 +845,17 @@ export namespace workstations_v1beta {
      */
     boostConfigs?: Schema$WorkstationBoostConfig[];
     /**
+     * Output only. Status conditions describing the workstation's current state.
+     */
+    conditions?: Schema$Status[];
+    /**
      * Output only. Time when this workstation was created.
      */
     createTime?: string | null;
+    /**
+     * Output only. Whether this workstation is in degraded mode, in which case it may require user action to restore full functionality. Details can be found in conditions.
+     */
+    degraded?: boolean | null;
     /**
      * Output only. Time when this workstation was soft-deleted.
      */

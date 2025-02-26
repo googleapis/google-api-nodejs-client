@@ -485,7 +485,7 @@
       }
     }
   },
-  "revision": "20241204",
+  "revision": "20250212",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -777,7 +777,7 @@
           "type": "string"
         },
         "executionHistoryLevel": {
-          "description": "Optional. Describes the level of the execution history feature to apply to this workflow.",
+          "description": "Optional. Describes the execution history level to apply to this workflow.",
           "enum": [
             "EXECUTION_HISTORY_LEVEL_UNSPECIFIED",
             "EXECUTION_HISTORY_BASIC",

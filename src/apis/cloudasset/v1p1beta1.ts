@@ -610,7 +610,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     accessLevel?: string | null;
     /**
-     * A Google Cloud resource that you want to allow to egress the perimeter. These resources can access data outside the perimeter. This field only supports projects. The project format is `projects/{project_number\}`. The resource can be in any Google Cloud organization, not just the organization where the perimeter is defined. You can't use `*` in this field to allow all Google Cloud resources.
+     * A Google Cloud resource from the service perimeter that you want to allow to access data outside the perimeter. This field supports only projects. The project format is `projects/{project_number\}`. You can't use `*` in this field to allow all Google Cloud resources.
      */
     resource?: string | null;
   }
@@ -835,7 +835,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     policy?: Schema$Policy;
     /**
-     * The project that the associated Google Cloud resource belongs to, in the form of `projects/{project_number\}`. If an IAM policy is set on a resource -- such as a Compute Engine instance or a Cloud Storage bucket -- the project field will indicate the project that contains the resource. If an IAM policy is set on a folder or orgnization, the project field will be empty.
+     * The project that the associated Google Cloud resource belongs to, in the form of `projects/{project_number\}`. If an IAM policy is set on a resource -- such as a Compute Engine instance or a Cloud Storage bucket -- the project field will indicate the project that contains the resource. If an IAM policy is set on a folder or organization, the project field will be empty.
      */
     project?: string | null;
     /**

@@ -212,6 +212,15 @@ export namespace oslogin_v1alpha {
     username?: string | null;
   }
   /**
+   * A request message for creating a POSIX account entry.
+   */
+  export interface Schema$ProvisionPosixAccountRequest {
+    /**
+     * Optional. The regions to wait for a POSIX account to be written to before returning a response. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region.
+     */
+    regions?: string[] | null;
+  }
+  /**
    * The credential information for a Google registered security key.
    */
   export interface Schema$SecurityKey {
@@ -624,6 +633,93 @@ export namespace oslogin_v1alpha {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
+
+    /**
+     * Create a POSIX account if it doesn't exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    provisionPosixAccount(
+      params: Params$Resource$Users$Projects$Provisionposixaccount,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    provisionPosixAccount(
+      params?: Params$Resource$Users$Projects$Provisionposixaccount,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PosixAccount>;
+    provisionPosixAccount(
+      params: Params$Resource$Users$Projects$Provisionposixaccount,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    provisionPosixAccount(
+      params: Params$Resource$Users$Projects$Provisionposixaccount,
+      options: MethodOptions | BodyResponseCallback<Schema$PosixAccount>,
+      callback: BodyResponseCallback<Schema$PosixAccount>
+    ): void;
+    provisionPosixAccount(
+      params: Params$Resource$Users$Projects$Provisionposixaccount,
+      callback: BodyResponseCallback<Schema$PosixAccount>
+    ): void;
+    provisionPosixAccount(
+      callback: BodyResponseCallback<Schema$PosixAccount>
+    ): void;
+    provisionPosixAccount(
+      paramsOrCallback?:
+        | Params$Resource$Users$Projects$Provisionposixaccount
+        | BodyResponseCallback<Schema$PosixAccount>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PosixAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PosixAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PosixAccount> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Projects$Provisionposixaccount;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Projects$Provisionposixaccount;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PosixAccount>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PosixAccount>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Users$Projects$Delete
@@ -636,6 +732,18 @@ export namespace oslogin_v1alpha {
      * The type of operating system associated with the account.
      */
     operatingSystemType?: string;
+  }
+  export interface Params$Resource$Users$Projects$Provisionposixaccount
+    extends StandardParameters {
+    /**
+     * Required. The unique ID for the user in format `users/{user\}/projects/{project\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProvisionPosixAccountRequest;
   }
 
   export class Resource$Users$Projects$Locations {

@@ -304,6 +304,10 @@ export namespace contactcenterinsights_v1 {
      */
     conversationProfile?: string | null;
     /**
+     * The resource name of the existing created generator. Format: projects//locations//generators/
+     */
+    generator?: string | null;
+    /**
      * Default summarization model to be used.
      */
     summarizationModel?: string | null;
@@ -573,7 +577,7 @@ export namespace contactcenterinsights_v1 {
      */
     medium?: string | null;
     /**
-     * Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with various telphony systems and must be in one of Insight's supported formats.
+     * Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with various telephony systems and must be in one of Insight's supported formats.
      */
     metadataJson?: string | null;
     /**
@@ -1182,6 +1186,10 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataMetadata {
     /**
+     * The number of conversations that were exported successfully.
+     */
+    completedExportCount?: number | null;
+    /**
      * Output only. The time the operation was created.
      */
     createTime?: string | null;
@@ -1189,6 +1197,10 @@ export namespace contactcenterinsights_v1 {
      * Output only. The time the operation finished running.
      */
     endTime?: string | null;
+    /**
+     * The number of conversations that failed to be exported.
+     */
+    failedExportCount?: number | null;
     /**
      * Partial errors during export operation that might cause the operation output to be incomplete.
      */
@@ -1206,6 +1218,10 @@ export namespace contactcenterinsights_v1 {
      * Specified if sink is a BigQuery table.
      */
     bigQueryDestination?: Schema$GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestination;
+    /**
+     * Optional. Version of the export schema.
+     */
+    exportSchemaVersion?: string | null;
     /**
      * A filter to reduce results to a specific subset. Useful for exporting conversations with specific properties.
      */
@@ -1317,7 +1333,7 @@ export namespace contactcenterinsights_v1 {
     source?: string | null;
   }
   /**
-   * Represents a conversation, resource, and label provided by the user.
+   * Represents a conversation, resource, and label provided by the user. Can take the form of a string label or a QaAnswer label. QaAnswer labels are used for Quality AI example conversations. String labels are used for Topic Modeling.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1FeedbackLabel {
     /**
@@ -1325,11 +1341,11 @@ export namespace contactcenterinsights_v1 {
      */
     createTime?: string | null;
     /**
-     * String label.
+     * String label used for Topic Modeling.
      */
     label?: string | null;
     /**
-     * Resource name of the resource to be labeled.
+     * Resource name of the resource to be labeled. Supported resources: - qaScorecards/{scorecard\}/revisions/{revision\}/qaQuestions/{question\} - issueModels/{issue_model\}
      */
     labeledResource?: string | null;
     /**
@@ -1337,7 +1353,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
-     * QaAnswer label.
+     * QaAnswer label used for Quality AI example conversations.
      */
     qaAnswerLabel?: Schema$GoogleCloudContactcenterinsightsV1alpha1QaAnswerAnswerValue;
     /**
@@ -1638,7 +1654,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IssueAssignment {
     /**
-     * Immutable. Display name of the assigned issue. This field is set at time of analyis and immutable since then.
+     * Immutable. Display name of the assigned issue. This field is set at time of analysis and immutable since then.
      */
     displayName?: string | null;
     /**
@@ -2200,7 +2216,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SentimentData {
     /**
-     * A non-negative number from 0 to infinity which represents the abolute magnitude of sentiment regardless of score.
+     * A non-negative number from 0 to infinity which represents the absolute magnitude of sentiment regardless of score.
      */
     magnitude?: number | null;
     /**
@@ -2557,6 +2573,10 @@ export namespace contactcenterinsights_v1 {
      * Resource name of the Dialogflow conversation profile. Format: projects/{project\}/locations/{location\}/conversationProfiles/{conversation_profile\}
      */
     conversationProfile?: string | null;
+    /**
+     * The resource name of the existing created generator. Format: projects//locations//generators/
+     */
+    generator?: string | null;
     /**
      * Default summarization model to be used.
      */
@@ -3035,7 +3055,7 @@ export namespace contactcenterinsights_v1 {
      */
     medium?: string | null;
     /**
-     * Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with various telphony systems and must be in one of Insight's supported formats.
+     * Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with various telephony systems and must be in one of Insight's supported formats.
      */
     metadataJson?: string | null;
     /**
@@ -3657,6 +3677,10 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ExportInsightsDataMetadata {
     /**
+     * The number of conversations that were exported successfully.
+     */
+    completedExportCount?: number | null;
+    /**
      * Output only. The time the operation was created.
      */
     createTime?: string | null;
@@ -3664,6 +3688,10 @@ export namespace contactcenterinsights_v1 {
      * Output only. The time the operation finished running.
      */
     endTime?: string | null;
+    /**
+     * The number of conversations that failed to be exported.
+     */
+    failedExportCount?: number | null;
     /**
      * Partial errors during export operation that might cause the operation output to be incomplete.
      */
@@ -3681,6 +3709,10 @@ export namespace contactcenterinsights_v1 {
      * Specified if sink is a BigQuery table.
      */
     bigQueryDestination?: Schema$GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestination;
+    /**
+     * Optional. Version of the export schema.
+     */
+    exportSchemaVersion?: string | null;
     /**
      * A filter to reduce results to a specific subset. Useful for exporting conversations with specific properties.
      */
@@ -3792,7 +3824,7 @@ export namespace contactcenterinsights_v1 {
     source?: string | null;
   }
   /**
-   * Represents a conversation, resource, and label provided by the user.
+   * Represents a conversation, resource, and label provided by the user. Can take the form of a string label or a QaAnswer label. QaAnswer labels are used for Quality AI example conversations. String labels are used for Topic Modeling.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel {
     /**
@@ -3800,11 +3832,11 @@ export namespace contactcenterinsights_v1 {
      */
     createTime?: string | null;
     /**
-     * String label.
+     * String label used for Topic Modeling.
      */
     label?: string | null;
     /**
-     * Resource name of the resource to be labeled.
+     * Resource name of the resource to be labeled. Supported resources: - qaScorecards/{scorecard\}/revisions/{revision\}/qaQuestions/{question\} - issueModels/{issue_model\}
      */
     labeledResource?: string | null;
     /**
@@ -3812,7 +3844,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
-     * QaAnswer label.
+     * QaAnswer label used for Quality AI example conversations.
      */
     qaAnswerLabel?: Schema$GoogleCloudContactcenterinsightsV1QaAnswerAnswerValue;
     /**
@@ -4113,7 +4145,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1IssueAssignment {
     /**
-     * Immutable. Display name of the assigned issue. This field is set at time of analyis and immutable since then.
+     * Immutable. Display name of the assigned issue. This field is set at time of analysis and immutable since then.
      */
     displayName?: string | null;
     /**
@@ -5060,7 +5092,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1SentimentData {
     /**
-     * A non-negative number from 0 to infinity which represents the abolute magnitude of sentiment regardless of score.
+     * A non-negative number from 0 to infinity which represents the absolute magnitude of sentiment regardless of score.
      */
     magnitude?: number | null;
     /**
@@ -5429,7 +5461,7 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
-     * Download feedback labels in bulk.
+     * Download feedback labels in bulk from an external source. Currently supports exporting Quality AI example conversations with transcripts and question bodies.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5526,7 +5558,7 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
-     * Upload feedback labels in bulk.
+     * Upload feedback labels from an external source in bulk. Currently supports labeling Quality AI example conversations.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

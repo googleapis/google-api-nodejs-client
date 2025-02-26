@@ -225,6 +225,10 @@ export namespace appengine_v1 {
      * Serving status of this application.
      */
     servingStatus?: string | null;
+    /**
+     * The SSL policy that will be applied to the application. If set to Modern it will restrict traffic with TLS < 1.2 and allow only Modern Ciphers suite
+     */
+    sslPolicy?: string | null;
   }
   /**
    * An SSL certificate that a user has been authorized to administer. A user is authorized to administer any certificate that applies to one of their authorized domains.
@@ -1529,7 +1533,7 @@ export namespace appengine_v1 {
    */
   export interface Schema$StandardSchedulerSettings {
     /**
-     * Maximum number of instances to run for this version. Set to zero to disable max_instances configuration.
+     * Maximum number of instances to run for this version. Set to 2147483647 to disable max_instances configuration.
      */
     maxInstances?: number | null;
     /**
@@ -5038,6 +5042,10 @@ export namespace appengine_v1 {
      */
     appsId?: string;
     /**
+     * Optional. If set to true, any versions of this service will also be deleted. (Otherwise, the request will only succeed if the service has no versions.)
+     */
+    force?: boolean;
+    /**
      * Part of `name`. See documentation of `appsId`.
      */
     servicesId?: string;
@@ -6377,6 +6385,10 @@ export namespace appengine_v1 {
      * Part of `name`. See documentation of `projectsId`.
      */
     applicationsId?: string;
+    /**
+     * Optional. If set to true, any versions of this service will also be deleted. (Otherwise, the request will only succeed if the service has no versions.)
+     */
+    force?: boolean;
     /**
      * Part of `name`. See documentation of `projectsId`.
      */

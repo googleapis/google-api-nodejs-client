@@ -922,8 +922,10 @@ export namespace drive_v2 {
       canCopy?: boolean;
       canDelete?: boolean;
       canDeleteChildren?: boolean;
+      canDisableInheritedPermissions?: boolean;
       canDownload?: boolean;
       canEdit?: boolean;
+      canEnableInheritedPermissions?: boolean;
       canListChildren?: boolean;
       canModifyContent?: boolean;
       canModifyContentRestriction?: boolean;
@@ -1071,6 +1073,10 @@ export namespace drive_v2 {
      * Indexable text attributes for the file (can only be written)
      */
     indexableText?: {text?: string} | null;
+    /**
+     * Whether this file has inherited permissions disabled. Inherited permissions are enabled by default.
+     */
+    inheritedPermissionsDisabled?: boolean | null;
     /**
      * Output only. Whether the file was created or opened by the requesting app.
      */
@@ -1566,6 +1572,10 @@ export namespace drive_v2 {
      */
     id?: string | null;
     /**
+     * When true, only organizers, owners, and users with permissions added directly on the item can access it.
+     */
+    inheritedPermissionsDisabled?: boolean | null;
+    /**
      * Output only. This is always `drive#permission`.
      */
     kind?: string | null;
@@ -1578,7 +1588,7 @@ export namespace drive_v2 {
      */
     pendingOwner?: boolean | null;
     /**
-     * Output only. Details of whether the permissions on this shared drive item are inherited or directly on this item. This is an output-only field which is present only for shared drive items.
+     * Output only. Details of whether the permissions on this item are inherited or directly on this item.
      */
     permissionDetails?: Array<{
       additionalRoles?: string[];
@@ -1618,7 +1628,7 @@ export namespace drive_v2 {
      */
     value?: string | null;
     /**
-     * Indicates the view for this permission. Only populated for permissions that belong to a view. `published` is the only supported value.
+     * Indicates the view for this permission. Only populated for permissions that belong to a view. published and metadata are the only supported values. - published: The permission's role is published_reader. - metadata: The item is only visible to the metadata view because the item has limited access and the scope has at least read access to the parent. Note: The metadata view is currently only supported on folders.
      */
     view?: string | null;
     /**
@@ -7640,6 +7650,10 @@ export namespace drive_v2 {
   export interface Params$Resource$Permissions$Delete
     extends StandardParameters {
     /**
+     * Whether the request should enforce expansive access rules.
+     */
+    enforceExpansiveAccess?: boolean;
+    /**
      * The ID for the file or shared drive.
      */
     fileId?: string;
@@ -7762,6 +7776,10 @@ export namespace drive_v2 {
   export interface Params$Resource$Permissions$Patch
     extends StandardParameters {
     /**
+     * Whether the request should enforce expansive access rules.
+     */
+    enforceExpansiveAccess?: boolean;
+    /**
      * The ID for the file or shared drive.
      */
     fileId?: string;
@@ -7797,6 +7815,10 @@ export namespace drive_v2 {
   }
   export interface Params$Resource$Permissions$Update
     extends StandardParameters {
+    /**
+     * Whether the request should enforce expansive access rules.
+     */
+    enforceExpansiveAccess?: boolean;
     /**
      * The ID for the file or shared drive.
      */

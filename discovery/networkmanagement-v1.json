@@ -758,7 +758,7 @@
       }
     }
   },
-  "revision": "20250101",
+  "revision": "20250212",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -803,7 +803,8 @@
             "SOURCE_FORWARDING_RULE_UNSUPPORTED",
             "NON_ROUTABLE_IP_ADDRESS",
             "UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT",
-            "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG"
+            "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG",
+            "NO_SERVERLESS_IP_RANGES"
           ],
           "enumDeprecated": [
             false,
@@ -815,6 +816,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -879,7 +881,8 @@
             "Aborted because tests with a forwarding rule as a source are not supported.",
             "Aborted because one of the endpoints is a non-routable IP address (loopback, link-local, etc).",
             "Aborted due to an unknown issue in the Google-managed project.",
-            "Aborted due to an unsupported configuration of the Google-managed project."
+            "Aborted due to an unsupported configuration of the Google-managed project.",
+            "Aborted because the source endpoint is a Cloud Run revision with direct VPC access enabled, but there are no reserved serverless IP ranges."
           ],
           "type": "string"
         },

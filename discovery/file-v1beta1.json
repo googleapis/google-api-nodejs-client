@@ -1074,7 +1074,7 @@
       }
     }
   },
-  "revision": "20250106",
+  "revision": "20250205",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2304,7 +2304,7 @@
         },
         "iopsPerTb": {
           "$ref": "IOPSPerTB",
-          "description": "Provision IOPS dynamically based on the capacity of the instance. Provisioned read IOPS will be calculated by multiplying the capacity of the instance in TiB by the `iops_per_tb` value. For example, for a 2 TiB instance with an `iops_per_tb` value of 17000 the provisioned read IOPS will be 34000. If the calculated value is outside the supported range for the instance's capacity during instance creation, instance creation will fail with an `InvalidArgument` error. Similarly, if an instance capacity update would result in a value outside the supported range, the update will fail with an `InvalidArgument` error."
+          "description": "Provision IOPS dynamically based on the capacity of the instance. Provisioned IOPS will be calculated by multiplying the capacity of the instance in TiB by the `iops_per_tb` value. For example, for a 2 TiB instance with an `iops_per_tb` value of 17000 the provisioned IOPS will be 34000. If the calculated value is outside the supported range for the instance's capacity during instance creation, instance creation will fail with an `InvalidArgument` error. Similarly, if an instance capacity update would result in a value outside the supported range, the update will fail with an `InvalidArgument` error."
         }
       },
       "type": "object"
@@ -2349,7 +2349,12 @@
     "PromoteReplicaRequest": {
       "description": "PromoteReplicaRequest promotes a Filestore standby instance (replica).",
       "id": "PromoteReplicaRequest",
-      "properties": {},
+      "properties": {
+        "peerInstance": {
+          "description": "Optional. The resource name of the peer instance to promote, in the format `projects/{project_id}/locations/{location_id}/instances/{instance_id}`. The peer instance is required if the operation is called on an active instance.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ReplicaConfig": {
@@ -2388,11 +2393,13 @@
           "items": {
             "enum": [
               "STATE_REASON_UNSPECIFIED",
-              "PEER_INSTANCE_UNREACHABLE"
+              "PEER_INSTANCE_UNREACHABLE",
+              "REMOVE_FAILED"
             ],
             "enumDescriptions": [
               "Reason not specified.",
-              "The peer instance is unreachable."
+              "The peer instance is unreachable.",
+              "The remove replica peer instance operation failed."
             ],
             "type": "string"
           },

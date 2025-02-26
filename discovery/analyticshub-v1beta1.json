@@ -695,7 +695,7 @@
       }
     }
   },
-  "revision": "20241213",
+  "revision": "20250217",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -928,7 +928,6 @@
       "type": "object"
     },
     "GoogleCloudBigqueryDataexchangeV1beta1DestinationDatasetReference": {
-      "description": "Contains the reference that identifies a destination bigquery dataset.",
       "id": "GoogleCloudBigqueryDataexchangeV1beta1DestinationDatasetReference",
       "properties": {
         "datasetId": {
@@ -1357,6 +1356,11 @@
           "description": "Output only. Resource name of the source Listing. e.g. projects/123/locations/US/dataExchanges/456/listings/789",
           "readOnly": true,
           "type": "string"
+        },
+        "logLinkedDatasetQueryUserEmail": {
+          "description": "Output only. By default, false. If true, the Subscriber agreed to the email sharing mandate that is enabled for DataExchange/Listing.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "name": {
           "description": "Output only. The resource name of the subscription. e.g. `projects/myproject/locations/US/subscriptions/123`.",
