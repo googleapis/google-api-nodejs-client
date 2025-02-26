@@ -3011,6 +3011,10 @@ export namespace retail_v2beta {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Optional. The BCP-47 language code, such as "en-US" or "sr-Latn" [list](https://www.unicode.org/cldr/charts/46/summary/root.html). For more information, see [Standardized codes](https://google.aip.dev/143). This field helps to better interpret the query. If a value isn't specified, the query language code is automatically detected, which may not be accurate.
+     */
+    languageCode?: string | null;
+    /**
      * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Products deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an INVALID_ARGUMENT is returned.
      */
     offset?: number | null;
@@ -3042,6 +3046,10 @@ export namespace retail_v2beta {
      * The query expansion specification that specifies the conditions under which query expansion occurs. For more information, see [Query expansion](https://cloud.google.com/retail/docs/result-size#query_expansion).
      */
     queryExpansionSpec?: Schema$GoogleCloudRetailV2betaSearchRequestQueryExpansionSpec;
+    /**
+     * Optional. The Unicode country/region code (CLDR) of a location, such as "US" and "419" [list](https://www.unicode.org/cldr/charts/46/supplemental/territory_information.html). For more information, see [Standardized codes](https://google.aip.dev/143). If set, then results will be boosted based on the region_code provided.
+     */
+    regionCode?: string | null;
     /**
      * The search mode of the search request. If not specified, a single search request triggers both product search and faceted search.
      */
@@ -3243,7 +3251,7 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaSearchRequestTileNavigationSpec {
     /**
-     * This field specifies the tiles which are already clicked in client side. NOTE: This field is not being used for filtering search products. Client side should also put all the applied tiles in SearchRequest.filter.
+     * This optional field specifies the tiles which are already clicked in client side. While the feature works without this field set, particularly for an initial query, it is highly recommended to set this field because it can improve the quality of the search response and removes possible duplicate tiles. NOTE: This field is not being used for filtering search products. Client side should also put all the applied tiles in SearchRequest.filter.
      */
     appliedTiles?: Schema$GoogleCloudRetailV2betaTile[];
     /**
@@ -3661,7 +3669,7 @@ export namespace retail_v2beta {
      */
     eventTime?: string | null;
     /**
-     * Required. User event type. Allowed values are: * `add-to-cart`: Products being added to cart. * `remove-from-cart`: Products being removed from cart. * `category-page-view`: Special pages such as sale or promotion pages viewed. * `detail-page-view`: Products detail page viewed. * `home-page-view`: Homepage viewed. * `promotion-offered`: Promotion is offered to a user. * `promotion-not-offered`: Promotion is not offered to a user. * `purchase-complete`: User finishing a purchase. * `search`: Product search. * `shopping-cart-page-view`: User viewing a shopping cart.
+     * Required. User event type. Allowed values are: * `add-to-cart`: Products being added to cart. * `remove-from-cart`: Products being removed from cart. * `category-page-view`: Special pages such as sale or promotion pages viewed. * `detail-page-view`: Products detail page viewed. * `home-page-view`: Homepage viewed. * `purchase-complete`: User finishing a purchase. * `search`: Product search. * `shopping-cart-page-view`: User viewing a shopping cart.
      */
     eventType?: string | null;
     /**
