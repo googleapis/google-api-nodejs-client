@@ -399,6 +399,10 @@ export namespace privateca_v1 {
      * Output only. The time at which this CertificateAuthority was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Optional. User-defined URLs for CA certificate and CRLs. The service does not publish content to these URLs. It is up to the user to mirror content to these URLs.
+     */
+    userDefinedAccessUrls?: Schema$UserDefinedAccessUrls;
   }
   /**
    * A CertificateConfig describes an X.509 certificate or CSR that is to be created, as an alternative to using ASN.1.
@@ -1376,6 +1380,19 @@ export namespace privateca_v1 {
      * Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
+  }
+  /**
+   * User-defined URLs for accessing content published by this CertificateAuthority.
+   */
+  export interface Schema$UserDefinedAccessUrls {
+    /**
+     * Optional. A list of URLs where the issuer CA certificate may be downloaded, which appears in the "Authority Information Access" extension in the certificate. If specified, the default GCS URLs will be omitted.
+     */
+    aiaIssuingCertificateUrls?: string[] | null;
+    /**
+     * Optional. A list of URLs where to obtain CRL information, i.e. the DistributionPoint.fullName described by https://tools.ietf.org/html/rfc5280#section-4.2.1.13. If specified, the default GCS URLs will be omitted.
+     */
+    crlAccessUrls?: string[] | null;
   }
   /**
    * An X509Extension specifies an X.509 extension, which may be used in different parts of X.509 objects like certificates, CSRs, and CRLs.
