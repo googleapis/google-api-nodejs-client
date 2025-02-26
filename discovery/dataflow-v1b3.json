@@ -2208,7 +2208,7 @@
       }
     }
   },
-  "revision": "20250106",
+  "revision": "20250131",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -5747,13 +5747,15 @@
             "UNKNOWN",
             "JAVA",
             "PYTHON",
-            "GO"
+            "GO",
+            "YAML"
           ],
           "enumDescriptions": [
             "UNKNOWN Language.",
             "Java.",
             "Python.",
-            "Go."
+            "Go.",
+            "YAML."
           ],
           "type": "string"
         },
@@ -7241,6 +7243,10 @@
         "supportsExactlyOnce": {
           "description": "Optional. Indicates if the streaming template supports exactly once mode.",
           "type": "boolean"
+        },
+        "yamlDefinition": {
+          "description": "Optional. For future use.",
+          "type": "string"
         }
       },
       "type": "object"
