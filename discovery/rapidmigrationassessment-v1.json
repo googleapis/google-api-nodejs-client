@@ -280,7 +280,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single Collector - changes state of collector to \"Deleting\". Background jobs does final deletion thorugh producer api.",
+                  "description": "Deletes a single Collector - changes state of collector to \"Deleting\". Background jobs does final deletion through producer API.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collectors/{collectorsId}",
                   "httpMethod": "DELETE",
                   "id": "rapidmigrationassessment.projects.locations.collectors.delete",
@@ -633,7 +633,7 @@
       }
     }
   },
-  "revision": "20241211",
+  "revision": "20250214",
   "rootUrl": "https://rapidmigrationassessment.googleapis.com/",
   "schemas": {
     "Annotation": {

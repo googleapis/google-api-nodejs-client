@@ -948,7 +948,7 @@ export namespace rapidmigrationassessment_v1 {
     }
 
     /**
-     * Deletes a single Collector - changes state of collector to "Deleting". Background jobs does final deletion thorugh producer api.
+     * Deletes a single Collector - changes state of collector to "Deleting". Background jobs does final deletion through producer API.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
