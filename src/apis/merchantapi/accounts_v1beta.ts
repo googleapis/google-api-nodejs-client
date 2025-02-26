@@ -156,7 +156,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     accountName?: string | null;
     /**
-     * Whether this account contains adult content.
+     * Optional. Whether this account contains adult content.
      */
     adultContent?: boolean | null;
     /**
@@ -246,6 +246,19 @@ export namespace merchantapi_accounts_v1beta {
      * Street-level part of the address. For example: `111w 31st Street`.
      */
     streetAddress?: string | null;
+  }
+  /**
+   * Instruction for adding a user to the account during creation.
+   */
+  export interface Schema$AddUser {
+    /**
+     * Optional. Details about the user to be added. At the moment, only access rights may be specified.
+     */
+    user?: Schema$User;
+    /**
+     * Required. The email address of the user (for example, `john.doe@gmail.com`).
+     */
+    userId?: string | null;
   }
   /**
    * Collection of information related to the [autofeed](https://support.google.com/merchants/answer/7538732) settings.
@@ -387,6 +400,10 @@ export namespace merchantapi_accounts_v1beta {
     service?: Schema$AddAccountService[];
     /**
      * Optional. Users to be added to the account.
+     */
+    user?: Schema$AddUser[];
+    /**
+     * Optional. Users to be added to the account. This field is deprecated and will not exist after the API evolves out of beta. Use the `user` field instead.
      */
     users?: Schema$CreateUserRequest[];
   }
@@ -1001,6 +1018,10 @@ export namespace merchantapi_accounts_v1beta {
      */
     changes?: Schema$ProductChange[];
     /**
+     * The time at which the event was generated.
+     */
+    eventTime?: string | null;
+    /**
      * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
@@ -1022,7 +1043,7 @@ export namespace merchantapi_accounts_v1beta {
     resourceType?: string | null;
   }
   /**
-   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/topic/9240261?ref_topic=7257954,7259405,&sjid=796648681813264022-EU) program, which enables products from a merchant's store to be shown across Google for free.
+   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/topic/9240261?ref_topic=7257954,7259405,&sjid=796648681813264022-EU) program, which enables products from a merchant's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`
    */
   export interface Schema$Program {
     /**
@@ -1169,9 +1190,6 @@ export namespace merchantapi_accounts_v1beta {
      */
     cells?: Schema$Value[];
   }
-  /**
-   * Next: 5
-   */
   export interface Schema$SeasonalOverride {
     /**
      * Required. Defines the date range when this seasonal override applies. Both begin and end are inclusive and should be in date decimal format, example 20250115. The dates of the seasonal overrides should not overlap.
@@ -1186,9 +1204,17 @@ export namespace merchantapi_accounts_v1beta {
      */
     label?: string | null;
     /**
-     * Required. The return policy for the given date range.
+     * The return policy for the given date range.
      */
     policy?: Schema$Policy;
+    /**
+     * Number of days (from the delivery date) that the product can be returned.
+     */
+    returnDays?: number | null;
+    /**
+     * Fixed end date until which the product can be returned.
+     */
+    returnUntilDate?: Schema$Date;
   }
   /**
    * Shipping service.
@@ -1439,7 +1465,7 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$User {
     /**
-     * Optional. The [access rights](https://support.google.com/merchants/answer/12160472?sjid=6789834943175119429-EU#accesstypes) the user has.
+     * Required. The [access rights](https://support.google.com/merchants/answer/12160472?sjid=6789834943175119429-EU#accesstypes) the user has.
      */
     accessRights?: string[] | null;
     /**
@@ -1848,7 +1874,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns accounts the user is directly added to.
+     * Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns all the accounts the user has access to. This method is eventually consistent, meaning changes such as creating, updating an account or a change of relationships between accounts may not show up in the results immediately. Instead, these changes propagate over a short period, after which the updated information can match the associated predicates. That means, that searching by account name might not return a recently changed account even though it satisfies the predicate.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2146,7 +2172,7 @@ export namespace merchantapi_accounts_v1beta {
   }
   export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
-     * Optional. Returns only accounts that match the [filter](/merchant/api/guides/accounts/filter). For more details, see the [filter syntax reference](/merchant/api/guides/accounts/filter-syntax).
+     * Optional. Returns only accounts that match the [filter](https://developers.google.com/merchant/api/guides/accounts/filter). For more details, see the [filter syntax reference](https://developers.google.com/merchant/api/guides/accounts/filter-syntax).
      */
     filter?: string;
     /**

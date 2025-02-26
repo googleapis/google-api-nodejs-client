@@ -944,6 +944,10 @@ export namespace merchantapi_products_v1beta {
      */
     changes?: Schema$ProductChange[];
     /**
+     * The time at which the event was generated.
+     */
+    eventTime?: string | null;
+    /**
      * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
@@ -1375,7 +1379,7 @@ export namespace merchantapi_products_v1beta {
   export interface Params$Resource$Accounts$Productinputs$Insert
     extends StandardParameters {
     /**
-     * Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. Format: `accounts/{account\}/dataSources/{datasource\}`.
+     * Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`.
      */
     dataSource?: string;
     /**
