@@ -230,6 +230,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://dlp.us-west8.rep.googleapis.com/",
       "location": "us-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dlp.us.rep.googleapis.com/",
+      "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dlp.eu.rep.googleapis.com/",
+      "location": "eu"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -5015,7 +5025,7 @@
       }
     }
   },
-  "revision": "20250119",
+  "revision": "20250216",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -7621,6 +7631,10 @@
           "$ref": "GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation",
           "description": "Must be set only when scanning other clouds."
         },
+        "processingLocation": {
+          "$ref": "GooglePrivacyDlpV2ProcessingLocation",
+          "description": "Optional. Processing location configuration. Vertex AI dataset scanning will set processing_location.image_fallback_type to MultiRegionProcessing by default."
+        },
         "status": {
           "description": "Required. A status for this configuration.",
           "enum": [
@@ -7910,6 +7924,73 @@
         "secretsTarget": {
           "$ref": "GooglePrivacyDlpV2SecretsDiscoveryTarget",
           "description": "Discovery target that looks for credentials and secrets stored in cloud resource metadata and reports them as vulnerabilities to Security Command Center. Only one target of this type is allowed."
+        },
+        "vertexDatasetTarget": {
+          "$ref": "GooglePrivacyDlpV2VertexDatasetDiscoveryTarget",
+          "description": "Vertex AI dataset target for Discovery. The first target to match a dataset will be the one applied. Note that discovery for Vertex AI can incur Cloud Storage Class B operation charges for storage.objects.get operations and retrieval fees. For more information, see [Cloud Storage pricing](https://cloud.google.com/storage/pricing#price-tables). Note that discovery for Vertex AI dataset will not be able to scan images unless DiscoveryConfig.processing_location.image_fallback_location has multi_region_processing or global_processing configured."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryVertexDatasetConditions": {
+      "description": "Requirements that must be true before a dataset is profiled for the first time.",
+      "id": "GooglePrivacyDlpV2DiscoveryVertexDatasetConditions",
+      "properties": {
+        "createdAfter": {
+          "description": "Vertex AI dataset must have been created after this date. Used to avoid backfilling.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "minAge": {
+          "description": "Minimum age a Vertex AI dataset must have. If set, the value must be 1 hour or greater.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryVertexDatasetFilter": {
+      "description": "Determines what datasets will have profiles generated within an organization or project. Includes the ability to filter by regular expression patterns on project ID or dataset regex.",
+      "id": "GooglePrivacyDlpV2DiscoveryVertexDatasetFilter",
+      "properties": {
+        "collection": {
+          "$ref": "GooglePrivacyDlpV2VertexDatasetCollection",
+          "description": "A specific set of Vertex AI datasets for this filter to apply to."
+        },
+        "others": {
+          "$ref": "GooglePrivacyDlpV2AllOtherResources",
+          "description": "Catch-all. This should always be the last target in the list because anything above it will apply first. Should only appear once in a configuration. If none is specified, a default one will be added automatically."
+        },
+        "vertexDatasetResourceReference": {
+          "$ref": "GooglePrivacyDlpV2VertexDatasetResourceReference",
+          "description": "The dataset resource to scan. Targets including this can only include one target (the target with this dataset resource reference)."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence": {
+      "description": "How often existing datasets should have their profiles refreshed. New datasets are scanned as quickly as possible depending on system capacity.",
+      "id": "GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence",
+      "properties": {
+        "inspectTemplateModifiedCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence",
+          "description": "Governs when to update data profiles when the inspection rules defined by the `InspectTemplate` change. If not set, changing the template will not cause a data profile to be updated."
+        },
+        "refreshFrequency": {
+          "description": "If you set this field, profiles are refreshed at this frequency regardless of whether the underlying datasets have changed. Defaults to never.",
+          "enum": [
+            "UPDATE_FREQUENCY_UNSPECIFIED",
+            "UPDATE_FREQUENCY_NEVER",
+            "UPDATE_FREQUENCY_DAILY",
+            "UPDATE_FREQUENCY_MONTHLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "After the data profile is created, it will never be updated.",
+            "The data profile can be updated up to once every 24 hours.",
+            "The data profile can be updated up to once every 30 days. Default."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -8378,7 +8459,7 @@
           "type": "string"
         },
         "fileStorePath": {
-          "description": "The file store path. * Cloud Storage: `gs://{bucket}` * Amazon S3: `s3://{bucket}`",
+          "description": "The file store path. * Cloud Storage: `gs://{bucket}` * Amazon S3: `s3://{bucket}` * Vertex AI dataset: `projects/{project_number}/locations/{location}/datasets/{dataset_id}`",
           "type": "string"
         },
         "fullResource": {
@@ -8414,6 +8495,13 @@
         "projectId": {
           "description": "The Google Cloud project ID that owns the resource. For Amazon S3 buckets, this is the AWS Account Id.",
           "type": "string"
+        },
+        "relatedResources": {
+          "description": "Resources related to this profile.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2RelatedResource"
+          },
+          "type": "array"
         },
         "resourceAttributes": {
           "additionalProperties": {
@@ -8632,6 +8720,12 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2GlobalProcessing": {
+      "description": "Processing will happen in the global region.",
+      "id": "GooglePrivacyDlpV2GlobalProcessing",
+      "properties": {},
+      "type": "object"
+    },
     "GooglePrivacyDlpV2HotwordRule": {
       "description": "The rule that adjusts the likelihood of findings within a certain proximity of hotwords.",
       "id": "GooglePrivacyDlpV2HotwordRule",
@@ -8773,6 +8867,21 @@
         "tableOptions": {
           "$ref": "GooglePrivacyDlpV2TableOptions",
           "description": "If the container is a table, additional information to make findings meaningful such as the columns that are primary keys."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2ImageFallbackLocation": {
+      "description": "Configure image processing to fall back to the configured processing option below if unavailable in the request location.",
+      "id": "GooglePrivacyDlpV2ImageFallbackLocation",
+      "properties": {
+        "globalProcessing": {
+          "$ref": "GooglePrivacyDlpV2GlobalProcessing",
+          "description": "Processing will happen in the global region."
+        },
+        "multiRegionProcessing": {
+          "$ref": "GooglePrivacyDlpV2MultiRegionProcessing",
+          "description": "Processing will happen in a multi-region that contains the current region if available."
         }
       },
       "type": "object"
@@ -9006,7 +9115,8 @@
             "CREDENTIAL",
             "GOVERNMENT_ID",
             "DOCUMENT",
-            "CONTEXTUAL_INFORMATION"
+            "CONTEXTUAL_INFORMATION",
+            "CUSTOM"
           ],
           "enumDescriptions": [
             "Unused type",
@@ -9016,7 +9126,8 @@
             "Confidential or secret information, for example, a password.",
             "An identification document issued by a government.",
             "A document, for example, a resume or source code.",
-            "Information that is not sensitive on its own, but provides details about the circumstances surrounding an entity or an event."
+            "Information that is not sensitive on its own, but provides details about the circumstances surrounding an entity or an event.",
+            "Category for `CustomInfoType` types."
           ],
           "type": "string"
         }
@@ -10175,6 +10286,12 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2MultiRegionProcessing": {
+      "description": "Processing will happen in a multi-region that contains the current region if available.",
+      "id": "GooglePrivacyDlpV2MultiRegionProcessing",
+      "properties": {},
+      "type": "object"
+    },
     "GooglePrivacyDlpV2NumericalStatsConfig": {
       "description": "Compute numerical stats over an individual column, including min, max, and quantiles.",
       "id": "GooglePrivacyDlpV2NumericalStatsConfig",
@@ -10493,6 +10610,17 @@
         "numericalStatsConfig": {
           "$ref": "GooglePrivacyDlpV2NumericalStatsConfig",
           "description": "Numerical stats"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2ProcessingLocation": {
+      "description": "Configure processing location for discovery and inspection. For example, image OCR is only provided in limited regions but configuring ProcessingLocation will redirect OCR to a location where OCR is provided.",
+      "id": "GooglePrivacyDlpV2ProcessingLocation",
+      "properties": {
+        "imageFallbackLocation": {
+          "$ref": "GooglePrivacyDlpV2ImageFallbackLocation",
+          "description": "Image processing will fall back using this configuration."
         }
       },
       "type": "object"
@@ -11027,6 +11155,17 @@
         "overview": {
           "$ref": "GooglePrivacyDlpV2TransformationOverview",
           "description": "An overview of the changes that were made to the `item`."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2RelatedResource": {
+      "description": "A related resource. Examples: * The source BigQuery table for a Vertex AI dataset. * The source Cloud Storage bucket for a Vertex AI dataset.",
+      "id": "GooglePrivacyDlpV2RelatedResource",
+      "properties": {
+        "fullResource": {
+          "description": "The full resource name of the related resource.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11648,6 +11787,13 @@
         "projectDataProfile": {
           "description": "The resource name of the project data profile for this table.",
           "type": "string"
+        },
+        "relatedResources": {
+          "description": "Resources related to this profile.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2RelatedResource"
+          },
+          "type": "array"
         },
         "resourceLabels": {
           "additionalProperties": {
@@ -12389,6 +12535,76 @@
         },
         "version": {
           "description": "Name of the version",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2VertexDatasetCollection": {
+      "description": "Match dataset resources using regex filters.",
+      "id": "GooglePrivacyDlpV2VertexDatasetCollection",
+      "properties": {
+        "vertexDatasetRegexes": {
+          "$ref": "GooglePrivacyDlpV2VertexDatasetRegexes",
+          "description": "The regex used to filter dataset resources."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2VertexDatasetDiscoveryTarget": {
+      "description": "Target used to match against for discovery with Vertex AI datasets.",
+      "id": "GooglePrivacyDlpV2VertexDatasetDiscoveryTarget",
+      "properties": {
+        "conditions": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryVertexDatasetConditions",
+          "description": "In addition to matching the filter, these conditions must be true before a profile is generated."
+        },
+        "disabled": {
+          "$ref": "GooglePrivacyDlpV2Disabled",
+          "description": "Disable profiling for datasets that match this filter."
+        },
+        "filter": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryVertexDatasetFilter",
+          "description": "Required. The datasets the discovery cadence applies to. The first target with a matching filter will be the one to apply to a dataset."
+        },
+        "generationCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence",
+          "description": "How often and when to update profiles. New datasets that match both the filter and conditions are scanned as quickly as possible depending on system capacity."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2VertexDatasetRegex": {
+      "description": "A pattern to match against one or more dataset resources.",
+      "id": "GooglePrivacyDlpV2VertexDatasetRegex",
+      "properties": {
+        "projectIdRegex": {
+          "description": "For organizations, if unset, will match all projects. Has no effect for configurations created within a project.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2VertexDatasetRegexes": {
+      "description": "A collection of regular expressions to determine what datasets to match against.",
+      "id": "GooglePrivacyDlpV2VertexDatasetRegexes",
+      "properties": {
+        "patterns": {
+          "description": "Required. The group of regular expression patterns to match against one or more datasets. Maximum of 100 entries. The sum of the lengths of all regular expressions can't exceed 10 KiB.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2VertexDatasetRegex"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2VertexDatasetResourceReference": {
+      "description": "Identifies a single Vertex AI dataset.",
+      "id": "GooglePrivacyDlpV2VertexDatasetResourceReference",
+      "properties": {
+        "datasetResourceName": {
+          "description": "Required. The name of the dataset resource. If set within a project-level configuration, the specified resource must be within the project.",
           "type": "string"
         }
       },
