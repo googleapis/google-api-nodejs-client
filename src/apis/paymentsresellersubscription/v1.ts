@@ -330,6 +330,15 @@ export namespace paymentsresellersubscription_v1 {
     userSession?: Schema$GoogleCloudPaymentsResellerSubscriptionV1UserSession;
   }
   /**
+   * Payload specific for Google Home products.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload {
+    /**
+     * Optional. This identifies the structure ID on partner side that the subscription should be applied to. Only required when the partner requires structure mapping.
+     */
+    partnerStructureId?: string | null;
+  }
+  /**
    * Payload specific to Google One products.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload {
@@ -452,6 +461,10 @@ export namespace paymentsresellersubscription_v1 {
    * Specifies product specific payload.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPayload {
+    /**
+     * Payload specific to Google Home products.
+     */
+    googleHomePayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload;
     /**
      * Product-specific payloads. Payload specific to Google One products.
      */
