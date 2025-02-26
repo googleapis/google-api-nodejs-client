@@ -707,7 +707,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$GoogleDatastoreAdminV1RedirectWritesStepDetails {
     /**
-     * Ths concurrency mode for this database.
+     * The concurrency mode for this database.
      */
     concurrencyMode?: string | null;
   }
@@ -1240,7 +1240,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$RunQueryResponse {
     /**
-     * A batch of query results (always present).
+     * A batch of query results. This is always present unless running a query under explain-only mode: RunQueryRequest.explain_options was provided and ExplainOptions.analyze was set to false.
      */
     batch?: Schema$QueryResultBatch;
     /**
