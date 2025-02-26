@@ -732,7 +732,7 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$NetworkingConfig {
     /**
-     * Optional. Indicates the user requested specifc connection type between Tenant and Customer projects. You cannot set networking connection type in public IP environment.
+     * Optional. Indicates the user requested specific connection type between Tenant and Customer projects. You cannot set networking connection type in public IP environment.
      */
     connectionType?: string | null;
   }
