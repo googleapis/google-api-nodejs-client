@@ -283,6 +283,35 @@
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/compute"
               ]
+            },
+            "provisionPosixAccount": {
+              "description": "Create a POSIX account if it doesn't exist.",
+              "flatPath": "v1alpha/users/{usersId}/projects/{projectsId}",
+              "httpMethod": "POST",
+              "id": "oslogin.users.projects.provisionPosixAccount",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The unique ID for the user in format `users/{user}/projects/{project}`.",
+                  "location": "path",
+                  "pattern": "^users/[^/]+/projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "ProvisionPosixAccountRequest"
+              },
+              "response": {
+                "$ref": "PosixAccount"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/compute"
+              ]
             }
           },
           "resources": {
@@ -477,7 +506,7 @@
       }
     }
   },
-  "revision": "20241208",
+  "revision": "20250209",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -594,6 +623,20 @@
         "username": {
           "description": "The username of the POSIX account.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProvisionPosixAccountRequest": {
+      "description": "A request message for creating a POSIX account entry.",
+      "id": "ProvisionPosixAccountRequest",
+      "properties": {
+        "regions": {
+          "description": "Optional. The regions to wait for a POSIX account to be written to before returning a response. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
