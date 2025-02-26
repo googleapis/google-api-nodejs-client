@@ -432,6 +432,10 @@ export namespace forms_v1 {
    */
   export interface Schema$FormSettings {
     /**
+     * Optional. The setting that determines whether the form collects email addresses from respondents.
+     */
+    emailCollectionType?: string | null;
+    /**
      * Settings related to quiz forms and grading.
      */
     quizSettings?: Schema$QuizSettings;
