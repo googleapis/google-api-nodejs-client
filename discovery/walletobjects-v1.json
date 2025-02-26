@@ -2679,9 +2679,39 @@
           ]
         }
       }
+    },
+    "walletobjects": {
+      "resources": {
+        "v1": {
+          "resources": {
+            "privateContent": {
+              "methods": {
+                "setPassUpdateNotice": {
+                  "description": "Provide Google with information about awaiting private pass update. This will allow Google to provide the update notification to the device that currently holds this pass.",
+                  "flatPath": "walletobjects/v1/privateContent/setPassUpdateNotice",
+                  "httpMethod": "POST",
+                  "id": "walletobjects.walletobjects.v1.privateContent.setPassUpdateNotice",
+                  "parameterOrder": [],
+                  "parameters": {},
+                  "path": "walletobjects/v1/privateContent/setPassUpdateNotice",
+                  "request": {
+                    "$ref": "SetPassUpdateNoticeRequest"
+                  },
+                  "response": {
+                    "$ref": "SetPassUpdateNoticeResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/wallet_object.issuer"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "revision": "20241203",
+  "revision": "20250204",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -8570,6 +8600,31 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "SetPassUpdateNoticeRequest": {
+      "description": "Request to send a private pass update notice information to Google, so that devices can then fetch the notice prompting the user to update a pass.",
+      "id": "SetPassUpdateNoticeRequest",
+      "properties": {
+        "externalPassId": {
+          "description": "Required. A fully qualified identifier of the pass that the issuer wants to notify the pass holder(s) about. Formatted as .",
+          "type": "string"
+        },
+        "updateUri": {
+          "description": "Required. The issuer endpoint URI the pass holder needs to follow in order to receive an updated pass JWT. It can not contain any sensitive information. The endpoint needs to authenticate the user before giving the user the updated JWT. Example update URI https://someissuer.com/update/passId=someExternalPassId",
+          "type": "string"
+        },
+        "updatedPassJwtSignature": {
+          "description": "Required. The JWT signature of the updated pass that the issuer wants to notify Google about. Only devices that report a different JWT signature than this JWT signature will receive the update notification.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SetPassUpdateNoticeResponse": {
+      "description": "A response to a request to notify Google of an awaiting update to a private pass.",
+      "id": "SetPassUpdateNoticeResponse",
+      "properties": {},
       "type": "object"
     },
     "SignUpInfo": {
