@@ -108,7 +108,7 @@
     "buildingInsights": {
       "methods": {
         "findClosest": {
-          "description": "Locates the closest building to a query point. Returns an error with code `NOT_FOUND` if there are no buildings within approximately 50m of the query point.",
+          "description": "Locates the building whose centroid is closest to a query point. Returns an error with code `NOT_FOUND` if there are no buildings within approximately 50m of the query point.",
           "flatPath": "v1/buildingInsights:findClosest",
           "httpMethod": "GET",
           "id": "solar.buildingInsights.findClosest",
@@ -299,7 +299,7 @@
       }
     }
   },
-  "revision": "20241211",
+  "revision": "20250302",
   "rootUrl": "https://solar.googleapis.com/",
   "schemas": {
     "BuildingInsights": {
