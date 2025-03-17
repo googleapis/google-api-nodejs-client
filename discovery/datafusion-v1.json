@@ -732,7 +732,7 @@
       }
     }
   },
-  "revision": "20250122",
+  "revision": "20250224",
   "rootUrl": "https://datafusion.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1007,7 +1007,7 @@
           "type": "boolean"
         },
         "enableStackdriverLogging": {
-          "description": "Optional. Option to enable Stackdriver Logging.",
+          "description": "Optional. Option to enable Dataproc Stackdriver Logging.",
           "type": "boolean"
         },
         "enableStackdriverMonitoring": {
@@ -1034,6 +1034,10 @@
           },
           "description": "The resource labels for instance to use to annotate any related underlying resources such as Compute Engine VMs. The character '=' is not allowed to be used within the labels.",
           "type": "object"
+        },
+        "loggingConfig": {
+          "$ref": "LoggingConfig",
+          "description": "Optional. The logging configuration for this instance. This field is supported only in CDF versions 6.11.0 and above."
         },
         "maintenanceEvents": {
           "description": "Output only. The maintenance events for this instance.",
@@ -1074,6 +1078,11 @@
         },
         "privateInstance": {
           "description": "Optional. Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will have private IP addresses and will not be able to access the public internet.",
+          "type": "boolean"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
           "type": "boolean"
         },
         "satisfiesPzs": {
@@ -1306,6 +1315,17 @@
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LoggingConfig": {
+      "description": "Logging configuration for a Data Fusion instance.",
+      "id": "LoggingConfig",
+      "properties": {
+        "instanceCloudLoggingDisabled": {
+          "description": "Optional. Option to determine whether instance logs should be written to Cloud Logging. By default, instance logs are written to Cloud Logging.",
+          "type": "boolean"
         }
       },
       "type": "object"
