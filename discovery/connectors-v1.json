@@ -2370,12 +2370,14 @@
                               "enum": [
                                 "AUTH_SCHEMA_VIEW_UNSPECIFIED",
                                 "BASIC",
-                                "JSON_SCHEMA"
+                                "JSON_SCHEMA",
+                                "EUA_SCHEMA"
                               ],
                               "enumDescriptions": [
                                 "Default value.",
                                 "Basic view of the AuthSchema.",
-                                "JSON schema view of the AuthSchema."
+                                "JSON schema view of the AuthSchema.",
+                                "EUA Schema view of the AuthSchema."
                               ],
                               "location": "query",
                               "type": "string"
@@ -2558,7 +2560,7 @@
       }
     }
   },
-  "revision": "20250101",
+  "revision": "20250304",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3286,6 +3288,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "trafficShapingConfigs": {
+          "description": "Optional. Traffic shaping configuration for the connection.",
+          "items": {
+            "$ref": "TrafficShapingConfig"
+          },
+          "type": "array"
+        },
         "updateTime": {
           "description": "Output only. Updated time.",
           "format": "google-datetime",
@@ -3784,7 +3793,7 @@
       "type": "object"
     },
     "ConnectorVersionInfraConfig": {
-      "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
+      "description": "This configuration provides infra configs like rate limit threshold which need to be configurable for every connector version",
       "id": "ConnectorVersionInfraConfig",
       "properties": {
         "connectionRatelimitWindowSeconds": {
@@ -4434,6 +4443,17 @@
       },
       "type": "object"
     },
+    "EnrichmentConfig": {
+      "description": "Data enrichment configuration.",
+      "id": "EnrichmentConfig",
+      "properties": {
+        "appendAcl": {
+          "description": "Optional. Append ACL to the event.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "EnumOption": {
       "description": "EnumOption definition",
       "id": "EnumOption",
@@ -4510,6 +4530,10 @@
         "endpoint": {
           "$ref": "EndPoint",
           "description": "OPTION 1: Hit an endpoint when we receive an event."
+        },
+        "pubsub": {
+          "$ref": "PubSub",
+          "description": "OPTION 3: Write the event to Pub/Sub topic."
         },
         "serviceAccount": {
           "description": "Service account needed for runtime plane to trigger IP workflow.",
@@ -4634,6 +4658,10 @@
         "deadLetterConfig": {
           "$ref": "DeadLetterConfig",
           "description": "Optional. Dead letter configuration for eventing of a connection."
+        },
+        "enrichmentConfig": {
+          "$ref": "EnrichmentConfig",
+          "description": "Optional. Data enrichment configuration."
         },
         "enrichmentEnabled": {
           "description": "Optional. Enrichment Enabled.",
@@ -5548,6 +5576,14 @@
       "description": "JsonSchema representation of schema metadata",
       "id": "JsonSchema",
       "properties": {
+        "additionalDetails": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Additional details apart from standard json schema fields, this gives flexibility to store metadata about the schema",
+          "type": "object"
+        },
         "default": {
           "description": "The default value of the field or object described by this schema.",
           "type": "any"
@@ -6713,8 +6749,18 @@
           "description": "Required. Public URL for the demo video.",
           "type": "string"
         },
+        "hasDynamicSpecUri": {
+          "description": "Output only. Has dynamic open api spec uri.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "integrationTemplates": {
           "description": "Required. Integration example templates for the custom connector.",
+          "type": "string"
+        },
+        "localSpecPath": {
+          "description": "Output only. Local spec path. Required if has_dynamic_spec_uri is true.",
+          "readOnly": true,
           "type": "string"
         },
         "marketplaceProduct": {
@@ -6895,6 +6941,35 @@
         },
         "resourceUrl": {
           "description": "URL identifying the resource, e.g. \"https://www.googleapis.com/compute/v1/projects/...)\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PubSub": {
+      "description": "Pub/Sub message includes details of the Destination Pub/Sub topic.",
+      "id": "PubSub",
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Pub/Sub message attributes to be added to the Pub/Sub message.",
+          "type": "object"
+        },
+        "configVariables": {
+          "description": "Optional. Configuration for configuring the trigger",
+          "items": {
+            "$ref": "ConfigVariable"
+          },
+          "type": "array"
+        },
+        "projectId": {
+          "description": "Required. The project id which has the Pub/Sub topic.",
+          "type": "string"
+        },
+        "topicId": {
+          "description": "Required. The topic id of the Pub/Sub topic.",
           "type": "string"
         }
       },
@@ -7238,7 +7313,7 @@
           "type": "string"
         },
         "principal": {
-          "description": "Optional. Prinicipal/Identity for whom the role need to assigned.",
+          "description": "Optional. Principal/Identity for whom the role need to assigned.",
           "enum": [
             "PRINCIPAL_UNSPECIFIED",
             "CONNECTOR_SA"
@@ -7650,7 +7725,7 @@
       "id": "Source",
       "properties": {
         "fieldId": {
-          "description": "Field identifier. For example config vaiable name.",
+          "description": "Field identifier. For example config variable name.",
           "type": "string"
         },
         "sourceType": {
@@ -7958,6 +8033,23 @@
           "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TrafficShapingConfig": {
+      "description": "* TrafficShapingConfig defines the configuration for shaping API traffic by specifying a quota limit and the duration over which this limit is enforced. This configuration helps to control and manage the rate at which API calls are made on the client side, preventing service overload on the backend. For example: - if the quota limit is 100 calls per 10 seconds, then the message would be: { quota_limit: 100 duration: { seconds: 10 } } - if the quota limit is 100 calls per 5 minutes, then the message would be: { quota_limit: 100 duration: { seconds: 300 } } - if the quota limit is 10000 calls per day, then the message would be: { quota_limit: 10000 duration: { seconds: 86400 } and so on.",
+      "id": "TrafficShapingConfig",
+      "properties": {
+        "duration": {
+          "description": "Required. * The duration over which the API call quota limits are calculated. This duration is used to define the time window for evaluating if the number of API calls made by a user is within the allowed quota limits. For example: - To define a quota sampled over 16 seconds, set `seconds` to 16 - To define a quota sampled over 5 minutes, set `seconds` to 300 (5 * 60) - To define a quota sampled over 1 day, set `seconds` to 86400 (24 * 60 * 60) and so on. It is important to note that this duration is not the time the quota is valid for, but rather the time window over which the quota is evaluated. For example, if the quota is 100 calls per 10 seconds, then this duration field would be set to 10 seconds.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "quotaLimit": {
+          "description": "Required. Maximum number of api calls allowed.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
