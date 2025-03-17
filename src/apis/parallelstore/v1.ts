@@ -155,6 +155,10 @@ export namespace parallelstore_v1 {
      */
     destinationGcsBucket?: Schema$DestinationGcsBucket;
     /**
+     * Optional. The metadata options for the export data.
+     */
+    metadataOptions?: Schema$TransferMetadataOptions;
+    /**
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
@@ -179,6 +183,10 @@ export namespace parallelstore_v1 {
      * Parallelstore destination.
      */
     destinationParallelstore?: Schema$DestinationParallelstore;
+    /**
+     * Optional. The transfer metadata options for the import data.
+     */
+    metadataOptions?: Schema$TransferMetadataOptions;
     /**
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
@@ -209,7 +217,11 @@ export namespace parallelstore_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The deployment type of the instance. Allowed values are: * `SCRATCH`: the instance is a scratch instance. * `PERSISTENT`: the instance is a persistent instance.
+     * Output only. Deprecated 'daos_version' field. Output only. The version of DAOS software running in the instance.
+     */
+    daosVersion?: string | null;
+    /**
+     * Optional. Immutable. The deployment type of the instance. Allowed values are: * `SCRATCH`: the instance is a scratch instance. * `PERSISTENT`: the instance is a persistent instance.
      */
     deploymentType?: string | null;
     /**
@@ -217,7 +229,7 @@ export namespace parallelstore_v1 {
      */
     description?: string | null;
     /**
-     * Optional. Stripe level for directories. Allowed values are: * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a small number of files. * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large directories. * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large number of files.
+     * Optional. Immutable. Stripe level for directories. Allowed values are: * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a small number of files. * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large directories. * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large number of files.
      */
     directoryStripeLevel?: string | null;
     /**
@@ -225,7 +237,7 @@ export namespace parallelstore_v1 {
      */
     effectiveReservedIpRange?: string | null;
     /**
-     * Optional. Stripe level for files. Allowed values are: * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size files. * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large files. * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
+     * Optional. Immutable. Stripe level for files. Allowed values are: * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size files. * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large files. * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
      */
     fileStripeLevel?: string | null;
     /**
@@ -380,6 +392,19 @@ export namespace parallelstore_v1 {
     verb?: string | null;
   }
   /**
+   * Operation metadata returned by the CLH during resource state reconciliation.
+   */
+  export interface Schema$ReconciliationOperationMetadata {
+    /**
+     * DEPRECATED. Use exclusive_action instead.
+     */
+    deleteResource?: boolean | null;
+    /**
+     * Excluisive action returned by the CLH.
+     */
+    exclusiveAction?: string | null;
+  }
+  /**
    * Cloud Storage as the source of a data transfer.
    */
   export interface Schema$SourceGcsBucket {
@@ -413,6 +438,23 @@ export namespace parallelstore_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Transfer metadata options for the instance.
+   */
+  export interface Schema$TransferMetadataOptions {
+    /**
+     * Optional. The GID preservation behavior.
+     */
+    gid?: string | null;
+    /**
+     * Optional. The mode preservation behavior.
+     */
+    mode?: string | null;
+    /**
+     * Optional. The UID preservation behavior.
+     */
+    uid?: string | null;
   }
 
   export class Resource$Projects {
