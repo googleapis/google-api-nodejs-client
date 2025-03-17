@@ -612,7 +612,7 @@
       }
     }
   },
-  "revision": "20241120",
+  "revision": "20250217",
   "rootUrl": "https://mybusinessbusinessinformation.googleapis.com/",
   "schemas": {
     "AdWordsLocationExtensions": {
@@ -1198,7 +1198,8 @@
           "type": "boolean"
         },
         "canOperateLocalPost": {
-          "description": "Output only. Indicates if the listing can manage local posts.",
+          "deprecated": true,
+          "description": "Output only. Indicates if the listing can manage local posts. Deprecated: This field is no longer populated and will be removed in a future version.",
           "readOnly": true,
           "type": "boolean"
         },
