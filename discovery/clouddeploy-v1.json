@@ -2348,7 +2348,7 @@
       }
     }
   },
-  "revision": "20250101",
+  "revision": "20250226",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -3655,7 +3655,7 @@
             "No reason for failure is specified.",
             "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [Required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The deploy operation did not complete successfully; check Cloud Build logs.",
-            "The deploy job run did not complete within the alloted time.",
+            "The deploy job run did not complete within the allotted time.",
             "There were missing resources in the runtime environment required for a canary deployment. Check the Cloud Build logs for more information.",
             "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details.",
             "The deploy operation had a feature configured that is not supported."
@@ -4275,7 +4275,8 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. Name of the `JobRun`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.",
+          "description": "Output only. Name of the `JobRun`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.",
+          "readOnly": true,
           "type": "string"
         },
         "phaseId": {
@@ -4636,7 +4637,7 @@
       "type": "object"
     },
     "ListRolloutsResponse": {
-      "description": "ListRolloutsResponse is the response object reutrned by `ListRollouts`.",
+      "description": "ListRolloutsResponse is the response object returned by `ListRollouts`.",
       "id": "ListRolloutsResponse",
       "properties": {
         "nextPageToken": {
@@ -5125,7 +5126,7 @@
             "No reason for failure is specified.",
             "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The postdeploy operation did not complete successfully; check Cloud Build logs.",
-            "The postdeploy job run did not complete within the alloted time.",
+            "The postdeploy job run did not complete within the allotted time.",
             "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
           ],
           "readOnly": true,
@@ -5190,7 +5191,7 @@
             "No reason for failure is specified.",
             "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The predeploy operation did not complete successfully; check Cloud Build logs.",
-            "The predeploy job run did not complete within the alloted time.",
+            "The predeploy job run did not complete within the allotted time.",
             "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
           ],
           "readOnly": true,
@@ -6052,7 +6053,7 @@
             "No reason for failure is specified.",
             "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The deploy operation did not complete successfully; check Cloud Build logs.",
-            "Deployment did not complete within the alloted time.",
+            "Deployment did not complete within the allotted time.",
             "Release is in a failed state.",
             "Release is abandoned.",
             "No Skaffold verify configuration was found.",
@@ -6421,7 +6422,7 @@
           "type": "array"
         },
         "propagateService": {
-          "description": "Optional. Whether to propagate the Kubernetes Service to the route destination clusters. The Service will always be deployed to the Target cluster even if the HTTPRoute is not. This option may be used to facilitiate successful DNS lookup in the route destination clusters. Can only be set to true if destinations are specified.",
+          "description": "Optional. Whether to propagate the Kubernetes Service to the route destination clusters. The Service will always be deployed to the Target cluster even if the HTTPRoute is not. This option may be used to facilitate successful DNS lookup in the route destination clusters. Can only be set to true if destinations are specified.",
           "type": "boolean"
         }
       },
@@ -6836,7 +6837,7 @@
           "type": "string"
         },
         "manifestPath": {
-          "description": "Output only. File path of the rendered manifest relative to the URI.",
+          "description": "Output only. File path of the rendered manifest relative to the URI for the stable phase.",
           "readOnly": true,
           "type": "string"
         },
@@ -6849,7 +6850,7 @@
           "type": "object"
         },
         "skaffoldConfigPath": {
-          "description": "Output only. File path of the resolved Skaffold configuration relative to the URI.",
+          "description": "Output only. File path of the resolved Skaffold configuration for the stable phase, relative to the URI.",
           "readOnly": true,
           "type": "string"
         }
@@ -6948,7 +6949,7 @@
             "The render operation did not complete successfully; check Cloud Build logs.",
             "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details.",
             "The render operation did not complete successfully because the verification stanza required for verify was not found on the Skaffold configuration.",
-            "The render operation did not complete successfully because the custom action required for predeploy or postdeploy was not found in the Skaffold configuration. See failure_message for additional details.",
+            "The render operation did not complete successfully because the custom action(s) required for Rollout jobs were not found in the Skaffold configuration. See failure_message for additional details.",
             "Release failed during rendering because the release configuration is not supported with the specified deployment strategy.",
             "The render operation had a feature configured that is not supported."
           ],
@@ -7257,7 +7258,7 @@
             "No reason for failure is specified.",
             "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The verify operation did not complete successfully; check Cloud Build logs.",
-            "The verify job run did not complete within the alloted time.",
+            "The verify job run did not complete within the allotted time.",
             "No Skaffold verify configuration was found.",
             "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
           ],
