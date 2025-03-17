@@ -4020,7 +4020,7 @@
               "type": "string"
             },
             "pageToken": {
-              "description": "Token to specify next page in the list",
+              "description": "Token to specify next page in the list. The page token is only valid for three days.",
               "location": "query",
               "type": "string"
             },
@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20241210",
+  "revision": "20250217",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -8658,7 +8658,7 @@
           "type": "string"
         },
         "nextPageToken": {
-          "description": "Token used to access next page of this result.",
+          "description": "Token used to access next page of this result. The page token is only valid for three days.",
           "type": "string"
         },
         "trigger_event": {
