@@ -1814,13 +1814,13 @@
         }
       }
     },
-    "operation": {
+    "operations": {
       "methods": {
         "cancel": {
           "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
-          "flatPath": "operation/{name}:cancel",
+          "flatPath": "operations/{name}:cancel",
           "httpMethod": "POST",
-          "id": "drive.operation.cancel",
+          "id": "drive.operations.cancel",
           "parameterOrder": [
             "name"
           ],
@@ -1832,7 +1832,7 @@
               "type": "string"
             }
           },
-          "path": "operation/{name}:cancel",
+          "path": "operations/{name}:cancel",
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
@@ -1842,9 +1842,9 @@
         },
         "delete": {
           "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-          "flatPath": "operation/{name}",
+          "flatPath": "operations/{name}",
           "httpMethod": "DELETE",
-          "id": "drive.operation.delete",
+          "id": "drive.operations.delete",
           "parameterOrder": [
             "name"
           ],
@@ -1856,18 +1856,14 @@
               "type": "string"
             }
           },
-          "path": "operation/{name}",
+          "path": "operations/{name}",
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
             "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.readonly"
           ]
-        }
-      }
-    },
-    "operations": {
-      "methods": {
+        },
         "get": {
           "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
           "flatPath": "operations/{name}",
@@ -2025,6 +2021,12 @@
             "permissionId"
           ],
           "parameters": {
+            "enforceExpansiveAccess": {
+              "default": "false",
+              "description": "Whether the request should enforce expansive access rules.",
+              "location": "query",
+              "type": "boolean"
+            },
             "fileId": {
               "description": "The ID of the file or shared drive.",
               "location": "path",
@@ -2196,6 +2198,12 @@
             "permissionId"
           ],
           "parameters": {
+            "enforceExpansiveAccess": {
+              "default": "false",
+              "description": "Whether the request should enforce expansive access rules.",
+              "location": "query",
+              "type": "boolean"
+            },
             "fileId": {
               "description": "The ID of the file or shared drive.",
               "location": "path",
@@ -2792,7 +2800,7 @@
       }
     }
   },
-  "revision": "20250122",
+  "revision": "20250220",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3429,6 +3437,21 @@
       },
       "type": "object"
     },
+    "DownloadRestriction": {
+      "description": "A restriction for copy and download of the file.",
+      "id": "DownloadRestriction",
+      "properties": {
+        "restrictedForReaders": {
+          "description": "Whether download and copy is restricted for readers.",
+          "type": "boolean"
+        },
+        "restrictedForWriters": {
+          "description": "Whether download and copy is restricted for writers. If true, download is also restricted for readers.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Drive": {
       "description": "Representation of a shared drive. Some resource methods (such as `drives.update`) require a `driveId`. Use the `drives.list` method to retrieve the ID for a shared drive.",
       "id": "Drive",
@@ -3593,6 +3616,10 @@
               "description": "Whether access to this shared drive and items inside this shared drive is restricted to users of the domain to which this shared drive belongs. This restriction may be overridden by other sharing policies controlled outside of this shared drive.",
               "type": "boolean"
             },
+            "downloadRestriction": {
+              "$ref": "DownloadRestriction",
+              "description": "Download restrictions applied by shared drive managers."
+            },
             "driveMembersOnly": {
               "description": "Whether access to items inside this shared drive is restricted to its members.",
               "type": "boolean"
@@ -3693,12 +3720,20 @@
               "description": "Output only. Whether the current user can delete children of this folder. This is false when the item is not a folder. Only populated for items in shared drives.",
               "type": "boolean"
             },
+            "canDisableInheritedPermissions": {
+              "description": "Whether a user can disable inherited permissions.",
+              "type": "boolean"
+            },
             "canDownload": {
               "description": "Output only. Whether the current user can download this file.",
               "type": "boolean"
             },
             "canEdit": {
               "description": "Output only. Whether the current user can edit this file. Other factors may limit the type of changes a user can make to a file. For example, see `canChangeCopyRequiresWriterPermission` or `canModifyContent`.",
+              "type": "boolean"
+            },
+            "canEnableInheritedPermissions": {
+              "description": "Whether a user can re-enable inherited permissions.",
               "type": "boolean"
             },
             "canListChildren": {
@@ -4033,6 +4068,10 @@
             }
           },
           "type": "object"
+        },
+        "inheritedPermissionsDisabled": {
+          "description": "Whether this file has inherited permissions disabled. Inherited permissions are enabled by default.",
+          "type": "boolean"
         },
         "isAppAuthorized": {
           "description": "Output only. Whether the file was created or opened by the requesting app.",
@@ -4670,6 +4709,10 @@
           "description": "Output only. The ID of this permission. This is a unique identifier for the grantee, and is published in User resources as `permissionId`. IDs should be treated as opaque values.",
           "type": "string"
         },
+        "inheritedPermissionsDisabled": {
+          "description": "When true, only organizers, owners, and users with permissions added directly on the item can access it.",
+          "type": "boolean"
+        },
         "kind": {
           "default": "drive#permission",
           "description": "Output only. Identifies what kind of resource this is. Value: the fixed string `\"drive#permission\"`.",
@@ -4680,7 +4723,7 @@
           "type": "boolean"
         },
         "permissionDetails": {
-          "description": "Output only. Details of whether the permissions on this shared drive item are inherited or directly on this item. This is an output-only field which is present only for shared drive items.",
+          "description": "Output only. Details of whether the permissions on this item are inherited or directly on this item.",
           "items": {
             "properties": {
               "inherited": {
@@ -4688,7 +4731,7 @@
                 "type": "boolean"
               },
               "inheritedFrom": {
-                "description": "Output only. The ID of the item from which this permission is inherited. This is an output-only field.",
+                "description": "Output only. The ID of the item from which this permission is inherited. This is only populated for items in shared drives.",
                 "type": "string"
               },
               "permissionType": {
@@ -4696,7 +4739,7 @@
                 "type": "string"
               },
               "role": {
-                "description": "Output only. The primary role for this user. While new values may be added in the future, the following are currently possible: * `organizer` * `fileOrganizer` * `writer` * `commenter` * `reader`",
+                "description": "Output only. The primary role for this user. While new values may be added in the future, the following are currently possible: * `owner` * `organizer` * `fileOrganizer` * `writer` * `commenter` * `reader`",
                 "type": "string"
               }
             },
@@ -4759,7 +4802,7 @@
           "type": "string"
         },
         "view": {
-          "description": "Indicates the view for this permission. Only populated for permissions that belong to a view. 'published' is the only supported value.",
+          "description": "Indicates the view for this permission. Only populated for permissions that belong to a view. published and metadata are the only supported values. - published: The permission's role is published_reader. - metadata: The item is only visible to the metadata view because the item has limited access and the scope has at least read access to the parent. Note: The metadata view is currently only supported on folders. ",
           "type": "string"
         }
       },
@@ -5196,6 +5239,10 @@
             "domainUsersOnly": {
               "description": "Whether access to this Team Drive and items inside this Team Drive is restricted to users of the domain to which this Team Drive belongs. This restriction may be overridden by other sharing policies controlled outside of this Team Drive.",
               "type": "boolean"
+            },
+            "downloadRestriction": {
+              "$ref": "DownloadRestriction",
+              "description": "Download restrictions applied by shared drive managers."
             },
             "sharingFoldersRequiresOrganizerPermission": {
               "description": "If true, only users with the organizer role can share folders. If false, users with either the organizer role or the file organizer role can share folders.",
