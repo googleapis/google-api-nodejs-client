@@ -1090,6 +1090,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "GCPCloudEventsMode": {
+                      "description": "Optional. LINT: LEGACY_NAMES The query parameter value for __GCP_CloudEventsMode, set by the Eventarc service when configuring triggers.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "name": {
                       "description": "Required. The integration resource name. Format: projects/{gcp_project_id}/locations/{location}/integrations/{integration_id}",
                       "location": "path",
@@ -1187,6 +1192,52 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "search": {
+                  "description": "Searches and returns the list of integrations in the specified project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations:search",
+                  "httpMethod": "GET",
+                  "id": "integrations.projects.locations.integrations.search",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The pre-filter to be applied to the search. This should follow the expressions defined in https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata. For example, \"status:ANY(\"ACTIVE\")\" will return all the resources whose status contains the \"ACTIVE\".",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return. The service may return fewer than this value. If unspecified, at most 10 results will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `SearchIntegrations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchIntegrations` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Project and location from which the integrations should be listed. Format: projects/*/locations/*/resources/integrations",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "query": {
+                      "description": "Required. The user query",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/integrations:search",
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaSearchIntegrationsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2162,64 +2213,6 @@
                           "path": "v1/{+parent}/testCases",
                           "response": {
                             "$ref": "GoogleCloudIntegrationsV1alphaListTestCasesResponse"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
-                        "listExecutions": {
-                          "description": "Lists the results of all functional test executions. The response includes the same information as the [execution log](https://cloud.google.com/application-integration/docs/viewing-logs) in the Integration UI.",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}/testCases/{testCasesId}:executions",
-                          "httpMethod": "GET",
-                          "id": "integrations.projects.locations.integrations.versions.testCases.listExecutions",
-                          "parameterOrder": [
-                            "parent"
-                          ],
-                          "parameters": {
-                            "filter": {
-                              "description": "Optional. Standard filter field, we support filtering on following fields: test_case_id: the ID of the test case. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: \"parameter_type\" HAS \\\"string\\\" Also supports operators like AND, OR, NOT For example, trigger_id=\\\"id1\\\" AND test_case_id=\\\"testCaseId\\\"",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "orderBy": {
-                              "description": "Optional. The results would be returned in order you specified here. Currently supporting \"last_modified_time\" and \"create_time\".",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "pageSize": {
-                              "description": "Optional. The size of entries in the response.",
-                              "format": "int32",
-                              "location": "query",
-                              "type": "integer"
-                            },
-                            "pageToken": {
-                              "description": "Optional. The token returned in the previous response.",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "parent": {
-                              "description": "Required. The parent resource name of the test case execution.",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+/testCases/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            },
-                            "readMask": {
-                              "description": "Optional. View mask for the response data. If set, only the field specified will be returned as part of the result. If not set, all fields in event execution info will be filled and returned.",
-                              "format": "google-fieldmask",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "truncateParams": {
-                              "deprecated": true,
-                              "description": "Optional. If true, the service will truncate the params to only keep the first 1000 characters of string params and empty the executions in order to make response smaller. Only works for UI and when the params fields are not filtered out.",
-                              "location": "query",
-                              "type": "boolean"
-                            }
-                          },
-                          "path": "v1/{+parent}:executions",
-                          "response": {
-                            "$ref": "GoogleCloudIntegrationsV1alphaListTestCaseExecutionsResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -4553,7 +4546,7 @@
       }
     }
   },
-  "revision": "20250113",
+  "revision": "20250310",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -7268,6 +7261,10 @@
       "description": "Contains the details of the execution of this task. Next available id: 11",
       "id": "EnterpriseCrmEventbusProtoTaskExecutionDetails",
       "properties": {
+        "skippedOnFailure": {
+          "description": "Indicates whether the task was skipped on failure. Only relevant if the task is in SKIPPED state.",
+          "type": "boolean"
+        },
         "taskAttemptStats": {
           "items": {
             "$ref": "EnterpriseCrmEventbusProtoTaskExecutionDetailsTaskAttemptStats"
@@ -9656,6 +9653,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "trafficShapingConfigs": {
+          "description": "Optional. Traffic shaping configuration for the connection.",
+          "items": {
+            "$ref": "GoogleCloudConnectorsV1TrafficShapingConfig"
+          },
+          "type": "array"
+        },
         "updateTime": {
           "description": "Output only. Updated time.",
           "format": "google-datetime",
@@ -9705,7 +9709,7 @@
       "type": "object"
     },
     "GoogleCloudConnectorsV1ConnectorVersionInfraConfig": {
-      "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
+      "description": "This configuration provides infra configs like rate limit threshold which need to be configurable for every connector version",
       "id": "GoogleCloudConnectorsV1ConnectorVersionInfraConfig",
       "properties": {
         "connectionRatelimitWindowSeconds": {
@@ -9867,6 +9871,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudConnectorsV1EnrichmentConfig": {
+      "description": "Data enrichment configuration.",
+      "id": "GoogleCloudConnectorsV1EnrichmentConfig",
+      "properties": {
+        "appendAcl": {
+          "description": "Optional. Append ACL to the event.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudConnectorsV1EventingConfig": {
       "description": "Eventing Configuration of a connection",
       "id": "GoogleCloudConnectorsV1EventingConfig",
@@ -9885,6 +9900,10 @@
         "deadLetterConfig": {
           "$ref": "GoogleCloudConnectorsV1EventingConfigDeadLetterConfig",
           "description": "Optional. Dead letter configuration for eventing of a connection."
+        },
+        "enrichmentConfig": {
+          "$ref": "GoogleCloudConnectorsV1EnrichmentConfig",
+          "description": "Optional. Data enrichment configuration."
         },
         "enrichmentEnabled": {
           "description": "Optional. Enrichment Enabled.",
@@ -10256,6 +10275,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudConnectorsV1TrafficShapingConfig": {
+      "description": "* TrafficShapingConfig defines the configuration for shaping API traffic by specifying a quota limit and the duration over which this limit is enforced. This configuration helps to control and manage the rate at which API calls are made on the client side, preventing service overload on the backend. For example: - if the quota limit is 100 calls per 10 seconds, then the message would be: { quota_limit: 100 duration: { seconds: 10 } } - if the quota limit is 100 calls per 5 minutes, then the message would be: { quota_limit: 100 duration: { seconds: 300 } } - if the quota limit is 10000 calls per day, then the message would be: { quota_limit: 10000 duration: { seconds: 86400 } and so on.",
+      "id": "GoogleCloudConnectorsV1TrafficShapingConfig",
+      "properties": {
+        "duration": {
+          "description": "Required. * The duration over which the API call quota limits are calculated. This duration is used to define the time window for evaluating if the number of API calls made by a user is within the allowed quota limits. For example: - To define a quota sampled over 16 seconds, set `seconds` to 16 - To define a quota sampled over 5 minutes, set `seconds` to 300 (5 * 60) - To define a quota sampled over 1 day, set `seconds` to 86400 (24 * 60 * 60) and so on. It is important to note that this duration is not the time the quota is valid for, but rather the time window over which the quota is evaluated. For example, if the quota is 100 calls per 10 seconds, then this duration field would be set to 10 seconds.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "quotaLimit": {
+          "description": "Required. Maximum number of api calls allowed.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaAccessToken": {
       "description": "The access token represents the authorization of a specific application to access specific parts of a user’s data.",
       "id": "GoogleCloudIntegrationsV1alphaAccessToken",
@@ -10420,7 +10456,7 @@
           "type": "string"
         },
         "credentialType": {
-          "description": "Credential type of the encrypted credential.",
+          "description": "Required. Credential type of the encrypted credential.",
           "enum": [
             "CREDENTIAL_TYPE_UNSPECIFIED",
             "USERNAME_AND_PASSWORD",
@@ -10456,7 +10492,7 @@
           "description": "Raw auth credentials."
         },
         "description": {
-          "description": "A description of the auth config.",
+          "description": "Optional. A description of the auth config.",
           "type": "string"
         },
         "displayName": {
@@ -10469,7 +10505,7 @@
           "type": "string"
         },
         "expiryNotificationDuration": {
-          "description": "User can define the time to receive notification after which the auth config becomes invalid. Support up to 30 days. Support granularity in hours.",
+          "description": "Optional. User can define the time to receive notification after which the auth config becomes invalid. Support up to 30 days. Support granularity in hours.",
           "items": {
             "format": "google-duration",
             "type": "string"
@@ -10485,7 +10521,7 @@
           "type": "string"
         },
         "overrideValidTime": {
-          "description": "User provided expiry time to override. For the example of Salesforce, username/password credentials can be valid for 6 months depending on the instance settings.",
+          "description": "Optional. User provided expiry time to override. For the example of Salesforce, username/password credentials can be valid for 6 months depending on the instance settings.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -10522,12 +10558,12 @@
           "type": "string"
         },
         "validTime": {
-          "description": "The time until the auth config is valid. Empty or max value is considered the auth config won't expire.",
+          "description": "Optional. The time until the auth config is valid. Empty or max value is considered the auth config won't expire.",
           "format": "google-datetime",
           "type": "string"
         },
         "visibility": {
-          "description": "The visibility of the auth config.",
+          "description": "Optional. The visibility of the auth config.",
           "enum": [
             "AUTH_CONFIG_VISIBILITY_UNSPECIFIED",
             "PRIVATE",
@@ -11253,6 +11289,13 @@
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
           },
           "type": "array"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudIntegrationsV1alphaValueType"
+          },
+          "description": "Optional. OUTPUT parameters from integration execution.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -11335,6 +11378,10 @@
       "description": "The Execution resource contains detailed information of an individual integration execution.",
       "id": "GoogleCloudIntegrationsV1alphaExecution",
       "properties": {
+        "cloudKmsKey": {
+          "description": "Optional. Cloud KMS resource name for the CMEK encryption key.",
+          "type": "string"
+        },
         "cloudLoggingDetails": {
           "$ref": "GoogleCloudIntegrationsV1alphaCloudLoggingDetails",
           "description": "Cloud Logging details for the integration version"
@@ -11770,11 +11817,7 @@
       "id": "GoogleCloudIntegrationsV1alphaImportTemplateRequest",
       "properties": {
         "integration": {
-          "description": "Required. Name of the integration where template needs to be imported.",
-          "type": "string"
-        },
-        "integrationRegion": {
-          "description": "Required. The region of the Integration to be created.",
+          "description": "Required. Resource Name of the integration where template needs to be imported/inserted.",
           "type": "string"
         },
         "subIntegrations": {
@@ -12084,6 +12127,10 @@
       "description": "The integration version definition.",
       "id": "GoogleCloudIntegrationsV1alphaIntegrationVersion",
       "properties": {
+        "cloudKmsKey": {
+          "description": "Optional. Cloud KMS resource name for the CMEK encryption key.",
+          "type": "string"
+        },
         "cloudLoggingDetails": {
           "$ref": "GoogleCloudIntegrationsV1alphaCloudLoggingDetails",
           "description": "Optional. Cloud Logging details for the integration version"
@@ -12197,8 +12244,9 @@
           "type": "string"
         },
         "snapshotNumber": {
-          "description": "Optional. An increasing sequence that is set when a new snapshot is created. The last created snapshot can be identified by [workflow_name, org_id latest(snapshot_number)]. However, last created snapshot need not be same as the HEAD. So users should always use \"HEAD\" tag to identify the head.",
+          "description": "Output only. An increasing sequence that is set when a new snapshot is created. The last created snapshot can be identified by [workflow_name, org_id latest(snapshot_number)]. However, last created snapshot need not be same as the HEAD. So users should always use \"HEAD\" tag to identify the head.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -12594,24 +12642,6 @@
             "$ref": "GoogleCloudIntegrationsV1alphaTemplate"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaListTestCaseExecutionsResponse": {
-      "description": "The response for listing the functional test execution data.",
-      "id": "GoogleCloudIntegrationsV1alphaListTestCaseExecutionsResponse",
-      "properties": {
-        "executions": {
-          "description": "The detailed information of requested executions",
-          "items": {
-            "$ref": "GoogleCloudIntegrationsV1alphaExecution"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "The token used to retrieve the next page results.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -13133,8 +13163,34 @@
       "description": "Request for replaying an execution.",
       "id": "GoogleCloudIntegrationsV1alphaReplayExecutionRequest",
       "properties": {
+        "modifiedParameters": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudIntegrationsV1alphaValueType"
+          },
+          "description": "Optional. The modified input parameters for replay. - Provide values for all the fields in the 'update_mask'. Any field not present in the 'update_mask' will be ignored and its value will be taken from the original execution. - If the 'update_mask' is not specified, all the parameters from original execution will be ignored and only the `modified_parameters` will be used.",
+          "type": "object"
+        },
+        "replayMode": {
+          "description": "Optional. The mode of the replay.",
+          "enum": [
+            "REPLAY_MODE_UNSPECIFIED",
+            "REPLAY_MODE_FROM_BEGINNING",
+            "REPLAY_MODE_POINT_OF_FAILURE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Replay the original execution.",
+            "Replay the execution with the modified parameters."
+          ],
+          "type": "string"
+        },
         "replayReason": {
           "description": "Required. The user provided reason for replaying the execution.",
+          "type": "string"
+        },
+        "updateMask": {
+          "description": "Optional. The list of parameters to be updated. - If the `update_mask` is not specified, all the parameters from original execution will be ignored and only the `modified_parameters` will be used. - It is an error to include a parameter in `update_mask` but not in `modified_parameters`. - Updating nested fields in a JSON parameter is not supported, please provide the complete JSON in the `modified_parameters`.",
+          "format": "google-fieldmask",
           "type": "string"
         }
       },
@@ -13276,6 +13332,80 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaSearchIntegrationsResponse": {
+      "description": "Response for SearchIntegrations.",
+      "id": "GoogleCloudIntegrationsV1alphaSearchIntegrationsResponse",
+      "properties": {
+        "integrations": {
+          "description": "The list of integrations that match the search criteria.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaSearchIntegrationsResponseIntegrationSearchResult"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaSearchIntegrationsResponseIntegrationSearchResult": {
+      "description": "The integration search result with integration level information.",
+      "id": "GoogleCloudIntegrationsV1alphaSearchIntegrationsResponseIntegrationSearchResult",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The create time of the integration version.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creator": {
+          "description": "The creator of the integration version.",
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the integration version.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The integration id.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The integration document metadata.",
+          "type": "string"
+        },
+        "region": {
+          "description": "The region of the integration version.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. The status of the integration version.",
+          "enum": [
+            "INTEGRATION_STATE_UNSPECIFIED",
+            "DRAFT",
+            "ACTIVE",
+            "ARCHIVED",
+            "SNAPSHOT"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "Draft.",
+            "Active.",
+            "Archived.",
+            "Snapshot."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the integration version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaSearchTemplatesResponse": {
       "description": "Response for a request to search templates",
       "id": "GoogleCloudIntegrationsV1alphaSearchTemplatesResponse",
@@ -13339,7 +13469,7 @@
       "id": "GoogleCloudIntegrationsV1alphaSfdcChannel",
       "properties": {
         "channelTopic": {
-          "description": "The Channel topic defined by salesforce once an channel is opened",
+          "description": "Required. The Channel topic defined by salesforce once an channel is opened",
           "type": "string"
         },
         "createTime": {
@@ -13355,11 +13485,11 @@
           "type": "string"
         },
         "description": {
-          "description": "The description for this channel",
+          "description": "Optional. The description for this channel",
           "type": "string"
         },
         "displayName": {
-          "description": "Client level unique name/alias to easily reference a channel.",
+          "description": "Optional. Client level unique name/alias to easily reference a channel.",
           "type": "string"
         },
         "isActive": {
@@ -13407,11 +13537,11 @@
           "type": "string"
         },
         "description": {
-          "description": "A description of the sfdc instance.",
+          "description": "Optional. A description of the sfdc instance.",
           "type": "string"
         },
         "displayName": {
-          "description": "User selected unique name/alias to easily reference an instance.",
+          "description": "Optional. User selected unique name/alias to easily reference an instance.",
           "type": "string"
         },
         "name": {

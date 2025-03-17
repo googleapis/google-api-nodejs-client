@@ -770,7 +770,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
+                  "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}` If the API Product resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
                   "required": true,
@@ -798,7 +798,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. Name of the organization in which the API product will be created. Use the following structure in your request: `organizations/{org}`",
+                  "description": "Required. Name of the organization in which the API product will be created. Use the following structure in your request: `organizations/{org}` If the resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -826,7 +826,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
+                  "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}` If the resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
                   "required": true,
@@ -851,7 +851,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
+                  "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}` If the resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
                   "required": true,
@@ -867,7 +867,7 @@
               ]
             },
             "list": {
-              "description": "Lists all API product names for an organization. Filter the list by passing an `attributename` and `attibutevalue`. The maximum number of API products returned is 1000. You can paginate the list of API products returned using the `startKey` and `count` query parameters.",
+              "description": "Lists all API product names for an organization. Filter the list by passing an `attributename` and `attibutevalue`. The maximum number of API products returned is 1000. You can paginate the list of API products returned using the `startKey` and `count` query parameters. If the resource has the `space` attribute set, the response may not return all resources. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
               "flatPath": "v1/organizations/{organizationsId}/apiproducts",
               "httpMethod": "GET",
               "id": "apigee.organizations.apiproducts.list",
@@ -897,10 +897,15 @@
                   "type": "boolean"
                 },
                 "parent": {
-                  "description": "Required. Name of the organization. Use the following structure in your request: `organizations/{org}`",
+                  "description": "Required. Name of the organization. Use the following structure in your request: `organizations/{org}` If the resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "space": {
+                  "description": "Optional. The Space to list API products for. When none provided, all the spaces the user has list access, will be used implicitly, and the same following rules will apply. Can be used in conjunction with start_key, expand and count for paginated response. Composite queries with attributename and attributevalue are not supported yet.",
+                  "location": "query",
                   "type": "string"
                 },
                 "startKey": {
@@ -917,6 +922,34 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "move": {
+              "description": "Moves an API product to a different space.",
+              "flatPath": "v1/organizations/{organizationsId}/apiproducts/{apiproductsId}:move",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.apiproducts.move",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. API product to move in the following format: `organizations/{org}/apiproducts/{apiproduct}",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:move",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1MoveApiProductRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ApiProduct"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "update": {
               "description": "Updates an existing API product. You must include all required values, whether or not you are updating them, as well as any optional values that you are updating. The API product name required in the request URL is the internal name of the product, not the display name. While they may be the same, it depends on whether the API product was created via UI or API. View the list of API products to identify their internal names.",
               "flatPath": "v1/organizations/{organizationsId}/apiproducts/{apiproductsId}",
@@ -927,7 +960,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
+                  "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}` If the resource has the `space` attribute set, IAM permissions are checked against the Space resource path.To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
                   "required": true,
@@ -959,7 +992,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the API product attribute. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/attributes/{attribute}`",
+                      "description": "Required. Name of the API product attribute. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/attributes/{attribute}` If the API Product resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+/attributes/[^/]+$",
                       "required": true,
@@ -984,7 +1017,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the API product attribute. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/attributes/{attribute}`",
+                      "description": "Required. Name of the API product attribute. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/attributes/{attribute}` If the API Product resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+/attributes/[^/]+$",
                       "required": true,
@@ -1009,7 +1042,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
+                      "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}` If the API Product resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
                       "required": true,
@@ -1034,7 +1067,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
+                      "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}` If the API Product resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+/attributes/[^/]+$",
                       "required": true,
@@ -1066,7 +1099,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Name of the API product that is associated with the rate plan. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
+                      "description": "Required. Name of the API product that is associated with the rate plan. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}` If the API Product resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
                       "required": true,
@@ -1094,7 +1127,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. ID of the rate plan. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/rateplans/{rateplan}`",
+                      "description": "Required. ID of the rate plan. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/rateplans/{rateplan}` If the API Product resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+/rateplans/[^/]+$",
                       "required": true,
@@ -1119,7 +1152,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the rate plan. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/rateplans/{rateplan}`",
+                      "description": "Required. Name of the rate plan. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/rateplans/{rateplan}` If the API Product resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+/rateplans/[^/]+$",
                       "required": true,
@@ -1160,7 +1193,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}` Use `organizations/{org}/apiproducts/-` to return rate plans for all API products within the organization.",
+                      "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}` Use `organizations/{org}/apiproducts/-` to return rate plans for all API products within the organization. If the API Product resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
                       "required": true,
@@ -1205,7 +1238,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the rate plan. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/rateplans/{rateplan}`",
+                      "description": "Required. Name of the rate plan. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/rateplans/{rateplan}` If the API Product resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+/rateplans/[^/]+$",
                       "required": true,
@@ -1249,10 +1282,15 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Name of the organization in the following format: `organizations/{org}`",
+                  "description": "Required. Name of the organization in the following format: `organizations/{org}` If the API Proxy resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "space": {
+                  "description": "Optional. The ID of the space associated with this proxy. Any IAM policies applied to the space will affect access to this proxy. Note that this field is only respected when creating a new proxy. It has no effect when creating a new revision for an existing proxy.",
+                  "location": "query",
                   "type": "string"
                 },
                 "validate": {
@@ -1282,7 +1320,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the API proxy in the following format: `organizations/{org}/apis/{api}`",
+                  "description": "Required. Name of the API proxy in the following format: `organizations/{org}/apis/{api}` If the API Proxy resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/apis/[^/]+$",
                   "required": true,
@@ -1307,7 +1345,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the API proxy in the following format: `organizations/{org}/apis/{api}`",
+                  "description": "Required. Name of the API proxy in the following format: `organizations/{org}/apis/{api}` If the API Proxy resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/apis/[^/]+$",
                   "required": true,
@@ -1323,7 +1361,7 @@
               ]
             },
             "list": {
-              "description": "Lists the names of all API proxies in an organization. The names returned correspond to the names defined in the configuration files for each API proxy.",
+              "description": "Lists the names of all API proxies in an organization. The names returned correspond to the names defined in the configuration files for each API proxy. If the resource has the `space` attribute set, the response may not return all resources. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
               "flatPath": "v1/organizations/{organizationsId}/apis",
               "httpMethod": "GET",
               "id": "apigee.organizations.apis.list",
@@ -1342,16 +1380,49 @@
                   "type": "boolean"
                 },
                 "parent": {
-                  "description": "Required. Name of the organization in the following format: `organizations/{org}`",
+                  "description": "Required. Name of the organization in the following format: `organizations/{org}` If the resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "space": {
+                  "description": "Optional. The space ID to filter the list of proxies (optional). If unspecified, all proxies in the organization will be listed.",
+                  "location": "query",
                   "type": "string"
                 }
               },
               "path": "v1/{+parent}/apis",
               "response": {
                 "$ref": "GoogleCloudApigeeV1ListApiProxiesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "move": {
+              "description": "Moves an API proxy to a different space.",
+              "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}:move",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.apis.move",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. API proxy to move in the following format: `organizations/{org}/apis/{api}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/apis/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:move",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1MoveApiProxyRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ApiProxy"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1367,7 +1438,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. API proxy to update in the following format: `organizations/{org}/apis/{api}`",
+                  "description": "Required. API proxy to update in the following format: `organizations/{org}/apis/{api}` If the resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/apis/[^/]+$",
                   "required": true,
@@ -1393,6 +1464,46 @@
             }
           },
           "resources": {
+            "debugsessions": {
+              "methods": {
+                "list": {
+                  "description": "Lists debug sessions that are currently active in the given API Proxy.",
+                  "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/debugsessions",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.apis.debugsessions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number of debug sessions to return. The page size defaults to 25.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token, returned from a previous ListApiDebugSessions call, that you can use to retrieve the next page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The name of the API Proxy for which to list debug sessions. Must be of the form: `organizations/{organization}/apis/{api}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/apis/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/debugsessions",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListApiDebugSessionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "deployments": {
               "methods": {
                 "list": {
@@ -1405,7 +1516,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Name of the API proxy for which to return deployment information in the following format: `organizations/{org}/apis/{api}`",
+                      "description": "Required. Name of the API proxy for which to return deployment information in the following format: `organizations/{org}/apis/{api}` If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apis/[^/]+$",
                       "required": true,
@@ -1434,7 +1545,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Name of the environment in which to create the key value map. Use the following structure in your request: `organizations/{org}/apis/{api}`",
+                      "description": "Required. Name of the environment in which to create the key value map. Use the following structure in your request: `organizations/{org}/apis/{api}` If the API Proxy resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apis/[^/]+$",
                       "required": true,
@@ -1462,7 +1573,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the key value map. Use the following structure in your request: `organizations/{org}/apis/{api}/keyvaluemaps/{keyvaluemap}`",
+                      "description": "Required. Name of the key value map. Use the following structure in your request: `organizations/{org}/apis/{api}/keyvaluemaps/{keyvaluemap}` If the API Proxy resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+$",
                       "required": true,
@@ -1491,7 +1602,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                          "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+$",
                           "required": true,
@@ -1519,7 +1630,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Scope as indicated by the URI in which to delete the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.",
+                          "description": "Required. Scope as indicated by the URI in which to delete the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -1544,7 +1655,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Scope as indicated by the URI in which to fetch the key value map entry/value. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.",
+                          "description": "Required. Scope as indicated by the URI in which to fetch the key value map entry/value. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -1580,7 +1691,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. Scope as indicated by the URI in which to list key value maps. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                          "description": "Required. Scope as indicated by the URI in which to list key value maps. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+$",
                           "required": true,
@@ -1605,7 +1716,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                          "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -1639,7 +1750,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. API proxy revision in the following format: `organizations/{org}/apis/{api}/revisions/{rev}`",
+                      "description": "Required. API proxy revision in the following format: `organizations/{org}/apis/{api}/revisions/{rev}` If the API Proxy resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apis/[^/]+/revisions/[^/]+$",
                       "required": true,
@@ -1669,7 +1780,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. API proxy revision in the following format: `organizations/{org}/apis/{api}/revisions/{rev}`",
+                      "description": "Required. API proxy revision in the following format: `organizations/{org}/apis/{api}/revisions/{rev}` If the API Proxy resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apis/[^/]+/revisions/[^/]+$",
                       "required": true,
@@ -1694,7 +1805,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. API proxy revision to update in the following format: `organizations/{org}/apis/{api}/revisions/{rev}`",
+                      "description": "Required. API proxy revision to update in the following format: `organizations/{org}/apis/{api}/revisions/{rev}` If the API Proxy resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apis/[^/]+/revisions/[^/]+$",
                       "required": true,
@@ -1731,7 +1842,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. Name of the API proxy revision for which to return deployment information in the following format: `organizations/{org}/apis/{api}/revisions/{rev}`.",
+                          "description": "Required. Name of the API proxy revision for which to return deployment information in the following format: `organizations/{org}/apis/{api}/revisions/{rev}`. If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/apis/[^/]+/revisions/[^/]+$",
                           "required": true,
@@ -1783,7 +1894,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes an AppGroup. All app and API keys associations with the AppGroup are also removed. **Warning**: This API will permanently delete the AppGroup and related artifacts. **Note**: The delete operation is asynchronous. The AppGroup app is deleted immediately, but its associated resources, such as apps and API keys, may take anywhere from a few seconds to a few minutes to be deleted.",
+              "description": "Deletes an AppGroup. All app and API keys associations with the AppGroup are also removed. **Warning**: This API will permanently delete the AppGroup and related artifacts. **Note**: The delete operation is asynchronous. The AppGroup is deleted immediately, but its associated resources, such as apps and API keys, may take anywhere from a few seconds to a few minutes to be deleted.",
               "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}",
               "httpMethod": "DELETE",
               "id": "apigee.organizations.appgroups.delete",
@@ -2600,7 +2711,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes a developer. All apps and API keys associated with the developer are also removed. **Warning**: This API will permanently delete the developer and related artifacts. To avoid permanently deleting developers and their artifacts, set the developer status to `inactive` using the SetDeveloperStatus API. **Note**: The delete operation is asynchronous. The developer app is deleted immediately, but its associated resources, such as apps and API keys, may take anywhere from a few seconds to a few minutes to be deleted.",
+              "description": "Deletes a developer. All apps and API keys associated with the developer are also removed. **Warning**: This API will permanently delete the developer and related artifacts. To avoid permanently deleting developers and their artifacts, set the developer status to `inactive` using the SetDeveloperStatus API. **Note**: The delete operation is asynchronous. The developer is deleted immediately, but its associated resources, such as apps and API keys, may take anywhere from a few seconds to a few minutes to be deleted.",
               "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}",
               "httpMethod": "DELETE",
               "id": "apigee.organizations.developers.delete",
@@ -4895,7 +5006,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. Name representing an API proxy in an environment in the following format: `organizations/{org}/environments/{env}/apis/{api}`",
+                          "description": "Required. Name representing an API proxy in an environment in the following format: `organizations/{org}/environments/{env}/apis/{api}` If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+$",
                           "required": true,
@@ -4915,7 +5026,7 @@
                 "revisions": {
                   "methods": {
                     "deploy": {
-                      "description": "Deploys a revision of an API proxy. If another revision of the same API proxy revision is currently deployed, set the `override` parameter to `true` to have this revision replace the currently deployed revision. You cannot invoke an API proxy until it has been deployed to an environment. After you deploy an API proxy revision, you cannot edit it. To edit the API proxy, you must create and deploy a new revision. For a request path `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}/deployments`, two permissions are required: * `apigee.deployments.create` on the resource `organizations/{org}/environments/{env}` * `apigee.proxyrevisions.deploy` on the resource `organizations/{org}/apis/{api}/revisions/{rev}` ",
+                      "description": "Deploys a revision of an API proxy. If another revision of the same API proxy revision is currently deployed, set the `override` parameter to `true` to have this revision replace the currently deployed revision. You cannot invoke an API proxy until it has been deployed to an environment. After you deploy an API proxy revision, you cannot edit it. To edit the API proxy, you must create and deploy a new revision. For a request path `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}/deployments`, two permissions are required: * `apigee.deployments.create` on the resource `organizations/{org}/environments/{env}` * `apigee.proxyrevisions.deploy` on the resource `organizations/{org}/apis/{api}/revisions/{rev}` All successful API proxy deployments to Apigee are [zero-downtime deployments](https://cloud.google.com/apigee/docs/api-platform/deploy/ui-deploy-overview#zero-downtime-deployment). Apigee hybrid validates the dependencies between shared flows and API proxies at deployment time. For example, if the Flow Callout policy in an API proxy references a shared flow that either doesn't exist or isn't deployed, the API proxy deployment fails.",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/apis/{apisId}/revisions/{revisionsId}/deployments",
                       "httpMethod": "POST",
                       "id": "apigee.organizations.environments.apis.revisions.deploy",
@@ -4924,7 +5035,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the API proxy revision deployment in the following format: `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}`",
+                          "description": "Required. Name of the API proxy revision deployment in the following format: `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}` If the API proxy resource being deployed has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+$",
                           "required": true,
@@ -4964,7 +5075,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name representing an API proxy revision in an environment in the following format: `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}`",
+                          "description": "Required. Name representing an API proxy revision in an environment in the following format: `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}` If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+$",
                           "required": true,
@@ -4989,7 +5100,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the API proxy revision deployment in the following format: `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}`",
+                          "description": "Required. Name of the API proxy revision deployment in the following format: `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}` If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+$",
                           "required": true,
@@ -5023,7 +5134,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The resource name of the API Proxy revision deployment for which to create the DebugSession. Must be of the form `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}`.",
+                              "description": "Required. The resource name of the API Proxy revision deployment for which to create the DebugSession. Must be of the form `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}`. If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                               "location": "path",
                               "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+$",
                               "required": true,
@@ -5057,7 +5168,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the debug session to delete. Must be of the form: `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}/debugsessions/{debugsession}`.",
+                              "description": "Required. The name of the debug session to delete. Must be of the form: `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}/debugsessions/{debugsession}`. If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                               "location": "path",
                               "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+/debugsessions/[^/]+$",
                               "required": true,
@@ -5082,7 +5193,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the debug session to retrieve. Must be of the form: `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}/debugsessions/{session}`.",
+                              "description": "Required. The name of the debug session to retrieve. Must be of the form: `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}/debugsessions/{session}`. If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                               "location": "path",
                               "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+/debugsessions/[^/]+$",
                               "required": true,
@@ -5118,7 +5229,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The name of the API Proxy revision deployment for which to list debug sessions. Must be of the form: `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}`.",
+                              "description": "Required. The name of the API Proxy revision deployment for which to list debug sessions. Must be of the form: `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}`. If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                               "location": "path",
                               "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+$",
                               "required": true,
@@ -5147,7 +5258,7 @@
                               ],
                               "parameters": {
                                 "name": {
-                                  "description": "Required. The name of the debug session transaction. Must be of the form: `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}/debugsessions/{session}/data/{transaction}`.",
+                                  "description": "Required. The name of the debug session transaction. Must be of the form: `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}/debugsessions/{session}/data/{transaction}`. If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                                   "location": "path",
                                   "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+/debugsessions/[^/]+/data/[^/]+$",
                                   "required": true,
@@ -5178,7 +5289,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Name of the API proxy revision deployment in the following format: `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}`",
+                              "description": "Name of the API proxy revision deployment in the following format: `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}` If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                               "location": "path",
                               "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+$",
                               "required": true,
@@ -6052,7 +6163,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                          "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+$",
                           "required": true,
@@ -6080,7 +6191,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Scope as indicated by the URI in which to delete the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.",
+                          "description": "Required. Scope as indicated by the URI in which to delete the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -6105,7 +6216,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Scope as indicated by the URI in which to fetch the key value map entry/value. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.",
+                          "description": "Required. Scope as indicated by the URI in which to fetch the key value map entry/value. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -6141,7 +6252,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. Scope as indicated by the URI in which to list key value maps. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                          "description": "Required. Scope as indicated by the URI in which to list key value maps. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+$",
                           "required": true,
@@ -6166,7 +6277,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                          "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -7321,7 +7432,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. Name representing a shared flow in an environment in the following format: `organizations/{org}/environments/{env}/sharedflows/{sharedflow}`",
+                          "description": "Required. Name representing a shared flow in an environment in the following format: `organizations/{org}/environments/{env}/sharedflows/{sharedflow}` If the shared flow resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/sharedflows/[^/]+$",
                           "required": true,
@@ -7350,7 +7461,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the shared flow revision to deploy in the following format: `organizations/{org}/environments/{env}/sharedflows/{sharedflow}/revisions/{rev}`",
+                          "description": "Required. Name of the shared flow revision to deploy in the following format: `organizations/{org}/environments/{env}/sharedflows/{sharedflow}/revisions/{rev}` If the shared flow resource being deployed has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/sharedflows/[^/]+/revisions/[^/]+$",
                           "required": true,
@@ -7385,7 +7496,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name representing a shared flow in an environment in the following format: `organizations/{org}/environments/{env}/sharedflows/{sharedflow}/revisions/{rev}`",
+                          "description": "Required. Name representing a shared flow in an environment in the following format: `organizations/{org}/environments/{env}/sharedflows/{sharedflow}/revisions/{rev}` If the shared flow resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/sharedflows/[^/]+/revisions/[^/]+$",
                           "required": true,
@@ -7410,7 +7521,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the shared flow revision to undeploy in the following format: `organizations/{org}/environments/{env}/sharedflows/{sharedflow}/revisions/{rev}`",
+                          "description": "Required. Name of the shared flow revision to undeploy in the following format: `organizations/{org}/environments/{env}/sharedflows/{sharedflow}/revisions/{rev}` If the shared flow resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/sharedflows/[^/]+/revisions/[^/]+$",
                           "required": true,
@@ -8817,7 +8928,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                      "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+$",
                       "required": true,
@@ -8845,7 +8956,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Scope as indicated by the URI in which to delete the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.",
+                      "description": "Required. Scope as indicated by the URI in which to delete the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
                       "required": true,
@@ -8870,7 +8981,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Scope as indicated by the URI in which to fetch the key value map entry/value. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.",
+                      "description": "Required. Scope as indicated by the URI in which to fetch the key value map entry/value. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
                       "required": true,
@@ -8906,7 +9017,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Scope as indicated by the URI in which to list key value maps. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                      "description": "Required. Scope as indicated by the URI in which to list key value maps. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+$",
                       "required": true,
@@ -8931,7 +9042,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                      "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the KeyValueMap is under an API Proxy resource that has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
                       "required": true,
@@ -9753,10 +9864,15 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the parent organization under which to create the shared flow. Must be of the form: `organizations/{organization_id}`",
+                  "description": "Required. The name of the parent organization under which to create the shared flow. Must be of the form: `organizations/{organization_id}` If the resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "space": {
+                  "description": "Optional. The ID of the space to associated with this shared flow. Any IAM policies applied to the space will affect access to this shared flow. Note that this field is only respected when creating a new shared flow. It has no effect when creating a new revision for an existing shared flow.",
+                  "location": "query",
                   "type": "string"
                 }
               },
@@ -9781,7 +9897,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. shared flow name of the form: `organizations/{organization_id}/sharedflows/{shared_flow_id}`",
+                  "description": "Required. shared flow name of the form: `organizations/{organization_id}/sharedflows/{shared_flow_id}` If the resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/sharedflows/[^/]+$",
                   "required": true,
@@ -9806,7 +9922,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the shared flow to get. Must be of the form: `organizations/{organization_id}/sharedflows/{shared_flow_id}`",
+                  "description": "Required. The name of the shared flow to get. Must be of the form: `organizations/{organization_id}/sharedflows/{shared_flow_id}` If the resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/sharedflows/[^/]+$",
                   "required": true,
@@ -9822,7 +9938,7 @@
               ]
             },
             "list": {
-              "description": "Lists all shared flows in the organization.",
+              "description": "Lists all shared flows in the organization. If the resource has the `space` attribute set, the response may not return all resources. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
               "flatPath": "v1/organizations/{organizationsId}/sharedflows",
               "httpMethod": "GET",
               "id": "apigee.organizations.sharedflows.list",
@@ -9841,16 +9957,49 @@
                   "type": "boolean"
                 },
                 "parent": {
-                  "description": "Required. The name of the parent organization under which to get shared flows. Must be of the form: `organizations/{organization_id}`",
+                  "description": "Required. The name of the parent organization under which to get shared flows. Must be of the form: `organizations/{organization_id}` If the resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "space": {
+                  "description": "Optional. The space ID used to filter the list of shared flows (optional). If unspecified, all shared flows in the organization will be listed. To learn how Spaces can be used to manage resources, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
+                  "location": "query",
                   "type": "string"
                 }
               },
               "path": "v1/{+parent}/sharedflows",
               "response": {
                 "$ref": "GoogleCloudApigeeV1ListSharedFlowsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "move": {
+              "description": "Moves an shared flow to a different space.",
+              "flatPath": "v1/organizations/{organizationsId}/sharedflows/{sharedflowsId}:move",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.sharedflows.move",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Shared Flow to move in the following format: `organizations/{org}/sharedflows/{shared_flow}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/sharedflows/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:move",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1MoveSharedFlowRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SharedFlow"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -9870,7 +10019,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Name of the shared flow for which to return deployment information in the following format: `organizations/{org}/sharedflows/{sharedflow}`",
+                      "description": "Required. Name of the shared flow for which to return deployment information in the following format: `organizations/{org}/sharedflows/{sharedflow}` If the shared flow resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/sharedflows/[^/]+$",
                       "required": true,
@@ -9899,7 +10048,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the shared flow revision to delete. Must be of the form: `organizations/{organization_id}/sharedflows/{shared_flow_id}/revisions/{revision_id}`",
+                      "description": "Required. The name of the shared flow revision to delete. Must be of the form: `organizations/{organization_id}/sharedflows/{shared_flow_id}/revisions/{revision_id}` If the Shared Flow resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/sharedflows/[^/]+/revisions/[^/]+$",
                       "required": true,
@@ -9929,7 +10078,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the shared flow revision to get. Must be of the form: `organizations/{organization_id}/sharedflows/{shared_flow_id}/revisions/{revision_id}`",
+                      "description": "Required. The name of the shared flow revision to get. Must be of the form: `organizations/{organization_id}/sharedflows/{shared_flow_id}/revisions/{revision_id}` If the Shared Flow resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/sharedflows/[^/]+/revisions/[^/]+$",
                       "required": true,
@@ -9954,7 +10103,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the shared flow revision to update. Must be of the form: `organizations/{organization_id}/sharedflows/{shared_flow_id}/revisions/{revision_id}`",
+                      "description": "Required. The name of the shared flow revision to update. Must be of the form: `organizations/{organization_id}/sharedflows/{shared_flow_id}/revisions/{revision_id}` If the resource has the `space` attribute set, IAM permissions are checked against the Space resource path. To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/sharedflows/[^/]+/revisions/[^/]+$",
                       "required": true,
@@ -9991,7 +10140,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. Name of the API proxy revision for which to return deployment information in the following format: `organizations/{org}/sharedflows/{sharedflow}/revisions/{rev}`.",
+                          "description": "Required. Name of the API proxy revision for which to return deployment information in the following format: `organizations/{org}/sharedflows/{sharedflow}/revisions/{rev}`. If the shared flow resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/sharedflows/[^/]+/revisions/[^/]+$",
                           "required": true,
@@ -10349,6 +10498,250 @@
               }
             }
           }
+        },
+        "spaces": {
+          "methods": {
+            "create": {
+              "description": "Create a space under an organization.",
+              "flatPath": "v1/organizations/{organizationsId}/spaces",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.spaces.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Name of the Google Cloud project in which to associate the Apigee space. Pass the information as a query parameter using the following structure in your request: `organizations/`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "spaceId": {
+                  "description": "Required. Resource ID of the space.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/spaces",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1Space"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1Space"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an organization space.",
+              "flatPath": "v1/organizations/{organizationsId}/spaces/{spacesId}",
+              "httpMethod": "DELETE",
+              "id": "apigee.organizations.spaces.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Apigee organization space name in the following format: `organizations/{org}/spaces/{space}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/spaces/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Get a space under an Organization.",
+              "flatPath": "v1/organizations/{organizationsId}/spaces/{spacesId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.spaces.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Apigee organization space name in the following format: `organizations/{org}/spaces/{space}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/spaces/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1Space"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "getIamPolicy": {
+              "description": "Callers must have apigee.spaces.getIamPolicy.",
+              "flatPath": "v1/organizations/{organizationsId}/spaces/{spacesId}:getIamPolicy",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.spaces.getIamPolicy",
+              "parameterOrder": [
+                "resource"
+              ],
+              "parameters": {
+                "options.requestedPolicyVersion": {
+                  "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "resource": {
+                  "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/spaces/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+resource}:getIamPolicy",
+              "response": {
+                "$ref": "GoogleIamV1Policy"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists spaces under an organization.",
+              "flatPath": "v1/organizations/{organizationsId}/spaces",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.spaces.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of spaces to return. The service may return fewer than this value. If unspecified, at most 50 spaces will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListSpaces` call. Provide this to retrieve the subsequent page. When paginating, all parameters must match the original call.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Use the following structure in your request: `organizations`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/spaces",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListSpacesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates a space.",
+              "flatPath": "v1/organizations/{organizationsId}/spaces/{spacesId}",
+              "httpMethod": "PATCH",
+              "id": "apigee.organizations.spaces.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the space in the following format: `organizations/{org}/spaces/{space_id}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/spaces/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. List of fields to be updated. Fields that can be updated: display_name.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1Space"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1Space"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "setIamPolicy": {
+              "description": "IAM META APIs Callers must have apigee.spaces.setIamPolicy.",
+              "flatPath": "v1/organizations/{organizationsId}/spaces/{spacesId}:setIamPolicy",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.spaces.setIamPolicy",
+              "parameterOrder": [
+                "resource"
+              ],
+              "parameters": {
+                "resource": {
+                  "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/spaces/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+resource}:setIamPolicy",
+              "request": {
+                "$ref": "GoogleIamV1SetIamPolicyRequest"
+              },
+              "response": {
+                "$ref": "GoogleIamV1Policy"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "testIamPermissions": {
+              "description": "Callers don't need any permissions.",
+              "flatPath": "v1/organizations/{organizationsId}/spaces/{spacesId}:testIamPermissions",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.spaces.testIamPermissions",
+              "parameterOrder": [
+                "resource"
+              ],
+              "parameters": {
+                "resource": {
+                  "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/spaces/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+resource}:testIamPermissions",
+              "request": {
+                "$ref": "GoogleIamV1TestIamPermissionsRequest"
+              },
+              "response": {
+                "$ref": "GoogleIamV1TestIamPermissionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
         }
       }
     },
@@ -10385,7 +10778,7 @@
       }
     }
   },
-  "revision": "20241213",
+  "revision": "20250306",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -10739,6 +11132,30 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ApiDebugSession": {
+      "description": "Session carries the debug session id and its creation time.",
+      "id": "GoogleCloudApigeeV1ApiDebugSession",
+      "properties": {
+        "apiProxyRevisionId": {
+          "description": "The revision ID of the deployed API proxy.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "The first transaction creation timestamp in millisecond, recorded by UAP.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "environmentId": {
+          "description": "The environment ID of the deployed API proxy.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The debug session ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ApiDoc": {
       "description": "`ApiDoc` represents an API catalog item. Catalog items are used in two ways in a portal: - Users can browse and interact with a visual representation of the API documentation - The `api_product_name` field provides a link to a backing [API product] (/apigee/docs/reference/apis/apigee/rest/v1/organizations.apiproducts). Through this link, portal users can create and manage developer apps linked to one or more API products.",
       "id": "GoogleCloudApigeeV1ApiDoc",
@@ -11001,6 +11418,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "space": {
+          "description": "Optional. The resource ID of the parent Space. If not set, the parent resource will be the Organization. To learn how Spaces can be used to manage resources, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11072,6 +11493,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "space": {
+          "description": "Optional. The id of the space this proxy is associated with. Any IAM policies applied to the space will control access to this proxy. To learn how Spaces can be used to manage resources, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11745,13 +12170,13 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestIncludeAll": {
-      "description": "Message for include_all option.",
+      "description": "Message for include_all_resources option.",
       "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestIncludeAll",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray": {
-      "description": "An array of resource messages.",
+      "description": "Message for the array of resources. For Apigee, the proxies are resources.",
       "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray",
       "properties": {
         "resources": {
@@ -12649,6 +13074,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1Deployment": {
+      "description": "Deployment represents a deployment of an API proxy or shared flow.",
       "id": "GoogleCloudApigeeV1Deployment",
       "properties": {
         "apiProxy": {
@@ -13423,7 +13849,7 @@
           "type": "string"
         },
         "forwardProxyUri": {
-          "description": "Optional. URI of the forward proxy to be applied to the runtime instances in this environment. Must be in the format of {scheme}://{hostname}:{port}. Note that the scheme must be one of \"http\" or \"https\", and the port must be supplied. To remove a forward proxy setting, update the field to an empty value. Note: At this time, PUT operations to add forwardProxyUri to an existing environment fail if the environment has nodeConfig set up. To successfully add the forwardProxyUri setting in this case, include the NodeConfig details with the request.",
+          "description": "Optional. URI of the forward proxy to be applied to the runtime instances in this environment. Must be in the format of {scheme}://{hostname}:{port}. Note that the only supported scheme is \"http\". The port must be supplied. To remove a forward proxy setting, update the field to an empty value. Note: At this time, PUT operations to add forwardProxyUri to an existing environment fail if the environment has nodeConfig set up. To successfully add the forwardProxyUri setting in this case, include the NodeConfig details with the request.",
           "type": "string"
         },
         "hasAttachedFlowHooks": {
@@ -14477,6 +14903,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListApiDebugSessionsResponse": {
+      "description": "Response for ListApiDebugSessions.",
+      "id": "GoogleCloudApigeeV1ListApiDebugSessionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Page token that you can include in a ListApiDebugSessionsRequest to retrieve the next page. If omitted, no subsequent pages exist.",
+          "type": "string"
+        },
+        "sessions": {
+          "description": "Session info that includes debug session ID, environment ID, api proxy revision ID and the first transaction creation timestamp.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1ApiDebugSession"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListApiDocsResponse": {
       "id": "GoogleCloudApigeeV1ListApiDocsResponse",
       "properties": {
@@ -15066,6 +15510,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListSpacesResponse": {
+      "description": "A response to a ListSpaces request containing the list of organization spaces and a page token for the next page.",
+      "id": "GoogleCloudApigeeV1ListSpacesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "spaces": {
+          "description": "List of Apigee organization spaces.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Space"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListTraceConfigOverridesResponse": {
       "description": "Response for ListTraceConfigOverrides.",
       "id": "GoogleCloudApigeeV1ListTraceConfigOverridesResponse",
@@ -15175,6 +15637,39 @@
         "enabled": {
           "description": "Flag that specifies whether the Monetization add-on is enabled.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1MoveApiProductRequest": {
+      "description": "Moves API product to a different space.",
+      "id": "GoogleCloudApigeeV1MoveApiProductRequest",
+      "properties": {
+        "space": {
+          "description": "Optional. Resource ID of the space to move the API product to. If unspecified, the API product will be moved to the organization level.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1MoveApiProxyRequest": {
+      "description": "Moves an API Proxy to a different Space.",
+      "id": "GoogleCloudApigeeV1MoveApiProxyRequest",
+      "properties": {
+        "space": {
+          "description": "Optional. Resource ID of the space to move the proxy to. If unspecified, the proxy will be moved to the organization level.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1MoveSharedFlowRequest": {
+      "description": "Moves a Shared Flow to a different space.",
+      "id": "GoogleCloudApigeeV1MoveSharedFlowRequest",
+      "properties": {
+        "space": {
+          "description": "Optional. Resource ID of the space to move the shared flow to. If unspecified, the shared flow will be moved to the organization level.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -17362,7 +17857,6 @@
           "type": "integer"
         },
         "severity": {
-          "description": "The severity of the assessment.",
           "enum": [
             "SEVERITY_UNSPECIFIED",
             "LOW",
@@ -18067,6 +18561,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "space": {
+          "description": "Optional. The ID of the space associated with this shared flow. Any IAM policies applied to the space will control access to this shared flow. To learn how Spaces can be used to manage resources, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -18143,6 +18641,34 @@
         },
         "type": {
           "description": "The string \"Application\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1Space": {
+      "description": "Organization space resource.",
+      "id": "GoogleCloudApigeeV1Space",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Create timestamp of the space.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name of the space.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. Id of the space. This field is used as the resource name, and must follow [AIP-122](https://google.aip.dev/122) guidelines.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last modified timestamp of the space.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
