@@ -138,6 +138,82 @@ export namespace workloadmanager_v1 {
     parameters?: {[key: string]: string} | null;
   }
   /**
+   * The API layer server
+   */
+  export interface Schema$APILayerServer {
+    /**
+     * Output only. The api layer name
+     */
+    name?: string | null;
+    /**
+     * Output only. OS information
+     */
+    osVersion?: string | null;
+    /**
+     * Output only. resources in the component
+     */
+    resources?: Schema$CloudResource[];
+  }
+  /**
+   * The availability groups for sqlserver
+   */
+  export interface Schema$AvailabilityGroup {
+    /**
+     * Output only. The databases
+     */
+    databases?: string[] | null;
+    /**
+     * Output only. The availability group name
+     */
+    name?: string | null;
+    /**
+     * Output only. The primary server
+     */
+    primaryServer?: string | null;
+    /**
+     * Output only. The secondary servers
+     */
+    secondaryServers?: string[] | null;
+  }
+  /**
+   * The backend server
+   */
+  export interface Schema$BackendServer {
+    /**
+     * Output only. The backup file
+     */
+    backupFile?: string | null;
+    /**
+     * Output only. The backup schedule
+     */
+    backupSchedule?: string | null;
+    /**
+     * Output only. The backend name
+     */
+    name?: string | null;
+    /**
+     * Output only. OS information
+     */
+    osVersion?: string | null;
+    /**
+     * Output only. resources in the component
+     */
+    resources?: Schema$CloudResource[];
+  }
+  /**
+   * Backup properties.
+   */
+  export interface Schema$BackupProperties {
+    /**
+     * Output only. The state of the latest backup.
+     */
+    latestBackupStatus?: string | null;
+    /**
+     * The time when the latest backup was performed.
+     */
+    latestBackupTime?: string | null;
+  }
+  /**
    * Message describing big query destination
    */
   export interface Schema$BigQueryDestination {
@@ -155,6 +231,36 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * The resource on GCP
+   */
+  export interface Schema$CloudResource {
+    /**
+     * Output only. All instance properties.
+     */
+    instanceProperties?: Schema$InstanceProperties;
+    /**
+     * Output only. ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.
+     */
+    kind?: string | null;
+    /**
+     * Output only. resource name
+     */
+    name?: string | null;
+  }
+  /**
+   * The cluster for sqlserver
+   */
+  export interface Schema$Cluster {
+    /**
+     * Output only. The nodes
+     */
+    nodes?: string[] | null;
+    /**
+     * Output only. The witness server
+     */
+    witnessServer?: string | null;
+  }
+  /**
    * * Command specifies the type of command to execute.
    */
   export interface Schema$Command {
@@ -166,6 +272,69 @@ export namespace workloadmanager_v1 {
      * ShellCommand is invoked via the agent's command line executor.
      */
     shellCommand?: Schema$ShellCommand;
+  }
+  /**
+   * HealthCondition contains the detailed health check of each component.
+   */
+  export interface Schema$ComponentHealth {
+    /**
+     * The component of a workload.
+     */
+    component?: string | null;
+    /**
+     * The detailed health checks of the component.
+     */
+    componentHealthChecks?: Schema$HealthCheck[];
+    /**
+     * Output only. The type of the component health.
+     */
+    componentHealthType?: string | null;
+    /**
+     * Output only. The requirement of the component.
+     */
+    isRequired?: boolean | null;
+    /**
+     * Output only. The health state of the component.
+     */
+    state?: string | null;
+    /**
+     * Sub component health.
+     */
+    subComponentHealthes?: Schema$ComponentHealth[];
+  }
+  /**
+   * The database for sqlserver
+   */
+  export interface Schema$Database {
+    /**
+     * Output only. The backup file
+     */
+    backupFile?: string | null;
+    /**
+     * Output only. The backup schedule
+     */
+    backupSchedule?: string | null;
+    /**
+     * Output only. The host VM
+     */
+    hostVm?: string | null;
+    /**
+     * Output only. The database name
+     */
+    name?: string | null;
+  }
+  /**
+   * Database Properties.
+   */
+  export interface Schema$DatabaseProperties {
+    /**
+     * Output only. Backup properties.
+     */
+    backupProperties?: Schema$BackupProperties;
+    /**
+     * Output only. Type of the database. HANA, DB2, etc.
+     */
+    databaseType?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -340,6 +509,23 @@ export namespace workloadmanager_v1 {
     uri?: string | null;
   }
   /**
+   * The front end server
+   */
+  export interface Schema$FrontEndServer {
+    /**
+     * Output only. The frontend name
+     */
+    name?: string | null;
+    /**
+     * Output only. OS information
+     */
+    osVersion?: string | null;
+    /**
+     * Output only. resources in the component
+     */
+    resources?: Schema$CloudResource[];
+  }
+  /**
    * Message describing compute engine instance filter
    */
   export interface Schema$GceInstanceFilter {
@@ -347,6 +533,31 @@ export namespace workloadmanager_v1 {
      * Service account of compute engine
      */
     serviceAccounts?: string[] | null;
+  }
+  /**
+   * HealthCheck contains the detailed health check of a component based on asource.
+   */
+  export interface Schema$HealthCheck {
+    /**
+     * Output only. The message of the health check.
+     */
+    message?: string | null;
+    /**
+     * Output only. The health check source metric name.
+     */
+    metric?: string | null;
+    /**
+     * Output only. The resource the check performs on.
+     */
+    resource?: Schema$CloudResource;
+    /**
+     * Output only. The source of the health check.
+     */
+    source?: string | null;
+    /**
+     * Output only. The state of the health check.
+     */
+    state?: string | null;
   }
   /**
    * A presentation of host resource usage where the workload runs.
@@ -376,6 +587,94 @@ export namespace workloadmanager_v1 {
      * The insights data for workload validation of torso workloads.
      */
     torsoValidation?: Schema$TorsoValidation;
+  }
+  /**
+   * a vm instance
+   */
+  export interface Schema$Instance {
+    /**
+     * Output only. name of the VM
+     */
+    name?: string | null;
+    /**
+     * Output only. The location of the VM
+     */
+    region?: string | null;
+    /**
+     * Output only. The state of the VM
+     */
+    status?: string | null;
+  }
+  /**
+   * Instance Properties.
+   */
+  export interface Schema$InstanceProperties {
+    /**
+     * Optional. Instance number.
+     */
+    instanceNumber?: string | null;
+    /**
+     * Optional. Instance machine type.
+     */
+    machineType?: string | null;
+    /**
+     * Optional. Instance role.
+     */
+    role?: string | null;
+    /**
+     * Optional. Instance roles.
+     */
+    roles?: string[] | null;
+    /**
+     * Optional. SAP Instance properties.
+     */
+    sapInstanceProperties?: Schema$SapInstanceProperties;
+    /**
+     * Optional. Instance status.
+     */
+    status?: string | null;
+    /**
+     * Optional. the next maintenance event on VM
+     */
+    upcomingMaintenanceEvent?: Schema$UpcomingMaintenanceEvent;
+  }
+  /**
+   * The database layer
+   */
+  export interface Schema$Layer {
+    /**
+     * the application layer
+     */
+    applicationType?: string | null;
+    /**
+     * Optional. the database layer
+     */
+    databaseType?: string | null;
+    /**
+     * Optional. instances in a layer
+     */
+    instances?: Schema$Instance[];
+    /**
+     * Output only. system identification of a layer
+     */
+    sid?: string | null;
+  }
+  /**
+   * List discovered profile Response returns discovered profiles from agents
+   */
+  export interface Schema$ListDiscoveredProfilesResponse {
+    /**
+     * Output only. A token identifying a page of results the server should return
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+    /**
+     * Output only. The list of workload profiles
+     */
+    workloadProfiles?: Schema$WorkloadProfile[];
   }
   /**
    * Message for response to listing Evaluations
@@ -477,6 +776,19 @@ export namespace workloadmanager_v1 {
     scannedResources?: Schema$ScannedResource[];
   }
   /**
+   * The load balancer for sqlserver
+   */
+  export interface Schema$LoadBalancerServer {
+    /**
+     * Output only. The IP address
+     */
+    ip?: string | null;
+    /**
+     * Output only. The VM name
+     */
+    vm?: string | null;
+  }
+  /**
    * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
@@ -567,6 +879,19 @@ export namespace workloadmanager_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Product contains the details of a product.
+   */
+  export interface Schema$Product {
+    /**
+     * Optional. Name of the product.
+     */
+    name?: string | null;
+    /**
+     * Optional. Version of the product.
+     */
+    version?: string | null;
   }
   /**
    * Message represent resource in execution result
@@ -709,6 +1034,31 @@ export namespace workloadmanager_v1 {
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
+  }
+  /**
+   * The component of sap workload
+   */
+  export interface Schema$SapComponent {
+    /**
+     * Output only. All instance properties.
+     */
+    databaseProperties?: Schema$DatabaseProperties;
+    /**
+     * A list of host URIs that are part of the HA configuration if present. An empty list indicates the component is not configured for HA.
+     */
+    haHosts?: string[] | null;
+    /**
+     * Output only. resources in the component
+     */
+    resources?: Schema$CloudResource[];
+    /**
+     * Output only. sid is the sap component identificator
+     */
+    sid?: string | null;
+    /**
+     * The detected topology of the component.
+     */
+    topologyType?: string | null;
   }
   /**
    * The schema of SAP system discovery data.
@@ -934,6 +1284,10 @@ export namespace workloadmanager_v1 {
      */
     clusterInstances?: string[] | null;
     /**
+     * Optional. Disk mounts on the instance.
+     */
+    diskMounts?: Schema$SapDiscoveryResourceInstancePropertiesDiskMount[];
+    /**
      * Optional. The VM's instance number.
      */
     instanceNumber?: string | null;
@@ -962,6 +1316,19 @@ export namespace workloadmanager_v1 {
      * Optional. Instance number of the SAP application instance.
      */
     number?: string | null;
+  }
+  /**
+   * Disk mount on the instance.
+   */
+  export interface Schema$SapDiscoveryResourceInstancePropertiesDiskMount {
+    /**
+     * Optional. Filesystem mount point.
+     */
+    mountPoint?: string | null;
+    /**
+     * Optional. Name of the disk.
+     */
+    name?: string | null;
   }
   /**
    * A set of properties describing an SAP workload.
@@ -1011,6 +1378,15 @@ export namespace workloadmanager_v1 {
     version?: string | null;
   }
   /**
+   * SAP instance properties.
+   */
+  export interface Schema$SapInstanceProperties {
+    /**
+     * Optional. SAP Instance numbers. They are from '00' to '99'.
+     */
+    numbers?: string[] | null;
+  }
+  /**
    * A presentation of SAP workload insight. The schema of SAP workloads validation related data.
    */
   export interface Schema$SapValidation {
@@ -1043,6 +1419,31 @@ export namespace workloadmanager_v1 {
      * Optional. The SAP system that the validation data is from.
      */
     sapValidationType?: string | null;
+  }
+  /**
+   * The body of sap workload
+   */
+  export interface Schema$SapWorkload {
+    /**
+     * Output only. the acsc componment
+     */
+    application?: Schema$SapComponent;
+    /**
+     * Output only. the architecture
+     */
+    architecture?: string | null;
+    /**
+     * Output only. the database componment
+     */
+    database?: Schema$SapComponent;
+    /**
+     * Output only. The metadata for SAP workload.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Output only. the products on this workload.
+     */
+    products?: Schema$Product[];
   }
   /**
    * Message of scanned resource
@@ -1118,6 +1519,27 @@ export namespace workloadmanager_v1 {
     type?: string | null;
   }
   /**
+   * The body of sqlserver workload
+   */
+  export interface Schema$SqlserverWorkload {
+    /**
+     * Output only. The availability groups for sqlserver
+     */
+    ags?: Schema$AvailabilityGroup[];
+    /**
+     * Output only. The cluster for sqlserver
+     */
+    cluster?: Schema$Cluster;
+    /**
+     * Output only. The databases for sqlserver
+     */
+    databases?: Schema$Database[];
+    /**
+     * Output only. The load balancer for sqlserver
+     */
+    loadBalancerServer?: Schema$LoadBalancerServer;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1152,6 +1574,27 @@ export namespace workloadmanager_v1 {
     newFixes?: string | null;
   }
   /**
+   * The body of three tier workload
+   */
+  export interface Schema$ThreeTierWorkload {
+    /**
+     * Output only. The API layer for three tier workload
+     */
+    apiLayer?: Schema$APILayerServer;
+    /**
+     * Output only. The backend for three tier workload
+     */
+    backend?: Schema$BackendServer;
+    /**
+     * Output only. the workload endpoint
+     */
+    endpoint?: string | null;
+    /**
+     * Output only. The frontend for three tier workload
+     */
+    frontend?: Schema$FrontEndServer;
+  }
+  /**
    * The schema of torso workload validation data.
    */
   export interface Schema$TorsoValidation {
@@ -1177,6 +1620,27 @@ export namespace workloadmanager_v1 {
     workloadType?: string | null;
   }
   /**
+   * Maintenance Event
+   */
+  export interface Schema$UpcomingMaintenanceEvent {
+    /**
+     * Optional. End time
+     */
+    endTime?: string | null;
+    /**
+     * Optional. Maintenance status
+     */
+    maintenanceStatus?: string | null;
+    /**
+     * Optional. Start time
+     */
+    startTime?: string | null;
+    /**
+     * Optional. Type
+     */
+    type?: string | null;
+  }
+  /**
    * Message describing the violation in an evaluation result.
    */
   export interface Schema$ViolationDetails {
@@ -1192,6 +1656,72 @@ export namespace workloadmanager_v1 {
      * The service account associated with the resource.
      */
     serviceAccount?: string | null;
+  }
+  /**
+   * workload resource
+   */
+  export interface Schema$WorkloadProfile {
+    /**
+     * Optional. The application layer
+     */
+    application?: Schema$Layer;
+    /**
+     * Optional. The ascs layer
+     */
+    ascs?: Schema$Layer;
+    /**
+     * Optional. The database layer
+     */
+    database?: Schema$Layer;
+    /**
+     * Optional. such as name, description, version. More example can be found in deployment
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. name of resource names have the form 'projects/{project_id\}/workloads/{workload_id\}'
+     */
+    name?: string | null;
+    /**
+     * Required. time when the workload data was refreshed
+     */
+    refreshedTime?: string | null;
+    /**
+     * The sap workload content
+     */
+    sapWorkload?: Schema$SapWorkload;
+    /**
+     * The sqlserver workload content
+     */
+    sqlserverWorkload?: Schema$SqlserverWorkload;
+    /**
+     * Output only. [output only] the current state if a a workload
+     */
+    state?: string | null;
+    /**
+     * The 3 tier web app workload content
+     */
+    threeTierWorkload?: Schema$ThreeTierWorkload;
+    /**
+     * Required. The type of the workload
+     */
+    workloadType?: string | null;
+  }
+  /**
+   * WorkloadProfileHealth contains the detailed health check of workload.
+   */
+  export interface Schema$WorkloadProfileHealth {
+    /**
+     * The time when the health check was performed.
+     */
+    checkTime?: string | null;
+    /**
+     * The detailed condition reports of each component.
+     */
+    componentHealthes?: Schema$ComponentHealth[];
+    /**
+     * Output only. The health state of the workload.
+     */
+    state?: string | null;
   }
   /**
    * Request for sending the data insights.
@@ -1226,12 +1756,15 @@ export namespace workloadmanager_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    discoveredprofiles: Resource$Projects$Locations$Discoveredprofiles;
     evaluations: Resource$Projects$Locations$Evaluations;
     insights: Resource$Projects$Locations$Insights;
     operations: Resource$Projects$Locations$Operations;
     rules: Resource$Projects$Locations$Rules;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.discoveredprofiles =
+        new Resource$Projects$Locations$Discoveredprofiles(this.context);
       this.evaluations = new Resource$Projects$Locations$Evaluations(
         this.context
       );
@@ -1448,6 +1981,338 @@ export namespace workloadmanager_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Discoveredprofiles {
+    context: APIRequestContext;
+    healthes: Resource$Projects$Locations$Discoveredprofiles$Healthes;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.healthes =
+        new Resource$Projects$Locations$Discoveredprofiles$Healthes(
+          this.context
+        );
+    }
+
+    /**
+     * Gets details of a discovered workload profile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkloadProfile>;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkloadProfile>,
+      callback: BodyResponseCallback<Schema$WorkloadProfile>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
+      callback: BodyResponseCallback<Schema$WorkloadProfile>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$WorkloadProfile>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredprofiles$Get
+        | BodyResponseCallback<Schema$WorkloadProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkloadProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkloadProfile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkloadProfile> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredprofiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkloadProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkloadProfile>(parameters);
+      }
+    }
+
+    /**
+     * List discovered workload profiles
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredprofiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Discoveredprofiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDiscoveredProfilesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDiscoveredProfilesResponse>,
+      callback: BodyResponseCallback<Schema$ListDiscoveredProfilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredprofiles$List,
+      callback: BodyResponseCallback<Schema$ListDiscoveredProfilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDiscoveredProfilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredprofiles$List
+        | BodyResponseCallback<Schema$ListDiscoveredProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDiscoveredProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDiscoveredProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDiscoveredProfilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredprofiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/discoveredprofiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDiscoveredProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDiscoveredProfilesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Discoveredprofiles$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveredprofiles$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListDiscoveredProfilesRequest
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Discoveredprofiles$Healthes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get the health of a discovered workload profile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkloadProfileHealth>;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkloadProfileHealth>,
+      callback: BodyResponseCallback<Schema$WorkloadProfileHealth>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
+      callback: BodyResponseCallback<Schema$WorkloadProfileHealth>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$WorkloadProfileHealth>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get
+        | BodyResponseCallback<Schema$WorkloadProfileHealth>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkloadProfileHealth>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkloadProfileHealth>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$WorkloadProfileHealth>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkloadProfileHealth>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkloadProfileHealth>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Evaluations {
@@ -2579,6 +3444,92 @@ export namespace workloadmanager_v1 {
     }
 
     /**
+     * Delete the data insights from workload manager data warehouse.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Insights$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Insights$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Insights$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Insights$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Insights$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Insights$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Insights$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Insights$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Write the data insights to workload manager data warehouse.
      *
      * @param params - Parameters for request
@@ -2675,6 +3626,17 @@ export namespace workloadmanager_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Insights$Delete
+    extends StandardParameters {
+    /**
+     * Required. The system id of the SAP system resource to delete. Formatted as projects/{project\}/locations/{location\}/sapSystems/{sap_system_id\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
   export interface Params$Resource$Projects$Locations$Insights$Writeinsight
     extends StandardParameters {
     /**
@@ -3198,6 +4160,10 @@ export namespace workloadmanager_v1 {
      * The Cloud Storage bucket name for custom rules.
      */
     customRulesBucket?: string;
+    /**
+     * Optional. The evaluation type of the rules will be applied to. The Cloud Storage bucket name for custom rules.
+     */
+    evaluationType?: string;
     /**
      * Filter based on primary_category, secondary_category
      */
