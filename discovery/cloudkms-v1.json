@@ -1615,6 +1615,21 @@
                               "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+/cryptoKeyVersions/[^/]+$",
                               "required": true,
                               "type": "string"
+                            },
+                            "publicKeyFormat": {
+                              "description": "Optional. The PublicKey format specified by the user. This field is required for PQC algorithms. If specified, the public key will be exported through the public_key field in the requested format. Otherwise, the pem field will be populated for non-PQC algorithms, and an error will be returned for PQC algorithms.",
+                              "enum": [
+                                "PUBLIC_KEY_FORMAT_UNSPECIFIED",
+                                "PEM",
+                                "NIST_PQC"
+                              ],
+                              "enumDescriptions": [
+                                "If the public_key_format field is not specified: - For PQC algorithms, an error will be returned. - For non-PQC algorithms, the default format is PEM, and the field pem will be populated. Otherwise, the public key will be exported through the public_key field in the requested format.",
+                                "The returned public key will be encoded in PEM format. See the [RFC7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13) for more information.",
+                                "This is supported only for PQC algorithms. The key material is returned in the format defined by NIST PQC standards (FIPS 203, FIPS 204, and FIPS 205)."
+                              ],
+                              "location": "query",
+                              "type": "string"
                             }
                           },
                           "path": "v1/{+name}/publicKey",
@@ -2137,7 +2152,7 @@
       }
     }
   },
-  "revision": "20250102",
+  "revision": "20250227",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -2456,6 +2471,23 @@
       },
       "type": "object"
     },
+    "ChecksummedData": {
+      "description": "Data with integrity verification field.",
+      "id": "ChecksummedData",
+      "properties": {
+        "crc32cChecksum": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned ChecksummedData.data. An integrity check of ChecksummedData.data can be performed by computing the CRC32C checksum of ChecksummedData.data and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed `2^32-1`, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "data": {
+          "description": "Raw Data.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CryptoKey": {
       "description": "A CryptoKey represents a logical key that can be used for cryptographic operations. A CryptoKey is made up of zero or more versions, which represent the actual key material used in cryptographic operations.",
       "id": "CryptoKey",
@@ -2579,7 +2611,9 @@
             "HMAC_SHA384",
             "HMAC_SHA512",
             "HMAC_SHA224",
-            "EXTERNAL_SYMMETRIC_ENCRYPTION"
+            "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_SLH_DSA_SHA2_128S"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -2617,7 +2651,9 @@
             "HMAC-SHA384 signing with a 384 bit key.",
             "HMAC-SHA512 signing with a 512 bit key.",
             "HMAC-SHA224 signing with a 224 bit key.",
-            "Algorithm representing symmetric encryption by an external key manager."
+            "Algorithm representing symmetric encryption by an external key manager.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version."
           ],
           "readOnly": true,
           "type": "string"
@@ -2730,7 +2766,7 @@
             "This version is still being generated. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
             "This version may be used for cryptographic operations.",
             "This version may not be used, but the key material is still available, and the version can be placed back into the ENABLED state.",
-            "This version is destroyed, and the key material is no longer stored. This version may only become ENABLED again if this version is reimport_eligible and the original key material is reimported with a call to KeyManagementService.ImportCryptoKeyVersion.",
+            "This key material of this version is destroyed and no longer stored. This version may only become ENABLED again if this version is reimport_eligible and the original key material is reimported with a call to KeyManagementService.ImportCryptoKeyVersion.",
             "This version is scheduled for destruction, and will be destroyed soon. Call RestoreCryptoKeyVersion to put it back into the DISABLED state.",
             "This version is still being imported. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
             "This version was not imported successfully. It may not be used, enabled, disabled, or destroyed. The submitted key material has been discarded. Additional details can be found in CryptoKeyVersion.import_failure_reason.",
@@ -2785,7 +2821,9 @@
             "HMAC_SHA384",
             "HMAC_SHA512",
             "HMAC_SHA224",
-            "EXTERNAL_SYMMETRIC_ENCRYPTION"
+            "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_SLH_DSA_SHA2_128S"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -2823,7 +2861,9 @@
             "HMAC-SHA384 signing with a 384 bit key.",
             "HMAC-SHA512 signing with a 512 bit key.",
             "HMAC-SHA224 signing with a 224 bit key.",
-            "Algorithm representing symmetric encryption by an external key manager."
+            "Algorithm representing symmetric encryption by an external key manager.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version."
           ],
           "type": "string"
         },
@@ -3206,7 +3246,9 @@
             "HMAC_SHA384",
             "HMAC_SHA512",
             "HMAC_SHA224",
-            "EXTERNAL_SYMMETRIC_ENCRYPTION"
+            "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_SLH_DSA_SHA2_128S"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -3244,7 +3286,9 @@
             "HMAC-SHA384 signing with a 384 bit key.",
             "HMAC-SHA512 signing with a 512 bit key.",
             "HMAC-SHA224 signing with a 224 bit key.",
-            "Algorithm representing symmetric encryption by an external key manager."
+            "Algorithm representing symmetric encryption by an external key manager.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version."
           ],
           "type": "string"
         },
@@ -3925,7 +3969,9 @@
             "HMAC_SHA384",
             "HMAC_SHA512",
             "HMAC_SHA224",
-            "EXTERNAL_SYMMETRIC_ENCRYPTION"
+            "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_SLH_DSA_SHA2_128S"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -3963,7 +4009,9 @@
             "HMAC-SHA384 signing with a 384 bit key.",
             "HMAC-SHA512 signing with a 512 bit key.",
             "HMAC-SHA224 signing with a 224 bit key.",
-            "Algorithm representing symmetric encryption by an external key manager."
+            "Algorithm representing symmetric encryption by an external key manager.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version."
           ],
           "type": "string"
         },
@@ -3976,7 +4024,7 @@
           "type": "string"
         },
         "pemCrc32c": {
-          "description": "Integrity verification field. A CRC32C checksum of the returned PublicKey.pem. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
+          "description": "Integrity verification field. A CRC32C checksum of the returned PublicKey.pem. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed `2^32-1`, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         },
@@ -3995,6 +4043,24 @@
             "Crypto operations are performed in a Hardware Security Module.",
             "Crypto operations are performed by an external key manager.",
             "Crypto operations are performed in an EKM-over-VPC backend."
+          ],
+          "type": "string"
+        },
+        "publicKey": {
+          "$ref": "ChecksummedData",
+          "description": "This field contains the public key (with integrity verification), formatted according to the public_key_format field."
+        },
+        "publicKeyFormat": {
+          "description": "The PublicKey format specified by the customer through the public_key_format field.",
+          "enum": [
+            "PUBLIC_KEY_FORMAT_UNSPECIFIED",
+            "PEM",
+            "NIST_PQC"
+          ],
+          "enumDescriptions": [
+            "If the public_key_format field is not specified: - For PQC algorithms, an error will be returned. - For non-PQC algorithms, the default format is PEM, and the field pem will be populated. Otherwise, the public key will be exported through the public_key field in the requested format.",
+            "The returned public key will be encoded in PEM format. See the [RFC7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13) for more information.",
+            "This is supported only for PQC algorithms. The key material is returned in the format defined by NIST PQC standards (FIPS 203, FIPS 204, and FIPS 205)."
           ],
           "type": "string"
         }
