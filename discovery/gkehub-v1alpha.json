@@ -2255,7 +2255,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250302",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2956,6 +2956,13 @@
       "description": "Configuration for Config Sync",
       "id": "ConfigManagementConfigSync",
       "properties": {
+        "deploymentOverrides": {
+          "description": "Optional. Configuration for deployment overrides.",
+          "items": {
+            "$ref": "ConfigManagementDeploymentOverride"
+          },
+          "type": "array"
+        },
         "enabled": {
           "description": "Optional. Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of the git or oci field.",
           "type": "boolean"
@@ -3316,6 +3323,55 @@
         },
         "syncer": {
           "description": "Version of the deployed syncer pod",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementContainerOverride": {
+      "description": "Configuration for a container override.",
+      "id": "ConfigManagementContainerOverride",
+      "properties": {
+        "containerName": {
+          "description": "Required. The name of the container.",
+          "type": "string"
+        },
+        "cpuLimit": {
+          "description": "Optional. The cpu limit of the container.",
+          "type": "string"
+        },
+        "cpuRequest": {
+          "description": "Optional. The cpu request of the container.",
+          "type": "string"
+        },
+        "memoryLimit": {
+          "description": "Optional. The memory limit of the container.",
+          "type": "string"
+        },
+        "memoryRequest": {
+          "description": "Optional. The memory request of the container.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementDeploymentOverride": {
+      "description": "Configuration for a deployment override.",
+      "id": "ConfigManagementDeploymentOverride",
+      "properties": {
+        "containers": {
+          "description": "Optional. The containers of the deployment resource to be overridden.",
+          "items": {
+            "$ref": "ConfigManagementContainerOverride"
+          },
+          "type": "array"
+        },
+        "deploymentName": {
+          "description": "Required. The name of the deployment resource to be overridden.",
+          "type": "string"
+        },
+        "deploymentNamespace": {
+          "description": "Required. The namespace of the deployment resource to be overridden..",
           "type": "string"
         }
       },
@@ -6723,7 +6779,7 @@
       "type": "object"
     },
     "ServiceMeshCondition": {
-      "description": "Condition being reported.",
+      "description": "Condition being reported. TODO b/395151419: Remove this message once the membership-level conditions field uses the common Condition message.",
       "id": "ServiceMeshCondition",
       "properties": {
         "code": {
@@ -6764,7 +6820,8 @@
             "MODERNIZATION_SCHEDULED",
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
-            "MODERNIZATION_ABORTED"
+            "MODERNIZATION_ABORTED",
+            "MODERNIZATION_WILL_BE_SCHEDULED"
           ],
           "enumDescriptions": [
             "Default Unspecified code",
@@ -6802,7 +6859,8 @@
             "Modernization is scheduled for a cluster.",
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
-            "Modernization is aborted for a cluster."
+            "Modernization is aborted for a cluster.",
+            "Modernization will be scheduled for a fleet."
           ],
           "type": "string"
         },
@@ -6926,6 +6984,119 @@
       },
       "type": "object"
     },
+    "ServiceMeshFeatureCondition": {
+      "description": "Condition being reported. TODO b/395151419: This message should be used to replace the membership-level Condition message.",
+      "id": "ServiceMeshFeatureCondition",
+      "properties": {
+        "code": {
+          "description": "Unique identifier of the condition which describes the condition recognizable to the user.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "MESH_IAM_PERMISSION_DENIED",
+            "MESH_IAM_CROSS_PROJECT_PERMISSION_DENIED",
+            "CNI_CONFIG_UNSUPPORTED",
+            "GKE_SANDBOX_UNSUPPORTED",
+            "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
+            "CNI_INSTALLATION_FAILED",
+            "CNI_POD_UNSCHEDULABLE",
+            "CLUSTER_HAS_ZERO_NODES",
+            "CANONICAL_SERVICE_ERROR",
+            "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
+            "VPCSC_GA_SUPPORTED",
+            "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
+            "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT_SAFE",
+            "CONFIG_APPLY_INTERNAL_ERROR",
+            "CONFIG_VALIDATION_ERROR",
+            "CONFIG_VALIDATION_WARNING",
+            "QUOTA_EXCEEDED_BACKEND_SERVICES",
+            "QUOTA_EXCEEDED_HEALTH_CHECKS",
+            "QUOTA_EXCEEDED_HTTP_ROUTES",
+            "QUOTA_EXCEEDED_TCP_ROUTES",
+            "QUOTA_EXCEEDED_TLS_ROUTES",
+            "QUOTA_EXCEEDED_TRAFFIC_POLICIES",
+            "QUOTA_EXCEEDED_ENDPOINT_POLICIES",
+            "QUOTA_EXCEEDED_GATEWAYS",
+            "QUOTA_EXCEEDED_MESHES",
+            "QUOTA_EXCEEDED_SERVER_TLS_POLICIES",
+            "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES",
+            "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
+            "QUOTA_EXCEEDED_HTTP_FILTERS",
+            "QUOTA_EXCEEDED_TCP_FILTERS",
+            "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+            "MODERNIZATION_SCHEDULED",
+            "MODERNIZATION_IN_PROGRESS",
+            "MODERNIZATION_COMPLETED",
+            "MODERNIZATION_ABORTED",
+            "MODERNIZATION_WILL_BE_SCHEDULED"
+          ],
+          "enumDescriptions": [
+            "Default Unspecified code",
+            "Mesh IAM permission denied error code",
+            "Permission denied error code for cross-project",
+            "CNI config unsupported error code",
+            "GKE sandbox unsupported error code",
+            "Nodepool workload identity federation required error code",
+            "CNI installation failed error code",
+            "CNI pod unschedulable error code",
+            "Cluster has zero node code",
+            "Failure to reconcile CanonicalServices",
+            "Multiple control planes unsupported error code",
+            "VPC-SC GA is supported for this control plane.",
+            "User is using deprecated ControlPlaneManagement and they have not yet set Management.",
+            "User is using deprecated ControlPlaneManagement and they have already set Management.",
+            "Configuration (Istio/k8s resources) failed to apply due to internal error.",
+            "Configuration failed to be applied due to being invalid.",
+            "Encountered configuration(s) with possible unintended behavior or invalid configuration. These configs may not have been applied.",
+            "BackendService quota exceeded error code.",
+            "HealthCheck quota exceeded error code.",
+            "HTTPRoute quota exceeded error code.",
+            "TCPRoute quota exceeded error code.",
+            "TLS routes quota exceeded error code.",
+            "TrafficPolicy quota exceeded error code.",
+            "EndpointPolicy quota exceeded error code.",
+            "Gateway quota exceeded error code.",
+            "Mesh quota exceeded error code.",
+            "ServerTLSPolicy quota exceeded error code.",
+            "ClientTLSPolicy quota exceeded error code.",
+            "ServiceLBPolicy quota exceeded error code.",
+            "HTTPFilter quota exceeded error code.",
+            "TCPFilter quota exceeded error code.",
+            "NetworkEndpointGroup quota exceeded error code.",
+            "Modernization is scheduled for a cluster.",
+            "Modernization is in progress for a cluster.",
+            "Modernization is completed for a cluster.",
+            "Modernization is aborted for a cluster.",
+            "Modernization will be scheduled for a fleet."
+          ],
+          "type": "string"
+        },
+        "details": {
+          "description": "A short summary about the issue.",
+          "type": "string"
+        },
+        "documentationLink": {
+          "description": "Links contains actionable information.",
+          "type": "string"
+        },
+        "severity": {
+          "description": "Severity level of the condition.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "ERROR",
+            "WARNING",
+            "INFO"
+          ],
+          "enumDescriptions": [
+            "Unspecified severity",
+            "Indicates an issue that prevents the mesh from operating correctly",
+            "Indicates a setting is likely wrong, but the mesh is still able to operate",
+            "An informational message, not requiring any action"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServiceMeshFeatureState": {
       "description": "**Service Mesh**: State for the whole Hub, as analyzed by the Service Mesh Hub Controller.",
       "id": "ServiceMeshFeatureState",
@@ -6934,6 +7105,14 @@
           "description": "Output only. Results of running Service Mesh analyzers.",
           "items": {
             "$ref": "ServiceMeshAnalysisMessage"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "conditions": {
+          "description": "Output only. List of conditions reported for this feature.",
+          "items": {
+            "$ref": "ServiceMeshFeatureCondition"
           },
           "readOnly": true,
           "type": "array"
@@ -7021,7 +7200,7 @@
           "type": "array"
         },
         "conditions": {
-          "description": "Output only. List of conditions reported for this membership.",
+          "description": "Output only. List of conditions reported for this membership. TODO b/395151419: Use the common Condition message.",
           "items": {
             "$ref": "ServiceMeshCondition"
           },
