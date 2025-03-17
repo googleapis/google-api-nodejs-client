@@ -264,6 +264,10 @@ export namespace identitytoolkit_v2 {
      */
     client?: Schema$GoogleCloudIdentitytoolkitAdminV2ClientConfig;
     /**
+     * Output only. Default Firebase hosting site name
+     */
+    defaultHostingSite?: string | null;
+    /**
      * Configuration for settings related to email privacy and public visibility.
      */
     emailPrivacyConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig;
@@ -271,6 +275,10 @@ export namespace identitytoolkit_v2 {
      * Configuration for this project's multi-factor authentication, including whether it is active and what factors can be used for the second factor
      */
     mfa?: Schema$GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig;
+    /**
+     * Configuration for settings related to univeral links (iOS) and app links (Android).
+     */
+    mobileLinksConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig;
     /**
      * Configuration related to monitoring project activity.
      */
@@ -637,6 +645,15 @@ export namespace identitytoolkit_v2 {
      * A list of tenants under the given agent project.
      */
     tenants?: Schema$GoogleCloudIdentitytoolkitAdminV2Tenant[];
+  }
+  /**
+   * Configuration mobile links.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig {
+    /**
+     * Open code in app domain to use for app links and universal links.
+     */
+    domain?: string | null;
   }
   /**
    * Configuration related to monitoring project activity.
@@ -1136,6 +1153,10 @@ export namespace identitytoolkit_v2 {
      * The tenant-level configuration of MFA options.
      */
     mfaConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig;
+    /**
+     * Optional. Deprecated. Never launched. Configuration for settings related to univeral links (iOS) and app links (Android).
+     */
+    mobileLinksConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig;
     /**
      * Configuration related to monitoring project activity.
      */
