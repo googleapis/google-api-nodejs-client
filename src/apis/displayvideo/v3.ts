@@ -125,6 +125,7 @@ export namespace displayvideo_v3 {
     media: Resource$Media;
     partners: Resource$Partners;
     sdfdownloadtasks: Resource$Sdfdownloadtasks;
+    sdfuploadtasks: Resource$Sdfuploadtasks;
     targetingTypes: Resource$Targetingtypes;
     users: Resource$Users;
 
@@ -152,6 +153,7 @@ export namespace displayvideo_v3 {
       this.media = new Resource$Media(this.context);
       this.partners = new Resource$Partners(this.context);
       this.sdfdownloadtasks = new Resource$Sdfdownloadtasks(this.context);
+      this.sdfuploadtasks = new Resource$Sdfuploadtasks(this.context);
       this.targetingTypes = new Resource$Targetingtypes(this.context);
       this.users = new Resource$Users(this.context);
     }
@@ -756,11 +758,11 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$AssetAssociation {
     /**
-     * The associated asset.
+     * Optional. The associated asset.
      */
     asset?: Schema$Asset;
     /**
-     * The role of this asset for the creative.
+     * Optional. The role of this asset for the creative.
      */
     role?: string | null;
   }
@@ -1037,31 +1039,31 @@ export namespace displayvideo_v3 {
     userRole?: string | null;
   }
   /**
-   * Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is used as an INTERSECTION with other groups. NEXT_ID: 9
+   * Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is used as an INTERSECTION with other groups.
    */
   export interface Schema$AudienceGroupAssignedTargetingOptionDetails {
     /**
-     * The first and third party audience ids and recencies of the excluded first and third party audience group. Used for negative targeting. The COMPLEMENT of the UNION of this group and other excluded audience groups is used as an INTERSECTION to any positive audience targeting. All items are logically ‘OR’ of each other.
+     * Optional. The first and third party audience ids and recencies of the excluded first and third party audience group. Used for negative targeting. The COMPLEMENT of the UNION of this group and other excluded audience groups is used as an INTERSECTION to any positive audience targeting. All items are logically ‘OR’ of each other.
      */
     excludedFirstAndThirdPartyAudienceGroup?: Schema$FirstAndThirdPartyAudienceGroup;
     /**
-     * The Google audience ids of the excluded Google audience group. Used for negative targeting. The COMPLEMENT of the UNION of this group and other excluded audience groups is used as an INTERSECTION to any positive audience targeting. Only contains Affinity, In-market and Installed-apps type Google audiences. All items are logically ‘OR’ of each other.
+     * Optional. The Google audience ids of the excluded Google audience group. Used for negative targeting. The COMPLEMENT of the UNION of this group and other excluded audience groups is used as an INTERSECTION to any positive audience targeting. Only contains Affinity, In-market and Installed-apps type Google audiences. All items are logically ‘OR’ of each other.
      */
     excludedGoogleAudienceGroup?: Schema$GoogleAudienceGroup;
     /**
-     * The combined audience ids of the included combined audience group. Contains combined audience ids only.
+     * Optional. The combined audience ids of the included combined audience group. Contains combined audience ids only.
      */
     includedCombinedAudienceGroup?: Schema$CombinedAudienceGroup;
     /**
-     * The custom list ids of the included custom list group. Contains custom list ids only.
+     * Optional. The custom list ids of the included custom list group. Contains custom list ids only.
      */
     includedCustomListGroup?: Schema$CustomListGroup;
     /**
-     * The first and third party audience ids and recencies of included first and third party audience groups. Each first and third party audience group contains first and third party audience ids only. The relation between each first and third party audience group is INTERSECTION, and the result is UNION'ed with other audience groups. Repeated groups with same settings will be ignored.
+     * Optional. The first and third party audience ids and recencies of included first and third party audience groups. Each first and third party audience group contains first and third party audience ids only. The relation between each first and third party audience group is INTERSECTION, and the result is UNION'ed with other audience groups. Repeated groups with the same settings will be ignored.
      */
     includedFirstAndThirdPartyAudienceGroups?: Schema$FirstAndThirdPartyAudienceGroup[];
     /**
-     * The Google audience ids of the included Google audience group. Contains Google audience ids only.
+     * Optional. The Google audience ids of the included Google audience group. Contains Google audience ids only.
      */
     includedGoogleAudienceGroup?: Schema$GoogleAudienceGroup;
   }
@@ -1109,11 +1111,11 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$AudioVideoOffset {
     /**
-     * The offset in percentage of the audio or video duration.
+     * Optional. The offset in percentage of the audio or video duration.
      */
     percentage?: string | null;
     /**
-     * The offset in seconds from the start of the audio or video.
+     * Optional. The offset in seconds from the start of the audio or video.
      */
     seconds?: string | null;
   }
@@ -1618,7 +1620,7 @@ export namespace displayvideo_v3 {
      */
     entityStatus?: string | null;
     /**
-     * Required. The frequency cap setting of the campaign.
+     * Required. The frequency cap setting of the campaign. *Warning*: On **February 28, 2025**, frequency cap time periods greater than 30 days will no longer be accepted. [Read more about this announced change](/display-video/api/deprecations#features.lifetime_frequency_cap)
      */
     frequencyCap?: Schema$FrequencyCap;
     /**
@@ -1837,15 +1839,15 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$CmTrackingAd {
     /**
-     * The ad ID of the campaign manager 360 tracking Ad.
+     * Optional. The ad ID of the campaign manager 360 tracking Ad.
      */
     cmAdId?: string | null;
     /**
-     * The creative ID of the campaign manager 360 tracking Ad.
+     * Optional. The creative ID of the campaign manager 360 tracking Ad.
      */
     cmCreativeId?: string | null;
     /**
-     * The placement ID of the campaign manager 360 tracking Ad.
+     * Optional. The placement ID of the campaign manager 360 tracking Ad.
      */
     cmPlacementId?: string | null;
   }
@@ -1871,7 +1873,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$CombinedAudienceGroup {
     /**
-     * Required. All combined audience targeting settings in combined audience group. Repeated settings with same id will be ignored. The number of combined audience settings should be no more than five, error will be thrown otherwise.
+     * Required. All combined audience targeting settings in combined audience group. Repeated settings with the same id will be ignored. The number of combined audience settings should be no more than five, error will be thrown otherwise.
      */
     settings?: Schema$CombinedAudienceTargetingSetting[];
   }
@@ -2091,7 +2093,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$ConversionCountingConfig {
     /**
-     * The Floodlight activity configs used to track conversions. The number of conversions counted is the sum of all of the conversions counted by all of the Floodlight activity IDs specified in this field.
+     * The Floodlight activity configs used to track conversions. The number of conversions counted is the sum of all of the conversions counted by all of the Floodlight activity IDs specified in this field. *Warning*: Starting **April 1, 2025**, this field will no longer be writable while a custom bidding algorithm is assigned to the line item. If you set this field and assign a custom bidding algorithm in the same request, the floodlight activities must match the ones used by the custom bidding algorithm. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
      */
     floodlightActivityConfigs?: Schema$TrackingFloodlightActivityConfig[];
     /**
@@ -2177,7 +2179,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$Creative {
     /**
-     * Additional dimensions. Applicable when creative_type is one of: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_LIGHTBOX` * `CREATIVE_TYPE_PUBLISHER_HOSTED` If this field is specified, width_pixels and height_pixels are both required and must be greater than or equal to 0.
+     * Optional. Additional dimensions. Applicable when creative_type is one of: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_LIGHTBOX` * `CREATIVE_TYPE_PUBLISHER_HOSTED` If this field is specified, width_pixels and height_pixels are both required and must be greater than or equal to 0.
      */
     additionalDimensions?: Schema$Dimensions[];
     /**
@@ -2185,7 +2187,7 @@ export namespace displayvideo_v3 {
      */
     advertiserId?: string | null;
     /**
-     * Third-party HTML tracking tag to be appended to the creative tag.
+     * Optional. Third-party HTML tracking tag to be appended to the creative tag.
      */
     appendedTag?: string | null;
     /**
@@ -2197,15 +2199,15 @@ export namespace displayvideo_v3 {
      */
     cmPlacementId?: string | null;
     /**
-     * The Campaign Manager 360 tracking ad associated with the creative. Optional for the following creative_type when created by an advertiser that uses both Campaign Manager 360 and third-party ad serving: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` Output only for other cases.
+     * Optional. The Campaign Manager 360 tracking ad associated with the creative. Optional for the following creative_type when created by an advertiser that uses both Campaign Manager 360 and third-party ad serving: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` Output only for other cases.
      */
     cmTrackingAd?: Schema$CmTrackingAd;
     /**
-     * The IDs of companion creatives for a video creative. You can assign existing display creatives (with image or HTML5 assets) to serve surrounding the publisher's video player. Companions display around the video player while the video is playing and remain after the video has completed. Creatives contain additional dimensions can not be companion creatives. This field is only supported for following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`
+     * Optional. The IDs of companion creatives for a video creative. You can assign existing display creatives (with image or HTML5 assets) to serve surrounding the publisher's video player. Companions display around the video player while the video is playing and remain after the video has completed. Creatives contain additional dimensions can not be companion creatives. This field is only supported for the following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`
      */
     companionCreativeIds?: string[] | null;
     /**
-     * Counter events for a rich media creative. Counters track the number of times that a user interacts with any part of a rich media creative in a specified way (mouse-overs, mouse-outs, clicks, taps, data loading, keyboard entries, etc.). Any event that can be captured in the creative can be recorded as a counter. Leave it empty or unset for creatives containing image assets only.
+     * Optional. Counter events for a rich media creative. Counters track the number of times that a user interacts with any part of a rich media creative in a specified way (mouse-overs, mouse-outs, clicks, taps, data loading, keyboard entries, etc.). Any event that can be captured in the creative can be recorded as a counter. Leave it empty or unset for creatives containing image assets only.
      */
     counterEvents?: Schema$CounterEvent[];
     /**
@@ -2261,15 +2263,15 @@ export namespace displayvideo_v3 {
      */
     html5Video?: boolean | null;
     /**
-     * Indicates whether Integral Ad Science (IAS) campaign monitoring is enabled. To enable this for the creative, make sure the Advertiser.creative_config.ias_client_id has been set to your IAS client ID.
+     * Optional. Indicates whether Integral Ad Science (IAS) campaign monitoring is enabled. To enable this for the creative, make sure the Advertiser.creative_config.ias_client_id has been set to your IAS client ID.
      */
     iasCampaignMonitoring?: boolean | null;
     /**
-     * ID information used to link this creative to an external system. Must be UTF-8 encoded with a length of no more than 10,000 characters.
+     * Optional. ID information used to link this creative to an external system. Must be UTF-8 encoded with a length of no more than 10,000 characters.
      */
     integrationCode?: string | null;
     /**
-     * JavaScript measurement URL from supported third-party verification providers (ComScore, DoubleVerify, IAS, Moat). HTML script tags are not supported. This field is only writeable in following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
+     * Optional. JavaScript measurement URL from supported third-party verification providers (ComScore, DoubleVerify, IAS, Moat). HTML script tags are not supported. This field is only writeable in the following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
      */
     jsTrackerUrl?: string | null;
     /**
@@ -2289,11 +2291,11 @@ export namespace displayvideo_v3 {
      */
     name?: string | null;
     /**
-     * User notes for this creative. Must be UTF-8 encoded with a length of no more than 20,000 characters.
+     * Optional. User notes for this creative. Must be UTF-8 encoded with a length of no more than 20,000 characters.
      */
     notes?: string | null;
     /**
-     * Specifies the OBA icon for a video creative. This field is only supported in following creative_type: * `CREATIVE_TYPE_VIDEO`
+     * Optional. Specifies the OBA icon for a video creative. This field is only supported in the following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     obaIcon?: Schema$ObaIcon;
     /**
@@ -2301,7 +2303,7 @@ export namespace displayvideo_v3 {
      */
     oggAudio?: boolean | null;
     /**
-     * Amount of time to play the video before counting a view. This field is required when skippable is true. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`
+     * Optional. Amount of time to play the video before counting a view. This field is required when skippable is true. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     progressOffset?: Schema$AudioVideoOffset;
     /**
@@ -2321,11 +2323,11 @@ export namespace displayvideo_v3 {
      */
     reviewStatus?: Schema$ReviewStatusInfo;
     /**
-     * Amount of time to play the video before the skip button appears. This field is required when skippable is true. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`
+     * Optional. Amount of time to play the video before the skip button appears. This field is required when skippable is true. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     skipOffset?: Schema$AudioVideoOffset;
     /**
-     * Whether the user can choose to skip a video creative. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`
+     * Optional. Whether the user can choose to skip a video creative. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     skippable?: boolean | null;
     /**
@@ -2333,19 +2335,19 @@ export namespace displayvideo_v3 {
      */
     thirdPartyTag?: string | null;
     /**
-     * Tracking URLs from third parties to track interactions with a video creative. This field is only supported for the following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_NATIVE_VIDEO`
+     * Optional. Tracking URLs from third parties to track interactions with a video creative. This field is only supported for the following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_NATIVE_VIDEO`
      */
     thirdPartyUrls?: Schema$ThirdPartyUrl[];
     /**
-     * Timer custom events for a rich media creative. Timers track the time during which a user views and interacts with a specified part of a rich media creative. A creative can have multiple timer events, each timed independently. Leave it empty or unset for creatives containing image assets only.
+     * Optional. Timer custom events for a rich media creative. Timers track the time during which a user views and interacts with a specified part of a rich media creative. A creative can have multiple timer events, each timed independently. Leave it empty or unset for creatives containing image assets only.
      */
     timerEvents?: Schema$TimerEvent[];
     /**
-     * Tracking URLs for analytics providers or third-party ad technology vendors. The URLs must start with https (except on inventory that doesn't require SSL compliance). If using macros in your URL, use only macros supported by Display & Video 360. Standard URLs only, no IMG or SCRIPT tags. This field is only writeable in following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
+     * Optional. Tracking URLs for analytics providers or third-party ad technology vendors. The URLs must start with `https:` (except on inventory that doesn't require SSL compliance). If using macros in your URL, use only macros supported by Display & Video 360. Standard URLs only, no IMG or SCRIPT tags. This field is only writeable in the following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
      */
     trackerUrls?: string[] | null;
     /**
-     * Output only. Audio/Video transcodes. Display & Video 360 transcodes the main asset into a number of alternative versions that use different file formats or have different properties (resolution, audio bit rate, and video bit rate), each designed for specific video players or bandwidths. These transcodes give a publisher's system more options to choose from for each impression on your video and ensures that the appropriate file serves based on the viewer’s connection and screen size. This field is only supported in following creative_type: * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_AUDIO`
+     * Output only. Audio/Video transcodes. Display & Video 360 transcodes the main asset into a number of alternative versions that use different file formats or have different properties (resolution, audio bit rate, and video bit rate), each designed for specific video players or bandwidths. These transcodes give a publisher's system more options to choose from for each impression on your video and ensures that the appropriate file serves based on the viewer’s connection and screen size. This field is only supported in the following creative_type: * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_AUDIO`
      */
     transcodes?: Schema$Transcode[];
     /**
@@ -2576,7 +2578,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$CustomListGroup {
     /**
-     * Required. All custom list targeting settings in custom list group. Repeated settings with same id will be ignored.
+     * Required. All custom list targeting settings in custom list group. Repeated settings with the same id will be ignored.
      */
     settings?: Schema$CustomListTargetingSetting[];
   }
@@ -3062,11 +3064,11 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$ExitEvent {
     /**
-     * The name of the click tag of the exit event. The name must be unique within one creative. Leave it empty or unset for creatives containing image assets only.
+     * Optional. The name of the click tag of the exit event. The name must be unique within one creative. Leave it empty or unset for creatives containing image assets only.
      */
     name?: string | null;
     /**
-     * The name used to identify this event in reports. Leave it empty or unset for creatives containing image assets only.
+     * Optional. The name used to identify this event in reports. Leave it empty or unset for creatives containing image assets only.
      */
     reportingName?: string | null;
     /**
@@ -3139,7 +3141,7 @@ export namespace displayvideo_v3 {
      */
     gmailAudienceSize?: string | null;
     /**
-     * The duration in days that an entry remains in the audience after the qualifying event. If the audience has no expiration, set the value of this field to 10000. Otherwise, the set value must be greater than 0 and less than or equal to 540. Only applicable to first party audiences. This field is required if one of the following audience_type is used: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
+     * The duration in days that an entry remains in the audience after the qualifying event. If the audience has no expiration, set the value of this field to 10000. Otherwise, the set value must be greater than 0 and less than or equal to 540. Only applicable to first party audiences. This field is required if one of the following audience_type is used: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID` *Warning*: Starting on **April 7, 2025**, audiences will no longer be able to have infinite membership duration. This field will no longer accept the value 10000 and all audiences with membership durations greater than 540 days will be updated to a membership duration of 540 days. [Read more about this announced change](/display-video/api/deprecations#features.audience_duration).
      */
     membershipDurationDays?: string | null;
     /**
@@ -3160,7 +3162,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$FirstAndThirdPartyAudienceGroup {
     /**
-     * Required. All first and third party audience targeting settings in first and third party audience group. Repeated settings with same id are not allowed.
+     * Required. All first and third party audience targeting settings in first and third party audience group. Repeated settings with the same id are not allowed.
      */
     settings?: Schema$FirstAndThirdPartyAudienceTargetingSetting[];
   }
@@ -3173,7 +3175,7 @@ export namespace displayvideo_v3 {
      */
     firstAndThirdPartyAudienceId?: string | null;
     /**
-     * The recency of the first and third party audience targeting setting. Only applicable to first party audiences, otherwise will be ignored. For more info, refer to https://support.google.com/displayvideo/answer/2949947#recency When unspecified, no recency limit will be used.
+     * Optional. The recency of the first and third party audience targeting setting. Only applicable to first party audiences, otherwise will be ignored. For more info, refer to https://support.google.com/displayvideo/answer/2949947#recency When unspecified, no recency limit will be used.
      */
     recency?: string | null;
   }
@@ -3273,7 +3275,7 @@ export namespace displayvideo_v3 {
      */
     timeUnit?: string | null;
     /**
-     * The number of time_unit the frequency cap will last. Required when unlimited is `false`. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_LIFETIME` - this field is output only and will default to 1 * `TIME_UNIT_MONTHS` - must be between 1 and 2 * `TIME_UNIT_WEEKS` - must be between 1 and 4 * `TIME_UNIT_DAYS` - must be between 1 and 6 * `TIME_UNIT_HOURS` - must be between 1 and 23 * `TIME_UNIT_MINUTES` - must be between 1 and 59
+     * The number of time_unit the frequency cap will last. Required when unlimited is `false`. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_MONTHS` - must be 1 * `TIME_UNIT_WEEKS` - must be between 1 and 4 * `TIME_UNIT_DAYS` - must be between 1 and 6 * `TIME_UNIT_HOURS` - must be between 1 and 23 * `TIME_UNIT_MINUTES` - must be between 1 and 59
      */
     timeUnitCount?: number | null;
     /**
@@ -3389,7 +3391,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$GoogleAudienceGroup {
     /**
-     * Required. All Google audience targeting settings in Google audience group. Repeated settings with same id will be ignored.
+     * Required. All Google audience targeting settings in Google audience group. Repeated settings with the same id will be ignored.
      */
     settings?: Schema$GoogleAudienceTargetingSetting[];
   }
@@ -3570,7 +3572,7 @@ export namespace displayvideo_v3 {
      */
     advertiserId?: string | null;
     /**
-     * The bidding strategy of the insertion order. By default, fixed_bid is set.
+     * Optional. The bidding strategy of the insertion order. By default, fixed_bid is set.
      */
     bidStrategy?: Schema$BiddingStrategy;
     /**
@@ -3598,11 +3600,11 @@ export namespace displayvideo_v3 {
      */
     insertionOrderId?: string | null;
     /**
-     * The type of insertion order. If this field is unspecified in creation, the value defaults to `RTB`.
+     * Optional. The type of insertion order. If this field is unspecified in creation, the value defaults to `RTB`.
      */
     insertionOrderType?: string | null;
     /**
-     * Additional integration details of the insertion order.
+     * Optional. Additional integration details of the insertion order.
      */
     integrationDetails?: Schema$IntegrationDetails;
     /**
@@ -3614,7 +3616,7 @@ export namespace displayvideo_v3 {
      */
     name?: string | null;
     /**
-     * Optional. The optimization objective of the insertion order. **This field is only available to allowlisted customers.** If a customer is not allowlisted, this field will be null and attempts to set it will return an error.
+     * Optional. Required. The optimization objective of the insertion order.
      */
     optimizationObjective?: string | null;
     /**
@@ -3622,7 +3624,7 @@ export namespace displayvideo_v3 {
      */
     pacing?: Schema$Pacing;
     /**
-     * The partner costs associated with the insertion order. If absent or empty in CreateInsertionOrder method, the newly created insertion order will inherit partner costs from the partner settings.
+     * Optional. The partner costs associated with the insertion order. If absent or empty in CreateInsertionOrder method, the newly created insertion order will inherit partner costs from the partner settings.
      */
     partnerCosts?: Schema$PartnerCost[];
     /**
@@ -3639,7 +3641,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$InsertionOrderBudget {
     /**
-     * The type of automation used to manage bid and budget for the insertion order. If this field is unspecified in creation, the value defaults to `INSERTION_ORDER_AUTOMATION_TYPE_NONE`.
+     * Optional. The type of automation used to manage bid and budget for the insertion order. If this field is unspecified in creation, the value defaults to `INSERTION_ORDER_AUTOMATION_TYPE_NONE`.
      */
     automationType?: string | null;
     /**
@@ -3660,7 +3662,7 @@ export namespace displayvideo_v3 {
      */
     budgetAmountMicros?: string | null;
     /**
-     * The budget_id of the campaign budget that this insertion order budget segment is a part of.
+     * Optional. The budget_id of the campaign budget that this insertion order budget segment is a part of.
      */
     campaignBudgetId?: string | null;
     /**
@@ -3668,7 +3670,7 @@ export namespace displayvideo_v3 {
      */
     dateRange?: Schema$DateRange;
     /**
-     * The budget segment description. It can be used to enter Purchase Order information for each budget segment and have that information printed on the invoices. Must be UTF-8 encoded.
+     * Optional. The budget segment description. It can be used to enter Purchase Order information for each budget segment and have that information printed on the invoices. Must be UTF-8 encoded.
      */
     description?: string | null;
   }
@@ -3737,6 +3739,10 @@ export namespace displayvideo_v3 {
      * Brand Safety - **Unrateable**.
      */
     excludeUnrateable?: boolean | null;
+    /**
+     * Optional. The quality sync custom segment ID provided by Integral Ad Science. The ID must be between `3000000` and `4999999`, inclusive.
+     */
+    qualitySyncCustomSegmentId?: string[] | null;
     /**
      * True advertising quality (applicable to Display line items only).
      */
@@ -4128,7 +4134,7 @@ export namespace displayvideo_v3 {
      */
     campaignId?: string | null;
     /**
-     * The conversion tracking setting of the line item.
+     * The conversion tracking setting of the line item. *Warning*: Starting **April 1, 2025**, the floodlight_activity_configs field will no longer be writable while a custom bidding algorithm is assigned to the line item. If you set this field and assign a custom bidding algorithm in the same request, the floodlight activities must match the ones used by the custom bidding algorithm. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
      */
     conversionCounting?: Schema$ConversionCountingConfig;
     /**
@@ -4736,7 +4742,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$MaximizeSpendBidStrategy {
     /**
-     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`.
+     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. *Warning*: Starting **April 1, 2025**, assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
      */
     customBiddingAlgorithmId?: string | null;
     /**
@@ -4899,35 +4905,35 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$ObaIcon {
     /**
-     * Required. The click tracking URL of the OBA icon. Only URLs of the following domains are allowed: * https://info.evidon.com * https://l.betrad.com
+     * Required. The click tracking URL of the OBA icon. Only URLs of the following domains are allowed: * `https://info.evidon.com` * `https://l.betrad.com`
      */
     clickTrackingUrl?: string | null;
     /**
-     * The dimensions of the OBA icon.
+     * Optional. The dimensions of the OBA icon.
      */
     dimensions?: Schema$Dimensions;
     /**
-     * Required. The landing page URL of the OBA icon. Only URLs of the following domains are allowed: * https://info.evidon.com * https://l.betrad.com
+     * Required. The landing page URL of the OBA icon. Only URLs of the following domains are allowed: * `https://info.evidon.com` * `https://l.betrad.com`
      */
     landingPageUrl?: string | null;
     /**
-     * The position of the OBA icon on the creative.
+     * Optional. The position of the OBA icon on the creative.
      */
     position?: string | null;
     /**
-     * The program of the OBA icon. For example: “AdChoices”.
+     * Optional. The program of the OBA icon. For example: “AdChoices”.
      */
     program?: string | null;
     /**
-     * The MIME type of the OBA icon resource.
+     * Optional. The MIME type of the OBA icon resource.
      */
     resourceMimeType?: string | null;
     /**
-     * The URL of the OBA icon resource.
+     * Optional. The URL of the OBA icon resource.
      */
     resourceUrl?: string | null;
     /**
-     * Required. The view tracking URL of the OBA icon. Only URLs of the following domains are allowed: * https://info.evidon.com * https://l.betrad.com
+     * Required. The view tracking URL of the OBA icon. Only URLs of the following domains are allowed: * `https://info.evidon.com` * `https://l.betrad.com`
      */
     viewTrackingUrl?: string | null;
   }
@@ -5231,7 +5237,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$PerformanceGoalBidStrategy {
     /**
-     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`.
+     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. *Warning*: Starting **April 1, 2025**, assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
      */
     customBiddingAlgorithmId?: string | null;
     /**
@@ -5719,7 +5725,7 @@ export namespace displayvideo_v3 {
      */
     audienceExpansionSeedListExcluded?: boolean | null;
     /**
-     * Required. Whether to enable Optimized Targeting for the line item. Optimized targeting is not compatible with all bid strategies. Attempting to set this field to `true` for a line item using one of the following combinations of BiddingStrategy fields and BiddingStrategyPerformanceGoalType will result in an error: maximize_auto_spend_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` performance_goal_auto_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`
+     * Required. Whether to enable Optimized Targeting for the line item. Optimized targeting is not compatible with all bid strategies. Attempting to set this field to `true` for a line item using the BiddingStrategy field fixed_bid or one of the following combinations of BiddingStrategy fields and BiddingStrategyPerformanceGoalType will result in an error: maximize_auto_spend_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` performance_goal_auto_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`
      */
     enableOptimizedTargeting?: boolean | null;
   }
@@ -5907,11 +5913,11 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$ThirdPartyUrl {
     /**
-     * The type of interaction needs to be tracked by the tracking URL
+     * Optional. The type of interaction needs to be tracked by the tracking URL
      */
     type?: string | null;
     /**
-     * Tracking URL used to track the interaction. Provide a URL with optional path or query string, beginning with `https:`. For example, https://www.example.com/path
+     * Optional. Tracking URL used to track the interaction. Provide a URL with optional path or query string, beginning with `https:`. For example, `https://www.example.com/path`
      */
     url?: string | null;
   }
@@ -5993,39 +5999,39 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$Transcode {
     /**
-     * The bit rate for the audio stream of the transcoded video, or the bit rate for the transcoded audio, in kilobits per second.
+     * Optional. The bit rate for the audio stream of the transcoded video, or the bit rate for the transcoded audio, in kilobits per second.
      */
     audioBitRateKbps?: string | null;
     /**
-     * The sample rate for the audio stream of the transcoded video, or the sample rate for the transcoded audio, in hertz.
+     * Optional. The sample rate for the audio stream of the transcoded video, or the sample rate for the transcoded audio, in hertz.
      */
     audioSampleRateHz?: string | null;
     /**
-     * The transcoding bit rate of the transcoded video, in kilobits per second.
+     * Optional. The transcoding bit rate of the transcoded video, in kilobits per second.
      */
     bitRateKbps?: string | null;
     /**
-     * The dimensions of the transcoded video.
+     * Optional. The dimensions of the transcoded video.
      */
     dimensions?: Schema$Dimensions;
     /**
-     * The size of the transcoded file, in bytes.
+     * Optional. The size of the transcoded file, in bytes.
      */
     fileSizeBytes?: string | null;
     /**
-     * The frame rate of the transcoded video, in frames per second.
+     * Optional. The frame rate of the transcoded video, in frames per second.
      */
     frameRate?: number | null;
     /**
-     * The MIME type of the transcoded file.
+     * Optional. The MIME type of the transcoded file.
      */
     mimeType?: string | null;
     /**
-     * The name of the transcoded file.
+     * Optional. The name of the transcoded file.
      */
     name?: string | null;
     /**
-     * Indicates if the transcoding was successful.
+     * Optional. Indicates if the transcoding was successful.
      */
     transcoded?: boolean | null;
   }
@@ -6034,11 +6040,11 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$UniversalAdId {
     /**
-     * The unique creative identifier.
+     * Optional. The unique creative identifier.
      */
     id?: string | null;
     /**
-     * The registry provides unique creative identifiers.
+     * Optional. The registry provides unique creative identifiers.
      */
     registry?: string | null;
   }
@@ -16693,7 +16699,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful.
+     * Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful. *Warning*: Starting **April 1, 2025**, requests updating custom bidding algorithms that are assigned to line items will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17081,7 +17087,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Creates a new rules resource. Returns the newly created rules resource if successful.
+     * Creates a new rules resource. Returns the newly created rules resource if successful. *Warning*: Starting **April 1, 2025**, requests updating custom bidding algorithms that are assigned to line items will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17448,7 +17454,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Creates a new custom bidding script. Returns the newly created script if successful.
+     * Creates a new custom bidding script. Returns the newly created script if successful. *Warning*: Starting **April 1, 2025**, requests updating custom bidding algorithms that are assigned to line items will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18551,7 +18557,7 @@ export namespace displayvideo_v3 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `5000`. If unspecified, this value defaults to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `5000`. If unspecified, this value defaults to `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -23664,6 +23670,115 @@ export namespace displayvideo_v3 {
   }
 
   export interface Params$Resource$Sdfdownloadtasks$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+
+  export class Resource$Sdfuploadtasks {
+    context: APIRequestContext;
+    operations: Resource$Sdfuploadtasks$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Sdfuploadtasks$Operations(this.context);
+    }
+  }
+
+  export class Resource$Sdfuploadtasks$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Sdfuploadtasks$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Sdfuploadtasks$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Sdfuploadtasks$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Sdfuploadtasks$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Sdfuploadtasks$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sdfuploadtasks$Operations$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sdfuploadtasks$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sdfuploadtasks$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Sdfuploadtasks$Operations$Get
     extends StandardParameters {
     /**
      * The name of the operation resource.
