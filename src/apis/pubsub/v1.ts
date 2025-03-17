@@ -362,7 +362,7 @@ export namespace pubsub_v1 {
      */
     maxBytes?: string | null;
     /**
-     * Optional. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.
+     * Optional. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgment deadline.
      */
     maxDuration?: string | null;
     /**
@@ -442,7 +442,7 @@ export namespace pubsub_v1 {
      */
     deadLetterTopic?: string | null;
     /**
-     * Optional. The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgement deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.
+     * Optional. The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgment deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.
      */
     maxDeliveryAttempts?: number | null;
   }
@@ -512,6 +512,19 @@ export namespace pubsub_v1 {
      * Optional. Platform Logs settings. If unset, no Platform Logs will be generated.
      */
     platformLogsSettings?: Schema$PlatformLogsSettings;
+  }
+  /**
+   * User-defined JavaScript function that can transform or filter a Pub/Sub message.
+   */
+  export interface Schema$JavaScriptUDF {
+    /**
+     * Required. JavaScript code that contains a function `function_name` with the below signature: ``` /x* * Transforms a Pub/Sub message. * @return {(Object)\>|null)\} - To * filter a message, return `null`. To transform a message return a map * with the following keys: * - (required) 'data' : {string\} * - (optional) 'attributes' : {Object\} * Returning empty `attributes` will remove all attributes from the * message. * * @param {(Object)\>\} Pub/Sub * message. Keys: * - (required) 'data' : {string\} * - (required) 'attributes' : {Object\} * * @param {Object\} metadata - Pub/Sub message metadata. * Keys: * - (required) 'message_id' : {string\} * - (optional) 'publish_time': {string\} YYYY-MM-DDTHH:MM:SSZ format * - (optional) 'ordering_key': {string\} x/ function (message, metadata) { \} ```
+     */
+    code?: string | null;
+    /**
+     * Required. Name of the JavasScript function that should applied to Pub/Sub messages.
+     */
+    functionName?: string | null;
   }
   /**
    * Response for the `ListSchemaRevisions` method.
@@ -616,6 +629,19 @@ export namespace pubsub_v1 {
      * Optional. If true, `allowed_persistence_regions` is also used to enforce in-transit guarantees for messages. That is, Pub/Sub will fail Publish operations on this topic and subscribe operations on any subscription attached to this topic in any region that is not in `allowed_persistence_regions`.
      */
     enforceInTransit?: boolean | null;
+  }
+  /**
+   * All supported message transforms types.
+   */
+  export interface Schema$MessageTransform {
+    /**
+     * Optional. If set to true, the transform is enabled. If false, the transform is disabled and will not be applied to messages. Defaults to `true`.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's are specified on a resource, each must have a unique `function_name`.
+     */
+    javascriptUdf?: Schema$JavaScriptUDF;
   }
   /**
    * Request for the ModifyAckDeadline method.
@@ -803,7 +829,7 @@ export namespace pubsub_v1 {
     message?: Schema$PubsubMessage;
   }
   /**
-   * A policy that specifies how Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.
+   * A policy that specifies how Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.
    */
   export interface Schema$RetryPolicy {
     /**
@@ -946,7 +972,7 @@ export namespace pubsub_v1 {
      */
     detached?: boolean | null;
     /**
-     * Optional. If true, Pub/Sub provides the following guarantees for the delivery of a message with a given value of `message_id` on this subscription: * The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires. * An acknowledged message will not be resent to a subscriber. Note that subscribers may still receive multiple copies of a message when `enable_exactly_once_delivery` is true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct `message_id` values.
+     * Optional. If true, Pub/Sub provides the following guarantees for the delivery of a message with a given value of `message_id` on this subscription: * The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgment deadline expires. * An acknowledged message will not be resent to a subscriber. Note that subscribers may still receive multiple copies of a message when `enable_exactly_once_delivery` is true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct `message_id` values.
      */
     enableExactlyOnceDelivery?: boolean | null;
     /**
@@ -970,6 +996,10 @@ export namespace pubsub_v1 {
      */
     messageRetentionDuration?: string | null;
     /**
+     * Optional. Transforms to be applied to messages before they are delivered to subscribers. Transforms are applied in the order specified.
+     */
+    messageTransforms?: Schema$MessageTransform[];
+    /**
      * Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string | null;
@@ -982,7 +1012,7 @@ export namespace pubsub_v1 {
      */
     retainAckedMessages?: boolean | null;
     /**
-     * Optional. A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.
+     * Optional. A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded events for a given message.
      */
     retryPolicy?: Schema$RetryPolicy;
     /**
@@ -1053,6 +1083,10 @@ export namespace pubsub_v1 {
      * Optional. Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not present, then no constraints are in effect.
      */
     messageStoragePolicy?: Schema$MessageStoragePolicy;
+    /**
+     * Optional. Transforms to be applied to messages published to the topic. Transforms are applied in the order specified.
+     */
+    messageTransforms?: Schema$MessageTransform[];
     /**
      * Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
