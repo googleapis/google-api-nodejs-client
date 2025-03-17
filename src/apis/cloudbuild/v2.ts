@@ -683,6 +683,10 @@ export namespace cloudbuild_v2 {
      * A token identifying a page of results the server should return.
      */
     nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -709,6 +713,10 @@ export namespace cloudbuild_v2 {
      * The list of Repositories.
      */
     repositories?: Schema$Repository[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * A resource that represents a Google Cloud location.
@@ -2969,6 +2977,10 @@ export namespace cloudbuild_v2 {
      * Required. The parent, which owns this collection of Connections. Format: `projects/x/locations/x`.
      */
     parent?: string;
+    /**
+     * Optional. If set to true, the response will return partial results when some regions are unreachable. If set to false, the response will fail if any region is unreachable.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Connections$Patch
     extends StandardParameters {
@@ -3001,7 +3013,7 @@ export namespace cloudbuild_v2 {
      */
     parent?: string;
     /**
-     * Arbitrary additional key to find the maching repository for a webhook event if needed.
+     * Arbitrary additional key to find the matching repository for a webhook event if needed.
      */
     webhookKey?: string;
 
@@ -3885,6 +3897,10 @@ export namespace cloudbuild_v2 {
      * Required. The parent, which owns this collection of Repositories. Format: `projects/x/locations/x/connections/x`.
      */
     parent?: string;
+    /**
+     * Optional. If set to true, the response will return partial results when some regions are unreachable. If set to false, the response will fail if any region is unreachable.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Operations {

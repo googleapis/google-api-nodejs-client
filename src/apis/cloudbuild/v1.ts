@@ -483,6 +483,10 @@ export namespace cloudbuild_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Dependencies that the Cloud Build worker will fetch before executing user steps.
+     */
+    dependencies?: Schema$Dependency[];
+    /**
      * Output only. Contains information about the build when status=FAILURE.
      */
     failureInfo?: Schema$FailureInfo;
@@ -653,6 +657,10 @@ export namespace cloudbuild_v1 {
      * Optional. Specification for execution on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information.
      */
     pool?: Schema$PoolOption;
+    /**
+     * Optional. Option to specify the Pub/Sub topic to receive build status updates.
+     */
+    pubsubTopic?: string | null;
     /**
      * Requested verifiability options.
      */
@@ -1099,6 +1107,19 @@ export namespace cloudbuild_v1 {
     workerPool?: string | null;
   }
   /**
+   * A dependency that the Cloud Build worker will fetch before executing user steps.
+   */
+  export interface Schema$Dependency {
+    /**
+     * If set to true disable all dependency fetching (ignoring the default source as well).
+     */
+    empty?: boolean | null;
+    /**
+     * Represents a git repository as a build dependency.
+     */
+    gitSource?: Schema$GitSourceDependency;
+  }
+  /**
    * This config defines the location of a source through Developer Connect.
    */
   export interface Schema$DeveloperConnectConfig {
@@ -1484,6 +1505,44 @@ export namespace cloudbuild_v1 {
     revision?: string | null;
     /**
      * Required. Location of the Git repo to build. This will be used as a `git remote`, see https://git-scm.com/docs/git-remote.
+     */
+    url?: string | null;
+  }
+  /**
+   * Represents a git repository as a build dependency.
+   */
+  export interface Schema$GitSourceDependency {
+    /**
+     * Optional. How much history should be fetched for the build (default 1, -1 for all history).
+     */
+    depth?: string | null;
+    /**
+     * Required. Where should the files be placed on the worker.
+     */
+    destPath?: string | null;
+    /**
+     * Optional. True if submodules should be fetched too (default false).
+     */
+    recurseSubmodules?: boolean | null;
+    /**
+     * Required. The kind of repo (url or dev connect).
+     */
+    repository?: Schema$GitSourceRepository;
+    /**
+     * Required. The revision that we will fetch the repo at.
+     */
+    revision?: string | null;
+  }
+  /**
+   * A repository for a git source.
+   */
+  export interface Schema$GitSourceRepository {
+    /**
+     * The Developer Connect Git repository link or the url that matches a repository link in the current project, formatted as `projects/x/locations/x/connections/x/gitRepositoryLink/x`
+     */
+    developerConnect?: string | null;
+    /**
+     * Location of the Git repository.
      */
     url?: string | null;
   }
