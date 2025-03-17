@@ -2,6 +2,9 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/bigquery": {
+          "description": "View and manage your data in Google BigQuery and see the email address for your Google Account"
+        },
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
@@ -130,6 +133,7 @@
                 "$ref": "Location"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/bigquery",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -155,6 +159,7 @@
                 "$ref": "Config"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/bigquery",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -196,6 +201,7 @@
                 "$ref": "ListLocationsResponse"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/bigquery",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -230,6 +236,7 @@
                 "$ref": "Config"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/bigquery",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             }
@@ -262,6 +269,7 @@
                     "$ref": "CommitRepositoryChangesResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -287,6 +295,7 @@
                     "$ref": "ComputeRepositoryAccessTokenStatusResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -320,6 +329,7 @@
                     "$ref": "Repository"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -333,7 +343,7 @@
                   ],
                   "parameters": {
                     "force": {
-                      "description": "If set to true, any child resources of this repository will also be deleted. (Otherwise, the request will only succeed if the repository has no child resources.)",
+                      "description": "Optional. If set to true, any child resources of this repository will also be deleted. (Otherwise, the request will only succeed if the repository has no child resources.)",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -350,6 +360,7 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -386,6 +397,7 @@
                     "$ref": "FetchRepositoryHistoryResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -411,6 +423,7 @@
                     "$ref": "FetchRemoteBranchesResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -436,6 +449,7 @@
                     "$ref": "Repository"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -467,6 +481,7 @@
                     "$ref": "Policy"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -513,6 +528,7 @@
                     "$ref": "ListRepositoriesResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -547,6 +563,7 @@
                     "$ref": "Repository"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -593,6 +610,7 @@
                     "$ref": "QueryRepositoryDirectoryContentsResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -628,6 +646,7 @@
                     "$ref": "ReadRepositoryFileResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -656,6 +675,7 @@
                     "$ref": "Policy"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
@@ -684,6 +704,7 @@
                     "$ref": "TestIamPermissionsResponse"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
@@ -716,6 +737,7 @@
                         "$ref": "CompilationResult"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -741,6 +763,7 @@
                         "$ref": "CompilationResult"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -787,6 +810,7 @@
                         "$ref": "ListCompilationResultsResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -828,6 +852,7 @@
                         "$ref": "QueryCompilationResultActionsResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
@@ -865,6 +890,7 @@
                         "$ref": "ReleaseConfig"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -890,6 +916,7 @@
                         "$ref": "Empty"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -915,6 +942,7 @@
                         "$ref": "ReleaseConfig"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -951,6 +979,7 @@
                         "$ref": "ListReleaseConfigsResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -985,6 +1014,7 @@
                         "$ref": "ReleaseConfig"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
@@ -1022,6 +1052,7 @@
                         "$ref": "WorkflowConfig"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1047,6 +1078,7 @@
                         "$ref": "Empty"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1072,6 +1104,7 @@
                         "$ref": "WorkflowConfig"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1108,6 +1141,7 @@
                         "$ref": "ListWorkflowConfigsResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1142,6 +1176,7 @@
                         "$ref": "WorkflowConfig"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
@@ -1171,9 +1206,10 @@
                         "$ref": "CancelWorkflowInvocationRequest"
                       },
                       "response": {
-                        "$ref": "Empty"
+                        "$ref": "CancelWorkflowInvocationResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1202,6 +1238,7 @@
                         "$ref": "WorkflowInvocation"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1227,6 +1264,7 @@
                         "$ref": "Empty"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1252,6 +1290,7 @@
                         "$ref": "WorkflowInvocation"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1298,6 +1337,7 @@
                         "$ref": "ListWorkflowInvocationsResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1334,6 +1374,7 @@
                         "$ref": "QueryWorkflowInvocationActionsResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
@@ -1363,9 +1404,10 @@
                         "$ref": "CommitWorkspaceChangesRequest"
                       },
                       "response": {
-                        "$ref": "Empty"
+                        "$ref": "CommitWorkspaceChangesResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1399,6 +1441,7 @@
                         "$ref": "Workspace"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1424,6 +1467,7 @@
                         "$ref": "Empty"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1454,6 +1498,7 @@
                         "$ref": "FetchFileDiffResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1479,6 +1524,7 @@
                         "$ref": "FetchFileGitStatusesResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1509,6 +1555,7 @@
                         "$ref": "FetchGitAheadBehindResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1534,6 +1581,7 @@
                         "$ref": "Workspace"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1565,6 +1613,7 @@
                         "$ref": "Policy"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1593,6 +1642,7 @@
                         "$ref": "InstallNpmPackagesResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1639,6 +1689,7 @@
                         "$ref": "ListWorkspacesResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1667,6 +1718,7 @@
                         "$ref": "MakeDirectoryResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1695,6 +1747,7 @@
                         "$ref": "MoveDirectoryResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1723,6 +1776,7 @@
                         "$ref": "MoveFileResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1748,9 +1802,10 @@
                         "$ref": "PullGitCommitsRequest"
                       },
                       "response": {
-                        "$ref": "Empty"
+                        "$ref": "PullGitCommitsResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1776,9 +1831,10 @@
                         "$ref": "PushGitCommitsRequest"
                       },
                       "response": {
-                        "$ref": "Empty"
+                        "$ref": "PushGitCommitsResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1820,6 +1876,7 @@
                         "$ref": "QueryDirectoryContentsResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1855,6 +1912,7 @@
                         "$ref": "ReadFileResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1880,9 +1938,10 @@
                         "$ref": "RemoveDirectoryRequest"
                       },
                       "response": {
-                        "$ref": "Empty"
+                        "$ref": "RemoveDirectoryResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1908,9 +1967,10 @@
                         "$ref": "RemoveFileRequest"
                       },
                       "response": {
-                        "$ref": "Empty"
+                        "$ref": "RemoveFileResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1936,9 +1996,10 @@
                         "$ref": "ResetWorkspaceChangesRequest"
                       },
                       "response": {
-                        "$ref": "Empty"
+                        "$ref": "ResetWorkspaceChangesResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -1980,6 +2041,7 @@
                         "$ref": "SearchFilesResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -2008,6 +2070,7 @@
                         "$ref": "Policy"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -2036,6 +2099,7 @@
                         "$ref": "TestIamPermissionsResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
@@ -2064,6 +2128,7 @@
                         "$ref": "WriteFileResponse"
                       },
                       "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
@@ -2076,7 +2141,7 @@
       }
     }
   },
-  "revision": "20250119",
+  "revision": "20250306",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2161,6 +2226,12 @@
       "properties": {},
       "type": "object"
     },
+    "CancelWorkflowInvocationResponse": {
+      "description": "`CancelWorkflowInvocation` response message.",
+      "id": "CancelWorkflowInvocationResponse",
+      "properties": {},
+      "type": "object"
+    },
     "CodeCompilationConfig": {
       "description": "Configures various aspects of Dataform code compilation.",
       "id": "CodeCompilationConfig",
@@ -2182,7 +2253,8 @@
           "type": "string"
         },
         "defaultNotebookRuntimeOptions": {
-          "$ref": "NotebookRuntimeOptions"
+          "$ref": "NotebookRuntimeOptions",
+          "description": "Optional. The default notebook runtime options."
         },
         "defaultSchema": {
           "description": "Optional. The default schema (BigQuery dataset ID).",
@@ -2297,7 +2369,7 @@
           "additionalProperties": {
             "$ref": "FileOperation"
           },
-          "description": "A map to the path of the file to the operation. The path is the full file path including filename, from repository root.",
+          "description": "Optional. A map to the path of the file to the operation. The path is the full file path including filename, from repository root.",
           "type": "object"
         },
         "requiredHeadCommitSha": {
@@ -2338,6 +2410,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "CommitWorkspaceChangesResponse": {
+      "description": "`CommitWorkspaceChanges` response message.",
+      "id": "CommitWorkspaceChangesResponse",
+      "properties": {},
       "type": "object"
     },
     "CompilationError": {
@@ -2516,7 +2594,7 @@
       "id": "DataEncryptionState",
       "properties": {
         "kmsKeyVersionName": {
-          "description": "The KMS key version name with which data of a resource is encrypted.",
+          "description": "Required. The KMS key version name with which data of a resource is encrypted.",
           "type": "string"
         }
       },
@@ -3103,6 +3181,7 @@
       "type": "object"
     },
     "Notebook": {
+      "description": "Represents a notebook.",
       "id": "Notebook",
       "properties": {
         "contents": {
@@ -3148,6 +3227,7 @@
       "type": "object"
     },
     "NotebookRuntimeOptions": {
+      "description": "Configures various aspects of Dataform notebook runtime.",
       "id": "NotebookRuntimeOptions",
       "properties": {
         "gcsOutputBucket": {
@@ -3280,6 +3360,12 @@
       },
       "type": "object"
     },
+    "PullGitCommitsResponse": {
+      "description": "`PullGitCommits` response message.",
+      "id": "PullGitCommitsResponse",
+      "properties": {},
+      "type": "object"
+    },
     "PushGitCommitsRequest": {
       "description": "`PushGitCommits` request message.",
       "id": "PushGitCommitsRequest",
@@ -3289,6 +3375,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "PushGitCommitsResponse": {
+      "description": "`PushGitCommits` response message.",
+      "id": "PushGitCommitsResponse",
+      "properties": {},
       "type": "object"
     },
     "QueryCompilationResultActionsResponse": {
@@ -3567,6 +3659,12 @@
       },
       "type": "object"
     },
+    "RemoveDirectoryResponse": {
+      "description": "`RemoveDirectory` response message.",
+      "id": "RemoveDirectoryResponse",
+      "properties": {},
+      "type": "object"
+    },
     "RemoveFileRequest": {
       "description": "`RemoveFile` request message.",
       "id": "RemoveFileRequest",
@@ -3576,6 +3674,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "RemoveFileResponse": {
+      "description": "`RemoveFile` response message.",
+      "id": "RemoveFileResponse",
+      "properties": {},
       "type": "object"
     },
     "Repository": {
@@ -3658,6 +3762,12 @@
       },
       "type": "object"
     },
+    "ResetWorkspaceChangesResponse": {
+      "description": "`ResetWorkspaceChanges` response message.",
+      "id": "ResetWorkspaceChangesResponse",
+      "properties": {},
+      "type": "object"
+    },
     "ScheduledExecutionRecord": {
       "description": "A record of an attempt to create a workflow invocation for this workflow config.",
       "id": "ScheduledExecutionRecord",
@@ -3667,8 +3777,9 @@
           "description": "The error status encountered upon this attempt to create the workflow invocation, if the attempt was unsuccessful."
         },
         "executionTime": {
-          "description": "The timestamp of this execution attempt.",
+          "description": "Output only. The timestamp of this execution attempt.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "workflowInvocation": {
@@ -3691,8 +3802,9 @@
           "description": "The error status encountered upon this attempt to create the compilation result, if the attempt was unsuccessful."
         },
         "releaseTime": {
-          "description": "The timestamp of this release attempt.",
+          "description": "Output only. The timestamp of this release attempt.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3789,15 +3901,15 @@
       "id": "Target",
       "properties": {
         "database": {
-          "description": "The action's database (Google Cloud project ID) .",
+          "description": "Optional. The action's database (Google Cloud project ID) .",
           "type": "string"
         },
         "name": {
-          "description": "The action's name, within `database` and `schema`.",
+          "description": "Optional. The action's name, within `database` and `schema`.",
           "type": "string"
         },
         "schema": {
-          "description": "The action's schema (BigQuery dataset ID), within `database`.",
+          "description": "Optional. The action's schema (BigQuery dataset ID), within `database`.",
           "type": "string"
         }
       },
@@ -3840,7 +3952,7 @@
           "type": "string"
         },
         "state": {
-          "description": "Indicates the status of the file.",
+          "description": "Output only. Indicates the status of the file.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ADDED",
@@ -3855,6 +3967,7 @@
             "The file has been modified.",
             "The file contains merge conflicts."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
