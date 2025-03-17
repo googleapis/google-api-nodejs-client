@@ -598,6 +598,19 @@ export namespace dataproc_v1 {
     role?: string | null;
   }
   /**
+   * Native Build Info
+   */
+  export interface Schema$BuildInfo {
+    /**
+     * Optional. Build key.
+     */
+    buildKey?: string | null;
+    /**
+     * Optional. Build value.
+     */
+    buildValue?: string | null;
+  }
+  /**
    * A request to cancel a job.
    */
   export interface Schema$CancelJobRequest {}
@@ -1168,6 +1181,19 @@ export namespace dataproc_v1 {
     title?: string | null;
   }
   /**
+   * Native SQL Execution Data
+   */
+  export interface Schema$FallbackReason {
+    /**
+     * Optional. Fallback node information.
+     */
+    fallbackNode?: string | null;
+    /**
+     * Optional. Fallback to Spark reason.
+     */
+    fallbackReason?: string | null;
+  }
+  /**
    * A Dataproc job for running Apache Flink applications on YARN.
    */
   export interface Schema$FlinkJob {
@@ -1232,6 +1258,10 @@ export namespace dataproc_v1 {
      * Optional. Reservation Affinity for consuming Zonal reservation.
      */
     reservationAffinity?: Schema$ReservationAffinity;
+    /**
+     * Optional. Resource manager tags to add to all instances (see Resource manager tags resources (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing)).
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
     /**
      * Optional. The Dataproc service account (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_dataproc) (also see VM Data Plane identity (https://cloud.google.com/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity)) used by Dataproc cluster VM instances to access Google Cloud Platform services.If not specified, the Compute Engine default service account (https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.
      */
@@ -2232,6 +2262,45 @@ export namespace dataproc_v1 {
      */
     targetGkeCluster?: string | null;
   }
+  export interface Schema$NativeBuildInfoUiData {
+    /**
+     * Optional. Build class of Native.
+     */
+    buildClass?: string | null;
+    /**
+     * Optional. Build related details.
+     */
+    buildInfo?: Schema$BuildInfo[];
+  }
+  /**
+   * Native SQL Execution Data
+   */
+  export interface Schema$NativeSqlExecutionUiData {
+    /**
+     * Optional. Description of the execution.
+     */
+    description?: string | null;
+    /**
+     * Required. Execution ID of the Native SQL Execution.
+     */
+    executionId?: string | null;
+    /**
+     * Optional. Description of the fallback.
+     */
+    fallbackDescription?: string | null;
+    /**
+     * Optional. Fallback node to reason.
+     */
+    fallbackNodeToReason?: Schema$FallbackReason[];
+    /**
+     * Optional. Number of nodes fallen back to Spark.
+     */
+    numFallbackNodes?: number | null;
+    /**
+     * Optional. Number of nodes in Native.
+     */
+    numNativeNodes?: number | null;
+  }
   /**
    * Dataproc Node Group. The Dataproc NodeGroup resource is not related to the Dataproc NodeGroupAffinity resource.
    */
@@ -3148,7 +3217,7 @@ export namespace dataproc_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The resource name of the session.
+     * Identifier. The resource name of the session.
      */
     name?: string | null;
     /**
@@ -3695,6 +3764,14 @@ export namespace dataproc_v1 {
     executorStageSummary?: Schema$ExecutorStageSummary;
     executorSummary?: Schema$ExecutorSummary;
     jobData?: Schema$JobData;
+    /**
+     * Native Build Info
+     */
+    nativeBuildInfoUiData?: Schema$NativeBuildInfoUiData;
+    /**
+     * Native SQL Execution Info
+     */
+    nativeSqlExecutionUiData?: Schema$NativeSqlExecutionUiData;
     poolData?: Schema$PoolData;
     processSummary?: Schema$ProcessSummary;
     rddOperationGraph?: Schema$RddOperationGraph;
