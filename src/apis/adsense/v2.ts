@@ -597,13 +597,17 @@ export namespace adsense_v2 {
    */
   export interface Schema$PolicyTopic {
     /**
-     * Required. Indicates if this is a policy violation or not. When the value is true, issues that are instances of this topic must be addressed to remain in compliance with the partner's agreements with Google. A false value indicates that it's not mandatory to fix the issues but advertising demand might be restricted.
+     * Required. Deprecated. Policy topics no longer have a "must-fix" classification.
      */
     mustFix?: boolean | null;
     /**
      * Required. The policy topic. For example, "sexual-content" or "ads-obscuring-content"."
      */
     topic?: string | null;
+    /**
+     * Optional. The type of policy topic. For example, "POLICY" represents all the policy topics that are related to the Google Publisher Policy (GPP). See https://support.google.com/adsense/answer/15689616.
+     */
+    type?: string | null;
   }
   /**
    * Result of a generated report.
