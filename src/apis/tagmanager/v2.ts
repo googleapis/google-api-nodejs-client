@@ -141,7 +141,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * Account display name. @mutable tagmanager.accounts.create @mutable tagmanager.accounts.update
+     * Account display name.
      */
     name?: string | null;
     /**
@@ -149,7 +149,7 @@ export namespace tagmanager_v2 {
      */
     path?: string | null;
     /**
-     * Whether the account shares data anonymously with Google and others. This flag enables benchmarking by sharing your data in an anonymous form. Google will remove all identifiable information about your website, combine the data with hundreds of other anonymous sites and report aggregate trends in the benchmarking service. @mutable tagmanager.accounts.create @mutable tagmanager.accounts.update
+     * Whether the account shares data anonymously with Google and others. This flag enables benchmarking by sharing your data in an anonymous form. Google will remove all identifiable information about your website, combine the data with hundreds of other anonymous sites and report aggregate trends in the benchmarking service.
      */
     shareData?: boolean | null;
     /**
@@ -162,7 +162,7 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$AccountAccess {
     /**
-     * Whether the user has no access, user access, or admin access to an account. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
+     * Whether the user has no access, user access, or admin access to an account.
      */
     permission?: string | null;
   }
@@ -197,7 +197,7 @@ export namespace tagmanager_v2 {
      */
     path?: string | null;
     /**
-     * Type of built-in variable. @required.tagmanager.accounts.containers.workspaces.built_in_variable.update @mutable tagmanager.accounts.containers.workspaces.built_in_variable.update
+     * Type of built-in variable.
      */
     type?: string | null;
     /**
@@ -223,15 +223,15 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * Client display name. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update
+     * Client display name.
      */
     name?: string | null;
     /**
-     * User notes on how to apply this tag in the container. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * User notes on how to apply this tag in the container.
      */
     notes?: string | null;
     /**
-     * The client's parameters. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update
+     * The client's parameters.
      */
     parameter?: Schema$Parameter[];
     /**
@@ -243,7 +243,7 @@ export namespace tagmanager_v2 {
      */
     path?: string | null;
     /**
-     * Priority determines relative firing order. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update
+     * Priority determines relative firing order.
      */
     priority?: number | null;
     /**
@@ -251,7 +251,7 @@ export namespace tagmanager_v2 {
      */
     tagManagerUrl?: string | null;
     /**
-     * Client type. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update
+     * Client type.
      */
     type?: string | null;
     /**
@@ -264,11 +264,11 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$Condition {
     /**
-     * A list of named parameters (key/value), depending on the condition's type. Notes: - For binary operators, include parameters named arg0 and arg1 for specifying the left and right operands, respectively. - At this time, the left operand (arg0) must be a reference to a variable. - For case-insensitive Regex matching, include a boolean parameter named ignore_case that is set to true. If not specified or set to any other value, the matching will be case sensitive. - To negate an operator, include a boolean parameter named negate boolean parameter that is set to true. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * A list of named parameters (key/value), depending on the condition's type. Notes: - For binary operators, include parameters named arg0 and arg1 for specifying the left and right operands, respectively. - At this time, the left operand (arg0) must be a reference to a variable. - For case-insensitive Regex matching, include a boolean parameter named ignore_case that is set to true. If not specified or set to any other value, the matching will be case sensitive. - To negate an operator, include a boolean parameter named negate boolean parameter that is set to true.
      */
     parameter?: Schema$Parameter[];
     /**
-     * The type of operator for this condition. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * The type of operator for this condition.
      */
     type?: string | null;
   }
@@ -285,7 +285,7 @@ export namespace tagmanager_v2 {
      */
     containerId?: string | null;
     /**
-     * List of domain names associated with the Container. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
+     * List of domain names associated with the Container.
      */
     domainName?: string[] | null;
     /**
@@ -297,11 +297,11 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * Container display name. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
+     * Container display name.
      */
     name?: string | null;
     /**
-     * Container Notes. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
+     * Container Notes.
      */
     notes?: string | null;
     /**
@@ -313,7 +313,7 @@ export namespace tagmanager_v2 {
      */
     publicId?: string | null;
     /**
-     * List of server-side container URLs for the Container. If multiple URLs are provided, all URL paths must match. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
+     * List of server-side container URLs for the Container. If multiple URLs are provided, all URL paths must match.
      */
     taggingServerUrls?: string[] | null;
     /**
@@ -325,7 +325,7 @@ export namespace tagmanager_v2 {
      */
     tagManagerUrl?: string | null;
     /**
-     * List of Usage Contexts for the Container. Valid values include: web, android, or ios. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
+     * List of Usage Contexts for the Container. Valid values include: web, android, or ios.
      */
     usageContext?: string[] | null;
   }
@@ -334,11 +334,11 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$ContainerAccess {
     /**
-     * GTM Container ID. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
+     * GTM Container ID.
      */
     containerId?: string | null;
     /**
-     * List of Container permissions. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
+     * List of Container permissions.
      */
     permission?: string | null;
   }
@@ -437,7 +437,7 @@ export namespace tagmanager_v2 {
      */
     deleted?: boolean | null;
     /**
-     * Container version description. @mutable tagmanager.accounts.containers.versions.update
+     * Container version description.
      */
     description?: string | null;
     /**
@@ -453,7 +453,7 @@ export namespace tagmanager_v2 {
      */
     gtagConfig?: Schema$GtagConfig[];
     /**
-     * Container version display name. @mutable tagmanager.accounts.containers.versions.update
+     * Container version display name.
      */
     name?: string | null;
     /**
@@ -750,11 +750,11 @@ export namespace tagmanager_v2 {
      */
     containerVersionId?: string | null;
     /**
-     * The environment description. Can be set or changed only on USER type environments. @mutable tagmanager.accounts.containers.environments.create @mutable tagmanager.accounts.containers.environments.update
+     * The environment description. Can be set or changed only on USER type environments.
      */
     description?: string | null;
     /**
-     * Whether or not to enable debug by default for the environment. @mutable tagmanager.accounts.containers.environments.create @mutable tagmanager.accounts.containers.environments.update
+     * Whether or not to enable debug by default for the environment.
      */
     enableDebug?: boolean | null;
     /**
@@ -766,7 +766,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * The environment display name. Can be set or changed only on USER type environments. @mutable tagmanager.accounts.containers.environments.create @mutable tagmanager.accounts.containers.environments.update
+     * The environment display name. Can be set or changed only on USER type environments.
      */
     name?: string | null;
     /**
@@ -782,7 +782,7 @@ export namespace tagmanager_v2 {
      */
     type?: string | null;
     /**
-     * Default preview page url for the environment. @mutable tagmanager.accounts.containers.environments.create @mutable tagmanager.accounts.containers.environments.update
+     * Default preview page url for the environment.
      */
     url?: string | null;
     /**
@@ -811,11 +811,11 @@ export namespace tagmanager_v2 {
      */
     folderId?: string | null;
     /**
-     * Folder display name. @mutable tagmanager.accounts.containers.workspaces.folders.create @mutable tagmanager.accounts.containers.workspaces.folders.update
+     * Folder display name.
      */
     name?: string | null;
     /**
-     * User notes on how to apply this folder in the container. @mutable tagmanager.accounts.containers.workspaces.folders.create @mutable tagmanager.accounts.containers.workspaces.folders.update
+     * User notes on how to apply this folder in the container.
      */
     notes?: string | null;
     /**
@@ -857,6 +857,10 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$GalleryReference {
     /**
+     * ID for the gallery template that is generated once during first sync and travels with the template redirects.
+     */
+    galleryTemplateId?: string | null;
+    /**
      * The name of the host for the community gallery template.
      */
     host?: string | null;
@@ -886,6 +890,10 @@ export namespace tagmanager_v2 {
     version?: string | null;
   }
   export interface Schema$GetContainerSnippetResponse {
+    /**
+     * Server container config param for manually provisioning a tagging server.
+     */
+    containerConfig?: string | null;
     /**
      * Tagging snippet for a Container.
      */
@@ -925,7 +933,7 @@ export namespace tagmanager_v2 {
      */
     gtagConfigId?: string | null;
     /**
-     * The Google tag config's parameters. @mutable tagmanager.accounts.containers.workspaces.gtag_config.create @mutable tagmanager.accounts.containers.workspaces.gtag_config.update
+     * The Google tag config's parameters.
      */
     parameter?: Schema$Parameter[];
     /**
@@ -937,7 +945,7 @@ export namespace tagmanager_v2 {
      */
     tagManagerUrl?: string | null;
     /**
-     * Google tag config type. @required tagmanager.accounts.containers.workspaces.gtag_config.create @required tagmanager.accounts.containers.workspaces.gtag_config.update @mutable tagmanager.accounts.containers.workspaces.gtag_config.create @mutable tagmanager.accounts.containers.workspaces.gtag_config.update
+     * Google tag config type.
      */
     type?: string | null;
     /**
@@ -1166,27 +1174,27 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$Parameter {
     /**
-     * Whether or not a reference type parameter is strongly or weakly referenced. Only used by Transformations. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update
+     * Whether or not a reference type parameter is strongly or weakly referenced. Only used by Transformations.
      */
     isWeakReference?: boolean | null;
     /**
-     * The named key that uniquely identifies a parameter. Required for top-level parameters, as well as map values. Ignored for list values. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * The named key that uniquely identifies a parameter. Required for top-level parameters, as well as map values. Ignored for list values.
      */
     key?: string | null;
     /**
-     * This list parameter's parameters (keys will be ignored). @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * This list parameter's parameters (keys will be ignored).
      */
     list?: Schema$Parameter[];
     /**
-     * This map parameter's parameters (must have keys; keys must be unique). @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * This map parameter's parameters (must have keys; keys must be unique).
      */
     map?: Schema$Parameter[];
     /**
-     * The parameter type. Valid values are: - boolean: The value represents a boolean, represented as 'true' or 'false' - integer: The value represents a 64-bit signed integer value, in base 10 - list: A list of parameters should be specified - map: A map of parameters should be specified - template: The value represents any text; this can include variable references (even variable references that might return non-string types) - trigger_reference: The value represents a trigger, represented as the trigger id - tag_reference: The value represents a tag, represented as the tag name @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * The parameter type. Valid values are: - boolean: The value represents a boolean, represented as 'true' or 'false' - integer: The value represents a 64-bit signed integer value, in base 10 - list: A list of parameters should be specified - map: A map of parameters should be specified - template: The value represents any text; this can include variable references (even variable references that might return non-string types) - trigger_reference: The value represents a trigger, represented as the trigger id - tag_reference: The value represents a tag, represented as the tag name
      */
     type?: string | null;
     /**
-     * A parameter's value (may contain variable references such as "{{myVariable\}\}") as appropriate to the specified type. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * A parameter's value (may contain variable references). as appropriate to the specified type.
      */
     value?: string | null;
   }
@@ -1349,15 +1357,15 @@ export namespace tagmanager_v2 {
      */
     accountId?: string | null;
     /**
-     * Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire.
      */
     blockingRuleId?: string[] | null;
     /**
-     * Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire.
      */
     blockingTriggerId?: string[] | null;
     /**
-     * Consent settings of a tag. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * Consent settings of a tag.
      */
     consentSettings?: Schema$TagConsentSetting;
     /**
@@ -1369,35 +1377,35 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false.
      */
     firingRuleId?: string[] | null;
     /**
-     * Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its blockingTriggerIds (if any specified) are false. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its blockingTriggerIds (if any specified) are false.
      */
     firingTriggerId?: string[] | null;
     /**
-     * If set to true, this tag will only fire in the live environment (e.g. not in preview or debug mode). @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * If set to true, this tag will only fire in the live environment (e.g. not in preview or debug mode).
      */
     liveOnly?: boolean | null;
     /**
-     * A map of key-value pairs of tag metadata to be included in the event data for tag monitoring. Notes: - This parameter must be type MAP. - Each parameter in the map are type TEMPLATE, however cannot contain variable references. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * A map of key-value pairs of tag metadata to be included in the event data for tag monitoring. Notes: - This parameter must be type MAP. - Each parameter in the map are type TEMPLATE, however cannot contain variable references.
      */
     monitoringMetadata?: Schema$Parameter;
     /**
-     * If non-empty, then the tag display name will be included in the monitoring metadata map using the key specified. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * If non-empty, then the tag display name will be included in the monitoring metadata map using the key specified.
      */
     monitoringMetadataTagNameKey?: string | null;
     /**
-     * Tag display name. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * Tag display name.
      */
     name?: string | null;
     /**
-     * User notes on how to apply this tag in the container. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * User notes on how to apply this tag in the container.
      */
     notes?: string | null;
     /**
-     * The tag's parameters. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * The tag's parameters.
      */
     parameter?: Schema$Parameter[];
     /**
@@ -1409,19 +1417,19 @@ export namespace tagmanager_v2 {
      */
     path?: string | null;
     /**
-     * Indicates whether the tag is paused, which prevents the tag from firing. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * Indicates whether the tag is paused, which prevents the tag from firing.
      */
     paused?: boolean | null;
     /**
-     * User defined numeric priority of the tag. Tags are fired asynchronously in order of priority. Tags with higher numeric value fire first. A tag's priority can be a positive or negative value. The default value is 0. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * User defined numeric priority of the tag. Tags are fired asynchronously in order of priority. Tags with higher numeric value fire first. A tag's priority can be a positive or negative value. The default value is 0.
      */
     priority?: Schema$Parameter;
     /**
-     * The end timestamp in milliseconds to schedule a tag. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * The end timestamp in milliseconds to schedule a tag.
      */
     scheduleEndMs?: string | null;
     /**
-     * The start timestamp in milliseconds to schedule a tag. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * The start timestamp in milliseconds to schedule a tag.
      */
     scheduleStartMs?: string | null;
     /**
@@ -1445,7 +1453,7 @@ export namespace tagmanager_v2 {
      */
     teardownTag?: Schema$TeardownTag[];
     /**
-     * GTM Tag Type. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     * GTM Tag Type.
      */
     type?: string | null;
     /**
@@ -1493,15 +1501,15 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * Transformation display name. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update
+     * Transformation display name.
      */
     name?: string | null;
     /**
-     * User notes on how to apply this transformation in the container. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update
+     * User notes on how to apply this transformation in the container.
      */
     notes?: string | null;
     /**
-     * The transformation's parameters. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update
+     * The transformation's parameters.
      */
     parameter?: Schema$Parameter[];
     /**
@@ -1521,7 +1529,7 @@ export namespace tagmanager_v2 {
      */
     transformationId?: string | null;
     /**
-     * Transformation type. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update
+     * Transformation type.
      */
     type?: string | null;
     /**
@@ -1538,11 +1546,11 @@ export namespace tagmanager_v2 {
      */
     accountId?: string | null;
     /**
-     * Used in the case of auto event tracking. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Used in the case of auto event tracking.
      */
     autoEventFilter?: Schema$Condition[];
     /**
-     * Whether or not we should only fire tags if the form submit or link click event is not cancelled by some other event handler (e.g. because of validation). Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Whether or not we should only fire tags if the form submit or link click event is not cancelled by some other event handler (e.g. because of validation). Only valid for Form Submission and Link Click triggers.
      */
     checkValidation?: Schema$Parameter;
     /**
@@ -1550,19 +1558,19 @@ export namespace tagmanager_v2 {
      */
     containerId?: string | null;
     /**
-     * A visibility trigger minimum continuous visible time (in milliseconds). Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * A visibility trigger minimum continuous visible time (in milliseconds). Only valid for AMP Visibility trigger.
      */
     continuousTimeMinMilliseconds?: Schema$Parameter;
     /**
-     * Used in the case of custom event, which is fired iff all Conditions are true. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Used in the case of custom event, which is fired iff all Conditions are true.
      */
     customEventFilter?: Schema$Condition[];
     /**
-     * Name of the GTM event that is fired. Only valid for Timer triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Name of the GTM event that is fired. Only valid for Timer triggers.
      */
     eventName?: Schema$Parameter;
     /**
-     * The trigger will only fire iff all Conditions are true. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * The trigger will only fire iff all Conditions are true.
      */
     filter?: Schema$Condition[];
     /**
@@ -1570,35 +1578,35 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled horizontally. Only valid for AMP scroll triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled horizontally. Only valid for AMP scroll triggers.
      */
     horizontalScrollPercentageList?: Schema$Parameter;
     /**
-     * Time between triggering recurring Timer Events (in milliseconds). Only valid for Timer triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Time between triggering recurring Timer Events (in milliseconds). Only valid for Timer triggers.
      */
     interval?: Schema$Parameter;
     /**
-     * Time between Timer Events to fire (in seconds). Only valid for AMP Timer trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Time between Timer Events to fire (in seconds). Only valid for AMP Timer trigger.
      */
     intervalSeconds?: Schema$Parameter;
     /**
-     * Limit of the number of GTM events this Timer Trigger will fire. If no limit is set, we will continue to fire GTM events until the user leaves the page. Only valid for Timer triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Limit of the number of GTM events this Timer Trigger will fire. If no limit is set, we will continue to fire GTM events until the user leaves the page. Only valid for Timer triggers.
      */
     limit?: Schema$Parameter;
     /**
-     * Max time to fire Timer Events (in seconds). Only valid for AMP Timer trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Max time to fire Timer Events (in seconds). Only valid for AMP Timer trigger.
      */
     maxTimerLengthSeconds?: Schema$Parameter;
     /**
-     * Trigger display name. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Trigger display name.
      */
     name?: string | null;
     /**
-     * User notes on how to apply this trigger in the container. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * User notes on how to apply this trigger in the container.
      */
     notes?: string | null;
     /**
-     * Additional parameters. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Additional parameters.
      */
     parameter?: Schema$Parameter[];
     /**
@@ -1610,7 +1618,7 @@ export namespace tagmanager_v2 {
      */
     path?: string | null;
     /**
-     * A click trigger CSS selector (i.e. "a", "button" etc.). Only valid for AMP Click trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * A click trigger CSS selector (i.e. "a", "button" etc.). Only valid for AMP Click trigger.
      */
     selector?: Schema$Parameter;
     /**
@@ -1618,7 +1626,7 @@ export namespace tagmanager_v2 {
      */
     tagManagerUrl?: string | null;
     /**
-     * A visibility trigger minimum total visible time (in milliseconds). Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * A visibility trigger minimum total visible time (in milliseconds). Only valid for AMP Visibility trigger.
      */
     totalTimeMinMilliseconds?: Schema$Parameter;
     /**
@@ -1626,35 +1634,35 @@ export namespace tagmanager_v2 {
      */
     triggerId?: string | null;
     /**
-     * Defines the data layer event that causes this trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Defines the data layer event that causes this trigger.
      */
     type?: string | null;
     /**
-     * Globally unique id of the trigger that auto-generates this (a Form Submit, Link Click or Timer listener) if any. Used to make incompatible auto-events work together with trigger filtering based on trigger ids. This value is populated during output generation since the tags implied by triggers don't exist until then. Only valid for Form Submit, Link Click and Timer triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Globally unique id of the trigger that auto-generates this (a Form Submit, Link Click or Timer listener) if any. Used to make incompatible auto-events work together with trigger filtering based on trigger ids. This value is populated during output generation since the tags implied by triggers don't exist until then. Only valid for Form Submit, Link Click and Timer triggers.
      */
     uniqueTriggerId?: Schema$Parameter;
     /**
-     * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled vertically. Only valid for AMP scroll triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled vertically. Only valid for AMP scroll triggers.
      */
     verticalScrollPercentageList?: Schema$Parameter;
     /**
-     * A visibility trigger CSS selector (i.e. "#id"). Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * A visibility trigger CSS selector (i.e. "#id"). Only valid for AMP Visibility trigger.
      */
     visibilitySelector?: Schema$Parameter;
     /**
-     * A visibility trigger maximum percent visibility. Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * A visibility trigger maximum percent visibility. Only valid for AMP Visibility trigger.
      */
     visiblePercentageMax?: Schema$Parameter;
     /**
-     * A visibility trigger minimum percent visibility. Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * A visibility trigger minimum percent visibility. Only valid for AMP Visibility trigger.
      */
     visiblePercentageMin?: Schema$Parameter;
     /**
-     * Whether or not we should delay the form submissions or link opening until all of the tags have fired (by preventing the default action and later simulating the default action). Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * Whether or not we should delay the form submissions or link opening until all of the tags have fired (by preventing the default action and later simulating the default action). Only valid for Form Submission and Link Click triggers.
      */
     waitForTags?: Schema$Parameter;
     /**
-     * How long to wait (in milliseconds) for tags to fire when 'waits_for_tags' above evaluates to true. Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
+     * How long to wait (in milliseconds) for tags to fire when 'waits_for_tags' above evaluates to true. Only valid for Form Submission and Link Click triggers.
      */
     waitForTagsTimeout?: Schema$Parameter;
     /**
@@ -1667,7 +1675,7 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$UserPermission {
     /**
-     * GTM Account access permissions. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
+     * GTM Account access permissions.
      */
     accountAccess?: Schema$AccountAccess;
     /**
@@ -1675,11 +1683,11 @@ export namespace tagmanager_v2 {
      */
     accountId?: string | null;
     /**
-     * GTM Container access permissions. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
+     * GTM Container access permissions.
      */
     containerAccess?: Schema$ContainerAccess[];
     /**
-     * User's email address. @mutable tagmanager.accounts.permissions.create
+     * User's email address.
      */
     emailAddress?: string | null;
     /**
@@ -1700,11 +1708,11 @@ export namespace tagmanager_v2 {
      */
     containerId?: string | null;
     /**
-     * For mobile containers only: A list of trigger IDs for disabling conditional variables; the variable is enabled if one of the enabling trigger is true while all the disabling trigger are false. Treated as an unordered set. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
+     * For mobile containers only: A list of trigger IDs for disabling conditional variables; the variable is enabled if one of the enabling trigger is true while all the disabling trigger are false. Treated as an unordered set.
      */
     disablingTriggerId?: string[] | null;
     /**
-     * For mobile containers only: A list of trigger IDs for enabling conditional variables; the variable is enabled if one of the enabling triggers is true while all the disabling triggers are false. Treated as an unordered set. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
+     * For mobile containers only: A list of trigger IDs for enabling conditional variables; the variable is enabled if one of the enabling triggers is true while all the disabling triggers are false. Treated as an unordered set.
      */
     enablingTriggerId?: string[] | null;
     /**
@@ -1716,15 +1724,15 @@ export namespace tagmanager_v2 {
      */
     formatValue?: Schema$VariableFormatValue;
     /**
-     * Variable display name. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
+     * Variable display name.
      */
     name?: string | null;
     /**
-     * User notes on how to apply this variable in the container. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
+     * User notes on how to apply this variable in the container.
      */
     notes?: string | null;
     /**
-     * The variable's parameters. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
+     * The variable's parameters.
      */
     parameter?: Schema$Parameter[];
     /**
@@ -1736,11 +1744,11 @@ export namespace tagmanager_v2 {
      */
     path?: string | null;
     /**
-     * The end timestamp in milliseconds to schedule a variable. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
+     * The end timestamp in milliseconds to schedule a variable.
      */
     scheduleEndMs?: string | null;
     /**
-     * The start timestamp in milliseconds to schedule a variable. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
+     * The start timestamp in milliseconds to schedule a variable.
      */
     scheduleStartMs?: string | null;
     /**
@@ -1748,7 +1756,7 @@ export namespace tagmanager_v2 {
      */
     tagManagerUrl?: string | null;
     /**
-     * GTM Variable Type. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
+     * GTM Variable Type.
      */
     type?: string | null;
     /**
@@ -1795,7 +1803,7 @@ export namespace tagmanager_v2 {
      */
     containerId?: string | null;
     /**
-     * Workspace description. @mutable tagmanager.accounts.containers.workspaces.create @mutable tagmanager.accounts.containers.workspaces.update
+     * Workspace description.
      */
     description?: string | null;
     /**
@@ -1803,7 +1811,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * Workspace display name. @mutable tagmanager.accounts.containers.workspaces.create @mutable tagmanager.accounts.containers.workspaces.update
+     * Workspace display name.
      */
     name?: string | null;
     /**
@@ -2193,7 +2201,7 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * GTM Account's API relative path. Example: accounts/{account_id\}
+     * GTM Account's API relative path.
      */
     path?: string;
   }
@@ -2213,7 +2221,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Account's API relative path. Example: accounts/{account_id\}
+     * GTM Account's API relative path.
      */
     path?: string;
 
@@ -3060,7 +3068,7 @@ export namespace tagmanager_v2 {
      */
     containerId?: string;
     /**
-     * GTM Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM Container's API relative path.
      */
     path?: string;
     /**
@@ -3071,7 +3079,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Create
     extends StandardParameters {
     /**
-     * GTM Account's API relative path. Example: accounts/{account_id\}.
+     * GTM Account's API relative path.
      */
     parent?: string;
 
@@ -3083,14 +3091,14 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Delete
     extends StandardParameters {
     /**
-     * GTM Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM Container's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Get
     extends StandardParameters {
     /**
-     * GTM Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM Container's API relative path.
      */
     path?: string;
   }
@@ -3101,18 +3109,18 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Account's API relative path. Example: accounts/{account_id\}.
+     * GTM Account's API relative path.
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Lookup
     extends StandardParameters {
     /**
-     * Destination ID linked to a GTM Container, e.g. AW-123456789. Example: accounts/containers:lookup?destination_id={destination_id\}. Only one of destination_id or tag_id should be set.
+     * Destination ID linked to a GTM Container, e.g. AW-123456789. Only one of destination_id or tag_id should be set.
      */
     destinationId?: string;
     /**
-     * Tag ID for a GTM Container, e.g. GTM-123456789. Example: accounts/containers:lookup?tag_id={tag_id\}. Only one of destination_id or tag_id should be set.
+     * Tag ID for a GTM Container, e.g. GTM-123456789. Only one of destination_id or tag_id should be set.
      */
     tagId?: string;
   }
@@ -3135,7 +3143,7 @@ export namespace tagmanager_v2 {
      */
     copyUsers?: boolean;
     /**
-     * GTM Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM Container's API relative path.
      */
     path?: string;
     /**
@@ -3150,7 +3158,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Snippet
     extends StandardParameters {
     /**
-     * Container snippet's API relative path. Example: accounts/{account_id\}/containers/{container_id\}:snippet
+     * Container snippet's API relative path.
      */
     path?: string;
   }
@@ -3161,7 +3169,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM Container's API relative path.
      */
     path?: string;
 
@@ -3449,7 +3457,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Destinations$Get
     extends StandardParameters {
     /**
-     * Google Tag Destination's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/destinations/{destination_link_id\}
+     * Google Tag Destination's API relative path.
      */
     path?: string;
   }
@@ -3464,14 +3472,14 @@ export namespace tagmanager_v2 {
      */
     destinationId?: string;
     /**
-     * GTM parent Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM parent Container's API relative path.
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Destinations$List
     extends StandardParameters {
     /**
-     * GTM parent Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM parent Container's API relative path.
      */
     parent?: string;
   }
@@ -4018,7 +4026,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Environments$Create
     extends StandardParameters {
     /**
-     * GTM Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM Container's API relative path.
      */
     parent?: string;
 
@@ -4030,14 +4038,14 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Environments$Delete
     extends StandardParameters {
     /**
-     * GTM Environment's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/environments/{environment_id\}
+     * GTM Environment's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Get
     extends StandardParameters {
     /**
-     * GTM Environment's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/environments/{environment_id\}
+     * GTM Environment's API relative path.
      */
     path?: string;
   }
@@ -4048,14 +4056,14 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM Container's API relative path.
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Reauthorize
     extends StandardParameters {
     /**
-     * GTM Environment's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/environments/{environment_id\}
+     * GTM Environment's API relative path.
      */
     path?: string;
 
@@ -4071,7 +4079,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Environment's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/environments/{environment_id\}
+     * GTM Environment's API relative path.
      */
     path?: string;
 
@@ -4714,7 +4722,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Versions$Delete
     extends StandardParameters {
     /**
-     * GTM ContainerVersion's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/versions/{version_id\}
+     * GTM ContainerVersion's API relative path.
      */
     path?: string;
   }
@@ -4725,14 +4733,14 @@ export namespace tagmanager_v2 {
      */
     containerVersionId?: string;
     /**
-     * GTM ContainerVersion's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/versions/{version_id\}
+     * GTM ContainerVersion's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Live
     extends StandardParameters {
     /**
-     * GTM Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM Container's API relative path.
      */
     parent?: string;
   }
@@ -4743,21 +4751,21 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM ContainerVersion's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/versions/{version_id\}
+     * GTM ContainerVersion's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Set_latest
     extends StandardParameters {
     /**
-     * GTM ContainerVersion's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/versions/{version_id\}
+     * GTM ContainerVersion's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Undelete
     extends StandardParameters {
     /**
-     * GTM ContainerVersion's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/versions/{version_id\}
+     * GTM ContainerVersion's API relative path.
      */
     path?: string;
   }
@@ -4768,7 +4776,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM ContainerVersion's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/versions/{version_id\}
+     * GTM ContainerVersion's API relative path.
      */
     path?: string;
 
@@ -4978,7 +4986,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Version_headers$Latest
     extends StandardParameters {
     /**
-     * GTM Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM Container's API relative path.
      */
     parent?: string;
   }
@@ -4993,7 +5001,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM Container's API relative path.
      */
     parent?: string;
   }
@@ -5961,7 +5969,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Create
     extends StandardParameters {
     /**
-     * GTM parent Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM parent Container's API relative path.
      */
     parent?: string;
 
@@ -5973,7 +5981,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Create_version
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     path?: string;
 
@@ -5985,21 +5993,21 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Delete
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Get
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Getstatus
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     path?: string;
   }
@@ -6010,14 +6018,14 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM parent Container's API relative path. Example: accounts/{account_id\}/containers/{container_id\}
+     * GTM parent Container's API relative path.
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Quick_preview
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     path?: string;
   }
@@ -6028,7 +6036,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     path?: string;
 
@@ -6040,7 +6048,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Sync
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     path?: string;
   }
@@ -6051,7 +6059,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     path?: string;
 
@@ -6449,7 +6457,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
     /**
@@ -6460,7 +6468,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete
     extends StandardParameters {
     /**
-     * GTM BuiltInVariable's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/built_in_variables
+     * GTM BuiltInVariable's API relative path.
      */
     path?: string;
     /**
@@ -6475,14 +6483,14 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert
     extends StandardParameters {
     /**
-     * GTM BuiltInVariable's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/built_in_variables
+     * GTM BuiltInVariable's API relative path.
      */
     path?: string;
     /**
@@ -7041,7 +7049,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Create
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
 
@@ -7053,14 +7061,14 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Delete
     extends StandardParameters {
     /**
-     * GTM Client's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/clients/{client_id\}
+     * GTM Client's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Clients$Get
     extends StandardParameters {
     /**
-     * GTM Client's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/clients/{client_id\}
+     * GTM Client's API relative path.
      */
     path?: string;
   }
@@ -7071,7 +7079,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
   }
@@ -7082,7 +7090,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Client's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/clients/{client_id\}
+     * GTM Client's API relative path.
      */
     path?: string;
   }
@@ -7093,7 +7101,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Client's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/clients/{client_id\}
+     * GTM Client's API relative path.
      */
     path?: string;
 
@@ -7828,7 +7836,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Create
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
 
@@ -7840,7 +7848,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Delete
     extends StandardParameters {
     /**
-     * GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
+     * GTM Folder's API relative path.
      */
     path?: string;
   }
@@ -7851,14 +7859,14 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
+     * GTM Folder's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Get
     extends StandardParameters {
     /**
-     * GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
+     * GTM Folder's API relative path.
      */
     path?: string;
   }
@@ -7869,14 +7877,14 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder
     extends StandardParameters {
     /**
-     * GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
+     * GTM Folder's API relative path.
      */
     path?: string;
     /**
@@ -7904,7 +7912,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
+     * GTM Folder's API relative path.
      */
     path?: string;
   }
@@ -7915,7 +7923,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
+     * GTM Folder's API relative path.
      */
     path?: string;
 
@@ -8383,7 +8391,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$Create
     extends StandardParameters {
     /**
-     * Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * Workspace's API relative path.
      */
     parent?: string;
 
@@ -8395,14 +8403,14 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$Delete
     extends StandardParameters {
     /**
-     * Google tag config's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/gtag_config/{gtag_config_id\}
+     * Google tag config's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Gtag_config$Get
     extends StandardParameters {
     /**
-     * Google tag config's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/gtag_config/{gtag_config_id\}
+     * Google tag config's API relative path.
      */
     path?: string;
   }
@@ -8413,7 +8421,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * Workspace's API relative path.
      */
     parent?: string;
   }
@@ -8424,7 +8432,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * Google tag config's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/gtag_config/{gtag_config_id\}
+     * Google tag config's API relative path.
      */
     path?: string;
 
@@ -8977,7 +8985,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Create
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
 
@@ -8989,14 +8997,14 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Delete
     extends StandardParameters {
     /**
-     * GTM Tag's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/tags/{tag_id\}
+     * GTM Tag's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Get
     extends StandardParameters {
     /**
-     * GTM Tag's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/tags/{tag_id\}
+     * GTM Tag's API relative path.
      */
     path?: string;
   }
@@ -9007,7 +9015,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
   }
@@ -9018,7 +9026,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Tag's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/tags/{tag_id\}
+     * GTM Tag's API relative path.
      */
     path?: string;
   }
@@ -9029,7 +9037,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Tag's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/tags/{tag_id\}
+     * GTM Tag's API relative path.
      */
     path?: string;
 
@@ -9298,6 +9306,96 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomTemplate>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomTemplate>(parameters);
+      }
+    }
+
+    /**
+     * Imports a GTM Custom Template from Gallery.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import_from_gallery(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Import_from_gallery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import_from_gallery(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Templates$Import_from_gallery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomTemplate>;
+    import_from_gallery(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Import_from_gallery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import_from_gallery(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Import_from_gallery,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomTemplate>,
+      callback: BodyResponseCallback<Schema$CustomTemplate>
+    ): void;
+    import_from_gallery(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Import_from_gallery,
+      callback: BodyResponseCallback<Schema$CustomTemplate>
+    ): void;
+    import_from_gallery(
+      callback: BodyResponseCallback<Schema$CustomTemplate>
+    ): void;
+    import_from_gallery(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Templates$Import_from_gallery
+        | BodyResponseCallback<Schema$CustomTemplate>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomTemplate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomTemplate> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$Import_from_gallery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Import_from_gallery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tagmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/tagmanager/v2/{+parent}/templates:import_from_gallery'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -9591,7 +9689,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Create
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
 
@@ -9603,16 +9701,39 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Delete
     extends StandardParameters {
     /**
-     * GTM Custom Template's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/templates/{template_id\}
+     * GTM Custom Template's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Get
     extends StandardParameters {
     /**
-     * GTM Custom Template's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/templates/{template_id\}
+     * GTM Custom Template's API relative path.
      */
     path?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Import_from_gallery
+    extends StandardParameters {
+    /**
+     * Must be set to true to allow Gallery template to be imported into the workspace. If this bit is false, the import operation will fail.
+     */
+    acknowledgePermissions?: boolean;
+    /**
+     * Owner of the Gallery template to import
+     */
+    galleryOwner?: string;
+    /**
+     * Repository of the Gallery template to import
+     */
+    galleryRepository?: string;
+    /**
+     * SHA version of the Gallery template to import. Defaulted to the latest SHA version if not provided.
+     */
+    gallerySha?: string;
+    /**
+     * GTM Workspace's API relative path.
+     */
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$List
     extends StandardParameters {
@@ -9621,7 +9742,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
   }
@@ -9632,7 +9753,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Custom Template's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/templates/{template_id\}
+     * GTM Custom Template's API relative path.
      */
     path?: string;
   }
@@ -9643,7 +9764,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Custom Template's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/templates/{template_id\}
+     * GTM Custom Template's API relative path.
      */
     path?: string;
 
@@ -10211,7 +10332,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Create
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
 
@@ -10223,14 +10344,14 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Delete
     extends StandardParameters {
     /**
-     * GTM Transformation's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/transformations/{transformation_id\}
+     * GTM Transformation's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Get
     extends StandardParameters {
     /**
-     * GTM Transformation's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/transformations/{transformation_id\}
+     * GTM Transformation's API relative path.
      */
     path?: string;
   }
@@ -10241,7 +10362,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
   }
@@ -10252,7 +10373,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Transformation's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/transformations/{transformation_id\}
+     * GTM Transformation's API relative path.
      */
     path?: string;
   }
@@ -10263,7 +10384,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Transformation's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/transformations/{transformation_id\}
+     * GTM Transformation's API relative path.
      */
     path?: string;
 
@@ -10825,7 +10946,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Create
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
 
@@ -10837,14 +10958,14 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete
     extends StandardParameters {
     /**
-     * GTM Trigger's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/triggers/{trigger_id\}
+     * GTM Trigger's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Get
     extends StandardParameters {
     /**
-     * GTM Trigger's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/triggers/{trigger_id\}
+     * GTM Trigger's API relative path.
      */
     path?: string;
   }
@@ -10855,7 +10976,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
   }
@@ -10866,7 +10987,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Trigger's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/triggers/{trigger_id\}
+     * GTM Trigger's API relative path.
      */
     path?: string;
   }
@@ -10877,7 +10998,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Trigger's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/triggers/{trigger_id\}
+     * GTM Trigger's API relative path.
      */
     path?: string;
 
@@ -11439,7 +11560,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Create
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
 
@@ -11451,14 +11572,14 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Delete
     extends StandardParameters {
     /**
-     * GTM Variable's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/variables/{variable_id\}
+     * GTM Variable's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Get
     extends StandardParameters {
     /**
-     * GTM Variable's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/variables/{variable_id\}
+     * GTM Variable's API relative path.
      */
     path?: string;
   }
@@ -11469,7 +11590,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
   }
@@ -11480,7 +11601,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Variable's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/variables/{variable_id\}
+     * GTM Variable's API relative path.
      */
     path?: string;
   }
@@ -11491,7 +11612,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Variable's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/variables/{variable_id\}
+     * GTM Variable's API relative path.
      */
     path?: string;
 
@@ -12048,7 +12169,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Create
     extends StandardParameters {
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
 
@@ -12060,14 +12181,14 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Delete
     extends StandardParameters {
     /**
-     * GTM Zone's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/zones/{zone_id\}
+     * GTM Zone's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Get
     extends StandardParameters {
     /**
-     * GTM Zone's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/zones/{zone_id\}
+     * GTM Zone's API relative path.
      */
     path?: string;
   }
@@ -12078,7 +12199,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path.
      */
     parent?: string;
   }
@@ -12089,7 +12210,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Zone's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/zones/{zone_id\}
+     * GTM Zone's API relative path.
      */
     path?: string;
   }
@@ -12100,7 +12221,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
-     * GTM Zone's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/zones/{zone_id\}
+     * GTM Zone's API relative path.
      */
     path?: string;
 
@@ -12563,7 +12684,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$User_permissions$Create
     extends StandardParameters {
     /**
-     * GTM Account's API relative path. Example: accounts/{account_id\}
+     * GTM Account's API relative path.
      */
     parent?: string;
 
@@ -12575,14 +12696,14 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$User_permissions$Delete
     extends StandardParameters {
     /**
-     * GTM UserPermission's API relative path. Example: accounts/{account_id\}/user_permissions/{user_permission_id\}
+     * GTM UserPermission's API relative path.
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$User_permissions$Get
     extends StandardParameters {
     /**
-     * GTM UserPermission's API relative path. Example: accounts/{account_id\}/user_permissions/{user_permission_id\}
+     * GTM UserPermission's API relative path.
      */
     path?: string;
   }
@@ -12593,14 +12714,14 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Account's API relative path. Example: accounts/{account_id\}
+     * GTM Account's API relative path.
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$User_permissions$Update
     extends StandardParameters {
     /**
-     * GTM UserPermission's API relative path. Example: accounts/{account_id\}/user_permissions/{user_permission_id\}
+     * GTM UserPermission's API relative path.
      */
     path?: string;
 
