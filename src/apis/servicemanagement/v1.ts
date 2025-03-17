@@ -169,6 +169,19 @@ export namespace servicemanagement_v1 {
     version?: string | null;
   }
   /**
+   * Aspect represents Generic aspect. It is used to configure an aspect without making direct changes to service.proto
+   */
+  export interface Schema$Aspect {
+    /**
+     * The type of this aspect configuration.
+     */
+    kind?: string | null;
+    /**
+     * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `apiserving/configaspects/proto`.
+     */
+    spec?: {[key: string]: any} | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -299,6 +312,10 @@ export namespace servicemanagement_v1 {
      * The JWT audience is used when generating a JWT ID token for the backend. This ID token will be added in the HTTP "authorization" header, and sent to the backend.
      */
     jwtAudience?: string | null;
+    /**
+     * The load balancing policy used for connection to the application backend. Defined as an arbitrary string to accomondate custom load balancing policies supported by the underlying channel, but suggest most users use one of the standard policies, such as the default, "RoundRobin".
+     */
+    loadBalancingPolicy?: string | null;
     /**
      * Deprecated, do not use.
      */
@@ -640,7 +657,7 @@ export namespace servicemanagement_v1 {
      */
     rules?: Schema$DocumentationRule[];
     /**
-     * Specifies section and content to override boilerplate content provided by go/api-docgen. Currently overrides following sections: 1. rest.service.client_libraries
+     * Specifies section and content to override the boilerplate content. Currently overrides following sections: 1. rest.service.client_libraries
      */
     sectionOverrides?: Schema$Page[];
     /**
@@ -665,7 +682,7 @@ export namespace servicemanagement_v1 {
      */
     description?: string | null;
     /**
-     * String of comma or space separated case-sensitive words for which method/field name replacement will be disabled by go/api-docgen.
+     * String of comma or space separated case-sensitive words for which method/field name replacement will be disabled.
      */
     disableReplacementWords?: string | null;
     /**
@@ -785,6 +802,10 @@ export namespace servicemanagement_v1 {
      * Enables generation of asynchronous REST clients if `rest` transport is enabled. By default, asynchronous REST clients will not be generated. This feature will be enabled by default 1 month after launching the feature in preview packages.
      */
     restAsyncIoEnabled?: boolean | null;
+    /**
+     * Disables generation of an unversioned Python package for this client library. This means that the module names will need to be versioned in import statements. For example `import google.cloud.library_v2` instead of `import google.cloud.library`.
+     */
+    unversionedPackageDisabled?: boolean | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -1502,7 +1523,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$Page {
     /**
-     * The Markdown content of the page. You can use (== include {path\} ==) to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page.
+     * The Markdown content of the page. You can use ```(== include {path\} ==)``` to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page.
      */
     content?: string | null;
     /**
@@ -1724,6 +1745,10 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$SelectiveGapicGeneration {
     /**
+     * Setting this to true indicates to the client generators that methods that would be excluded from the generation should instead be generated in a way that indicates these methods should not be consumed by end users. How this is expressed is up to individual language implementations to decide. Some examples may be: added annotations, obfuscated identifiers, or other language idiomatic patterns.
+     */
+    generateOmittedAsInternal?: boolean | null;
+    /**
      * An allowlist of the fully qualified names of RPCs that should be included on public client surfaces.
      */
     methods?: string[] | null;
@@ -1736,6 +1761,10 @@ export namespace servicemanagement_v1 {
      * A list of API interfaces exported by this service. Only the `name` field of the google.protobuf.Api needs to be provided by the configuration author, as the remaining fields will be derived from the IDL during the normalization process. It is an error to specify an API interface here which cannot be resolved against the associated IDL files.
      */
     apis?: Schema$Api[];
+    /**
+     * Configuration aspects. This is a repeated field to allow multiple aspects to be configured. The kind field in each ConfigAspect specifies the type of aspect. The spec field contains the configuration for that aspect. The schema for the spec field is defined by the backend service owners.
+     */
+    aspects?: Schema$Aspect[];
     /**
      * Auth configuration.
      */
@@ -2054,11 +2083,11 @@ export namespace servicemanagement_v1 {
     rules?: Schema$UsageRule[];
   }
   /**
-   * Usage configuration rules for the service. NOTE: Under development. Use this rule to configure unregistered calls for the service. Unregistered calls are calls that do not contain consumer project identity. (Example: calls that do not contain an API key). By default, API methods do not allow unregistered calls, and each method call must be identified by a consumer project identity. Use this rule to allow/disallow unregistered calls. Example of an API that wants to allow unregistered calls for entire service. usage: rules: - selector: "*" allow_unregistered_calls: true Example of a method that wants to allow unregistered calls. usage: rules: - selector: "google.example.library.v1.LibraryService.CreateBook" allow_unregistered_calls: true
+   * Usage configuration rules for the service.
    */
   export interface Schema$UsageRule {
     /**
-     * If true, the selected method allows unregistered calls, e.g. calls that don't identify any user or application.
+     *  Use this rule to configure unregistered calls for the service. Unregistered calls are calls that do not contain consumer project identity. (Example: calls that do not contain an API key). WARNING: By default, API methods do not allow unregistered calls, and each method call must be identified by a consumer project identity.
      */
     allowUnregisteredCalls?: boolean | null;
     /**
