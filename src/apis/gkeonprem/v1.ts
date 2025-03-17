@@ -100,7 +100,7 @@ export namespace gkeonprem_v1 {
   }
 
   /**
-   * GDC Virtual API
+   * GKE On-Prem API
    *
    *
    *

@@ -3094,7 +3094,7 @@
       }
     }
   },
-  "revision": "20241204",
+  "revision": "20250224",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -6878,7 +6878,7 @@
     }
   },
   "servicePath": "",
-  "title": "GDC Virtual API",
+  "title": "GKE On-Prem API",
   "version": "v1",
   "version_module": true
 }
