@@ -854,7 +854,7 @@
       }
     }
   },
-  "revision": "20241203",
+  "revision": "20250227",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "GoogleCloudMetastoreV1AlterMetadataResourceLocationResponse": {
@@ -958,6 +958,14 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "continent": {
+          "description": "The continent for this multi-region.",
+          "type": "string"
+        },
+        "witnessRegion": {
+          "description": "The Spanner witness region for this multi-region.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1140,6 +1148,14 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "continent": {
+          "description": "The continent for this multi-region.",
+          "type": "string"
+        },
+        "witnessRegion": {
+          "description": "The Spanner witness region for this multi-region.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1322,6 +1338,14 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "continent": {
+          "description": "The continent for this multi-region.",
+          "type": "string"
+        },
+        "witnessRegion": {
+          "description": "The Spanner witness region for this multi-region.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1641,7 +1665,7 @@
       "type": "object"
     },
     "GoogleCloudMetastoreV2betaDatabaseDump": {
-      "description": "A specification of the location of and metadata about a database dump from a relational database management system.",
+      "description": "A specification of the location and metadata type for a database dump from a relational database management system.",
       "id": "GoogleCloudMetastoreV2betaDatabaseDump",
       "properties": {
         "gcsUri": {

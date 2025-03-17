@@ -942,6 +942,14 @@ export namespace metastore_v1 {
      * The regions constituting the multi-region.
      */
     constituentRegions?: string[] | null;
+    /**
+     * The continent for this multi-region.
+     */
+    continent?: string | null;
+    /**
+     * The Spanner witness region for this multi-region.
+     */
+    witnessRegion?: string | null;
   }
   /**
    * Network configuration for the Dataproc Metastore service.
