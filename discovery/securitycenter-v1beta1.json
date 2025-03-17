@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250308",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -1013,6 +1013,20 @@
           "description": "A score of 0 means that there is low confidence that the detected event is an actual attack. A score of 1 means that there is high confidence that the detected event is an attack. See the [Adaptive Protection documentation](https://cloud.google.com/armor/docs/adaptive-protection-overview#configure-alert-tuning) for further explanation.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "Allowed": {
+      "description": "Allowed IP rule.",
+      "id": "Allowed",
+      "properties": {
+        "ipRules": {
+          "description": "Optional. Optional list of allowed IP rules.",
+          "items": {
+            "$ref": "IpRule"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1961,6 +1975,24 @@
       },
       "type": "object"
     },
+    "Cwe": {
+      "description": "CWE stands for Common Weakness Enumeration. Information about this weakness, as described by [CWE](https://cwe.mitre.org/).",
+      "id": "Cwe",
+      "properties": {
+        "id": {
+          "description": "The CWE identifier, e.g. CWE-94",
+          "type": "string"
+        },
+        "references": {
+          "description": "Any reference to the details on the CWE, for example, https://cwe.mitre.org/data/definitions/94.html",
+          "items": {
+            "$ref": "Reference"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "DataAccessEvent": {
       "description": "Details about a data access attempt made by a principal not authorized under applicable data security policy.",
       "id": "DataAccessEvent",
@@ -2064,7 +2096,7 @@
           "type": "string"
         },
         "maxRetentionAllowed": {
-          "description": "Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user set the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.",
+          "description": "Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user sets the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.",
           "format": "google-duration",
           "type": "string"
         }
@@ -2105,6 +2137,20 @@
       },
       "type": "object"
     },
+    "Denied": {
+      "description": "Denied IP rule.",
+      "id": "Denied",
+      "properties": {
+        "ipRules": {
+          "description": "Optional. Optional list of denied IP rules.",
+          "items": {
+            "$ref": "IpRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Detection": {
       "description": "Memory hash detection contributing to the binary family match.",
       "id": "Detection",
@@ -2126,7 +2172,7 @@
       "id": "Disk",
       "properties": {
         "name": {
-          "description": "The name of the disk, for example, \"https://www.googleapis.com/compute/v1/projects/project-id/zones/zone-id/disks/disk-id\".",
+          "description": "The name of the disk, for example, \"https://www.googleapis.com/compute/v1/projects/{project-id}/zones/{zone-id}/disks/{disk-id}\".",
           "type": "string"
         }
       },
@@ -2467,6 +2513,14 @@
           "$ref": "Indicator",
           "description": "Represents what's commonly known as an *indicator of compromise* (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. For more information, see [Indicator of compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise)."
         },
+        "ipRules": {
+          "$ref": "IpRules",
+          "description": "IP rules associated with the finding."
+        },
+        "job": {
+          "$ref": "Job",
+          "description": "Job associated with the finding."
+        },
         "kernelRootkit": {
           "$ref": "KernelRootkit",
           "description": "Signature of the kernel rootkit."
@@ -2531,6 +2585,13 @@
         "name": {
           "description": "The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\", \"projects/{project_id}/sources/{source_id}/findings/{finding_id}\".",
           "type": "string"
+        },
+        "networks": {
+          "description": "Represents the VPC networks that the resource is attached to.",
+          "items": {
+            "$ref": "Network"
+          },
+          "type": "array"
         },
         "nextSteps": {
           "description": "Steps to address the finding.",
@@ -3791,6 +3852,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2Allowed": {
+      "description": "Allowed IP rule.",
+      "id": "GoogleCloudSecuritycenterV2Allowed",
+      "properties": {
+        "ipRules": {
+          "description": "Optional. Optional list of allowed IP rules.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2IpRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Application": {
       "description": "Represents an application associated with a finding.",
       "id": "GoogleCloudSecuritycenterV2Application",
@@ -4619,6 +4694,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2Cwe": {
+      "description": "CWE stands for Common Weakness Enumeration. Information about this weakness, as described by [CWE](https://cwe.mitre.org/).",
+      "id": "GoogleCloudSecuritycenterV2Cwe",
+      "properties": {
+        "id": {
+          "description": "The CWE identifier, e.g. CWE-94",
+          "type": "string"
+        },
+        "references": {
+          "description": "Any reference to the details on the CWE, for example, https://cwe.mitre.org/data/definitions/94.html",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2Reference"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2DataAccessEvent": {
       "description": "Details about a data access attempt made by a principal not authorized under applicable data security policy.",
       "id": "GoogleCloudSecuritycenterV2DataAccessEvent",
@@ -4722,7 +4815,7 @@
           "type": "string"
         },
         "maxRetentionAllowed": {
-          "description": "Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user set the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.",
+          "description": "Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user sets the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.",
           "format": "google-duration",
           "type": "string"
         }
@@ -4763,6 +4856,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2Denied": {
+      "description": "Denied IP rule.",
+      "id": "GoogleCloudSecuritycenterV2Denied",
+      "properties": {
+        "ipRules": {
+          "description": "Optional. Optional list of denied IP rules.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2IpRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Detection": {
       "description": "Memory hash detection contributing to the binary family match.",
       "id": "GoogleCloudSecuritycenterV2Detection",
@@ -4784,7 +4891,7 @@
       "id": "GoogleCloudSecuritycenterV2Disk",
       "properties": {
         "name": {
-          "description": "The name of the disk, for example, \"https://www.googleapis.com/compute/v1/projects/project-id/zones/zone-id/disks/disk-id\".",
+          "description": "The name of the disk, for example, \"https://www.googleapis.com/compute/v1/projects/{project-id}/zones/{zone-id}/disks/{disk-id}\".",
           "type": "string"
         }
       },
@@ -5156,6 +5263,14 @@
           "$ref": "GoogleCloudSecuritycenterV2Indicator",
           "description": "Represents what's commonly known as an *indicator of compromise* (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. For more information, see [Indicator of compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise)."
         },
+        "ipRules": {
+          "$ref": "GoogleCloudSecuritycenterV2IpRules",
+          "description": "IP rules associated with the finding."
+        },
+        "job": {
+          "$ref": "GoogleCloudSecuritycenterV2Job",
+          "description": "Job associated with the finding."
+        },
         "kernelRootkit": {
           "$ref": "GoogleCloudSecuritycenterV2KernelRootkit",
           "description": "Signature of the kernel rootkit."
@@ -5220,6 +5335,13 @@
         "name": {
           "description": "The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. The following list shows some examples: + `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}` + `organizations/{organization_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}` + `folders/{folder_id}/sources/{source_id}/findings/{finding_id}` + `folders/{folder_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}` + `projects/{project_id}/sources/{source_id}/findings/{finding_id}` + `projects/{project_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}`",
           "type": "string"
+        },
+        "networks": {
+          "description": "Represents the VPC networks that the resource is attached to.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2Network"
+          },
+          "type": "array"
         },
         "nextSteps": {
           "description": "Steps to address the finding.",
@@ -5421,6 +5543,74 @@
         },
         "uris": {
           "description": "The list of URIs associated to the Findings.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2IpRule": {
+      "description": "IP rule information.",
+      "id": "GoogleCloudSecuritycenterV2IpRule",
+      "properties": {
+        "portRanges": {
+          "description": "Optional. An optional list of ports to which this rule applies. This field is only applicable for the UDP or (S)TCP protocols. Each entry must be either an integer or a range including a min and max port number.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2PortRange"
+          },
+          "type": "array"
+        },
+        "protocol": {
+          "description": "The IP protocol this rule applies to. This value can either be one of the following well known protocol strings (TCP, UDP, ICMP, ESP, AH, IPIP, SCTP) or a string representation of the integer value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2IpRules": {
+      "description": "IP rules associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2IpRules",
+      "properties": {
+        "allowed": {
+          "$ref": "GoogleCloudSecuritycenterV2Allowed",
+          "description": "Tuple with allowed rules."
+        },
+        "denied": {
+          "$ref": "GoogleCloudSecuritycenterV2Denied",
+          "description": "Tuple with denied rules."
+        },
+        "destinationIpRanges": {
+          "description": "If destination IP ranges are specified, the firewall rule applies only to traffic that has a destination IP address in these ranges. These ranges must be expressed in CIDR format. Only supports IPv4.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "direction": {
+          "description": "The direction that the rule is applicable to, one of ingress or egress.",
+          "enum": [
+            "DIRECTION_UNSPECIFIED",
+            "INGRESS",
+            "EGRESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified direction value.",
+            "Ingress direction value.",
+            "Egress direction value."
+          ],
+          "type": "string"
+        },
+        "exposedServices": {
+          "description": "Name of the network protocol service, such as FTP, that is exposed by the open port. Follows the naming convention available at: https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sourceIpRanges": {
+          "description": "If source IP ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. Only supports IPv4.",
           "items": {
             "type": "string"
           },
@@ -5826,6 +6016,45 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2Job": {
+      "description": "Describes a job",
+      "id": "GoogleCloudSecuritycenterV2Job",
+      "properties": {
+        "errorCode": {
+          "description": "Optional. If the job did not complete successfully, this field describes why.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "location": {
+          "description": "Optional. Gives the location where the job ran, such as `US` or `europe-west1`",
+          "type": "string"
+        },
+        "name": {
+          "description": "The fully-qualified name for a job. e.g. `projects//jobs/`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the job, such as `RUNNING` or `PENDING`.",
+          "enum": [
+            "JOB_STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Unspecified represents an unknown state and should not be used.",
+            "Job is scheduled and pending for run",
+            "Job in progress",
+            "Job has completed with success",
+            "Job has completed but with failure"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2KernelRootkit": {
       "description": "Kernel mode rootkit signatures.",
       "id": "GoogleCloudSecuritycenterV2KernelRootkit",
@@ -6030,6 +6259,7 @@
           "items": {
             "enum": [
               "TECHNIQUE_UNSPECIFIED",
+              "AUTOMATED_EXFILTRATION",
               "MASQUERADING",
               "MATCH_LEGITIMATE_NAME_OR_LOCATION",
               "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS",
@@ -6055,6 +6285,7 @@
               "MULTI_HOP_PROXY",
               "ACCOUNT_MANIPULATION",
               "ADDITIONAL_CLOUD_CREDENTIALS",
+              "ADDITIONAL_CLOUD_ROLES",
               "SSH_AUTHORIZED_KEYS",
               "ADDITIONAL_CONTAINER_CLUSTER_ROLES",
               "INGRESS_TOOL_TRANSFER",
@@ -6064,6 +6295,7 @@
               "ACCESS_TOKEN_MANIPULATION",
               "TOKEN_IMPERSONATION_OR_THEFT",
               "EXPLOIT_PUBLIC_FACING_APPLICATION",
+              "USER_EXECUTION",
               "DOMAIN_POLICY_MODIFICATION",
               "DATA_DESTRUCTION",
               "SERVICE_STOP",
@@ -6099,6 +6331,7 @@
             ],
             "enumDescriptions": [
               "Unspecified value.",
+              "T1020",
               "T1036",
               "T1036.005",
               "T1037",
@@ -6124,6 +6357,7 @@
               "T1090.003",
               "T1098",
               "T1098.001",
+              "T1098.003",
               "T1098.004",
               "T1098.006",
               "T1105",
@@ -6133,6 +6367,7 @@
               "T1134",
               "T1134.001",
               "T1190",
+              "T1204",
               "T1484",
               "T1485",
               "T1489",
@@ -6213,6 +6448,7 @@
           "items": {
             "enum": [
               "TECHNIQUE_UNSPECIFIED",
+              "AUTOMATED_EXFILTRATION",
               "MASQUERADING",
               "MATCH_LEGITIMATE_NAME_OR_LOCATION",
               "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS",
@@ -6238,6 +6474,7 @@
               "MULTI_HOP_PROXY",
               "ACCOUNT_MANIPULATION",
               "ADDITIONAL_CLOUD_CREDENTIALS",
+              "ADDITIONAL_CLOUD_ROLES",
               "SSH_AUTHORIZED_KEYS",
               "ADDITIONAL_CONTAINER_CLUSTER_ROLES",
               "INGRESS_TOOL_TRANSFER",
@@ -6247,6 +6484,7 @@
               "ACCESS_TOKEN_MANIPULATION",
               "TOKEN_IMPERSONATION_OR_THEFT",
               "EXPLOIT_PUBLIC_FACING_APPLICATION",
+              "USER_EXECUTION",
               "DOMAIN_POLICY_MODIFICATION",
               "DATA_DESTRUCTION",
               "SERVICE_STOP",
@@ -6282,6 +6520,7 @@
             ],
             "enumDescriptions": [
               "Unspecified value.",
+              "T1020",
               "T1036",
               "T1036.005",
               "T1037",
@@ -6307,6 +6546,7 @@
               "T1090.003",
               "T1098",
               "T1098.001",
+              "T1098.003",
               "T1098.004",
               "T1098.006",
               "T1105",
@@ -6316,6 +6556,7 @@
               "T1134",
               "T1134.001",
               "T1190",
+              "T1204",
               "T1484",
               "T1485",
               "T1489",
@@ -6433,6 +6674,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2Network": {
+      "description": "Contains information about a VPC network associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2Network",
+      "properties": {
+        "name": {
+          "description": "The name of the VPC network resource, for example, `//compute.googleapis.com/projects/my-project/global/networks/my-network`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Node": {
       "description": "Kubernetes nodes associated with the finding.",
       "id": "GoogleCloudSecuritycenterV2Node",
@@ -6540,7 +6792,7 @@
       "id": "GoogleCloudSecuritycenterV2OrgPolicy",
       "properties": {
         "name": {
-          "description": "The resource name of the org policy. Example: \"organizations/{organization_id}/policies/{constraint_name}\"",
+          "description": "Identifier. The resource name of the org policy. Example: \"organizations/{organization_id}/policies/{constraint_name}\"",
           "type": "string"
         }
       },
@@ -6612,6 +6864,23 @@
         },
         "field": {
           "description": "The name of the updated field, for example constraint.implementation.policy_rules[0].enforce",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2PortRange": {
+      "description": "A port range which is inclusive of the min and max values. Values are between 0 and 2^16-1. The max can be equal / must be not smaller than the min value. If min and max are equal this indicates that it is a single port.",
+      "id": "GoogleCloudSecuritycenterV2PortRange",
+      "properties": {
+        "max": {
+          "description": "Maximum port value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "min": {
+          "description": "Minimum port value.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -7261,6 +7530,13 @@
           "$ref": "GoogleCloudSecuritycenterV2Cve",
           "description": "CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)"
         },
+        "cwes": {
+          "description": "Represents one or more Common Weakness Enumeration (CWE) information on this vulnerability.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2Cwe"
+          },
+          "type": "array"
+        },
         "fixedPackage": {
           "$ref": "GoogleCloudSecuritycenterV2Package",
           "description": "The fixed package is relevant to the finding."
@@ -7268,6 +7544,15 @@
         "offendingPackage": {
           "$ref": "GoogleCloudSecuritycenterV2Package",
           "description": "The offending package is relevant to the finding."
+        },
+        "providerRiskScore": {
+          "description": "Provider provided risk_score based on multiple factors. The higher the risk score, the more risky the vulnerability is.",
+          "format": "int64",
+          "type": "string"
+        },
+        "reachable": {
+          "description": "Represents whether the vulnerability is reachable (detected via static analysis)",
+          "type": "boolean"
         },
         "securityBulletin": {
           "$ref": "GoogleCloudSecuritycenterV2SecurityBulletin",
@@ -7498,6 +7783,113 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IpRule": {
+      "description": "IP rule information.",
+      "id": "IpRule",
+      "properties": {
+        "portRanges": {
+          "description": "Optional. An optional list of ports to which this rule applies. This field is only applicable for the UDP or (S)TCP protocols. Each entry must be either an integer or a range including a min and max port number.",
+          "items": {
+            "$ref": "PortRange"
+          },
+          "type": "array"
+        },
+        "protocol": {
+          "description": "The IP protocol this rule applies to. This value can either be one of the following well known protocol strings (TCP, UDP, ICMP, ESP, AH, IPIP, SCTP) or a string representation of the integer value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IpRules": {
+      "description": "IP rules associated with the finding.",
+      "id": "IpRules",
+      "properties": {
+        "allowed": {
+          "$ref": "Allowed",
+          "description": "Tuple with allowed rules."
+        },
+        "denied": {
+          "$ref": "Denied",
+          "description": "Tuple with denied rules."
+        },
+        "destinationIpRanges": {
+          "description": "If destination IP ranges are specified, the firewall rule applies only to traffic that has a destination IP address in these ranges. These ranges must be expressed in CIDR format. Only supports IPv4.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "direction": {
+          "description": "The direction that the rule is applicable to, one of ingress or egress.",
+          "enum": [
+            "DIRECTION_UNSPECIFIED",
+            "INGRESS",
+            "EGRESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified direction value.",
+            "Ingress direction value.",
+            "Egress direction value."
+          ],
+          "type": "string"
+        },
+        "exposedServices": {
+          "description": "Name of the network protocol service, such as FTP, that is exposed by the open port. Follows the naming convention available at: https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sourceIpRanges": {
+          "description": "If source IP ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. Only supports IPv4.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Job": {
+      "description": "Describes a job",
+      "id": "Job",
+      "properties": {
+        "errorCode": {
+          "description": "Optional. If the job did not complete successfully, this field describes why.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "location": {
+          "description": "Optional. Gives the location where the job ran, such as `US` or `europe-west1`",
+          "type": "string"
+        },
+        "name": {
+          "description": "The fully-qualified name for a job. e.g. `projects//jobs/`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the job, such as `RUNNING` or `PENDING`.",
+          "enum": [
+            "JOB_STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Unspecified represents an unknown state and should not be used.",
+            "Job is scheduled and pending for run",
+            "Job in progress",
+            "Job has completed with success",
+            "Job has completed but with failure"
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -7827,6 +8219,7 @@
           "items": {
             "enum": [
               "TECHNIQUE_UNSPECIFIED",
+              "AUTOMATED_EXFILTRATION",
               "MASQUERADING",
               "MATCH_LEGITIMATE_NAME_OR_LOCATION",
               "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS",
@@ -7852,6 +8245,7 @@
               "MULTI_HOP_PROXY",
               "ACCOUNT_MANIPULATION",
               "ADDITIONAL_CLOUD_CREDENTIALS",
+              "ADDITIONAL_CLOUD_ROLES",
               "SSH_AUTHORIZED_KEYS",
               "ADDITIONAL_CONTAINER_CLUSTER_ROLES",
               "INGRESS_TOOL_TRANSFER",
@@ -7861,6 +8255,7 @@
               "ACCESS_TOKEN_MANIPULATION",
               "TOKEN_IMPERSONATION_OR_THEFT",
               "EXPLOIT_PUBLIC_FACING_APPLICATION",
+              "USER_EXECUTION",
               "DOMAIN_POLICY_MODIFICATION",
               "DATA_DESTRUCTION",
               "SERVICE_STOP",
@@ -7896,6 +8291,7 @@
             ],
             "enumDescriptions": [
               "Unspecified value.",
+              "T1020",
               "T1036",
               "T1036.005",
               "T1037",
@@ -7921,6 +8317,7 @@
               "T1090.003",
               "T1098",
               "T1098.001",
+              "T1098.003",
               "T1098.004",
               "T1098.006",
               "T1105",
@@ -7930,6 +8327,7 @@
               "T1134",
               "T1134.001",
               "T1190",
+              "T1204",
               "T1484",
               "T1485",
               "T1489",
@@ -8010,6 +8408,7 @@
           "items": {
             "enum": [
               "TECHNIQUE_UNSPECIFIED",
+              "AUTOMATED_EXFILTRATION",
               "MASQUERADING",
               "MATCH_LEGITIMATE_NAME_OR_LOCATION",
               "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS",
@@ -8035,6 +8434,7 @@
               "MULTI_HOP_PROXY",
               "ACCOUNT_MANIPULATION",
               "ADDITIONAL_CLOUD_CREDENTIALS",
+              "ADDITIONAL_CLOUD_ROLES",
               "SSH_AUTHORIZED_KEYS",
               "ADDITIONAL_CONTAINER_CLUSTER_ROLES",
               "INGRESS_TOOL_TRANSFER",
@@ -8044,6 +8444,7 @@
               "ACCESS_TOKEN_MANIPULATION",
               "TOKEN_IMPERSONATION_OR_THEFT",
               "EXPLOIT_PUBLIC_FACING_APPLICATION",
+              "USER_EXECUTION",
               "DOMAIN_POLICY_MODIFICATION",
               "DATA_DESTRUCTION",
               "SERVICE_STOP",
@@ -8079,6 +8480,7 @@
             ],
             "enumDescriptions": [
               "Unspecified value.",
+              "T1020",
               "T1036",
               "T1036.005",
               "T1037",
@@ -8104,6 +8506,7 @@
               "T1090.003",
               "T1098",
               "T1098.001",
+              "T1098.003",
               "T1098.004",
               "T1098.006",
               "T1105",
@@ -8113,6 +8516,7 @@
               "T1134",
               "T1134.001",
               "T1190",
+              "T1204",
               "T1484",
               "T1485",
               "T1489",
@@ -8171,6 +8575,17 @@
         "staticMute": {
           "$ref": "StaticMute",
           "description": "If set, the static mute applied to this finding. Static mutes override dynamic mutes. If unset, there is no static mute."
+        }
+      },
+      "type": "object"
+    },
+    "Network": {
+      "description": "Contains information about a VPC network associated with the finding.",
+      "id": "Network",
+      "properties": {
+        "name": {
+          "description": "The name of the VPC network resource, for example, `//compute.googleapis.com/projects/my-project/global/networks/my-network`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8420,6 +8835,23 @@
         },
         "field": {
           "description": "The name of the updated field, for example constraint.implementation.policy_rules[0].enforce",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PortRange": {
+      "description": "A port range which is inclusive of the min and max values. Values are between 0 and 2^16-1. The max can be equal / must be not smaller than the min value. If min and max are equal this indicates that it is a single port.",
+      "id": "PortRange",
+      "properties": {
+        "max": {
+          "description": "Maximum port value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "min": {
+          "description": "Minimum port value.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -9028,6 +9460,13 @@
           "$ref": "Cve",
           "description": "CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)"
         },
+        "cwes": {
+          "description": "Represents one or more Common Weakness Enumeration (CWE) information on this vulnerability.",
+          "items": {
+            "$ref": "Cwe"
+          },
+          "type": "array"
+        },
         "fixedPackage": {
           "$ref": "Package",
           "description": "The fixed package is relevant to the finding."
@@ -9035,6 +9474,15 @@
         "offendingPackage": {
           "$ref": "Package",
           "description": "The offending package is relevant to the finding."
+        },
+        "providerRiskScore": {
+          "description": "Provider provided risk_score based on multiple factors. The higher the risk score, the more risky the vulnerability is.",
+          "format": "int64",
+          "type": "string"
+        },
+        "reachable": {
+          "description": "Represents whether the vulnerability is reachable (detected via static analysis)",
+          "type": "boolean"
         },
         "securityBulletin": {
           "$ref": "SecurityBulletin",
