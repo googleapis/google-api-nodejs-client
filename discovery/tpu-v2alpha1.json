@@ -1021,7 +1021,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250306",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1104,7 +1104,7 @@
       "type": "object"
     },
     "AttachedDisk": {
-      "description": "A node-attached disk resource. Next ID: 8;",
+      "description": "A node-attached disk resource.",
       "id": "AttachedDisk",
       "properties": {
         "mode": {
@@ -1124,6 +1124,13 @@
         "sourceDisk": {
           "description": "Specifies the full path to an existing disk. For example: \"projects/my-project/zones/us-central1-c/disks/my-disk\".",
           "type": "string"
+        },
+        "workerIds": {
+          "description": "Optional. The list of worker IDs this disk is attached to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2155,6 +2162,12 @@
         "spot": {
           "description": "Optional. Defines whether the node is Spot VM.",
           "type": "boolean"
+        },
+        "terminationTimestamp": {
+          "description": "Output only. The time at which the node will be terminated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
