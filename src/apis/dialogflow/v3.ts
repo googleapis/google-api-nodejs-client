@@ -204,7 +204,7 @@ export namespace dialogflow_v3 {
      */
     noSpeechTimeout?: string | null;
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
+     * Use timeout based endpointing, interpreting endpointer sensitivity as seconds of timeout value.
      */
     useTimeoutBasedEndpointing?: boolean | null;
   }
@@ -572,7 +572,7 @@ export namespace dialogflow_v3 {
      */
     noSpeechTimeout?: string | null;
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
+     * Use timeout based endpointing, interpreting endpointer sensitivity as seconds of timeout value.
      */
     useTimeoutBasedEndpointing?: boolean | null;
   }
@@ -1435,7 +1435,7 @@ export namespace dialogflow_v3 {
      */
     transitionRouteGroups?: string[] | null;
     /**
-     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
+     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evaluated in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute[];
   }
@@ -2067,7 +2067,7 @@ export namespace dialogflow_v3 {
      */
     clientId?: string | null;
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      */
     clientSecret?: string | null;
     /**
@@ -2264,7 +2264,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3BoostSpec {
     /**
-     * Optional. Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
+     * Optional. Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
      */
     conditionBoostSpecs?: Schema$GoogleCloudDialogflowCxV3BoostSpecConditionBoostSpec[];
   }
@@ -3395,7 +3395,7 @@ export namespace dialogflow_v3 {
      */
     transitionRouteGroups?: string[] | null;
     /**
-     * A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying "help" or "can I talk to a human?", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evalauted in the following order: * TransitionRoutes with intent specified. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.
+     * A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying "help" or "can I talk to a human?", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evaluated in the following order: * TransitionRoutes with intent specified. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3TransitionRoute[];
   }
@@ -4561,7 +4561,7 @@ export namespace dialogflow_v3 {
      */
     transitionRouteGroups?: string[] | null;
     /**
-     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
+     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evaluated in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3TransitionRoute[];
   }
@@ -5122,11 +5122,11 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3SearchConfig {
     /**
-     * Optional. Boosting configuration for the datastores.
+     * Optional. Boosting configuration for the datastores. Maps from datastore name to their boost configuration. Do not specify more than one BoostSpecs for each datastore name. If multiple BoostSpecs are provided for the same datastore name, the behavior is undefined.
      */
     boostSpecs?: Schema$GoogleCloudDialogflowCxV3BoostSpecs[];
     /**
-     * Optional. Filter configuration for the datastores.
+     * Optional. Filter configuration for the datastores. Maps from datastore name to the filter expression for that datastore. Do not specify more than one FilterSpecs for each datastore name. If multiple FilterSpecs are provided for the same datastore name, the behavior is undefined.
      */
     filterSpecs?: Schema$GoogleCloudDialogflowCxV3FilterSpecs[];
   }
@@ -5865,7 +5865,7 @@ export namespace dialogflow_v3 {
      */
     clientId?: string | null;
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      */
     clientSecret?: string | null;
     /**
@@ -6394,6 +6394,15 @@ export namespace dialogflow_v3 {
     source?: string | null;
   }
   /**
+   * Suggestion generated using free form generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1FreeFormSuggestion {
+    /**
+     * Required. Free form suggestion.
+     */
+    response?: string | null;
+  }
+  /**
    * Google Cloud Storage location for the output.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1GcsDestination {
@@ -6401,6 +6410,49 @@ export namespace dialogflow_v3 {
      * Required. The Google Cloud Storage URIs for the output. A URI is of the form: `gs://bucket/object-prefix-or-name` Whether a prefix or name is used depends on the use case. The requesting user must have "write-permission" to the bucket.
      */
     uri?: string | null;
+  }
+  /**
+   * The response message for Conversations.GenerateSuggestions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse {
+    /**
+     * The answers generated for the conversation based on context.
+     */
+    generatorSuggestionAnswers?: Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer[];
+    /**
+     * The name of the latest conversation message used as context for compiling suggestion. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * A GeneratorSuggestion answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer {
+    /**
+     * Answer record that uniquely identifies the suggestion. This can be used to provide suggestion feedback.
+     */
+    answerRecord?: string | null;
+    /**
+     * Suggestion details.
+     */
+    generatorSuggestion?: Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestion;
+    /**
+     * The name of the generator used to generate this suggestion. Format: `projects//locations//generators/`.
+     */
+    sourceGenerator?: string | null;
+  }
+  /**
+   * Suggestion generated using a Generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestion {
+    /**
+     * Optional. Free form suggestion.
+     */
+    freeFormSuggestion?: Schema$GoogleCloudDialogflowV2beta1FreeFormSuggestion;
+    /**
+     * Optional. Suggested summary.
+     */
+    summarySuggestion?: Schema$GoogleCloudDialogflowV2beta1SummarySuggestion;
   }
   /**
    * Output only. Represents a notification sent to Pub/Sub subscribers for agent assistant events in a specific conversation.
@@ -7495,7 +7547,7 @@ export namespace dialogflow_v3 {
      */
     responseMessages?: Schema$GoogleCloudDialogflowV2beta1ResponseMessage[];
     /**
-     * Optional. The time when the message was sent.
+     * Optional. The time when the message was sent. For voice messages, this is the time when an utterance started.
      */
     sendTime?: string | null;
     /**
@@ -7640,7 +7692,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction {}
   /**
-   * Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
+   * Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a Dialogflow CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff {
     /**
@@ -7895,6 +7947,10 @@ export namespace dialogflow_v3 {
      */
     error?: Schema$GoogleRpcStatus;
     /**
+     * Suggestions generated using generators triggered by customer or agent messages.
+     */
+    generateSuggestionsResponse?: Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse;
+    /**
      * SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.
      */
     suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse;
@@ -7952,6 +8008,28 @@ export namespace dialogflow_v3 {
      * Output only. Multiple reply options provided by smart reply service. The order is based on the rank of the model prediction. The maximum number of the returned replies is set in SmartReplyConfig.
      */
     smartReplyAnswers?: Schema$GoogleCloudDialogflowV2beta1SmartReplyAnswer[];
+  }
+  /**
+   * Suggested summary of the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SummarySuggestion {
+    /**
+     * Required. All the parts of generated summary.
+     */
+    summarySections?: Schema$GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection[];
+  }
+  /**
+   * A component of the generated summary.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection {
+    /**
+     * Required. Name of the section.
+     */
+    section?: string | null;
+    /**
+     * Required. Summary text for the section.
+     */
+    summary?: string | null;
   }
   /**
    * A wrapper of repeated TelephonyDtmf digits.
@@ -8337,6 +8415,15 @@ export namespace dialogflow_v3 {
     source?: string | null;
   }
   /**
+   * Suggestion generated using free form generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2FreeFormSuggestion {
+    /**
+     * Required. Free form suggestion.
+     */
+    response?: string | null;
+  }
+  /**
    * Google Cloud Storage location for the output.
    */
   export interface Schema$GoogleCloudDialogflowV2GcsDestination {
@@ -8344,6 +8431,49 @@ export namespace dialogflow_v3 {
      * The Google Cloud Storage URIs for the output. A URI is of the form: `gs://bucket/object-prefix-or-name` Whether a prefix or name is used depends on the use case. The requesting user must have "write-permission" to the bucket.
      */
     uri?: string | null;
+  }
+  /**
+   * The response message for Conversations.GenerateSuggestions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse {
+    /**
+     * The answers generated for the conversation based on context.
+     */
+    generatorSuggestionAnswers?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer[];
+    /**
+     * The name of the latest conversation message used as context for compiling suggestion. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * A GeneratorSuggestion answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer {
+    /**
+     * Answer record that uniquely identifies the suggestion. This can be used to provide suggestion feedback.
+     */
+    answerRecord?: string | null;
+    /**
+     * Suggestion details.
+     */
+    generatorSuggestion?: Schema$GoogleCloudDialogflowV2GeneratorSuggestion;
+    /**
+     * The name of the generator used to generate this suggestion. Format: `projects//locations//generators/`.
+     */
+    sourceGenerator?: string | null;
+  }
+  /**
+   * Suggestion generated using a Generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GeneratorSuggestion {
+    /**
+     * Optional. Free form suggestion.
+     */
+    freeFormSuggestion?: Schema$GoogleCloudDialogflowV2FreeFormSuggestion;
+    /**
+     * Optional. Suggested summary.
+     */
+    summarySuggestion?: Schema$GoogleCloudDialogflowV2SummarySuggestion;
   }
   /**
    * Represents a notification sent to Cloud Pub/Sub subscribers for human agent assistant events in a specific conversation.
@@ -9209,7 +9339,7 @@ export namespace dialogflow_v3 {
      */
     participantRole?: string | null;
     /**
-     * Optional. The time when the message was sent.
+     * Optional. The time when the message was sent. For voice messages, this is the time when an utterance started.
      */
     sendTime?: string | null;
     /**
@@ -9499,6 +9629,10 @@ export namespace dialogflow_v3 {
      */
     error?: Schema$GoogleRpcStatus;
     /**
+     * Suggestions generated using generators triggered by customer or agent messages.
+     */
+    generateSuggestionsResponse?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse;
+    /**
      * SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.
      */
     suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2SuggestArticlesResponse;
@@ -9548,6 +9682,28 @@ export namespace dialogflow_v3 {
      * Output only. Multiple reply options provided by smart reply service. The order is based on the rank of the model prediction. The maximum number of the returned replies is set in SmartReplyConfig.
      */
     smartReplyAnswers?: Schema$GoogleCloudDialogflowV2SmartReplyAnswer[];
+  }
+  /**
+   * Suggested summary of the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarySuggestion {
+    /**
+     * Required. All the parts of generated summary.
+     */
+    summarySections?: Schema$GoogleCloudDialogflowV2SummarySuggestionSummarySection[];
+  }
+  /**
+   * A component of the generated summary.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarySuggestionSummarySection {
+    /**
+     * Required. Name of the section.
+     */
+    section?: string | null;
+    /**
+     * Required. Summary text for the section.
+     */
+    summary?: string | null;
   }
   /**
    * Metadata for a ConversationModels.UndeployConversationModel operation.
