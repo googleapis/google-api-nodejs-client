@@ -2793,7 +2793,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$InsertRangeRequest {
     /**
-     * The range to insert new cells into.
+     * The range to insert new cells into. The range is constrained to the current sheet boundaries.
      */
     range?: Schema$GridRange;
     /**
