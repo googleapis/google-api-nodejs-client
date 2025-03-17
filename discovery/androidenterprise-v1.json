@@ -468,6 +468,41 @@
             "https://www.googleapis.com/auth/androidenterprise"
           ]
         },
+        "generateEnterpriseUpgradeUrl": {
+          "description": "Generates an enterprise upgrade URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain. **Note:** This feature is not generally available.",
+          "flatPath": "androidenterprise/v1/enterprises/{enterpriseId}/generateEnterpriseUpgradeUrl",
+          "httpMethod": "POST",
+          "id": "androidenterprise.enterprises.generateEnterpriseUpgradeUrl",
+          "parameterOrder": [
+            "enterpriseId"
+          ],
+          "parameters": {
+            "adminEmail": {
+              "description": "Optional. Email address used to prefill the admin field of the enterprise signup form as part of the upgrade process. This value is a hint only and can be altered by the user. Personal email addresses are not allowed. If `allowedDomains` is non-empty then this must belong to one of the `allowedDomains`.",
+              "location": "query",
+              "type": "string"
+            },
+            "allowedDomains": {
+              "description": "Optional. A list of domains that are permitted for the admin email. The IT admin cannot enter an email address with a domain name that is not in this list. Subdomains of domains in this list are not allowed but can be allowed by adding a second entry which has `*.` prefixed to the domain name (e.g. *.example.com). If the field is not present or is an empty list then the IT admin is free to use any valid domain name. Personal email domains are not allowed.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "enterpriseId": {
+              "description": "Required. The ID of the enterprise.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidenterprise/v1/enterprises/{enterpriseId}/generateEnterpriseUpgradeUrl",
+          "response": {
+            "$ref": "GenerateEnterpriseUpgradeUrlResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidenterprise"
+          ]
+        },
         "generateSignupUrl": {
           "description": "Generates a sign-up URL.",
           "flatPath": "androidenterprise/v1/enterprises/signupUrl",
@@ -2656,7 +2691,7 @@
       }
     }
   },
-  "revision": "20250122",
+  "revision": "20250302",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3325,6 +3360,20 @@
           },
           "type": "array"
         },
+        "enterpriseType": {
+          "description": "The type of the enterprise.",
+          "enum": [
+            "enterpriseTypeUnspecified",
+            "managedGoogleDomain",
+            "managedGooglePlayAccountsEnterprise"
+          ],
+          "enumDescriptions": [
+            "This value is not used.",
+            "The enterprise belongs to a managed Google domain.",
+            "The enterprise is a managed Google Play Accounts enterprise."
+          ],
+          "type": "string"
+        },
         "googleAuthenticationSettings": {
           "$ref": "GoogleAuthenticationSettings",
           "description": "Output only. Settings for Google-provided user authentication.",
@@ -3332,6 +3381,20 @@
         },
         "id": {
           "description": "The unique ID for the enterprise.",
+          "type": "string"
+        },
+        "managedGoogleDomainType": {
+          "description": "The type of managed Google domain",
+          "enum": [
+            "managedGoogleDomainTypeUnspecified",
+            "typeTeam",
+            "typeDomain"
+          ],
+          "enumDescriptions": [
+            "The managed Google domain type is not specified.",
+            "The managed Google domain is an email-verified team.",
+            "The managed Google domain is domain-verified."
+          ],
           "type": "string"
         },
         "name": {
@@ -3362,6 +3425,25 @@
       "properties": {
         "uri": {
           "description": "An authentication url.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseUpgradeEvent": {
+      "description": "An event generated when an enterprise is upgraded. **Note:** This feature is not generally available.",
+      "id": "EnterpriseUpgradeEvent",
+      "properties": {
+        "upgradeState": {
+          "description": "The upgrade state.",
+          "enum": [
+            "upgradeStateUnspecified",
+            "upgradeStateSucceeded"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value is not used.",
+            "The upgrade has succeeded."
+          ],
           "type": "string"
         }
       },
@@ -3428,6 +3510,17 @@
             "$ref": "Entitlement"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateEnterpriseUpgradeUrlResponse": {
+      "description": "Response message for generating a URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain. **Note:** This feature is not generally available.",
+      "id": "GenerateEnterpriseUpgradeUrlResponse",
+      "properties": {
+        "url": {
+          "description": "A URL for an enterprise admin to upgrade their enterprise. The page can't be rendered in an iframe.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3915,6 +4008,10 @@
           "description": "The ID of the enterprise for which the notification is sent. This will always be present.",
           "type": "string"
         },
+        "enterpriseUpgradeEvent": {
+          "$ref": "EnterpriseUpgradeEvent",
+          "description": "Notifications about enterprise upgrade. **Note:** This feature is not generally available."
+        },
         "installFailureEvent": {
           "$ref": "InstallFailureEvent",
           "description": "Notifications about an app installation failure."
@@ -3939,7 +4036,8 @@
             "appRestricionsSchemaChange",
             "productAvailabilityChange",
             "newDevice",
-            "deviceReportUpdate"
+            "deviceReportUpdate",
+            "enterpriseUpgrade"
           ],
           "enumDescriptions": [
             "",
@@ -3951,7 +4049,8 @@
             "Notification about new app restrictions schema change.",
             "Notification about product availability change.",
             "Notification about a new device.",
-            "Notification about an updated device report."
+            "Notification about an updated device report.",
+            "Notification about an enterprise upgrade. **Note:** This feature is not generally available."
           ],
           "type": "string"
         },
