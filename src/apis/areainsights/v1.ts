@@ -133,7 +133,7 @@ export namespace areainsights_v1 {
      */
     latLng?: Schema$LatLng;
     /**
-     * The Place resource name of the center of the circle. Only point places are supported.
+     * **Format:** Must be in the format `places/PLACE_ID`, where `PLACE_ID` is the unique identifier of a place. For example: `places/ChIJgUbEo8cfqokR5lP9_Wh_DaM`.
      */
     place?: string | null;
     /**
@@ -189,7 +189,7 @@ export namespace areainsights_v1 {
      */
     operatingStatus?: string[] | null;
     /**
-     * Optional. Restricts results to places whose price level is included on this list. If price_level is not set, all price levels are included in the results.
+     * Optional. Restricts results to places whose price level is included on this list. If `price_levels` is not set, all price levels are included in the results.
      */
     priceLevels?: string[] | null;
     /**
