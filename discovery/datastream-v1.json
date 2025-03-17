@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20250115",
+  "revision": "20250310",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -1280,6 +1280,10 @@
         "postgresqlExcludedObjects": {
           "$ref": "PostgresqlRdbms",
           "description": "PostgreSQL data source objects to avoid backfilling."
+        },
+        "salesforceExcludedObjects": {
+          "$ref": "SalesforceOrg",
+          "description": "Salesforce data source objects to avoid backfilling"
         },
         "sqlServerExcludedObjects": {
           "$ref": "SqlServerRdbms",
@@ -1368,6 +1372,10 @@
           "$ref": "AppendOnly",
           "description": "Append only mode"
         },
+        "blmtConfig": {
+          "$ref": "BlmtConfig",
+          "description": "Optional. Big Lake Managed Tables (BLMT) configuration."
+        },
         "dataFreshness": {
           "description": "The guaranteed data freshness (in seconds) when querying tables created by the stream. Editing this field will only affect new tables created in the future, but existing tables will not be impacted. Lower values mean that queries will return fresher data, but may result in higher cost.",
           "format": "google-duration",
@@ -1413,6 +1421,49 @@
       "description": "Use Binary log position based replication.",
       "id": "BinaryLogPosition",
       "properties": {},
+      "type": "object"
+    },
+    "BlmtConfig": {
+      "description": "The configuration for BLMT.",
+      "id": "BlmtConfig",
+      "properties": {
+        "bucket": {
+          "description": "Required. The Cloud Storage bucket name.",
+          "type": "string"
+        },
+        "connectionName": {
+          "description": "Required. The bigquery connection. Format: `{project}.{location}.{name}`",
+          "type": "string"
+        },
+        "fileFormat": {
+          "description": "Required. The file format.",
+          "enum": [
+            "FILE_FORMAT_UNSPECIFIED",
+            "PARQUET"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Parquet file format."
+          ],
+          "type": "string"
+        },
+        "rootPath": {
+          "description": "The root path inside the Cloud Storage bucket.",
+          "type": "string"
+        },
+        "tableFormat": {
+          "description": "Required. The table format.",
+          "enum": [
+            "TABLE_FORMAT_UNSPECIFIED",
+            "ICEBERG"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Iceberg table format."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "CancelOperationRequest": {
@@ -1493,6 +1544,10 @@
         "privateConnectivity": {
           "$ref": "PrivateConnectivity",
           "description": "Private connectivity."
+        },
+        "salesforceProfile": {
+          "$ref": "SalesforceProfile",
+          "description": "Salesforce Connection Profile configuration."
         },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
@@ -2093,6 +2148,17 @@
       },
       "type": "object"
     },
+    "MysqlGtidPosition": {
+      "description": "MySQL GTID position",
+      "id": "MysqlGtidPosition",
+      "properties": {
+        "gtidSet": {
+          "description": "Required. The gtid set to start replication from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MysqlLogPosition": {
       "description": "MySQL log position",
       "id": "MysqlLogPosition",
@@ -2125,7 +2191,7 @@
       "type": "object"
     },
     "MysqlProfile": {
-      "description": "MySQL database profile. Next ID: 7.",
+      "description": "MySQL database profile.",
       "id": "MysqlProfile",
       "properties": {
         "hostname": {
@@ -2140,6 +2206,10 @@
           "description": "Port for the MySQL connection, default value is 3306.",
           "format": "int32",
           "type": "integer"
+        },
+        "secretManagerStoredPassword": {
+          "description": "Optional. A reference to a Secret Manager resource name storing the MySQL connection password. Mutually exclusive with the `password` field.",
+          "type": "string"
         },
         "sslConfig": {
           "$ref": "MysqlSslConfig",
@@ -2222,7 +2292,7 @@
           "type": "boolean"
         },
         "clientKey": {
-          "description": "Optional. Input only. PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory. Mutually exclusive with the `secret_manager_stored_client_key` field.",
+          "description": "Optional. Input only. PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory.",
           "type": "string"
         },
         "clientKeySet": {
@@ -2255,6 +2325,25 @@
       "description": "CDC strategy to resume replication from the next available position in the source.",
       "id": "NextAvailableStartPosition",
       "properties": {},
+      "type": "object"
+    },
+    "Oauth2ClientCredentials": {
+      "description": "OAuth2 Client Credentials.",
+      "id": "Oauth2ClientCredentials",
+      "properties": {
+        "clientId": {
+          "description": "Required. Client ID for Salesforce OAuth2 Client Credentials.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Optional. Client secret for Salesforce OAuth2 Client Credentials. Mutually exclusive with the `secret_manager_stored_client_secret` field.",
+          "type": "string"
+        },
+        "secretManagerStoredClientSecret": {
+          "description": "Optional. A reference to a Secret Manager resource name storing the Salesforce OAuth2 client_secret. Mutually exclusive with the `client_secret` field.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Operation": {
@@ -2342,7 +2431,7 @@
       "type": "object"
     },
     "OracleAsmConfig": {
-      "description": "Configuration for Oracle Automatic Storage Management (ASM) connection. .",
+      "description": "Configuration for Oracle Automatic Storage Management (ASM) connection.",
       "id": "OracleAsmConfig",
       "properties": {
         "asmService": {
@@ -2365,13 +2454,17 @@
           "description": "Optional. SSL configuration for the Oracle connection."
         },
         "password": {
-          "description": "Optional. Password for the Oracle ASM connection.",
+          "description": "Optional. Password for the Oracle ASM connection. Mutually exclusive with the `secret_manager_stored_password` field.",
           "type": "string"
         },
         "port": {
           "description": "Required. Port for the Oracle ASM connection.",
           "format": "int32",
           "type": "integer"
+        },
+        "secretManagerStoredPassword": {
+          "description": "Optional. A reference to a Secret Manager resource name storing the Oracle ASM connection password. Mutually exclusive with the `password` field.",
+          "type": "string"
         },
         "username": {
           "description": "Required. Username for the Oracle ASM connection.",
@@ -2449,7 +2542,7 @@
       "type": "object"
     },
     "OracleProfile": {
-      "description": "Oracle database profile. Next ID: 10.",
+      "description": "Oracle database profile.",
       "id": "OracleProfile",
       "properties": {
         "connectionAttributes": {
@@ -2692,6 +2785,10 @@
           "description": "Port for the PostgreSQL connection, default value is 5432.",
           "format": "int32",
           "type": "integer"
+        },
+        "secretManagerStoredPassword": {
+          "description": "Optional. A reference to a Secret Manager resource name storing the PostgreSQL connection password. Mutually exclusive with the `password` field.",
+          "type": "string"
         },
         "sslConfig": {
           "$ref": "PostgresqlSslConfig",
@@ -2942,6 +3039,107 @@
       },
       "type": "object"
     },
+    "SalesforceField": {
+      "description": "Salesforce field.",
+      "id": "SalesforceField",
+      "properties": {
+        "dataType": {
+          "description": "The data type.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Field name.",
+          "type": "string"
+        },
+        "nillable": {
+          "description": "Indicates whether the field can accept nil values.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SalesforceObject": {
+      "description": "Salesforce object.",
+      "id": "SalesforceObject",
+      "properties": {
+        "fields": {
+          "description": "Salesforce fields. When unspecified as part of include objects, includes everything, when unspecified as part of exclude objects, excludes nothing.",
+          "items": {
+            "$ref": "SalesforceField"
+          },
+          "type": "array"
+        },
+        "objectName": {
+          "description": "Object name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SalesforceObjectIdentifier": {
+      "description": "Salesforce data source object identifier.",
+      "id": "SalesforceObjectIdentifier",
+      "properties": {
+        "objectName": {
+          "description": "Required. The object name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SalesforceOrg": {
+      "description": "Salesforce organization structure.",
+      "id": "SalesforceOrg",
+      "properties": {
+        "objects": {
+          "description": "Salesforce objects in the database server.",
+          "items": {
+            "$ref": "SalesforceObject"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SalesforceProfile": {
+      "description": "Salesforce profile",
+      "id": "SalesforceProfile",
+      "properties": {
+        "domain": {
+          "description": "Required. Domain endpoint for the Salesforce connection.",
+          "type": "string"
+        },
+        "oauth2ClientCredentials": {
+          "$ref": "Oauth2ClientCredentials",
+          "description": "Connected app authentication."
+        },
+        "userCredentials": {
+          "$ref": "UserCredentials",
+          "description": "User-password authentication."
+        }
+      },
+      "type": "object"
+    },
+    "SalesforceSourceConfig": {
+      "description": "Salesforce source configuration",
+      "id": "SalesforceSourceConfig",
+      "properties": {
+        "excludeObjects": {
+          "$ref": "SalesforceOrg",
+          "description": "Salesforce objects to exclude from the stream."
+        },
+        "includeObjects": {
+          "$ref": "SalesforceOrg",
+          "description": "Salesforce objects to retrieve from the source."
+        },
+        "pollingInterval": {
+          "description": "Required. Salesforce objects polling interval. The interval at which new changes will be polled for each object. The duration must be between 5 minutes and 24 hours.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServerAndClientVerification": {
       "description": "Message represents the option where Datastream will enforce the encryption and authenticate the server identity as well as the client identity. ca_certificate, client_certificate and client_key must be set if user selects this option.",
       "id": "ServerAndClientVerification",
@@ -2955,7 +3153,7 @@
           "type": "string"
         },
         "clientKey": {
-          "description": "Optional. Input only. PEM-encoded private key associated with the client certificate. This value will be used during the SSL/TLS handshake, allowing the PostgreSQL server to authenticate the client's identity, i.e. identity of the Datastream. Mutually exclusive with the `secret_manager_stored_client_key` field.",
+          "description": "Optional. Input only. PEM-encoded private key associated with the client certificate. This value will be used during the SSL/TLS handshake, allowing the PostgreSQL server to authenticate the client's identity, i.e. identity of the Datastream.",
           "type": "string"
         }
       },
@@ -2999,8 +3197,12 @@
           "$ref": "PostgresqlSourceConfig",
           "description": "PostgreSQL data source configuration."
         },
+        "salesforceSourceConfig": {
+          "$ref": "SalesforceSourceConfig",
+          "description": "Salesforce data source configuration."
+        },
         "sourceConnectionProfile": {
-          "description": "Required. Source connection profile resoource. Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`",
+          "description": "Required. Source connection profile resource. Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`",
           "type": "string"
         },
         "sqlServerSourceConfig": {
@@ -3037,6 +3239,10 @@
           "$ref": "PostgresqlObjectIdentifier",
           "description": "PostgreSQL data source object identifier."
         },
+        "salesforceIdentifier": {
+          "$ref": "SalesforceObjectIdentifier",
+          "description": "Salesforce data source object identifier."
+        },
         "sqlServerIdentifier": {
           "$ref": "SqlServerObjectIdentifier",
           "description": "SQLServer data source object identifier."
@@ -3048,6 +3254,10 @@
       "description": "CDC strategy to start replicating from a specific position in the source.",
       "id": "SpecificStartPosition",
       "properties": {
+        "mysqlGtidPosition": {
+          "$ref": "MysqlGtidPosition",
+          "description": "MySQL GTID set to start replicating from."
+        },
         "mysqlLogPosition": {
           "$ref": "MysqlLogPosition",
           "description": "MySQL specific log position to start replicating from."
@@ -3139,7 +3349,7 @@
       "type": "object"
     },
     "SqlServerProfile": {
-      "description": "SQLServer database profile. Next ID: 8.",
+      "description": "SQLServer database profile.",
       "id": "SqlServerProfile",
       "properties": {
         "database": {
@@ -3158,6 +3368,10 @@
           "description": "Port for the SQLServer connection, default value is 1433.",
           "format": "int32",
           "type": "integer"
+        },
+        "secretManagerStoredPassword": {
+          "description": "Optional. A reference to a Secret Manager resource name storing the SQLServer connection password. Mutually exclusive with the `password` field.",
+          "type": "string"
         },
         "username": {
           "description": "Required. Username for the SQLServer connection.",
@@ -3472,6 +3686,33 @@
           "description": "Output only. The last update time of the object.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserCredentials": {
+      "description": "Username-password credentials.",
+      "id": "UserCredentials",
+      "properties": {
+        "password": {
+          "description": "Optional. Password for the Salesforce connection. Mutually exclusive with the `secret_manager_stored_password` field.",
+          "type": "string"
+        },
+        "secretManagerStoredPassword": {
+          "description": "Optional. A reference to a Secret Manager resource name storing the Salesforce connection's password. Mutually exclusive with the `password` field.",
+          "type": "string"
+        },
+        "secretManagerStoredSecurityToken": {
+          "description": "Optional. A reference to a Secret Manager resource name storing the Salesforce connection's security token. Mutually exclusive with the `security_token` field.",
+          "type": "string"
+        },
+        "securityToken": {
+          "description": "Optional. Security token for the Salesforce connection. Mutually exclusive with the `secret_manager_stored_security_token` field.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Required. Username for the Salesforce connection.",
           "type": "string"
         }
       },

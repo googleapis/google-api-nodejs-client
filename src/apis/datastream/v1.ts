@@ -149,6 +149,10 @@ export namespace datastream_v1 {
      */
     postgresqlExcludedObjects?: Schema$PostgresqlRdbms;
     /**
+     * Salesforce data source objects to avoid backfilling
+     */
+    salesforceExcludedObjects?: Schema$SalesforceOrg;
+    /**
      * SQLServer data source objects to avoid backfilling
      */
     sqlServerExcludedObjects?: Schema$SqlServerRdbms;
@@ -191,6 +195,10 @@ export namespace datastream_v1 {
      */
     appendOnly?: Schema$AppendOnly;
     /**
+     * Optional. Big Lake Managed Tables (BLMT) configuration.
+     */
+    blmtConfig?: Schema$BlmtConfig;
+    /**
      * The guaranteed data freshness (in seconds) when querying tables created by the stream. Editing this field will only affect new tables created in the future, but existing tables will not be impacted. Lower values mean that queries will return fresher data, but may result in higher cost.
      */
     dataFreshness?: string | null;
@@ -228,6 +236,31 @@ export namespace datastream_v1 {
    * Use Binary log position based replication.
    */
   export interface Schema$BinaryLogPosition {}
+  /**
+   * The configuration for BLMT.
+   */
+  export interface Schema$BlmtConfig {
+    /**
+     * Required. The Cloud Storage bucket name.
+     */
+    bucket?: string | null;
+    /**
+     * Required. The bigquery connection. Format: `{project\}.{location\}.{name\}`
+     */
+    connectionName?: string | null;
+    /**
+     * Required. The file format.
+     */
+    fileFormat?: string | null;
+    /**
+     * The root path inside the Cloud Storage bucket.
+     */
+    rootPath?: string | null;
+    /**
+     * Required. The table format.
+     */
+    tableFormat?: string | null;
+  }
   /**
    * The request message for Operations.CancelOperation.
    */
@@ -297,6 +330,10 @@ export namespace datastream_v1 {
      * Private connectivity.
      */
     privateConnectivity?: Schema$PrivateConnectivity;
+    /**
+     * Salesforce Connection Profile configuration.
+     */
+    salesforceProfile?: Schema$SalesforceProfile;
     /**
      * Output only. Reserved for future use.
      */
@@ -757,6 +794,15 @@ export namespace datastream_v1 {
     mysqlTables?: Schema$MysqlTable[];
   }
   /**
+   * MySQL GTID position
+   */
+  export interface Schema$MysqlGtidPosition {
+    /**
+     * Required. The gtid set to start replication from.
+     */
+    gtidSet?: string | null;
+  }
+  /**
    * MySQL log position
    */
   export interface Schema$MysqlLogPosition {
@@ -783,7 +829,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * MySQL database profile. Next ID: 7.
+   * MySQL database profile.
    */
   export interface Schema$MysqlProfile {
     /**
@@ -798,6 +844,10 @@ export namespace datastream_v1 {
      * Port for the MySQL connection, default value is 3306.
      */
     port?: number | null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the MySQL connection password. Mutually exclusive with the `password` field.
+     */
+    secretManagerStoredPassword?: string | null;
     /**
      * SSL configuration for the MySQL connection.
      */
@@ -866,7 +916,7 @@ export namespace datastream_v1 {
      */
     clientCertificateSet?: boolean | null;
     /**
-     * Optional. Input only. PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory. Mutually exclusive with the `secret_manager_stored_client_key` field.
+     * Optional. Input only. PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory.
      */
     clientKey?: string | null;
     /**
@@ -891,6 +941,23 @@ export namespace datastream_v1 {
    * CDC strategy to resume replication from the next available position in the source.
    */
   export interface Schema$NextAvailableStartPosition {}
+  /**
+   * OAuth2 Client Credentials.
+   */
+  export interface Schema$Oauth2ClientCredentials {
+    /**
+     * Required. Client ID for Salesforce OAuth2 Client Credentials.
+     */
+    clientId?: string | null;
+    /**
+     * Optional. Client secret for Salesforce OAuth2 Client Credentials. Mutually exclusive with the `secret_manager_stored_client_secret` field.
+     */
+    clientSecret?: string | null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the Salesforce OAuth2 client_secret. Mutually exclusive with the `client_secret` field.
+     */
+    secretManagerStoredClientSecret?: string | null;
+  }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
@@ -954,7 +1021,7 @@ export namespace datastream_v1 {
     verb?: string | null;
   }
   /**
-   * Configuration for Oracle Automatic Storage Management (ASM) connection. .
+   * Configuration for Oracle Automatic Storage Management (ASM) connection.
    */
   export interface Schema$OracleAsmConfig {
     /**
@@ -974,13 +1041,17 @@ export namespace datastream_v1 {
      */
     oracleSslConfig?: Schema$OracleSslConfig;
     /**
-     * Optional. Password for the Oracle ASM connection.
+     * Optional. Password for the Oracle ASM connection. Mutually exclusive with the `secret_manager_stored_password` field.
      */
     password?: string | null;
     /**
      * Required. Port for the Oracle ASM connection.
      */
     port?: number | null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the Oracle ASM connection password. Mutually exclusive with the `password` field.
+     */
+    secretManagerStoredPassword?: string | null;
     /**
      * Required. Username for the Oracle ASM connection.
      */
@@ -1045,7 +1116,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * Oracle database profile. Next ID: 10.
+   * Oracle database profile.
    */
   export interface Schema$OracleProfile {
     /**
@@ -1250,6 +1321,10 @@ export namespace datastream_v1 {
      */
     port?: number | null;
     /**
+     * Optional. A reference to a Secret Manager resource name storing the PostgreSQL connection password. Mutually exclusive with the `password` field.
+     */
+    secretManagerStoredPassword?: string | null;
+    /**
      * Optional. SSL configuration for the PostgreSQL connection. In case PostgresqlSslConfig is not set, the connection will use the default SSL mode, which is `prefer` (i.e. this mode will only use encryption if enabled from database side, otherwise will use unencrypted communication)
      */
     sslConfig?: Schema$PostgresqlSslConfig;
@@ -1432,6 +1507,88 @@ export namespace datastream_v1 {
     force?: boolean | null;
   }
   /**
+   * Salesforce field.
+   */
+  export interface Schema$SalesforceField {
+    /**
+     * The data type.
+     */
+    dataType?: string | null;
+    /**
+     * Field name.
+     */
+    name?: string | null;
+    /**
+     * Indicates whether the field can accept nil values.
+     */
+    nillable?: boolean | null;
+  }
+  /**
+   * Salesforce object.
+   */
+  export interface Schema$SalesforceObject {
+    /**
+     * Salesforce fields. When unspecified as part of include objects, includes everything, when unspecified as part of exclude objects, excludes nothing.
+     */
+    fields?: Schema$SalesforceField[];
+    /**
+     * Object name.
+     */
+    objectName?: string | null;
+  }
+  /**
+   * Salesforce data source object identifier.
+   */
+  export interface Schema$SalesforceObjectIdentifier {
+    /**
+     * Required. The object name.
+     */
+    objectName?: string | null;
+  }
+  /**
+   * Salesforce organization structure.
+   */
+  export interface Schema$SalesforceOrg {
+    /**
+     * Salesforce objects in the database server.
+     */
+    objects?: Schema$SalesforceObject[];
+  }
+  /**
+   * Salesforce profile
+   */
+  export interface Schema$SalesforceProfile {
+    /**
+     * Required. Domain endpoint for the Salesforce connection.
+     */
+    domain?: string | null;
+    /**
+     * Connected app authentication.
+     */
+    oauth2ClientCredentials?: Schema$Oauth2ClientCredentials;
+    /**
+     * User-password authentication.
+     */
+    userCredentials?: Schema$UserCredentials;
+  }
+  /**
+   * Salesforce source configuration
+   */
+  export interface Schema$SalesforceSourceConfig {
+    /**
+     * Salesforce objects to exclude from the stream.
+     */
+    excludeObjects?: Schema$SalesforceOrg;
+    /**
+     * Salesforce objects to retrieve from the source.
+     */
+    includeObjects?: Schema$SalesforceOrg;
+    /**
+     * Required. Salesforce objects polling interval. The interval at which new changes will be polled for each object. The duration must be between 5 minutes and 24 hours.
+     */
+    pollingInterval?: string | null;
+  }
+  /**
    * Message represents the option where Datastream will enforce the encryption and authenticate the server identity as well as the client identity. ca_certificate, client_certificate and client_key must be set if user selects this option.
    */
   export interface Schema$ServerAndClientVerification {
@@ -1444,7 +1601,7 @@ export namespace datastream_v1 {
      */
     clientCertificate?: string | null;
     /**
-     * Optional. Input only. PEM-encoded private key associated with the client certificate. This value will be used during the SSL/TLS handshake, allowing the PostgreSQL server to authenticate the client's identity, i.e. identity of the Datastream. Mutually exclusive with the `secret_manager_stored_client_key` field.
+     * Optional. Input only. PEM-encoded private key associated with the client certificate. This value will be used during the SSL/TLS handshake, allowing the PostgreSQL server to authenticate the client's identity, i.e. identity of the Datastream.
      */
     clientKey?: string | null;
   }
@@ -1483,7 +1640,11 @@ export namespace datastream_v1 {
      */
     postgresqlSourceConfig?: Schema$PostgresqlSourceConfig;
     /**
-     * Required. Source connection profile resoource. Format: `projects/{project\}/locations/{location\}/connectionProfiles/{name\}`
+     * Salesforce data source configuration.
+     */
+    salesforceSourceConfig?: Schema$SalesforceSourceConfig;
+    /**
+     * Required. Source connection profile resource. Format: `projects/{project\}/locations/{location\}/connectionProfiles/{name\}`
      */
     sourceConnectionProfile?: string | null;
     /**
@@ -1517,6 +1678,10 @@ export namespace datastream_v1 {
      */
     postgresqlIdentifier?: Schema$PostgresqlObjectIdentifier;
     /**
+     * Salesforce data source object identifier.
+     */
+    salesforceIdentifier?: Schema$SalesforceObjectIdentifier;
+    /**
      * SQLServer data source object identifier.
      */
     sqlServerIdentifier?: Schema$SqlServerObjectIdentifier;
@@ -1525,6 +1690,10 @@ export namespace datastream_v1 {
    * CDC strategy to start replicating from a specific position in the source.
    */
   export interface Schema$SpecificStartPosition {
+    /**
+     * MySQL GTID set to start replicating from.
+     */
+    mysqlGtidPosition?: Schema$MysqlGtidPosition;
     /**
      * MySQL specific log position to start replicating from.
      */
@@ -1602,7 +1771,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * SQLServer database profile. Next ID: 8.
+   * SQLServer database profile.
    */
   export interface Schema$SqlServerProfile {
     /**
@@ -1621,6 +1790,10 @@ export namespace datastream_v1 {
      * Port for the SQLServer connection, default value is 1433.
      */
     port?: number | null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the SQLServer connection password. Mutually exclusive with the `password` field.
+     */
+    secretManagerStoredPassword?: string | null;
     /**
      * Required. Username for the SQLServer connection.
      */
@@ -1842,6 +2015,31 @@ export namespace datastream_v1 {
      * Output only. The last update time of the object.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Username-password credentials.
+   */
+  export interface Schema$UserCredentials {
+    /**
+     * Optional. Password for the Salesforce connection. Mutually exclusive with the `secret_manager_stored_password` field.
+     */
+    password?: string | null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the Salesforce connection's password. Mutually exclusive with the `password` field.
+     */
+    secretManagerStoredPassword?: string | null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the Salesforce connection's security token. Mutually exclusive with the `security_token` field.
+     */
+    secretManagerStoredSecurityToken?: string | null;
+    /**
+     * Optional. Security token for the Salesforce connection. Mutually exclusive with the `secret_manager_stored_security_token` field.
+     */
+    securityToken?: string | null;
+    /**
+     * Required. Username for the Salesforce connection.
+     */
+    username?: string | null;
   }
   /**
    * A validation to perform on a stream.
