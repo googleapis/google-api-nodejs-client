@@ -156,7 +156,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     accountName?: string | null;
     /**
-     * Whether this account contains adult content.
+     * Optional. Whether this account contains adult content.
      */
     adultContent?: boolean | null;
     /**
@@ -248,6 +248,19 @@ export namespace merchantapi_accounts_v1beta {
     streetAddress?: string | null;
   }
   /**
+   * Instruction for adding a user to the account during creation.
+   */
+  export interface Schema$AddUser {
+    /**
+     * Optional. Details about the user to be added. At the moment, only access rights may be specified.
+     */
+    user?: Schema$User;
+    /**
+     * Required. The email address of the user (for example, `john.doe@gmail.com`).
+     */
+    userId?: string | null;
+  }
+  /**
    * Collection of information related to the [autofeed](https://support.google.com/merchants/answer/7538732) settings.
    */
   export interface Schema$AutofeedSettings {
@@ -263,6 +276,74 @@ export namespace merchantapi_accounts_v1beta {
      * Identifier. The resource name of the autofeed settings. Format: `accounts/{account\}/autofeedSettings`.
      */
     name?: string | null;
+  }
+  /**
+   * This improvement will attempt to automatically correct submitted images if they don't meet the [image requirements](https://support.google.com/merchants/answer/6324350), for example, removing overlays. If successful, the image will be replaced and approved. This improvement is only applied to images of disapproved offers. For more information see: [Automatic image improvements](https://support.google.com/merchants/answer/9242973)
+   */
+  export interface Schema$AutomaticImageImprovements {
+    /**
+     * Optional. Determines how the images should be automatically updated. If this field is not present and provided in the update mask, then the settings will be deleted. If there are no settings for subaccount, they are inherited from aggregator.
+     */
+    accountImageImprovementsSettings?: Schema$ImageImprovementsAccountLevelSettings;
+    /**
+     * Output only. The effective value of allow_automatic_image_improvements. If account_image_improvements_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. Read-only.
+     */
+    effectiveAllowAutomaticImageImprovements?: boolean | null;
+  }
+  /**
+   * Collection of information related to the [automatic improvements](https://developers.google.com/shopping-content/guides/automatic-improvements) of an account.
+   */
+  export interface Schema$AutomaticImprovements {
+    /**
+     * This improvement will attempt to automatically correct submitted images if they don't meet the [image requirements](https://support.google.com/merchants/answer/6324350), for example, removing overlays. If successful, the image will be replaced and approved. This improvement is only applied to images of disapproved offers. For more information see: [Automatic image improvements](https://support.google.com/merchants/answer/9242973) This field is only updated (cleared) if provided in the update mask.
+     */
+    imageImprovements?: Schema$AutomaticImageImprovements;
+    /**
+     * Turning on [item updates](https://support.google.com/merchants/answer/3246284) allows Google to automatically update items for you. When item updates are on, Google uses the structured data markup on the website and advanced data extractors to update the price and availability of the items. When the item updates are off, items with mismatched data aren't shown. This field is only updated (cleared) if provided in the update mask.
+     */
+    itemUpdates?: Schema$AutomaticItemUpdates;
+    /**
+     * Identifier. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`.
+     */
+    name?: string | null;
+    /**
+     * Not available for MCAs [accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data This field is only updated (cleared) if provided in the update mask.
+     */
+    shippingImprovements?: Schema$AutomaticShippingImprovements;
+  }
+  /**
+   * Turning on [item updates](https://support.google.com/merchants/answer/3246284) allows Google to automatically update items for you. When item updates are on, Google uses the structured data markup on the website and advanced data extractors to update the price and availability of the items. When the item updates are off, items with mismatched data aren't shown.
+   */
+  export interface Schema$AutomaticItemUpdates {
+    /**
+     * Optional. Determines which attributes of the items should be automatically updated. If this field is not present and provided in the update mask, then the settings will be deleted. If there are no settings for subaccount, they are inherited from aggregator.
+     */
+    accountItemUpdatesSettings?: Schema$ItemUpdatesAccountLevelSettings;
+    /**
+     * Output only. The effective value of allow_availability_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. The default value is true if no settings are present. Read-only.
+     */
+    effectiveAllowAvailabilityUpdates?: boolean | null;
+    /**
+     * Output only. The effective value of allow_condition_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. The default value is true if no settings are present. Read-only.
+     */
+    effectiveAllowConditionUpdates?: boolean | null;
+    /**
+     * Output only. The effective value of allow_price_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. The default value is true if no settings are present. Read-only.
+     */
+    effectiveAllowPriceUpdates?: boolean | null;
+    /**
+     * Output only. The effective value of allow_strict_availability_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. The default value is true if no settings are present. Read-only.
+     */
+    effectiveAllowStrictAvailabilityUpdates?: boolean | null;
+  }
+  /**
+   * Not available for MCAs [accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data
+   */
+  export interface Schema$AutomaticShippingImprovements {
+    /**
+     * Enables automatic shipping improvements.
+     */
+    allowShippingImprovements?: boolean | null;
   }
   /**
    * Business days of the warehouse.
@@ -387,6 +468,10 @@ export namespace merchantapi_accounts_v1beta {
     service?: Schema$AddAccountService[];
     /**
      * Optional. Users to be added to the account.
+     */
+    user?: Schema$AddUser[];
+    /**
+     * Optional. Users to be added to the account. This field is deprecated and will not exist after the API evolves out of beta. Use the `user` field instead.
      */
     users?: Schema$CreateUserRequest[];
   }
@@ -615,6 +700,15 @@ export namespace merchantapi_accounts_v1beta {
     identityDeclaration?: string | null;
   }
   /**
+   * Settings for the Automatic Image Improvements.
+   */
+  export interface Schema$ImageImprovementsAccountLevelSettings {
+    /**
+     * Enables automatic image improvements.
+     */
+    allowAutomaticImageImprovements?: boolean | null;
+  }
+  /**
    * The impact of the issue on a region.
    */
   export interface Schema$Impact {
@@ -639,6 +733,27 @@ export namespace merchantapi_accounts_v1beta {
      * The impacted reporting context.
      */
     reportingContext?: string | null;
+  }
+  /**
+   * Settings for the Automatic Item Updates.
+   */
+  export interface Schema$ItemUpdatesAccountLevelSettings {
+    /**
+     * If availability updates are enabled, any previous availability values get overwritten if Google finds an out-of-stock annotation on the offer's page. If additionally `allow_strict_availability_updates` field is set to true, values get overwritten if Google finds an in-stock annotation on the offer’s page.
+     */
+    allowAvailabilityUpdates?: boolean | null;
+    /**
+     * If condition updates are enabled, Google always updates item condition with the condition detected from the details of your product.
+     */
+    allowConditionUpdates?: boolean | null;
+    /**
+     * If price updates are enabled, Google always updates the active price with the crawled information.
+     */
+    allowPriceUpdates?: boolean | null;
+    /**
+     * If `allow_availability_updates` is enabled, items are automatically updated in all your Shopping target countries. By default, availability updates will only be applied to items that are 'out of stock' on your website but 'in stock' on Shopping. Set this to true to also update items that are 'in stock' on your website, but 'out of stock' on Google Shopping. In order for this field to have an effect, you must also set `allow_availability_updates`.
+     */
+    allowStrictAvailabilityUpdates?: boolean | null;
   }
   /**
    * Response message for the `ListAccountIssues` method.
@@ -801,7 +916,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     countries?: string[] | null;
     /**
-     * The item conditions accepted for returns must not be empty unless the type of return policy is 'noReturns'.
+     * Optional. The item conditions accepted for returns must not be empty unless the type of return policy is 'noReturns'.
      */
     itemConditions?: string[] | null;
     /**
@@ -825,7 +940,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     restockingFee?: Schema$RestockingFee;
     /**
-     * The return methods of how customers can return an item. This value is required to not be empty unless the type of return policy is noReturns.
+     * Optional. The return methods of how customers can return an item. This value is required to not be empty unless the type of return policy is noReturns.
      */
     returnMethods?: string[] | null;
     /**
@@ -837,7 +952,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     returnPolicyUri?: string | null;
     /**
-     * The return shipping fee. Should be set only when customer need to download and print the return label.
+     * Optional. The return shipping fee. Should be set only when customer need to download and print the return label.
      */
     returnShippingFee?: Schema$ReturnShippingFee;
     /**
@@ -968,19 +1083,19 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$ProductChange {
     /**
-     * The new value of the changed resource or attribute.
+     * The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)
      */
     newValue?: string | null;
     /**
-     * The old value of the changed resource or attribute.
+     * The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)
      */
     oldValue?: string | null;
     /**
-     * Countries that have the change (if applicable)
+     * Countries that have the change (if applicable). Represented in the ISO 3166 format.
      */
     regionCode?: string | null;
     /**
-     * Reporting contexts that have the change (if applicable)
+     * Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)
      */
     reportingContext?: string | null;
   }
@@ -1001,7 +1116,11 @@ export namespace merchantapi_accounts_v1beta {
      */
     changes?: Schema$ProductChange[];
     /**
-     * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications.
+     */
+    eventTime?: string | null;
+    /**
+     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -1009,7 +1128,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     managingAccount?: string | null;
     /**
-     * The product name. Format: `{product.name=accounts/{account\}/products/{product\}\}`
+     * The product name. Format: `accounts/{account\}/products/{product\}`
      */
     resource?: string | null;
     /**
@@ -1022,7 +1141,7 @@ export namespace merchantapi_accounts_v1beta {
     resourceType?: string | null;
   }
   /**
-   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/topic/9240261?ref_topic=7257954,7259405,&sjid=796648681813264022-EU) program, which enables products from a merchant's store to be shown across Google for free.
+   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/topic/9240261?ref_topic=7257954,7259405,&sjid=796648681813264022-EU) program, which enables products from a merchant's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`
    */
   export interface Schema$Program {
     /**
@@ -1169,26 +1288,27 @@ export namespace merchantapi_accounts_v1beta {
      */
     cells?: Schema$Value[];
   }
-  /**
-   * Next: 5
-   */
   export interface Schema$SeasonalOverride {
-    /**
-     * Required. Defines the date range when this seasonal override applies. Both begin and end are inclusive and should be in date decimal format, example 20250115. The dates of the seasonal overrides should not overlap.
-     */
-    begin?: Schema$Date;
     /**
      * Required. seasonal override end date (inclusive).
      */
-    end?: Schema$Date;
+    endDate?: Schema$Date;
     /**
      * Required. Display name of this seasonal override in Merchant Center.
      */
     label?: string | null;
     /**
-     * Required. The return policy for the given date range.
+     * Number of days (from the delivery date) that the product can be returned.
      */
-    policy?: Schema$Policy;
+    returnDays?: number | null;
+    /**
+     * Fixed end date until which the product can be returned.
+     */
+    returnUntilDate?: Schema$Date;
+    /**
+     * Required. Defines the date range when this seasonal override applies. Both start_date and end_date are inclusive. The dates of the seasonal overrides should not overlap.
+     */
+    startDate?: Schema$Date;
   }
   /**
    * Shipping service.
@@ -1439,7 +1559,7 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$User {
     /**
-     * Optional. The [access rights](https://support.google.com/merchants/answer/12160472?sjid=6789834943175119429-EU#accesstypes) the user has.
+     * Required. The [access rights](https://support.google.com/merchants/answer/12160472?sjid=6789834943175119429-EU#accesstypes) the user has.
      */
     accessRights?: string[] | null;
     /**
@@ -1848,7 +1968,102 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns accounts the user is directly added to.
+     * Retrieves the automatic improvements of an account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAutomaticImprovements(
+      params: Params$Resource$Accounts$Getautomaticimprovements,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAutomaticImprovements(
+      params?: Params$Resource$Accounts$Getautomaticimprovements,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutomaticImprovements>;
+    getAutomaticImprovements(
+      params: Params$Resource$Accounts$Getautomaticimprovements,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAutomaticImprovements(
+      params: Params$Resource$Accounts$Getautomaticimprovements,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutomaticImprovements>,
+      callback: BodyResponseCallback<Schema$AutomaticImprovements>
+    ): void;
+    getAutomaticImprovements(
+      params: Params$Resource$Accounts$Getautomaticimprovements,
+      callback: BodyResponseCallback<Schema$AutomaticImprovements>
+    ): void;
+    getAutomaticImprovements(
+      callback: BodyResponseCallback<Schema$AutomaticImprovements>
+    ): void;
+    getAutomaticImprovements(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Getautomaticimprovements
+        | BodyResponseCallback<Schema$AutomaticImprovements>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutomaticImprovements>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutomaticImprovements>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AutomaticImprovements>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Getautomaticimprovements;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Getautomaticimprovements;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutomaticImprovements>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutomaticImprovements>(parameters);
+      }
+    }
+
+    /**
+     * Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns all the accounts the user has access to. This method is eventually consistent, meaning changes such as creating, updating an account or a change of relationships between accounts may not show up in the results immediately. Instead, these changes propagate over a short period, after which the updated information can match the associated predicates. That means, that searching by account name might not return a recently changed account even though it satisfies the predicate.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2119,6 +2334,101 @@ export namespace merchantapi_accounts_v1beta {
         return createAPIRequest<Schema$Account>(parameters);
       }
     }
+
+    /**
+     * Updates the automatic improvements of an account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAutomaticImprovements(
+      params: Params$Resource$Accounts$Updateautomaticimprovements,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAutomaticImprovements(
+      params?: Params$Resource$Accounts$Updateautomaticimprovements,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutomaticImprovements>;
+    updateAutomaticImprovements(
+      params: Params$Resource$Accounts$Updateautomaticimprovements,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAutomaticImprovements(
+      params: Params$Resource$Accounts$Updateautomaticimprovements,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutomaticImprovements>,
+      callback: BodyResponseCallback<Schema$AutomaticImprovements>
+    ): void;
+    updateAutomaticImprovements(
+      params: Params$Resource$Accounts$Updateautomaticimprovements,
+      callback: BodyResponseCallback<Schema$AutomaticImprovements>
+    ): void;
+    updateAutomaticImprovements(
+      callback: BodyResponseCallback<Schema$AutomaticImprovements>
+    ): void;
+    updateAutomaticImprovements(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Updateautomaticimprovements
+        | BodyResponseCallback<Schema$AutomaticImprovements>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutomaticImprovements>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutomaticImprovements>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AutomaticImprovements>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Updateautomaticimprovements;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Updateautomaticimprovements;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutomaticImprovements>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutomaticImprovements>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Accounts$Createandconfigure
@@ -2144,9 +2454,16 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
   }
+  export interface Params$Resource$Accounts$Getautomaticimprovements
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`
+     */
+    name?: string;
+  }
   export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
-     * Optional. Returns only accounts that match the [filter](/merchant/api/guides/accounts/filter). For more details, see the [filter syntax reference](/merchant/api/guides/accounts/filter-syntax).
+     * Optional. Returns only accounts that match the [filter](https://developers.google.com/merchant/api/guides/accounts/filter). For more details, see the [filter syntax reference](https://developers.google.com/merchant/api/guides/accounts/filter-syntax).
      */
     filter?: string;
     /**
@@ -2187,6 +2504,22 @@ export namespace merchantapi_accounts_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$Account;
+  }
+  export interface Params$Resource$Accounts$Updateautomaticimprovements
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`.
+     */
+    name?: string;
+    /**
+     * Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `item_updates` - `item_updates.account_level_settings` - `image_improvements` - `image_improvements.account_level_settings` - `shipping_improvements` - `shipping_improvements.allow_shipping_improvements`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutomaticImprovements;
   }
 
   export class Resource$Accounts$Autofeedsettings {

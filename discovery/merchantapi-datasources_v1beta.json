@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20250108",
+  "revision": "20250312",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -425,6 +425,61 @@
             "$ref": "DataSourceReference"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Destination": {
+      "description": "Destinations also known as [Marketing methods](https://support.google.com/merchants/answer/15130232) selections.",
+      "id": "Destination",
+      "properties": {
+        "destination": {
+          "description": "[Marketing methods](https://support.google.com/merchants/answer/15130232) (also known as destination) selections.",
+          "enum": [
+            "DESTINATION_ENUM_UNSPECIFIED",
+            "SHOPPING_ADS",
+            "DISPLAY_ADS",
+            "LOCAL_INVENTORY_ADS",
+            "FREE_LISTINGS",
+            "FREE_LOCAL_LISTINGS",
+            "YOUTUBE_SHOPPING",
+            "YOUTUBE_SHOPPING_CHECKOUT",
+            "YOUTUBE_AFFILIATE",
+            "FREE_VEHICLE_LISTINGS",
+            "VEHICLE_ADS",
+            "CLOUD_RETAIL",
+            "LOCAL_CLOUD_RETAIL"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "[Shopping ads](https://support.google.com/google-ads/answer/2454022).",
+            "[Display ads](https://support.google.com/merchants/answer/6069387).",
+            "[Local inventory ads](https://support.google.com/merchants/answer/3057972).",
+            "[Free listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
+            "[YouTube Shopping](https://support.google.com/merchants/answer/12362804).",
+            "Youtube shopping checkout.",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
+            "[Free vehicle listings](https://support.google.com/merchants/answer/11189169).",
+            "[Vehicle ads](https://support.google.com/merchants/answer/11189169).",
+            "[Cloud retail](https://cloud.google.com/solutions/retail).",
+            "[Local cloud retail](https://cloud.google.com/solutions/retail)."
+          ],
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the destination.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Indicates that the destination is enabled.",
+            "Indicates that the destination is disabled."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -707,7 +762,7 @@
       "id": "PrimaryProductDataSource",
       "properties": {
         "channel": {
-          "description": "Required. Immutable. Specifies the type of data source channel.",
+          "description": "Optional. Immutable. Specifies the type of data source channel.",
           "enum": [
             "CHANNEL_UNSPECIFIED",
             "ONLINE_PRODUCTS",
@@ -737,6 +792,13 @@
           "$ref": "DefaultRule",
           "description": "Optional. Default rule management of the data source. If set, the linked data sources will be replaced."
         },
+        "destinations": {
+          "description": "Optional. A list of destinations describing where products of the data source can be shown. When retrieving the data source, the list contains all the destinations that can be used for the data source, including the ones that are disabled for the data source but enabled for the account. Only destinations that are enabled on the account, for example through program participation, can be enabled on the data source. If unset, during creation, the destinations will be inherited based on the account level program participation. If set, during creation or update, the data source will be set only for the specified destinations. Updating this field requires at least one destination.",
+          "items": {
+            "$ref": "Destination"
+          },
+          "type": "array"
+        },
         "feedLabel": {
           "description": "Optional. Immutable. The feed label that is specified on the data source level. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-). See also [migration to feed labels](https://developers.google.com/shopping-content/guides/products/feed-labels). `feedLabel` and `contentLanguage` must be either both set or unset for data sources with product content type. They must be set for data sources with a file input. If set, the data source will only accept products matching this combination. If unset, the data source will accept products without that restriction.",
           "type": "string"
@@ -749,19 +811,19 @@
       "id": "ProductChange",
       "properties": {
         "newValue": {
-          "description": "The new value of the changed resource or attribute.",
+          "description": "The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)",
           "type": "string"
         },
         "oldValue": {
-          "description": "The old value of the changed resource or attribute.",
+          "description": "The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)",
           "type": "string"
         },
         "regionCode": {
-          "description": "Countries that have the change (if applicable)",
+          "description": "Countries that have the change (if applicable). Represented in the ISO 3166 format.",
           "type": "string"
         },
         "reportingContext": {
-          "description": "Reporting contexts that have the change (if applicable)",
+          "description": "Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)",
           "enum": [
             "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
             "SHOPPING_ADS",
@@ -775,6 +837,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -786,6 +849,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -815,12 +879,13 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
             "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
-            "[YouTube Checkout]("
+            "YouTube Checkout ."
           ],
           "type": "string"
         }
@@ -860,8 +925,13 @@
           },
           "type": "array"
         },
+        "eventTime": {
+          "description": "The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "expirationTime": {
-          "description": "The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "description": "Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -870,7 +940,7 @@
           "type": "string"
         },
         "resource": {
-          "description": "The product name. Format: `{product.name=accounts/{account}/products/{product}}`",
+          "description": "The product name. Format: `accounts/{account}/products/{product}`",
           "type": "string"
         },
         "resourceId": {

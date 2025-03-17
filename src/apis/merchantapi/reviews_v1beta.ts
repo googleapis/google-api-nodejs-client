@@ -180,7 +180,7 @@ export namespace merchantapi_reviews_v1beta {
      */
     attributes?: Schema$MerchantReviewAttributes;
     /**
-     * Required. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ "name": "size type", "value": "regular" \}`). This is useful for submitting attributes not explicitly exposed by the API, such as experimental attributes. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set per product, with total size of 102.4kB. Underscores in custom attribute names are replaced by spaces upon insertion.
+     * Optional. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ "name": "size type", "value": "regular" \}`). This is useful for submitting attributes not explicitly exposed by the API, such as experimental attributes. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set per product, with total size of 102.4kB. Underscores in custom attribute names are replaced by spaces upon insertion.
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
@@ -257,7 +257,7 @@ export namespace merchantapi_reviews_v1beta {
      */
     reviewerUsername?: string | null;
     /**
-     * Required. The language of the review defined by BCP-47 language code.
+     * Optional. The language of the review defined by BCP-47 language code.
      */
     reviewLanguage?: string | null;
     /**
@@ -341,19 +341,19 @@ export namespace merchantapi_reviews_v1beta {
    */
   export interface Schema$ProductChange {
     /**
-     * The new value of the changed resource or attribute.
+     * The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)
      */
     newValue?: string | null;
     /**
-     * The old value of the changed resource or attribute.
+     * The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)
      */
     oldValue?: string | null;
     /**
-     * Countries that have the change (if applicable)
+     * Countries that have the change (if applicable). Represented in the ISO 3166 format.
      */
     regionCode?: string | null;
     /**
-     * Reporting contexts that have the change (if applicable)
+     * Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)
      */
     reportingContext?: string | null;
   }
@@ -591,7 +591,11 @@ export namespace merchantapi_reviews_v1beta {
      */
     changes?: Schema$ProductChange[];
     /**
-     * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications.
+     */
+    eventTime?: string | null;
+    /**
+     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -599,7 +603,7 @@ export namespace merchantapi_reviews_v1beta {
      */
     managingAccount?: string | null;
     /**
-     * The product name. Format: `{product.name=accounts/{account\}/products/{product\}\}`
+     * The product name. Format: `accounts/{account\}/products/{product\}`
      */
     resource?: string | null;
     /**

@@ -204,6 +204,19 @@ export namespace merchantapi_datasources_v1beta {
     takeFromDataSources?: Schema$DataSourceReference[];
   }
   /**
+   * Destinations also known as [Marketing methods](https://support.google.com/merchants/answer/15130232) selections.
+   */
+  export interface Schema$Destination {
+    /**
+     * [Marketing methods](https://support.google.com/merchants/answer/15130232) (also known as destination) selections.
+     */
+    destination?: string | null;
+    /**
+     * The state of the destination.
+     */
+    state?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -370,7 +383,7 @@ export namespace merchantapi_datasources_v1beta {
    */
   export interface Schema$PrimaryProductDataSource {
     /**
-     * Required. Immutable. Specifies the type of data source channel.
+     * Optional. Immutable. Specifies the type of data source channel.
      */
     channel?: string | null;
     /**
@@ -386,6 +399,10 @@ export namespace merchantapi_datasources_v1beta {
      */
     defaultRule?: Schema$DefaultRule;
     /**
+     * Optional. A list of destinations describing where products of the data source can be shown. When retrieving the data source, the list contains all the destinations that can be used for the data source, including the ones that are disabled for the data source but enabled for the account. Only destinations that are enabled on the account, for example through program participation, can be enabled on the data source. If unset, during creation, the destinations will be inherited based on the account level program participation. If set, during creation or update, the data source will be set only for the specified destinations. Updating this field requires at least one destination.
+     */
+    destinations?: Schema$Destination[];
+    /**
      * Optional. Immutable. The feed label that is specified on the data source level. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-). See also [migration to feed labels](https://developers.google.com/shopping-content/guides/products/feed-labels). `feedLabel` and `contentLanguage` must be either both set or unset for data sources with product content type. They must be set for data sources with a file input. If set, the data source will only accept products matching this combination. If unset, the data source will accept products without that restriction.
      */
     feedLabel?: string | null;
@@ -395,19 +412,19 @@ export namespace merchantapi_datasources_v1beta {
    */
   export interface Schema$ProductChange {
     /**
-     * The new value of the changed resource or attribute.
+     * The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)
      */
     newValue?: string | null;
     /**
-     * The old value of the changed resource or attribute.
+     * The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)
      */
     oldValue?: string | null;
     /**
-     * Countries that have the change (if applicable)
+     * Countries that have the change (if applicable). Represented in the ISO 3166 format.
      */
     regionCode?: string | null;
     /**
-     * Reporting contexts that have the change (if applicable)
+     * Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)
      */
     reportingContext?: string | null;
   }
@@ -432,7 +449,11 @@ export namespace merchantapi_datasources_v1beta {
      */
     changes?: Schema$ProductChange[];
     /**
-     * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications.
+     */
+    eventTime?: string | null;
+    /**
+     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -440,7 +461,7 @@ export namespace merchantapi_datasources_v1beta {
      */
     managingAccount?: string | null;
     /**
-     * The product name. Format: `{product.name=accounts/{account\}/products/{product\}\}`
+     * The product name. Format: `accounts/{account\}/products/{product\}`
      */
     resource?: string | null;
     /**
