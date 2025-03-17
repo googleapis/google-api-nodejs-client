@@ -5,6 +5,12 @@
         "https://www.googleapis.com/auth/chrome.management.appdetails.readonly": {
           "description": "See detailed information about apps installed on Chrome browsers and devices managed by your organization"
         },
+        "https://www.googleapis.com/auth/chrome.management.profiles": {
+          "description": "See, edit, delete, and take other necessary actions on Chrome browser profiles managed by your organization"
+        },
+        "https://www.googleapis.com/auth/chrome.management.profiles.readonly": {
+          "description": "See Chrome browser profiles managed by your organization"
+        },
         "https://www.googleapis.com/auth/chrome.management.reports.readonly": {
           "description": "See reports about devices and Chrome browsers managed within your organization"
         },
@@ -366,7 +372,10 @@
               "path": "v1/{+name}",
               "response": {
                 "$ref": "GoogleProtobufEmpty"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.profiles"
+              ]
             },
             "get": {
               "description": "Gets a Chrome browser profile with customer ID and profile permanent ID.",
@@ -388,7 +397,11 @@
               "path": "v1/{+name}",
               "response": {
                 "$ref": "GoogleChromeManagementVersionsV1ChromeBrowserProfile"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.profiles",
+                "https://www.googleapis.com/auth/chrome.management.profiles.readonly"
+              ]
             },
             "list": {
               "description": "Lists Chrome browser profiles of a customer based on the given search and sorting criteria.",
@@ -400,12 +413,12 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "Optional. The filter used to filter profiles. The following fields can be used in the filter: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state - ouId Any of the above fields can be used to specify a filter, and filtering by multiple fields is supported with AND operator. String type fields and enum type fields support '=' and '!=' operators. The integer type and the timestamp type fields support '=', '!=', '<', '>', '<=' and '>=' operators. Timestamps expect an RFC-3339 formatted string (e.g. 2012-04-21T11:30:00-04:00). Wildcard '*' can be used with a string type field filter. In addition, string literal filtering is also supported, for example, 'ABC' as a filter maps to a filter that checks if any of the filterable string type fields contains 'ABC'. Organization unit number can be used as a filtering criteria here by specifying 'ouId = ${your_org_unit_id}', please note that only single OU ID matching is supported.",
+                  "description": "Optional. The filter used to filter profiles. The following fields can be used in the filter: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state - os_platform_version - ouId Any of the above fields can be used to specify a filter, and filtering by multiple fields is supported with AND operator. String type fields and enum type fields support '=' and '!=' operators. The integer type and the timestamp type fields support '=', '!=', '<', '>', '<=' and '>=' operators. Timestamps expect an RFC-3339 formatted string (e.g. 2012-04-21T11:30:00-04:00). Wildcard '*' can be used with a string type field filter. In addition, string literal filtering is also supported, for example, 'ABC' as a filter maps to a filter that checks if any of the filterable string type fields contains 'ABC'. Organization unit number can be used as a filtering criteria here by specifying 'ouId = ${your_org_unit_id}', please note that only single OU ID matching is supported.",
                   "location": "query",
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Optional. The fields used to specify the ordering of the results. The supported fields are: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state By default, sorting is in ascending order, to specify descending order for a field, a suffix \" desc\" should be added to the field name. The default ordering is the descending order of last_status_report_time.",
+                  "description": "Optional. The fields used to specify the ordering of the results. The supported fields are: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state - os_platform_version By default, sorting is in ascending order, to specify descending order for a field, a suffix \" desc\" should be added to the field name. The default ordering is the descending order of last_status_report_time.",
                   "location": "query",
                   "type": "string"
                 },
@@ -431,7 +444,11 @@
               "path": "v1/{+parent}/profiles",
               "response": {
                 "$ref": "GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.profiles",
+                "https://www.googleapis.com/auth/chrome.management.profiles.readonly"
+              ]
             }
           }
         },
@@ -1263,7 +1280,7 @@
       }
     }
   },
-  "revision": "20250122",
+  "revision": "20250313",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -4998,11 +5015,6 @@
       "description": "A certificate provisioning process.",
       "id": "GoogleChromeManagementVersionsV1CertificateProvisioningProcess",
       "properties": {
-        "caConnectionAdapterConfigReference": {
-          "description": "Output only. A JSON string that contains the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.",
-          "readOnly": true,
-          "type": "string"
-        },
         "chromeOsDevice": {
           "$ref": "GoogleChromeManagementVersionsV1ChromeOsDevice",
           "description": "Output only. The client certificate is being provisioned for a ChromeOS device. This contains information about the device.",
@@ -5010,13 +5022,23 @@
         },
         "chromeOsUserSession": {
           "$ref": "GoogleChromeManagementVersionsV1ChromeOsUserSession",
-          "description": "Output only. The client certificate is being provisioned for a ChromeOS user session. This contains information about the user session.",
+          "description": "Output only. The client certificate is being provisioned for a ChromeOS user. This contains information about the current user session.",
           "readOnly": true
         },
         "failureMessage": {
-          "description": "Output only. A message describing why this `CertificateProvisioningProcess` failed. Presence of this field indicates that the `CertificateProvisioningProcess` has failed.",
+          "description": "Output only. A message describing why this `CertificateProvisioningProcess` has failed. Presence of this field indicates that the `CertificateProvisioningProcess` has failed.",
           "readOnly": true,
           "type": "string"
+        },
+        "genericCaConnection": {
+          "$ref": "GoogleChromeManagementVersionsV1GenericCaConnection",
+          "description": "Output only. The CA connection is a generic CA connection.",
+          "readOnly": true
+        },
+        "genericProfile": {
+          "$ref": "GoogleChromeManagementVersionsV1GenericProfile",
+          "description": "Output only. The profile is a generic certificate provisioning profile.",
+          "readOnly": true
         },
         "issuedCertificate": {
           "description": "Output only. The issued certificate for this `CertificateProvisioningProcess` in PEM format.",
@@ -5025,11 +5047,6 @@
         },
         "name": {
           "description": "Identifier. Resource name of the `CertificateProvisioningProcess`. The name pattern is given as `customers/{customer}/certificateProvisioningProcesses/{certificate_provisioning_process}` with `{customer}` being the obfuscated customer id and `{certificate_provisioning_process}` being the certificate provisioning process id.",
-          "type": "string"
-        },
-        "profileAdapterConfigReference": {
-          "description": "Output only. A JSON string that contains the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.",
-          "readOnly": true,
           "type": "string"
         },
         "provisioningProfileId": {
@@ -5044,7 +5061,7 @@
           "type": "string"
         },
         "signature": {
-          "description": "Output only. The signature of `signature_algorithm`, generated using the client's private key using `signature_algorithm`. This field is only present after the`SignData` operation has finished.",
+          "description": "Output only. The signature of `signature_algorithm`, generated using the client's private key using `signature_algorithm`. This field is only present after the `SignData` operation has finished.",
           "format": "byte",
           "readOnly": true,
           "type": "string"
@@ -5053,13 +5070,11 @@
           "description": "Output only. The signature algorithm that the adapter expects the client and backend components to use when processing `sign_data`. This field is only present after the `SignData` operation has been initiated.",
           "enum": [
             "SIGNATURE_ALGORITHM_UNSPECIFIED",
-            "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
-            "SIGNATURE_ALGORITHM_ECDSA_SHA256"
+            "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "The server-side builds the PKCS#1 DigestInfo, i.e., the SHA256 hash is constructed on the server-side. The client should sign using RSA with PKCS#1 v1.5 padding.",
-            "The PKCS#1 digest info is built by the server-side and sent to the client unhashed. The client is responsible for signing and hashing. Uses the P-256 curve."
+            "The server-side builds the PKCS#1 DigestInfo, i.e., the SHA256 hash is constructed on the server-side. The client should sign using RSA with PKCS#1 v1.5 padding."
           ],
           "readOnly": true,
           "type": "string"
@@ -5203,7 +5218,7 @@
           "type": "string"
         },
         "osPlatformVersion": {
-          "description": "Output only. Major OS version of the device on which the profile exists. (i.e. Windows 10)",
+          "description": "Output only. Major OS platform version of the device on which the profile exists, from profile reporting.",
           "readOnly": true,
           "type": "string"
         },
@@ -5269,7 +5284,7 @@
       "properties": {
         "chromeOsDevice": {
           "$ref": "GoogleChromeManagementVersionsV1ChromeOsDevice",
-          "description": "Output only. This field contains information about the ChromeOS device that the user session is running on. It is only set if the user session is affiliated, i.e. if the user is managed by the same organization that managed the ChromeOS device.",
+          "description": "Output only. This field contains information about the ChromeOS device that the user session is running on. It is only set if the user is affiliated, i.e., if the user is managed by the same organization that manages the ChromeOS device.",
           "readOnly": true
         },
         "userDirectoryApiId": {
@@ -5314,6 +5329,30 @@
         },
         "machine": {
           "description": "Output only. Machine name of the device on which the profile exists. On platforms which do not report the machine name (currently iOS and Android) this is instead set to the browser's device_id - but note that this is a different device_id than the |affiliated_device_id|.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1GenericCaConnection": {
+      "description": "Describes a generic Certificate Authority Connection.",
+      "id": "GoogleChromeManagementVersionsV1GenericCaConnection",
+      "properties": {
+        "caConnectionAdapterConfigReference": {
+          "description": "Output only. A string that references the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1GenericProfile": {
+      "description": "Describes a generic certificate provisioning profile.",
+      "id": "GoogleChromeManagementVersionsV1GenericProfile",
+      "properties": {
+        "profileAdapterConfigReference": {
+          "description": "Output only. A string that references the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.",
           "readOnly": true,
           "type": "string"
         }
@@ -5610,155 +5649,6 @@
       "properties": {
         "certificateProvisioningProcess": {
           "$ref": "GoogleChromeManagementVersionsV1CertificateProvisioningProcess",
-          "description": "Output only. The certificate provisioning process. The signature generated by the client will be available in the `signature` field of `CertificateProvisioningProcess`.",
-          "readOnly": true
-        }
-      },
-      "type": "object"
-    },
-    "GoogleChromeManagementVersionsV1alpha1CertificateProvisioningProcess": {
-      "description": "A certificate provisioning process.",
-      "id": "GoogleChromeManagementVersionsV1alpha1CertificateProvisioningProcess",
-      "properties": {
-        "caConnectionAdapterConfigReference": {
-          "description": "Output only. A JSON string that contains the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "chromeOsDevice": {
-          "$ref": "GoogleChromeManagementVersionsV1alpha1ChromeOsDevice",
-          "description": "Output only. The client certificate is being provisioned for a ChromeOS device. This contains information about the device.",
-          "readOnly": true
-        },
-        "chromeOsUserSession": {
-          "$ref": "GoogleChromeManagementVersionsV1alpha1ChromeOsUserSession",
-          "description": "Output only. The client certificate is being provisioned for a ChromeOS user session. This contains information about the user session.",
-          "readOnly": true
-        },
-        "failureMessage": {
-          "description": "Output only. A message describing why this `CertificateProvisioningProcess` failed. Presence of this field indicates that the `CertificateProvisioningProcess` has failed.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "issuedCertificate": {
-          "description": "Output only. The issued certificate for this `CertificateProvisioningProcess` in PEM format.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "name": {
-          "description": "Identifier. Resource name of the `CertificateProvisioningProcess`. The name pattern is given as `customers/{customer}/certificateProvisioningProcesses/{certificate_provisioning_process}` with `{customer}` being the obfuscated customer id and `{certificate_provisioning_process}` being the certificate provisioning process id.",
-          "type": "string"
-        },
-        "profileAdapterConfigReference": {
-          "description": "Output only. A JSON string that contains the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "provisioningProfileId": {
-          "description": "Output only. The ID of the certificate provisioning profile.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "signData": {
-          "description": "Output only. The data that the client was asked to sign. This field is only present after the `SignData` operation has been initiated.",
-          "format": "byte",
-          "readOnly": true,
-          "type": "string"
-        },
-        "signature": {
-          "description": "Output only. The signature of `signature_algorithm`, generated using the client's private key using `signature_algorithm`. This field is only present after the`SignData` operation has finished.",
-          "format": "byte",
-          "readOnly": true,
-          "type": "string"
-        },
-        "signatureAlgorithm": {
-          "description": "Output only. The signature algorithm that the adapter expects the client and backend components to use when processing `sign_data`. This field is only present after the `SignData` operation has been initiated.",
-          "enum": [
-            "SIGNATURE_ALGORITHM_UNSPECIFIED",
-            "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
-            "SIGNATURE_ALGORITHM_ECDSA_SHA256"
-          ],
-          "enumDescriptions": [
-            "Default value. This value is unused.",
-            "The server-side builds the PKCS#1 DigestInfo, i.e., the SHA256 hash is constructed on the server-side. The client should sign using RSA with PKCS#1 v1.5 padding.",
-            "The PKCS#1 digest info is built by the server-side and sent to the client unhashed. The client is responsible for signing and hashing. Uses the P-256 curve."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "startTime": {
-          "description": "Output only. Server-generated timestamp of when the certificate provisioning process has been created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "subjectPublicKeyInfo": {
-          "description": "Output only. The public key for which a certificate should be provisioned. Represented as a DER-encoded X.509 SubjectPublicKeyInfo.",
-          "format": "byte",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleChromeManagementVersionsV1alpha1ChromeOsDevice": {
-      "description": "Describes the ChromeOS device that a `CertificateProvisioningProcess` belongs to.",
-      "id": "GoogleChromeManagementVersionsV1alpha1ChromeOsDevice",
-      "properties": {
-        "deviceDirectoryApiId": {
-          "description": "Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "serialNumber": {
-          "description": "Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the ChromeOS Devices tab.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleChromeManagementVersionsV1alpha1ChromeOsUserSession": {
-      "description": "Describes the ChromeOS user session that a `CertificateProvisioningProcess` belongs to.",
-      "id": "GoogleChromeManagementVersionsV1alpha1ChromeOsUserSession",
-      "properties": {
-        "chromeOsDevice": {
-          "$ref": "GoogleChromeManagementVersionsV1alpha1ChromeOsDevice",
-          "description": "Output only. This field contains information about the ChromeOS device that the user session is running on. It is only set if the user session is affiliated, i.e. if the user is managed by the same organization that managed the ChromeOS device.",
-          "readOnly": true
-        },
-        "userDirectoryApiId": {
-          "description": "Output only. The unique Directory API ID of the user.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "userPrimaryEmail": {
-          "description": "Output only. The primary e-mail address of the user.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleChromeManagementVersionsV1alpha1SignDataMetadata": {
-      "description": "Metadata for the long-running operation returned by signData.",
-      "id": "GoogleChromeManagementVersionsV1alpha1SignDataMetadata",
-      "properties": {
-        "startTime": {
-          "description": "Output only. Start time of the SignData operation.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleChromeManagementVersionsV1alpha1SignDataResponse": {
-      "description": "Response message for requesting a signature from the client that initated a certificate provisioning process.",
-      "id": "GoogleChromeManagementVersionsV1alpha1SignDataResponse",
-      "properties": {
-        "certificateProvisioningProcess": {
-          "$ref": "GoogleChromeManagementVersionsV1alpha1CertificateProvisioningProcess",
           "description": "Output only. The certificate provisioning process. The signature generated by the client will be available in the `signature` field of `CertificateProvisioningProcess`.",
           "readOnly": true
         }

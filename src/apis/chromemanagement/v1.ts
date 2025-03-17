@@ -2223,111 +2223,6 @@ export namespace chromemanagement_v1 {
     justification?: string | null;
   }
   /**
-   * A certificate provisioning process.
-   */
-  export interface Schema$GoogleChromeManagementVersionsV1alpha1CertificateProvisioningProcess {
-    /**
-     * Output only. A JSON string that contains the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.
-     */
-    caConnectionAdapterConfigReference?: string | null;
-    /**
-     * Output only. The client certificate is being provisioned for a ChromeOS device. This contains information about the device.
-     */
-    chromeOsDevice?: Schema$GoogleChromeManagementVersionsV1alpha1ChromeOsDevice;
-    /**
-     * Output only. The client certificate is being provisioned for a ChromeOS user session. This contains information about the user session.
-     */
-    chromeOsUserSession?: Schema$GoogleChromeManagementVersionsV1alpha1ChromeOsUserSession;
-    /**
-     * Output only. A message describing why this `CertificateProvisioningProcess` failed. Presence of this field indicates that the `CertificateProvisioningProcess` has failed.
-     */
-    failureMessage?: string | null;
-    /**
-     * Output only. The issued certificate for this `CertificateProvisioningProcess` in PEM format.
-     */
-    issuedCertificate?: string | null;
-    /**
-     * Identifier. Resource name of the `CertificateProvisioningProcess`. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
-     */
-    name?: string | null;
-    /**
-     * Output only. A JSON string that contains the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.
-     */
-    profileAdapterConfigReference?: string | null;
-    /**
-     * Output only. The ID of the certificate provisioning profile.
-     */
-    provisioningProfileId?: string | null;
-    /**
-     * Output only. The signature of `signature_algorithm`, generated using the client's private key using `signature_algorithm`. This field is only present after the`SignData` operation has finished.
-     */
-    signature?: string | null;
-    /**
-     * Output only. The signature algorithm that the adapter expects the client and backend components to use when processing `sign_data`. This field is only present after the `SignData` operation has been initiated.
-     */
-    signatureAlgorithm?: string | null;
-    /**
-     * Output only. The data that the client was asked to sign. This field is only present after the `SignData` operation has been initiated.
-     */
-    signData?: string | null;
-    /**
-     * Output only. Server-generated timestamp of when the certificate provisioning process has been created.
-     */
-    startTime?: string | null;
-    /**
-     * Output only. The public key for which a certificate should be provisioned. Represented as a DER-encoded X.509 SubjectPublicKeyInfo.
-     */
-    subjectPublicKeyInfo?: string | null;
-  }
-  /**
-   * Describes the ChromeOS device that a `CertificateProvisioningProcess` belongs to.
-   */
-  export interface Schema$GoogleChromeManagementVersionsV1alpha1ChromeOsDevice {
-    /**
-     * Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab.
-     */
-    deviceDirectoryApiId?: string | null;
-    /**
-     * Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the ChromeOS Devices tab.
-     */
-    serialNumber?: string | null;
-  }
-  /**
-   * Describes the ChromeOS user session that a `CertificateProvisioningProcess` belongs to.
-   */
-  export interface Schema$GoogleChromeManagementVersionsV1alpha1ChromeOsUserSession {
-    /**
-     * Output only. This field contains information about the ChromeOS device that the user session is running on. It is only set if the user session is affiliated, i.e. if the user is managed by the same organization that managed the ChromeOS device.
-     */
-    chromeOsDevice?: Schema$GoogleChromeManagementVersionsV1alpha1ChromeOsDevice;
-    /**
-     * Output only. The unique Directory API ID of the user.
-     */
-    userDirectoryApiId?: string | null;
-    /**
-     * Output only. The primary e-mail address of the user.
-     */
-    userPrimaryEmail?: string | null;
-  }
-  /**
-   * Metadata for the long-running operation returned by signData.
-   */
-  export interface Schema$GoogleChromeManagementVersionsV1alpha1SignDataMetadata {
-    /**
-     * Output only. Start time of the SignData operation.
-     */
-    startTime?: string | null;
-  }
-  /**
-   * Response message for requesting a signature from the client that initated a certificate provisioning process.
-   */
-  export interface Schema$GoogleChromeManagementVersionsV1alpha1SignDataResponse {
-    /**
-     * Output only. The certificate provisioning process. The signature generated by the client will be available in the `signature` field of `CertificateProvisioningProcess`.
-     */
-    certificateProvisioningProcess?: Schema$GoogleChromeManagementVersionsV1alpha1CertificateProvisioningProcess;
-  }
-  /**
    * Information of public key associated with a Chrome browser profile.
    */
   export interface Schema$GoogleChromeManagementVersionsV1AttestationCredential {
@@ -2353,21 +2248,25 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1CertificateProvisioningProcess {
     /**
-     * Output only. A JSON string that contains the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.
-     */
-    caConnectionAdapterConfigReference?: string | null;
-    /**
      * Output only. The client certificate is being provisioned for a ChromeOS device. This contains information about the device.
      */
     chromeOsDevice?: Schema$GoogleChromeManagementVersionsV1ChromeOsDevice;
     /**
-     * Output only. The client certificate is being provisioned for a ChromeOS user session. This contains information about the user session.
+     * Output only. The client certificate is being provisioned for a ChromeOS user. This contains information about the current user session.
      */
     chromeOsUserSession?: Schema$GoogleChromeManagementVersionsV1ChromeOsUserSession;
     /**
-     * Output only. A message describing why this `CertificateProvisioningProcess` failed. Presence of this field indicates that the `CertificateProvisioningProcess` has failed.
+     * Output only. A message describing why this `CertificateProvisioningProcess` has failed. Presence of this field indicates that the `CertificateProvisioningProcess` has failed.
      */
     failureMessage?: string | null;
+    /**
+     * Output only. The CA connection is a generic CA connection.
+     */
+    genericCaConnection?: Schema$GoogleChromeManagementVersionsV1GenericCaConnection;
+    /**
+     * Output only. The profile is a generic certificate provisioning profile.
+     */
+    genericProfile?: Schema$GoogleChromeManagementVersionsV1GenericProfile;
     /**
      * Output only. The issued certificate for this `CertificateProvisioningProcess` in PEM format.
      */
@@ -2377,15 +2276,11 @@ export namespace chromemanagement_v1 {
      */
     name?: string | null;
     /**
-     * Output only. A JSON string that contains the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.
-     */
-    profileAdapterConfigReference?: string | null;
-    /**
      * Output only. The ID of the certificate provisioning profile.
      */
     provisioningProfileId?: string | null;
     /**
-     * Output only. The signature of `signature_algorithm`, generated using the client's private key using `signature_algorithm`. This field is only present after the`SignData` operation has finished.
+     * Output only. The signature of `signature_algorithm`, generated using the client's private key using `signature_algorithm`. This field is only present after the `SignData` operation has finished.
      */
     signature?: string | null;
     /**
@@ -2482,7 +2377,7 @@ export namespace chromemanagement_v1 {
      */
     osPlatformType?: string | null;
     /**
-     * Output only. Major OS version of the device on which the profile exists. (i.e. Windows 10)
+     * Output only. Major OS platform version of the device on which the profile exists, from profile reporting.
      */
     osPlatformVersion?: string | null;
     /**
@@ -2532,7 +2427,7 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementVersionsV1ChromeOsUserSession {
     /**
-     * Output only. This field contains information about the ChromeOS device that the user session is running on. It is only set if the user session is affiliated, i.e. if the user is managed by the same organization that managed the ChromeOS device.
+     * Output only. This field contains information about the ChromeOS device that the user session is running on. It is only set if the user is affiliated, i.e., if the user is managed by the same organization that manages the ChromeOS device.
      */
     chromeOsDevice?: Schema$GoogleChromeManagementVersionsV1ChromeOsDevice;
     /**
@@ -2564,6 +2459,24 @@ export namespace chromemanagement_v1 {
      * Output only. Machine name of the device on which the profile exists. On platforms which do not report the machine name (currently iOS and Android) this is instead set to the browser's device_id - but note that this is a different device_id than the |affiliated_device_id|.
      */
     machine?: string | null;
+  }
+  /**
+   * Describes a generic Certificate Authority Connection.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1GenericCaConnection {
+    /**
+     * Output only. A string that references the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.
+     */
+    caConnectionAdapterConfigReference?: string | null;
+  }
+  /**
+   * Describes a generic certificate provisioning profile.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1GenericProfile {
+    /**
+     * Output only. A string that references the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.
+     */
+    profileAdapterConfigReference?: string | null;
   }
   /**
    * Response to ListChromeBrowserProfiles method.
@@ -3795,11 +3708,11 @@ export namespace chromemanagement_v1 {
   export interface Params$Resource$Customers$Profiles$List
     extends StandardParameters {
     /**
-     * Optional. The filter used to filter profiles. The following fields can be used in the filter: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state - ouId Any of the above fields can be used to specify a filter, and filtering by multiple fields is supported with AND operator. String type fields and enum type fields support '=' and '!=' operators. The integer type and the timestamp type fields support '=', '!=', '<', '\>', '<=' and '\>=' operators. Timestamps expect an RFC-3339 formatted string (e.g. 2012-04-21T11:30:00-04:00). Wildcard '*' can be used with a string type field filter. In addition, string literal filtering is also supported, for example, 'ABC' as a filter maps to a filter that checks if any of the filterable string type fields contains 'ABC'. Organization unit number can be used as a filtering criteria here by specifying 'ouId = ${your_org_unit_id\}', please note that only single OU ID matching is supported.
+     * Optional. The filter used to filter profiles. The following fields can be used in the filter: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state - os_platform_version - ouId Any of the above fields can be used to specify a filter, and filtering by multiple fields is supported with AND operator. String type fields and enum type fields support '=' and '!=' operators. The integer type and the timestamp type fields support '=', '!=', '<', '\>', '<=' and '\>=' operators. Timestamps expect an RFC-3339 formatted string (e.g. 2012-04-21T11:30:00-04:00). Wildcard '*' can be used with a string type field filter. In addition, string literal filtering is also supported, for example, 'ABC' as a filter maps to a filter that checks if any of the filterable string type fields contains 'ABC'. Organization unit number can be used as a filtering criteria here by specifying 'ouId = ${your_org_unit_id\}', please note that only single OU ID matching is supported.
      */
     filter?: string;
     /**
-     * Optional. The fields used to specify the ordering of the results. The supported fields are: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state By default, sorting is in ascending order, to specify descending order for a field, a suffix " desc" should be added to the field name. The default ordering is the descending order of last_status_report_time.
+     * Optional. The fields used to specify the ordering of the results. The supported fields are: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state - os_platform_version By default, sorting is in ascending order, to specify descending order for a field, a suffix " desc" should be added to the field name. The default ordering is the descending order of last_status_report_time.
      */
     orderBy?: string;
     /**
