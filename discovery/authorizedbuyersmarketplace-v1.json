@@ -1367,7 +1367,7 @@
       }
     }
   },
-  "revision": "20250113",
+  "revision": "20250303",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -1869,6 +1869,21 @@
         },
         "buyer": {
           "description": "Output only. Refers to a buyer in Real-time Bidding API's Buyer resource. Format: `buyers/{buyerAccountId}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "buyerPermissionType": {
+          "description": "Output only. The buyer permission type of the deal.",
+          "enum": [
+            "BUYER_PERMISSION_TYPE_UNSPECIFIED",
+            "NEGOTIATOR_ONLY",
+            "BIDDER"
+          ],
+          "enumDescriptions": [
+            "A placeholder for an undefined buyer permission type.",
+            "Only the [Deal.negotiating_buyer] can transact on the deal.",
+            "All buyers under the [Deal.negotiating_buyer]'s bidder can transact on the deal."
+          ],
           "readOnly": true,
           "type": "string"
         },

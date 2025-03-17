@@ -401,6 +401,10 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     buyer?: string | null;
     /**
+     * Output only. The buyer permission type of the deal.
+     */
+    buyerPermissionType?: string | null;
+    /**
      * Output only. Refers to a Client. Format: `buyers/{buyerAccountId\}/clients/{clientAccountid\}`
      */
     client?: string | null;
