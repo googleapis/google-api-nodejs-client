@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20250117",
+  "revision": "20250124",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -1590,6 +1590,10 @@
         },
         "method": {
           "description": "The HTTP request method, such as `GET`, `POST`.",
+          "type": "string"
+        },
+        "origin": {
+          "description": "The values from Origin header from the HTTP request, such as \"https://console.cloud.google.com\". Modern browsers can only have one origin. Special browsers and/or HTTP clients may require multiple origins.",
           "type": "string"
         },
         "path": {
