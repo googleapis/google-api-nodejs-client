@@ -402,11 +402,11 @@ export namespace workstations_v1beta {
      */
     readOnly?: boolean | null;
     /**
-     * Optional. Name of the disk image to use as the source for the disk. Must be empty if source_snapshot is set. Updating source_image will update content in the ephemeral directory after the workstation is restarted. This field is mutable.
+     * Optional. Name of the disk image to use as the source for the disk. Must be empty if source_snapshot is set. Updating source_image will update content in the ephemeral directory after the workstation is restarted. Only file systems supported by Container-Optimized OS (COS) are explicitly supported. For a list of supported file systems, please refer to the [COS documentation](https://cloud.google.com/container-optimized-os/docs/concepts/supported-filesystems). This field is mutable.
      */
     sourceImage?: string | null;
     /**
-     * Optional. Name of the snapshot to use as the source for the disk. Must be empty if source_image is set. Must be empty if read_only is false. Updating source_snapshot will update content in the ephemeral directory after the workstation is restarted. This field is mutable.
+     * Optional. Name of the snapshot to use as the source for the disk. Must be empty if source_image is set. Must be empty if read_only is false. Updating source_snapshot will update content in the ephemeral directory after the workstation is restarted. Only file systems supported by Container-Optimized OS (COS) are explicitly supported. For a list of supported file systems, please refer to the [COS documentation](https://cloud.google.com/container-optimized-os/docs/concepts/supported-filesystems). This field is mutable.
      */
     sourceSnapshot?: string | null;
   }
@@ -728,7 +728,7 @@ export namespace workstations_v1beta {
      */
     enablePrivateEndpoint?: boolean | null;
     /**
-     * Output only. Service attachment URI for the workstation cluster. The service attachemnt is created when private endpoint is enabled. To access workstations in the workstation cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).
+     * Output only. Service attachment URI for the workstation cluster. The service attachment is created when private endpoint is enabled. To access workstations in the workstation cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).
      */
     serviceAttachmentUri?: string | null;
   }
@@ -845,9 +845,17 @@ export namespace workstations_v1beta {
      */
     boostConfigs?: Schema$WorkstationBoostConfig[];
     /**
+     * Output only. Status conditions describing the workstation's current state.
+     */
+    conditions?: Schema$Status[];
+    /**
      * Output only. Time when this workstation was created.
      */
     createTime?: string | null;
+    /**
+     * Output only. Whether this workstation is in degraded mode, in which case it may require user action to restore full functionality. Details can be found in conditions.
+     */
+    degraded?: boolean | null;
     /**
      * Output only. Time when this workstation was soft-deleted.
      */
