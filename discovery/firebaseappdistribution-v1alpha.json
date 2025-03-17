@@ -380,6 +380,33 @@
       }
     },
     "projects": {
+      "methods": {
+        "getTestQuota": {
+          "description": "Get information about the quota for `ReleaseTests`.",
+          "flatPath": "v1alpha/projects/{projectsId}/testQuota",
+          "httpMethod": "GET",
+          "id": "firebaseappdistribution.projects.getTestQuota",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the `TestQuota` resource to retrieve. Format: `projects/{project_number}/testQuota`",
+              "location": "path",
+              "pattern": "^projects/[^/]+/testQuota$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "response": {
+            "$ref": "GoogleFirebaseAppdistroV1alphaTestQuota"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      },
       "resources": {
         "apps": {
           "methods": {
@@ -588,6 +615,34 @@
             },
             "testCases": {
               "methods": {
+                "batchDelete": {
+                  "description": "Delete test cases.",
+                  "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/testCases:batchDelete",
+                  "httpMethod": "POST",
+                  "id": "firebaseappdistribution.projects.apps.testCases.batchDelete",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where these test cases will be deleted. Format: `projects/{project_number}/apps/{app_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/apps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/testCases:batchDelete",
+                  "request": {
+                    "$ref": "GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Create a new test case.",
                   "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/testCases",
@@ -776,7 +831,7 @@
       }
     }
   },
-  "revision": "20250123",
+  "revision": "20250314",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -907,11 +962,6 @@
       "description": "Instructions for AI driven test",
       "id": "GoogleFirebaseAppdistroV1alphaAiInstructions",
       "properties": {
-        "appDescription": {
-          "deprecated": true,
-          "description": "Optional. Describes the app to give the AI some context",
-          "type": "string"
-        },
         "steps": {
           "description": "Required. Steps to be accomplished by the AI",
           "items": {
@@ -1075,6 +1125,20 @@
           "$ref": "GoogleFirebaseAppdistroV1alphaScreenshot",
           "description": "Output only. The screenshot used in the context of this assertion.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest": {
+      "description": "The request message for `DeleteTestCase`.",
+      "id": "GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest",
+      "properties": {
+        "names": {
+          "description": "Required. The name of the test cases to delete. A maximum number of 1000 test cases can be deleted in one batch Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1402,7 +1466,8 @@
             "APP_NAME_TOO_LONG",
             "AAB_DEVELOPER_ACCOUNT_NOT_LINKED",
             "AAB_NO_APP_WITH_GIVEN_PACKAGE_NAME_IN_ACCOUNT",
-            "AAB_UPLOAD_ERROR"
+            "AAB_UPLOAD_ERROR",
+            "APP_NOT_FOUND"
           ],
           "enumDescriptions": [
             "",
@@ -1426,7 +1491,8 @@
             "",
             "",
             "",
-            ""
+            "",
+            "Happens if the Firebase app no longer exists by the time of extraction"
           ],
           "type": "string"
         },
@@ -1819,7 +1885,7 @@
           ],
           "enumDescriptions": [
             "Reason unspecified.",
-            "The goal was impossible to accomplish.",
+            "The goal failed to be completed. Note that \"impossible\" is a legacy term and the goal is reported to the customer as having \"failed\".",
             "The goal was completed successfully."
           ],
           "readOnly": true,
@@ -1902,6 +1968,29 @@
         },
         "version": {
           "description": "Required. The version of the device (API level on Android).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaTestQuota": {
+      "description": "Customer quota information for `ReleaseTests`. Note: This quota only applies to tests with `AiInstructions` and is separate from the quota which might apply to the device time used by any tests.",
+      "id": "GoogleFirebaseAppdistroV1alphaTestQuota",
+      "properties": {
+        "limit": {
+          "description": "Output only. Maximum number of `ReleaseTests` allotted for the current month.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the `TestQuota` resource. Format: `projects/{project_number}/testQuota`",
+          "type": "string"
+        },
+        "usage": {
+          "description": "Output only. Number of `ReleaseTests` run in the current month",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
