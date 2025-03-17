@@ -623,6 +623,11 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "Optional. If set to true, the response will return partial results when some regions are unreachable and the unreachable field will be populated.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+parent}/backups",
@@ -1713,7 +1718,7 @@
       }
     }
   },
-  "revision": "20250101",
+  "revision": "20250305",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1876,6 +1881,16 @@
           "readOnly": true,
           "type": "string"
         },
+        "satisfiesPzi": {
+          "description": "Output only. [Output Only] Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. [Output Only] Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "selectedApplications": {
           "$ref": "NamespacedNames",
           "description": "Output only. If set, the list of ProtectedApplications whose resources were included in the Backup.",
@@ -2014,6 +2029,12 @@
           },
           "description": "Optional. A set of custom labels supplied by user.",
           "type": "object"
+        },
+        "lastSuccessfulBackupTime": {
+          "description": "Output only. Completion time of the last successful Backup. This is sourced from a successful Backup's complete_time field. This field is added to maintain consistency with BackupPlanBinding to display last successful backup time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "Output only. The full name of the BackupPlan resource. Format: `projects/*/locations/*/backupPlans/*`",
@@ -2479,6 +2500,13 @@
         "nextPageToken": {
           "description": "A token which may be sent as page_token in a subsequent `ListBackups` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2826,7 +2854,7 @@
         },
         "filter": {
           "$ref": "Filter",
-          "description": "Optional. Immutable. Filters resources for `Restore`. If not specified, the scope of the restore will remain the same as defined in the `RestorePlan`. If this is specified and no resources are matched by the `inclusion_filters` or everyting is excluded by the `exclusion_filters`, nothing will be restored. This filter can only be specified if the value of namespaced_resource_restore_mode is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or `MERGE_REPLACE_ON_CONFLICT`."
+          "description": "Optional. Immutable. Filters resources for `Restore`. If not specified, the scope of the restore will remain the same as defined in the `RestorePlan`. If this is specified and no resources are matched by the `inclusion_filters` or everything is excluded by the `exclusion_filters`, nothing will be restored. This filter can only be specified if the value of namespaced_resource_restore_mode is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or `MERGE_REPLACE_ON_CONFLICT`."
         },
         "labels": {
           "additionalProperties": {
@@ -3396,6 +3424,16 @@
           "readOnly": true,
           "type": "string"
         },
+        "satisfiesPzi": {
+          "description": "Output only. [Output Only] Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. [Output Only] Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "sourcePvc": {
           "$ref": "NamespacedName",
           "description": "Output only. A reference to the source Kubernetes PVC from which this VolumeBackup was created.",
@@ -3410,7 +3448,8 @@
             "UPLOADING",
             "SUCCEEDED",
             "FAILED",
-            "DELETING"
+            "DELETING",
+            "CLEANED_UP"
           ],
           "enumDescriptions": [
             "This is an illegal state and should not be encountered.",
@@ -3419,7 +3458,8 @@
             "The snapshot phase of the volume backup operation has completed and the snapshot is now being uploaded to backup storage.",
             "The volume backup operation has completed successfully.",
             "The volume backup operation has failed.",
-            "This VolumeBackup resource (and its associated artifacts) is in the process of being deleted."
+            "This VolumeBackup resource (and its associated artifacts) is in the process of being deleted.",
+            "The underlying artifacts of a volume backup (eg: persistent disk snapshots) are deleted."
           ],
           "readOnly": true,
           "type": "string"
