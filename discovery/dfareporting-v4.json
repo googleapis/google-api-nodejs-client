@@ -10152,7 +10152,7 @@
       }
     }
   },
-  "revision": "20240926",
+  "revision": "20250218",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -11760,15 +11760,15 @@
           "type": "array"
         },
         "merchantFeedLabel": {
-          "description": "The feed labels associated with the feed where your items are uploaded. For more information, please refer to ​​ https://support.google.com/merchants/answer/12453549. This is a required field.",
+          "description": "The feed labels associated with the feed where your items are uploaded. For more information, please refer to ​​ https://support.google.com/merchants/answer/12453549. Providing the feed label reduces ambiguity in identifying the right offer details.",
           "type": "string"
         },
         "merchantFeedLanguage": {
-          "description": "The language associated with the feed where your items are uploaded. Use ISO 639-1 language codes. This field is needed only when item IDs are not unique across multiple Merchant Center feeds.",
+          "description": "The language associated with the feed where your items are uploaded. Use ISO 639-1 language codes. Providing the feed language reduces ambiguity in identifying the right offer details.",
           "type": "string"
         },
         "merchantId": {
-          "description": "The Merchant Center ID where the items are uploaded. This is a required field.",
+          "description": "The Merchant Center ID where the items are uploaded. Providing Merchant Center ID reduces ambiguity in identifying the right offer details.",
           "format": "int64",
           "type": "string"
         }
@@ -12281,7 +12281,7 @@
           "type": "array"
         },
         "value": {
-          "description": "The value of the conversion. This is a required field.",
+          "description": "The value of the conversion. Interpreted in CM360 Floodlight config parent advertiser's currency code. This is a required field.",
           "format": "double",
           "type": "number"
         }
@@ -20322,6 +20322,10 @@
         },
         "includeClickTracking": {
           "description": "Whether click-tracking string should be included in the tags.",
+          "type": "boolean"
+        },
+        "includeUnescapedlpurlMacro": {
+          "description": "Optional. Indicates that the unescapedlpurl macro should be included in the tag for the static landing page. New placements will default to the value set on their site.",
           "type": "boolean"
         },
         "keywordOption": {
