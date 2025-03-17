@@ -112,6 +112,7 @@ export namespace dataportability_v1 {
    */
   export class Dataportability {
     context: APIRequestContext;
+    accessType: Resource$Accesstype;
     archiveJobs: Resource$Archivejobs;
     authorization: Resource$Authorization;
     portabilityArchive: Resource$Portabilityarchive;
@@ -122,12 +123,38 @@ export namespace dataportability_v1 {
         google,
       };
 
+      this.accessType = new Resource$Accesstype(this.context);
       this.archiveJobs = new Resource$Archivejobs(this.context);
       this.authorization = new Resource$Authorization(this.context);
       this.portabilityArchive = new Resource$Portabilityarchive(this.context);
     }
   }
 
+  /**
+   * Request to cancel a Portability Archive job.
+   */
+  export interface Schema$CancelPortabilityArchiveRequest {}
+  /**
+   * Response to canceling a Data Portability Archive job.
+   */
+  export interface Schema$CancelPortabilityArchiveResponse {}
+  /**
+   * Request to check the token's access type. All required information is derived from the attached OAuth token.
+   */
+  export interface Schema$CheckAccessTypeRequest {}
+  /**
+   * Response to checking the token's access type.
+   */
+  export interface Schema$CheckAccessTypeResponse {
+    /**
+     * Jobs initiated with this token will be one-time if any requested resources have one-time access.
+     */
+    oneTimeResources?: string[] | null;
+    /**
+     * Jobs initiated with this token will be time-based if all requested resources have time-based access.
+     */
+    timeBasedResources?: string[] | null;
+  }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
@@ -137,14 +164,26 @@ export namespace dataportability_v1 {
    */
   export interface Schema$InitiatePortabilityArchiveRequest {
     /**
+     * Optional. The timestamp that represents the end point for the data you are exporting. If the end_time is not specified in the InitiatePortabilityArchiveRequest, this field is set to the latest available data.
+     */
+    endTime?: string | null;
+    /**
      * The resources from which you're exporting data. These values have a 1:1 correspondence with the OAuth scopes.
      */
     resources?: string[] | null;
+    /**
+     * Optional. The timestamp that represents the starting point for the data you are exporting. If the start_time is not specified in the InitiatePortabilityArchiveRequest, the field is set to the earliest available data.
+     */
+    startTime?: string | null;
   }
   /**
    * Response from initiating an Archive job.
    */
   export interface Schema$InitiatePortabilityArchiveResponse {
+    /**
+     * The access type of the Archive job initiated by the API.
+     */
+    accessType?: string | null;
     /**
      * The archive job ID that is initiated in the API. This can be used to get the state of the job.
      */
@@ -155,9 +194,17 @@ export namespace dataportability_v1 {
    */
   export interface Schema$PortabilityArchiveState {
     /**
+     * The timestamp that represents the end point for the data you are exporting. If the end_time value is set in the InitiatePortabilityArchiveRequest, this field is set to that value. If end_time is not set, this value is set to the time the export was requested.
+     */
+    exportTime?: string | null;
+    /**
      * The resource name of ArchiveJob's PortabilityArchiveState singleton. The format is: archiveJobs/{archive_job\}/portabilityArchiveState. archive_job is the job ID provided in the request.
      */
     name?: string | null;
+    /**
+     * The timestamp that represents the starting point for the data you are exporting. This field is set only if the start_time field is specified in the InitiatePortabilityArchiveRequest.
+     */
+    startTime?: string | null;
     /**
      * Resource that represents the state of the Archive job.
      */
@@ -185,10 +232,212 @@ export namespace dataportability_v1 {
     archiveJobId?: string | null;
   }
 
+  export class Resource$Accesstype {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access type of the token.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    check(
+      params: Params$Resource$Accesstype$Check,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    check(
+      params?: Params$Resource$Accesstype$Check,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckAccessTypeResponse>;
+    check(
+      params: Params$Resource$Accesstype$Check,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    check(
+      params: Params$Resource$Accesstype$Check,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckAccessTypeResponse>,
+      callback: BodyResponseCallback<Schema$CheckAccessTypeResponse>
+    ): void;
+    check(
+      params: Params$Resource$Accesstype$Check,
+      callback: BodyResponseCallback<Schema$CheckAccessTypeResponse>
+    ): void;
+    check(callback: BodyResponseCallback<Schema$CheckAccessTypeResponse>): void;
+    check(
+      paramsOrCallback?:
+        | Params$Resource$Accesstype$Check
+        | BodyResponseCallback<Schema$CheckAccessTypeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckAccessTypeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckAccessTypeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckAccessTypeResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Accesstype$Check;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accesstype$Check;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://dataportability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/accessType:check').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckAccessTypeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckAccessTypeResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accesstype$Check extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckAccessTypeRequest;
+  }
+
   export class Resource$Archivejobs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Cancels a Portability Archive job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Archivejobs$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Archivejobs$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CancelPortabilityArchiveResponse>;
+    cancel(
+      params: Params$Resource$Archivejobs$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Archivejobs$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CancelPortabilityArchiveResponse>,
+      callback: BodyResponseCallback<Schema$CancelPortabilityArchiveResponse>
+    ): void;
+    cancel(
+      params: Params$Resource$Archivejobs$Cancel,
+      callback: BodyResponseCallback<Schema$CancelPortabilityArchiveResponse>
+    ): void;
+    cancel(
+      callback: BodyResponseCallback<Schema$CancelPortabilityArchiveResponse>
+    ): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Archivejobs$Cancel
+        | BodyResponseCallback<Schema$CancelPortabilityArchiveResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CancelPortabilityArchiveResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CancelPortabilityArchiveResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CancelPortabilityArchiveResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Archivejobs$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Archivejobs$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://dataportability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CancelPortabilityArchiveResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CancelPortabilityArchiveResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -380,6 +629,18 @@ export namespace dataportability_v1 {
     }
   }
 
+  export interface Params$Resource$Archivejobs$Cancel
+    extends StandardParameters {
+    /**
+     * Required. The Archive job ID you're canceling. This is returned by the InitiatePortabilityArchive response. The format is: archiveJobs/{archive_job\}. Canceling is only executed if the job is in progress.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelPortabilityArchiveRequest;
+  }
   export interface Params$Resource$Archivejobs$Getportabilityarchivestate
     extends StandardParameters {
     /**
