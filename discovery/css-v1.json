@@ -226,7 +226,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the CSS product input resource to delete. Format: accounts/{account}/cssProductInputs/{css_product_input}",
+                  "description": "Required. The name of the CSS product input resource to delete. Format: accounts/{account}/cssProductInputs/{css_product_input}, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/cssProductInputs/[^/]+$",
                   "required": true,
@@ -292,7 +292,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The name of the CSS Product input. Format: `accounts/{account}/cssProductInputs/{css_product_input}`",
+                  "description": "The name of the CSS Product input. Format: `accounts/{account}/cssProductInputs/{css_product_input}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/cssProductInputs/[^/]+$",
                   "required": true,
@@ -507,7 +507,7 @@
       }
     }
   },
-  "revision": "20250106",
+  "revision": "20250219",
   "rootUrl": "https://css.googleapis.com/",
   "schemas": {
     "Account": {
@@ -576,7 +576,7 @@
           "type": "string"
         },
         "parent": {
-          "description": "The CSS/MC account's parent resource. CSS group for CSS domains; CSS domain for MC accounts. Returned only if the user has access to the parent account.",
+          "description": "The CSS/MC account's parent resource. CSS group for CSS domains; CSS domain for MC accounts. Returned only if the user has access to the parent account. Note: For MC sub-accounts, this is also the CSS domain that is the parent resource of the MCA account, since we are effectively flattening the hierarchy.\"",
           "type": "string"
         }
       },
@@ -960,7 +960,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the CSS Product input. Format: `accounts/{account}/cssProductInputs/{css_product_input}`",
+          "description": "The name of the CSS Product input. Format: `accounts/{account}/cssProductInputs/{css_product_input}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123",
           "type": "string"
         },
         "rawProvidedId": {
