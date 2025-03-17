@@ -454,6 +454,19 @@ export namespace playdeveloperreporting_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * Singleton resource representing the set of LMK (Low Memory Kill) metrics. This metric set contains LMKs data combined with usage data to produce a normalized metric independent of user counts. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the only supported timezone is `America/Los_Angeles`. **Supported metrics:** * `userPerceivedLmkRate` (`google.type.Decimal`): Percentage of distinct users in the aggregation period that experienced at least one LMK while they were actively using your app (a user-perceived LMK). An app is considered to be in active use if it is displaying any activity or executing any foreground service. * `userPerceivedLmkRate7dUserWeighted` (`google.type.Decimal`): Rolling average value of `userPerceivedLmkRate` in the last 7 days. The daily values are weighted by the count of distinct users for the day. * `userPerceivedLmkRate28dUserWeighted` (`google.type.Decimal`): Rolling average value of `userPerceivedLmkRate` in the last 28 days. The daily values are weighted by the count of distinct users for the day. * `distinctUsers` (`google.type.Decimal`): Count of distinct users in the aggregation period that were used as normalization value for the `userPerceivedLmkRate` metrics. A user is counted in this metric if they used the app in the foreground during the aggregation period. Care must be taken not to aggregate this count further, as it may result in users being counted multiple times. The value is rounded to the nearest multiple of 10, 100, 1,000 or 1,000,000, depending on the magnitude of the value. **Supported dimensions:** * `apiLevel` (string): the API level of Android that was running on the user's device, e.g., 26. * `versionCode` (int64): version of the app that was running on the user's device. * `deviceModel` (string): unique identifier of the user's device model. The form of the identifier is 'deviceBrand/device', where deviceBrand corresponds to Build.BRAND and device corresponds to Build.DEVICE, e.g., google/coral. * `deviceBrand` (string): unique identifier of the user's device brand, e.g., google. * `deviceType` (string): the type (also known as form factor) of the user's device, e.g., PHONE. * `countryCode` (string): the country or region of the user's device based on their IP address, represented as a 2-letter ISO-3166 code (e.g. US for the United States). * `deviceRamBucket` (int64): RAM of the device, in MB, in buckets (3GB, 4GB, etc.). * `deviceSocMake` (string): Make of the device's primary system-on-chip, e.g., Samsung. [Reference](https://developer.android.com/reference/android/os/Build#SOC_MANUFACTURER) * `deviceSocModel` (string): Model of the device's primary system-on-chip, e.g., "Exynos 2100". [Reference](https://developer.android.com/reference/android/os/Build#SOC_MODEL) * `deviceCpuMake` (string): Make of the device's CPU, e.g., Qualcomm. * `deviceCpuModel` (string): Model of the device's CPU, e.g., "Kryo 240". * `deviceGpuMake` (string): Make of the device's GPU, e.g., ARM. * `deviceGpuModel` (string): Model of the device's GPU, e.g., Mali. * `deviceGpuVersion` (string): Version of the device's GPU, e.g., T750. * `deviceVulkanVersion` (string): Vulkan version of the device, e.g., "4198400". * `deviceGlEsVersion` (string): OpenGL ES version of the device, e.g., "196610". * `deviceScreenSize` (string): Screen size of the device, e.g., NORMAL, LARGE. * `deviceScreenDpi` (string): Screen density of the device, e.g., mdpi, hdpi. **Required permissions**: to access this resource, the calling user needs the _View app information (read-only)_ permission for the app. **Related metric sets:** * vitals.errors contains normalized metrics about crashes, another stability metric. * vitals.errors contains normalized metrics about ANRs, another stability metric.
+   */
+  export interface Schema$GooglePlayDeveloperReportingV1beta1LmkRateMetricSet {
+    /**
+     * Summary about data freshness in this resource.
+     */
+    freshnessInfo?: Schema$GooglePlayDeveloperReportingV1beta1FreshnessInfo;
+    /**
+     * Identifier. The resource name. Format: apps/{app\}/lmkRateMetricSet
+     */
+    name?: string | null;
+  }
+  /**
    * Represents a row of dimensions and metrics.
    */
   export interface Schema$GooglePlayDeveloperReportingV1beta1MetricsRow {
@@ -663,7 +676,7 @@ export namespace playdeveloperreporting_v1beta1 {
      */
     timelineSpec?: Schema$GooglePlayDeveloperReportingV1beta1TimelineSpec;
     /**
-     * User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta android versions only, excluding data from released android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., "T1B2.220916.004".
+     * User view to select. The output data will correspond to the selected view. The only supported value is `OS_PUBLIC`.
      */
     userCohort?: string | null;
   }
@@ -671,6 +684,52 @@ export namespace playdeveloperreporting_v1beta1 {
    * Response message for QueryExcessiveWakeupRateMetricSet.
    */
   export interface Schema$GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetResponse {
+    /**
+     * Continuation token to fetch the next page of data.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Returned rows of data.
+     */
+    rows?: Schema$GooglePlayDeveloperReportingV1beta1MetricsRow[];
+  }
+  /**
+   * Request message for QueryLmkRateMetricSet.
+   */
+  export interface Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetRequest {
+    /**
+     * Optional. Dimensions to slice the metrics by. **Supported dimensions:** * `apiLevel` (string): the API level of Android that was running on the user's device, e.g., 26. * `versionCode` (int64): version of the app that was running on the user's device. * `deviceModel` (string): unique identifier of the user's device model. The form of the identifier is 'deviceBrand/device', where deviceBrand corresponds to Build.BRAND and device corresponds to Build.DEVICE, e.g., google/coral. * `deviceBrand` (string): unique identifier of the user's device brand, e.g., google. * `deviceType` (string): the type (also known as form factor) of the user's device, e.g., PHONE. * `countryCode` (string): the country or region of the user's device based on their IP address, represented as a 2-letter ISO-3166 code (e.g. US for the United States). * `deviceRamBucket` (int64): RAM of the device, in MB, in buckets (3GB, 4GB, etc.). * `deviceSocMake` (string): Make of the device's primary system-on-chip, e.g., Samsung. [Reference](https://developer.android.com/reference/android/os/Build#SOC_MANUFACTURER) * `deviceSocModel` (string): Model of the device's primary system-on-chip, e.g., "Exynos 2100". [Reference](https://developer.android.com/reference/android/os/Build#SOC_MODEL) * `deviceCpuMake` (string): Make of the device's CPU, e.g., Qualcomm. * `deviceCpuModel` (string): Model of the device's CPU, e.g., "Kryo 240". * `deviceGpuMake` (string): Make of the device's GPU, e.g., ARM. * `deviceGpuModel` (string): Model of the device's GPU, e.g., Mali. * `deviceGpuVersion` (string): Version of the device's GPU, e.g., T750. * `deviceVulkanVersion` (string): Vulkan version of the device, e.g., "4198400". * `deviceGlEsVersion` (string): OpenGL ES version of the device, e.g., "196610". * `deviceScreenSize` (string): Screen size of the device, e.g., NORMAL, LARGE. * `deviceScreenDpi` (string): Screen density of the device, e.g., mdpi, hdpi.
+     */
+    dimensions?: string[] | null;
+    /**
+     * Optional. Filters to apply to data. The filtering expression follows [AIP-160](https://google.aip.dev/160) standard and supports filtering by equality of all breakdown dimensions.
+     */
+    filter?: string | null;
+    /**
+     * Optional. Metrics to aggregate. **Supported metrics:** * `userPerceivedLmkRate` (`google.type.Decimal`): Percentage of distinct users in the aggregation period that experienced at least one LMK while they were actively using your app (a user-perceived LMK). An app is considered to be in active use if it is displaying any activity or executing any foreground service. * `userPerceivedLmkRate7dUserWeighted` (`google.type.Decimal`): Rolling average value of `userPerceivedLmkRate` in the last 7 days. The daily values are weighted by the count of distinct users for the day. * `userPerceivedLmkRate28dUserWeighted` (`google.type.Decimal`): Rolling average value of `userPerceivedLmkRate` in the last 28 days. The daily values are weighted by the count of distinct users for the day. * `distinctUsers` (`google.type.Decimal`): Count of distinct users in the aggregation period that were used as normalization value for the `userPerceivedLmkRate` metrics. A user is counted in this metric if they used the app in the foreground during the aggregation period. Care must be taken not to aggregate this count further, as it may result in users being counted multiple times. The value is rounded to the nearest multiple of 10, 100, 1,000 or 1,000,000, depending on the magnitude of the value.
+     */
+    metrics?: string[] | null;
+    /**
+     * Optional. Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100,000; values above 100,000 will be coerced to 100,000.
+     */
+    pageSize?: number | null;
+    /**
+     * Optional. A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to the request must match the call that provided the page token.
+     */
+    pageToken?: string | null;
+    /**
+     * Optional. Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the default and only supported timezone is `America/Los_Angeles`.
+     */
+    timelineSpec?: Schema$GooglePlayDeveloperReportingV1beta1TimelineSpec;
+    /**
+     * Optional. User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta android versions only, excluding data from released android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., "T1B2.220916.004".
+     */
+    userCohort?: string | null;
+  }
+  /**
+   * Response message for QueryLmkRateMetricSet.
+   */
+  export interface Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse {
     /**
      * Continuation token to fetch the next page of data.
      */
@@ -709,7 +768,7 @@ export namespace playdeveloperreporting_v1beta1 {
      */
     timelineSpec?: Schema$GooglePlayDeveloperReportingV1beta1TimelineSpec;
     /**
-     * User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta Android versions only, excluding data from released Android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., "T1B2.220916.004".
+     * User view to select. The output data will correspond to the selected view. The only supported value is `OS_PUBLIC`.
      */
     userCohort?: string | null;
   }
@@ -755,7 +814,7 @@ export namespace playdeveloperreporting_v1beta1 {
      */
     timelineSpec?: Schema$GooglePlayDeveloperReportingV1beta1TimelineSpec;
     /**
-     * User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta Android versions only, excluding data from released Android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., "T1B2.220916.004".
+     * User view to select. The output data will correspond to the selected view. The only supported value is `OS_PUBLIC`.
      */
     userCohort?: string | null;
   }
@@ -801,7 +860,7 @@ export namespace playdeveloperreporting_v1beta1 {
      */
     timelineSpec?: Schema$GooglePlayDeveloperReportingV1beta1TimelineSpec;
     /**
-     * User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta android versions only, excluding data from released android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., "T1B2.220916.004".
+     * User view to select. The output data will correspond to the selected view. The only supported value is `OS_PUBLIC`.
      */
     userCohort?: string | null;
   }
@@ -1364,6 +1423,7 @@ export namespace playdeveloperreporting_v1beta1 {
     crashrate: Resource$Vitals$Crashrate;
     errors: Resource$Vitals$Errors;
     excessivewakeuprate: Resource$Vitals$Excessivewakeuprate;
+    lmkrate: Resource$Vitals$Lmkrate;
     slowrenderingrate: Resource$Vitals$Slowrenderingrate;
     slowstartrate: Resource$Vitals$Slowstartrate;
     stuckbackgroundwakelockrate: Resource$Vitals$Stuckbackgroundwakelockrate;
@@ -1375,6 +1435,7 @@ export namespace playdeveloperreporting_v1beta1 {
       this.excessivewakeuprate = new Resource$Vitals$Excessivewakeuprate(
         this.context
       );
+      this.lmkrate = new Resource$Vitals$Lmkrate(this.context);
       this.slowrenderingrate = new Resource$Vitals$Slowrenderingrate(
         this.context
       );
@@ -2693,6 +2754,226 @@ export namespace playdeveloperreporting_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetRequest;
+  }
+
+  export class Resource$Vitals$Lmkrate {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Describes the properties of the metric set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Vitals$Lmkrate$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Vitals$Lmkrate$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePlayDeveloperReportingV1beta1LmkRateMetricSet>;
+    get(
+      params: Params$Resource$Vitals$Lmkrate$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Vitals$Lmkrate$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1LmkRateMetricSet>,
+      callback: BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1LmkRateMetricSet>
+    ): void;
+    get(
+      params: Params$Resource$Vitals$Lmkrate$Get,
+      callback: BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1LmkRateMetricSet>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1LmkRateMetricSet>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Vitals$Lmkrate$Get
+        | BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1LmkRateMetricSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1LmkRateMetricSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1LmkRateMetricSet>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1beta1LmkRateMetricSet>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Vitals$Lmkrate$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vitals$Lmkrate$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://playdeveloperreporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePlayDeveloperReportingV1beta1LmkRateMetricSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePlayDeveloperReportingV1beta1LmkRateMetricSet>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Queries the metrics in the metric set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    query(
+      params: Params$Resource$Vitals$Lmkrate$Query,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query(
+      params?: Params$Resource$Vitals$Lmkrate$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse>;
+    query(
+      params: Params$Resource$Vitals$Lmkrate$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    query(
+      params: Params$Resource$Vitals$Lmkrate$Query,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse>,
+      callback: BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse>
+    ): void;
+    query(
+      params: Params$Resource$Vitals$Lmkrate$Query,
+      callback: BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse>
+    ): void;
+    query(
+      callback: BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse>
+    ): void;
+    query(
+      paramsOrCallback?:
+        | Params$Resource$Vitals$Lmkrate$Query
+        | BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Vitals$Lmkrate$Query;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vitals$Lmkrate$Query;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://playdeveloperreporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:query').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Vitals$Lmkrate$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name. Format: apps/{app\}/lmkRateMetricSet
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Vitals$Lmkrate$Query
+    extends StandardParameters {
+    /**
+     * Required. The resource name. Format: apps/{app\}/lmkRateMetricSet
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetRequest;
   }
 
   export class Resource$Vitals$Slowrenderingrate {
