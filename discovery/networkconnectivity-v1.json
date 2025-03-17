@@ -209,6 +209,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "acceptSpokeUpdate": {
+                      "description": "Accepts a proposal to update a Network Connectivity Center spoke in a hub.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}:acceptSpokeUpdate",
+                      "httpMethod": "POST",
+                      "id": "networkconnectivity.projects.locations.global.hubs.acceptSpokeUpdate",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the hub to accept spoke update.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:acceptSpokeUpdate",
+                      "request": {
+                        "$ref": "AcceptSpokeUpdateRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a new Network Connectivity Center hub in the specified project.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/hubs",
@@ -556,6 +584,34 @@
                       "path": "v1/{+name}:rejectSpoke",
                       "request": {
                         "$ref": "RejectHubSpokeRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "rejectSpokeUpdate": {
+                      "description": "Rejects a proposal to update a Network Connectivity Center spoke in a hub.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}:rejectSpokeUpdate",
+                      "httpMethod": "POST",
+                      "id": "networkconnectivity.projects.locations.global.hubs.rejectSpokeUpdate",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the hub to reject spoke update.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:rejectSpokeUpdate",
+                      "request": {
+                        "$ref": "RejectSpokeUpdateRequest"
                       },
                       "response": {
                         "$ref": "GoogleLongrunningOperation"
@@ -996,7 +1052,7 @@
                           "type": "string"
                         },
                         "policyBasedRouteId": {
-                          "description": "Required. Unique id for the policy-based route to create.",
+                          "description": "Required. Unique id for the policy-based route to create. Provided by the client when the resource is created. The name must comply with https://google.aip.dev/122#resource-id-segments. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([a-z0-9-]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1533,7 +1589,7 @@
                       "type": "string"
                     },
                     "regionalEndpointId": {
-                      "description": "Required. Unique id of the Regional Endpoint to be created.",
+                      "description": "Required. Unique id of the Regional Endpoint to be created. @pattern: ^[-a-z0-9](?:[-a-z0-9]{0,44})[a-z0-9]$",
                       "location": "query",
                       "type": "string"
                     },
@@ -2863,7 +2919,7 @@
       }
     }
   },
-  "revision": "20250110",
+  "revision": "20250305",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -2888,6 +2944,25 @@
         "spoke": {
           "$ref": "Spoke",
           "description": "The spoke that was operated on."
+        }
+      },
+      "type": "object"
+    },
+    "AcceptSpokeUpdateRequest": {
+      "description": "The request for HubService.AcceptSpokeUpdate.",
+      "id": "AcceptSpokeUpdateRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        },
+        "spokeEtag": {
+          "description": "Required. The etag of the spoke to accept update.",
+          "type": "string"
+        },
+        "spokeUri": {
+          "description": "Required. The URI of the spoke to accept update.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3380,7 +3455,8 @@
             "REJECTING",
             "UPDATING",
             "INACTIVE",
-            "OBSOLETE"
+            "OBSOLETE",
+            "FAILED"
           ],
           "enumDescriptions": [
             "No state information available",
@@ -3391,7 +3467,8 @@
             "The resource's reject operation is in progress.",
             "The resource's update operation is in progress.",
             "The resource is inactive.",
-            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only.",
+            "The resource is in an undefined state due to resource creation or deletion failure. You can try to delete the resource later or contact support for help."
           ],
           "readOnly": true,
           "type": "string"
@@ -3425,7 +3502,7 @@
           "type": "string"
         },
         "exportPsc": {
-          "description": "Optional. Whether Private Service Connect transitivity is enabled for the hub. If true, Private Service Connect endpoints in VPC spokes attached to the hub are made accessible to other VPC spokes attached to the hub. The default value is false.",
+          "description": "Optional. Whether Private Service Connect connection propagation is enabled for the hub. If true, Private Service Connect endpoints in VPC spokes attached to the hub are made accessible to other VPC spokes attached to the hub. The default value is false.",
           "type": "boolean"
         },
         "labels": {
@@ -3496,7 +3573,8 @@
             "REJECTING",
             "UPDATING",
             "INACTIVE",
-            "OBSOLETE"
+            "OBSOLETE",
+            "FAILED"
           ],
           "enumDescriptions": [
             "No state information available",
@@ -3507,7 +3585,8 @@
             "The resource's reject operation is in progress.",
             "The resource's update operation is in progress.",
             "The resource is inactive.",
-            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only.",
+            "The resource is in an undefined state due to resource creation or deletion failure. You can try to delete the resource later or contact support for help."
           ],
           "readOnly": true,
           "type": "string"
@@ -3730,6 +3809,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "proposedIncludeExportRanges": {
+          "description": "Optional. The proposed include export IP ranges waiting for hub administration's approval.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "serviceConsumerVpcSpoke": {
           "description": "Output only. The Service Consumer Network spoke.",
           "readOnly": true,
@@ -3792,6 +3878,13 @@
             "type": "string"
           },
           "readOnly": true,
+          "type": "array"
+        },
+        "proposedIncludeExportRanges": {
+          "description": "Optional. The proposed include export IP ranges waiting for hub administration's approval.",
+          "items": {
+            "type": "string"
+          },
           "type": "array"
         },
         "uri": {
@@ -4241,7 +4334,7 @@
           "type": "string"
         },
         "target": {
-          "description": "Immutable. Resource path of the target resource. The target project can be different, as in the cases when migrating to peer networks. The resource For example: /projects/{project}/regions/{region}/subnetworks/{subnet}",
+          "description": "Immutable. Resource path of the target resource. The target project can be different, as in the cases when migrating to peer networks. For example: /projects/{project}/regions/{region}/subnetworks/{subnet}",
           "type": "string"
         }
       },
@@ -4756,7 +4849,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The name of a RegionalEndpoint. Format: `projects/{project}/locations/{location}/regionalEndpoints/{regional_endpoint}`.",
+          "description": "Output only. The name of a RegionalEndpoint. Pattern: `projects/{project}/locations/{location}/regionalEndpoints/^[-a-z0-9](?:[-a-z0-9]{0,44})[a-z0-9]$`.",
           "readOnly": true,
           "type": "string"
         },
@@ -4812,6 +4905,29 @@
         "spoke": {
           "$ref": "Spoke",
           "description": "The spoke that was operated on."
+        }
+      },
+      "type": "object"
+    },
+    "RejectSpokeUpdateRequest": {
+      "description": "The request for HubService.RejectSpokeUpdate.",
+      "id": "RejectSpokeUpdateRequest",
+      "properties": {
+        "details": {
+          "description": "Optional. Additional information provided by the hub administrator.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        },
+        "spokeEtag": {
+          "description": "Required. The etag of the spoke to reject update.",
+          "type": "string"
+        },
+        "spokeUri": {
+          "description": "Required. The URI of the spoke to reject update.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4887,7 +5003,8 @@
             "REJECTING",
             "UPDATING",
             "INACTIVE",
-            "OBSOLETE"
+            "OBSOLETE",
+            "FAILED"
           ],
           "enumDescriptions": [
             "No state information available",
@@ -4898,7 +5015,8 @@
             "The resource's reject operation is in progress.",
             "The resource's update operation is in progress.",
             "The resource is inactive.",
-            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only.",
+            "The resource is in an undefined state due to resource creation or deletion failure. You can try to delete the resource later or contact support for help."
           ],
           "readOnly": true,
           "type": "string"
@@ -4969,7 +5087,8 @@
             "REJECTING",
             "UPDATING",
             "INACTIVE",
-            "OBSOLETE"
+            "OBSOLETE",
+            "FAILED"
           ],
           "enumDescriptions": [
             "No state information available",
@@ -4980,7 +5099,8 @@
             "The resource's reject operation is in progress.",
             "The resource's update operation is in progress.",
             "The resource is inactive.",
-            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only.",
+            "The resource is in an undefined state due to resource creation or deletion failure. You can try to delete the resource later or contact support for help."
           ],
           "readOnly": true,
           "type": "string"
@@ -5313,6 +5433,17 @@
           "description": "Optional. An optional description of the spoke.",
           "type": "string"
         },
+        "etag": {
+          "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "fieldPathsPendingUpdate": {
+          "description": "Optional. The list of fields waiting for hub administration's approval.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "group": {
           "description": "Optional. The name of the group that this spoke is associated with.",
           "type": "string"
@@ -5392,7 +5523,8 @@
             "REJECTING",
             "UPDATING",
             "INACTIVE",
-            "OBSOLETE"
+            "OBSOLETE",
+            "FAILED"
           ],
           "enumDescriptions": [
             "No state information available",
@@ -5403,7 +5535,8 @@
             "The resource's reject operation is in progress.",
             "The resource's update operation is in progress.",
             "The resource is inactive.",
-            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only.",
+            "The resource is in an undefined state due to resource creation or deletion failure. You can try to delete the resource later or contact support for help."
           ],
           "readOnly": true,
           "type": "string"
@@ -5443,7 +5576,8 @@
             "REJECTING",
             "UPDATING",
             "INACTIVE",
-            "OBSOLETE"
+            "OBSOLETE",
+            "FAILED"
           ],
           "enumDescriptions": [
             "No state information available",
@@ -5454,7 +5588,8 @@
             "The resource's reject operation is in progress.",
             "The resource's update operation is in progress.",
             "The resource is inactive.",
-            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only.",
+            "The resource is in an undefined state due to resource creation or deletion failure. You can try to delete the resource later or contact support for help."
           ],
           "readOnly": true,
           "type": "string"
