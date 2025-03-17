@@ -402,6 +402,31 @@ export namespace networkmanagement_v1 {
     target?: string | null;
   }
   /**
+   * For display only. Metadata associated with a serverless direct VPC egress connection.
+   */
+  export interface Schema$DirectVpcEgressConnectionInfo {
+    /**
+     * URI of direct access network.
+     */
+    networkUri?: string | null;
+    /**
+     * Region in which the Direct VPC egress is deployed.
+     */
+    region?: string | null;
+    /**
+     * Selected starting IP address, from the selected IP range.
+     */
+    selectedIpAddress?: string | null;
+    /**
+     * Selected IP range.
+     */
+    selectedIpRange?: string | null;
+    /**
+     * URI of direct access subnetwork.
+     */
+    subnetworkUri?: string | null;
+  }
+  /**
    * Details of the final state "drop" and associated resource.
    */
   export interface Schema$DropInfo {
@@ -1259,7 +1284,7 @@ export namespace networkmanagement_v1 {
      */
     location?: string | null;
     /**
-     * URI of a Redis Cluster network in format "projects/{project_id\}/global/networks/{network_id\}".
+     * URI of the network containing the Redis Cluster endpoints in format "projects/{project_id\}/global/networks/{network_id\}".
      */
     networkUri?: string | null;
     /**
@@ -1406,6 +1431,15 @@ export namespace networkmanagement_v1 {
     uri?: string | null;
   }
   /**
+   * For display only. Metadata associated with a serverless public connection.
+   */
+  export interface Schema$ServerlessExternalConnectionInfo {
+    /**
+     * Selected starting IP address, from the Google dynamic address pool.
+     */
+    selectedIpAddress?: string | null;
+  }
+  /**
    * For display only. Metadata associated with the serverless network endpoint group backend.
    */
   export interface Schema$ServerlessNegInfo {
@@ -1481,6 +1515,10 @@ export namespace networkmanagement_v1 {
      */
     description?: string | null;
     /**
+     * Display information of a serverless direct VPC egress connection.
+     */
+    directVpcEgressConnection?: Schema$DirectVpcEgressConnectionInfo;
+    /**
      * Display information of the final state "drop" and reason.
      */
     drop?: Schema$DropInfo;
@@ -1548,6 +1586,10 @@ export namespace networkmanagement_v1 {
      * Display information of a Compute Engine route.
      */
     route?: Schema$RouteInfo;
+    /**
+     * Display information of a serverless public (external) connection.
+     */
+    serverlessExternalConnection?: Schema$ServerlessExternalConnectionInfo;
     /**
      * Display information of a Serverless network endpoint group backend. Used only for return traces.
      */

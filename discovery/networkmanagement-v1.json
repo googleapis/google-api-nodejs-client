@@ -758,7 +758,7 @@
       }
     }
   },
-  "revision": "20250101",
+  "revision": "20250305",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -803,7 +803,8 @@
             "SOURCE_FORWARDING_RULE_UNSUPPORTED",
             "NON_ROUTABLE_IP_ADDRESS",
             "UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT",
-            "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG"
+            "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG",
+            "NO_SERVERLESS_IP_RANGES"
           ],
           "enumDeprecated": [
             false,
@@ -815,6 +816,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -879,7 +881,8 @@
             "Aborted because tests with a forwarding rule as a source are not supported.",
             "Aborted because one of the endpoints is a non-routable IP address (loopback, link-local, etc).",
             "Aborted due to an unknown issue in the Google-managed project.",
-            "Aborted due to an unsupported configuration of the Google-managed project."
+            "Aborted due to an unsupported configuration of the Google-managed project.",
+            "Aborted because the source endpoint is a Cloud Run revision with direct VPC access enabled, but there are no reserved serverless IP ranges."
           ],
           "type": "string"
         },
@@ -1259,6 +1262,33 @@
       },
       "type": "object"
     },
+    "DirectVpcEgressConnectionInfo": {
+      "description": "For display only. Metadata associated with a serverless direct VPC egress connection.",
+      "id": "DirectVpcEgressConnectionInfo",
+      "properties": {
+        "networkUri": {
+          "description": "URI of direct access network.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Region in which the Direct VPC egress is deployed.",
+          "type": "string"
+        },
+        "selectedIpAddress": {
+          "description": "Selected starting IP address, from the selected IP range.",
+          "type": "string"
+        },
+        "selectedIpRange": {
+          "description": "Selected IP range.",
+          "type": "string"
+        },
+        "subnetworkUri": {
+          "description": "URI of direct access subnetwork.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DropInfo": {
       "description": "Details of the final state \"drop\" and associated resource.",
       "id": "DropInfo",
@@ -1291,6 +1321,7 @@
             "FORWARDING_RULE_MISMATCH",
             "FORWARDING_RULE_NO_INSTANCES",
             "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
+            "INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS",
             "INSTANCE_NOT_RUNNING",
             "GKE_CLUSTER_NOT_RUNNING",
             "CLOUD_SQL_INSTANCE_NOT_RUNNING",
@@ -1377,6 +1408,7 @@
             "Forwarding rule's protocol and ports do not match the packet header.",
             "Forwarding rule does not have backends configured.",
             "Firewalls block the health check probes to the backends and cause the backends to be unavailable for traffic from the load balancer. For more details, see [Health check firewall rules](https://cloud.google.com/load-balancing/docs/health-checks#firewall_rules).",
+            "Matching ingress firewall rules by network tags for packets sent via serverless VPC direct egress is unsupported. Behavior is undefined. https://cloud.google.com/run/docs/configuring/vpc-direct-vpc#limitations",
             "Packet is sent from or to a Compute Engine instance that is not in a running state.",
             "Packet sent from or to a GKE cluster that is not in running state.",
             "Packet sent from or to a Cloud SQL instance that is not in running state.",
@@ -2672,7 +2704,7 @@
           "type": "string"
         },
         "networkUri": {
-          "description": "URI of a Redis Cluster network in format \"projects/{project_id}/global/networks/{network_id}\".",
+          "description": "URI of the network containing the Redis Cluster endpoints in format \"projects/{project_id}/global/networks/{network_id}\".",
           "type": "string"
         },
         "secondaryEndpointIpAddress": {
@@ -2904,6 +2936,17 @@
       },
       "type": "object"
     },
+    "ServerlessExternalConnectionInfo": {
+      "description": "For display only. Metadata associated with a serverless public connection.",
+      "id": "ServerlessExternalConnectionInfo",
+      "properties": {
+        "selectedIpAddress": {
+          "description": "Selected starting IP address, from the Google dynamic address pool.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServerlessNegInfo": {
       "description": "For display only. Metadata associated with the serverless network endpoint group backend.",
       "id": "ServerlessNegInfo",
@@ -2994,6 +3037,10 @@
           "description": "A description of the step. Usually this is a summary of the state.",
           "type": "string"
         },
+        "directVpcEgressConnection": {
+          "$ref": "DirectVpcEgressConnectionInfo",
+          "description": "Display information of a serverless direct VPC egress connection."
+        },
         "drop": {
           "$ref": "DropInfo",
           "description": "Display information of the final state \"drop\" and reason."
@@ -3063,6 +3110,10 @@
           "$ref": "RouteInfo",
           "description": "Display information of a Compute Engine route."
         },
+        "serverlessExternalConnection": {
+          "$ref": "ServerlessExternalConnectionInfo",
+          "description": "Display information of a serverless public (external) connection."
+        },
         "serverlessNeg": {
           "$ref": "ServerlessNegInfo",
           "description": "Display information of a Serverless network endpoint group backend. Used only for return traces."
@@ -3097,6 +3148,8 @@
             "ARRIVE_AT_VPN_GATEWAY",
             "ARRIVE_AT_VPN_TUNNEL",
             "ARRIVE_AT_VPC_CONNECTOR",
+            "DIRECT_VPC_EGRESS_CONNECTION",
+            "SERVERLESS_EXTERNAL_CONNECTION",
             "NAT",
             "PROXY_CONNECTION",
             "DELIVER",
@@ -3139,6 +3192,8 @@
             false,
             false,
             false,
+            false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3169,6 +3224,8 @@
             "Forwarding state: arriving at a Cloud VPN gateway.",
             "Forwarding state: arriving at a Cloud VPN tunnel.",
             "Forwarding state: arriving at a VPC connector.",
+            "Forwarding state: for packets originating from a serverless endpoint forwarded through Direct VPC egress.",
+            "Forwarding state: for packets originating from a serverless endpoint forwarded through public (external) connectivity.",
             "Transition state: packet header translated.",
             "Transition state: original connection is terminated and a new proxied connection is initiated.",
             "Final state: packet could be delivered.",
