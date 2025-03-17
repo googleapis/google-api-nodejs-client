@@ -330,6 +330,19 @@ export namespace paymentsresellersubscription_v1 {
     userSession?: Schema$GoogleCloudPaymentsResellerSubscriptionV1UserSession;
   }
   /**
+   * Payload specific for Google Home products.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload {
+    /**
+     * Output only. This identifies whether the subscription is attached to a Google Home structure.
+     */
+    attachedToGoogleStructure?: boolean | null;
+    /**
+     * Optional. This identifies the structure ID on partner side that the subscription should be applied to. Only required when the partner requires structure mapping.
+     */
+    partnerStructureId?: string | null;
+  }
+  /**
    * Payload specific to Google One products.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload {
@@ -407,7 +420,7 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Product {
     /**
-     * Output only. Output Only. Specifies the details for a bundle product.
+     * Output only. Specifies the details for a bundle product.
      */
     bundleDetails?: Schema$ProductBundleDetails;
     /**
@@ -423,7 +436,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     priceConfigs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig[];
     /**
-     * Output only. Output Only. Specifies the type of the product.
+     * Output only. Specifies the type of the product.
      */
     productType?: string | null;
     /**
@@ -452,6 +465,10 @@ export namespace paymentsresellersubscription_v1 {
    * Specifies product specific payload.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPayload {
+    /**
+     * Payload specific to Google Home products.
+     */
+    googleHomePayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload;
     /**
      * Product-specific payloads. Payload specific to Google One products.
      */
@@ -499,7 +516,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Output Only. Specifies the type of the promotion.
+     * Output only. Specifies the type of the promotion.
      */
     promotionType?: string | null;
     /**
@@ -537,7 +554,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     discountRatioMicros?: string | null;
     /**
-     * Output only. Output Only. The duration of an introductory offer in billing cycles.
+     * Output only. The duration of an introductory offer in billing cycles.
      */
     recurrenceCount?: number | null;
     /**
@@ -871,7 +888,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * To retrieve the products that can be resold by the partner. It should be autenticated with a service account. - This API doesn't apply to YouTube products currently.
+     * Currently, it doesn't support **YouTube** products. Retrieves the products that can be resold by the partner. It should be autenticated with a service account.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -997,7 +1014,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * To find eligible promotions for the current user. The API requires user authorization via OAuth. The bare minimum oauth scope `openid` is sufficient, which will skip the consent screen.
+     * Currently, it is only enabeld for **YouTube**. Finds eligible promotions for the current user. The API requires user authorization via OAuth. The bare minimum oauth scope `openid` is sufficient, which will skip the consent screen.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1096,7 +1113,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Retrieves the promotions, such as free trial, that can be used by the partner. - This API doesn't apply to YouTube promotions currently. It should be autenticated with a service account.
+     * Currently, it doesn't support **YouTube** promotions. Retrieves the promotions, such as free trial, that can be used by the partner. It should be autenticated with a service account.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1234,7 +1251,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Used by partners to cancel a subscription service either immediately or by the end of the current billing cycle for their customers. It should be called directly by the partner using service accounts.
+     * Cancels a subscription service either immediately or by the end of the current billing cycle for their customers. It should be called directly by the partner using service accounts.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1429,7 +1446,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Used by partners to entitle a previously provisioned subscription to the current end user. The end user identity is inferred from the authorized credential of the request. This API must be authorized by the end user using OAuth.
+     * Entitles a previously provisioned subscription to the current end user. The end user identity is inferred from the authorized credential of the request. This API must be authorized by the end user using OAuth.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1528,7 +1545,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * [Opt-in only] Most partners should be on auto-extend by default. Used by partners to extend a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.
+     * [Opt-in only] Most partners should be on auto-extend by default. Extends a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1624,7 +1641,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Used by partners to get a subscription by id. It should be called directly by the partner using service accounts.
+     * Gets a subscription by id. It should be called directly by the partner using service accounts.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1819,7 +1836,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Revokes the pending cancellation of a subscription, which is currently in `STATE_CANCEL_AT_END_OF_CYCLE` state. If the subscription is already cancelled, the request will fail. - **This API doesn't apply to YouTube subscriptions.** It should be called directly by the partner using service accounts.
+     * Currently, it is used by **Google One, Play Pass** partners. Revokes the pending cancellation of a subscription, which is currently in `STATE_CANCEL_AT_END_OF_CYCLE` state. If the subscription is already cancelled, the request will fail. It should be called directly by the partner using service accounts.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2013,7 +2030,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * This API replaces user authorized OAuth consent based APIs (Create, Entitle). Generates a short-lived token for a user session based on the user intent. You can use the session token to redirect the user to Google to finish the signup flow. You can re-generate new session token repeatedly for the same request if necessary, regardless of the previous tokens being expired or not.
+     * This API replaces user authorized OAuth consent based APIs (Create, Entitle). Issues a timed session token for the given user intent. You can use the session token to redirect the user to Google to finish the signup flow. You can re-generate new session token repeatedly for the same request if necessary, regardless of the previous tokens being expired or not.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
