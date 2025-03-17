@@ -849,7 +849,7 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasklists$List extends StandardParameters {
     /**
-     * Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
+     * Maximum number of task lists returned on one page. Optional. The default is 1000 (max allowed: 1000).
      */
     maxResults?: number;
     /**
@@ -1675,15 +1675,15 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$Move extends StandardParameters {
     /**
-     * Optional. Destination task list identifier. If set, the task is moved from tasklist to the destinationTasklist list. Otherwise the task is moved within its current list. Recurrent tasks cannot currently be moved between lists. Optional.
+     * Optional. Destination task list identifier. If set, the task is moved from tasklist to the destinationTasklist list. Otherwise the task is moved within its current list. Recurrent tasks cannot currently be moved between lists.
      */
     destinationTasklist?: string;
     /**
-     * New parent task identifier. If the task is moved to the top level, this parameter is omitted. The task set as parent must exist in the task list and can not be hidden. Assigned tasks can not be set as parent task (have subtasks) or be moved under a parent task (become subtasks). Optional.
+     * Optional. New parent task identifier. If the task is moved to the top level, this parameter is omitted. The task set as parent must exist in the task list and can not be hidden. Exceptions: 1. Assigned tasks can not be set as parent task (have subtasks) or be moved under a parent task (become subtasks). 2. Tasks that are both completed and hidden cannot be nested, so the parent field must be empty.
      */
     parent?: string;
     /**
-     * New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. The task set as previous must exist in the task list and can not be hidden. Optional.
+     * Optional. New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. The task set as previous must exist in the task list and can not be hidden. Exceptions: 1. Tasks that are both completed and hidden can only be moved to position 0, so the previous field must be empty.
      */
     previous?: string;
     /**
