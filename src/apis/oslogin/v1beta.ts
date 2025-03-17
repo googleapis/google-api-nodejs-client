@@ -112,6 +112,7 @@ export namespace oslogin_v1beta {
    */
   export class Oslogin {
     context: APIRequestContext;
+    projects: Resource$Projects;
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace oslogin_v1beta {
         google,
       };
 
+      this.projects = new Resource$Projects(this.context);
       this.users = new Resource$Users(this.context);
     }
   }
@@ -128,6 +130,36 @@ export namespace oslogin_v1beta {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * A request message for signing an SSH public key.
+   */
+  export interface Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyRequest {
+    /**
+     * The App Engine instance to sign the SSH public key for. Expected format: services/{service\}/versions/{version\}/instances/{instance\}
+     */
+    appEngineInstance?: string | null;
+    /**
+     * The compute instance to sign the SSH public key for. Expected format: projects/{project\}/zones/{zone\}/instances/{numeric_instance_id\}
+     */
+    computeInstance?: string | null;
+    /**
+     * Optional. The service account for the Compute instance. If the instance in question does not have a service account, this field should be left empty. If the wrong service account is provided, this operation will return a signed certificate that will not be accepted by the VM. During rollout of the new regionalized SignSshPublicKey API, this field will be required for all requests, but the VM will not initially carry out the
+     */
+    serviceAccount?: string | null;
+    /**
+     * Required. The SSH public key to sign.
+     */
+    sshPublicKey?: string | null;
+  }
+  /**
+   * The response message for signing an SSH public key.
+   */
+  export interface Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse {
+    /**
+     * The signed SSH public key to use in the SSH handshake.
+     */
+    signedSshPublicKey?: string | null;
+  }
   /**
    * A response message for importing an SSH public key.
    */
@@ -212,6 +244,15 @@ export namespace oslogin_v1beta {
     username?: string | null;
   }
   /**
+   * A request message for creating a POSIX account entry.
+   */
+  export interface Schema$ProvisionPosixAccountRequest {
+    /**
+     * Optional. The regions to wait for a POSIX account to be written to before returning a response. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region.
+     */
+    regions?: string[] | null;
+  }
+  /**
    * The credential information for a Google registered security key.
    */
   export interface Schema$SecurityKey {
@@ -286,6 +327,132 @@ export namespace oslogin_v1beta {
      * Relying party ID for Web Authentication.
      */
     rpId?: string | null;
+  }
+
+  export class Resource$Projects {
+    context: APIRequestContext;
+    locations: Resource$Projects$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Signs an SSH public key for a user to authenticate to a virtual machine on Google Compute Engine.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    signSshPublicKey(
+      params: Params$Resource$Projects$Locations$Signsshpublickey,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signSshPublicKey(
+      params?: Params$Resource$Projects$Locations$Signsshpublickey,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse>;
+    signSshPublicKey(
+      params: Params$Resource$Projects$Locations$Signsshpublickey,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    signSshPublicKey(
+      params: Params$Resource$Projects$Locations$Signsshpublickey,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse>
+    ): void;
+    signSshPublicKey(
+      params: Params$Resource$Projects$Locations$Signsshpublickey,
+      callback: BodyResponseCallback<Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse>
+    ): void;
+    signSshPublicKey(
+      callback: BodyResponseCallback<Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse>
+    ): void;
+    signSshPublicKey(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Signsshpublickey
+        | BodyResponseCallback<Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Signsshpublickey;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Signsshpublickey;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}:signSshPublicKey').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Signsshpublickey
+    extends StandardParameters {
+    /**
+     * Required. The parent for the signing request. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyRequest;
   }
 
   export class Resource$Users {
@@ -620,6 +787,93 @@ export namespace oslogin_v1beta {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
+
+    /**
+     * Create a POSIX account if it doesn't exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    provisionPosixAccount(
+      params: Params$Resource$Users$Projects$Provisionposixaccount,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    provisionPosixAccount(
+      params?: Params$Resource$Users$Projects$Provisionposixaccount,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PosixAccount>;
+    provisionPosixAccount(
+      params: Params$Resource$Users$Projects$Provisionposixaccount,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    provisionPosixAccount(
+      params: Params$Resource$Users$Projects$Provisionposixaccount,
+      options: MethodOptions | BodyResponseCallback<Schema$PosixAccount>,
+      callback: BodyResponseCallback<Schema$PosixAccount>
+    ): void;
+    provisionPosixAccount(
+      params: Params$Resource$Users$Projects$Provisionposixaccount,
+      callback: BodyResponseCallback<Schema$PosixAccount>
+    ): void;
+    provisionPosixAccount(
+      callback: BodyResponseCallback<Schema$PosixAccount>
+    ): void;
+    provisionPosixAccount(
+      paramsOrCallback?:
+        | Params$Resource$Users$Projects$Provisionposixaccount
+        | BodyResponseCallback<Schema$PosixAccount>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PosixAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PosixAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PosixAccount> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Projects$Provisionposixaccount;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Projects$Provisionposixaccount;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PosixAccount>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PosixAccount>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Users$Projects$Delete
@@ -628,6 +882,18 @@ export namespace oslogin_v1beta {
      * Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user\}/projects/{project\}`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Users$Projects$Provisionposixaccount
+    extends StandardParameters {
+    /**
+     * Required. The unique ID for the user in format `users/{user\}/projects/{project\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProvisionPosixAccountRequest;
   }
 
   export class Resource$Users$Projects$Locations {
