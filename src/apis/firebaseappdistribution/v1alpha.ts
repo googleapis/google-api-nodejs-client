@@ -155,10 +155,6 @@ export namespace firebaseappdistribution_v1alpha {
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaAiInstructions {
     /**
-     * Optional. Describes the app to give the AI some context
-     */
-    appDescription?: string | null;
-    /**
      * Required. Steps to be accomplished by the AI
      */
     steps?: Schema$GoogleFirebaseAppdistroV1alphaAiStep[];
@@ -267,6 +263,15 @@ export namespace firebaseappdistribution_v1alpha {
      * Output only. The screenshot used in the context of this assertion.
      */
     screenshot?: Schema$GoogleFirebaseAppdistroV1alphaScreenshot;
+  }
+  /**
+   * The request message for `DeleteTestCase`.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest {
+    /**
+     * Required. The name of the test cases to delete. A maximum number of 1000 test cases can be deleted in one batch Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
+     */
+    names?: string[] | null;
   }
   /**
    * The (empty) response message for `CancelReleaseTest`.
@@ -816,6 +821,23 @@ export namespace firebaseappdistribution_v1alpha {
      * The UDID of the tester's device
      */
     udid?: string | null;
+  }
+  /**
+   * Customer quota information for `ReleaseTests`. Note: This quota only applies to tests with `AiInstructions` and is separate from the quota which might apply to the device time used by any tests.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaTestQuota {
+    /**
+     * Output only. Maximum number of `ReleaseTests` allotted for the current month.
+     */
+    limit?: string | null;
+    /**
+     * Identifier. The name of the `TestQuota` resource. Format: `projects/{project_number\}/testQuota`
+     */
+    name?: string | null;
+    /**
+     * Output only. Number of `ReleaseTests` run in the current month
+     */
+    usage?: string | null;
   }
   /**
    * A release of a Firebase app.
@@ -1821,6 +1843,109 @@ export namespace firebaseappdistribution_v1alpha {
       this.apps = new Resource$Projects$Apps(this.context);
       this.testers = new Resource$Projects$Testers(this.context);
     }
+
+    /**
+     * Get information about the quota for `ReleaseTests`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getTestQuota(
+      params: Params$Resource$Projects$Gettestquota,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getTestQuota(
+      params?: Params$Resource$Projects$Gettestquota,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaTestQuota>;
+    getTestQuota(
+      params: Params$Resource$Projects$Gettestquota,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getTestQuota(
+      params: Params$Resource$Projects$Gettestquota,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestQuota>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestQuota>
+    ): void;
+    getTestQuota(
+      params: Params$Resource$Projects$Gettestquota,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestQuota>
+    ): void;
+    getTestQuota(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestQuota>
+    ): void;
+    getTestQuota(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Gettestquota
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestQuota>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestQuota>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaTestQuota>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaTestQuota>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Gettestquota;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Gettestquota;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaTestQuota>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaTestQuota>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Gettestquota
+    extends StandardParameters {
+    /**
+     * Required. The name of the `TestQuota` resource to retrieve. Format: `projects/{project_number\}/testQuota`
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Apps {
@@ -2510,6 +2635,100 @@ export namespace firebaseappdistribution_v1alpha {
     }
 
     /**
+     * Delete test cases.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Projects$Apps$Testcases$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
+      params?: Params$Resource$Projects$Apps$Testcases$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    batchDelete(
+      params: Params$Resource$Projects$Apps$Testcases$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Apps$Testcases$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Apps$Testcases$Batchdelete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Testcases$Batchdelete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Testcases$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Testcases$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/testCases:batchDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
      * Create a new test case.
      *
      * @param params - Parameters for request
@@ -2985,6 +3204,18 @@ export namespace firebaseappdistribution_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Apps$Testcases$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where these test cases will be deleted. Format: `projects/{project_number\}/apps/{app_id\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest;
+  }
   export interface Params$Resource$Projects$Apps$Testcases$Create
     extends StandardParameters {
     /**
