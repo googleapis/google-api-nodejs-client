@@ -147,6 +147,23 @@ export namespace networkconnectivity_v1 {
     spoke?: Schema$Spoke;
   }
   /**
+   * The request for HubService.AcceptSpokeUpdate.
+   */
+  export interface Schema$AcceptSpokeUpdateRequest {
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+    /**
+     * Required. The etag of the spoke to accept update.
+     */
+    spokeEtag?: string | null;
+    /**
+     * Required. The URI of the spoke to accept update.
+     */
+    spokeUri?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -480,7 +497,7 @@ export namespace networkconnectivity_v1 {
      */
     description?: string | null;
     /**
-     * Optional. Whether Private Service Connect transitivity is enabled for the hub. If true, Private Service Connect endpoints in VPC spokes attached to the hub are made accessible to other VPC spokes attached to the hub. The default value is false.
+     * Optional. Whether Private Service Connect connection propagation is enabled for the hub. If true, Private Service Connect endpoints in VPC spokes attached to the hub are made accessible to other VPC spokes attached to the hub. The default value is false.
      */
     exportPsc?: boolean | null;
     /**
@@ -654,6 +671,10 @@ export namespace networkconnectivity_v1 {
      */
     producerNetwork?: string | null;
     /**
+     * Optional. The proposed include export IP ranges waiting for hub administration's approval.
+     */
+    proposedIncludeExportRanges?: string[] | null;
+    /**
      * Output only. The Service Consumer Network spoke.
      */
     serviceConsumerVpcSpoke?: string | null;
@@ -695,6 +716,10 @@ export namespace networkconnectivity_v1 {
      * Output only. The list of Producer VPC spokes that this VPC spoke is a service consumer VPC spoke for. These producer VPCs are connected through VPC peering to this spoke's backing VPC network. Because they are directly connected throuh VPC peering, NCC export filters do not apply between the service consumer VPC spoke and any of its producer VPC spokes. This VPC spoke cannot be deleted as long as any of these producer VPC spokes are connected to the NCC Hub.
      */
     producerVpcSpokes?: string[] | null;
+    /**
+     * Optional. The proposed include export IP ranges waiting for hub administration's approval.
+     */
+    proposedIncludeExportRanges?: string[] | null;
     /**
      * Required. The URI of the VPC network resource.
      */
@@ -998,7 +1023,7 @@ export namespace networkconnectivity_v1 {
      */
     source?: string | null;
     /**
-     * Immutable. Resource path of the target resource. The target project can be different, as in the cases when migrating to peer networks. The resource For example: /projects/{project\}/regions/{region\}/subnetworks/{subnet\}
+     * Immutable. Resource path of the target resource. The target project can be different, as in the cases when migrating to peer networks. For example: /projects/{project\}/regions/{region\}/subnetworks/{subnet\}
      */
     target?: string | null;
   }
@@ -1344,7 +1369,7 @@ export namespace networkconnectivity_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The name of a RegionalEndpoint. Format: `projects/{project\}/locations/{location\}/regionalEndpoints/{regional_endpoint\}`.
+     * Output only. The name of a RegionalEndpoint. Pattern: `projects/{project\}/locations/{location\}/regionalEndpoints/^[-a-z0-9](?:[-a-z0-9]{0,44\})[a-z0-9]$`.
      */
     name?: string | null;
     /**
@@ -1393,6 +1418,27 @@ export namespace networkconnectivity_v1 {
      * The spoke that was operated on.
      */
     spoke?: Schema$Spoke;
+  }
+  /**
+   * The request for HubService.RejectSpokeUpdate.
+   */
+  export interface Schema$RejectSpokeUpdateRequest {
+    /**
+     * Optional. Additional information provided by the hub administrator.
+     */
+    details?: string | null;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+    /**
+     * Required. The etag of the spoke to reject update.
+     */
+    spokeEtag?: string | null;
+    /**
+     * Required. The URI of the spoke to reject update.
+     */
+    spokeUri?: string | null;
   }
   /**
    * A route defines a path from VM instances within a spoke to a specific destination resource. Only VPC spokes have routes.
@@ -1724,6 +1770,14 @@ export namespace networkconnectivity_v1 {
      * Optional. An optional description of the spoke.
      */
     description?: string | null;
+    /**
+     * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. The list of fields waiting for hub administration's approval.
+     */
+    fieldPathsPendingUpdate?: string[] | null;
     /**
      * Optional. The name of the group that this spoke is associated with.
      */
@@ -2249,6 +2303,103 @@ export namespace networkconnectivity_v1 {
         options: Object.assign(
           {
             url: (rootUrl + '/v1/{+name}:acceptSpoke').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Accepts a proposal to update a Network Connectivity Center spoke in a hub.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    acceptSpokeUpdate(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    acceptSpokeUpdate(
+      params?: Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    acceptSpokeUpdate(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    acceptSpokeUpdate(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    acceptSpokeUpdate(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    acceptSpokeUpdate(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    acceptSpokeUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:acceptSpokeUpdate').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3105,6 +3256,103 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
+     * Rejects a proposal to update a Network Connectivity Center spoke in a hub.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rejectSpokeUpdate(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rejectSpokeUpdate(
+      params?: Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    rejectSpokeUpdate(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rejectSpokeUpdate(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    rejectSpokeUpdate(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    rejectSpokeUpdate(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    rejectSpokeUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:rejectSpokeUpdate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      *
      * @param params - Parameters for request
@@ -3304,6 +3552,18 @@ export namespace networkconnectivity_v1 {
      */
     requestBody?: Schema$AcceptHubSpokeRequest;
   }
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate
+    extends StandardParameters {
+    /**
+     * Required. The name of the hub to accept spoke update.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AcceptSpokeUpdateRequest;
+  }
   export interface Params$Resource$Projects$Locations$Global$Hubs$Create
     extends StandardParameters {
     /**
@@ -3465,6 +3725,18 @@ export namespace networkconnectivity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RejectHubSpokeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate
+    extends StandardParameters {
+    /**
+     * Required. The name of the hub to reject spoke update.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RejectSpokeUpdateRequest;
   }
   export interface Params$Resource$Projects$Locations$Global$Hubs$Setiampolicy
     extends StandardParameters {
@@ -5246,7 +5518,7 @@ export namespace networkconnectivity_v1 {
      */
     parent?: string;
     /**
-     * Required. Unique id for the policy-based route to create.
+     * Required. Unique id for the policy-based route to create. Provided by the client when the resource is created. The name must comply with https://google.aip.dev/122#resource-id-segments. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([a-z0-9-]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      */
     policyBasedRouteId?: string;
     /**
@@ -6695,7 +6967,7 @@ export namespace networkconnectivity_v1 {
      */
     parent?: string;
     /**
-     * Required. Unique id of the Regional Endpoint to be created.
+     * Required. Unique id of the Regional Endpoint to be created. @pattern: ^[-a-z0-9](?:[-a-z0-9]{0,44\})[a-z0-9]$
      */
     regionalEndpointId?: string;
     /**

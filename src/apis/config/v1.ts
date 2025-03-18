@@ -650,7 +650,7 @@ export namespace config_v1 {
    */
   export interface Schema$Preview {
     /**
-     * Optional. Arbitrary key-value metadata storage e.g. to help client tools identifiy preview during automation. See https://google.aip.dev/148#annotations for details on format and size limitations.
+     * Optional. Arbitrary key-value metadata storage e.g. to help client tools identify preview during automation. See https://google.aip.dev/148#annotations for details on format and size limitations.
      */
     annotations?: {[key: string]: string} | null;
     /**

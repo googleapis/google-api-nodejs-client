@@ -2208,7 +2208,7 @@
       }
     }
   },
-  "revision": "20250106",
+  "revision": "20250310",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3518,6 +3518,13 @@
           },
           "type": "array"
         },
+        "additionalPipelineOptions": {
+          "description": "Optional. Additional pipeline option flags for the job.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "additionalUserLabels": {
           "additionalProperties": {
             "type": "string"
@@ -4753,7 +4760,7 @@
       "type": "object"
     },
     "MetricUpdate": {
-      "description": "Describes the state of a metric. Next ID: 14",
+      "description": "Describes the state of a metric.",
       "id": "MetricUpdate",
       "properties": {
         "cumulative": {
@@ -5600,6 +5607,13 @@
           },
           "type": "array"
         },
+        "additionalPipelineOptions": {
+          "description": "Optional. Additional pipeline option flags for the job.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "additionalUserLabels": {
           "additionalProperties": {
             "type": "string"
@@ -5747,13 +5761,15 @@
             "UNKNOWN",
             "JAVA",
             "PYTHON",
-            "GO"
+            "GO",
+            "YAML"
           ],
           "enumDescriptions": [
             "UNKNOWN Language.",
             "Java.",
             "Python.",
-            "Go."
+            "Go.",
+            "YAML."
           ],
           "type": "string"
         },
@@ -7241,6 +7257,10 @@
         "supportsExactlyOnce": {
           "description": "Optional. Indicates if the streaming template supports exactly once mode.",
           "type": "boolean"
+        },
+        "yamlDefinition": {
+          "description": "Optional. For future use.",
+          "type": "string"
         }
       },
       "type": "object"

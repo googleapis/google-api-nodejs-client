@@ -1684,7 +1684,7 @@
       }
     }
   },
-  "revision": "20250121",
+  "revision": "20250227",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -2948,6 +2948,14 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "continent": {
+          "description": "The continent for this multi-region.",
+          "type": "string"
+        },
+        "witnessRegion": {
+          "description": "The Spanner witness region for this multi-region.",
+          "type": "string"
         }
       },
       "type": "object"

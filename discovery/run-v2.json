@@ -88,6 +88,11 @@
     },
     {
       "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-north2-run.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-southwest1-run.googleapis.com/",
       "location": "europe-southwest1"
     },
@@ -160,6 +165,11 @@
       "description": "Locational Endpoint",
       "endpointUrl": "https://northamerica-northeast2-run.googleapis.com/",
       "location": "northamerica-northeast2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://northamerica-south1-run.googleapis.com/",
+      "location": "northamerica-south1"
     },
     {
       "description": "Locational Endpoint",
@@ -374,7 +384,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the resource of which metadata should be exported. Format: `projects/{project_id_or_number}/locations/{location}/services/{service}` for Service `projects/{project_id_or_number}/locations/{location}/services/{service}/revisions/{revision}` for Revision `projects/{project_id_or_number}/locations/{location}/jobs/{job}/executions/{execution}` for Execution",
+                  "description": "Required. The name of the resource of which metadata should be exported. Format: `projects/{project_id_or_number}/locations/{location}/services/{service}` for Service `projects/{project_id_or_number}/locations/{location}/services/{service}/revisions/{revision}` for Revision `projects/{project_id_or_number}/locations/{location}/jobs/{job}/executions/{execution}` for Execution {project_id_or_number} may contains domain-scoped project IDs",
                   "location": "path",
                   "pattern": "^projects/[^/]+/locations/[^/]+/.*$",
                   "required": true,
@@ -1522,6 +1532,224 @@
               }
             },
             "workerPools": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new WorkerPool in a given project and location.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/workerPools",
+                  "httpMethod": "POST",
+                  "id": "run.projects.locations.workerPools.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The location and project in which this worker pool should be created. Format: projects/{project}/locations/{location}, where {project} can be project id or number. Only lowercase characters, digits, and hyphens.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Indicates that the request should be validated and default values populated, without persisting the request or creating any resources.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "workerPoolId": {
+                      "description": "Required. The unique identifier for the WorkerPool. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the worker pool becomes {parent}/workerPools/{worker_pool_id}.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/workerPools",
+                  "request": {
+                    "$ref": "GoogleCloudRunV2WorkerPool"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a WorkerPool.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/workerPools/{workerPoolsId}",
+                  "httpMethod": "DELETE",
+                  "id": "run.projects.locations.workerPools.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The full name of the WorkerPool. Format: projects/{project}/locations/{location}/workerPools/{worker_pool}, where {project} can be project id or number.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Indicates that the request should be validated without actually deleting any resources.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets information about a WorkerPool.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/workerPools/{workerPoolsId}",
+                  "httpMethod": "GET",
+                  "id": "run.projects.locations.workerPools.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full name of the WorkerPool. Format: projects/{project}/locations/{location}/workerPools/{worker_pool}, where {project} can be project id or number.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudRunV2WorkerPool"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists WorkerPools. Results are sorted by creation time, descending.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/workerPools",
+                  "httpMethod": "GET",
+                  "id": "run.projects.locations.workerPools.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of WorkerPools to return in this call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token received from a previous call to ListWorkerPools. All other parameters must match.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The location and project to list resources on. Location must be a valid Google Cloud region, and cannot be the \"-\" wildcard. Format: projects/{project}/locations/{location}, where {project} can be project id or number.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "showDeleted": {
+                      "description": "If true, returns deleted (but unexpired) resources along with active ones.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v2/{+parent}/workerPools",
+                  "response": {
+                    "$ref": "GoogleCloudRunV2ListWorkerPoolsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a WorkerPool.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/workerPools/{workerPoolsId}",
+                  "httpMethod": "PATCH",
+                  "id": "run.projects.locations.workerPools.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "allowMissing": {
+                      "description": "Optional. If set to true, and if the WorkerPool does not exist, it will create a new one. The caller must have 'run.workerpools.create' permissions if this is set to true and the WorkerPool does not exist.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "forceNewRevision": {
+                      "description": "Optional. If set to true, a new revision will be created from the template even if the system doesn't detect any changes from the previously deployed revision. This may be useful for cases where the underlying resources need to be recreated or reinitialized. For example if the image is specified by label, but the underlying image digest has changed) or if the container performs deployment initialization work that needs to be performed again.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "The fully qualified name of this WorkerPool. In CreateWorkerPoolRequest, this field is ignored, and instead composed from CreateWorkerPoolRequest.parent and CreateWorkerPoolRequest.worker_id. Format: projects/{project}/locations/{location}/workerPools/{worker_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Indicates that the request should be validated and default values populated, without persisting the request or updating any resources.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudRunV2WorkerPool"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified Project. There are no permissions required for making this API call.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/workerPools/{workerPoolsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "run.projects.locations.workerPools.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "revisions": {
                   "methods": {
@@ -1635,7 +1863,7 @@
       }
     }
   },
-  "revision": "20250117",
+  "revision": "20250309",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1698,7 +1926,7 @@
           "type": "string"
         },
         "workerPool": {
-          "description": "Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the Cloud Run function. The format of this field is `projects/{project}/locations/{region}/workerPools/{workerPool}` where {project} and {region} are the project id and region respectively where the worker pool is defined and {workerPool} is the short name of the worker pool.",
+          "description": "Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the Cloud Run function. The format of this field is `projects/{project}/locations/{region}/workerPools/{workerPool}` where `{project}` and `{region}` are the project id and region respectively where the worker pool is defined and `{workerPool}` is the short name of the worker pool.",
           "type": "string"
         }
       },
@@ -1950,7 +2178,7 @@
           "type": "array"
         },
         "baseImageUri": {
-          "description": "Base image for this container. Only supported for services. If set. it indicates that the service is enrolled into automatic base image update.",
+          "description": "Base image for this container. Only supported for services. If set, it indicates that the service is enrolled into automatic base image update.",
           "type": "string"
         },
         "buildInfo": {
@@ -2379,7 +2607,7 @@
           "type": "object"
         },
         "parallelism": {
-          "description": "Specifies the maximum desired number of tasks the execution should run at given time. Must be <= task_count. When the job is run, if this field is 0 or unset, the maximum possible value will be used for that execution. The actual number of tasks running in steady state will be less than this number when there are fewer tasks waiting to be completed remaining, i.e. when the work left to do is less than max parallelism.",
+          "description": "Optional. Specifies the maximum desired number of tasks the execution should run at given time. When the job is run, if this field is 0 or unset, the maximum possible value will be used for that execution. The actual number of tasks running in steady state will be less than this number when there are fewer tasks waiting to be completed remaining, i.e. when the work left to do is less than max parallelism.",
           "format": "int32",
           "type": "integer"
         },
@@ -2555,6 +2783,66 @@
         },
         "tag": {
           "description": "The image tag as it will appear in Artifact Registry.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2InstanceSplit": {
+      "description": "Holds a single instance split entry for the Worker. Allocations can be done to a specific Revision name, or pointing to the latest Ready Revision.",
+      "id": "GoogleCloudRunV2InstanceSplit",
+      "properties": {
+        "percent": {
+          "description": "Specifies percent of the instance split to this Revision. This defaults to zero if unspecified.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "revision": {
+          "description": "Revision to which to assign this portion of instances, if split allocation is by revision.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The allocation type for this instance split.",
+          "enum": [
+            "INSTANCE_SPLIT_ALLOCATION_TYPE_UNSPECIFIED",
+            "INSTANCE_SPLIT_ALLOCATION_TYPE_LATEST",
+            "INSTANCE_SPLIT_ALLOCATION_TYPE_REVISION"
+          ],
+          "enumDescriptions": [
+            "Unspecified instance allocation type.",
+            "Allocates instances to the Service's latest ready Revision.",
+            "Allocates instances to a Revision by name."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2InstanceSplitStatus": {
+      "description": "Represents the observed state of a single `InstanceSplit` entry.",
+      "id": "GoogleCloudRunV2InstanceSplitStatus",
+      "properties": {
+        "percent": {
+          "description": "Specifies percent of the instance split to this Revision.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "revision": {
+          "description": "Revision to which this instance split is assigned.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The allocation type for this instance split.",
+          "enum": [
+            "INSTANCE_SPLIT_ALLOCATION_TYPE_UNSPECIFIED",
+            "INSTANCE_SPLIT_ALLOCATION_TYPE_LATEST",
+            "INSTANCE_SPLIT_ALLOCATION_TYPE_REVISION"
+          ],
+          "enumDescriptions": [
+            "Unspecified instance allocation type.",
+            "Allocates instances to the Service's latest ready Revision.",
+            "Allocates instances to a Revision by name."
+          ],
           "type": "string"
         }
       },
@@ -2813,6 +3101,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2ListWorkerPoolsResponse": {
+      "description": "Response message containing a list of WorkerPools.",
+      "id": "GoogleCloudRunV2ListWorkerPoolsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token indicating there are more items than page_size. Use it in the next ListWorkerPools request to continue.",
+          "type": "string"
+        },
+        "workerPools": {
+          "description": "The resulting list of WorkerPools.",
+          "items": {
+            "$ref": "GoogleCloudRunV2WorkerPool"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2Metadata": {
       "description": "Metadata represents the JSON encoded generated customer metadata.",
       "id": "GoogleCloudRunV2Metadata",
@@ -2991,6 +3297,11 @@
         "createTime": {
           "description": "Output only. The creation time.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creator": {
+          "description": "Output only. Email address of the authenticated creator.",
           "readOnly": true,
           "type": "string"
         },
@@ -3450,7 +3761,7 @@
           "type": "string"
         },
         "expireTime": {
-          "description": "Output only. For a deleted resource, the time after which it will be permamently deleted.",
+          "description": "Output only. For a deleted resource, the time after which it will be permanently deleted.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -3540,7 +3851,7 @@
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Returns true if the Service is currently being acted upon by the system to bring it into the desired state. When a new Service is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Service to the desired serving state. This process is called reconciliation. While reconciliation is in process, `observed_generation`, `latest_ready_revison`, `traffic_statuses`, and `uri` will have transient values that might mismatch the intended state: Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the serving state matches the Service, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`. If reconciliation succeeded, the following fields will match: `traffic` and `traffic_statuses`, `observed_generation` and `generation`, `latest_ready_revision` and `latest_created_revision`. If reconciliation failed, `traffic_statuses`, `observed_generation`, and `latest_ready_revision` will have the state of the last serving revision, or empty for newly created Services. Additional information on the failure can be found in `terminal_condition` and `conditions`.",
+          "description": "Output only. Returns true if the Service is currently being acted upon by the system to bring it into the desired state. When a new Service is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Service to the desired serving state. This process is called reconciliation. While reconciliation is in process, `observed_generation`, `latest_ready_revision`, `traffic_statuses`, and `uri` will have transient values that might mismatch the intended state: Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the serving state matches the Service, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`. If reconciliation succeeded, the following fields will match: `traffic` and `traffic_statuses`, `observed_generation` and `generation`, `latest_ready_revision` and `latest_created_revision`. If reconciliation failed, `traffic_statuses`, `observed_generation`, and `latest_ready_revision` will have the state of the last serving revision, or empty for newly created Services. Additional information on the failure can be found in `terminal_condition` and `conditions`.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -3865,6 +4176,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "nodeSelector": {
+          "$ref": "GoogleCloudRunV2NodeSelector",
+          "description": "Output only. The node selector for the task.",
+          "readOnly": true
+        },
         "observedGeneration": {
           "description": "Output only. The generation of this Task. See comments in `Job.reconciling` for additional information on reconciliation process in Cloud Run.",
           "format": "int64",
@@ -3985,6 +4301,10 @@
           "description": "Number of retries allowed per Task, before marking this Task failed. Defaults to 3.",
           "format": "int32",
           "type": "integer"
+        },
+        "nodeSelector": {
+          "$ref": "GoogleCloudRunV2NodeSelector",
+          "description": "Optional. The node selector for the task template."
         },
         "serviceAccount": {
           "description": "Optional. Email address of the IAM service account associated with the Task of a Job. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.",
@@ -4179,6 +4499,318 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2WorkerPool": {
+      "description": "WorkerPool acts as a top-level container that manages a set of configurations and revision templates which implement a pull-based workload. WorkerPool exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership.",
+      "id": "GoogleCloudRunV2WorkerPool",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected in new resources. All system annotations in v1 now have a corresponding field in v2 WorkerPool. This field follows Kubernetes annotations' namespacing, limits, and rules.",
+          "type": "object"
+        },
+        "binaryAuthorization": {
+          "$ref": "GoogleCloudRunV2BinaryAuthorization",
+          "description": "Optional. Settings for the Binary Authorization feature."
+        },
+        "client": {
+          "description": "Arbitrary identifier for the API client.",
+          "type": "string"
+        },
+        "clientVersion": {
+          "description": "Arbitrary version identifier for the API client.",
+          "type": "string"
+        },
+        "conditions": {
+          "description": "Output only. The Conditions of all other associated sub-resources. They contain additional diagnostics information in case the WorkerPool does not reach its Serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
+          "items": {
+            "$ref": "GoogleCloudRunV2Condition"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The creation time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creator": {
+          "description": "Output only. Email address of the authenticated creator.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customAudiences": {
+          "description": "One or more custom audiences that you want this worker pool to support. Specify each custom audience as the full URL in a string. The custom audiences are encoded in the token and used to authenticate requests. For more information, see https://cloud.google.com/run/docs/configuring/custom-audiences.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deleteTime": {
+          "description": "Output only. The deletion time. It is only populated as a response to a Delete request.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "User-provided description of the WorkerPool. This field currently has a 512-character limit.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. For a deleted resource, the time after which it will be permamently deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "generation": {
+          "description": "Output only. A number that monotonically increases every time the user modifies the desired state. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "instanceSplitStatuses": {
+          "description": "Output only. Detailed status information for corresponding instance splits. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
+          "items": {
+            "$ref": "GoogleCloudRunV2InstanceSplitStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "instanceSplits": {
+          "description": "Optional. Specifies how to distribute instances over a collection of Revisions belonging to the WorkerPool. If instance split is empty or not provided, defaults to 100% instances assigned to the latest `Ready` Revision.",
+          "items": {
+            "$ref": "GoogleCloudRunV2InstanceSplit"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 WorkerPool.",
+          "type": "object"
+        },
+        "lastModifier": {
+          "description": "Output only. Email address of the last authenticated modifier.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "latestCreatedRevision": {
+          "description": "Output only. Name of the last created revision. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "latestReadyRevision": {
+          "description": "Output only. Name of the latest revision that is serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "launchStage": {
+          "description": "Optional. The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.",
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "UNIMPLEMENTED",
+            "PRELAUNCH",
+            "EARLY_ACCESS",
+            "ALPHA",
+            "BETA",
+            "GA",
+            "DEPRECATED"
+          ],
+          "enumDescriptions": [
+            "Do not use this default value.",
+            "The feature is not yet implemented. Users can not use it.",
+            "Prelaunch features are hidden from users and are only visible internally.",
+            "Early Access features are limited to a closed group of testers. To use these features, you must sign up in advance and sign a Trusted Tester agreement (which includes confidentiality provisions). These features may be unstable, changed in backward-incompatible ways, and are not guaranteed to be released.",
+            "Alpha is a limited availability test for releases before they are cleared for widespread use. By Alpha, all significant design issues are resolved and we are in the process of verifying functionality. Alpha customers need to apply for access, agree to applicable terms, and have their projects allowlisted. Alpha releases don't have to be feature complete, no SLAs are provided, and there are no technical support obligations, but they will be far enough along that customers can actually use them in test environments or for limited-use tests -- just like they would in normal production cases.",
+            "Beta is the point at which we are ready to open a release for any customer to use. There are no SLA or technical support obligations in a Beta release. Products will be complete from a feature perspective, but may have some open outstanding issues. Beta releases are suitable for limited production use cases.",
+            "GA features are open to all developers and are considered stable and fully qualified for production use.",
+            "Deprecated features are scheduled to be shut down and removed. For more information, see the \"Deprecation Policy\" section of our [Terms of Service](https://cloud.google.com/terms/) and the [Google Cloud Platform Subject to the Deprecation Policy](https://cloud.google.com/terms/deprecation) documentation."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "The fully qualified name of this WorkerPool. In CreateWorkerPoolRequest, this field is ignored, and instead composed from CreateWorkerPoolRequest.parent and CreateWorkerPoolRequest.worker_id. Format: projects/{project}/locations/{location}/workerPools/{worker_id}",
+          "type": "string"
+        },
+        "observedGeneration": {
+          "description": "Output only. The generation of this WorkerPool currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. Returns true if the WorkerPool is currently being acted upon by the system to bring it into the desired state. When a new WorkerPool is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the WorkerPool to the desired serving state. This process is called reconciliation. While reconciliation is in process, `observed_generation`, `latest_ready_revison`, `traffic_statuses`, and `uri` will have transient values that might mismatch the intended state: Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the serving state matches the WorkerPool, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`. If reconciliation succeeded, the following fields will match: `traffic` and `traffic_statuses`, `observed_generation` and `generation`, `latest_ready_revision` and `latest_created_revision`. If reconciliation failed, `traffic_statuses`, `observed_generation`, and `latest_ready_revision` will have the state of the last serving revision, or empty for newly created WorkerPools. Additional information on the failure can be found in `terminal_condition` and `conditions`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "scaling": {
+          "$ref": "GoogleCloudRunV2WorkerPoolScaling",
+          "description": "Optional. Specifies worker-pool-level scaling settings"
+        },
+        "template": {
+          "$ref": "GoogleCloudRunV2WorkerPoolRevisionTemplate",
+          "description": "Required. The template used to create revisions for this WorkerPool."
+        },
+        "terminalCondition": {
+          "$ref": "GoogleCloudRunV2Condition",
+          "description": "Output only. The Condition of this WorkerPool, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
+          "readOnly": true
+        },
+        "uid": {
+          "description": "Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The last-modified time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2WorkerPoolRevisionTemplate": {
+      "description": "WorkerPoolRevisionTemplate describes the data a worker pool revision should have when created from a template.",
+      "id": "GoogleCloudRunV2WorkerPoolRevisionTemplate",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 WorkerPoolRevisionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.",
+          "type": "object"
+        },
+        "containers": {
+          "description": "Holds list of the containers that defines the unit of execution for this Revision.",
+          "items": {
+            "$ref": "GoogleCloudRunV2Container"
+          },
+          "type": "array"
+        },
+        "encryptionKey": {
+          "description": "A reference to a customer managed encryption key (CMEK) to use to encrypt this container image. For more information, go to https://cloud.google.com/run/docs/securing/using-cmek",
+          "type": "string"
+        },
+        "encryptionKeyRevocationAction": {
+          "description": "Optional. The action to take if the encryption key is revoked.",
+          "enum": [
+            "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED",
+            "PREVENT_NEW",
+            "SHUTDOWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Prevents the creation of new instances.",
+            "Shuts down existing instances, and prevents creation of new ones."
+          ],
+          "type": "string"
+        },
+        "encryptionKeyShutdownDuration": {
+          "description": "Optional. If encryption_key_revocation_action is SHUTDOWN, the duration before shutting down all instances. The minimum increment is 1 hour.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 WorkerPoolRevisionTemplate.",
+          "type": "object"
+        },
+        "nodeSelector": {
+          "$ref": "GoogleCloudRunV2NodeSelector",
+          "description": "Optional. The node selector for the revision template."
+        },
+        "revision": {
+          "description": "Optional. The unique name for the revision. If this field is omitted, it will be automatically generated based on the WorkerPool name.",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Optional. Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.",
+          "type": "string"
+        },
+        "serviceMesh": {
+          "$ref": "GoogleCloudRunV2ServiceMesh",
+          "description": "Optional. Enables service mesh connectivity."
+        },
+        "sessionAffinity": {
+          "description": "Optional. Enable session affinity.",
+          "type": "boolean"
+        },
+        "volumes": {
+          "description": "Optional. A list of Volumes to make available to containers.",
+          "items": {
+            "$ref": "GoogleCloudRunV2Volume"
+          },
+          "type": "array"
+        },
+        "vpcAccess": {
+          "$ref": "GoogleCloudRunV2VpcAccess",
+          "description": "Optional. VPC Access configuration to use for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2WorkerPoolScaling": {
+      "description": "Worker pool scaling settings.",
+      "id": "GoogleCloudRunV2WorkerPoolScaling",
+      "properties": {
+        "manualInstanceCount": {
+          "description": "Optional. The total number of instances in manual scaling mode.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxInstanceCount": {
+          "description": "Optional. The maximum count of instances distributed among revisions based on the specified instance split percentages.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxSurge": {
+          "description": "Optional. A maximum percentage of instances that will be moved in each step of traffic split changes. When set to a positive value, the server will bring up, at most, that percentage of new instances at a time before moving traffic to them. After moving traffic, the server will bring down instances of the old revision. This can reduce a spike of total active instances during changes from one revision to another but specifying how many extra instances can be brought up at a time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxUnavailable": {
+          "description": "Optional. A maximum percentage of instances that may be unavailable during changes from one revision to another. When set to a positive value, the server may bring down instances before bringing up new instances. This can prevent a spike of total active instances during changes from one revision by reducing the pool of instances before bringing up new ones. Some requests may be slow or fail to serve during the transition.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minInstanceCount": {
+          "description": "Optional. The minimum count of instances distributed among revisions based on the specified instance split percentages.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "scalingMode": {
+          "description": "Optional. The scaling mode for the worker pool.",
+          "enum": [
+            "SCALING_MODE_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Automatically scale between min and max instances.",
+            "Scale to exactly min instances and ignore the max instances."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsCloudbuildV1ApprovalConfig": {
       "description": "ApprovalConfig describes configuration for manual approval of a build.",
       "id": "GoogleDevtoolsCloudbuildV1ApprovalConfig",
@@ -4326,6 +4958,13 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "dependencies": {
+          "description": "Optional. Dependencies that the Cloud Build worker will fetch before executing user steps.",
+          "items": {
+            "$ref": "GoogleDevtoolsCloudbuildV1Dependency"
+          },
+          "type": "array"
         },
         "failureInfo": {
           "$ref": "GoogleDevtoolsCloudbuildV1FailureInfo",
@@ -4655,6 +5294,10 @@
           "$ref": "GoogleDevtoolsCloudbuildV1PoolOption",
           "description": "Optional. Specification for execution on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information."
         },
+        "pubsubTopic": {
+          "description": "Optional. Option to specify the Pub/Sub topic to receive build status updates.",
+          "type": "string"
+        },
         "requestedVerifyOption": {
           "description": "Requested verifiability options.",
           "enum": [
@@ -4889,6 +5532,21 @@
       },
       "type": "object"
     },
+    "GoogleDevtoolsCloudbuildV1Dependency": {
+      "description": "A dependency that the Cloud Build worker will fetch before executing user steps.",
+      "id": "GoogleDevtoolsCloudbuildV1Dependency",
+      "properties": {
+        "empty": {
+          "description": "If set to true disable all dependency fetching (ignoring the default source as well).",
+          "type": "boolean"
+        },
+        "gitSource": {
+          "$ref": "GoogleDevtoolsCloudbuildV1GitSourceDependency",
+          "description": "Represents a git repository as a build dependency."
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsCloudbuildV1DeveloperConnectConfig": {
       "description": "This config defines the location of a source through Developer Connect.",
       "id": "GoogleDevtoolsCloudbuildV1DeveloperConnectConfig",
@@ -4980,6 +5638,49 @@
         },
         "url": {
           "description": "Required. Location of the Git repo to build. This will be used as a `git remote`, see https://git-scm.com/docs/git-remote.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsCloudbuildV1GitSourceDependency": {
+      "description": "Represents a git repository as a build dependency.",
+      "id": "GoogleDevtoolsCloudbuildV1GitSourceDependency",
+      "properties": {
+        "depth": {
+          "description": "Optional. How much history should be fetched for the build (default 1, -1 for all history).",
+          "format": "int64",
+          "type": "string"
+        },
+        "destPath": {
+          "description": "Required. Where should the files be placed on the worker.",
+          "type": "string"
+        },
+        "recurseSubmodules": {
+          "description": "Optional. True if submodules should be fetched too (default false).",
+          "type": "boolean"
+        },
+        "repository": {
+          "$ref": "GoogleDevtoolsCloudbuildV1GitSourceRepository",
+          "description": "Required. The kind of repo (url or dev connect)."
+        },
+        "revision": {
+          "description": "Required. The revision that we will fetch the repo at.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsCloudbuildV1GitSourceRepository": {
+      "description": "A repository for a git source.",
+      "id": "GoogleDevtoolsCloudbuildV1GitSourceRepository",
+      "properties": {
+        "developerConnect": {
+          "description": "The Developer Connect Git repository link or the url that matches a repository link in the current project, formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`",
+          "type": "string"
+        },
+        "url": {
+          "description": "Location of the Git repository.",
           "type": "string"
         }
       },
@@ -5852,7 +6553,7 @@
       "id": "UtilStatusProto",
       "properties": {
         "canonicalCode": {
-          "description": "The canonical error code (see codes.proto) that most closely corresponds to this status. This may be missing, and in the common case of the generic space, it definitely will be. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 canonical_code = 6;",
+          "description": "copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 canonical_code = 6;",
           "format": "int32",
           "type": "integer"
         },
@@ -5870,7 +6571,7 @@
           "description": "message_set associates an arbitrary proto message with the status. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional proto2.bridge.MessageSet message_set = 5;"
         },
         "space": {
-          "description": "The following are usually only present when code != 0 Space to which this status belongs copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional string space = 2;",
+          "description": "copybara:strip_begin(b/383363683) Space to which this status belongs copybara:strip_end_and_replace optional string space = 2; // Space to which this status belongs",
           "type": "string"
         }
       },

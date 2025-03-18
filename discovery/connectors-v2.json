@@ -368,6 +368,21 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/entityTypes/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "view": {
+                          "description": "Specifies view for entity type schema.",
+                          "enum": [
+                            "ENTITY_TYPE_SCHEMA_VIEW_UNSPECIFIED",
+                            "ENTITY_TYPE_SCHEMA_VIEW_BASIC",
+                            "ENTITY_TYPE_SCHEMA_VIEW_ENRICHED"
+                          ],
+                          "enumDescriptions": [
+                            "VIEW_UNSPECIFIED. The unset value. Defaults to BASIC View.",
+                            "Return basic entity type schema.",
+                            "Return enriched entity types schema."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v2/{+name}",
@@ -660,7 +675,7 @@
       }
     }
   },
-  "revision": "20241015",
+  "revision": "20250304",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {

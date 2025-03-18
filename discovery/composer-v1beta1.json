@@ -1216,7 +1216,7 @@
       }
     }
   },
-  "revision": "20250108",
+  "revision": "20250303",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -2048,7 +2048,7 @@
           "type": "array"
         },
         "enabled": {
-          "description": "Whether or not master authorized networks feature is enabled.",
+          "description": "Optional. Whether or not master authorized networks feature is enabled.",
           "type": "boolean"
         }
       },
@@ -2059,7 +2059,7 @@
       "id": "NetworkingConfig",
       "properties": {
         "connectionType": {
-          "description": "Optional. Indicates the user requested specifc connection type between Tenant and Customer projects. You cannot set networking connection type in public IP environment.",
+          "description": "Optional. Indicates the user requested specific connection type between Tenant and Customer projects. You cannot set networking connection type in public IP environment.",
           "enum": [
             "CONNECTION_TYPE_UNSPECIFIED",
             "VPC_PEERING",

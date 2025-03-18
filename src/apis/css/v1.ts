@@ -157,7 +157,7 @@ export namespace css_v1 {
      */
     name?: string | null;
     /**
-     * The CSS/MC account's parent resource. CSS group for CSS domains; CSS domain for MC accounts. Returned only if the user has access to the parent account.
+     * The CSS/MC account's parent resource. CSS group for CSS domains; CSS domain for MC accounts. Returned only if the user has access to the parent account. Note: For MC sub-accounts, this is also the CSS domain that is the parent resource of the MCA account, since we are effectively flattening the hierarchy."
      */
     parent?: string | null;
   }
@@ -474,7 +474,7 @@ export namespace css_v1 {
      */
     freshnessTime?: string | null;
     /**
-     * The name of the CSS Product input. Format: `accounts/{account\}/cssProductInputs/{css_product_input\}`
+     * The name of the CSS Product input. Format: `accounts/{account\}/cssProductInputs/{css_product_input\}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123
      */
     name?: string | null;
     /**
@@ -1329,7 +1329,7 @@ export namespace css_v1 {
   export interface Params$Resource$Accounts$Cssproductinputs$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the CSS product input resource to delete. Format: accounts/{account\}/cssProductInputs/{css_product_input\}
+     * Required. The name of the CSS product input resource to delete. Format: accounts/{account\}/cssProductInputs/{css_product_input\}, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123
      */
     name?: string;
     /**
@@ -1356,7 +1356,7 @@ export namespace css_v1 {
   export interface Params$Resource$Accounts$Cssproductinputs$Patch
     extends StandardParameters {
     /**
-     * The name of the CSS Product input. Format: `accounts/{account\}/cssProductInputs/{css_product_input\}`
+     * The name of the CSS Product input. Format: `accounts/{account\}/cssProductInputs/{css_product_input\}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123
      */
     name?: string;
     /**

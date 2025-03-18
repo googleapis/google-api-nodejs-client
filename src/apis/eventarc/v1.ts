@@ -511,7 +511,11 @@ export namespace eventarc_v1 {
      */
     cryptoKeyName?: string | null;
     /**
-     * Required. The resource name of the config. Must be in the format of, `projects/{project\}/locations/{location\}/googleChannelConfig`.
+     * Optional. Resource labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. The resource name of the config. Must be in the format of, `projects/{project\}/locations/{location\}/googleChannelConfig`. In API responses, the config name always includes the projectID, regardless of whether the projectID or projectNumber was provided.
      */
     name?: string | null;
     /**
@@ -600,7 +604,7 @@ export namespace eventarc_v1 {
      */
     messageBindingTemplate?: string | null;
     /**
-     * Required. The URI of the HTTP enpdoint. The value must be a RFC2396 URI string. Examples: `https://svc.us-central1.p.local:8080/route`. Only the HTTPS protocol is supported.
+     * Required. The URI of the HTTP endpoint. The value must be a RFC2396 URI string. Examples: `https://svc.us-central1.p.local:8080/route`. Only the HTTPS protocol is supported.
      */
     uri?: string | null;
   }
@@ -751,7 +755,7 @@ export namespace eventarc_v1 {
    */
   export interface Schema$HttpEndpoint {
     /**
-     * Required. The URI of the HTTP enpdoint. The value must be a RFC2396 URI string. Examples: `http://10.10.10.8:80/route`, `http://svc.us-central1.p.local:8080/`. Only HTTP and HTTPS protocols are supported. The host can be either a static IP addressable from the VPC specified by the network config, or an internal DNS hostname of the service resolvable via Cloud DNS.
+     * Required. The URI of the HTTP endpoint. The value must be a RFC2396 URI string. Examples: `http://10.10.10.8:80/route`, `http://svc.us-central1.p.local:8080/`. Only HTTP and HTTPS protocols are supported. The host can be either a static IP addressable from the VPC specified by the network config, or an internal DNS hostname of the service resolvable via Cloud DNS.
      */
     uri?: string | null;
   }
@@ -1401,7 +1405,7 @@ export namespace eventarc_v1 {
     }
 
     /**
-     * Get a GoogleChannelConfig
+     * Get a GoogleChannelConfig. The name of the GoogleChannelConfig in the response is ALWAYS coded with projectID.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1712,7 +1716,7 @@ export namespace eventarc_v1 {
   export interface Params$Resource$Projects$Locations$Updategooglechannelconfig
     extends StandardParameters {
     /**
-     * Required. The resource name of the config. Must be in the format of, `projects/{project\}/locations/{location\}/googleChannelConfig`.
+     * Required. The resource name of the config. Must be in the format of, `projects/{project\}/locations/{location\}/googleChannelConfig`. In API responses, the config name always includes the projectID, regardless of whether the projectID or projectNumber was provided.
      */
     name?: string;
     /**

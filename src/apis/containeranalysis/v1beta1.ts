@@ -401,7 +401,7 @@ export namespace containeranalysis_v1beta1 {
     signature?: string | null;
   }
   /**
-   * A step in the build pipeline. Next ID: 21
+   * A step in the build pipeline. Next ID: 22
    */
   export interface Schema$BuildStep {
     /**
@@ -448,6 +448,7 @@ export namespace containeranalysis_v1beta1 {
      * Output only. Stores timing information for pulling this build step's builder image only.
      */
     pullTiming?: Schema$TimeSpan;
+    results?: Schema$StepResult[];
     /**
      * A shell script to be executed in the step. When script is provided, the user cannot specify the entrypoint or args.
      */
@@ -568,6 +569,10 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts {
     /**
+     * Optional. A list of Go modules to be uploaded to Artifact Registry upon successful completion of all build steps. If any objects fail to be pushed, the build is marked FAILURE.
+     */
+    goModules?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule[];
+    /**
      * A list of images to be pushed upon the successful completion of all build steps. The images will be pushed using the builder service account's credentials. The digests of the pushed images will be stored in the Build resource's results field. If any of the images fail to be pushed, the build is marked FAILURE.
      */
     images?: string[] | null;
@@ -604,6 +609,35 @@ export namespace containeranalysis_v1beta1 {
      * Output only. Stores timing information for pushing all artifact objects.
      */
     timing?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
+  }
+  /**
+   * Go module to upload to Artifact Registry upon successful completion of all build steps. A module refers to all dependencies in a go.mod file.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule {
+    /**
+     * Optional. The Go module's "module path". e.g. example.com/foo/v2
+     */
+    modulePath?: string | null;
+    /**
+     * Optional. The Go module's semantic version in the form vX.Y.Z. e.g. v0.1.1 Pre-release identifiers can also be added by appending a dash and dot separated ASCII alphanumeric characters and hyphens. e.g. v0.2.3-alpha.x.12m.5
+     */
+    moduleVersion?: string | null;
+    /**
+     * Optional. Location of the Artifact Registry repository. i.e. us-east1 Defaults to the build’s location.
+     */
+    repositoryLocation?: string | null;
+    /**
+     * Optional. Artifact Registry repository name. Specified Go modules will be zipped and uploaded to Artifact Registry with this location as a prefix. e.g. my-go-repo
+     */
+    repositoryName?: string | null;
+    /**
+     * Optional. Project ID of the Artifact Registry repository. Defaults to the build project.
+     */
+    repositoryProjectId?: string | null;
+    /**
+     * Optional. Source path of the go.mod file in the build's workspace. If not specified, this will default to the current directory. e.g. ~/code/go/mypackage
+     */
+    sourcePath?: string | null;
   }
   /**
    * A Maven artifact to upload to Artifact Registry upon successful completion of all build steps.
@@ -680,6 +714,10 @@ export namespace containeranalysis_v1beta1 {
      * Output only. Time at which the request to create the build was received.
      */
     createTime?: string | null;
+    /**
+     * Optional. Dependencies that the Cloud Build worker will fetch before executing user steps.
+     */
+    dependencies?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency[];
     /**
      * Output only. Contains information about the build when status=FAILURE.
      */
@@ -834,6 +872,10 @@ export namespace containeranalysis_v1beta1 {
      */
     dynamicSubstitutions?: boolean | null;
     /**
+     * Optional. Option to specify whether structured logging is enabled. If true, JSON-formatted logs are parsed as structured logs.
+     */
+    enableStructuredLogging?: boolean | null;
+    /**
      * A list of global environment variable definitions that will exist for all build steps in this build. If a variable is defined in both globally and in a build step, the variable will use the build step value. The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
      */
     env?: string[] | null;
@@ -853,6 +895,10 @@ export namespace containeranalysis_v1beta1 {
      * Optional. Specification for execution on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information.
      */
     pool?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption;
+    /**
+     * Optional. Option to specify the Pub/Sub topic to receive build status updates.
+     */
+    pubsubTopic?: string | null;
     /**
      * Requested verifiability options.
      */
@@ -1012,6 +1058,57 @@ export namespace containeranalysis_v1beta1 {
     revision?: string | null;
   }
   /**
+   * A dependency that the Cloud Build worker will fetch before executing user steps.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency {
+    /**
+     * If set to true disable all dependency fetching (ignoring the default source as well).
+     */
+    empty?: boolean | null;
+    /**
+     * Represents a git repository as a build dependency.
+     */
+    gitSource?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency;
+  }
+  /**
+   * Represents a git repository as a build dependency.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency {
+    /**
+     * Optional. How much history should be fetched for the build (default 1, -1 for all history).
+     */
+    depth?: string | null;
+    /**
+     * Required. Where should the files be placed on the worker.
+     */
+    destPath?: string | null;
+    /**
+     * Optional. True if submodules should be fetched too (default false).
+     */
+    recurseSubmodules?: boolean | null;
+    /**
+     * Required. The kind of repo (url or dev connect).
+     */
+    repository?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository;
+    /**
+     * Required. The revision that we will fetch the repo at.
+     */
+    revision?: string | null;
+  }
+  /**
+   * A repository for a git source.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository {
+    /**
+     * The Developer Connect Git repository link or the url that matches a repository link in the current project, formatted as `projects/x/locations/x/connections/x/gitRepositoryLink/x`
+     */
+    developerConnect?: string | null;
+    /**
+     * Location of the Git repository.
+     */
+    url?: string | null;
+  }
+  /**
    * This config defines the location of a source through Developer Connect.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1DeveloperConnectConfig {
@@ -1155,6 +1252,10 @@ export namespace containeranalysis_v1beta1 {
      * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored. Note that the `$BUILDER_OUTPUT` variable is read-only and can't be substituted.
      */
     buildStepOutputs?: string[] | null;
+    /**
+     * Optional. Go module artifacts uploaded to Artifact Registry at the end of the build.
+     */
+    goModules?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule[];
     /**
      * Container images that were built as a part of the build.
      */
@@ -1327,6 +1428,23 @@ export namespace containeranalysis_v1beta1 {
      * Start of time span.
      */
     startTime?: string | null;
+  }
+  /**
+   * A Go module artifact uploaded to Artifact Registry using the GoModule directive.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule {
+    /**
+     * Hash types and values of the Go Module Artifact.
+     */
+    fileHashes?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * URI of the uploaded artifact.
+     */
+    uri?: string | null;
   }
   /**
    * A Maven artifact uploaded using the MavenArtifact directive.
@@ -3118,6 +3236,14 @@ export namespace containeranalysis_v1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * StepResult is the declaration of a result for a build step.
+   */
+  export interface Schema$StepResult {
+    attestationContentName?: string | null;
+    attestationType?: string | null;
+    name?: string | null;
   }
   /**
    * Set of software artifacts that the attestation applies to. Each element represents a single software artifact.

@@ -573,7 +573,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     canOperateHealthData?: boolean | null;
     /**
-     * Output only. Indicates if the listing can manage local posts.
+     * Output only. Indicates if the listing can manage local posts. Deprecated: This field is no longer populated and will be removed in a future version.
      */
     canOperateLocalPost?: boolean | null;
     /**

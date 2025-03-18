@@ -2699,9 +2699,24 @@
       "id": "displayvideo:v3",
       "kind": "discovery#directoryItem",
       "name": "displayvideo",
-      "preferred": true,
+      "preferred": false,
       "title": "Display & Video 360 API",
       "version": "v3"
+    },
+    {
+      "description": "Display & Video 360 API allows users to automate complex Display & Video 360 workflows, such as creating insertion orders and setting targeting options for individual line items.",
+      "discoveryRestUrl": "https://displayvideo.googleapis.com/$discovery/rest?version=v4",
+      "documentationLink": "https://developers.google.com/display-video/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "displayvideo:v4",
+      "kind": "discovery#directoryItem",
+      "name": "displayvideo",
+      "preferred": true,
+      "title": "Display & Video 360 API",
+      "version": "v4"
     },
     {
       "description": "Discover and protect your sensitive data. A fully managed service designed to help you discover, classify, and protect your valuable data assets with ease.",
@@ -3338,7 +3353,7 @@
     {
       "description": "Reads and writes Google Forms and responses.",
       "discoveryRestUrl": "https://forms.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://developers.google.com/forms/api",
+      "documentationLink": "https://developers.google.com/workspace/forms/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3527,7 +3542,7 @@
       "kind": "discovery#directoryItem",
       "name": "gkeonprem",
       "preferred": true,
-      "title": "GDC Virtual API",
+      "title": "GKE On-Prem API",
       "version": "v1"
     },
     {
@@ -4098,6 +4113,21 @@
       "name": "managedidentities",
       "preferred": true,
       "title": "Managed Service for Microsoft Active Directory API",
+      "version": "v1"
+    },
+    {
+      "description": "Manage Apache Kafka clusters and resources.",
+      "discoveryRestUrl": "https://managedkafka.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/managed-service-for-apache-kafka/docs",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "managedkafka:v1",
+      "kind": "discovery#directoryItem",
+      "name": "managedkafka",
+      "preferred": true,
+      "title": "Managed Service for Apache Kafka API",
       "version": "v1"
     },
     {
@@ -5452,7 +5482,7 @@
       "version": "v1"
     },
     {
-      "description": "Allows external bidders to manage their RTB integration with Google. This includes managing bidder endpoints, QPS quotas, configuring what ad inventory to receive via pretargeting, submitting creatives for verification, and accessing creative metadata such as approval status.",
+      "description": "Allows external bidders to manage their RTB integration with Google. This includes managing bidder endpoints, QPS quotas, configuring what ad inventory to receive with pretargeting, submitting creatives for verification, and accessing creative metadata such as approval status.",
       "discoveryRestUrl": "https://realtimebidding.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://developers.google.com/authorized-buyers/apis/realtimebidding/reference/rest/",
       "icons": {

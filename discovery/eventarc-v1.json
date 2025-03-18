@@ -135,7 +135,7 @@
               ]
             },
             "getGoogleChannelConfig": {
-              "description": "Get a GoogleChannelConfig",
+              "description": "Get a GoogleChannelConfig. The name of the GoogleChannelConfig in the response is ALWAYS coded with projectID.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/googleChannelConfig",
               "httpMethod": "GET",
               "id": "eventarc.projects.locations.getGoogleChannelConfig",
@@ -210,7 +210,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The resource name of the config. Must be in the format of, `projects/{project}/locations/{location}/googleChannelConfig`.",
+                  "description": "Required. The resource name of the config. Must be in the format of, `projects/{project}/locations/{location}/googleChannelConfig`. In API responses, the config name always includes the projectID, regardless of whether the projectID or projectNumber was provided.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/locations/[^/]+/googleChannelConfig$",
                   "required": true,
@@ -2460,7 +2460,7 @@
       }
     }
   },
-  "revision": "20250103",
+  "revision": "20250307",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2967,8 +2967,15 @@
           "description": "Optional. Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
           "type": "string"
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Resource labels.",
+          "type": "object"
+        },
         "name": {
-          "description": "Required. The resource name of the config. Must be in the format of, `projects/{project}/locations/{location}/googleChannelConfig`.",
+          "description": "Required. The resource name of the config. Must be in the format of, `projects/{project}/locations/{location}/googleChannelConfig`. In API responses, the config name always includes the projectID, regardless of whether the projectID or projectNumber was provided.",
           "type": "string"
         },
         "updateTime": {
@@ -3069,7 +3076,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "Required. The URI of the HTTP enpdoint. The value must be a RFC2396 URI string. Examples: `https://svc.us-central1.p.local:8080/route`. Only the HTTPS protocol is supported.",
+          "description": "Required. The URI of the HTTP endpoint. The value must be a RFC2396 URI string. Examples: `https://svc.us-central1.p.local:8080/route`. Only the HTTPS protocol is supported.",
           "type": "string"
         }
       },
@@ -3268,7 +3275,7 @@
       "id": "HttpEndpoint",
       "properties": {
         "uri": {
-          "description": "Required. The URI of the HTTP enpdoint. The value must be a RFC2396 URI string. Examples: `http://10.10.10.8:80/route`, `http://svc.us-central1.p.local:8080/`. Only HTTP and HTTPS protocols are supported. The host can be either a static IP addressable from the VPC specified by the network config, or an internal DNS hostname of the service resolvable via Cloud DNS.",
+          "description": "Required. The URI of the HTTP endpoint. The value must be a RFC2396 URI string. Examples: `http://10.10.10.8:80/route`, `http://svc.us-central1.p.local:8080/`. Only HTTP and HTTPS protocols are supported. The host can be either a static IP addressable from the VPC specified by the network config, or an internal DNS hostname of the service resolvable via Cloud DNS.",
           "type": "string"
         }
       },
@@ -3734,6 +3741,7 @@
         },
         "etag": {
           "description": "Output only. This checksum is computed by the server based on the value of other fields, and might be sent only on create requests to ensure that the client has an up-to-date value before proceeding.",
+          "readOnly": true,
           "type": "string"
         },
         "inputPayloadFormat": {

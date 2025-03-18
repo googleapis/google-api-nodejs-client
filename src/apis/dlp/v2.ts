@@ -1351,6 +1351,65 @@ export namespace dlp_v2 {
     inspectTemplateName?: string | null;
   }
   /**
+   * Details about a piece of potentially sensitive information that was detected when the data resource was profiled.
+   */
+  export interface Schema$GooglePrivacyDlpV2DataProfileFinding {
+    /**
+     * Resource name of the data profile associated with the finding.
+     */
+    dataProfileResourceName?: string | null;
+    /**
+     * A unique identifier for the finding.
+     */
+    findingId?: string | null;
+    /**
+     * The [type of content](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference) that might have been found.
+     */
+    infotype?: Schema$GooglePrivacyDlpV2InfoType;
+    /**
+     * Where the content was found.
+     */
+    location?: Schema$GooglePrivacyDlpV2DataProfileFindingLocation;
+    /**
+     * The content that was found. Even if the content is not textual, it may be converted to a textual representation here. If the finding exceeds 4096 bytes in length, the quote may be omitted.
+     */
+    quote?: string | null;
+    /**
+     * Contains data parsed from quotes. Currently supported infoTypes: DATE, DATE_OF_BIRTH, and TIME.
+     */
+    quoteInfo?: Schema$GooglePrivacyDlpV2QuoteInfo;
+    /**
+     * How broadly a resource has been shared.
+     */
+    resourceVisibility?: string | null;
+    /**
+     * Timestamp when the finding was detected.
+     */
+    timestamp?: string | null;
+  }
+  /**
+   * Location of a data profile finding within a resource.
+   */
+  export interface Schema$GooglePrivacyDlpV2DataProfileFindingLocation {
+    /**
+     * Name of the container where the finding is located. The top-level name is the source file name or table name. Names of some common storage containers are formatted as follows: * BigQuery tables: `{project_id\}:{dataset_id\}.{table_id\}` * Cloud Storage files: `gs://{bucket\}/{path\}`
+     */
+    containerName?: string | null;
+    /**
+     * Location of a finding within a resource that produces a table data profile.
+     */
+    dataProfileFindingRecordLocation?: Schema$GooglePrivacyDlpV2DataProfileFindingRecordLocation;
+  }
+  /**
+   * Location of a finding within a resource that produces a table data profile.
+   */
+  export interface Schema$GooglePrivacyDlpV2DataProfileFindingRecordLocation {
+    /**
+     * Field ID of the column containing the finding.
+     */
+    field?: Schema$GooglePrivacyDlpV2FieldId;
+  }
+  /**
    * Configuration for setting up a job to scan resources for profile generation. Only one data profile configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
    */
   export interface Schema$GooglePrivacyDlpV2DataProfileJobConfig {
@@ -1898,6 +1957,10 @@ export namespace dlp_v2 {
      */
     otherCloudStartingLocation?: Schema$GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation;
     /**
+     * Optional. Processing location configuration. Vertex AI dataset scanning will set processing_location.image_fallback_type to MultiRegionProcessing by default.
+     */
+    processingLocation?: Schema$GooglePrivacyDlpV2ProcessingLocation;
+    /**
      * Required. A status for this configuration.
      */
     status?: string | null;
@@ -2063,6 +2126,53 @@ export namespace dlp_v2 {
      * Discovery target that looks for credentials and secrets stored in cloud resource metadata and reports them as vulnerabilities to Security Command Center. Only one target of this type is allowed.
      */
     secretsTarget?: Schema$GooglePrivacyDlpV2SecretsDiscoveryTarget;
+    /**
+     * Vertex AI dataset target for Discovery. The first target to match a dataset will be the one applied. Note that discovery for Vertex AI can incur Cloud Storage Class B operation charges for storage.objects.get operations and retrieval fees. For more information, see [Cloud Storage pricing](https://cloud.google.com/storage/pricing#price-tables). Note that discovery for Vertex AI dataset will not be able to scan images unless DiscoveryConfig.processing_location.image_fallback_location has multi_region_processing or global_processing configured.
+     */
+    vertexDatasetTarget?: Schema$GooglePrivacyDlpV2VertexDatasetDiscoveryTarget;
+  }
+  /**
+   * Requirements that must be true before a dataset is profiled for the first time.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryVertexDatasetConditions {
+    /**
+     * Vertex AI dataset must have been created after this date. Used to avoid backfilling.
+     */
+    createdAfter?: string | null;
+    /**
+     * Minimum age a Vertex AI dataset must have. If set, the value must be 1 hour or greater.
+     */
+    minAge?: string | null;
+  }
+  /**
+   * Determines what datasets will have profiles generated within an organization or project. Includes the ability to filter by regular expression patterns on project ID or dataset regex.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryVertexDatasetFilter {
+    /**
+     * A specific set of Vertex AI datasets for this filter to apply to.
+     */
+    collection?: Schema$GooglePrivacyDlpV2VertexDatasetCollection;
+    /**
+     * Catch-all. This should always be the last target in the list because anything above it will apply first. Should only appear once in a configuration. If none is specified, a default one will be added automatically.
+     */
+    others?: Schema$GooglePrivacyDlpV2AllOtherResources;
+    /**
+     * The dataset resource to scan. Targets including this can only include one target (the target with this dataset resource reference).
+     */
+    vertexDatasetResourceReference?: Schema$GooglePrivacyDlpV2VertexDatasetResourceReference;
+  }
+  /**
+   * How often existing datasets should have their profiles refreshed. New datasets are scanned as quickly as possible depending on system capacity.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence {
+    /**
+     * Governs when to update data profiles when the inspection rules defined by the `InspectTemplate` change. If not set, changing the template will not cause a data profile to be updated.
+     */
+    inspectTemplateModifiedCadence?: Schema$GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence;
+    /**
+     * If you set this field, profiles are refreshed at this frequency regardless of whether the underlying datasets have changed. Defaults to never.
+     */
+    refreshFrequency?: string | null;
   }
   /**
    * Combines all of the information about a DLP job.
@@ -2207,6 +2317,10 @@ export namespace dlp_v2 {
      * Store all profiles to BigQuery. * The system will create a new dataset and table for you if none are are provided. The dataset will be named `sensitive_data_protection_discovery` and table will be named `discovery_profiles`. This table will be placed in the same project as the container project running the scan. After the first profile is generated and the dataset and table are created, the discovery scan configuration will be updated with the dataset and table names. * See [Analyze data profiles stored in BigQuery](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles). * See [Sample queries for your BigQuery table](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries). * Data is inserted using [streaming insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert) and so data may be in the buffer for a period of time after the profile has finished. * The Pub/Sub notification is sent before the streaming buffer is guaranteed to be written, so data may not be instantly visible to queries by the time your topic receives the Pub/Sub notification. * The best practice is to use the same table for an entire organization so that you can take advantage of the [provided Looker reports](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report). If you use VPC Service Controls to define security perimeters, then you must use a separate table for each boundary.
      */
     profileTable?: Schema$GooglePrivacyDlpV2BigQueryTable;
+    /**
+     * Store sample data profile findings in an existing table or a new table in an existing dataset. Each regeneration will result in new rows in BigQuery. Data is inserted using [streaming insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert) and so data may be in the buffer for a period of time after the profile has finished.
+     */
+    sampleFindingsTable?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
   /**
    * An expression, consisting of an operator and conditions.
@@ -2369,7 +2483,7 @@ export namespace dlp_v2 {
      */
     fileStoreLocation?: string | null;
     /**
-     * The file store path. * Cloud Storage: `gs://{bucket\}` * Amazon S3: `s3://{bucket\}`
+     * The file store path. * Cloud Storage: `gs://{bucket\}` * Amazon S3: `s3://{bucket\}` * Vertex AI dataset: `projects/{project_number\}/locations/{location\}/datasets/{dataset_id\}`
      */
     fileStorePath?: string | null;
     /**
@@ -2405,6 +2519,10 @@ export namespace dlp_v2 {
      */
     projectId?: string | null;
     /**
+     * Resources related to this profile.
+     */
+    relatedResources?: Schema$GooglePrivacyDlpV2RelatedResource[];
+    /**
      * Attributes of the resource being profiled. Currently used attributes: * customer_managed_encryption: boolean - true: the resource is encrypted with a customer-managed key. - false: the resource is encrypted with a provider-managed key.
      */
     resourceAttributes?: {[key: string]: Schema$GooglePrivacyDlpV2Value} | null;
@@ -2417,6 +2535,10 @@ export namespace dlp_v2 {
      */
     resourceVisibility?: string | null;
     /**
+     * The BigQuery table to which the sample findings are written.
+     */
+    sampleFindingsTable?: Schema$GooglePrivacyDlpV2BigQueryTable;
+    /**
      * The sensitivity score of this resource.
      */
     sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
@@ -2424,6 +2546,10 @@ export namespace dlp_v2 {
      * State of a profile.
      */
     state?: string | null;
+    /**
+     * The tags attached to the resource, including any tags attached during profiling.
+     */
+    tags?: Schema$GooglePrivacyDlpV2Tag[];
   }
   /**
    * Information regarding the discovered InfoType.
@@ -2548,6 +2674,10 @@ export namespace dlp_v2 {
     upperBound?: Schema$GooglePrivacyDlpV2Value;
   }
   /**
+   * Processing will happen in the global region.
+   */
+  export interface Schema$GooglePrivacyDlpV2GlobalProcessing {}
+  /**
    * The rule that adjusts the likelihood of findings within a certain proximity of hotwords.
    */
   export interface Schema$GooglePrivacyDlpV2HotwordRule {
@@ -2661,6 +2791,19 @@ export namespace dlp_v2 {
      * If the container is a table, additional information to make findings meaningful such as the columns that are primary keys.
      */
     tableOptions?: Schema$GooglePrivacyDlpV2TableOptions;
+  }
+  /**
+   * Configure image processing to fall back to the configured processing option below if unavailable in the request location.
+   */
+  export interface Schema$GooglePrivacyDlpV2ImageFallbackLocation {
+    /**
+     * Processing will happen in the global region.
+     */
+    globalProcessing?: Schema$GooglePrivacyDlpV2GlobalProcessing;
+    /**
+     * Processing will happen in a multi-region that contains the current region if available.
+     */
+    multiRegionProcessing?: Schema$GooglePrivacyDlpV2MultiRegionProcessing;
   }
   /**
    * Location of the finding within an image.
@@ -2780,6 +2923,10 @@ export namespace dlp_v2 {
      * The default sensitivity of the infoType.
      */
     sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
+    /**
+     * If this field is set, this infoType is a general infoType and these specific infoTypes are contained within it. General infoTypes are infoTypes that encompass multiple specific infoTypes. For example, the "GEOGRAPHIC_DATA" general infoType would have set for this field "LOCATION", "LOCATION_COORDINATES", and "STREET_ADDRESS".
+     */
+    specificInfoTypes?: string[] | null;
     /**
      * Which parts of the API supports this InfoType.
      */
@@ -3546,6 +3693,10 @@ export namespace dlp_v2 {
     type?: string | null;
   }
   /**
+   * Processing will happen in a multi-region that contains the current region if available.
+   */
+  export interface Schema$GooglePrivacyDlpV2MultiRegionProcessing {}
+  /**
    * Compute numerical stats over an individual column, including min, max, and quantiles.
    */
   export interface Schema$GooglePrivacyDlpV2NumericalStatsConfig {
@@ -3808,6 +3959,15 @@ export namespace dlp_v2 {
      * Numerical stats
      */
     numericalStatsConfig?: Schema$GooglePrivacyDlpV2NumericalStatsConfig;
+  }
+  /**
+   * Configure processing location for discovery and inspection. For example, image OCR is only provided in limited regions but configuring ProcessingLocation will redirect OCR to a location where OCR is provided.
+   */
+  export interface Schema$GooglePrivacyDlpV2ProcessingLocation {
+    /**
+     * Image processing will fall back using this configuration.
+     */
+    imageFallbackLocation?: Schema$GooglePrivacyDlpV2ImageFallbackLocation;
   }
   /**
    * Success or errors for the profile generation.
@@ -4199,6 +4359,15 @@ export namespace dlp_v2 {
      * An overview of the changes that were made to the `item`.
      */
     overview?: Schema$GooglePrivacyDlpV2TransformationOverview;
+  }
+  /**
+   * A related resource. Examples: * The source BigQuery table for a Vertex AI dataset. * The source Cloud Storage bucket for a Vertex AI dataset.
+   */
+  export interface Schema$GooglePrivacyDlpV2RelatedResource {
+    /**
+     * The full resource name of the related resource.
+     */
+    fullResource?: string | null;
   }
   /**
    * Replace each input value with a value randomly selected from the dictionary.
@@ -4642,6 +4811,10 @@ export namespace dlp_v2 {
      */
     projectDataProfile?: string | null;
     /**
+     * Resources related to this profile.
+     */
+    relatedResources?: Schema$GooglePrivacyDlpV2RelatedResource[];
+    /**
      * The labels applied to the resource at the time the profile was generated.
      */
     resourceLabels?: {[key: string]: string} | null;
@@ -4653,6 +4826,10 @@ export namespace dlp_v2 {
      * Number of rows in the table when the profile was generated. This will not be populated for BigLake tables.
      */
     rowCount?: string | null;
+    /**
+     * The BigQuery table to which the sample findings are written.
+     */
+    sampleFindingsTable?: Schema$GooglePrivacyDlpV2BigQueryTable;
     /**
      * The number of columns profiled in the table.
      */
@@ -4673,6 +4850,10 @@ export namespace dlp_v2 {
      * The size of the table when the profile was generated.
      */
     tableSizeBytes?: string | null;
+    /**
+     * The tags attached to the table, including any tags attached during profiling. Because tags are attached to Cloud SQL instances rather than Cloud SQL tables, this field is empty for Cloud SQL table profiles.
+     */
+    tags?: Schema$GooglePrivacyDlpV2Tag[];
   }
   /**
    * Location of a finding within a table.
@@ -4704,6 +4885,23 @@ export namespace dlp_v2 {
      * Name of the table.
      */
     tableId?: string | null;
+  }
+  /**
+   * A tag associated with a resource.
+   */
+  export interface Schema$GooglePrivacyDlpV2Tag {
+    /**
+     * The key of a tag key-value pair. For Google Cloud resources, this is the resource name of the key, for example, "tagKeys/123456".
+     */
+    key?: string | null;
+    /**
+     * The namespaced name for the tag value to attach to Google Cloud resources. Must be in the format `{parent_id\}/{tag_key_short_name\}/{short_name\}`, for example, "123456/environment/prod". This is only set for Google Cloud resources.
+     */
+    namespacedTagValue?: string | null;
+    /**
+     * The value of a tag key-value pair. For Google Cloud resources, this is the resource name of the value, for example, "tagValues/123456".
+     */
+    value?: string | null;
   }
   /**
    * The tag to attach to profiles matching the condition. At most one `TagCondition` can be specified per sensitivity level.
@@ -5144,6 +5342,63 @@ export namespace dlp_v2 {
      * Name of the version
      */
     version?: string | null;
+  }
+  /**
+   * Match dataset resources using regex filters.
+   */
+  export interface Schema$GooglePrivacyDlpV2VertexDatasetCollection {
+    /**
+     * The regex used to filter dataset resources.
+     */
+    vertexDatasetRegexes?: Schema$GooglePrivacyDlpV2VertexDatasetRegexes;
+  }
+  /**
+   * Target used to match against for discovery with Vertex AI datasets.
+   */
+  export interface Schema$GooglePrivacyDlpV2VertexDatasetDiscoveryTarget {
+    /**
+     * In addition to matching the filter, these conditions must be true before a profile is generated.
+     */
+    conditions?: Schema$GooglePrivacyDlpV2DiscoveryVertexDatasetConditions;
+    /**
+     * Disable profiling for datasets that match this filter.
+     */
+    disabled?: Schema$GooglePrivacyDlpV2Disabled;
+    /**
+     * Required. The datasets the discovery cadence applies to. The first target with a matching filter will be the one to apply to a dataset.
+     */
+    filter?: Schema$GooglePrivacyDlpV2DiscoveryVertexDatasetFilter;
+    /**
+     * How often and when to update profiles. New datasets that match both the filter and conditions are scanned as quickly as possible depending on system capacity.
+     */
+    generationCadence?: Schema$GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence;
+  }
+  /**
+   * A pattern to match against one or more dataset resources.
+   */
+  export interface Schema$GooglePrivacyDlpV2VertexDatasetRegex {
+    /**
+     * For organizations, if unset, will match all projects. Has no effect for configurations created within a project.
+     */
+    projectIdRegex?: string | null;
+  }
+  /**
+   * A collection of regular expressions to determine what datasets to match against.
+   */
+  export interface Schema$GooglePrivacyDlpV2VertexDatasetRegexes {
+    /**
+     * Required. The group of regular expression patterns to match against one or more datasets. Maximum of 100 entries. The sum of the lengths of all regular expressions can't exceed 10 KiB.
+     */
+    patterns?: Schema$GooglePrivacyDlpV2VertexDatasetRegex[];
+  }
+  /**
+   * Identifies a single Vertex AI dataset.
+   */
+  export interface Schema$GooglePrivacyDlpV2VertexDatasetResourceReference {
+    /**
+     * Required. The name of the dataset resource. If set within a project-level configuration, the specified resource must be within the project.
+     */
+    datasetResourceName?: string | null;
   }
   /**
    * Message defining a list of words or phrases to search for in the data.
@@ -6573,6 +6828,7 @@ export namespace dlp_v2 {
     discoveryConfigs: Resource$Organizations$Locations$Discoveryconfigs;
     dlpJobs: Resource$Organizations$Locations$Dlpjobs;
     fileStoreDataProfiles: Resource$Organizations$Locations$Filestoredataprofiles;
+    infoTypes: Resource$Organizations$Locations$Infotypes;
     inspectTemplates: Resource$Organizations$Locations$Inspecttemplates;
     jobTriggers: Resource$Organizations$Locations$Jobtriggers;
     projectDataProfiles: Resource$Organizations$Locations$Projectdataprofiles;
@@ -6594,6 +6850,9 @@ export namespace dlp_v2 {
         new Resource$Organizations$Locations$Filestoredataprofiles(
           this.context
         );
+      this.infoTypes = new Resource$Organizations$Locations$Infotypes(
+        this.context
+      );
       this.inspectTemplates =
         new Resource$Organizations$Locations$Inspecttemplates(this.context);
       this.jobTriggers = new Resource$Organizations$Locations$Jobtriggers(
@@ -9037,6 +9296,130 @@ export namespace dlp_v2 {
     pageToken?: string;
     /**
      * Required. Resource name of the organization or project, for example `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Organizations$Locations$Infotypes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Infotypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Infotypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Infotypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Infotypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Infotypes$List,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Infotypes$List
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Infotypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Infotypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/infoTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Infotypes$List
+    extends StandardParameters {
+    /**
+     * filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
+     */
+    filter?: string;
+    /**
+     * BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
+     */
+    languageCode?: string;
+    /**
+     * Deprecated. This field has no effect.
+     */
+    locationId?: string;
+    /**
+     * The parent resource name. The format of this value is as follows: `locations/{location_id\}`
      */
     parent?: string;
   }
@@ -13221,7 +13604,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. Only the first frame of each multiframe image is redacted. Metadata and other frames are omitted in the response.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14534,6 +14917,7 @@ export namespace dlp_v2 {
     dlpJobs: Resource$Projects$Locations$Dlpjobs;
     fileStoreDataProfiles: Resource$Projects$Locations$Filestoredataprofiles;
     image: Resource$Projects$Locations$Image;
+    infoTypes: Resource$Projects$Locations$Infotypes;
     inspectTemplates: Resource$Projects$Locations$Inspecttemplates;
     jobTriggers: Resource$Projects$Locations$Jobtriggers;
     projectDataProfiles: Resource$Projects$Locations$Projectdataprofiles;
@@ -14556,6 +14940,7 @@ export namespace dlp_v2 {
       this.fileStoreDataProfiles =
         new Resource$Projects$Locations$Filestoredataprofiles(this.context);
       this.image = new Resource$Projects$Locations$Image(this.context);
+      this.infoTypes = new Resource$Projects$Locations$Infotypes(this.context);
       this.inspectTemplates = new Resource$Projects$Locations$Inspecttemplates(
         this.context
       );
@@ -17949,7 +18334,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. Only the first frame of each multiframe image is redacted. Metadata and other frames are omitted in the response.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18057,6 +18442,130 @@ export namespace dlp_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GooglePrivacyDlpV2RedactImageRequest;
+  }
+
+  export class Resource$Projects$Locations$Infotypes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Infotypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Infotypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Infotypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Infotypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Infotypes$List,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Infotypes$List
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Infotypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Infotypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/infoTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Infotypes$List
+    extends StandardParameters {
+    /**
+     * filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
+     */
+    filter?: string;
+    /**
+     * BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
+     */
+    languageCode?: string;
+    /**
+     * Deprecated. This field has no effect.
+     */
+    locationId?: string;
+    /**
+     * The parent resource name. The format of this value is as follows: `locations/{location_id\}`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Inspecttemplates {

@@ -216,6 +216,15 @@ export namespace securitycenter_v1beta1 {
     confidence?: number | null;
   }
   /**
+   * Allowed IP rule.
+   */
+  export interface Schema$Allowed {
+    /**
+     * Optional. Optional list of allowed IP rules.
+     */
+    ipRules?: Schema$IpRule[];
+  }
+  /**
    * Represents an application associated with a finding.
    */
   export interface Schema$Application {
@@ -838,6 +847,19 @@ export namespace securitycenter_v1beta1 {
     userInteraction?: string | null;
   }
   /**
+   * CWE stands for Common Weakness Enumeration. Information about this weakness, as described by [CWE](https://cwe.mitre.org/).
+   */
+  export interface Schema$Cwe {
+    /**
+     * The CWE identifier, e.g. CWE-94
+     */
+    id?: string | null;
+    /**
+     * Any reference to the details on the CWE, for example, https://cwe.mitre.org/data/definitions/94.html
+     */
+    references?: Schema$Reference[];
+  }
+  /**
    * Details about a data access attempt made by a principal not authorized under applicable data security policy.
    */
   export interface Schema$DataAccessEvent {
@@ -929,9 +951,18 @@ export namespace securitycenter_v1beta1 {
      */
     eventType?: string | null;
     /**
-     * Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user set the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.
+     * Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user sets the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.
      */
     maxRetentionAllowed?: string | null;
+  }
+  /**
+   * Denied IP rule.
+   */
+  export interface Schema$Denied {
+    /**
+     * Optional. Optional list of denied IP rules.
+     */
+    ipRules?: Schema$IpRule[];
   }
   /**
    * Memory hash detection contributing to the binary family match.
@@ -951,7 +982,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$Disk {
     /**
-     * The name of the disk, for example, "https://www.googleapis.com/compute/v1/projects/project-id/zones/zone-id/disks/disk-id".
+     * The name of the disk, for example, "https://www.googleapis.com/compute/v1/projects/{project-id\}/zones/{zone-id\}/disks/{disk-id\}".
      */
     name?: string | null;
   }
@@ -1205,6 +1236,14 @@ export namespace securitycenter_v1beta1 {
      */
     indicator?: Schema$Indicator;
     /**
+     * IP rules associated with the finding.
+     */
+    ipRules?: Schema$IpRules;
+    /**
+     * Job associated with the finding.
+     */
+    job?: Schema$Job;
+    /**
      * Signature of the kernel rootkit.
      */
     kernelRootkit?: Schema$KernelRootkit;
@@ -1248,6 +1287,10 @@ export namespace securitycenter_v1beta1 {
      * The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      */
     name?: string | null;
+    /**
+     * Represents the VPC networks that the resource is attached to.
+     */
+    networks?: Schema$Network[];
     /**
      * Steps to address the finding.
      */
@@ -2114,6 +2157,15 @@ export namespace securitycenter_v1beta1 {
     confidence?: number | null;
   }
   /**
+   * Allowed IP rule.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Allowed {
+    /**
+     * Optional. Optional list of allowed IP rules.
+     */
+    ipRules?: Schema$GoogleCloudSecuritycenterV2IpRule[];
+  }
+  /**
    * Represents an application associated with a finding.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Application {
@@ -2672,6 +2724,19 @@ export namespace securitycenter_v1beta1 {
     userInteraction?: string | null;
   }
   /**
+   * CWE stands for Common Weakness Enumeration. Information about this weakness, as described by [CWE](https://cwe.mitre.org/).
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Cwe {
+    /**
+     * The CWE identifier, e.g. CWE-94
+     */
+    id?: string | null;
+    /**
+     * Any reference to the details on the CWE, for example, https://cwe.mitre.org/data/definitions/94.html
+     */
+    references?: Schema$GoogleCloudSecuritycenterV2Reference[];
+  }
+  /**
    * Details about a data access attempt made by a principal not authorized under applicable data security policy.
    */
   export interface Schema$GoogleCloudSecuritycenterV2DataAccessEvent {
@@ -2763,9 +2828,18 @@ export namespace securitycenter_v1beta1 {
      */
     eventType?: string | null;
     /**
-     * Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user set the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.
+     * Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user sets the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.
      */
     maxRetentionAllowed?: string | null;
+  }
+  /**
+   * Denied IP rule.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Denied {
+    /**
+     * Optional. Optional list of denied IP rules.
+     */
+    ipRules?: Schema$GoogleCloudSecuritycenterV2IpRule[];
   }
   /**
    * Memory hash detection contributing to the binary family match.
@@ -2785,7 +2859,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2Disk {
     /**
-     * The name of the disk, for example, "https://www.googleapis.com/compute/v1/projects/project-id/zones/zone-id/disks/disk-id".
+     * The name of the disk, for example, "https://www.googleapis.com/compute/v1/projects/{project-id\}/zones/{zone-id\}/disks/{disk-id\}".
      */
     name?: string | null;
   }
@@ -3065,6 +3139,14 @@ export namespace securitycenter_v1beta1 {
      */
     indicator?: Schema$GoogleCloudSecuritycenterV2Indicator;
     /**
+     * IP rules associated with the finding.
+     */
+    ipRules?: Schema$GoogleCloudSecuritycenterV2IpRules;
+    /**
+     * Job associated with the finding.
+     */
+    job?: Schema$GoogleCloudSecuritycenterV2Job;
+    /**
      * Signature of the kernel rootkit.
      */
     kernelRootkit?: Schema$GoogleCloudSecuritycenterV2KernelRootkit;
@@ -3108,6 +3190,10 @@ export namespace securitycenter_v1beta1 {
      * The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. The following list shows some examples: + `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}` + `organizations/{organization_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` + `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}` + `folders/{folder_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` + `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}` + `projects/{project_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}`
      */
     name?: string | null;
+    /**
+     * Represents the VPC networks that the resource is attached to.
+     */
+    networks?: Schema$GoogleCloudSecuritycenterV2Network[];
     /**
      * Steps to address the finding.
      */
@@ -3237,6 +3323,48 @@ export namespace securitycenter_v1beta1 {
      * The list of URIs associated to the Findings.
      */
     uris?: string[] | null;
+  }
+  /**
+   * IP rule information.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IpRule {
+    /**
+     * Optional. An optional list of ports to which this rule applies. This field is only applicable for the UDP or (S)TCP protocols. Each entry must be either an integer or a range including a min and max port number.
+     */
+    portRanges?: Schema$GoogleCloudSecuritycenterV2PortRange[];
+    /**
+     * The IP protocol this rule applies to. This value can either be one of the following well known protocol strings (TCP, UDP, ICMP, ESP, AH, IPIP, SCTP) or a string representation of the integer value.
+     */
+    protocol?: string | null;
+  }
+  /**
+   * IP rules associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IpRules {
+    /**
+     * Tuple with allowed rules.
+     */
+    allowed?: Schema$GoogleCloudSecuritycenterV2Allowed;
+    /**
+     * Tuple with denied rules.
+     */
+    denied?: Schema$GoogleCloudSecuritycenterV2Denied;
+    /**
+     * If destination IP ranges are specified, the firewall rule applies only to traffic that has a destination IP address in these ranges. These ranges must be expressed in CIDR format. Only supports IPv4.
+     */
+    destinationIpRanges?: string[] | null;
+    /**
+     * The direction that the rule is applicable to, one of ingress or egress.
+     */
+    direction?: string | null;
+    /**
+     * Name of the network protocol service, such as FTP, that is exposed by the open port. Follows the naming convention available at: https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml.
+     */
+    exposedServices?: string[] | null;
+    /**
+     * If source IP ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. Only supports IPv4.
+     */
+    sourceIpRanges?: string[] | null;
   }
   /**
    * Security Command Center Issue.
@@ -3502,6 +3630,27 @@ export namespace securitycenter_v1beta1 {
     values?: string[] | null;
   }
   /**
+   * Describes a job
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Job {
+    /**
+     * Optional. If the job did not complete successfully, this field describes why.
+     */
+    errorCode?: number | null;
+    /**
+     * Optional. Gives the location where the job ran, such as `US` or `europe-west1`
+     */
+    location?: string | null;
+    /**
+     * The fully-qualified name for a job. e.g. `projects//jobs/`
+     */
+    name?: string | null;
+    /**
+     * Output only. State of the job, such as `RUNNING` or `PENDING`.
+     */
+    state?: string | null;
+  }
+  /**
    * Kernel mode rootkit signatures.
    */
   export interface Schema$GoogleCloudSecuritycenterV2KernelRootkit {
@@ -3695,6 +3844,15 @@ export namespace securitycenter_v1beta1 {
     staticMute?: Schema$GoogleCloudSecuritycenterV2StaticMute;
   }
   /**
+   * Contains information about a VPC network associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Network {
+    /**
+     * The name of the VPC network resource, for example, `//compute.googleapis.com/projects/my-project/global/networks/my-network`.
+     */
+    name?: string | null;
+  }
+  /**
    * Kubernetes nodes associated with the finding.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Node {
@@ -3784,7 +3942,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2OrgPolicy {
     /**
-     * The resource name of the org policy. Example: "organizations/{organization_id\}/policies/{constraint_name\}"
+     * Identifier. The resource name of the org policy. Example: "organizations/{organization_id\}/policies/{constraint_name\}"
      */
     name?: string | null;
   }
@@ -3846,6 +4004,19 @@ export namespace securitycenter_v1beta1 {
      * The name of the updated field, for example constraint.implementation.policy_rules[0].enforce
      */
     field?: string | null;
+  }
+  /**
+   * A port range which is inclusive of the min and max values. Values are between 0 and 2^16-1. The max can be equal / must be not smaller than the min value. If min and max are equal this indicates that it is a single port.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2PortRange {
+    /**
+     * Maximum port value.
+     */
+    max?: string | null;
+    /**
+     * Minimum port value.
+     */
+    min?: string | null;
   }
   /**
    * Represents an operating system process.
@@ -4279,6 +4450,10 @@ export namespace securitycenter_v1beta1 {
      */
     cve?: Schema$GoogleCloudSecuritycenterV2Cve;
     /**
+     * Represents one or more Common Weakness Enumeration (CWE) information on this vulnerability.
+     */
+    cwes?: Schema$GoogleCloudSecuritycenterV2Cwe[];
+    /**
      * The fixed package is relevant to the finding.
      */
     fixedPackage?: Schema$GoogleCloudSecuritycenterV2Package;
@@ -4286,6 +4461,14 @@ export namespace securitycenter_v1beta1 {
      * The offending package is relevant to the finding.
      */
     offendingPackage?: Schema$GoogleCloudSecuritycenterV2Package;
+    /**
+     * Provider provided risk_score based on multiple factors. The higher the risk score, the more risky the vulnerability is.
+     */
+    providerRiskScore?: string | null;
+    /**
+     * Represents whether the vulnerability is reachable (detected via static analysis)
+     */
+    reachable?: boolean | null;
     /**
      * The security bulletin is relevant to this finding.
      */
@@ -4451,6 +4634,69 @@ export namespace securitycenter_v1beta1 {
      * The list of URIs associated to the Findings.
      */
     uris?: string[] | null;
+  }
+  /**
+   * IP rule information.
+   */
+  export interface Schema$IpRule {
+    /**
+     * Optional. An optional list of ports to which this rule applies. This field is only applicable for the UDP or (S)TCP protocols. Each entry must be either an integer or a range including a min and max port number.
+     */
+    portRanges?: Schema$PortRange[];
+    /**
+     * The IP protocol this rule applies to. This value can either be one of the following well known protocol strings (TCP, UDP, ICMP, ESP, AH, IPIP, SCTP) or a string representation of the integer value.
+     */
+    protocol?: string | null;
+  }
+  /**
+   * IP rules associated with the finding.
+   */
+  export interface Schema$IpRules {
+    /**
+     * Tuple with allowed rules.
+     */
+    allowed?: Schema$Allowed;
+    /**
+     * Tuple with denied rules.
+     */
+    denied?: Schema$Denied;
+    /**
+     * If destination IP ranges are specified, the firewall rule applies only to traffic that has a destination IP address in these ranges. These ranges must be expressed in CIDR format. Only supports IPv4.
+     */
+    destinationIpRanges?: string[] | null;
+    /**
+     * The direction that the rule is applicable to, one of ingress or egress.
+     */
+    direction?: string | null;
+    /**
+     * Name of the network protocol service, such as FTP, that is exposed by the open port. Follows the naming convention available at: https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml.
+     */
+    exposedServices?: string[] | null;
+    /**
+     * If source IP ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. Only supports IPv4.
+     */
+    sourceIpRanges?: string[] | null;
+  }
+  /**
+   * Describes a job
+   */
+  export interface Schema$Job {
+    /**
+     * Optional. If the job did not complete successfully, this field describes why.
+     */
+    errorCode?: number | null;
+    /**
+     * Optional. Gives the location where the job ran, such as `US` or `europe-west1`
+     */
+    location?: string | null;
+    /**
+     * The fully-qualified name for a job. e.g. `projects//jobs/`
+     */
+    name?: string | null;
+    /**
+     * Output only. State of the job, such as `RUNNING` or `PENDING`.
+     */
+    state?: string | null;
   }
   /**
    * Kernel mode rootkit signatures.
@@ -4690,6 +4936,15 @@ export namespace securitycenter_v1beta1 {
     staticMute?: Schema$StaticMute;
   }
   /**
+   * Contains information about a VPC network associated with the finding.
+   */
+  export interface Schema$Network {
+    /**
+     * The name of the VPC network resource, for example, `//compute.googleapis.com/projects/my-project/global/networks/my-network`.
+     */
+    name?: string | null;
+  }
+  /**
    * Kubernetes nodes associated with the finding.
    */
   export interface Schema$Node {
@@ -4887,6 +5142,19 @@ export namespace securitycenter_v1beta1 {
      * The name of the updated field, for example constraint.implementation.policy_rules[0].enforce
      */
     field?: string | null;
+  }
+  /**
+   * A port range which is inclusive of the min and max values. Values are between 0 and 2^16-1. The max can be equal / must be not smaller than the min value. If min and max are equal this indicates that it is a single port.
+   */
+  export interface Schema$PortRange {
+    /**
+     * Maximum port value.
+     */
+    max?: string | null;
+    /**
+     * Minimum port value.
+     */
+    min?: string | null;
   }
   /**
    * Represents an operating system process.
@@ -5316,6 +5584,10 @@ export namespace securitycenter_v1beta1 {
      */
     cve?: Schema$Cve;
     /**
+     * Represents one or more Common Weakness Enumeration (CWE) information on this vulnerability.
+     */
+    cwes?: Schema$Cwe[];
+    /**
      * The fixed package is relevant to the finding.
      */
     fixedPackage?: Schema$Package;
@@ -5323,6 +5595,14 @@ export namespace securitycenter_v1beta1 {
      * The offending package is relevant to the finding.
      */
     offendingPackage?: Schema$Package;
+    /**
+     * Provider provided risk_score based on multiple factors. The higher the risk score, the more risky the vulnerability is.
+     */
+    providerRiskScore?: string | null;
+    /**
+     * Represents whether the vulnerability is reachable (detected via static analysis)
+     */
+    reachable?: boolean | null;
     /**
      * The security bulletin is relevant to this finding.
      */

@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20241212",
+  "revision": "20250227",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2236,6 +2236,13 @@
           "$ref": "Empty",
           "description": "Will cause the Scorecard to show only the value, with no indicator to its value relative to its thresholds."
         },
+        "breakdowns": {
+          "description": "Optional. The collection of breakdowns to be applied to the dataset. A breakdown is a way to slice the data. For example, you can break down the data by region.",
+          "items": {
+            "$ref": "Breakdown"
+          },
+          "type": "array"
+        },
         "dimensions": {
           "description": "Optional. A dimension is a structured label, class, or category for a set of measurements in your data.",
           "items": {
@@ -2290,7 +2297,22 @@
     "SingleViewGroup": {
       "description": "A widget that groups the other widgets by using a dropdown menu. All widgets that are within the area spanned by the grouping widget are considered member widgets.",
       "id": "SingleViewGroup",
-      "properties": {},
+      "properties": {
+        "displayType": {
+          "description": "Optional. Determines how the widget selector will be displayed.",
+          "enum": [
+            "DISPLAY_TYPE_UNSPECIFIED",
+            "DROPDOWN",
+            "TAB"
+          ],
+          "enumDescriptions": [
+            "Display type is not specified, defaults to DROPDOWN.",
+            "Renders the widget selector as a dropdown.",
+            "Renders the widget selector as a tab list."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SourceContext": {
@@ -2441,6 +2463,33 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TemplateVariableCondition": {
+      "description": "A condition whose evaluation is based on the value of a template variable.",
+      "id": "TemplateVariableCondition",
+      "properties": {
+        "comparator": {
+          "description": "Comparator to use to evaluate whether the value of the template variable matches the template_variable_value. For example, if the comparator is REGEX_FULL_MATCH, template_variable_value would contain a regex that is matched against the value of the template variable.",
+          "enum": [
+            "COMPARATOR_UNSPECIFIED",
+            "REGEX_FULL_MATCH"
+          ],
+          "enumDescriptions": [
+            "No comparator specified. Behavior defaults to REGEX_FULL_MATCH.",
+            "Condition with this comparator evaluates to true when the value of the template variables matches the specified regex."
+          ],
+          "type": "string"
+        },
+        "templateVariable": {
+          "description": "The template variable whose value is evaluated.",
+          "type": "string"
+        },
+        "templateVariableValue": {
+          "description": "The value to compare the template variable to. For example, if the comparator is REGEX_FULL_MATCH, this field should contain a regex.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2864,6 +2913,17 @@
       },
       "type": "object"
     },
+    "VisibilityCondition": {
+      "description": "Condition that determines whether the widget should be displayed.",
+      "id": "VisibilityCondition",
+      "properties": {
+        "templateVariableCondition": {
+          "$ref": "TemplateVariableCondition",
+          "description": "A condition whose evaluation is based on the value of a template variable."
+        }
+      },
+      "type": "object"
+    },
     "Widget": {
       "description": "Widget contains a single dashboard component and configuration of how to present the component in the dashboard.",
       "id": "Widget",
@@ -2923,6 +2983,10 @@
         "title": {
           "description": "Optional. The title of the widget.",
           "type": "string"
+        },
+        "visibilityCondition": {
+          "$ref": "VisibilityCondition",
+          "description": "Optional. If set, this widget is rendered only when the condition is evaluated to true."
         },
         "xyChart": {
           "$ref": "XyChart",

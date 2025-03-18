@@ -163,6 +163,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudbuild.northamerica-south1.rep.googleapis.com/",
+      "location": "northamerica-south1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudbuild.southamerica-east1.rep.googleapis.com/",
       "location": "southamerica-east1"
     },
@@ -582,6 +587,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If set to true, the response will return partial results when some regions are unreachable. If set to false, the response will fail if any region is unreachable.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v2/{+parent}/connections",
@@ -653,7 +663,7 @@
                       "type": "string"
                     },
                     "webhookKey": {
-                      "description": "Arbitrary additional key to find the maching repository for a webhook event if needed.",
+                      "description": "Arbitrary additional key to find the matching repository for a webhook event if needed.",
                       "location": "query",
                       "type": "string"
                     }
@@ -985,6 +995,11 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "Optional. If set to true, the response will return partial results when some regions are unreachable. If set to false, the response will fail if any region is unreachable.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v2/{+parent}/repositories",
@@ -1061,7 +1076,7 @@
       }
     }
   },
-  "revision": "20250114",
+  "revision": "20250303",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1818,6 +1833,13 @@
         "nextPageToken": {
           "description": "A token identifying a page of results the server should return.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1852,6 +1874,13 @@
           "description": "The list of Repositories.",
           "items": {
             "$ref": "Repository"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }

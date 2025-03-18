@@ -238,6 +238,23 @@ export namespace ondemandscanning_v1 {
      */
     signatures?: Schema$Signature[];
   }
+  /**
+   * BaseImage describes a base image of a container image.
+   */
+  export interface Schema$BaseImage {
+    /**
+     * The number of layers that the base image is composed of.
+     */
+    layerCount?: number | null;
+    /**
+     * The name of the base image.
+     */
+    name?: string | null;
+    /**
+     * The repository name in which the base image is from.
+     */
+    repository?: string | null;
+  }
   export interface Schema$BinarySourceInfo {
     /**
      * The binary package. This is significant when the source is different than the binary itself. Historically if they've differed, we've stored the name of the source and its version in the package/version fields, but we should also store the binary package info, as that's what's actually installed. See b/175908657#comment15.
@@ -585,6 +602,7 @@ export namespace ondemandscanning_v1 {
      * For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.
      */
     filePath?: string | null;
+    layerDetails?: Schema$LayerDetails;
   }
   /**
    * A set of properties that uniquely identify a given Docker image.
@@ -638,6 +656,23 @@ export namespace ondemandscanning_v1 {
     url?: string | null;
   }
   /**
+   * BaseImage describes a base image of a container image.
+   */
+  export interface Schema$GrafeasV1BaseImage {
+    /**
+     * The number of layers that the base image is composed of.
+     */
+    layerCount?: number | null;
+    /**
+     * The name of the base image.
+     */
+    name?: string | null;
+    /**
+     * The repository name in which the base image is from.
+     */
+    repository?: string | null;
+  }
+  /**
    * Indicates the location at which a package was found.
    */
   export interface Schema$GrafeasV1FileLocation {
@@ -645,6 +680,31 @@ export namespace ondemandscanning_v1 {
      * For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.
      */
     filePath?: string | null;
+    /**
+     * Each package found in a file should have its own layer metadata (that is, information from the origin layer of the package).
+     */
+    layerDetails?: Schema$GrafeasV1LayerDetails;
+  }
+  /**
+   * Details about the layer a package was found in.
+   */
+  export interface Schema$GrafeasV1LayerDetails {
+    /**
+     * The base images the layer is found within.
+     */
+    baseImages?: Schema$GrafeasV1BaseImage[];
+    /**
+     * The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built.
+     */
+    command?: string | null;
+    /**
+     * The diff ID (typically a sha256 hash) of the layer in the container image.
+     */
+    diffId?: string | null;
+    /**
+     * The index of the layer in the container image.
+     */
+    index?: number | null;
   }
   /**
    * Identifies the entity that executed the recipe, which is trusted to have correctly performed the operation and populated this provenance.
@@ -819,6 +879,27 @@ export namespace ondemandscanning_v1 {
      * Required. The recovered Dockerfile directive used to construct this layer. See https://docs.docker.com/engine/reference/builder/ for more information.
      */
     directive?: string | null;
+  }
+  /**
+   * Details about the layer a package was found in. This should be the same as the LayerDetails message in google3/third_party/scalibr/binary/proto/scan_result.proto.
+   */
+  export interface Schema$LayerDetails {
+    /**
+     * The base images the layer is found within.
+     */
+    baseImages?: Schema$BaseImage[];
+    /**
+     * The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built.
+     */
+    command?: string | null;
+    /**
+     * The diff ID (sha256 hash) of the layer in the container image.
+     */
+    diffId?: string | null;
+    /**
+     * The index of the layer in the container image.
+     */
+    index?: number | null;
   }
   /**
    * License information.
@@ -1063,6 +1144,7 @@ export namespace ondemandscanning_v1 {
      * HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.
      */
     hashDigest?: string | null;
+    layerDetails?: Schema$LayerDetails;
     /**
      * The list of licenses found that are related to a given package. Note that licenses may also be stored on the BinarySourceInfo. If there is no BinarySourceInfo (because there's no concept of source vs binary), then it will be stored here, while if there are BinarySourceInfos, it will be stored there, as one source can have multiple binaries with different licenses.
      */

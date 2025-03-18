@@ -540,7 +540,7 @@
       }
     }
   },
-  "revision": "20250102",
+  "revision": "20250303",
   "rootUrl": "https://parallelstore.googleapis.com/",
   "schemas": {
     "DestinationGcsBucket": {
@@ -573,6 +573,10 @@
           "$ref": "DestinationGcsBucket",
           "description": "Cloud Storage destination."
         },
+        "metadataOptions": {
+          "$ref": "TransferMetadataOptions",
+          "description": "Optional. The metadata options for the export data."
+        },
         "requestId": {
           "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
@@ -601,6 +605,10 @@
         "destinationParallelstore": {
           "$ref": "DestinationParallelstore",
           "description": "Parallelstore destination."
+        },
+        "metadataOptions": {
+          "$ref": "TransferMetadataOptions",
+          "description": "Optional. The transfer metadata options for the import data."
         },
         "requestId": {
           "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
@@ -640,8 +648,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "daosVersion": {
+          "deprecated": true,
+          "description": "Output only. Deprecated 'daos_version' field. Output only. The version of DAOS software running in the instance.",
+          "readOnly": true,
+          "type": "string"
+        },
         "deploymentType": {
-          "description": "Optional. The deployment type of the instance. Allowed values are: * `SCRATCH`: the instance is a scratch instance. * `PERSISTENT`: the instance is a persistent instance.",
+          "description": "Optional. Immutable. The deployment type of the instance. Allowed values are: * `SCRATCH`: the instance is a scratch instance. * `PERSISTENT`: the instance is a persistent instance.",
           "enum": [
             "DEPLOYMENT_TYPE_UNSPECIFIED",
             "SCRATCH",
@@ -659,7 +673,7 @@
           "type": "string"
         },
         "directoryStripeLevel": {
-          "description": "Optional. Stripe level for directories. Allowed values are: * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a small number of files. * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large directories. * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large number of files.",
+          "description": "Optional. Immutable. Stripe level for directories. Allowed values are: * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a small number of files. * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large directories. * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large number of files.",
           "enum": [
             "DIRECTORY_STRIPE_LEVEL_UNSPECIFIED",
             "DIRECTORY_STRIPE_LEVEL_MIN",
@@ -680,7 +694,7 @@
           "type": "string"
         },
         "fileStripeLevel": {
-          "description": "Optional. Stripe level for files. Allowed values are: * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size files. * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large files. * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.",
+          "description": "Optional. Immutable. Stripe level for files. Allowed values are: * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size files. * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large files. * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.",
           "enum": [
             "FILE_STRIPE_LEVEL_UNSPECIFIED",
             "FILE_STRIPE_LEVEL_MIN",
@@ -920,6 +934,37 @@
       },
       "type": "object"
     },
+    "ReconciliationOperationMetadata": {
+      "description": "Operation metadata returned by the CLH during resource state reconciliation.",
+      "id": "ReconciliationOperationMetadata",
+      "properties": {
+        "deleteResource": {
+          "deprecated": true,
+          "description": "DEPRECATED. Use exclusive_action instead.",
+          "type": "boolean"
+        },
+        "exclusiveAction": {
+          "description": "Excluisive action returned by the CLH.",
+          "enum": [
+            "UNKNOWN_REPAIR_ACTION",
+            "DELETE",
+            "RETRY"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false
+          ],
+          "enumDescriptions": [
+            "Unknown repair action.",
+            "The resource has to be deleted. When using this bit, the CLH should fail the operation. DEPRECATED. Instead use DELETE_RESOURCE OperationSignal in SideChannel.",
+            "This resource could not be repaired but the repair should be tried again at a later time. This can happen if there is a dependency that needs to be resolved first- e.g. if a parent resource must be repaired before a child resource."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SourceGcsBucket": {
       "description": "Cloud Storage as the source of a data transfer.",
       "id": "SourceGcsBucket",
@@ -964,6 +1009,55 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TransferMetadataOptions": {
+      "description": "Transfer metadata options for the instance.",
+      "id": "TransferMetadataOptions",
+      "properties": {
+        "gid": {
+          "description": "Optional. The GID preservation behavior.",
+          "enum": [
+            "GID_UNSPECIFIED",
+            "GID_SKIP",
+            "GID_NUMBER_PRESERVE"
+          ],
+          "enumDescriptions": [
+            "default is GID_NUMBER_PRESERVE.",
+            "Do not preserve GID during a transfer job.",
+            "Preserve GID that is in number format during a transfer job."
+          ],
+          "type": "string"
+        },
+        "mode": {
+          "description": "Optional. The mode preservation behavior.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "MODE_SKIP",
+            "MODE_PRESERVE"
+          ],
+          "enumDescriptions": [
+            "default is MODE_PRESERVE.",
+            "Do not preserve mode during a transfer job.",
+            "Preserve mode during a transfer job."
+          ],
+          "type": "string"
+        },
+        "uid": {
+          "description": "Optional. The UID preservation behavior.",
+          "enum": [
+            "UID_UNSPECIFIED",
+            "UID_SKIP",
+            "UID_NUMBER_PRESERVE"
+          ],
+          "enumDescriptions": [
+            "default is UID_NUMBER_PRESERVE.",
+            "Do not preserve UID during a transfer job.",
+            "Preserve UID that is in number format during a transfer job."
+          ],
           "type": "string"
         }
       },

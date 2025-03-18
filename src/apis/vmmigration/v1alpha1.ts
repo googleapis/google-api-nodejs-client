@@ -189,7 +189,7 @@ export namespace vmmigration_v1alpha1 {
     type?: string | null;
   }
   /**
-   * Holds informatiom about the available versions for upgrade.
+   * Holds information about the available versions for upgrade.
    */
   export interface Schema$AvailableUpdates {
     /**
@@ -920,7 +920,7 @@ export namespace vmmigration_v1alpha1 {
     estimatedCutoverJobDuration?: string | null;
   }
   /**
-   * CutoverJob message describes a cutover of a migrating VM. The CutoverJob is the operation of shutting down the VM, creating a snapshot and clonning the VM using the replicated snapshot.
+   * CutoverJob message describes a cutover of a migrating VM. The CutoverJob is the operation of shutting down the VM, creating a snapshot and cloning the VM using the replicated snapshot.
    */
   export interface Schema$CutoverJob {
     /**

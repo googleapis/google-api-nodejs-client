@@ -230,6 +230,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://dlp.us-west8.rep.googleapis.com/",
       "location": "us-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dlp.us.rep.googleapis.com/",
+      "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dlp.eu.rep.googleapis.com/",
+      "location": "eu"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1463,6 +1473,50 @@
                   "path": "v2/{+parent}/fileStoreDataProfiles",
                   "response": {
                     "$ref": "GooglePrivacyDlpV2ListFileStoreDataProfilesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "infoTypes": {
+              "methods": {
+                "list": {
+                  "description": "Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/infoTypes",
+                  "httpMethod": "GET",
+                  "id": "dlp.organizations.locations.infoTypes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "languageCode": {
+                      "description": "BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "locationId": {
+                      "description": "Deprecated. This field has no effect.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "The parent resource name. The format of this value is as follows: `locations/{location_id}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/infoTypes",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2ListInfoTypesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2718,7 +2772,7 @@
         "image": {
           "methods": {
             "redact": {
-              "description": "Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.",
+              "description": "Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. Only the first frame of each multiframe image is redacted. Metadata and other frames are omitted in the response.",
               "flatPath": "v2/projects/{projectsId}/image:redact",
               "httpMethod": "POST",
               "id": "dlp.projects.image.redact",
@@ -4106,7 +4160,7 @@
             "image": {
               "methods": {
                 "redact": {
-                  "description": "Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.",
+                  "description": "Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. Only the first frame of each multiframe image is redacted. Metadata and other frames are omitted in the response.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/image:redact",
                   "httpMethod": "POST",
                   "id": "dlp.projects.locations.image.redact",
@@ -4128,6 +4182,50 @@
                   },
                   "response": {
                     "$ref": "GooglePrivacyDlpV2RedactImageResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "infoTypes": {
+              "methods": {
+                "list": {
+                  "description": "Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/infoTypes",
+                  "httpMethod": "GET",
+                  "id": "dlp.projects.locations.infoTypes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "languageCode": {
+                      "description": "BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "locationId": {
+                      "description": "Deprecated. This field has no effect.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "The parent resource name. The format of this value is as follows: `locations/{location_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/infoTypes",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2ListInfoTypesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -5015,7 +5113,7 @@
       }
     }
   },
-  "revision": "20250119",
+  "revision": "20250309",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -6706,6 +6804,84 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2DataProfileFinding": {
+      "description": "Details about a piece of potentially sensitive information that was detected when the data resource was profiled.",
+      "id": "GooglePrivacyDlpV2DataProfileFinding",
+      "properties": {
+        "dataProfileResourceName": {
+          "description": "Resource name of the data profile associated with the finding.",
+          "type": "string"
+        },
+        "findingId": {
+          "description": "A unique identifier for the finding.",
+          "type": "string"
+        },
+        "infotype": {
+          "$ref": "GooglePrivacyDlpV2InfoType",
+          "description": "The [type of content](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference) that might have been found."
+        },
+        "location": {
+          "$ref": "GooglePrivacyDlpV2DataProfileFindingLocation",
+          "description": "Where the content was found."
+        },
+        "quote": {
+          "description": "The content that was found. Even if the content is not textual, it may be converted to a textual representation here. If the finding exceeds 4096 bytes in length, the quote may be omitted.",
+          "type": "string"
+        },
+        "quoteInfo": {
+          "$ref": "GooglePrivacyDlpV2QuoteInfo",
+          "description": "Contains data parsed from quotes. Currently supported infoTypes: DATE, DATE_OF_BIRTH, and TIME."
+        },
+        "resourceVisibility": {
+          "description": "How broadly a resource has been shared.",
+          "enum": [
+            "RESOURCE_VISIBILITY_UNSPECIFIED",
+            "RESOURCE_VISIBILITY_PUBLIC",
+            "RESOURCE_VISIBILITY_INCONCLUSIVE",
+            "RESOURCE_VISIBILITY_RESTRICTED"
+          ],
+          "enumDescriptions": [
+            "Unused.",
+            "Visible to any user.",
+            "May contain public items. For example, if a Cloud Storage bucket has uniform bucket level access disabled, some objects inside it may be public, but none are known yet.",
+            "Visible only to specific users."
+          ],
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "Timestamp when the finding was detected.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DataProfileFindingLocation": {
+      "description": "Location of a data profile finding within a resource.",
+      "id": "GooglePrivacyDlpV2DataProfileFindingLocation",
+      "properties": {
+        "containerName": {
+          "description": "Name of the container where the finding is located. The top-level name is the source file name or table name. Names of some common storage containers are formatted as follows: * BigQuery tables: `{project_id}:{dataset_id}.{table_id}` * Cloud Storage files: `gs://{bucket}/{path}`",
+          "type": "string"
+        },
+        "dataProfileFindingRecordLocation": {
+          "$ref": "GooglePrivacyDlpV2DataProfileFindingRecordLocation",
+          "description": "Location of a finding within a resource that produces a table data profile."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DataProfileFindingRecordLocation": {
+      "description": "Location of a finding within a resource that produces a table data profile.",
+      "id": "GooglePrivacyDlpV2DataProfileFindingRecordLocation",
+      "properties": {
+        "field": {
+          "$ref": "GooglePrivacyDlpV2FieldId",
+          "description": "Field ID of the column containing the finding."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2DataProfileJobConfig": {
       "description": "Configuration for setting up a job to scan resources for profile generation. Only one data profile configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).",
       "id": "GooglePrivacyDlpV2DataProfileJobConfig",
@@ -7621,6 +7797,10 @@
           "$ref": "GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation",
           "description": "Must be set only when scanning other clouds."
         },
+        "processingLocation": {
+          "$ref": "GooglePrivacyDlpV2ProcessingLocation",
+          "description": "Optional. Processing location configuration. Vertex AI dataset scanning will set processing_location.image_fallback_type to MultiRegionProcessing by default."
+        },
         "status": {
           "description": "Required. A status for this configuration.",
           "enum": [
@@ -7910,6 +8090,73 @@
         "secretsTarget": {
           "$ref": "GooglePrivacyDlpV2SecretsDiscoveryTarget",
           "description": "Discovery target that looks for credentials and secrets stored in cloud resource metadata and reports them as vulnerabilities to Security Command Center. Only one target of this type is allowed."
+        },
+        "vertexDatasetTarget": {
+          "$ref": "GooglePrivacyDlpV2VertexDatasetDiscoveryTarget",
+          "description": "Vertex AI dataset target for Discovery. The first target to match a dataset will be the one applied. Note that discovery for Vertex AI can incur Cloud Storage Class B operation charges for storage.objects.get operations and retrieval fees. For more information, see [Cloud Storage pricing](https://cloud.google.com/storage/pricing#price-tables). Note that discovery for Vertex AI dataset will not be able to scan images unless DiscoveryConfig.processing_location.image_fallback_location has multi_region_processing or global_processing configured."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryVertexDatasetConditions": {
+      "description": "Requirements that must be true before a dataset is profiled for the first time.",
+      "id": "GooglePrivacyDlpV2DiscoveryVertexDatasetConditions",
+      "properties": {
+        "createdAfter": {
+          "description": "Vertex AI dataset must have been created after this date. Used to avoid backfilling.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "minAge": {
+          "description": "Minimum age a Vertex AI dataset must have. If set, the value must be 1 hour or greater.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryVertexDatasetFilter": {
+      "description": "Determines what datasets will have profiles generated within an organization or project. Includes the ability to filter by regular expression patterns on project ID or dataset regex.",
+      "id": "GooglePrivacyDlpV2DiscoveryVertexDatasetFilter",
+      "properties": {
+        "collection": {
+          "$ref": "GooglePrivacyDlpV2VertexDatasetCollection",
+          "description": "A specific set of Vertex AI datasets for this filter to apply to."
+        },
+        "others": {
+          "$ref": "GooglePrivacyDlpV2AllOtherResources",
+          "description": "Catch-all. This should always be the last target in the list because anything above it will apply first. Should only appear once in a configuration. If none is specified, a default one will be added automatically."
+        },
+        "vertexDatasetResourceReference": {
+          "$ref": "GooglePrivacyDlpV2VertexDatasetResourceReference",
+          "description": "The dataset resource to scan. Targets including this can only include one target (the target with this dataset resource reference)."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence": {
+      "description": "How often existing datasets should have their profiles refreshed. New datasets are scanned as quickly as possible depending on system capacity.",
+      "id": "GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence",
+      "properties": {
+        "inspectTemplateModifiedCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence",
+          "description": "Governs when to update data profiles when the inspection rules defined by the `InspectTemplate` change. If not set, changing the template will not cause a data profile to be updated."
+        },
+        "refreshFrequency": {
+          "description": "If you set this field, profiles are refreshed at this frequency regardless of whether the underlying datasets have changed. Defaults to never.",
+          "enum": [
+            "UPDATE_FREQUENCY_UNSPECIFIED",
+            "UPDATE_FREQUENCY_NEVER",
+            "UPDATE_FREQUENCY_DAILY",
+            "UPDATE_FREQUENCY_MONTHLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "After the data profile is created, it will never be updated.",
+            "The data profile can be updated up to once every 24 hours.",
+            "The data profile can be updated up to once every 30 days. Default."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -8138,6 +8385,10 @@
         "profileTable": {
           "$ref": "GooglePrivacyDlpV2BigQueryTable",
           "description": "Store all profiles to BigQuery. * The system will create a new dataset and table for you if none are are provided. The dataset will be named `sensitive_data_protection_discovery` and table will be named `discovery_profiles`. This table will be placed in the same project as the container project running the scan. After the first profile is generated and the dataset and table are created, the discovery scan configuration will be updated with the dataset and table names. * See [Analyze data profiles stored in BigQuery](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles). * See [Sample queries for your BigQuery table](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries). * Data is inserted using [streaming insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert) and so data may be in the buffer for a period of time after the profile has finished. * The Pub/Sub notification is sent before the streaming buffer is guaranteed to be written, so data may not be instantly visible to queries by the time your topic receives the Pub/Sub notification. * The best practice is to use the same table for an entire organization so that you can take advantage of the [provided Looker reports](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report). If you use VPC Service Controls to define security perimeters, then you must use a separate table for each boundary."
+        },
+        "sampleFindingsTable": {
+          "$ref": "GooglePrivacyDlpV2BigQueryTable",
+          "description": "Store sample data profile findings in an existing table or a new table in an existing dataset. Each regeneration will result in new rows in BigQuery. Data is inserted using [streaming insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert) and so data may be in the buffer for a period of time after the profile has finished."
         }
       },
       "type": "object"
@@ -8378,7 +8629,7 @@
           "type": "string"
         },
         "fileStorePath": {
-          "description": "The file store path. * Cloud Storage: `gs://{bucket}` * Amazon S3: `s3://{bucket}`",
+          "description": "The file store path. * Cloud Storage: `gs://{bucket}` * Amazon S3: `s3://{bucket}` * Vertex AI dataset: `projects/{project_number}/locations/{location}/datasets/{dataset_id}`",
           "type": "string"
         },
         "fullResource": {
@@ -8415,6 +8666,13 @@
           "description": "The Google Cloud project ID that owns the resource. For Amazon S3 buckets, this is the AWS Account Id.",
           "type": "string"
         },
+        "relatedResources": {
+          "description": "Resources related to this profile.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2RelatedResource"
+          },
+          "type": "array"
+        },
         "resourceAttributes": {
           "additionalProperties": {
             "$ref": "GooglePrivacyDlpV2Value"
@@ -8445,6 +8703,10 @@
           ],
           "type": "string"
         },
+        "sampleFindingsTable": {
+          "$ref": "GooglePrivacyDlpV2BigQueryTable",
+          "description": "The BigQuery table to which the sample findings are written."
+        },
         "sensitivityScore": {
           "$ref": "GooglePrivacyDlpV2SensitivityScore",
           "description": "The sensitivity score of this resource."
@@ -8462,6 +8724,13 @@
             "The profile is no longer generating. If profile_status.status.code is 0, the profile succeeded, otherwise, it failed."
           ],
           "type": "string"
+        },
+        "tags": {
+          "description": "The tags attached to the resource, including any tags attached during profiling.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Tag"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8632,6 +8901,12 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2GlobalProcessing": {
+      "description": "Processing will happen in the global region.",
+      "id": "GooglePrivacyDlpV2GlobalProcessing",
+      "properties": {},
+      "type": "object"
+    },
     "GooglePrivacyDlpV2HotwordRule": {
       "description": "The rule that adjusts the likelihood of findings within a certain proximity of hotwords.",
       "id": "GooglePrivacyDlpV2HotwordRule",
@@ -8777,6 +9052,21 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2ImageFallbackLocation": {
+      "description": "Configure image processing to fall back to the configured processing option below if unavailable in the request location.",
+      "id": "GooglePrivacyDlpV2ImageFallbackLocation",
+      "properties": {
+        "globalProcessing": {
+          "$ref": "GooglePrivacyDlpV2GlobalProcessing",
+          "description": "Processing will happen in the global region."
+        },
+        "multiRegionProcessing": {
+          "$ref": "GooglePrivacyDlpV2MultiRegionProcessing",
+          "description": "Processing will happen in a multi-region that contains the current region if available."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2ImageLocation": {
       "description": "Location of the finding within an image.",
       "id": "GooglePrivacyDlpV2ImageLocation",
@@ -8903,6 +9193,7 @@
             "CHINA",
             "COLOMBIA",
             "CROATIA",
+            "CZECHIA",
             "DENMARK",
             "FRANCE",
             "FINLAND",
@@ -8956,6 +9247,7 @@
             "The infoType is typically used in China.",
             "The infoType is typically used in Colombia.",
             "The infoType is typically used in Croatia.",
+            "The infoType is typically used in Czechia.",
             "The infoType is typically used in Denmark.",
             "The infoType is typically used in France.",
             "The infoType is typically used in Finland.",
@@ -9006,7 +9298,8 @@
             "CREDENTIAL",
             "GOVERNMENT_ID",
             "DOCUMENT",
-            "CONTEXTUAL_INFORMATION"
+            "CONTEXTUAL_INFORMATION",
+            "CUSTOM"
           ],
           "enumDescriptions": [
             "Unused type",
@@ -9016,7 +9309,8 @@
             "Confidential or secret information, for example, a password.",
             "An identification document issued by a government.",
             "A document, for example, a resume or source code.",
-            "Information that is not sensitive on its own, but provides details about the circumstances surrounding an entity or an event."
+            "Information that is not sensitive on its own, but provides details about the circumstances surrounding an entity or an event.",
+            "Category for `CustomInfoType` types."
           ],
           "type": "string"
         }
@@ -9053,6 +9347,13 @@
         "sensitivityScore": {
           "$ref": "GooglePrivacyDlpV2SensitivityScore",
           "description": "The default sensitivity of the infoType."
+        },
+        "specificInfoTypes": {
+          "description": "If this field is set, this infoType is a general infoType and these specific infoTypes are contained within it. General infoTypes are infoTypes that encompass multiple specific infoTypes. For example, the \"GEOGRAPHIC_DATA\" general infoType would have set for this field \"LOCATION\", \"LOCATION_COORDINATES\", and \"STREET_ADDRESS\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "supportedBy": {
           "description": "Which parts of the API supports this InfoType.",
@@ -10175,6 +10476,12 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2MultiRegionProcessing": {
+      "description": "Processing will happen in a multi-region that contains the current region if available.",
+      "id": "GooglePrivacyDlpV2MultiRegionProcessing",
+      "properties": {},
+      "type": "object"
+    },
     "GooglePrivacyDlpV2NumericalStatsConfig": {
       "description": "Compute numerical stats over an individual column, including min, max, and quantiles.",
       "id": "GooglePrivacyDlpV2NumericalStatsConfig",
@@ -10493,6 +10800,17 @@
         "numericalStatsConfig": {
           "$ref": "GooglePrivacyDlpV2NumericalStatsConfig",
           "description": "Numerical stats"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2ProcessingLocation": {
+      "description": "Configure processing location for discovery and inspection. For example, image OCR is only provided in limited regions but configuring ProcessingLocation will redirect OCR to a location where OCR is provided.",
+      "id": "GooglePrivacyDlpV2ProcessingLocation",
+      "properties": {
+        "imageFallbackLocation": {
+          "$ref": "GooglePrivacyDlpV2ImageFallbackLocation",
+          "description": "Image processing will fall back using this configuration."
         }
       },
       "type": "object"
@@ -11027,6 +11345,17 @@
         "overview": {
           "$ref": "GooglePrivacyDlpV2TransformationOverview",
           "description": "An overview of the changes that were made to the `item`."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2RelatedResource": {
+      "description": "A related resource. Examples: * The source BigQuery table for a Vertex AI dataset. * The source Cloud Storage bucket for a Vertex AI dataset.",
+      "id": "GooglePrivacyDlpV2RelatedResource",
+      "properties": {
+        "fullResource": {
+          "description": "The full resource name of the related resource.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11649,6 +11978,13 @@
           "description": "The resource name of the project data profile for this table.",
           "type": "string"
         },
+        "relatedResources": {
+          "description": "Resources related to this profile.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2RelatedResource"
+          },
+          "type": "array"
+        },
         "resourceLabels": {
           "additionalProperties": {
             "type": "string"
@@ -11676,6 +12012,10 @@
           "description": "Number of rows in the table when the profile was generated. This will not be populated for BigLake tables.",
           "format": "int64",
           "type": "string"
+        },
+        "sampleFindingsTable": {
+          "$ref": "GooglePrivacyDlpV2BigQueryTable",
+          "description": "The BigQuery table to which the sample findings are written."
         },
         "scannedColumnCount": {
           "description": "The number of columns profiled in the table.",
@@ -11708,6 +12048,13 @@
           "description": "The size of the table when the profile was generated.",
           "format": "int64",
           "type": "string"
+        },
+        "tags": {
+          "description": "The tags attached to the table, including any tags attached during profiling. Because tags are attached to Cloud SQL instances rather than Cloud SQL tables, this field is empty for Cloud SQL table profiles.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Tag"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -11748,6 +12095,25 @@
         },
         "tableId": {
           "description": "Name of the table.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2Tag": {
+      "description": "A tag associated with a resource.",
+      "id": "GooglePrivacyDlpV2Tag",
+      "properties": {
+        "key": {
+          "description": "The key of a tag key-value pair. For Google Cloud resources, this is the resource name of the key, for example, \"tagKeys/123456\".",
+          "type": "string"
+        },
+        "namespacedTagValue": {
+          "description": "The namespaced name for the tag value to attach to Google Cloud resources. Must be in the format `{parent_id}/{tag_key_short_name}/{short_name}`, for example, \"123456/environment/prod\". This is only set for Google Cloud resources.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of a tag key-value pair. For Google Cloud resources, this is the resource name of the value, for example, \"tagValues/123456\".",
           "type": "string"
         }
       },
@@ -12389,6 +12755,76 @@
         },
         "version": {
           "description": "Name of the version",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2VertexDatasetCollection": {
+      "description": "Match dataset resources using regex filters.",
+      "id": "GooglePrivacyDlpV2VertexDatasetCollection",
+      "properties": {
+        "vertexDatasetRegexes": {
+          "$ref": "GooglePrivacyDlpV2VertexDatasetRegexes",
+          "description": "The regex used to filter dataset resources."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2VertexDatasetDiscoveryTarget": {
+      "description": "Target used to match against for discovery with Vertex AI datasets.",
+      "id": "GooglePrivacyDlpV2VertexDatasetDiscoveryTarget",
+      "properties": {
+        "conditions": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryVertexDatasetConditions",
+          "description": "In addition to matching the filter, these conditions must be true before a profile is generated."
+        },
+        "disabled": {
+          "$ref": "GooglePrivacyDlpV2Disabled",
+          "description": "Disable profiling for datasets that match this filter."
+        },
+        "filter": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryVertexDatasetFilter",
+          "description": "Required. The datasets the discovery cadence applies to. The first target with a matching filter will be the one to apply to a dataset."
+        },
+        "generationCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence",
+          "description": "How often and when to update profiles. New datasets that match both the filter and conditions are scanned as quickly as possible depending on system capacity."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2VertexDatasetRegex": {
+      "description": "A pattern to match against one or more dataset resources.",
+      "id": "GooglePrivacyDlpV2VertexDatasetRegex",
+      "properties": {
+        "projectIdRegex": {
+          "description": "For organizations, if unset, will match all projects. Has no effect for configurations created within a project.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2VertexDatasetRegexes": {
+      "description": "A collection of regular expressions to determine what datasets to match against.",
+      "id": "GooglePrivacyDlpV2VertexDatasetRegexes",
+      "properties": {
+        "patterns": {
+          "description": "Required. The group of regular expression patterns to match against one or more datasets. Maximum of 100 entries. The sum of the lengths of all regular expressions can't exceed 10 KiB.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2VertexDatasetRegex"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2VertexDatasetResourceReference": {
+      "description": "Identifies a single Vertex AI dataset.",
+      "id": "GooglePrivacyDlpV2VertexDatasetResourceReference",
+      "properties": {
+        "datasetResourceName": {
+          "description": "Required. The name of the dataset resource. If set within a project-level configuration, the specified resource must be within the project.",
           "type": "string"
         }
       },

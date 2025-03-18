@@ -177,6 +177,107 @@
             }
           },
           "resources": {
+            "discoveredprofiles": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a discovered workload profile.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveredprofiles/{discoveredprofilesId}",
+                  "httpMethod": "GET",
+                  "id": "workloadmanager.projects.locations.discoveredprofiles.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveredprofiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "WorkloadProfile"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List discovered workload profiles",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveredprofiles",
+                  "httpMethod": "GET",
+                  "id": "workloadmanager.projects.locations.discoveredprofiles.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListDiscoveredProfilesRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/discoveredprofiles",
+                  "response": {
+                    "$ref": "ListDiscoveredProfilesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "healthes": {
+                  "methods": {
+                    "get": {
+                      "description": "Get the health of a discovered workload profile.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveredprofiles/{discoveredprofilesId}/healthes/{healthesId}",
+                      "httpMethod": "GET",
+                      "id": "workloadmanager.projects.locations.discoveredprofiles.healthes.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/discoveredprofiles/[^/]+/healthes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "WorkloadProfileHealth"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "evaluations": {
               "methods": {
                 "create": {
@@ -564,6 +665,36 @@
             },
             "insights": {
               "methods": {
+                "delete": {
+                  "description": "Delete the data insights from workload manager data warehouse.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/insights/{insightsId}",
+                  "httpMethod": "DELETE",
+                  "id": "workloadmanager.projects.locations.insights.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The system id of the SAP system resource to delete. Formatted as projects/{project}/locations/{location}/sapSystems/{sap_system_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/insights/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "writeInsight": {
                   "description": "Write the data insights to workload manager data warehouse.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/insights:writeInsight",
@@ -733,6 +864,25 @@
                       "location": "query",
                       "type": "string"
                     },
+                    "evaluationType": {
+                      "description": "Optional. The evaluation type of the rules will be applied to. The Cloud Storage bucket name for custom rules.",
+                      "enum": [
+                        "EVALUATION_TYPE_UNSPECIFIED",
+                        "SAP",
+                        "SQL_SERVER",
+                        "OTHER",
+                        "SCC_IAC"
+                      ],
+                      "enumDescriptions": [
+                        "Not specified",
+                        "SAP best practices",
+                        "SQL best practices",
+                        "Customized best practices",
+                        "SCC IaC (Infra as Code) best practices"
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
                     "filter": {
                       "description": "Filter based on primary_category, secondary_category",
                       "location": "query",
@@ -772,9 +922,34 @@
       }
     }
   },
-  "revision": "20250120",
+  "revision": "20250310",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
+    "APILayerServer": {
+      "description": "The API layer server",
+      "id": "APILayerServer",
+      "properties": {
+        "name": {
+          "description": "Output only. The api layer name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Output only. OS information",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resources": {
+          "description": "Output only. resources in the component",
+          "items": {
+            "$ref": "CloudResource"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "AgentCommand": {
       "description": "* An AgentCommand specifies a one-time executable program for the agent to run.",
       "id": "AgentCommand",
@@ -789,6 +964,101 @@
           },
           "description": "parameters is a map of key/value pairs that can be used to specify additional one-time executable settings.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "AvailabilityGroup": {
+      "description": "The availability groups for sqlserver",
+      "id": "AvailabilityGroup",
+      "properties": {
+        "databases": {
+          "description": "Output only. The databases",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The availability group name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "primaryServer": {
+          "description": "Output only. The primary server",
+          "readOnly": true,
+          "type": "string"
+        },
+        "secondaryServers": {
+          "description": "Output only. The secondary servers",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BackendServer": {
+      "description": "The backend server",
+      "id": "BackendServer",
+      "properties": {
+        "backupFile": {
+          "description": "Output only. The backup file",
+          "readOnly": true,
+          "type": "string"
+        },
+        "backupSchedule": {
+          "description": "Output only. The backup schedule",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The backend name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Output only. OS information",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resources": {
+          "description": "Output only. resources in the component",
+          "items": {
+            "$ref": "CloudResource"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BackupProperties": {
+      "description": "Backup properties.",
+      "id": "BackupProperties",
+      "properties": {
+        "latestBackupStatus": {
+          "description": "Output only. The state of the latest backup.",
+          "enum": [
+            "BACKUP_STATE_UNSPECIFIED",
+            "BACKUP_STATE_SUCCESS",
+            "BACKUP_STATE_FAILURE"
+          ],
+          "enumDescriptions": [
+            "unspecified",
+            "SUCCESS state",
+            "FAILURE state"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "latestBackupTime": {
+          "description": "The time when the latest backup was performed.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -814,6 +1084,76 @@
       "properties": {},
       "type": "object"
     },
+    "CloudResource": {
+      "description": "The resource on GCP",
+      "id": "CloudResource",
+      "properties": {
+        "instanceProperties": {
+          "$ref": "InstanceProperties",
+          "description": "Output only. All instance properties.",
+          "readOnly": true
+        },
+        "kind": {
+          "description": "Output only. ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.",
+          "enum": [
+            "RESOURCE_KIND_UNSPECIFIED",
+            "RESOURCE_KIND_INSTANCE",
+            "RESOURCE_KIND_DISK",
+            "RESOURCE_KIND_ADDRESS",
+            "RESOURCE_KIND_FILESTORE",
+            "RESOURCE_KIND_HEALTH_CHECK",
+            "RESOURCE_KIND_FORWARDING_RULE",
+            "RESOURCE_KIND_BACKEND_SERVICE",
+            "RESOURCE_KIND_SUBNETWORK",
+            "RESOURCE_KIND_NETWORK",
+            "RESOURCE_KIND_PUBLIC_ADDRESS",
+            "RESOURCE_KIND_INSTANCE_GROUP"
+          ],
+          "enumDescriptions": [
+            "Unspecified resource kind.",
+            "This is a compute instance.",
+            "This is a compute disk.",
+            "This is a compute address.",
+            "This is a filestore instance.",
+            "This is a compute health check.",
+            "This is a compute forwarding rule.",
+            "This is a compute backend service.",
+            "This is a compute subnetwork.",
+            "This is a compute network.",
+            "This is a public accessible IP Address.",
+            "This is a compute instance group."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. resource name",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Cluster": {
+      "description": "The cluster for sqlserver",
+      "id": "Cluster",
+      "properties": {
+        "nodes": {
+          "description": "Output only. The nodes",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "witnessServer": {
+          "description": "Output only. The witness server",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Command": {
       "description": "* Command specifies the type of command to execute.",
       "id": "Command",
@@ -825,6 +1165,134 @@
         "shellCommand": {
           "$ref": "ShellCommand",
           "description": "ShellCommand is invoked via the agent's command line executor."
+        }
+      },
+      "type": "object"
+    },
+    "ComponentHealth": {
+      "description": "HealthCondition contains the detailed health check of each component.",
+      "id": "ComponentHealth",
+      "properties": {
+        "component": {
+          "description": "The component of a workload.",
+          "type": "string"
+        },
+        "componentHealthChecks": {
+          "description": "The detailed health checks of the component.",
+          "items": {
+            "$ref": "HealthCheck"
+          },
+          "type": "array"
+        },
+        "componentHealthType": {
+          "description": "Output only. The type of the component health.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_REQUIRED",
+            "TYPE_OPTIONAL",
+            "TYPE_SPECIAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "required",
+            "optional",
+            "special"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "isRequired": {
+          "description": "Output only. The requirement of the component.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. The health state of the component.",
+          "enum": [
+            "HEALTH_STATE_UNSPECIFIED",
+            "HEALTHY",
+            "UNHEALTHY",
+            "CRITICAL",
+            "UNSUPPORTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "healthy workload",
+            "unhealthy workload",
+            "has critical issues",
+            "unsupported"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "subComponentHealthes": {
+          "description": "Sub component health.",
+          "items": {
+            "$ref": "ComponentHealth"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Database": {
+      "description": "The database for sqlserver",
+      "id": "Database",
+      "properties": {
+        "backupFile": {
+          "description": "Output only. The backup file",
+          "readOnly": true,
+          "type": "string"
+        },
+        "backupSchedule": {
+          "description": "Output only. The backup schedule",
+          "readOnly": true,
+          "type": "string"
+        },
+        "hostVm": {
+          "description": "Output only. The host VM",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The database name",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseProperties": {
+      "description": "Database Properties.",
+      "id": "DatabaseProperties",
+      "properties": {
+        "backupProperties": {
+          "$ref": "BackupProperties",
+          "description": "Output only. Backup properties.",
+          "readOnly": true
+        },
+        "databaseType": {
+          "description": "Output only. Type of the database. HANA, DB2, etc.",
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "HANA",
+            "MAX_DB",
+            "DB2",
+            "ORACLE",
+            "SQLSERVER",
+            "ASE"
+          ],
+          "enumDescriptions": [
+            "unspecified",
+            "SAP HANA",
+            "SAP MAX_DB",
+            "IBM DB2",
+            "Oracle Database",
+            "Microsoft SQL Server",
+            "SAP Sybase ASE"
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1106,6 +1574,31 @@
       },
       "type": "object"
     },
+    "FrontEndServer": {
+      "description": "The front end server",
+      "id": "FrontEndServer",
+      "properties": {
+        "name": {
+          "description": "Output only. The frontend name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Output only. OS information",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resources": {
+          "description": "Output only. resources in the component",
+          "items": {
+            "$ref": "CloudResource"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GceInstanceFilter": {
       "description": "Message describing compute engine instance filter",
       "id": "GceInstanceFilter",
@@ -1116,6 +1609,54 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "HealthCheck": {
+      "description": "HealthCheck contains the detailed health check of a component based on asource.",
+      "id": "HealthCheck",
+      "properties": {
+        "message": {
+          "description": "Output only. The message of the health check.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "metric": {
+          "description": "Output only. The health check source metric name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resource": {
+          "$ref": "CloudResource",
+          "description": "Output only. The resource the check performs on.",
+          "readOnly": true
+        },
+        "source": {
+          "description": "Output only. The source of the health check.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the health check.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PASSED",
+            "FAILED",
+            "DEGRADED",
+            "SKIPPED",
+            "UNSUPPORTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "passed",
+            "failed",
+            "degraded",
+            "skipped",
+            "unsupported"
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1149,6 +1690,179 @@
         "torsoValidation": {
           "$ref": "TorsoValidation",
           "description": "The insights data for workload validation of torso workloads."
+        }
+      },
+      "type": "object"
+    },
+    "Instance": {
+      "description": "a vm instance",
+      "id": "Instance",
+      "properties": {
+        "name": {
+          "description": "Output only. name of the VM",
+          "readOnly": true,
+          "type": "string"
+        },
+        "region": {
+          "description": "Output only. The location of the VM",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. The state of the VM",
+          "enum": [
+            "INSTANCESTATE_UNSPECIFIED",
+            "PROVISIONING",
+            "STAGING",
+            "RUNNING",
+            "STOPPING",
+            "STOPPED",
+            "TERMINATED",
+            "SUSPENDING",
+            "SUSPENDED",
+            "REPAIRING",
+            "DEPROVISIONING"
+          ],
+          "enumDescriptions": [
+            "The Status of the VM is unspecified",
+            "Resources are being allocated for the instance.",
+            "All required resources have been allocated and the instance is being started.",
+            "The instance is running.",
+            "The instance is currently stopping (either being deleted or killed).",
+            "The instance has stopped due to various reasons (user request, VM preemption, project freezing, etc.).",
+            "The instance has failed in some way.",
+            "The instance is suspending.",
+            "The instance is suspended.",
+            "The instance is in repair.",
+            "The instance is in de-provisioning state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceProperties": {
+      "description": "Instance Properties.",
+      "id": "InstanceProperties",
+      "properties": {
+        "instanceNumber": {
+          "description": "Optional. Instance number.",
+          "type": "string"
+        },
+        "machineType": {
+          "description": "Optional. Instance machine type.",
+          "type": "string"
+        },
+        "role": {
+          "deprecated": true,
+          "description": "Optional. Instance role.",
+          "enum": [
+            "INSTANCE_ROLE_UNSPECIFIED",
+            "INSTANCE_ROLE_ASCS",
+            "INSTANCE_ROLE_ERS",
+            "INSTANCE_ROLE_APP_SERVER",
+            "INSTANCE_ROLE_HANA_PRIMARY",
+            "INSTANCE_ROLE_HANA_SECONDARY"
+          ],
+          "enumDescriptions": [
+            "Unspecified role.",
+            "ASCS role.",
+            "ERS role.",
+            "APP server.",
+            "HANA primary role.",
+            "HANA secondary role."
+          ],
+          "type": "string"
+        },
+        "roles": {
+          "description": "Optional. Instance roles.",
+          "items": {
+            "enum": [
+              "INSTANCE_ROLE_UNSPECIFIED",
+              "INSTANCE_ROLE_ASCS",
+              "INSTANCE_ROLE_ERS",
+              "INSTANCE_ROLE_APP_SERVER",
+              "INSTANCE_ROLE_HANA_PRIMARY",
+              "INSTANCE_ROLE_HANA_SECONDARY"
+            ],
+            "enumDescriptions": [
+              "Unspecified role.",
+              "ASCS role.",
+              "ERS role.",
+              "APP server.",
+              "HANA primary role.",
+              "HANA secondary role."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sapInstanceProperties": {
+          "$ref": "SapInstanceProperties",
+          "description": "Optional. SAP Instance properties."
+        },
+        "status": {
+          "description": "Optional. Instance status.",
+          "type": "string"
+        },
+        "upcomingMaintenanceEvent": {
+          "$ref": "UpcomingMaintenanceEvent",
+          "description": "Optional. the next maintenance event on VM"
+        }
+      },
+      "type": "object"
+    },
+    "Layer": {
+      "description": "The database layer",
+      "id": "Layer",
+      "properties": {
+        "applicationType": {
+          "description": "the application layer",
+          "type": "string"
+        },
+        "databaseType": {
+          "description": "Optional. the database layer",
+          "type": "string"
+        },
+        "instances": {
+          "description": "Optional. instances in a layer",
+          "items": {
+            "$ref": "Instance"
+          },
+          "type": "array"
+        },
+        "sid": {
+          "description": "Output only. system identification of a layer",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListDiscoveredProfilesResponse": {
+      "description": "List discovered profile Response returns discovered profiles from agents",
+      "id": "ListDiscoveredProfilesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Output only. A token identifying a page of results the server should return",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "workloadProfiles": {
+          "description": "Output only. The list of workload profiles",
+          "items": {
+            "$ref": "WorkloadProfile"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -1293,6 +2007,23 @@
       },
       "type": "object"
     },
+    "LoadBalancerServer": {
+      "description": "The load balancer for sqlserver",
+      "id": "LoadBalancerServer",
+      "properties": {
+        "ip": {
+          "description": "Output only. The IP address",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vm": {
+          "description": "Output only. The VM name",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Location": {
       "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
@@ -1413,6 +2144,21 @@
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Product": {
+      "description": "Product contains the details of a product.",
+      "id": "Product",
+      "properties": {
+        "name": {
+          "description": "Optional. Name of the product.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. Version of the product.",
           "type": "string"
         }
       },
@@ -1611,6 +2357,52 @@
         },
         "requestId": {
           "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SapComponent": {
+      "description": "The component of sap workload",
+      "id": "SapComponent",
+      "properties": {
+        "databaseProperties": {
+          "$ref": "DatabaseProperties",
+          "description": "Output only. All instance properties.",
+          "readOnly": true
+        },
+        "haHosts": {
+          "description": "A list of host URIs that are part of the HA configuration if present. An empty list indicates the component is not configured for HA.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "resources": {
+          "description": "Output only. resources in the component",
+          "items": {
+            "$ref": "CloudResource"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "sid": {
+          "description": "Output only. sid is the sap component identificator",
+          "readOnly": true,
+          "type": "string"
+        },
+        "topologyType": {
+          "description": "The detected topology of the component.",
+          "enum": [
+            "TOPOLOGY_TYPE_UNSPECIFIED",
+            "TOPOLOGY_SCALE_UP",
+            "TOPOLOGY_SCALE_OUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified topology.",
+            "A scale-up single node system.",
+            "A scale-out multi-node system."
+          ],
           "type": "string"
         }
       },
@@ -1955,6 +2747,13 @@
           },
           "type": "array"
         },
+        "diskMounts": {
+          "description": "Optional. Disk mounts on the instance.",
+          "items": {
+            "$ref": "SapDiscoveryResourceInstancePropertiesDiskMount"
+          },
+          "type": "array"
+        },
         "instanceNumber": {
           "deprecated": true,
           "description": "Optional. The VM's instance number.",
@@ -2027,6 +2826,21 @@
       },
       "type": "object"
     },
+    "SapDiscoveryResourceInstancePropertiesDiskMount": {
+      "description": "Disk mount on the instance.",
+      "id": "SapDiscoveryResourceInstancePropertiesDiskMount",
+      "properties": {
+        "mountPoint": {
+          "description": "Optional. Filesystem mount point.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Optional. Name of the disk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SapDiscoveryWorkloadProperties": {
       "description": "A set of properties describing an SAP workload.",
       "id": "SapDiscoveryWorkloadProperties",
@@ -2082,6 +2896,20 @@
         "version": {
           "description": "Optional. The component's major version.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SapInstanceProperties": {
+      "description": "SAP instance properties.",
+      "id": "SapInstanceProperties",
+      "properties": {
+        "numbers": {
+          "description": "Optional. SAP Instance numbers. They are from '00' to '99'.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2146,6 +2974,62 @@
             "The CUSTOM validation type collects any customer-defined data that does not fall into any of the other categories of validations."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SapWorkload": {
+      "description": "The body of sap workload",
+      "id": "SapWorkload",
+      "properties": {
+        "application": {
+          "$ref": "SapComponent",
+          "description": "Output only. the acsc componment",
+          "readOnly": true
+        },
+        "architecture": {
+          "description": "Output only. the architecture",
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "INVALID",
+            "CENTRALIZED",
+            "DISTRIBUTED",
+            "DISTRIBUTED_HA",
+            "STANDALONE_DATABASE",
+            "STANDALONE_DATABASE_HA"
+          ],
+          "enumDescriptions": [
+            "Unspecified architecture.",
+            "Invaliad architecture.",
+            "A centralized system.",
+            "A distributed system.",
+            "A distributed with HA system.",
+            "A standalone database system.",
+            "A standalone database with HA system."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "database": {
+          "$ref": "SapComponent",
+          "description": "Output only. the database componment",
+          "readOnly": true
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. The metadata for SAP workload.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "products": {
+          "description": "Output only. the products on this workload.",
+          "items": {
+            "$ref": "Product"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -2273,6 +3157,39 @@
       },
       "type": "object"
     },
+    "SqlserverWorkload": {
+      "description": "The body of sqlserver workload",
+      "id": "SqlserverWorkload",
+      "properties": {
+        "ags": {
+          "description": "Output only. The availability groups for sqlserver",
+          "items": {
+            "$ref": "AvailabilityGroup"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "cluster": {
+          "$ref": "Cluster",
+          "description": "Output only. The cluster for sqlserver",
+          "readOnly": true
+        },
+        "databases": {
+          "description": "Output only. The databases for sqlserver",
+          "items": {
+            "$ref": "Database"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "loadBalancerServer": {
+          "$ref": "LoadBalancerServer",
+          "description": "Output only. The load balancer for sqlserver",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -2325,6 +3242,33 @@
       },
       "type": "object"
     },
+    "ThreeTierWorkload": {
+      "description": "The body of three tier workload",
+      "id": "ThreeTierWorkload",
+      "properties": {
+        "apiLayer": {
+          "$ref": "APILayerServer",
+          "description": "Output only. The API layer for three tier workload",
+          "readOnly": true
+        },
+        "backend": {
+          "$ref": "BackendServer",
+          "description": "Output only. The backend for three tier workload",
+          "readOnly": true
+        },
+        "endpoint": {
+          "description": "Output only. the workload endpoint",
+          "readOnly": true,
+          "type": "string"
+        },
+        "frontend": {
+          "$ref": "FrontEndServer",
+          "description": "Output only. The frontend for three tier workload",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "TorsoValidation": {
       "description": "The schema of torso workload validation data.",
       "id": "TorsoValidation",
@@ -2367,6 +3311,31 @@
       },
       "type": "object"
     },
+    "UpcomingMaintenanceEvent": {
+      "description": "Maintenance Event",
+      "id": "UpcomingMaintenanceEvent",
+      "properties": {
+        "endTime": {
+          "description": "Optional. End time",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "maintenanceStatus": {
+          "description": "Optional. Maintenance status",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. Start time",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. Type",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ViolationDetails": {
       "description": "Message describing the violation in an evaluation result.",
       "id": "ViolationDetails",
@@ -2384,6 +3353,130 @@
         },
         "serviceAccount": {
           "description": "The service account associated with the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadProfile": {
+      "description": "workload resource",
+      "id": "WorkloadProfile",
+      "properties": {
+        "application": {
+          "$ref": "Layer",
+          "deprecated": true,
+          "description": "Optional. The application layer"
+        },
+        "ascs": {
+          "$ref": "Layer",
+          "deprecated": true,
+          "description": "Optional. The ascs layer"
+        },
+        "database": {
+          "$ref": "Layer",
+          "deprecated": true,
+          "description": "Optional. The database layer"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. such as name, description, version. More example can be found in deployment",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. name of resource names have the form 'projects/{project_id}/workloads/{workload_id}'",
+          "type": "string"
+        },
+        "refreshedTime": {
+          "description": "Required. time when the workload data was refreshed",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sapWorkload": {
+          "$ref": "SapWorkload",
+          "description": "The sap workload content"
+        },
+        "sqlserverWorkload": {
+          "$ref": "SqlserverWorkload",
+          "description": "The sqlserver workload content"
+        },
+        "state": {
+          "deprecated": true,
+          "description": "Output only. [output only] the current state if a a workload",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DEPLOYING",
+            "DESTROYING",
+            "MAINTENANCE"
+          ],
+          "enumDescriptions": [
+            "unspecified",
+            "ACTIVE state",
+            "workload is in Deploying state",
+            "The workload is in Destroying state",
+            "The Workload is undermaintance"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "threeTierWorkload": {
+          "$ref": "ThreeTierWorkload",
+          "description": "The 3 tier web app workload content"
+        },
+        "workloadType": {
+          "description": "Required. The type of the workload",
+          "enum": [
+            "WORKLOAD_TYPE_UNSPECIFIED",
+            "S4_HANA",
+            "SQL_SERVER",
+            "THREE_TIER_WEB_APP"
+          ],
+          "enumDescriptions": [
+            "unspecified workload type",
+            "running sap workload s4/hana",
+            "running sqlserver workload",
+            "running 3 tier web app workload"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadProfileHealth": {
+      "description": "WorkloadProfileHealth contains the detailed health check of workload.",
+      "id": "WorkloadProfileHealth",
+      "properties": {
+        "checkTime": {
+          "description": "The time when the health check was performed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "componentHealthes": {
+          "description": "The detailed condition reports of each component.",
+          "items": {
+            "$ref": "ComponentHealth"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The health state of the workload.",
+          "enum": [
+            "HEALTH_STATE_UNSPECIFIED",
+            "HEALTHY",
+            "UNHEALTHY",
+            "CRITICAL",
+            "UNSUPPORTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "healthy workload",
+            "unhealthy workload",
+            "has critical issues",
+            "unsupported"
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },

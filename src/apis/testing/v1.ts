@@ -1018,6 +1018,10 @@ export namespace testing_v1 {
      * Lab name where the device is hosted. If empty, the device is hosted in a Google owned lab.
      */
     name?: string | null;
+    /**
+     * The Unicode country/region code (CLDR) of the lab where the device is hosted. E.g. "US" for United States, "CH" for Switzerland.
+     */
+    regionCode?: string | null;
   }
   /**
    * Specifies an intent that starts the main launcher activity.

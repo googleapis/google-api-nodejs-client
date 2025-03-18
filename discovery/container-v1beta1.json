@@ -2685,7 +2685,7 @@
       }
     }
   },
-  "revision": "20241228",
+  "revision": "20250225",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2989,7 +2989,7 @@
           "type": "string"
         },
         "documentationUrl": {
-          "description": "A URL to a public documnetation, which addresses resolving this issue.",
+          "description": "A URL to a public documentation, which addresses resolving this issue.",
           "type": "string"
         },
         "incompatibilityType": {
@@ -3019,6 +3019,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AutopilotConfig": {
+      "description": "AutopilotConfig contains configuration of autopilot feature for this nodepool.",
+      "id": "AutopilotConfig",
+      "properties": {
+        "enabled": {
+          "description": "Denotes that nodes belonging to this node pool are Autopilot nodes.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3291,7 +3302,7 @@
       "id": "CertificateAuthorityDomainConfig",
       "properties": {
         "fqdns": {
-          "description": "List of fully qualified domain names (FQDN). Specifying port is supported. Wilcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000",
+          "description": "List of fully qualified domain names (FQDN). Specifying port is supported. Wildcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000",
           "items": {
             "type": "string"
           },
@@ -3472,7 +3483,8 @@
           "type": "boolean"
         },
         "enableTpu": {
-          "description": "Enable the ability to use Cloud TPUs in this cluster. This field is deprecated, use tpu_config.enabled instead.",
+          "deprecated": true,
+          "description": "Enable the ability to use Cloud TPUs in this cluster. This field is deprecated, use tpu_config.enabled instead. This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.",
           "type": "boolean"
         },
         "endpoint": {
@@ -3749,10 +3761,12 @@
         },
         "tpuConfig": {
           "$ref": "TpuConfig",
-          "description": "Configuration for Cloud TPU support;"
+          "deprecated": true,
+          "description": "Configuration for Cloud TPU support; This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25."
         },
         "tpuIpv4CidrBlock": {
-          "description": "Output only. The IP address range of the Cloud TPUs in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`).",
+          "deprecated": true,
+          "description": "Output only. The IP address range of the Cloud TPUs in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.",
           "readOnly": true,
           "type": "string"
         },
@@ -4189,7 +4203,8 @@
         },
         "desiredTpuConfig": {
           "$ref": "TpuConfig",
-          "description": "The desired Cloud TPU configuration."
+          "deprecated": true,
+          "description": "The desired Cloud TPU configuration. This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25."
         },
         "desiredVerticalPodAutoscaling": {
           "$ref": "VerticalPodAutoscaling",
@@ -4795,13 +4810,15 @@
               "EVENT_TYPE_UNSPECIFIED",
               "UPGRADE_AVAILABLE_EVENT",
               "UPGRADE_EVENT",
-              "SECURITY_BULLETIN_EVENT"
+              "SECURITY_BULLETIN_EVENT",
+              "UPGRADE_INFO_EVENT"
             ],
             "enumDescriptions": [
               "Not set, will be ignored.",
               "Corresponds with UpgradeAvailableEvent.",
               "Corresponds with UpgradeEvent.",
-              "Corresponds with SecurityBulletinEvent."
+              "Corresponds with SecurityBulletinEvent.",
+              "Corresponds with UpgradeInfoEvent."
             ],
             "type": "string"
           },
@@ -4965,7 +4982,7 @@
       "type": "object"
     },
     "GetJSONWebKeysResponse": {
-      "description": "GetJSONWebKeysResponse is a valid JSON Web Key Set as specififed in rfc 7517",
+      "description": "GetJSONWebKeysResponse is a valid JSON Web Key Set as specified in rfc 7517",
       "id": "GetJSONWebKeysResponse",
       "properties": {
         "cacheHeader": {
@@ -5247,6 +5264,7 @@
           "type": "string"
         },
         "tpuIpv4CidrBlock": {
+          "deprecated": true,
           "description": "The IP address range of the Cloud TPUs in this cluster. If unspecified, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. If unspecified, the range will use the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use. This field is deprecated, use cluster.tpu_config.ipv4_cidr_block instead.",
           "type": "string"
         },
@@ -5462,7 +5480,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse kernel.shmmni kernel.shmmax kernel.shmall",
+          "description": "The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall vm.max_map_count",
           "type": "object"
         }
       },
@@ -5616,7 +5634,8 @@
               "SCHEDULER",
               "CONTROLLER_MANAGER",
               "KCP_SSHD",
-              "KCP_CONNECTION"
+              "KCP_CONNECTION",
+              "KCP_HPA"
             ],
             "enumDescriptions": [
               "Default value. This shouldn't be used.",
@@ -5626,7 +5645,8 @@
               "kube-scheduler",
               "kube-controller-manager",
               "kcp-sshd",
-              "kcp connection logs"
+              "kcp connection logs",
+              "horizontal pod autoscaler decision logs"
             ],
             "type": "string"
           },
@@ -5798,7 +5818,7 @@
           "type": "boolean"
         },
         "gcpPublicCidrsAccessEnabled": {
-          "description": "Whether master is accessbile via Google Compute Engine Public IP addresses.",
+          "description": "Whether master is accessible via Google Compute Engine Public IP addresses.",
           "type": "boolean"
         },
         "privateEndpointEnforcementEnabled": {
@@ -5878,12 +5898,14 @@
               "STATEFULSET",
               "CADVISOR",
               "KUBELET",
-              "DCGM"
+              "DCGM",
+              "JOBSET"
             ],
             "enumDeprecated": [
               false,
               false,
               true,
+              false,
               false,
               false,
               false,
@@ -5912,7 +5934,8 @@
               "Statefulset",
               "CADVISOR",
               "KUBELET",
-              "NVIDIA Data Center GPU Manager (DCGM)"
+              "NVIDIA Data Center GPU Manager (DCGM)",
+              "JobSet"
             ],
             "type": "string"
           },
@@ -6013,7 +6036,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network",
+          "description": "Output only. The relative name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network",
           "readOnly": true,
           "type": "string"
         },
@@ -6268,7 +6291,7 @@
           "type": "integer"
         },
         "localSsdEncryptionMode": {
-          "description": "Specifies which method should be used for encrypting the Local SSDs attahced to the node.",
+          "description": "Specifies which method should be used for encrypting the Local SSDs attached to the node.",
           "enum": [
             "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
             "STANDARD_ENCRYPTION",
@@ -6429,6 +6452,22 @@
       "description": "Node kubelet configs.",
       "id": "NodeKubeletConfig",
       "properties": {
+        "allowedUnsafeSysctls": {
+          "description": "Optional. Defines a comma-separated allowlist of unsafe sysctls or sysctl patterns (ending in `*`). The unsafe namespaced sysctl groups are `kernel.shm*`, `kernel.msg*`, `kernel.sem`, `fs.mqueue.*`, and `net.*`. Leaving this allowlist empty means they cannot be set on Pods. To allow certain sysctls or sysctl patterns to be set on Pods, list them separated by commas. For example: `kernel.msg*,net.ipv4.route.min_pmtu`. See https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/ for more details.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "containerLogMaxFiles": {
+          "description": "Optional. Defines the maximum number of container log files that can be present for a container. See https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation The value must be an integer between 2 and 10, inclusive. The default value is 5 if unspecified.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "containerLogMaxSize": {
+          "description": "Optional. Defines the maximum size of the container log file before it is rotated. See https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation Valid format is positive number + unit, e.g. 100Ki, 10Mi. Valid units are Ki, Mi, Gi. The value must be between 10Mi and 500Mi, inclusive. Note that the total container log size (container_log_max_size * container_log_max_files) cannot exceed 1% of the total storage of the node, to avoid disk pressure caused by log files. The default value is 10Mi if unspecified.",
+          "type": "string"
+        },
         "cpuCfsQuota": {
           "description": "Enable CPU CFS quota enforcement for containers that specify CPU limits. This option is enabled by default which makes kubelet use CFS quota (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to enforce container CPU limits. Otherwise, CPU limits will not be enforced at all. Disable this option to mitigate CPU throttling problems while still having your pods to be in Guaranteed QoS class by specifying the CPU limits. The default value is 'true' if unspecified.",
           "type": "boolean"
@@ -6439,6 +6478,24 @@
         },
         "cpuManagerPolicy": {
           "description": "Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. * \"none\": the default, which represents the existing scheduling behavior. * \"static\": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.",
+          "type": "string"
+        },
+        "imageGcHighThresholdPercent": {
+          "description": "Optional. Defines the percent of disk usage after which image garbage collection is always run. The percent is calculated as this field value out of 100. The value must be between 10 and 85, inclusive and greater than image_gc_low_threshold_percent. The default value is 85 if unspecified.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "imageGcLowThresholdPercent": {
+          "description": "Optional. Defines the percent of disk usage before which image garbage collection is never run. Lowest disk usage to garbage collect to. The percent is calculated as this field value out of 100. The value must be between 10 and 85, inclusive and smaller than image_gc_high_threshold_percent. The default value is 80 if unspecified.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "imageMaximumGcAge": {
+          "description": "Optional. Defines the maximum age an image can be unused before it is garbage collected. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as \"300s\", \"1.5h\", and \"2h45m\". Valid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\". The value must be a positive duration greater than image_minimum_gc_age or \"0s\". The default value is \"0s\" if unspecified, which disables this field, meaning images won't be garbage collected based on being unused for too long.",
+          "type": "string"
+        },
+        "imageMinimumGcAge": {
+          "description": "Optional. Defines the minimum age for an unused image before it is garbage collected. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as \"300s\", \"1.5h\", and \"2h45m\". Valid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\". The value must be a positive duration less than or equal to 2 minutes. The default value is \"2m0s\" if unspecified.",
           "type": "string"
         },
         "insecureKubeletReadonlyPortEnabled": {
@@ -6541,6 +6598,10 @@
       "description": "NodePool contains the name and configuration for a cluster's node pool. Node pools are a set of nodes (i.e. VM's), with a common configuration and specification, under the control of the cluster master. They may have a set of Kubernetes labels applied to them, which may be used to reference them during pod scheduling. They may also be resized up or down, to accommodate the workload.",
       "id": "NodePool",
       "properties": {
+        "autopilotConfig": {
+          "$ref": "AutopilotConfig",
+          "description": "Specifies the autopilot configuration for this node pool. This field is exclusively reserved for Cluster Autoscaler to implement go/gke-managed-nodes-ccc-api"
+        },
         "autoscaling": {
           "$ref": "NodePoolAutoscaling",
           "description": "Autoscaler configuration for this NodePool. Autoscaler is enabled only if a valid configuration is present."
@@ -8482,7 +8543,8 @@
             "GCE_QUOTA_EXCEEDED",
             "SET_BY_OPERATOR",
             "CLOUD_KMS_KEY_ERROR",
-            "CA_EXPIRING"
+            "CA_EXPIRING",
+            "NODE_SERVICE_ACCOUNT_MISSING_PERMISSIONS"
           ],
           "enumDescriptions": [
             "UNKNOWN indicates a generic condition.",
@@ -8491,7 +8553,8 @@
             "Google Compute Engine quota was exceeded.",
             "Cluster state was manually changed by an SRE due to a system logic error.",
             "Unable to perform an encrypt operation against the CloudKMS key used for etcd level encryption.",
-            "Cluster CA is expiring soon. More codes TBA"
+            "Cluster CA is expiring soon.",
+            "Node service account is missing permissions."
           ],
           "type": "string"
         },
@@ -8524,7 +8587,8 @@
       "type": "object"
     },
     "TpuConfig": {
-      "description": "Configuration for Cloud TPU.",
+      "deprecated": true,
+      "description": "Configuration for Cloud TPU. This message is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.",
       "id": "TpuConfig",
       "properties": {
         "enabled": {
@@ -8911,11 +8975,13 @@
           "description": "The type of the event.",
           "enum": [
             "EVENT_TYPE_UNSPECIFIED",
-            "END_OF_SUPPORT"
+            "END_OF_SUPPORT",
+            "COS_MILESTONE_VERSION_UPDATE"
           ],
           "enumDescriptions": [
             "EVENT_TYPE_UNSPECIFIED indicates the event type is unspecified.",
-            "END_OF_SUPPORT indicates GKE version reaches end of support, check standard_support_end_time and extended_support_end_time for more details."
+            "END_OF_SUPPORT indicates GKE version reaches end of support, check standard_support_end_time and extended_support_end_time for more details.",
+            "COS_MILESTONE_VERSION_UPDATE indicates that the COS node image will update COS milestone version for new patch versions starting with the one in the description."
           ],
           "type": "string"
         },
@@ -9319,6 +9385,10 @@
       "properties": {
         "allowNetAdmin": {
           "description": "If true, workloads can use NET_ADMIN capability.",
+          "type": "boolean"
+        },
+        "autopilotCompatibilityAuditingEnabled": {
+          "description": "If true, enables the GCW Auditor that audits workloads on standard clusters.",
           "type": "boolean"
         }
       },

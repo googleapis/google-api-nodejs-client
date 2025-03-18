@@ -102,7 +102,7 @@ export namespace realtimebidding_v1 {
   /**
    * Real-time Bidding API
    *
-   * Allows external bidders to manage their RTB integration with Google. This includes managing bidder endpoints, QPS quotas, configuring what ad inventory to receive via pretargeting, submitting creatives for verification, and accessing creative metadata such as approval status.
+   * Allows external bidders to manage their RTB integration with Google. This includes managing bidder endpoints, QPS quotas, configuring what ad inventory to receive with pretargeting, submitting creatives for verification, and accessing creative metadata such as approval status.
    *
    * @example
    * ```js
@@ -261,7 +261,7 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$Bidder {
     /**
-     * Output only. An option to bypass pretargeting for private auctions and preferred deals. When true, bid requests from these nonguaranteed deals will always be sent. When false, bid requests will be subject to regular pretargeting configurations. Programmatic Guaranteed deals will always be sent to the bidder, regardless of the value for this flag. Auction packages are not impacted by this value and are subject to the regular pretargeting configurations.
+     * Output only. An option to bypass pretargeting for private auctions and preferred deals. When true, bid requests from these nonguaranteed deals will always be sent. When false, bid requests will be subject to regular pretargeting configurations. Programmatic Guaranteed deals will always be sent to the bidder, regardless of the value for this option. Auction packages are not impacted by this value and are subject to the regular pretargeting configurations.
      */
     bypassNonguaranteedDealsPretargeting?: boolean | null;
     /**
@@ -441,7 +441,7 @@ export namespace realtimebidding_v1 {
      */
     detectedAttributes?: string[] | null;
     /**
-     * Output only. IDs of the detected categories, if any. The taxonomy in which the categories are expressed is specified by the detected_categories_taxonomy field. Can be used to filter the response of the creatives.list method.
+     * Output only. IDs of the detected categories. The taxonomy in which the categories are expressed is specified by the detected_categories_taxonomy field. Use this in conjunction with BidRequest.bcat to avoid bidding on impressions where a given ad category is blocked, or to troubleshoot filtered bids. Can be used to filter the response of the creatives.list method.
      */
     detectedCategories?: string[] | null;
     /**

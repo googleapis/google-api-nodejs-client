@@ -498,6 +498,55 @@ export namespace backupdr_v1 {
     slaId?: string | null;
   }
   /**
+   * BackupConfigDetails has information about how the resource is configured for backups and about the most recent backup taken for this configuration.
+   */
+  export interface Schema$BackupConfigDetails {
+    /**
+     * Output only. The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format) of the resource that is applicable for the backup configuration. Example: "//compute.googleapis.com/projects/{project\}/zones/{zone\}/instances/{instance\}"
+     */
+    applicableResource?: string | null;
+    /**
+     * Output only. The full resource name of the backup config source resource. For example, "//backupdr.googleapis.com/v1/projects/{project\}/locations/{region\}/backupPlans/{backupplanId\}" or "//compute.googleapis.com/projects/{project\}/locations/{region\}/resourcePolicies/{resourcePolicyId\}".
+     */
+    backupConfigSource?: string | null;
+    /**
+     * Output only. The display name of the backup config source resource.
+     */
+    backupConfigSourceDisplayName?: string | null;
+    /**
+     * Backup and DR's Backup Plan specific data.
+     */
+    backupDrPlanConfig?: Schema$BackupDrPlanConfig;
+    /**
+     * Backup and DR's Template specific data.
+     */
+    backupDrTemplateConfig?: Schema$BackupDrTemplateConfig;
+    /**
+     * The locations where the backups are to be stored.
+     */
+    backupLocations?: Schema$BackupLocation[];
+    /**
+     * Output only. The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format) of the backup vault that will store the backups generated through this backup configuration. Example: "//backupdr.googleapis.com/v1/projects/{project\}/locations/{region\}/backupVaults/{backupvaultId\}"
+     */
+    backupVault?: string | null;
+    /**
+     * Output only. Timestamp of the latest successful backup created via this backup configuration.
+     */
+    latestSuccessfulBackupTime?: string | null;
+    /**
+     * Output only. Point in time recovery settings of the backup configuration resource.
+     */
+    pitrSettings?: Schema$PitrSettings;
+    /**
+     * Output only. The state of the backup config resource.
+     */
+    state?: string | null;
+    /**
+     * Output only. The type of the backup config resource.
+     */
+    type?: string | null;
+  }
+  /**
    * BackupConfigInfo has information about how the resource is configured for Backup and about the most recent backup to this vault.
    */
   export interface Schema$BackupConfigInfo {
@@ -521,6 +570,58 @@ export namespace backupdr_v1 {
      * Output only. If the last backup were successful, this field has the consistency date.
      */
     lastSuccessfulBackupConsistencyTime?: string | null;
+    /**
+     * Output only. If the last log backup were successful, this field has the consistency date.
+     */
+    lastSuccessfulLogBackupConsistencyTime?: string | null;
+  }
+  /**
+   * BackupDrPlanConfig has additional information about Backup and DR's Plan backup configuration.
+   */
+  export interface Schema$BackupDrPlanConfig {
+    /**
+     * Backup rules of the backup plan resource.
+     */
+    backupDrPlanRules?: Schema$BackupDrPlanRule[];
+  }
+  /**
+   * BackupDrPlanRule has rule specific information of the backup plan resource.
+   */
+  export interface Schema$BackupDrPlanRule {
+    /**
+     * Output only. Timestamp of the latest successful backup created via this backup rule.
+     */
+    lastSuccessfulBackupTime?: string | null;
+    /**
+     * Output only. Unique Id of the backup rule.
+     */
+    ruleId?: string | null;
+  }
+  /**
+   * BackupDrTemplateConfig has additional information about Backup and DR's Template backup configuration.
+   */
+  export interface Schema$BackupDrTemplateConfig {
+    /**
+     * Output only. The URI of the BackupDr template resource for the first party identity users.
+     */
+    firstPartyManagementUri?: string | null;
+    /**
+     * Output only. The URI of the BackupDr template resource for the third party identity users.
+     */
+    thirdPartyManagementUri?: string | null;
+  }
+  /**
+   * BackupLocation represents a cloud location where a backup can be stored.
+   */
+  export interface Schema$BackupLocation {
+    /**
+     * Output only. The id of the cloud location. Example: "us-central1"
+     */
+    locationId?: string | null;
+    /**
+     * Output only. The type of the location.
+     */
+    type?: string | null;
   }
   /**
    * BackupLock represents a single lock on a Backup resource. An unexpired lock on a Backup prevents the Backup from being deleted.
@@ -576,7 +677,7 @@ export namespace backupdr_v1 {
      */
     name?: string | null;
     /**
-     * Required. The resource type to which the `BackupPlan` will be applied. Examples include, "compute.googleapis.com/Instance", "sqladmin.googleapis.com/Instance", or "alloydb.googleapis.com/Cluster".
+     * Required.
      */
     resourceType?: string | null;
     /**
@@ -613,7 +714,7 @@ export namespace backupdr_v1 {
      */
     resource?: string | null;
     /**
-     * Required. Immutable. Resource type of workload on which backupplan is applied
+     * Required. Immutable.
      */
     resourceType?: string | null;
     /**
@@ -1471,6 +1572,19 @@ export namespace backupdr_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Response for ListResourceBackupConfigs.
+   */
+  export interface Schema$ListResourceBackupConfigsResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of ResourceBackupConfigs for the specified scope.
+     */
+    resourceBackupConfigs?: Schema$ResourceBackupConfig[];
+  }
+  /**
    * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
@@ -1749,6 +1863,15 @@ export namespace backupdr_v1 {
     verb?: string | null;
   }
   /**
+   * Point in time recovery settings of the backup configuration resource.
+   */
+  export interface Schema$PitrSettings {
+    /**
+     * Output only. Number of days to retain the backup.
+     */
+    retentionDays?: number | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -1777,6 +1900,47 @@ export namespace backupdr_v1 {
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
+  }
+  /**
+   * ResourceBackupConfig represents a resource along with its backup configurations.
+   */
+  export interface Schema$ResourceBackupConfig {
+    /**
+     * Backup configurations applying to the target resource, including those targeting its related/child resources. For example, backup configuration applicable to Compute Engine disks will be populated in this field for a Compute Engine VM which has the disk associated.
+     */
+    backupConfigsDetails?: Schema$BackupConfigDetails[];
+    /**
+     * Output only. Whether the target resource is configured for backup. This is true if the backup_configs_details is not empty.
+     */
+    backupConfigured?: boolean | null;
+    /**
+     * Identifier. The resource name of the ResourceBackupConfig. Format: projects/{project\}/locations/{location\}/resourceBackupConfigs/{uid\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format) of the cloud resource that this configuration applies to. Supported resource types are ResourceBackupConfig.ResourceType.
+     */
+    targetResource?: string | null;
+    /**
+     * Output only. The human friendly name of the target resource.
+     */
+    targetResourceDisplayName?: string | null;
+    /**
+     * Labels associated with the target resource.
+     */
+    targetResourceLabels?: {[key: string]: string} | null;
+    /**
+     * Output only. The type of the target resource.
+     */
+    targetResourceType?: string | null;
+    /**
+     * Output only. The unique identifier of the resource backup config.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Whether the target resource is protected by a backup vault. This is true if the backup_configs_details is not empty and any of the ResourceBackupConfig.backup_configs_details has a backup configuration with BackupConfigDetails.backup_vault set. set.
+     */
+    vaulted?: boolean | null;
   }
   /**
    * Request message for restoring from a Backup.
@@ -1948,7 +2112,7 @@ export namespace backupdr_v1 {
      */
     daysOfWeek?: string[] | null;
     /**
-     * Optional. Specifies frequency for hourly backups. A hourly frequency of 2 means jobs will run every 2 hours from start time till end time defined. This is required for `recurrence_type`, `HOURLY` and is not applicable otherwise. A validation error will occur if a value is supplied and `recurrence_type` is not `HOURLY`. Value of hourly frequency should be between 6 and 23. Reason for limit : We found that there is bandwidth limitation of 3GB/S for GMI while taking a backup and 5GB/S while doing a restore. Given the amount of parallel backups and restore we are targeting, this will potentially take the backup time to mins and hours (in worst case scenario).
+     * Optional. Specifies frequency for hourly backups. A hourly frequency of 2 means jobs will run every 2 hours from start time till end time defined. This is required for `recurrence_type`, `HOURLY` and is not applicable otherwise. A validation error will occur if a value is supplied and `recurrence_type` is not `HOURLY`. Value of hourly frequency should be between 4 and 23. Reason for limit : We found that there is bandwidth limitation of 3GB/S for GMI while taking a backup and 5GB/S while doing a restore. Given the amount of parallel backups and restore we are targeting, this will potentially take the backup time to mins and hours (in worst case scenario).
      */
     hourlyFrequency?: number | null;
     /**
@@ -2090,6 +2254,7 @@ export namespace backupdr_v1 {
     backupVaults: Resource$Projects$Locations$Backupvaults;
     managementServers: Resource$Projects$Locations$Managementservers;
     operations: Resource$Projects$Locations$Operations;
+    resourceBackupConfigs: Resource$Projects$Locations$Resourcebackupconfigs;
     serviceConfig: Resource$Projects$Locations$Serviceconfig;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -2106,6 +2271,8 @@ export namespace backupdr_v1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.resourceBackupConfigs =
+        new Resource$Projects$Locations$Resourcebackupconfigs(this.context);
       this.serviceConfig = new Resource$Projects$Locations$Serviceconfig(
         this.context
       );
@@ -6677,6 +6844,135 @@ export namespace backupdr_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Resourcebackupconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists ResourceBackupConfigs.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Resourcebackupconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Resourcebackupconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListResourceBackupConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Resourcebackupconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Resourcebackupconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListResourceBackupConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListResourceBackupConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Resourcebackupconfigs$List,
+      callback: BodyResponseCallback<Schema$ListResourceBackupConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListResourceBackupConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Resourcebackupconfigs$List
+        | BodyResponseCallback<Schema$ListResourceBackupConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListResourceBackupConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListResourceBackupConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListResourceBackupConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Resourcebackupconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Resourcebackupconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/resourceBackupConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListResourceBackupConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListResourceBackupConfigsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Resourcebackupconfigs$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results.
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location for which to retrieve resource backup configs. Format: 'projects/{project_id\}/locations/{location\}'. In Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Serviceconfig {

@@ -1052,6 +1052,10 @@ export namespace servicecontrol_v1 {
      */
     method?: string | null;
     /**
+     * The values from Origin header from the HTTP request, such as "https://console.cloud.google.com". Modern browsers can only have one origin. Special browsers and/or HTTP clients may require multiple origins.
+     */
+    origin?: string | null;
+    /**
      * The HTTP URL path, excluding the query parameters.
      */
     path?: string | null;

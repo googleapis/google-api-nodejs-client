@@ -382,6 +382,10 @@ export namespace forms_v1 {
      */
     linkedSheetId?: string | null;
     /**
+     * Output only. The publishing settings for a form. This field isn't set for legacy forms because they don't have the `publish_settings` field. All newly created forms support publish settings. Forms with `publish_settings` value set can call UpdatePublishSettings API to publish or unpublish the form.
+     */
+    publishSettings?: Schema$PublishSettings;
+    /**
      * Output only. The form URI to share with responders. This opens a page that allows the user to submit responses but not edit the questions.
      */
     responderUri?: string | null;
@@ -431,6 +435,10 @@ export namespace forms_v1 {
    * A form's settings.
    */
   export interface Schema$FormSettings {
+    /**
+     * Optional. The setting that determines whether the form collects email addresses from respondents.
+     */
+    emailCollectionType?: string | null;
     /**
      * Settings related to quiz forms and grading.
      */
@@ -666,6 +674,28 @@ export namespace forms_v1 {
    */
   export interface Schema$PageBreakItem {}
   /**
+   * The publishing settings of a form.
+   */
+  export interface Schema$PublishSettings {
+    /**
+     * Optional. The publishing state of a form. When updating `publish_state`, both `is_published` and `is_accepting_responses` must be set. However, setting `is_accepting_responses` to `true` and `is_published` to `false` isn't supported and returns an error.
+     */
+    publishState?: Schema$PublishState;
+  }
+  /**
+   * The publishing state of a form.
+   */
+  export interface Schema$PublishState {
+    /**
+     * Required. Whether the form accepts responses. If `is_published` is set to `false`, this field is forced to `false`.
+     */
+    isAcceptingResponses?: boolean | null;
+    /**
+     * Required. Whether the form is published and visible to others.
+     */
+    isPublished?: boolean | null;
+  }
+  /**
    * Any question. The specific type of question is known by its `kind`.
    */
   export interface Schema$Question {
@@ -837,6 +867,32 @@ export namespace forms_v1 {
      * The label to display describing the lowest point on the scale.
      */
     lowLabel?: string | null;
+  }
+  /**
+   * Updates the publish settings of a Form.
+   */
+  export interface Schema$SetPublishSettingsRequest {
+    /**
+     * Required. The desired publish settings to apply to the form.
+     */
+    publishSettings?: Schema$PublishSettings;
+    /**
+     * Optional. The `publish_settings` fields to update. This field mask accepts the following values: * `publish_state`: Updates or replaces all `publish_state` settings. * `"*"`: Updates or replaces all `publish_settings` fields.
+     */
+    updateMask?: string | null;
+  }
+  /**
+   * The response of a `SetPublishSettings` request.
+   */
+  export interface Schema$SetPublishSettingsResponse {
+    /**
+     * Required. The ID of the Form. This is same as the `Form.form_id` field.
+     */
+    formId?: string | null;
+    /**
+     * The publish settings of the form.
+     */
+    publishSettings?: Schema$PublishSettings;
   }
   /**
    * An answer to a question represented as text.
@@ -1301,6 +1357,101 @@ export namespace forms_v1 {
         return createAPIRequest<Schema$Form>(parameters);
       }
     }
+
+    /**
+     * Updates the publish settings of a form. Legacy forms aren't supported because they don't have the `publish_settings` field.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setPublishSettings(
+      params: Params$Resource$Forms$Setpublishsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setPublishSettings(
+      params?: Params$Resource$Forms$Setpublishsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SetPublishSettingsResponse>;
+    setPublishSettings(
+      params: Params$Resource$Forms$Setpublishsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setPublishSettings(
+      params: Params$Resource$Forms$Setpublishsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SetPublishSettingsResponse>,
+      callback: BodyResponseCallback<Schema$SetPublishSettingsResponse>
+    ): void;
+    setPublishSettings(
+      params: Params$Resource$Forms$Setpublishsettings,
+      callback: BodyResponseCallback<Schema$SetPublishSettingsResponse>
+    ): void;
+    setPublishSettings(
+      callback: BodyResponseCallback<Schema$SetPublishSettingsResponse>
+    ): void;
+    setPublishSettings(
+      paramsOrCallback?:
+        | Params$Resource$Forms$Setpublishsettings
+        | BodyResponseCallback<Schema$SetPublishSettingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SetPublishSettingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SetPublishSettingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SetPublishSettingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Forms$Setpublishsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Forms$Setpublishsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://forms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/forms/{formId}:setPublishSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['formId'],
+        pathParams: ['formId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SetPublishSettingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SetPublishSettingsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Forms$Batchupdate
@@ -1317,6 +1468,11 @@ export namespace forms_v1 {
   }
   export interface Params$Resource$Forms$Create extends StandardParameters {
     /**
+     * Optional. Whether the form is unpublished. If set to `true`, the form doesn't accept responses. If set to `false` or unset, the form is published and accepts responses.
+     */
+    unpublished?: boolean;
+
+    /**
      * Request body metadata
      */
     requestBody?: Schema$Form;
@@ -1326,6 +1482,18 @@ export namespace forms_v1 {
      * Required. The form ID.
      */
     formId?: string;
+  }
+  export interface Params$Resource$Forms$Setpublishsettings
+    extends StandardParameters {
+    /**
+     * Required. The ID of the form. You can get the id from `Form.form_id` field.
+     */
+    formId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetPublishSettingsRequest;
   }
 
   export class Resource$Forms$Responses {

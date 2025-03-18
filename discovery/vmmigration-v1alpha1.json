@@ -2220,7 +2220,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250213",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2310,7 +2310,7 @@
       "type": "object"
     },
     "AvailableUpdates": {
-      "description": "Holds informatiom about the available versions for upgrade.",
+      "description": "Holds information about the available versions for upgrade.",
       "id": "AvailableUpdates",
       "properties": {
         "inPlaceUpdate": {
@@ -3530,7 +3530,7 @@
       "type": "object"
     },
     "CutoverJob": {
-      "description": "CutoverJob message describes a cutover of a migrating VM. The CutoverJob is the operation of shutting down the VM, creating a snapshot and clonning the VM using the replicated snapshot.",
+      "description": "CutoverJob message describes a cutover of a migrating VM. The CutoverJob is the operation of shutting down the VM, creating a snapshot and cloning the VM using the replicated snapshot.",
       "id": "CutoverJob",
       "properties": {
         "computeEngineDisksTargetDetails": {

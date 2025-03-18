@@ -200,6 +200,26 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://containeranalysis.us-west4.rep.googleapis.com/",
       "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://containeranalysis.africa-south1.rep.googleapis.com/",
+      "location": "africa-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://containeranalysis.asia-northeast2.rep.googleapis.com/",
+      "location": "asia-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://containeranalysis.australia-southeast2.rep.googleapis.com/",
+      "location": "australia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://containeranalysis.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1655,7 +1675,7 @@
       }
     }
   },
-  "revision": "20240924",
+  "revision": "20250307",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1820,6 +1840,26 @@
             "$ref": "Signature"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BaseImage": {
+      "description": "BaseImage describes a base image of a container image.",
+      "id": "BaseImage",
+      "properties": {
+        "layerCount": {
+          "description": "The number of layers that the base image is composed of.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "The name of the base image.",
+          "type": "string"
+        },
+        "repository": {
+          "description": "The repository name in which the base image is from.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2058,7 +2098,7 @@
       "type": "object"
     },
     "BuildStep": {
-      "description": "A step in the build pipeline. Next ID: 21",
+      "description": "A step in the build pipeline. Next ID: 22",
       "id": "BuildStep",
       "properties": {
         "allowExitCodes": {
@@ -2115,6 +2155,12 @@
         "pullTiming": {
           "$ref": "TimeSpan",
           "description": "Output only. Stores timing information for pulling this build step's builder image only."
+        },
+        "results": {
+          "items": {
+            "$ref": "StepResult"
+          },
+          "type": "array"
         },
         "script": {
           "description": "A shell script to be executed in the step. When script is provided, the user cannot specify the entrypoint or args.",
@@ -2758,6 +2804,13 @@
       "description": "Artifacts produced by a build that should be uploaded upon successful completion of all build steps.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts",
       "properties": {
+        "goModules": {
+          "description": "Optional. A list of Go modules to be uploaded to Artifact Registry upon successful completion of all build steps. If any objects fail to be pushed, the build is marked FAILURE.",
+          "items": {
+            "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule"
+          },
+          "type": "array"
+        },
         "images": {
           "description": "A list of images to be pushed upon the successful completion of all build steps. The images will be pushed using the builder service account's credentials. The digests of the pushed images will be stored in the Build resource's results field. If any of the images fail to be pushed, the build is marked FAILURE.",
           "items": {
@@ -2812,6 +2865,37 @@
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan",
           "description": "Output only. Stores timing information for pushing all artifact objects.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule": {
+      "description": "Go module to upload to Artifact Registry upon successful completion of all build steps. A module refers to all dependencies in a go.mod file.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule",
+      "properties": {
+        "modulePath": {
+          "description": "Optional. The Go module's \"module path\". e.g. example.com/foo/v2",
+          "type": "string"
+        },
+        "moduleVersion": {
+          "description": "Optional. The Go module's semantic version in the form vX.Y.Z. e.g. v0.1.1 Pre-release identifiers can also be added by appending a dash and dot separated ASCII alphanumeric characters and hyphens. e.g. v0.2.3-alpha.x.12m.5",
+          "type": "string"
+        },
+        "repositoryLocation": {
+          "description": "Optional. Location of the Artifact Registry repository. i.e. us-east1 Defaults to the build’s location.",
+          "type": "string"
+        },
+        "repositoryName": {
+          "description": "Optional. Artifact Registry repository name. Specified Go modules will be zipped and uploaded to Artifact Registry with this location as a prefix. e.g. my-go-repo",
+          "type": "string"
+        },
+        "repositoryProjectId": {
+          "description": "Optional. Project ID of the Artifact Registry repository. Defaults to the build project.",
+          "type": "string"
+        },
+        "sourcePath": {
+          "description": "Optional. Source path of the go.mod file in the build's workspace. If not specified, this will default to the current directory. e.g. ~/code/go/mypackage",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2903,6 +2987,13 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "dependencies": {
+          "description": "Optional. Dependencies that the Cloud Build worker will fetch before executing user steps.",
+          "items": {
+            "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency"
+          },
+          "type": "array"
         },
         "failureInfo": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1BuildFailureInfo",
@@ -3169,6 +3260,10 @@
           "description": "Option to specify whether or not to apply bash style string operations to the substitutions. NOTE: this is always enabled for triggered builds and cannot be overridden in the build configuration file.",
           "type": "boolean"
         },
+        "enableStructuredLogging": {
+          "description": "Optional. Option to specify whether structured logging is enabled. If true, JSON-formatted logs are parsed as structured logs.",
+          "type": "boolean"
+        },
         "env": {
           "description": "A list of global environment variable definitions that will exist for all build steps in this build. If a variable is defined in both globally and in a build step, the variable will use the build step value. The elements are of the form \"KEY=VALUE\" for the environment variable \"KEY\" being given the value \"VALUE\".",
           "items": {
@@ -3250,6 +3345,10 @@
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption",
           "description": "Optional. Specification for execution on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information."
         },
+        "pubsubTopic": {
+          "description": "Optional. Option to specify the Pub/Sub topic to receive build status updates.",
+          "type": "string"
+        },
         "requestedVerifyOption": {
           "description": "Requested verifiability options.",
           "enum": [
@@ -3276,12 +3375,14 @@
               "NONE",
               "SHA256",
               "MD5",
+              "GO_MODULE_H1",
               "SHA512"
             ],
             "enumDescriptions": [
               "No hash requested.",
               "Use a sha256 hash.",
               "Use a md5 hash.",
+              "Dirhash of a Go module's source code which is then hex-encoded.",
               "Use a sha512 hash."
             ],
             "type": "string"
@@ -3520,6 +3621,64 @@
       },
       "type": "object"
     },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency": {
+      "description": "A dependency that the Cloud Build worker will fetch before executing user steps.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency",
+      "properties": {
+        "empty": {
+          "description": "If set to true disable all dependency fetching (ignoring the default source as well).",
+          "type": "boolean"
+        },
+        "gitSource": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency",
+          "description": "Represents a git repository as a build dependency."
+        }
+      },
+      "type": "object"
+    },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency": {
+      "description": "Represents a git repository as a build dependency.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency",
+      "properties": {
+        "depth": {
+          "description": "Optional. How much history should be fetched for the build (default 1, -1 for all history).",
+          "format": "int64",
+          "type": "string"
+        },
+        "destPath": {
+          "description": "Required. Where should the files be placed on the worker.",
+          "type": "string"
+        },
+        "recurseSubmodules": {
+          "description": "Optional. True if submodules should be fetched too (default false).",
+          "type": "boolean"
+        },
+        "repository": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository",
+          "description": "Required. The kind of repo (url or dev connect)."
+        },
+        "revision": {
+          "description": "Required. The revision that we will fetch the repo at.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository": {
+      "description": "A repository for a git source.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository",
+      "properties": {
+        "developerConnect": {
+          "description": "The Developer Connect Git repository link or the url that matches a repository link in the current project, formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`",
+          "type": "string"
+        },
+        "url": {
+          "description": "Location of the Git repository.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ContaineranalysisGoogleDevtoolsCloudbuildV1DeveloperConnectConfig": {
       "description": "This config defines the location of a source through Developer Connect.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1DeveloperConnectConfig",
@@ -3604,12 +3763,14 @@
             "NONE",
             "SHA256",
             "MD5",
+            "GO_MODULE_H1",
             "SHA512"
           ],
           "enumDescriptions": [
             "No hash requested.",
             "Use a sha256 hash.",
             "Use a md5 hash.",
+            "Dirhash of a Go module's source code which is then hex-encoded.",
             "Use a sha512 hash."
           ],
           "type": "string"
@@ -3707,6 +3868,13 @@
           "items": {
             "format": "byte",
             "type": "string"
+          },
+          "type": "array"
+        },
+        "goModules": {
+          "description": "Optional. Go module artifacts uploaded to Artifact Registry at the end of the build.",
+          "items": {
+            "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule"
           },
           "type": "array"
         },
@@ -3935,6 +4103,26 @@
         "startTime": {
           "description": "Start of time span.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule": {
+      "description": "A Go module artifact uploaded to Artifact Registry using the GoModule directive.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule",
+      "properties": {
+        "fileHashes": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes",
+          "description": "Hash types and values of the Go Module Artifact."
+        },
+        "pushTiming": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan",
+          "description": "Output only. Stores timing information for pushing the specified artifact.",
+          "readOnly": true
+        },
+        "uri": {
+          "description": "URI of the uploaded artifact.",
           "type": "string"
         }
       },
@@ -4399,7 +4587,7 @@
       "properties": {
         "cloudStorageLocation": {
           "$ref": "CloudStorageLocation",
-          "description": "Empty placeholder to denote that this is a Google Cloud Storage export request."
+          "description": "Optional. Empty placeholder to denote that this is a Google Cloud Storage export request."
         }
       },
       "type": "object"
@@ -4600,6 +4788,10 @@
         "filePath": {
           "description": "For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.",
           "type": "string"
+        },
+        "layerDetails": {
+          "$ref": "LayerDetails",
+          "description": "Each package found in a file should have its own layer metadata (that is, information from the origin layer of the package)."
         }
       },
       "type": "object"
@@ -4940,6 +5132,33 @@
         "directive": {
           "description": "Required. The recovered Dockerfile directive used to construct this layer. See https://docs.docker.com/engine/reference/builder/ for more information.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LayerDetails": {
+      "description": "Details about the layer a package was found in.",
+      "id": "LayerDetails",
+      "properties": {
+        "baseImages": {
+          "description": "The base images the layer is found within.",
+          "items": {
+            "$ref": "BaseImage"
+          },
+          "type": "array"
+        },
+        "command": {
+          "description": "The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built.",
+          "type": "string"
+        },
+        "diffId": {
+          "description": "The diff ID (typically a sha256 hash) of the layer in the container image.",
+          "type": "string"
+        },
+        "index": {
+          "description": "The index of the layer in the container image.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -6164,6 +6383,22 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StepResult": {
+      "description": "StepResult is the declaration of a result for a build step.",
+      "id": "StepResult",
+      "properties": {
+        "attestationContentName": {
+          "type": "string"
+        },
+        "attestationType": {
+          "type": "string"
+        },
+        "name": {
           "type": "string"
         }
       },

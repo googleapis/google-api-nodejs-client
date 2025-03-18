@@ -4479,6 +4479,164 @@
                         "https://www.googleapis.com/auth/dialogflow"
                       ]
                     }
+                  },
+                  "resources": {
+                    "versions": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a version for the specified Tool.",
+                          "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}/versions",
+                          "httpMethod": "POST",
+                          "id": "dialogflow.projects.locations.agents.tools.versions.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The tool to create a version for. Format: `projects//locations//agents//tools/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3beta1/{+parent}/versions",
+                          "request": {
+                            "$ref": "GoogleCloudDialogflowCxV3beta1ToolVersion"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3beta1ToolVersion"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes the specified version of the Tool.",
+                          "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}/versions/{versionsId}",
+                          "httpMethod": "DELETE",
+                          "id": "dialogflow.projects.locations.agents.tools.versions.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "force": {
+                              "description": "Optional. This field has no effect for Tools not being used. For Tools that are used: * If `force` is set to false, an error will be returned with message indicating the referenced resources. * If `force` is set to true, Dialogflow will remove the tool, as well as any references to the tool.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "name": {
+                              "description": "Required. The name of the tool version to delete. Format: `projects//locations//agents//tools//versions/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3beta1/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "get": {
+                          "description": "Retrieves the specified version of the Tool.",
+                          "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}/versions/{versionsId}",
+                          "httpMethod": "GET",
+                          "id": "dialogflow.projects.locations.agents.tools.versions.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the tool version. Format: `projects//locations//agents//tools//versions/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3beta1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3beta1ToolVersion"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "list": {
+                          "description": "List versions of the specified Tool.",
+                          "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}/versions",
+                          "httpMethod": "GET",
+                          "id": "dialogflow.projects.locations.agents.tools.versions.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The next_page_token value returned from a previous list request.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent of the tool versions. Format: `projects//locations//agents//tools/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3beta1/{+parent}/versions",
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "restore": {
+                          "description": "Retrieves the specified version of the Tool and stores it as the current tool draft, returning the tool with resources updated.",
+                          "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}/versions/{versionsId}:restore",
+                          "httpMethod": "POST",
+                          "id": "dialogflow.projects.locations.agents.tools.versions.restore",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the tool version. Format: `projects//locations//agents//tools//versions/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3beta1/{+name}:restore",
+                          "request": {
+                            "$ref": "GoogleCloudDialogflowCxV3beta1RestoreToolVersionRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        }
+                      }
+                    }
                   }
                 },
                 "transitionRouteGroups": {
@@ -5185,7 +5343,7 @@
       }
     }
   },
-  "revision": "20250121",
+  "revision": "20250310",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -5282,7 +5440,7 @@
           "type": "string"
         },
         "useTimeoutBasedEndpointing": {
-          "description": "Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.",
+          "description": "Use timeout based endpointing, interpreting endpointer sensitivity as seconds of timeout value.",
           "type": "boolean"
         }
       },
@@ -6449,7 +6607,7 @@
           "type": "array"
         },
         "transitionRoutes": {
-          "description": "A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.",
+          "description": "A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evaluated in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3TransitionRoute"
           },
@@ -7271,7 +7429,7 @@
           "type": "string"
         },
         "clientSecret": {
-          "description": "Required. The client secret provided by the 3rd party platform.",
+          "description": "Optional. The client secret provided by the 3rd party platform.",
           "type": "string"
         },
         "scopes": {
@@ -7631,7 +7789,7 @@
           "type": "string"
         },
         "useTimeoutBasedEndpointing": {
-          "description": "Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.",
+          "description": "Use timeout based endpointing, interpreting endpointer sensitivity as seconds of timeout value.",
           "type": "boolean"
         }
       },
@@ -7795,9 +7953,43 @@
       "description": "Settings for connecting to Git repository for an agent.",
       "id": "GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettings",
       "properties": {
+        "gitConnectionSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGitConnectionSettings",
+          "description": "Git connection settings."
+        },
         "githubSettings": {
           "$ref": "GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGithubSettings",
           "description": "GitHub settings."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGitConnectionSettings": {
+      "description": "Integration settings for a Git service hosted on Cloud Run.",
+      "id": "GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGitConnectionSettings",
+      "properties": {
+        "accessTokenSecret": {
+          "description": "The name of the SecretManager secret version resource storing the git access token. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        },
+        "branches": {
+          "description": "Optional. List of branches configured for the repository.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Required. Display name for the repository",
+          "type": "string"
+        },
+        "repositoryUri": {
+          "description": "Required. Git server reporitory URI.",
+          "type": "string"
+        },
+        "trackingBranch": {
+          "description": "Required. Default branch of the repository.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8036,7 +8228,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1BoostSpec",
       "properties": {
         "conditionBoostSpecs": {
-          "description": "Optional. Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
+          "description": "Optional. Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1BoostSpecConditionBoostSpec"
           },
@@ -10043,7 +10235,7 @@
           "type": "array"
         },
         "transitionRoutes": {
-          "description": "A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying \"help\" or \"can I talk to a human?\", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evalauted in the following order: * TransitionRoutes with intent specified. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.",
+          "description": "A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying \"help\" or \"can I talk to a human?\", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evaluated in the following order: * TransitionRoutes with intent specified. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1TransitionRoute"
           },
@@ -10595,6 +10787,59 @@
         },
         "name": {
           "description": "Custom placeholder value in the prompt text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1Handler": {
+      "description": "Handler can be used to define custom logic to be executed based on the user-specified triggers.",
+      "id": "GoogleCloudDialogflowCxV3beta1Handler",
+      "properties": {
+        "eventHandler": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1HandlerEventHandler",
+          "description": "A handler triggered by event."
+        },
+        "lifecycleHandler": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1HandlerLifecycleHandler",
+          "description": "A handler triggered during specific lifecycle of the playbook execution."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1HandlerEventHandler": {
+      "description": "A handler that is triggered by the specified event.",
+      "id": "GoogleCloudDialogflowCxV3beta1HandlerEventHandler",
+      "properties": {
+        "condition": {
+          "description": "Optional. The condition that must be satisfied to trigger this handler.",
+          "type": "string"
+        },
+        "event": {
+          "description": "Required. The name of the event that triggers this handler.",
+          "type": "string"
+        },
+        "fulfillment": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1Fulfillment",
+          "description": "Required. The fulfillment to call when the event occurs."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1HandlerLifecycleHandler": {
+      "description": "A handler that is triggered on the specific lifecycle_stage of the playbook execution.",
+      "id": "GoogleCloudDialogflowCxV3beta1HandlerLifecycleHandler",
+      "properties": {
+        "condition": {
+          "description": "Optional. The condition that must be satisfied to trigger this handler.",
+          "type": "string"
+        },
+        "fulfillment": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1Fulfillment",
+          "description": "Required. The fulfillment to call when this handler is triggered."
+        },
+        "lifecycleStage": {
+          "description": "Required. The name of the lifecycle stage that triggers this handler. Supported values: * `playbook-start` * `pre-action-selection` * `pre-action-execution`",
           "type": "string"
         }
       },
@@ -11547,6 +11792,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse": {
+      "description": "The response message for Tools.ListToolVersions.",
+      "id": "GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "toolVersions": {
+          "description": "The list of tool versions. There will be a maximum number of items returned based on the page_size field in the request.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1ToolVersion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1ListToolsResponse": {
       "description": "The response message for Tools.ListTools.",
       "id": "GoogleCloudDialogflowCxV3beta1ListToolsResponse",
@@ -11899,7 +12162,7 @@
           "type": "array"
         },
         "transitionRoutes": {
-          "description": "A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.",
+          "description": "A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evaluated in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1TransitionRoute"
           },
@@ -12050,6 +12313,13 @@
         "goal": {
           "description": "Required. High level description of the goal the playbook intend to accomplish. A goal should be concise since it's visible to other playbooks that may reference this playbook.",
           "type": "string"
+        },
+        "handlers": {
+          "description": "Optional. A list of registered handlers to execute based on the specified triggers.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1Handler"
+          },
+          "type": "array"
         },
         "inputParameterDefinitions": {
           "description": "Optional. Defined structured input parameters for this playbook.",
@@ -12812,6 +13082,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1RestoreToolVersionRequest": {
+      "description": "The request message for Tools.RestoreToolVersion.",
+      "id": "GoogleCloudDialogflowCxV3beta1RestoreToolVersionRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse": {
+      "description": "The response message for Tools.RestoreToolVersion.",
+      "id": "GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse",
+      "properties": {
+        "tool": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1Tool",
+          "description": "The updated tool."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1RolloutConfig": {
       "description": "The configuration for auto rollout.",
       "id": "GoogleCloudDialogflowCxV3beta1RolloutConfig",
@@ -12983,14 +13270,14 @@
       "id": "GoogleCloudDialogflowCxV3beta1SearchConfig",
       "properties": {
         "boostSpecs": {
-          "description": "Optional. Boosting configuration for the datastores.",
+          "description": "Optional. Boosting configuration for the datastores. Maps from datastore name to their boost configuration. Do not specify more than one BoostSpecs for each datastore name. If multiple BoostSpecs are provided for the same datastore name, the behavior is undefined.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1BoostSpecs"
           },
           "type": "array"
         },
         "filterSpecs": {
-          "description": "Optional. Filter configuration for the datastores.",
+          "description": "Optional. Filter configuration for the datastores. Maps from datastore name to the filter expression for that datastore. Do not specify more than one FilterSpecs for each datastore name. If multiple FilterSpecs are provided for the same datastore name, the behavior is undefined.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1FilterSpecs"
           },
@@ -13484,6 +13771,10 @@
       "description": "A tool provides a list of actions which are available to the Playbook to attain its goal. A Tool consists of a description of the tool's usage and a specification of the tool which contains the schema and authentication information.",
       "id": "GoogleCloudDialogflowCxV3beta1Tool",
       "properties": {
+        "connectorSpec": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ToolConnectorTool",
+          "description": "Integration connectors tool specification."
+        },
         "dataStoreSpec": {
           "$ref": "GoogleCloudDialogflowCxV3beta1ToolDataStoreTool",
           "description": "Data store search tool specification."
@@ -13713,6 +14004,88 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1ToolConnectorTool": {
+      "description": "A ConnectorTool enabling using Integration Connectors Connections as tools.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolConnectorTool",
+      "properties": {
+        "actions": {
+          "description": "Required. Actions for the tool to use.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1ToolConnectorToolAction"
+          },
+          "type": "array"
+        },
+        "endUserAuthConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfig",
+          "description": "Optional. Integration Connectors end-user authentication configuration. If configured, the end-user authentication fields will be passed in the Integration Connectors API request and override the admin, default authentication configured for the Connection. **Note**: The Connection must have authentication override enabled in order to specify an EUC configuration here - otherwise, the ConnectorTool creation will fail. See: https://cloud.google.com/application-integration/docs/configure-connectors-task#configure-authentication-override"
+        },
+        "name": {
+          "description": "Required. The full resource name of the referenced Integration Connectors Connection. Format: `projects/*/locations/*/connections/*`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolConnectorToolAction": {
+      "description": "Configuration of a Connection operation for the tool to use.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolConnectorToolAction",
+      "properties": {
+        "connectionActionId": {
+          "description": "ID of a Connection action for the tool to use.",
+          "type": "string"
+        },
+        "entityOperation": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ToolConnectorToolActionEntityOperation",
+          "description": "Entity operation configuration for the tool to use."
+        },
+        "inputFields": {
+          "description": "Optional. Entity fields to use as inputs for the operation. If no fields are specified, all fields of the Entity will be used.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "outputFields": {
+          "description": "Optional. Entity fields to return from the operation. If no fields are specified, all fields of the Entity will be returned.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolConnectorToolActionEntityOperation": {
+      "description": "Entity CRUD operation specification.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolConnectorToolActionEntityOperation",
+      "properties": {
+        "entityId": {
+          "description": "Required. ID of the entity.",
+          "type": "string"
+        },
+        "operation": {
+          "description": "Required. Operation to perform on the entity.",
+          "enum": [
+            "OPERATION_TYPE_UNSPECIFIED",
+            "LIST",
+            "GET",
+            "CREATE",
+            "UPDATE",
+            "DELETE"
+          ],
+          "enumDescriptions": [
+            "Operation type unspecified. Invalid, ConnectorTool create/update will fail.",
+            "List operation.",
+            "Get operation.",
+            "Create operation.",
+            "Update operation.",
+            "Delete operation."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1ToolDataStoreTool": {
       "description": "A DataStoreTool is a way to provide specifications needed to search a list of data stores.",
       "id": "GoogleCloudDialogflowCxV3beta1ToolDataStoreTool",
@@ -13735,6 +14108,51 @@
       "description": "A FallbackPrompt is a way to provide specifications for the Data Store fallback prompt when generating responses.",
       "id": "GoogleCloudDialogflowCxV3beta1ToolDataStoreToolFallbackPrompt",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfig": {
+      "description": "End-user authentication configuration used for Connection calls. The field values can either be hardcoded authentication values or the names of [session parameters](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#session-ref) or [request parameters](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#request-scoped). If parameter names are provided, then those parameters can be used to pass the authentication values dynamically, through `$session.params.param-id` or `$request.payload.param-id`.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfig",
+      "properties": {
+        "oauth2AuthCodeConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfigOauth2AuthCodeConfig",
+          "description": "Oauth 2.0 Authorization Code authentication."
+        },
+        "oauth2JwtBearerConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfigOauth2JwtBearerConfig",
+          "description": "JWT Profile Oauth 2.0 Authorization Grant authentication."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfigOauth2AuthCodeConfig": {
+      "description": "Oauth 2.0 Authorization Code authentication configuration.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfigOauth2AuthCodeConfig",
+      "properties": {
+        "oauthToken": {
+          "description": "Required. Oauth token value or parameter name to pass it through.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfigOauth2JwtBearerConfig": {
+      "description": "JWT Profile Oauth 2.0 Authorization Grant authentication configuration.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfigOauth2JwtBearerConfig",
+      "properties": {
+        "clientKey": {
+          "description": "Required. Client key value or parameter name to pass it through.",
+          "type": "string"
+        },
+        "issuer": {
+          "description": "Required. Issuer value or parameter name to pass it through.",
+          "type": "string"
+        },
+        "subject": {
+          "description": "Required. Subject value or parameter name to pass it through.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1ToolExtensionTool": {
@@ -13824,7 +14242,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1ToolTLSConfigCACert",
       "properties": {
         "cert": {
-          "description": "Required. The allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with \"subject alt name\". For instance a certificate can be self-signed using the following command, openssl x509 -req -days 200 -in example.com.csr \\ -signkey example.com.key \\ -out example.com.crt \\ -extfile <(printf \"\\nsubjectAltName='DNS:www.example.com'\")",
+          "description": "Required. The allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with \"subject alt name\". For instance a certificate can be self-signed using the following command: ``` openssl x509 -req -days 200 -in example.com.csr \\ -signkey example.com.key \\ -out example.com.crt \\ -extfile <(printf \"\\nsubjectAltName='DNS:www.example.com'\") ```",
           "format": "byte",
           "type": "string"
         },
@@ -13866,6 +14284,37 @@
         },
         "tool": {
           "description": "Required. The tool that should be used. Format: `projects//locations//agents//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolVersion": {
+      "description": "Tool version is a snapshot of the tool at certain timestamp.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolVersion",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Last time the tool version was created or modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the tool version.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The unique identifier of the tool version. Format: `projects//locations//agents//tools//versions/`.",
+          "type": "string"
+        },
+        "tool": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1Tool",
+          "description": "Required. Snapshot of the tool to be associated with this version."
+        },
+        "updateTime": {
+          "description": "Output only. Last time the tool version was created or modified.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -14536,7 +14985,7 @@
           "type": "string"
         },
         "clientSecret": {
-          "description": "Required. The client secret provided by the 3rd party platform.",
+          "description": "Optional. The client secret provided by the 3rd party platform.",
           "type": "string"
         },
         "scopes": {
@@ -15380,6 +15829,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2FreeFormSuggestion": {
+      "description": "Suggestion generated using free form generator.",
+      "id": "GoogleCloudDialogflowV2FreeFormSuggestion",
+      "properties": {
+        "response": {
+          "description": "Required. Free form suggestion.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2GcsDestination": {
       "description": "Google Cloud Storage location for the output.",
       "id": "GoogleCloudDialogflowV2GcsDestination",
@@ -15387,6 +15847,58 @@
         "uri": {
           "description": "The Google Cloud Storage URIs for the output. A URI is of the form: `gs://bucket/object-prefix-or-name` Whether a prefix or name is used depends on the use case. The requesting user must have \"write-permission\" to the bucket.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GenerateSuggestionsResponse": {
+      "description": "The response message for Conversations.GenerateSuggestions.",
+      "id": "GoogleCloudDialogflowV2GenerateSuggestionsResponse",
+      "properties": {
+        "generatorSuggestionAnswers": {
+          "description": "The answers generated for the conversation based on context.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer"
+          },
+          "type": "array"
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used as context for compiling suggestion. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer": {
+      "description": "A GeneratorSuggestion answer.",
+      "id": "GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer",
+      "properties": {
+        "answerRecord": {
+          "description": "Answer record that uniquely identifies the suggestion. This can be used to provide suggestion feedback.",
+          "type": "string"
+        },
+        "generatorSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2GeneratorSuggestion",
+          "description": "Suggestion details."
+        },
+        "sourceGenerator": {
+          "description": "The name of the generator used to generate this suggestion. Format: `projects//locations//generators/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GeneratorSuggestion": {
+      "description": "Suggestion generated using a Generator.",
+      "id": "GoogleCloudDialogflowV2GeneratorSuggestion",
+      "properties": {
+        "freeFormSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2FreeFormSuggestion",
+          "description": "Optional. Free form suggestion."
+        },
+        "summarySuggestion": {
+          "$ref": "GoogleCloudDialogflowV2SummarySuggestion",
+          "description": "Optional. Suggested summary."
         }
       },
       "type": "object"
@@ -16599,7 +17111,7 @@
           "type": "string"
         },
         "sendTime": {
-          "description": "Optional. The time when the message was sent.",
+          "description": "Optional. The time when the message was sent. For voice messages, this is the time when an utterance started.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -17073,6 +17585,10 @@
           "$ref": "GoogleRpcStatus",
           "description": "Error status if the request failed."
         },
+        "generateSuggestionsResponse": {
+          "$ref": "GoogleCloudDialogflowV2GenerateSuggestionsResponse",
+          "description": "Suggestions generated using generators triggered by customer or agent messages."
+        },
         "suggestArticlesResponse": {
           "$ref": "GoogleCloudDialogflowV2SuggestArticlesResponse",
           "description": "SuggestArticlesResponse if request is for ARTICLE_SUGGESTION."
@@ -17088,6 +17604,35 @@
         "suggestSmartRepliesResponse": {
           "$ref": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse",
           "description": "SuggestSmartRepliesResponse if request is for SMART_REPLY."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarySuggestion": {
+      "description": "Suggested summary of the conversation.",
+      "id": "GoogleCloudDialogflowV2SummarySuggestion",
+      "properties": {
+        "summarySections": {
+          "description": "Required. All the parts of generated summary.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarySuggestionSummarySection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarySuggestionSummarySection": {
+      "description": "A component of the generated summary.",
+      "id": "GoogleCloudDialogflowV2SummarySuggestionSummarySection",
+      "properties": {
+        "section": {
+          "description": "Required. Name of the section.",
+          "type": "string"
+        },
+        "summary": {
+          "description": "Required. Summary text for the section.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -17575,6 +18120,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1FreeFormSuggestion": {
+      "description": "Suggestion generated using free form generator.",
+      "id": "GoogleCloudDialogflowV2beta1FreeFormSuggestion",
+      "properties": {
+        "response": {
+          "description": "Required. Free form suggestion.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1GcsDestination": {
       "description": "Google Cloud Storage location for the output.",
       "id": "GoogleCloudDialogflowV2beta1GcsDestination",
@@ -17582,6 +18138,58 @@
         "uri": {
           "description": "Required. The Google Cloud Storage URIs for the output. A URI is of the form: `gs://bucket/object-prefix-or-name` Whether a prefix or name is used depends on the use case. The requesting user must have \"write-permission\" to the bucket.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse": {
+      "description": "The response message for Conversations.GenerateSuggestions.",
+      "id": "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse",
+      "properties": {
+        "generatorSuggestionAnswers": {
+          "description": "The answers generated for the conversation based on context.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer"
+          },
+          "type": "array"
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used as context for compiling suggestion. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer": {
+      "description": "A GeneratorSuggestion answer.",
+      "id": "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer",
+      "properties": {
+        "answerRecord": {
+          "description": "Answer record that uniquely identifies the suggestion. This can be used to provide suggestion feedback.",
+          "type": "string"
+        },
+        "generatorSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2beta1GeneratorSuggestion",
+          "description": "Suggestion details."
+        },
+        "sourceGenerator": {
+          "description": "The name of the generator used to generate this suggestion. Format: `projects//locations//generators/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GeneratorSuggestion": {
+      "description": "Suggestion generated using a Generator.",
+      "id": "GoogleCloudDialogflowV2beta1GeneratorSuggestion",
+      "properties": {
+        "freeFormSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2beta1FreeFormSuggestion",
+          "description": "Optional. Free form suggestion."
+        },
+        "summarySuggestion": {
+          "$ref": "GoogleCloudDialogflowV2beta1SummarySuggestion",
+          "description": "Optional. Suggested summary."
         }
       },
       "type": "object"
@@ -19121,7 +19729,7 @@
           "type": "array"
         },
         "sendTime": {
-          "description": "Optional. The time when the message was sent.",
+          "description": "Optional. The time when the message was sent. For voice messages, this is the time when an utterance started.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -19311,7 +19919,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff": {
-      "description": "Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.",
+      "description": "Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a Dialogflow CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.",
       "id": "GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff",
       "properties": {
         "metadata": {
@@ -19734,6 +20342,10 @@
           "$ref": "GoogleRpcStatus",
           "description": "Error status if the request failed."
         },
+        "generateSuggestionsResponse": {
+          "$ref": "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse",
+          "description": "Suggestions generated using generators triggered by customer or agent messages."
+        },
         "suggestArticlesResponse": {
           "$ref": "GoogleCloudDialogflowV2beta1SuggestArticlesResponse",
           "description": "SuggestArticlesResponse if request is for ARTICLE_SUGGESTION."
@@ -19757,6 +20369,35 @@
         "suggestSmartRepliesResponse": {
           "$ref": "GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse",
           "description": "SuggestSmartRepliesResponse if request is for SMART_REPLY."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SummarySuggestion": {
+      "description": "Suggested summary of the conversation.",
+      "id": "GoogleCloudDialogflowV2beta1SummarySuggestion",
+      "properties": {
+        "summarySections": {
+          "description": "Required. All the parts of generated summary.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection": {
+      "description": "A component of the generated summary.",
+      "id": "GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection",
+      "properties": {
+        "section": {
+          "description": "Required. Name of the section.",
+          "type": "string"
+        },
+        "summary": {
+          "description": "Required. Summary text for the section.",
+          "type": "string"
         }
       },
       "type": "object"

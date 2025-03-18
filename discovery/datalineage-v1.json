@@ -113,6 +113,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://datalineage.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://datalineage.europe-west2.rep.googleapis.com/",
       "location": "europe-west2"
     },
@@ -1035,7 +1040,7 @@
       }
     }
   },
-  "revision": "20241202",
+  "revision": "20250207",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
     "GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest": {
@@ -1084,7 +1089,7 @@
       "id": "GoogleCloudDatacatalogLineageV1EntityReference",
       "properties": {
         "fullyQualifiedName": {
-          "description": "Required. [Fully Qualified Name (FQN)](https://cloud.google.com/data-catalog/docs/fully-qualified-names) of the entity.",
+          "description": "Required. [Fully Qualified Name (FQN)](https://cloud.google.com/dataplex/docs/fully-qualified-names) of the entity.",
           "type": "string"
         }
       },
@@ -1285,7 +1290,7 @@
       "id": "GoogleCloudDatacatalogLineageV1Origin",
       "properties": {
         "name": {
-          "description": "If the source_type isn't CUSTOM, the value of this field should be a GCP resource name of the system, which reports lineage. The project and location parts of the resource name must match the project and location of the lineage resource being created. Examples: - `{source_type: COMPOSER, name: \"projects/foo/locations/us/environments/bar\"}` - `{source_type: BIGQUERY, name: \"projects/foo/locations/eu\"}` - `{source_type: CUSTOM, name: \"myCustomIntegration\"}`",
+          "description": "If the source_type isn't CUSTOM, the value of this field should be a Google Cloud resource name of the system, which reports lineage. The project and location parts of the resource name must match the project and location of the lineage resource being created. Examples: - `{source_type: COMPOSER, name: \"projects/foo/locations/us/environments/bar\"}` - `{source_type: BIGQUERY, name: \"projects/foo/locations/eu\"}` - `{source_type: CUSTOM, name: \"myCustomIntegration\"}`",
           "type": "string"
         },
         "sourceType": {

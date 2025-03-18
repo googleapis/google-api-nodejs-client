@@ -286,6 +286,11 @@
                       "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/addressGroups",
@@ -1314,6 +1319,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/addressGroups",
@@ -1991,6 +2001,168 @@
                   },
                   "response": {
                     "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "backendAuthenticationConfigs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new BackendAuthenticationConfig in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "backendAuthenticationConfigId": {
+                      "description": "Required. Short name of the BackendAuthenticationConfig resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. \"backend-auth-config\".",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the BackendAuthenticationConfig. Must be in the format `projects/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/backendAuthenticationConfigs",
+                  "request": {
+                    "$ref": "BackendAuthenticationConfig"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single BackendAuthenticationConfig to BackendAuthenticationConfig.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs/{backendAuthenticationConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. A name of the BackendAuthenticationConfig to delete. Must be in the format `projects/*/locations/{location}/backendAuthenticationConfigs/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backendAuthenticationConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single BackendAuthenticationConfig to BackendAuthenticationConfig.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs/{backendAuthenticationConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the BackendAuthenticationConfig to get. Must be in the format `projects/*/locations/{location}/backendAuthenticationConfigs/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backendAuthenticationConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "BackendAuthenticationConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists BackendAuthenticationConfigs in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of BackendAuthenticationConfigs to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListBackendAuthenticationConfigsResponse` Indicates that this is a continuation of a prior `ListBackendAuthenticationConfigs` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the BackendAuthenticationConfigs should be listed, specified in the format `projects/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/backendAuthenticationConfigs",
+                  "response": {
+                    "$ref": "ListBackendAuthenticationConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single BackendAuthenticationConfig to BackendAuthenticationConfig.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs/{backendAuthenticationConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the BackendAuthenticationConfig resource. It matches the pattern `projects/*/locations/{location}/backendAuthenticationConfigs/{backend_authentication_config}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backendAuthenticationConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the BackendAuthenticationConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "BackendAuthenticationConfig"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2743,7 +2915,7 @@
             "interceptDeploymentGroups": {
               "methods": {
                 "create": {
-                  "description": "Creates a new InterceptDeploymentGroup in a given project and location.",
+                  "description": "Creates a deployment group in a given project and location. See https://google.aip.dev/133.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.interceptDeploymentGroups.create",
@@ -2752,19 +2924,19 @@
                   ],
                   "parameters": {
                     "interceptDeploymentGroupId": {
-                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and intercept_deployment_group_id from the method_signature of Create RPC",
+                      "description": "Required. The ID to use for the new deployment group, which will become the final component of the deployment group's resource name.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Value for parent.",
+                      "description": "Required. The parent resource where this deployment group will be created. Format: projects/{project}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -2781,7 +2953,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single InterceptDeploymentGroup.",
+                  "description": "Deletes a deployment group. See https://google.aip.dev/135.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups/{interceptDeploymentGroupsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.interceptDeploymentGroups.delete",
@@ -2790,14 +2962,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The deployment group to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeploymentGroups/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -2811,7 +2983,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single InterceptDeploymentGroup.",
+                  "description": "Gets a specific deployment group. See https://google.aip.dev/131.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups/{interceptDeploymentGroupsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.interceptDeploymentGroups.get",
@@ -2820,7 +2992,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The name of the deployment group to retrieve. Format: projects/{project}/locations/{location}/interceptDeploymentGroups/{intercept_deployment_group}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeploymentGroups/[^/]+$",
                       "required": true,
@@ -2836,7 +3008,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists InterceptDeploymentGroups in a given project and location.",
+                  "description": "Lists deployment groups in a given project and location. See https://google.aip.dev/132.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.interceptDeploymentGroups.list",
@@ -2845,28 +3017,28 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filtering results",
+                      "description": "Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results",
+                      "description": "Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "description": "Optional. A page token, received from a previous `ListInterceptDeploymentGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListInterceptDeploymentGroups` must match the call that provided the page token. See https://google.aip.dev/158 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListInterceptDeploymentGroupsRequest",
+                      "description": "Required. The parent, which owns this collection of deployment groups. Example: `projects/123456789/locations/global`. See https://google.aip.dev/132 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2882,7 +3054,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single InterceptDeploymentGroup.",
+                  "description": "Updates a deployment group. See https://google.aip.dev/134.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups/{interceptDeploymentGroupsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.interceptDeploymentGroups.patch",
@@ -2891,19 +3063,19 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. Then name of the InterceptDeploymentGroup.",
+                      "description": "Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/interceptDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeploymentGroups/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the InterceptDeploymentGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. The list of fields to update. Fields are specified relative to the deployment group (e.g. `description`; *not* `intercept_deployment_group.description`). See https://google.aip.dev/161 for more details.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -2925,7 +3097,7 @@
             "interceptDeployments": {
               "methods": {
                 "create": {
-                  "description": "Creates a new InterceptDeployment in a given project and location.",
+                  "description": "Creates a deployment in a given project and location. See https://google.aip.dev/133.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeployments",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.interceptDeployments.create",
@@ -2934,19 +3106,19 @@
                   ],
                   "parameters": {
                     "interceptDeploymentId": {
-                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and intercept_deployment_id from the method_signature of Create RPC",
+                      "description": "Required. The ID to use for the new deployment, which will become the final component of the deployment's resource name.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Value for parent.",
+                      "description": "Required. The parent resource where this deployment will be created. Format: projects/{project}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -2963,7 +3135,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single InterceptDeployment.",
+                  "description": "Deletes a deployment. See https://google.aip.dev/135.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeployments/{interceptDeploymentsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.interceptDeployments.delete",
@@ -2979,7 +3151,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -2993,7 +3165,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single InterceptDeployment.",
+                  "description": "Gets a specific deployment. See https://google.aip.dev/131.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeployments/{interceptDeploymentsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.interceptDeployments.get",
@@ -3002,7 +3174,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The name of the deployment to retrieve. Format: projects/{project}/locations/{location}/interceptDeployments/{intercept_deployment}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeployments/[^/]+$",
                       "required": true,
@@ -3018,7 +3190,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists InterceptDeployments in a given project and location.",
+                  "description": "Lists deployments in a given project and location. See https://google.aip.dev/132.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeployments",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.interceptDeployments.list",
@@ -3027,28 +3199,28 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filtering results",
+                      "description": "Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results",
+                      "description": "Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "description": "Optional. A page token, received from a previous `ListInterceptDeployments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListInterceptDeployments` must match the call that provided the page token. See https://google.aip.dev/158 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListInterceptDeploymentsRequest",
+                      "description": "Required. The parent, which owns this collection of deployments. Example: `projects/123456789/locations/us-central1-a`. See https://google.aip.dev/132 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3064,7 +3236,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single InterceptDeployment.",
+                  "description": "Updates a deployment. See https://google.aip.dev/134.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptDeployments/{interceptDeploymentsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.interceptDeployments.patch",
@@ -3073,19 +3245,19 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. The name of the InterceptDeployment.",
+                      "description": "Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/interceptDeployments/my-dep`. See https://google.aip.dev/122 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeployments/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the InterceptDeployment resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. The list of fields to update. Fields are specified relative to the deployment (e.g. `description`; *not* `intercept_deployment.description`). See https://google.aip.dev/161 for more details.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -3107,7 +3279,7 @@
             "interceptEndpointGroupAssociations": {
               "methods": {
                 "create": {
-                  "description": "Creates a new InterceptEndpointGroupAssociation in a given project and location.",
+                  "description": "Creates an association in a given project and location. See https://google.aip.dev/133.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.create",
@@ -3116,19 +3288,19 @@
                   ],
                   "parameters": {
                     "interceptEndpointGroupAssociationId": {
-                      "description": "Optional. Id of the requesting object If auto-generating Id server-side, remove this field and intercept_endpoint_group_association_id from the method_signature of Create RPC",
+                      "description": "Optional. The ID to use for the new association, which will become the final component of the endpoint group's resource name. If not provided, the server will generate a unique ID.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Value for parent.",
+                      "description": "Required. The parent resource where this association will be created. Format: projects/{project}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3145,7 +3317,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single InterceptEndpointGroupAssociation.",
+                  "description": "Deletes an association. See https://google.aip.dev/135.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations/{interceptEndpointGroupAssociationsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.delete",
@@ -3154,14 +3326,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The association to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroupAssociations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3175,7 +3347,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single InterceptEndpointGroupAssociation.",
+                  "description": "Gets a specific association. See https://google.aip.dev/131.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations/{interceptEndpointGroupAssociationsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.get",
@@ -3184,7 +3356,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The name of the association to retrieve. Format: projects/{project}/locations/{location}/interceptEndpointGroupAssociations/{intercept_endpoint_group_association}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroupAssociations/[^/]+$",
                       "required": true,
@@ -3200,7 +3372,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists InterceptEndpointGroupAssociations in a given project and location.",
+                  "description": "Lists associations in a given project and location. See https://google.aip.dev/132.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.list",
@@ -3209,28 +3381,28 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filtering results",
+                      "description": "Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results",
+                      "description": "Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "description": "Optional. A page token, received from a previous `ListInterceptEndpointGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListInterceptEndpointGroups` must match the call that provided the page token. See https://google.aip.dev/158 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListInterceptEndpointGroupAssociationsRequest",
+                      "description": "Required. The parent, which owns this collection of associations. Example: `projects/123456789/locations/global`. See https://google.aip.dev/132 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3246,7 +3418,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single InterceptEndpointGroupAssociation.",
+                  "description": "Updates an association. See https://google.aip.dev/134.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations/{interceptEndpointGroupAssociationsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.patch",
@@ -3255,19 +3427,19 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. The name of the InterceptEndpointGroupAssociation.",
+                      "description": "Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/interceptEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroupAssociations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the InterceptEndpointGroupAssociation resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. The list of fields to update. Fields are specified relative to the association (e.g. `description`; *not* `intercept_endpoint_group_association.description`). See https://google.aip.dev/161 for more details.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -3289,7 +3461,7 @@
             "interceptEndpointGroups": {
               "methods": {
                 "create": {
-                  "description": "Creates a new InterceptEndpointGroup in a given project and location.",
+                  "description": "Creates an endpoint group in a given project and location. See https://google.aip.dev/133.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.interceptEndpointGroups.create",
@@ -3298,19 +3470,19 @@
                   ],
                   "parameters": {
                     "interceptEndpointGroupId": {
-                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and intercept_endpoint_group_id from the method_signature of Create RPC",
+                      "description": "Required. The ID to use for the endpoint group, which will become the final component of the endpoint group's resource name.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Value for parent.",
+                      "description": "Required. The parent resource where this endpoint group will be created. Format: projects/{project}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3327,7 +3499,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single InterceptEndpointGroup.",
+                  "description": "Deletes an endpoint group. See https://google.aip.dev/135.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups/{interceptEndpointGroupsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.interceptEndpointGroups.delete",
@@ -3336,14 +3508,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The endpoint group to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroups/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3357,7 +3529,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single InterceptEndpointGroup.",
+                  "description": "Gets a specific endpoint group. See https://google.aip.dev/131.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups/{interceptEndpointGroupsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.interceptEndpointGroups.get",
@@ -3366,7 +3538,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The name of the endpoint group to retrieve. Format: projects/{project}/locations/{location}/interceptEndpointGroups/{intercept_endpoint_group}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroups/[^/]+$",
                       "required": true,
@@ -3382,7 +3554,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists InterceptEndpointGroups in a given project and location.",
+                  "description": "Lists endpoint groups in a given project and location. See https://google.aip.dev/132.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.interceptEndpointGroups.list",
@@ -3391,28 +3563,28 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filtering results",
+                      "description": "Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results",
+                      "description": "Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "description": "Optional. A page token, received from a previous `ListInterceptEndpointGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListInterceptEndpointGroups` must match the call that provided the page token. See https://google.aip.dev/158 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListInterceptEndpointGroupsRequest",
+                      "description": "Required. The parent, which owns this collection of endpoint groups. Example: `projects/123456789/locations/global`. See https://google.aip.dev/132 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3428,7 +3600,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single InterceptEndpointGroup.",
+                  "description": "Updates an endpoint group. See https://google.aip.dev/134.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups/{interceptEndpointGroupsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.interceptEndpointGroups.patch",
@@ -3437,19 +3609,19 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. The name of the InterceptEndpointGroup.",
+                      "description": "Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/interceptEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroups/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the InterceptEndpointGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. The list of fields to update. Fields are specified relative to the endpoint group (e.g. `description`; *not* `intercept_endpoint_group.description`). See https://google.aip.dev/161 for more details.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -3471,7 +3643,7 @@
             "mirroringDeploymentGroups": {
               "methods": {
                 "create": {
-                  "description": "Creates a new MirroringDeploymentGroup in a given project and location.",
+                  "description": "Creates a deployment group in a given project and location. See https://google.aip.dev/133.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeploymentGroups",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.mirroringDeploymentGroups.create",
@@ -3480,19 +3652,19 @@
                   ],
                   "parameters": {
                     "mirroringDeploymentGroupId": {
-                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and mirroring_deployment_group_id from the method_signature of Create RPC",
+                      "description": "Required. The ID to use for the new deployment group, which will become the final component of the deployment group's resource name.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Value for parent.",
+                      "description": "Required. The parent resource where this deployment group will be created. Format: projects/{project}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3509,7 +3681,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single MirroringDeploymentGroup.",
+                  "description": "Deletes a deployment group. See https://google.aip.dev/135.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeploymentGroups/{mirroringDeploymentGroupsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.mirroringDeploymentGroups.delete",
@@ -3518,14 +3690,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The deployment group to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeploymentGroups/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3539,7 +3711,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single MirroringDeploymentGroup.",
+                  "description": "Gets a specific deployment group. See https://google.aip.dev/131.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeploymentGroups/{mirroringDeploymentGroupsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringDeploymentGroups.get",
@@ -3548,7 +3720,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The name of the deployment group to retrieve. Format: projects/{project}/locations/{location}/mirroringDeploymentGroups/{mirroring_deployment_group}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeploymentGroups/[^/]+$",
                       "required": true,
@@ -3564,7 +3736,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists MirroringDeploymentGroups in a given project and location.",
+                  "description": "Lists deployment groups in a given project and location. See https://google.aip.dev/132.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeploymentGroups",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringDeploymentGroups.list",
@@ -3573,28 +3745,28 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filtering results",
+                      "description": "Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results",
+                      "description": "Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "description": "Optional. A page token, received from a previous `ListMirroringDeploymentGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMirroringDeploymentGroups` must match the call that provided the page token. See https://google.aip.dev/158 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListMirroringDeploymentGroupsRequest",
+                      "description": "Required. The parent, which owns this collection of deployment groups. Example: `projects/123456789/locations/global`. See https://google.aip.dev/132 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3610,7 +3782,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single MirroringDeploymentGroup.",
+                  "description": "Updates a deployment group. See https://google.aip.dev/134.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeploymentGroups/{mirroringDeploymentGroupsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.mirroringDeploymentGroups.patch",
@@ -3619,19 +3791,19 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. Then name of the MirroringDeploymentGroup.",
+                      "description": "Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeploymentGroups/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the MirroringDeploymentGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. The list of fields to update. Fields are specified relative to the deployment group (e.g. `description`; *not* `mirroring_deployment_group.description`). See https://google.aip.dev/161 for more details.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -3653,7 +3825,7 @@
             "mirroringDeployments": {
               "methods": {
                 "create": {
-                  "description": "Creates a new MirroringDeployment in a given project and location.",
+                  "description": "Creates a deployment in a given project and location. See https://google.aip.dev/133.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.mirroringDeployments.create",
@@ -3662,19 +3834,19 @@
                   ],
                   "parameters": {
                     "mirroringDeploymentId": {
-                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and mirroring_deployment_id from the method_signature of Create RPC",
+                      "description": "Required. The ID to use for the new deployment, which will become the final component of the deployment's resource name.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Value for parent.",
+                      "description": "Required. The parent resource where this deployment will be created. Format: projects/{project}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3691,7 +3863,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single MirroringDeployment.",
+                  "description": "Deletes a deployment. See https://google.aip.dev/135.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments/{mirroringDeploymentsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.mirroringDeployments.delete",
@@ -3707,7 +3879,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3721,7 +3893,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single MirroringDeployment.",
+                  "description": "Gets a specific deployment. See https://google.aip.dev/131.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments/{mirroringDeploymentsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringDeployments.get",
@@ -3730,7 +3902,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The name of the deployment to retrieve. Format: projects/{project}/locations/{location}/mirroringDeployments/{mirroring_deployment}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeployments/[^/]+$",
                       "required": true,
@@ -3746,7 +3918,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists MirroringDeployments in a given project and location.",
+                  "description": "Lists deployments in a given project and location. See https://google.aip.dev/132.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringDeployments.list",
@@ -3755,28 +3927,28 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filtering results",
+                      "description": "Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results",
+                      "description": "Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "description": "Optional. A page token, received from a previous `ListMirroringDeployments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMirroringDeployments` must match the call that provided the page token. See https://google.aip.dev/158 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListMirroringDeploymentsRequest",
+                      "description": "Required. The parent, which owns this collection of deployments. Example: `projects/123456789/locations/us-central1-a`. See https://google.aip.dev/132 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3792,7 +3964,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single MirroringDeployment.",
+                  "description": "Updates a deployment. See https://google.aip.dev/134.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringDeployments/{mirroringDeploymentsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.mirroringDeployments.patch",
@@ -3801,19 +3973,19 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. The name of the MirroringDeployment.",
+                      "description": "Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/mirroringDeployments/my-dep`. See https://google.aip.dev/122 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringDeployments/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the MirroringDeployment resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. The list of fields to update. Fields are specified relative to the deployment (e.g. `description`; *not* `mirroring_deployment.description`). See https://google.aip.dev/161 for more details.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -3835,7 +4007,7 @@
             "mirroringEndpointGroupAssociations": {
               "methods": {
                 "create": {
-                  "description": "Creates a new MirroringEndpointGroupAssociation in a given project and location.",
+                  "description": "Creates an association in a given project and location. See https://google.aip.dev/133.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.create",
@@ -3844,19 +4016,19 @@
                   ],
                   "parameters": {
                     "mirroringEndpointGroupAssociationId": {
-                      "description": "Optional. Id of the requesting object If auto-generating Id server-side, remove this field and mirroring_endpoint_group_association_id from the method_signature of Create RPC",
+                      "description": "Optional. The ID to use for the new association, which will become the final component of the endpoint group's resource name. If not provided, the server will generate a unique ID.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Value for parent.",
+                      "description": "Required. The parent resource where this association will be created. Format: projects/{project}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3873,7 +4045,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single MirroringEndpointGroupAssociation.",
+                  "description": "Deletes an association. See https://google.aip.dev/135.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociationsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.delete",
@@ -3882,14 +4054,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The association to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroupAssociations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3903,7 +4075,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single MirroringEndpointGroupAssociation.",
+                  "description": "Gets a specific association. See https://google.aip.dev/131.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociationsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.get",
@@ -3912,7 +4084,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The name of the association to retrieve. Format: projects/{project}/locations/{location}/mirroringEndpointGroupAssociations/{mirroring_endpoint_group_association}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroupAssociations/[^/]+$",
                       "required": true,
@@ -3928,7 +4100,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists MirroringEndpointGroupAssociations in a given project and location.",
+                  "description": "Lists associations in a given project and location. See https://google.aip.dev/132.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.list",
@@ -3937,28 +4109,28 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filtering results",
+                      "description": "Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results",
+                      "description": "Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "description": "Optional. A page token, received from a previous `ListMirroringEndpointGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMirroringEndpointGroups` must match the call that provided the page token. See https://google.aip.dev/158 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListMirroringEndpointGroupAssociationsRequest",
+                      "description": "Required. The parent, which owns this collection of associations. Example: `projects/123456789/locations/global`. See https://google.aip.dev/132 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3974,7 +4146,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single MirroringEndpointGroupAssociation.",
+                  "description": "Updates an association. See https://google.aip.dev/134.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociationsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroupAssociations.patch",
@@ -3983,19 +4155,19 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. The name of the MirroringEndpointGroupAssociation.",
+                      "description": "Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroupAssociations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the MirroringEndpointGroupAssociation resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. The list of fields to update. Fields are specified relative to the association (e.g. `description`; *not* `mirroring_endpoint_group_association.description`). See https://google.aip.dev/161 for more details.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -4017,7 +4189,7 @@
             "mirroringEndpointGroups": {
               "methods": {
                 "create": {
-                  "description": "Creates a new MirroringEndpointGroup in a given project and location.",
+                  "description": "Creates an endpoint group in a given project and location. See https://google.aip.dev/133.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroups.create",
@@ -4026,19 +4198,19 @@
                   ],
                   "parameters": {
                     "mirroringEndpointGroupId": {
-                      "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and mirroring_endpoint_group_id from the method_signature of Create RPC",
+                      "description": "Required. The ID to use for the endpoint group, which will become the final component of the endpoint group's resource name.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Value for parent.",
+                      "description": "Required. The parent resource where this endpoint group will be created. Format: projects/{project}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -4055,7 +4227,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single MirroringEndpointGroup.",
+                  "description": "Deletes an endpoint group. See https://google.aip.dev/135.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups/{mirroringEndpointGroupsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroups.delete",
@@ -4064,14 +4236,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The endpoint group to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroups/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -4085,7 +4257,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single MirroringEndpointGroup.",
+                  "description": "Gets a specific endpoint group. See https://google.aip.dev/131.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups/{mirroringEndpointGroupsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroups.get",
@@ -4094,7 +4266,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. The name of the endpoint group to retrieve. Format: projects/{project}/locations/{location}/mirroringEndpointGroups/{mirroring_endpoint_group}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroups/[^/]+$",
                       "required": true,
@@ -4110,7 +4282,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists MirroringEndpointGroups in a given project and location.",
+                  "description": "Lists endpoint groups in a given project and location. See https://google.aip.dev/132.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroups.list",
@@ -4119,28 +4291,28 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filtering results",
+                      "description": "Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results",
+                      "description": "Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "description": "Optional. A page token, received from a previous `ListMirroringEndpointGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMirroringEndpointGroups` must match the call that provided the page token. See https://google.aip.dev/158 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListMirroringEndpointGroupsRequest",
+                      "description": "Required. The parent, which owns this collection of endpoint groups. Example: `projects/123456789/locations/global`. See https://google.aip.dev/132 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -4156,7 +4328,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single MirroringEndpointGroup.",
+                  "description": "Updates an endpoint group. See https://google.aip.dev/134.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/mirroringEndpointGroups/{mirroringEndpointGroupsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.mirroringEndpointGroups.patch",
@@ -4165,19 +4337,19 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. Next ID: 11 The name of the MirroringEndpointGroup.",
+                      "description": "Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/mirroringEndpointGroups/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
                       "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the MirroringEndpointGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. The list of fields to update. Fields are specified relative to the endpoint group (e.g. `description`; *not* `mirroring_endpoint_group.description`). See https://google.aip.dev/161 for more details.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -4461,6 +4633,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. Setting this field to `true` will opt the request into returning the resources that are reachable, and into including the names of those that were unreachable in the [ListServerTlsPoliciesResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/serverTlsPolicies",
@@ -4887,7 +5064,7 @@
       }
     }
   },
-  "revision": "20250118",
+  "revision": "20250310",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -4985,6 +5162,55 @@
           "description": "Output only. The timestamp when the resource was updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AntivirusOverride": {
+      "description": "Defines what action to take for antivirus threats per protocol.",
+      "id": "AntivirusOverride",
+      "properties": {
+        "action": {
+          "description": "Required. Threat action override. For some threat types, only a subset of actions applies.",
+          "enum": [
+            "THREAT_ACTION_UNSPECIFIED",
+            "DEFAULT_ACTION",
+            "ALLOW",
+            "ALERT",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Threat action not specified.",
+            "The default action (as specified by the vendor) is taken.",
+            "The packet matching this rule will be allowed to transmit.",
+            "The packet matching this rule will be allowed to transmit, but a threat_log entry will be sent to the consumer project.",
+            "The packet matching this rule will be dropped, and a threat_log entry will be sent to the consumer project."
+          ],
+          "type": "string"
+        },
+        "protocol": {
+          "description": "Required. Protocol to match.",
+          "enum": [
+            "PROTOCOL_UNSPECIFIED",
+            "SMTP",
+            "SMB",
+            "POP3",
+            "IMAP",
+            "HTTP2",
+            "HTTP",
+            "FTP"
+          ],
+          "enumDescriptions": [
+            "Protocol not specified.",
+            "SMTP prtocol",
+            "SMB protocol",
+            "POP3 protocol",
+            "IMAP protocol",
+            "HTTP2 protocol",
+            "HTTP protocol",
+            "FTP protocol"
+          ],
           "type": "string"
         }
       },
@@ -5155,7 +5381,7 @@
       "id": "AuthzPolicyAuthzRuleFromRequestSource",
       "properties": {
         "principals": {
-          "description": "Optional. A list of identities derived from the client's certificate. This field will not match on a request unless mutual TLS is enabled for the Forwarding rule or Gateway. Each identity is a string whose value is matched against the URI SAN, or DNS SAN or the subject field in the client's certificate. The match can be exact, prefix, suffix or a substring match. One of exact, prefix, suffix or contains must be specified. Limited to 5 principals.",
+          "description": "Optional. A list of identities derived from the client's certificate. This field will not match on a request unless mutual TLS is enabled for the forwarding rule or Gateway. For Application Load Balancers, each identity is a string whose value is matched against the URI SAN, or DNS SAN, or SPIFFE ID, or the subject field in the client's certificate. For Cloud Service Mesh, each identity is a string whose value is matched against the URI SAN, or DNS SAN, or the subject field in the client's certificate. The match can be exact, prefix, suffix, or a substring match. One of exact, prefix, suffix, or contains must be specified. Limited to 5 principals.",
           "items": {
             "$ref": "AuthzPolicyAuthzRuleStringMatch"
           },
@@ -5375,6 +5601,67 @@
       },
       "type": "object"
     },
+    "BackendAuthenticationConfig": {
+      "description": "BackendAuthenticationConfig message groups the TrustConfig together with other settings that control how the load balancer authenticates, and expresses its identity to, the backend: * `trustConfig` is the attached TrustConfig. * `wellKnownRoots` indicates whether the load balance should trust backend server certificates that are issued by public certificate authorities, in addition to certificates trusted by the TrustConfig. * `clientCertificate` is a client certificate that the load balancer uses to express its identity to the backend, if the connection to the backend uses mTLS. You can attach the BackendAuthenticationConfig to the load balancer’s BackendService directly determining how that BackendService negotiates TLS.",
+      "id": "BackendAuthenticationConfig",
+      "properties": {
+        "clientCertificate": {
+          "description": "Optional. A reference to a certificatemanager.googleapis.com.Certificate resource. This is a relative resource path following the form \"projects/{project}/locations/{location}/certificates/{certificate}\". Used by a BackendService to negotiate mTLS when the backend connection uses TLS and the backend requests a client certificate. Must have a CLIENT_AUTH scope.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Free-text description of the resource.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. Etag of the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Set of label tags associated with the resource.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. Name of the BackendAuthenticationConfig resource. It matches the pattern `projects/*/locations/{location}/backendAuthenticationConfigs/{backend_authentication_config}`",
+          "type": "string"
+        },
+        "trustConfig": {
+          "description": "Optional. A reference to a TrustConfig resource from the certificatemanager.googleapis.com namespace. This is a relative resource path following the form \"projects/{project}/locations/{location}/trustConfigs/{trust_config}\". A BackendService uses the chain of trust represented by this TrustConfig, if specified, to validate the server certificates presented by the backend. Required unless wellKnownRoots is set to PUBLIC_ROOTS.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "wellKnownRoots": {
+          "description": "Well known roots to use for server certificate validation.",
+          "enum": [
+            "WELL_KNOWN_ROOTS_UNSPECIFIED",
+            "NONE",
+            "PUBLIC_ROOTS"
+          ],
+          "enumDescriptions": [
+            "Equivalent to NONE.",
+            "The BackendService will only validate server certificates against roots specified in TrustConfig.",
+            "The BackendService uses a set of well-known public roots, in addition to any roots specified in the trustConfig field, when validating the server certificates presented by the backend. Validation with these roots is only considered when the TlsSettings.sni field in the BackendService is set. The well-known roots are a set of root CAs managed by Google. CAs in this set can be added or removed without notice."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -5457,22 +5744,22 @@
       "type": "object"
     },
     "CustomInterceptProfile": {
-      "description": "CustomInterceptProfile defines the Packet Intercept Endpoint Group used to intercept traffic to a third-party firewall in a Firewall rule.",
+      "description": "CustomInterceptProfile defines in-band integration behavior (intercept). It is used by firewall rules with an APPLY_SECURITY_PROFILE_GROUP action.",
       "id": "CustomInterceptProfile",
       "properties": {
         "interceptEndpointGroup": {
-          "description": "Required. The InterceptEndpointGroup to which traffic associated with the SP should be mirrored.",
+          "description": "Required. The target InterceptEndpointGroup. When a firewall rule with this security profile attached matches a packet, the packet will be intercepted to the location-local target in this group.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "CustomMirroringProfile": {
-      "description": "CustomMirroringProfile defines an action for mirroring traffic to a collector's EndpointGroup",
+      "description": "CustomMirroringProfile defines out-of-band integration behavior (mirroring). It is used by mirroring rules with a MIRROR action.",
       "id": "CustomMirroringProfile",
       "properties": {
         "mirroringEndpointGroup": {
-          "description": "Required. The MirroringEndpointGroup to which traffic associated with the SP should be mirrored.",
+          "description": "Required. The target MirroringEndpointGroup. When a mirroring rule with this security profile attached matches a packet, a replica will be mirrored to the location-local target in this group.",
           "type": "string"
         }
       },
@@ -5588,6 +5875,16 @@
         },
         "reconciling": {
           "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. [Output Only] Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. [Output Only] Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -5988,11 +6285,11 @@
       "type": "object"
     },
     "InterceptDeployment": {
-      "description": "Message describing InterceptDeployment object NEXT ID: 10",
+      "description": "A deployment represents a zonal intercept backend ready to accept GENEVE-encapsulated traffic, e.g. a zonal instance group fronted by an internal passthrough load balancer. Deployments are always part of a global deployment group which represents a global intercept service.",
       "id": "InterceptDeployment",
       "properties": {
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6002,31 +6299,31 @@
           "type": "string"
         },
         "forwardingRule": {
-          "description": "Required. Immutable. The regional load balancer which the intercepted traffic should be forwarded to. Format is: projects/{project}/regions/{region}/forwardingRules/{forwardingRule}",
+          "description": "Required. Immutable. The regional forwarding rule that fronts the interceptors, for example: `projects/123456789/regions/us-central1/forwardingRules/my-rule`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "interceptDeploymentGroup": {
-          "description": "Required. Immutable. The Intercept Deployment Group that this resource is part of. Format is: `projects/{project}/locations/global/interceptDeploymentGroups/{interceptDeploymentGroup}`",
+          "description": "Required. Immutable. The deployment group that this deployment is a part of, for example: `projects/123456789/locations/global/interceptDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
           "type": "object"
         },
         "name": {
-          "description": "Immutable. Identifier. The name of the InterceptDeployment.",
+          "description": "Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/interceptDeployments/my-dep`. See https://google.aip.dev/122 for more details.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. linking a new association to the parent group). See https://google.aip.dev/128.",
           "readOnly": true,
           "type": "boolean"
         },
         "state": {
-          "description": "Output only. Current state of the deployment.",
+          "description": "Output only. The current state of the deployment. See https://google.aip.dev/216.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -6036,18 +6333,18 @@
             "DELETE_FAILED"
           ],
           "enumDescriptions": [
-            "Not set.",
-            "Ready.",
-            "Being created.",
-            "Being deleted.",
-            "The underlying data plane is out of sync with the deployment. The deployment is not expected to be usable. This state can result in undefined behavior.",
-            "An attempt to delete the deployment has failed. This is a terminal state and the deployment is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the deployment."
+            "State not set (this is not a valid state).",
+            "The deployment is ready and in sync with the parent group.",
+            "The deployment is being created.",
+            "The deployment is being deleted.",
+            "The deployment is out of sync with the parent group. In most cases, this is a result of a transient issue within the system (e.g. a delayed data-path config) and the system is expected to recover automatically. See the parent deployment group's state for more details.",
+            "An attempt to delete the deployment has failed. This is a terminal state and the deployment is not expected to recover. The only permitted operation is to retry deleting the deployment."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6056,11 +6353,11 @@
       "type": "object"
     },
     "InterceptDeploymentGroup": {
-      "description": "Message describing InterceptDeploymentGroup object NEXT ID: 10",
+      "description": "A deployment group aggregates many zonal intercept backends (deployments) into a single global intercept service. Consumers can connect this service using an endpoint group.",
       "id": "InterceptDeploymentGroup",
       "properties": {
         "connectedEndpointGroups": {
-          "description": "Output only. The list of Intercept Endpoint Groups that are connected to this resource.",
+          "description": "Output only. The list of endpoint groups that are connected to this resource.",
           "items": {
             "$ref": "InterceptDeploymentGroupConnectedEndpointGroup"
           },
@@ -6068,7 +6365,7 @@
           "type": "array"
         },
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6081,24 +6378,41 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
           "type": "object"
         },
+        "locations": {
+          "description": "Output only. The list of locations where the deployment group is present.",
+          "items": {
+            "$ref": "InterceptLocation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "name": {
-          "description": "Immutable. Identifier. Then name of the InterceptDeploymentGroup.",
+          "description": "Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/interceptDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.",
           "type": "string"
         },
+        "nestedDeployments": {
+          "deprecated": true,
+          "description": "Output only. The list of Intercept Deployments that belong to this group.",
+          "items": {
+            "$ref": "InterceptDeploymentGroupDeployment"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "network": {
-          "description": "Required. Immutable. The network that is being used for the deployment. Format is: projects/{project}/global/networks/{network}.",
+          "description": "Required. Immutable. The network that will be used for all child deployments, for example: `projects/{project}/global/networks/{network}`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new deployment to the group) See https://google.aip.dev/128.",
           "readOnly": true,
           "type": "boolean"
         },
         "state": {
-          "description": "Output only. Current state of the deployment group.",
+          "description": "Output only. The current state of the deployment group. See https://google.aip.dev/216.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -6106,16 +6420,16 @@
             "DELETING"
           ],
           "enumDescriptions": [
-            "Not set.",
-            "Ready.",
-            "Being created.",
-            "Being deleted."
+            "State not set (this is not a valid state).",
+            "The deployment group is ready.",
+            "The deployment group is being created.",
+            "The deployment group is being deleted."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6128,7 +6442,40 @@
       "id": "InterceptDeploymentGroupConnectedEndpointGroup",
       "properties": {
         "name": {
-          "description": "Output only. A connected intercept endpoint group.",
+          "description": "Output only. The connected endpoint group's resource name, for example: `projects/123456789/locations/global/interceptEndpointGroups/my-eg`. See https://google.aip.dev/124.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptDeploymentGroupDeployment": {
+      "description": "A deployment belonging to this deployment group.",
+      "id": "InterceptDeploymentGroupDeployment",
+      "properties": {
+        "name": {
+          "description": "Output only. The name of the Intercept Deployment, in the format: `projects/{project}/locations/{location}/interceptDeployments/{intercept_deployment}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Most recent known state of the deployment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "State not set (this is not a valid state).",
+            "The deployment is ready and in sync with the parent group.",
+            "The deployment is being created.",
+            "The deployment is being deleted.",
+            "The deployment is out of sync with the parent group. In most cases, this is a result of a transient issue within the system (e.g. a delayed data-path config) and the system is expected to recover automatically. See the parent deployment group's state for more details.",
+            "An attempt to delete the deployment has failed. This is a terminal state and the deployment is not expected to recover. The only permitted operation is to retry deleting the deployment."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -6136,19 +6483,24 @@
       "type": "object"
     },
     "InterceptEndpointGroup": {
-      "description": "Message describing InterceptEndpointGroup object.",
+      "description": "An endpoint group is a consumer frontend for a deployment group (backend). In order to configure intercept for a network, consumers must create: - An association between their network and the endpoint group. - A security profile that points to the endpoint group. - A firewall rule that references the security profile (group).",
       "id": "InterceptEndpointGroup",
       "properties": {
         "associations": {
-          "description": "Output only. List of Intercept Endpoint Group Associations that are associated to this endpoint group.",
+          "description": "Output only. List of associations to this endpoint group.",
           "items": {
             "$ref": "InterceptEndpointGroupAssociationDetails"
           },
           "readOnly": true,
           "type": "array"
         },
+        "connectedDeploymentGroup": {
+          "$ref": "InterceptEndpointGroupConnectedDeploymentGroup",
+          "description": "Output only. Details about the connected deployment group to this endpoint group.",
+          "readOnly": true
+        },
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6158,27 +6510,27 @@
           "type": "string"
         },
         "interceptDeploymentGroup": {
-          "description": "Required. Immutable. The Intercept Deployment Group that this resource is connected to. Format is: `projects/{project}/locations/global/interceptDeploymentGroups/{interceptDeploymentGroup}`",
+          "description": "Required. Immutable. The deployment group that this endpoint group is connected to, for example: `projects/123456789/locations/global/interceptDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
           "type": "object"
         },
         "name": {
-          "description": "Immutable. Identifier. The name of the InterceptEndpointGroup.",
+          "description": "Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/interceptEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new association to the group). See https://google.aip.dev/128.",
           "readOnly": true,
           "type": "boolean"
         },
         "state": {
-          "description": "Output only. Current state of the endpoint group.",
+          "description": "Output only. The current state of the endpoint group. See https://google.aip.dev/216.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -6189,19 +6541,19 @@
             "DELETE_FAILED"
           ],
           "enumDescriptions": [
-            "Not set.",
-            "Ready.",
-            "The deployment group has been deleted and intercept is disabled.",
-            "Being created.",
-            "Being deleted.",
-            "The underlying data plane is out of sync with the endpoint group. Some associations might not be usable.",
-            "An attempt to delete the endpoint group has failed. This is a terminal state and the endpoint group is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the endpoint group."
+            "State not set (this is not a valid state).",
+            "The endpoint group is ready and in sync with the target deployment group.",
+            "The deployment group backing this endpoint group has been force-deleted. This endpoint group cannot be used and interception is effectively disabled.",
+            "The endpoint group is being created.",
+            "The endpoint group is being deleted.",
+            "The endpoint group is out of sync with the backing deployment group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. See the associations field for details per network and location.",
+            "An attempt to delete the endpoint group has failed. This is a terminal state and the endpoint group is not expected to recover. The only permitted operation is to retry deleting the endpoint group."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6210,28 +6562,37 @@
       "type": "object"
     },
     "InterceptEndpointGroupAssociation": {
-      "description": "Message describing InterceptEndpointGroupAssociation object",
+      "description": "An endpoint group association represents a link between a network and an endpoint group in the organization. Creating an association creates the networking infrastructure linking the network to the endpoint group, but does not enable intercept by itself. To enable intercept, the user must also create a network firewall policy containing intercept rules and associate it with the network.",
       "id": "InterceptEndpointGroupAssociation",
       "properties": {
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "interceptEndpointGroup": {
-          "description": "Required. Immutable. The Intercept Endpoint Group that this resource is connected to. Format is: `projects/{project}/locations/global/interceptEndpointGroups/{interceptEndpointGroup}`",
+          "description": "Required. Immutable. The endpoint group that this association is connected to, for example: `projects/123456789/locations/global/interceptEndpointGroups/my-eg`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
           "type": "object"
         },
+        "locations": {
+          "description": "Output only. The list of locations where the association is configured. This information is retrieved from the linked endpoint group.",
+          "items": {
+            "$ref": "InterceptLocation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "locationsDetails": {
-          "description": "Output only. The list of locations that this association is in and its details.",
+          "deprecated": true,
+          "description": "Output only. The list of locations where the association is present. This information is retrieved from the linked endpoint group, and not configured as part of the association itself.",
           "items": {
             "$ref": "InterceptEndpointGroupAssociationLocationDetails"
           },
@@ -6239,15 +6600,15 @@
           "type": "array"
         },
         "name": {
-          "description": "Immutable. Identifier. The name of the InterceptEndpointGroupAssociation.",
+          "description": "Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/interceptEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.",
           "type": "string"
         },
         "network": {
-          "description": "Required. Immutable. The VPC network associated. Format: projects/{project}/global/networks/{network}.",
+          "description": "Required. Immutable. The VPC network that is associated. for example: `projects/123456789/global/networks/my-network`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. adding a new location to the target deployment group). See https://google.aip.dev/128.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -6264,18 +6625,18 @@
           ],
           "enumDescriptions": [
             "Not set.",
-            "Ready.",
-            "Being created.",
-            "Being deleted.",
-            "Intercept is disabled due to an operation on another resource.",
-            "The underlying data plane is out of sync with the association. The association is not expected to be usable. This state can result in undefined behavior. See the `locations_details` field for more details.",
+            "The association is ready and in sync with the linked endpoint group.",
+            "The association is being created.",
+            "The association is being deleted.",
+            "The association is disabled due to a breaking change in another resource.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. Check the `locations_details` field for more details.",
             "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6284,21 +6645,21 @@
       "type": "object"
     },
     "InterceptEndpointGroupAssociationDetails": {
-      "description": "This is a subset of the InterceptEndpointGroupAssociation message, containing fields to be used by the consumer.",
+      "description": "The endpoint group's view of a connected association.",
       "id": "InterceptEndpointGroupAssociationDetails",
       "properties": {
         "name": {
-          "description": "Output only. The resource name of the InterceptEndpointGroupAssociation. Format: projects/{project}/locations/{location}/interceptEndpointGroupAssociations/{interceptEndpointGroupAssociation}",
+          "description": "Output only. The connected association's resource name, for example: `projects/123456789/locations/global/interceptEndpointGroupAssociations/my-ega`. See https://google.aip.dev/124.",
           "readOnly": true,
           "type": "string"
         },
         "network": {
-          "description": "Output only. The VPC network associated. Format: projects/{project}/global/networks/{name}.",
+          "description": "Output only. The associated network, for example: projects/123456789/global/networks/my-network. See https://google.aip.dev/124.",
           "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Output only. Current state of the association.",
+          "description": "Output only. Most recent known state of the association.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -6310,11 +6671,11 @@
           ],
           "enumDescriptions": [
             "Not set.",
-            "Ready.",
-            "Being created.",
-            "Being deleted.",
-            "Intercept is disabled due to an operation on another resource.",
-            "The underlying data plane is out of sync with the association. The association is not expected to be usable. This state can result in undefined behavior. See the `locations_details` field for more details.",
+            "The association is ready and in sync with the linked endpoint group.",
+            "The association is being created.",
+            "The association is being deleted.",
+            "The association is disabled due to a breaking change in another resource.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. Check the `locations_details` field for more details.",
             "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
           ],
           "readOnly": true,
@@ -6324,16 +6685,16 @@
       "type": "object"
     },
     "InterceptEndpointGroupAssociationLocationDetails": {
-      "description": "Details about the association status in a specific cloud location.",
+      "description": "Contains details about the state of an association in a specific cloud location.",
       "id": "InterceptEndpointGroupAssociationLocationDetails",
       "properties": {
         "location": {
-          "description": "Output only. The cloud location.",
+          "description": "Output only. The cloud location, e.g. \"us-central1-a\" or \"asia-south1\".",
           "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Output only. The association state in this location.",
+          "description": "Output only. The current state of the association in this location.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -6341,8 +6702,55 @@
           ],
           "enumDescriptions": [
             "Not set.",
-            "Ready.",
-            "The data plane is out of sync with the association in this location."
+            "The association is ready and in sync with the linked endpoint group.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptEndpointGroupConnectedDeploymentGroup": {
+      "description": "The endpoint group's view of a connected deployment group.",
+      "id": "InterceptEndpointGroupConnectedDeploymentGroup",
+      "properties": {
+        "locations": {
+          "description": "Output only. The list of locations where the deployment group is present.",
+          "items": {
+            "$ref": "InterceptLocation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The connected deployment group's resource name, for example: `projects/123456789/locations/global/interceptDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptLocation": {
+      "description": "Details about intercept in a specific cloud location.",
+      "id": "InterceptLocation",
+      "properties": {
+        "location": {
+          "description": "Output only. The cloud location, e.g. \"us-central1-a\" or \"asia-south1\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the association in this location.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OUT_OF_SYNC"
+          ],
+          "enumDescriptions": [
+            "State not set (this is not a valid state).",
+            "The resource is ready and in sync in the location.",
+            "The resource is out of sync in the location. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically."
           ],
           "readOnly": true,
           "type": "string"
@@ -6402,6 +6810,13 @@
         "nextPageToken": {
           "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6437,6 +6852,31 @@
         },
         "nextPageToken": {
           "description": "A token identifying a page of results that the server returns.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListBackendAuthenticationConfigsResponse": {
+      "description": "Response returned by the ListBackendAuthenticationConfigs method.",
+      "id": "ListBackendAuthenticationConfigsResponse",
+      "properties": {
+        "backendAuthenticationConfigs": {
+          "description": "List of BackendAuthenticationConfig resources.",
+          "items": {
+            "$ref": "BackendAuthenticationConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
           "type": "string"
         },
         "unreachable": {
@@ -6568,36 +7008,36 @@
       "type": "object"
     },
     "ListInterceptDeploymentGroupsResponse": {
-      "description": "Message for response to listing InterceptDeploymentGroups",
+      "description": "Response message for ListInterceptDeploymentGroups.",
       "id": "ListInterceptDeploymentGroupsResponse",
       "properties": {
         "interceptDeploymentGroups": {
-          "description": "The list of InterceptDeploymentGroup",
+          "description": "The deployment groups from the specified parent.",
           "items": {
             "$ref": "InterceptDeploymentGroup"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "ListInterceptDeploymentsResponse": {
-      "description": "Message for response to listing InterceptDeployments",
+      "description": "Response message for ListInterceptDeployments.",
       "id": "ListInterceptDeploymentsResponse",
       "properties": {
         "interceptDeployments": {
-          "description": "The list of InterceptDeployment",
+          "description": "The deployments from the specified parent.",
           "items": {
             "$ref": "InterceptDeployment"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.",
           "type": "string"
         },
         "unreachable": {
@@ -6611,36 +7051,36 @@
       "type": "object"
     },
     "ListInterceptEndpointGroupAssociationsResponse": {
-      "description": "Message for response to listing InterceptEndpointGroupAssociations",
+      "description": "Response message for ListInterceptEndpointGroupAssociations.",
       "id": "ListInterceptEndpointGroupAssociationsResponse",
       "properties": {
         "interceptEndpointGroupAssociations": {
-          "description": "The list of InterceptEndpointGroupAssociation",
+          "description": "The associations from the specified parent.",
           "items": {
             "$ref": "InterceptEndpointGroupAssociation"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "ListInterceptEndpointGroupsResponse": {
-      "description": "Message for response to listing InterceptEndpointGroups",
+      "description": "Response message for ListInterceptEndpointGroups.",
       "id": "ListInterceptEndpointGroupsResponse",
       "properties": {
         "interceptEndpointGroups": {
-          "description": "The list of InterceptEndpointGroup",
+          "description": "The endpoint groups from the specified parent.",
           "items": {
             "$ref": "InterceptEndpointGroup"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.",
           "type": "string"
         }
       },
@@ -6665,36 +7105,36 @@
       "type": "object"
     },
     "ListMirroringDeploymentGroupsResponse": {
-      "description": "Message for response to listing MirroringDeploymentGroups",
+      "description": "Response message for ListMirroringDeploymentGroups.",
       "id": "ListMirroringDeploymentGroupsResponse",
       "properties": {
         "mirroringDeploymentGroups": {
-          "description": "The list of MirroringDeploymentGroup",
+          "description": "The deployment groups from the specified parent.",
           "items": {
             "$ref": "MirroringDeploymentGroup"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "ListMirroringDeploymentsResponse": {
-      "description": "Message for response to listing MirroringDeployments",
+      "description": "Response message for ListMirroringDeployments.",
       "id": "ListMirroringDeploymentsResponse",
       "properties": {
         "mirroringDeployments": {
-          "description": "The list of MirroringDeployment",
+          "description": "The deployments from the specified parent.",
           "items": {
             "$ref": "MirroringDeployment"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.",
           "type": "string"
         },
         "unreachable": {
@@ -6708,36 +7148,36 @@
       "type": "object"
     },
     "ListMirroringEndpointGroupAssociationsResponse": {
-      "description": "Message for response to listing MirroringEndpointGroupAssociations",
+      "description": "Response message for ListMirroringEndpointGroupAssociations.",
       "id": "ListMirroringEndpointGroupAssociationsResponse",
       "properties": {
         "mirroringEndpointGroupAssociations": {
-          "description": "The list of MirroringEndpointGroupAssociation",
+          "description": "The associations from the specified parent.",
           "items": {
             "$ref": "MirroringEndpointGroupAssociation"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "ListMirroringEndpointGroupsResponse": {
-      "description": "Message for response to listing MirroringEndpointGroups",
+      "description": "Response message for ListMirroringEndpointGroups.",
       "id": "ListMirroringEndpointGroupsResponse",
       "properties": {
         "mirroringEndpointGroups": {
-          "description": "The list of MirroringEndpointGroup",
+          "description": "The endpoint groups from the specified parent.",
           "items": {
             "$ref": "MirroringEndpointGroup"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.",
           "type": "string"
         }
       },
@@ -6809,6 +7249,13 @@
           "description": "List of ServerTlsPolicy resources.",
           "items": {
             "$ref": "ServerTlsPolicy"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request opts into `return_partial_success` and reading across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -6932,41 +7379,45 @@
       "type": "object"
     },
     "MirroringDeployment": {
-      "description": "Message describing MirroringDeployment object NEXT ID: 10",
+      "description": "A deployment represents a zonal mirroring backend ready to accept GENEVE-encapsulated replica traffic, e.g. a zonal instance group fronted by an internal passthrough load balancer. Deployments are always part of a global deployment group which represents a global mirroring service.",
       "id": "MirroringDeployment",
       "properties": {
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
+        "description": {
+          "description": "Optional. User-provided description of the deployment. Used as additional context for the deployment.",
+          "type": "string"
+        },
         "forwardingRule": {
-          "description": "Required. Immutable. The regional load balancer which the mirrored traffic should be forwarded to. Format is: projects/{project}/regions/{region}/forwardingRules/{forwardingRule}",
+          "description": "Required. Immutable. The regional forwarding rule that fronts the mirroring collectors, for example: `projects/123456789/regions/us-central1/forwardingRules/my-rule`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
           "type": "object"
         },
         "mirroringDeploymentGroup": {
-          "description": "Required. Immutable. The Mirroring Deployment Group that this resource is part of. Format is: `projects/{project}/locations/global/mirroringDeploymentGroups/{mirroringDeploymentGroup}`",
+          "description": "Required. Immutable. The deployment group that this deployment is a part of, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Identifier. The name of the MirroringDeployment.",
+          "description": "Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/mirroringDeployments/my-dep`. See https://google.aip.dev/122 for more details.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. linking a new association to the parent group). See https://google.aip.dev/128.",
           "readOnly": true,
           "type": "boolean"
         },
         "state": {
-          "description": "Output only. Current state of the deployment.",
+          "description": "Output only. The current state of the deployment. See https://google.aip.dev/216.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -6976,18 +7427,18 @@
             "DELETE_FAILED"
           ],
           "enumDescriptions": [
-            "Not set.",
-            "Ready.",
-            "Being created.",
-            "Being deleted.",
-            "The underlying data plane is out of sync with the deployment. The deployment is not expected to be usable. This state can result in undefined behavior.",
-            "An attempt to delete the deployment has failed. This is a terminal state and the deployment is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the deployment."
+            "State not set (this is not a valid state).",
+            "The deployment is ready and in sync with the parent group.",
+            "The deployment is being created.",
+            "The deployment is being deleted.",
+            "The deployment is out of sync with the parent group. In most cases, this is a result of a transient issue within the system (e.g. a delayed data-path config) and the system is expected to recover automatically. See the parent deployment group's state for more details.",
+            "An attempt to delete the deployment has failed. This is a terminal state and the deployment is not expected to recover. The only permitted operation is to retry deleting the deployment."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6996,11 +7447,11 @@
       "type": "object"
     },
     "MirroringDeploymentGroup": {
-      "description": "Message describing MirroringDeploymentGroup object NEXT ID: 10",
+      "description": "A deployment group aggregates many zonal mirroring backends (deployments) into a single global mirroring service. Consumers can connect this service using an endpoint group.",
       "id": "MirroringDeploymentGroup",
       "properties": {
         "connectedEndpointGroups": {
-          "description": "Output only. The list of Mirroring Endpoint Groups that are connected to this resource.",
+          "description": "Output only. The list of endpoint groups that are connected to this resource.",
           "items": {
             "$ref": "MirroringDeploymentGroupConnectedEndpointGroup"
           },
@@ -7008,33 +7459,54 @@
           "type": "array"
         },
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the deployment group. Used as additional context for the deployment group.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
           "type": "object"
         },
+        "locations": {
+          "description": "Output only. The list of locations where the deployment group is present.",
+          "items": {
+            "$ref": "MirroringLocation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "name": {
-          "description": "Immutable. Identifier. Then name of the MirroringDeploymentGroup.",
+          "description": "Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.",
           "type": "string"
         },
+        "nestedDeployments": {
+          "deprecated": true,
+          "description": "Output only. The list of Mirroring Deployments that belong to this group.",
+          "items": {
+            "$ref": "MirroringDeploymentGroupDeployment"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "network": {
-          "description": "Required. Immutable. The network that is being used for the deployment. Format is: projects/{project}/global/networks/{network}.",
+          "description": "Required. Immutable. The network that will be used for all child deployments, for example: `projects/{project}/global/networks/{network}`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new deployment to the group) See https://google.aip.dev/128.",
           "readOnly": true,
           "type": "boolean"
         },
         "state": {
-          "description": "Output only. Current state of the deployment group.",
+          "description": "Output only. The current state of the deployment group. See https://google.aip.dev/216.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -7042,16 +7514,16 @@
             "DELETING"
           ],
           "enumDescriptions": [
-            "Not set.",
-            "Ready.",
-            "Being created.",
-            "Being deleted."
+            "State not set (this is not a valid state).",
+            "The deployment group is ready.",
+            "The deployment group is being created.",
+            "The deployment group is being deleted."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -7064,7 +7536,40 @@
       "id": "MirroringDeploymentGroupConnectedEndpointGroup",
       "properties": {
         "name": {
-          "description": "Output only. A connected mirroring endpoint group.",
+          "description": "Output only. The connected endpoint group's resource name, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/124.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MirroringDeploymentGroupDeployment": {
+      "description": "A deployment belonging to this deployment group.",
+      "id": "MirroringDeploymentGroupDeployment",
+      "properties": {
+        "name": {
+          "description": "Output only. The name of the Mirroring Deployment, in the format: `projects/{project}/locations/{location}/mirroringDeployments/{mirroring_deployment}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Most recent known state of the deployment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "State not set (this is not a valid state).",
+            "The deployment is ready and in sync with the parent group.",
+            "The deployment is being created.",
+            "The deployment is being deleted.",
+            "The deployment is out of sync with the parent group. In most cases, this is a result of a transient issue within the system (e.g. a delayed data-path config) and the system is expected to recover automatically. See the parent deployment group's state for more details.",
+            "An attempt to delete the deployment has failed. This is a terminal state and the deployment is not expected to recover. The only permitted operation is to retry deleting the deployment."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -7072,45 +7577,57 @@
       "type": "object"
     },
     "MirroringEndpointGroup": {
-      "description": "Message describing MirroringEndpointGroup object.",
+      "description": "An endpoint group is a consumer frontend for a deployment group (backend). In order to configure mirroring for a network, consumers must create: - An association between their network and the endpoint group. - A security profile that points to the endpoint group. - A mirroring rule that references the security profile (group).",
       "id": "MirroringEndpointGroup",
       "properties": {
         "associations": {
-          "description": "Output only. List of Mirroring Endpoint Group Associations that are associated to this endpoint group.",
+          "description": "Output only. List of associations to this endpoint group.",
           "items": {
             "$ref": "MirroringEndpointGroupAssociationDetails"
           },
           "readOnly": true,
           "type": "array"
         },
+        "connectedDeploymentGroups": {
+          "description": "Output only. List of details about the connected deployment groups to this endpoint group.",
+          "items": {
+            "$ref": "MirroringEndpointGroupConnectedDeploymentGroup"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the endpoint group. Used as additional context for the endpoint group.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
           "type": "object"
         },
         "mirroringDeploymentGroup": {
-          "description": "Required. Immutable. The Mirroring Deployment Group that this resource is connected to. Format is: `projects/{project}/locations/global/mirroringDeploymentGroups/{mirroringDeploymentGroup}`",
+          "description": "Immutable. The deployment group that this DIRECT endpoint group is connected to, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Identifier. Next ID: 11 The name of the MirroringEndpointGroup.",
+          "description": "Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new association to the group). See https://google.aip.dev/128.",
           "readOnly": true,
           "type": "boolean"
         },
         "state": {
-          "description": "Output only. Current state of the endpoint group.",
+          "description": "Output only. The current state of the endpoint group. See https://google.aip.dev/216.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -7121,19 +7638,19 @@
             "DELETE_FAILED"
           ],
           "enumDescriptions": [
-            "Not set.",
-            "Ready.",
-            "The deployment group has been deleted and mirroring is disabled.",
-            "Being created.",
-            "Being deleted.",
-            "The underlying data plane is out of sync with the endpoint group. Some associations might not be usable.",
-            "An attempt to delete the endpoint group has failed. This is a terminal state and the endpoint group is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the endpoint group."
+            "State not set (this is not a valid state).",
+            "The endpoint group is ready and in sync with the target deployment group.",
+            "The deployment group backing this endpoint group has been force-deleted. This endpoint group cannot be used and mirroring is effectively disabled.",
+            "The endpoint group is being created.",
+            "The endpoint group is being deleted.",
+            "The endpoint group is out of sync with the backing deployment group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. See the associations field for details per network and location.",
+            "An attempt to delete the endpoint group has failed. This is a terminal state and the endpoint group is not expected to recover. The only permitted operation is to retry deleting the endpoint group."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -7142,11 +7659,11 @@
       "type": "object"
     },
     "MirroringEndpointGroupAssociation": {
-      "description": "Message describing MirroringEndpointGroupAssociation object",
+      "description": "An endpoint group association represents a link between a network and an endpoint group in the organization. Creating an association creates the networking infrastructure linking the network to the endpoint group, but does not enable mirroring by itself. To enable mirroring, the user must also create a network firewall policy containing mirroring rules and associate it with the network.",
       "id": "MirroringEndpointGroupAssociation",
       "properties": {
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -7155,11 +7672,20 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels as key value pairs",
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
           "type": "object"
         },
+        "locations": {
+          "description": "Output only. The list of locations where the association is configured. This information is retrieved from the linked endpoint group.",
+          "items": {
+            "$ref": "MirroringLocation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "locationsDetails": {
-          "description": "Output only. The list of locations that this association is in and its details.",
+          "deprecated": true,
+          "description": "Output only. The list of locations where the association is present. This information is retrieved from the linked endpoint group, and not configured as part of the association itself.",
           "items": {
             "$ref": "MirroringEndpointGroupAssociationLocationDetails"
           },
@@ -7167,19 +7693,19 @@
           "type": "array"
         },
         "mirroringEndpointGroup": {
-          "description": "Required. Immutable. The Mirroring Endpoint Group that this resource is connected to. Format is: `projects/{project}/locations/global/mirroringEndpointGroups/{mirroringEndpointGroup}`",
+          "description": "Immutable. The endpoint group that this association is connected to, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Identifier. The name of the MirroringEndpointGroupAssociation.",
+          "description": "Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.",
           "type": "string"
         },
         "network": {
-          "description": "Required. Immutable. The VPC network associated. Format: projects/{project}/global/networks/{network}.",
+          "description": "Immutable. The VPC network that is associated. for example: `projects/123456789/global/networks/my-network`. See https://google.aip.dev/124.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.",
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. adding a new location to the target deployment group). See https://google.aip.dev/128.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -7196,18 +7722,18 @@
           ],
           "enumDescriptions": [
             "Not set.",
-            "Ready.",
-            "Being created.",
-            "Being deleted.",
-            "Mirroring is disabled due to an operation on another resource.",
-            "The underlying data plane is out of sync with the association. The association is not expected to be usable. This state can result in undefined behavior. See the `locations_details` field for more details.",
+            "The association is ready and in sync with the linked endpoint group.",
+            "The association is being created.",
+            "The association is being deleted.",
+            "The association is disabled due to a breaking change in another resource.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. Check the `locations_details` field for more details.",
             "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -7216,21 +7742,21 @@
       "type": "object"
     },
     "MirroringEndpointGroupAssociationDetails": {
-      "description": "This is a subset of the MirroringEndpointGroupAssociation message, containing fields to be used by the consumer.",
+      "description": "The endpoint group's view of a connected association.",
       "id": "MirroringEndpointGroupAssociationDetails",
       "properties": {
         "name": {
-          "description": "Output only. The resource name of the MirroringEndpointGroupAssociation. Format: projects/{project}/locations/{location}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociation}",
+          "description": "Output only. The connected association's resource name, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-ega`. See https://google.aip.dev/124.",
           "readOnly": true,
           "type": "string"
         },
         "network": {
-          "description": "Output only. The VPC network associated. Format: projects/{project}/global/networks/{name}.",
+          "description": "Output only. The associated network, for example: projects/123456789/global/networks/my-network. See https://google.aip.dev/124.",
           "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Output only. Current state of the association.",
+          "description": "Output only. Most recent known state of the association.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -7242,11 +7768,11 @@
           ],
           "enumDescriptions": [
             "Not set.",
-            "Ready.",
-            "Being created.",
-            "Being deleted.",
-            "Mirroring is disabled due to an operation on another resource.",
-            "The underlying data plane is out of sync with the association. The association is not expected to be usable. This state can result in undefined behavior. See the `locations_details` field for more details.",
+            "The association is ready and in sync with the linked endpoint group.",
+            "The association is being created.",
+            "The association is being deleted.",
+            "The association is disabled due to a breaking change in another resource.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. Check the `locations_details` field for more details.",
             "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
           ],
           "readOnly": true,
@@ -7256,16 +7782,16 @@
       "type": "object"
     },
     "MirroringEndpointGroupAssociationLocationDetails": {
-      "description": "Details about the association status in a specific cloud location.",
+      "description": "Contains details about the state of an association in a specific cloud location.",
       "id": "MirroringEndpointGroupAssociationLocationDetails",
       "properties": {
         "location": {
-          "description": "Output only. The cloud location.",
+          "description": "Output only. The cloud location, e.g. \"us-central1-a\" or \"asia-south1\".",
           "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Output only. The association state in this location.",
+          "description": "Output only. The current state of the association in this location.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -7273,8 +7799,55 @@
           ],
           "enumDescriptions": [
             "Not set.",
-            "Ready.",
-            "The data plane is out of sync with the association in this location."
+            "The association is ready and in sync with the linked endpoint group.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MirroringEndpointGroupConnectedDeploymentGroup": {
+      "description": "The endpoint group's view of a connected deployment group.",
+      "id": "MirroringEndpointGroupConnectedDeploymentGroup",
+      "properties": {
+        "locations": {
+          "description": "Output only. The list of locations where the deployment group is present.",
+          "items": {
+            "$ref": "MirroringLocation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The connected deployment group's resource name, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MirroringLocation": {
+      "description": "Details about mirroring in a specific cloud location.",
+      "id": "MirroringLocation",
+      "properties": {
+        "location": {
+          "description": "Output only. The cloud location, e.g. \"us-central1-a\" or \"asia-south1\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the association in this location.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OUT_OF_SYNC"
+          ],
+          "enumDescriptions": [
+            "State not set (this is not a valid state).",
+            "The resource is ready and in sync in the location.",
+            "The resource is out of sync in the location. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically."
           ],
           "readOnly": true,
           "type": "string"
@@ -7483,6 +8056,12 @@
         },
         "customMirroringProfile": {
           "description": "Optional. Reference to a SecurityProfile with the CustomMirroring configuration.",
+          "type": "string"
+        },
+        "dataPathId": {
+          "description": "Output only. Identifier used by the data-path. Unique within {container, location}.",
+          "format": "uint64",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -7711,6 +8290,13 @@
       "description": "ThreatPreventionProfile defines an action for specific threat signatures or severity levels.",
       "id": "ThreatPreventionProfile",
       "properties": {
+        "antivirusOverrides": {
+          "description": "Optional. Configuration for overriding antivirus actions per protocol.",
+          "items": {
+            "$ref": "AntivirusOverride"
+          },
+          "type": "array"
+        },
         "severityOverrides": {
           "description": "Optional. Configuration for overriding threats actions by severity match.",
           "items": {

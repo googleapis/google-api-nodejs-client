@@ -180,15 +180,40 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
+        "getAutomaticImprovements": {
+          "description": "Retrieves the automatic improvements of an account.",
+          "flatPath": "accounts/v1beta/accounts/{accountsId}/automaticImprovements",
+          "httpMethod": "GET",
+          "id": "merchantapi.accounts.getAutomaticImprovements",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The resource name of the automatic improvements. Format: `accounts/{account}/automaticImprovements`",
+              "location": "path",
+              "pattern": "^accounts/[^/]+/automaticImprovements$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "accounts/v1beta/{+name}",
+          "response": {
+            "$ref": "AutomaticImprovements"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
         "list": {
-          "description": "Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns accounts the user is directly added to.",
+          "description": "Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns all the accounts the user has access to. This method is eventually consistent, meaning changes such as creating, updating an account or a change of relationships between accounts may not show up in the results immediately. Instead, these changes propagate over a short period, after which the updated information can match the associated predicates. That means, that searching by account name might not return a recently changed account even though it satisfies the predicate.",
           "flatPath": "accounts/v1beta/accounts",
           "httpMethod": "GET",
           "id": "merchantapi.accounts.list",
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "Optional. Returns only accounts that match the [filter](/merchant/api/guides/accounts/filter). For more details, see the [filter syntax reference](/merchant/api/guides/accounts/filter-syntax).",
+              "description": "Optional. Returns only accounts that match the [filter](https://developers.google.com/merchant/api/guides/accounts/filter). For more details, see the [filter syntax reference](https://developers.google.com/merchant/api/guides/accounts/filter-syntax).",
               "location": "query",
               "type": "string"
             },
@@ -277,6 +302,40 @@
           },
           "response": {
             "$ref": "Account"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "updateAutomaticImprovements": {
+          "description": "Updates the automatic improvements of an account.",
+          "flatPath": "accounts/v1beta/accounts/{accountsId}/automaticImprovements",
+          "httpMethod": "PATCH",
+          "id": "merchantapi.accounts.updateAutomaticImprovements",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Identifier. The resource name of the automatic improvements. Format: `accounts/{account}/automaticImprovements`.",
+              "location": "path",
+              "pattern": "^accounts/[^/]+/automaticImprovements$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `item_updates` - `item_updates.account_level_settings` - `image_improvements` - `image_improvements.account_level_settings` - `shipping_improvements` - `shipping_improvements.allow_shipping_improvements`",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "accounts/v1beta/{+name}",
+          "request": {
+            "$ref": "AutomaticImprovements"
+          },
+          "response": {
+            "$ref": "AutomaticImprovements"
           },
           "scopes": [
             "https://www.googleapis.com/auth/content"
@@ -1417,7 +1476,7 @@
       }
     }
   },
-  "revision": "20250115",
+  "revision": "20250311",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Accepted": {
@@ -1454,7 +1513,7 @@
           "type": "string"
         },
         "adultContent": {
-          "description": "Whether this account contains adult content.",
+          "description": "Optional. Whether this account contains adult content.",
           "type": "boolean"
         },
         "languageCode": {
@@ -1544,6 +1603,21 @@
       },
       "type": "object"
     },
+    "AddUser": {
+      "description": "Instruction for adding a user to the account during creation.",
+      "id": "AddUser",
+      "properties": {
+        "user": {
+          "$ref": "User",
+          "description": "Optional. Details about the user to be added. At the moment, only access rights may be specified."
+        },
+        "userId": {
+          "description": "Required. The email address of the user (for example, `john.doe@gmail.com`).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Address": {
       "description": "Shipping address of the warehouse.",
       "id": "Address",
@@ -1587,6 +1661,87 @@
         "name": {
           "description": "Identifier. The resource name of the autofeed settings. Format: `accounts/{account}/autofeedSettings`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutomaticImageImprovements": {
+      "description": "This improvement will attempt to automatically correct submitted images if they don't meet the [image requirements](https://support.google.com/merchants/answer/6324350), for example, removing overlays. If successful, the image will be replaced and approved. This improvement is only applied to images of disapproved offers. For more information see: [Automatic image improvements](https://support.google.com/merchants/answer/9242973)",
+      "id": "AutomaticImageImprovements",
+      "properties": {
+        "accountImageImprovementsSettings": {
+          "$ref": "ImageImprovementsAccountLevelSettings",
+          "description": "Optional. Determines how the images should be automatically updated. If this field is not present and provided in the update mask, then the settings will be deleted. If there are no settings for subaccount, they are inherited from aggregator."
+        },
+        "effectiveAllowAutomaticImageImprovements": {
+          "description": "Output only. The effective value of allow_automatic_image_improvements. If account_image_improvements_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. Read-only.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AutomaticImprovements": {
+      "description": "Collection of information related to the [automatic improvements](https://developers.google.com/shopping-content/guides/automatic-improvements) of an account.",
+      "id": "AutomaticImprovements",
+      "properties": {
+        "imageImprovements": {
+          "$ref": "AutomaticImageImprovements",
+          "description": "This improvement will attempt to automatically correct submitted images if they don't meet the [image requirements](https://support.google.com/merchants/answer/6324350), for example, removing overlays. If successful, the image will be replaced and approved. This improvement is only applied to images of disapproved offers. For more information see: [Automatic image improvements](https://support.google.com/merchants/answer/9242973) This field is only updated (cleared) if provided in the update mask."
+        },
+        "itemUpdates": {
+          "$ref": "AutomaticItemUpdates",
+          "description": "Turning on [item updates](https://support.google.com/merchants/answer/3246284) allows Google to automatically update items for you. When item updates are on, Google uses the structured data markup on the website and advanced data extractors to update the price and availability of the items. When the item updates are off, items with mismatched data aren't shown. This field is only updated (cleared) if provided in the update mask."
+        },
+        "name": {
+          "description": "Identifier. The resource name of the automatic improvements. Format: `accounts/{account}/automaticImprovements`.",
+          "type": "string"
+        },
+        "shippingImprovements": {
+          "$ref": "AutomaticShippingImprovements",
+          "description": "Not available for MCAs [accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data This field is only updated (cleared) if provided in the update mask."
+        }
+      },
+      "type": "object"
+    },
+    "AutomaticItemUpdates": {
+      "description": "Turning on [item updates](https://support.google.com/merchants/answer/3246284) allows Google to automatically update items for you. When item updates are on, Google uses the structured data markup on the website and advanced data extractors to update the price and availability of the items. When the item updates are off, items with mismatched data aren't shown.",
+      "id": "AutomaticItemUpdates",
+      "properties": {
+        "accountItemUpdatesSettings": {
+          "$ref": "ItemUpdatesAccountLevelSettings",
+          "description": "Optional. Determines which attributes of the items should be automatically updated. If this field is not present and provided in the update mask, then the settings will be deleted. If there are no settings for subaccount, they are inherited from aggregator."
+        },
+        "effectiveAllowAvailabilityUpdates": {
+          "description": "Output only. The effective value of allow_availability_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. The default value is true if no settings are present. Read-only.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "effectiveAllowConditionUpdates": {
+          "description": "Output only. The effective value of allow_condition_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. The default value is true if no settings are present. Read-only.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "effectiveAllowPriceUpdates": {
+          "description": "Output only. The effective value of allow_price_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. The default value is true if no settings are present. Read-only.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "effectiveAllowStrictAvailabilityUpdates": {
+          "description": "Output only. The effective value of allow_strict_availability_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. The default value is true if no settings are present. Read-only.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AutomaticShippingImprovements": {
+      "description": "Not available for MCAs [accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data",
+      "id": "AutomaticShippingImprovements",
+      "properties": {
+        "allowShippingImprovements": {
+          "description": "Enables automatic shipping improvements.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1770,8 +1925,16 @@
           },
           "type": "array"
         },
-        "users": {
+        "user": {
           "description": "Optional. Users to be added to the account.",
+          "items": {
+            "$ref": "AddUser"
+          },
+          "type": "array"
+        },
+        "users": {
+          "deprecated": true,
+          "description": "Optional. Users to be added to the account. This field is deprecated and will not exist after the API evolves out of beta. Use the `user` field instead.",
           "items": {
             "$ref": "CreateUserRequest"
           },
@@ -2100,6 +2263,17 @@
       },
       "type": "object"
     },
+    "ImageImprovementsAccountLevelSettings": {
+      "description": "Settings for the Automatic Image Improvements.",
+      "id": "ImageImprovementsAccountLevelSettings",
+      "properties": {
+        "allowAutomaticImageImprovements": {
+          "description": "Enables automatic image improvements.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Impact": {
       "description": "The impact of the issue on a region.",
       "id": "Impact",
@@ -2153,6 +2327,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -2164,6 +2339,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2193,14 +2369,38 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
             "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
-            "[YouTube Checkout]("
+            "YouTube Checkout ."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ItemUpdatesAccountLevelSettings": {
+      "description": "Settings for the Automatic Item Updates.",
+      "id": "ItemUpdatesAccountLevelSettings",
+      "properties": {
+        "allowAvailabilityUpdates": {
+          "description": "If availability updates are enabled, any previous availability values get overwritten if Google finds an out-of-stock annotation on the offer's page. If additionally `allow_strict_availability_updates` field is set to true, values get overwritten if Google finds an in-stock annotation on the offer’s page.",
+          "type": "boolean"
+        },
+        "allowConditionUpdates": {
+          "description": "If condition updates are enabled, Google always updates item condition with the condition detected from the details of your product.",
+          "type": "boolean"
+        },
+        "allowPriceUpdates": {
+          "description": "If price updates are enabled, Google always updates the active price with the crawled information.",
+          "type": "boolean"
+        },
+        "allowStrictAvailabilityUpdates": {
+          "description": "If `allow_availability_updates` is enabled, items are automatically updated in all your Shopping target countries. By default, availability updates will only be applied to items that are 'out of stock' on your website but 'in stock' on Shopping. Set this to true to also update items that are 'in stock' on your website, but 'out of stock' on Google Shopping. In order for this field to have an effect, you must also set `allow_availability_updates`.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2425,7 +2625,7 @@
           "type": "array"
         },
         "itemConditions": {
-          "description": "The item conditions accepted for returns must not be empty unless the type of return policy is 'noReturns'.",
+          "description": "Optional. The item conditions accepted for returns must not be empty unless the type of return policy is 'noReturns'.",
           "items": {
             "enum": [
               "ITEM_CONDITION_UNSPECIFIED",
@@ -2463,7 +2663,7 @@
           "description": "The restocking fee that applies to all return reason categories. This would be treated as a free restocking fee if the value is not set."
         },
         "returnMethods": {
-          "description": "The return methods of how customers can return an item. This value is required to not be empty unless the type of return policy is noReturns.",
+          "description": "Optional. The return methods of how customers can return an item. This value is required to not be empty unless the type of return policy is noReturns.",
           "items": {
             "enum": [
               "RETURN_METHOD_UNSPECIFIED",
@@ -2492,7 +2692,7 @@
         },
         "returnShippingFee": {
           "$ref": "ReturnShippingFee",
-          "description": "The return shipping fee. Should be set only when customer need to download and print the return label."
+          "description": "Optional. The return shipping fee. Should be set only when customer need to download and print the return label."
         },
         "seasonalOverrides": {
           "description": "Optional. Overrides to the general policy for orders placed during a specific set of time intervals.",
@@ -2663,19 +2863,19 @@
       "id": "ProductChange",
       "properties": {
         "newValue": {
-          "description": "The new value of the changed resource or attribute.",
+          "description": "The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)",
           "type": "string"
         },
         "oldValue": {
-          "description": "The old value of the changed resource or attribute.",
+          "description": "The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)",
           "type": "string"
         },
         "regionCode": {
-          "description": "Countries that have the change (if applicable)",
+          "description": "Countries that have the change (if applicable). Represented in the ISO 3166 format.",
           "type": "string"
         },
         "reportingContext": {
-          "description": "Reporting contexts that have the change (if applicable)",
+          "description": "Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)",
           "enum": [
             "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
             "SHOPPING_ADS",
@@ -2689,6 +2889,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -2700,6 +2901,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2729,12 +2931,13 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
             "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
-            "[YouTube Checkout]("
+            "YouTube Checkout ."
           ],
           "type": "string"
         }
@@ -2768,8 +2971,13 @@
           },
           "type": "array"
         },
+        "eventTime": {
+          "description": "The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "expirationTime": {
-          "description": "The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "description": "Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2778,7 +2986,7 @@
           "type": "string"
         },
         "resource": {
-          "description": "The product name. Format: `{product.name=accounts/{account}/products/{product}}`",
+          "description": "The product name. Format: `accounts/{account}/products/{product}`",
           "type": "string"
         },
         "resourceId": {
@@ -2801,7 +3009,7 @@
       "type": "object"
     },
     "Program": {
-      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/topic/9240261?ref_topic=7257954,7259405,&sjid=796648681813264022-EU) program, which enables products from a merchant's store to be shown across Google for free.",
+      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/topic/9240261?ref_topic=7257954,7259405,&sjid=796648681813264022-EU) program, which enables products from a merchant's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`",
       "id": "Program",
       "properties": {
         "activeRegionCodes": {
@@ -3018,14 +3226,9 @@
       "type": "object"
     },
     "SeasonalOverride": {
-      "description": "Next: 5",
       "id": "SeasonalOverride",
       "properties": {
-        "begin": {
-          "$ref": "Date",
-          "description": "Required. Defines the date range when this seasonal override applies. Both begin and end are inclusive and should be in date decimal format, example 20250115. The dates of the seasonal overrides should not overlap."
-        },
-        "end": {
+        "endDate": {
           "$ref": "Date",
           "description": "Required. seasonal override end date (inclusive)."
         },
@@ -3033,9 +3236,18 @@
           "description": "Required. Display name of this seasonal override in Merchant Center.",
           "type": "string"
         },
-        "policy": {
-          "$ref": "Policy",
-          "description": "Required. The return policy for the given date range."
+        "returnDays": {
+          "description": "Number of days (from the delivery date) that the product can be returned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "returnUntilDate": {
+          "$ref": "Date",
+          "description": "Fixed end date until which the product can be returned."
+        },
+        "startDate": {
+          "$ref": "Date",
+          "description": "Required. Defines the date range when this seasonal override applies. Both start_date and end_date are inclusive. The dates of the seasonal overrides should not overlap."
         }
       },
       "type": "object"
@@ -3391,7 +3603,7 @@
       "id": "User",
       "properties": {
         "accessRights": {
-          "description": "Optional. The [access rights](https://support.google.com/merchants/answer/12160472?sjid=6789834943175119429-EU#accesstypes) the user has.",
+          "description": "Required. The [access rights](https://support.google.com/merchants/answer/12160472?sjid=6789834943175119429-EU#accesstypes) the user has.",
           "items": {
             "enum": [
               "ACCESS_RIGHT_UNSPECIFIED",

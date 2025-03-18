@@ -172,6 +172,34 @@
             "https://www.googleapis.com/auth/androidmanagement"
           ]
         },
+        "generateEnterpriseUpgradeUrl": {
+          "description": "Generates an enterprise upgrade URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain.Note: This feature is not generally available.",
+          "flatPath": "v1/enterprises/{enterprisesId}:generateEnterpriseUpgradeUrl",
+          "httpMethod": "POST",
+          "id": "androidmanagement.enterprises.generateEnterpriseUpgradeUrl",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the enterprise to be upgraded in the form enterprises/{enterpriseId}.",
+              "location": "path",
+              "pattern": "^enterprises/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}:generateEnterpriseUpgradeUrl",
+          "request": {
+            "$ref": "GenerateEnterpriseUpgradeUrlRequest"
+          },
+          "response": {
+            "$ref": "GenerateEnterpriseUpgradeUrlResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidmanagement"
+          ]
+        },
         "get": {
           "description": "Gets an enterprise.",
           "flatPath": "v1/enterprises/{enterprisesId}",
@@ -1174,7 +1202,7 @@
       }
     }
   },
-  "revision": "20250123",
+  "revision": "20250306",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -3157,12 +3185,14 @@
               "COMPLIANCE_REPORT",
               "STATUS_REPORT",
               "COMMAND",
-              "USAGE_LOGS"
+              "USAGE_LOGS",
+              "ENTERPRISE_UPGRADE"
             ],
             "enumDeprecated": [
               false,
               false,
               true,
+              false,
               false,
               false,
               false
@@ -3173,7 +3203,8 @@
               "Deprecated.",
               "A notification sent when a device issues a status report.",
               "A notification sent when a device command has completed.",
-              "A notification sent when device sends BatchUsageLogEvents."
+              "A notification sent when device sends BatchUsageLogEvents.",
+              "A notification sent when an enterprise is upgraded.Note: This feature is not generally available."
             ],
             "type": "string"
           },
@@ -3183,6 +3214,21 @@
           "description": "The name of the enterprise displayed to users. This field has a maximum length of 100 characters.",
           "type": "string"
         },
+        "enterpriseType": {
+          "description": "Output only. The type of the enterprise.",
+          "enum": [
+            "ENTERPRISE_TYPE_UNSPECIFIED",
+            "MANAGED_GOOGLE_DOMAIN",
+            "MANAGED_GOOGLE_PLAY_ACCOUNTS_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "This value is not used.",
+            "The enterprise belongs to a managed Google domain (https://developers.google.com/android/work/terminology#managed_google_domain).",
+            "The enterprise is a managed Google Play Accounts enterprise (https://developers.google.com/android/work/terminology#managed_google_play_accounts_enterprise)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "googleAuthenticationSettings": {
           "$ref": "GoogleAuthenticationSettings",
           "description": "Settings for Google-provided user authentication."
@@ -3190,6 +3236,36 @@
         "logo": {
           "$ref": "ExternalData",
           "description": "An image displayed as a logo during device provisioning. Supported types are: image/bmp, image/gif, image/x-ico, image/jpeg, image/png, image/webp, image/vnd.wap.wbmp, image/x-adobe-dng."
+        },
+        "managedGoogleDomainType": {
+          "description": "Output only. The type of managed Google domain.",
+          "enum": [
+            "MANAGED_GOOGLE_DOMAIN_TYPE_UNSPECIFIED",
+            "TYPE_TEAM",
+            "TYPE_DOMAIN"
+          ],
+          "enumDescriptions": [
+            "The managed Google domain type is not specified.",
+            "The managed Google domain is an email-verified team.",
+            "The managed Google domain is domain-verified."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "managedGooglePlayAccountsEnterpriseType": {
+          "description": "Output only. The type of a managed Google Play Accounts enterprise.",
+          "enum": [
+            "MANAGED_GOOGLE_PLAY_ACCOUNTS_ENTERPRISE_TYPE_UNSPECIFIED",
+            "CUSTOMER_MANAGED",
+            "EMM_MANAGED"
+          ],
+          "enumDescriptions": [
+            "The managed Google Play Accounts enterprise type is not specified.",
+            "The enterprise is customer-managed",
+            "The enterprise is EMM-managed (deprecated)."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "The name of the enterprise which is generated by the server during creation, in the form enterprises/{enterpriseId}.",
@@ -3282,11 +3358,40 @@
       "properties": {
         "endDate": {
           "$ref": "Date",
-          "description": "The end date (inclusive) of the freeze period. Must be no later than 90 days from the start date. If the end date is earlier than the start date, the freeze period is considered wrapping year-end. Note: year must not be set. For example, {\"month\": 1,\"date\": 30}."
+          "description": "The end date (inclusive) of the freeze period. Must be no later than 90 days from the start date. If the end date is earlier than the start date, the freeze period is considered wrapping year-end. Note: day and month must be set. year should not be set as it is not used. For example, {\"month\": 1,\"date\": 30}."
         },
         "startDate": {
           "$ref": "Date",
-          "description": "The start date (inclusive) of the freeze period. Note: year must not be set. For example, {\"month\": 1,\"date\": 30}."
+          "description": "The start date (inclusive) of the freeze period. Note: day and month must be set. year should not be set as it is not used. For example, {\"month\": 1,\"date\": 30}."
+        }
+      },
+      "type": "object"
+    },
+    "GenerateEnterpriseUpgradeUrlRequest": {
+      "description": "Request message for generating a URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain.Note: This feature is not generally available.",
+      "id": "GenerateEnterpriseUpgradeUrlRequest",
+      "properties": {
+        "adminEmail": {
+          "description": "Optional. Email address used to prefill the admin field of the enterprise signup form as part of the upgrade process. This value is a hint only and can be altered by the user. Personal email addresses are not allowed. If allowedDomains is non-empty then this must belong to one of the allowedDomains.",
+          "type": "string"
+        },
+        "allowedDomains": {
+          "description": "Optional. A list of domains that are permitted for the admin email. The IT admin cannot enter an email address with a domain name that is not in this list. Subdomains of domains in this list are not allowed but can be allowed by adding a second entry which has *. prefixed to the domain name (e.g. *.example.com). If the field is not present or is an empty list then the IT admin is free to use any valid domain name. Personal email domains are not allowed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateEnterpriseUpgradeUrlResponse": {
+      "description": "Response message for generating a URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain.Note: This feature is not generally available.",
+      "id": "GenerateEnterpriseUpgradeUrlResponse",
+      "properties": {
+        "url": {
+          "description": "A URL for an enterprise admin to upgrade their enterprise. The page can't be rendered in an iframe.",
+          "type": "string"
         }
       },
       "type": "object"

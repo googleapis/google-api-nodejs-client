@@ -594,6 +594,10 @@ export namespace connectors_v1 {
      */
     tlsServiceDirectory?: string | null;
     /**
+     * Optional. Traffic shaping configuration for the connection.
+     */
+    trafficShapingConfigs?: Schema$TrafficShapingConfig[];
+    /**
      * Output only. Updated time.
      */
     updateTime?: string | null;
@@ -893,7 +897,7 @@ export namespace connectors_v1 {
     updateTime?: string | null;
   }
   /**
-   * This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version
+   * This configuration provides infra configs like rate limit threshold which need to be configurable for every connector version
    */
   export interface Schema$ConnectorVersionInfraConfig {
     /**
@@ -1289,6 +1293,15 @@ export namespace connectors_v1 {
     updateTime?: string | null;
   }
   /**
+   * Data enrichment configuration.
+   */
+  export interface Schema$EnrichmentConfig {
+    /**
+     * Optional. Append ACL to the event.
+     */
+    appendAcl?: boolean | null;
+  }
+  /**
    * EnumOption definition
    */
   export interface Schema$EnumOption {
@@ -1317,6 +1330,10 @@ export namespace connectors_v1 {
      * Optional. Dead letter configuration for eventing of a connection.
      */
     deadLetterConfig?: Schema$DeadLetterConfig;
+    /**
+     * Optional. Data enrichment configuration.
+     */
+    enrichmentConfig?: Schema$EnrichmentConfig;
     /**
      * Optional. Enrichment Enabled.
      */
@@ -1523,6 +1540,10 @@ export namespace connectors_v1 {
      * OPTION 1: Hit an endpoint when we receive an event.
      */
     endpoint?: Schema$EndPoint;
+    /**
+     * OPTION 3: Write the event to Pub/Sub topic.
+     */
+    pubsub?: Schema$PubSub;
     /**
      * Service account needed for runtime plane to trigger IP workflow.
      */
@@ -1864,6 +1885,10 @@ export namespace connectors_v1 {
    * JsonSchema representation of schema metadata
    */
   export interface Schema$JsonSchema {
+    /**
+     * Additional details apart from standard json schema fields, this gives flexibility to store metadata about the schema
+     */
+    additionalDetails?: {[key: string]: any} | null;
     /**
      * The default value of the field or object described by this schema.
      */
@@ -2621,9 +2646,17 @@ export namespace connectors_v1 {
      */
     demoUri?: string | null;
     /**
+     * Output only. Has dynamic open api spec uri.
+     */
+    hasDynamicSpecUri?: boolean | null;
+    /**
      * Required. Integration example templates for the custom connector.
      */
     integrationTemplates?: string | null;
+    /**
+     * Output only. Local spec path. Required if has_dynamic_spec_uri is true.
+     */
+    localSpecPath?: string | null;
     /**
      * Optional. Marketplace product name.
      */
@@ -2784,6 +2817,27 @@ export namespace connectors_v1 {
     publishTime?: string | null;
   }
   /**
+   * Pub/Sub message includes details of the Destination Pub/Sub topic.
+   */
+  export interface Schema$PubSub {
+    /**
+     * Optional. Pub/Sub message attributes to be added to the Pub/Sub message.
+     */
+    attributes?: {[key: string]: string} | null;
+    /**
+     * Optional. Configuration for configuring the trigger
+     */
+    configVariables?: Schema$ConfigVariable[];
+    /**
+     * Required. The project id which has the Pub/Sub topic.
+     */
+    projectId?: string | null;
+    /**
+     * Required. The topic id of the Pub/Sub topic.
+     */
+    topicId?: string | null;
+  }
+  /**
    * Request message for ConnectorsService.RefreshConnectionSchemaMetadata.
    */
   export interface Schema$RefreshConnectionSchemaMetadataRequest {}
@@ -2893,7 +2947,7 @@ export namespace connectors_v1 {
      */
     helperTextTemplate?: string | null;
     /**
-     * Optional. Prinicipal/Identity for whom the role need to assigned.
+     * Optional. Principal/Identity for whom the role need to assigned.
      */
     principal?: string | null;
     /**
@@ -3154,7 +3208,7 @@ export namespace connectors_v1 {
    */
   export interface Schema$Source {
     /**
-     * Field identifier. For example config vaiable name.
+     * Field identifier. For example config variable name.
      */
     fieldId?: string | null;
     /**
@@ -3343,6 +3397,19 @@ export namespace connectors_v1 {
      * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
+  }
+  /**
+   * * TrafficShapingConfig defines the configuration for shaping API traffic by specifying a quota limit and the duration over which this limit is enforced. This configuration helps to control and manage the rate at which API calls are made on the client side, preventing service overload on the backend. For example: - if the quota limit is 100 calls per 10 seconds, then the message would be: { quota_limit: 100 duration: { seconds: 10 \} \} - if the quota limit is 100 calls per 5 minutes, then the message would be: { quota_limit: 100 duration: { seconds: 300 \} \} - if the quota limit is 10000 calls per day, then the message would be: { quota_limit: 10000 duration: { seconds: 86400 \} and so on.
+   */
+  export interface Schema$TrafficShapingConfig {
+    /**
+     * Required. * The duration over which the API call quota limits are calculated. This duration is used to define the time window for evaluating if the number of API calls made by a user is within the allowed quota limits. For example: - To define a quota sampled over 16 seconds, set `seconds` to 16 - To define a quota sampled over 5 minutes, set `seconds` to 300 (5 * 60) - To define a quota sampled over 1 day, set `seconds` to 86400 (24 * 60 * 60) and so on. It is important to note that this duration is not the time the quota is valid for, but rather the time window over which the quota is evaluated. For example, if the quota is 100 calls per 10 seconds, then this duration field would be set to 10 seconds.
+     */
+    duration?: string | null;
+    /**
+     * Required. Maximum number of api calls allowed.
+     */
+    quotaLimit?: string | null;
   }
   /**
    * Maintenance policy applicable to instance updates.

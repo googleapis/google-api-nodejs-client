@@ -575,6 +575,10 @@ export namespace androidenterprise_v1 {
      */
     administrator?: Schema$Administrator[];
     /**
+     * The type of the enterprise.
+     */
+    enterpriseType?: string | null;
+    /**
      * Output only. Settings for Google-provided user authentication.
      */
     googleAuthenticationSettings?: Schema$GoogleAuthenticationSettings;
@@ -582,6 +586,10 @@ export namespace androidenterprise_v1 {
      * The unique ID for the enterprise.
      */
     id?: string | null;
+    /**
+     * The type of managed Google domain
+     */
+    managedGoogleDomainType?: string | null;
     /**
      * The name of the enterprise, for example, "Example, Inc".
      */
@@ -626,6 +634,15 @@ export namespace androidenterprise_v1 {
     topicName?: string | null;
   }
   /**
+   * An event generated when an enterprise is upgraded. **Note:** This feature is not generally available.
+   */
+  export interface Schema$EnterpriseUpgradeEvent {
+    /**
+     * The upgrade state.
+     */
+    upgradeState?: string | null;
+  }
+  /**
    *  *Deprecated:* New integrations cannot use this method and can refer to our new recommendations.
    */
   export interface Schema$Entitlement {
@@ -643,6 +660,15 @@ export namespace androidenterprise_v1 {
      * An entitlement of a user to a product (e.g. an app). For example, a free app that they have installed, or a paid app that they have been allocated a license to.
      */
     entitlement?: Schema$Entitlement[];
+  }
+  /**
+   * Response message for generating a URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain. **Note:** This feature is not generally available.
+   */
+  export interface Schema$GenerateEnterpriseUpgradeUrlResponse {
+    /**
+     * A URL for an enterprise admin to upgrade their enterprise. The page can't be rendered in an iframe.
+     */
+    url?: string | null;
   }
   /**
    * Contains settings for Google-provided user authentication.
@@ -953,6 +979,10 @@ export namespace androidenterprise_v1 {
      * The ID of the enterprise for which the notification is sent. This will always be present.
      */
     enterpriseId?: string | null;
+    /**
+     * Notifications about enterprise upgrade. **Note:** This feature is not generally available.
+     */
+    enterpriseUpgradeEvent?: Schema$EnterpriseUpgradeEvent;
     /**
      * Notifications about an app installation failure.
      */
@@ -2675,6 +2705,104 @@ export namespace androidenterprise_v1 {
     }
 
     /**
+     * Generates an enterprise upgrade URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain. **Note:** This feature is not generally available.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateEnterpriseUpgradeUrl(
+      params: Params$Resource$Enterprises$Generateenterpriseupgradeurl,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateEnterpriseUpgradeUrl(
+      params?: Params$Resource$Enterprises$Generateenterpriseupgradeurl,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateEnterpriseUpgradeUrlResponse>;
+    generateEnterpriseUpgradeUrl(
+      params: Params$Resource$Enterprises$Generateenterpriseupgradeurl,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateEnterpriseUpgradeUrl(
+      params: Params$Resource$Enterprises$Generateenterpriseupgradeurl,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateEnterpriseUpgradeUrlResponse>,
+      callback: BodyResponseCallback<Schema$GenerateEnterpriseUpgradeUrlResponse>
+    ): void;
+    generateEnterpriseUpgradeUrl(
+      params: Params$Resource$Enterprises$Generateenterpriseupgradeurl,
+      callback: BodyResponseCallback<Schema$GenerateEnterpriseUpgradeUrlResponse>
+    ): void;
+    generateEnterpriseUpgradeUrl(
+      callback: BodyResponseCallback<Schema$GenerateEnterpriseUpgradeUrlResponse>
+    ): void;
+    generateEnterpriseUpgradeUrl(
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Generateenterpriseupgradeurl
+        | BodyResponseCallback<Schema$GenerateEnterpriseUpgradeUrlResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateEnterpriseUpgradeUrlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateEnterpriseUpgradeUrlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateEnterpriseUpgradeUrlResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Generateenterpriseupgradeurl;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Enterprises$Generateenterpriseupgradeurl;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/generateEnterpriseUpgradeUrl'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateEnterpriseUpgradeUrlResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateEnterpriseUpgradeUrlResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Generates a sign-up URL.
      *
      * @param params - Parameters for request
@@ -3620,6 +3748,21 @@ export namespace androidenterprise_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Enterprise;
+  }
+  export interface Params$Resource$Enterprises$Generateenterpriseupgradeurl
+    extends StandardParameters {
+    /**
+     * Optional. Email address used to prefill the admin field of the enterprise signup form as part of the upgrade process. This value is a hint only and can be altered by the user. Personal email addresses are not allowed. If `allowedDomains` is non-empty then this must belong to one of the `allowedDomains`.
+     */
+    adminEmail?: string;
+    /**
+     * Optional. A list of domains that are permitted for the admin email. The IT admin cannot enter an email address with a domain name that is not in this list. Subdomains of domains in this list are not allowed but can be allowed by adding a second entry which has `*.` prefixed to the domain name (e.g. *.example.com). If the field is not present or is an empty list then the IT admin is free to use any valid domain name. Personal email domains are not allowed.
+     */
+    allowedDomains?: string[];
+    /**
+     * Required. The ID of the enterprise.
+     */
+    enterpriseId?: string;
   }
   export interface Params$Resource$Enterprises$Generatesignupurl
     extends StandardParameters {

@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20241209",
+  "revision": "20250217",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -498,6 +498,26 @@
             "$ref": "Signature"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BaseImage": {
+      "description": "BaseImage describes a base image of a container image.",
+      "id": "BaseImage",
+      "properties": {
+        "layerCount": {
+          "description": "The number of layers that the base image is composed of.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "The name of the base image.",
+          "type": "string"
+        },
+        "repository": {
+          "description": "The repository name in which the base image is from.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1169,6 +1189,9 @@
         "filePath": {
           "description": "For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.",
           "type": "string"
+        },
+        "layerDetails": {
+          "$ref": "LayerDetails"
         }
       },
       "type": "object"
@@ -1233,6 +1256,26 @@
       },
       "type": "object"
     },
+    "GrafeasV1BaseImage": {
+      "description": "BaseImage describes a base image of a container image.",
+      "id": "GrafeasV1BaseImage",
+      "properties": {
+        "layerCount": {
+          "description": "The number of layers that the base image is composed of.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "The name of the base image.",
+          "type": "string"
+        },
+        "repository": {
+          "description": "The repository name in which the base image is from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GrafeasV1FileLocation": {
       "description": "Indicates the location at which a package was found.",
       "id": "GrafeasV1FileLocation",
@@ -1240,6 +1283,37 @@
         "filePath": {
           "description": "For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.",
           "type": "string"
+        },
+        "layerDetails": {
+          "$ref": "GrafeasV1LayerDetails",
+          "description": "Each package found in a file should have its own layer metadata (that is, information from the origin layer of the package)."
+        }
+      },
+      "type": "object"
+    },
+    "GrafeasV1LayerDetails": {
+      "description": "Details about the layer a package was found in.",
+      "id": "GrafeasV1LayerDetails",
+      "properties": {
+        "baseImages": {
+          "description": "The base images the layer is found within.",
+          "items": {
+            "$ref": "GrafeasV1BaseImage"
+          },
+          "type": "array"
+        },
+        "command": {
+          "description": "The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built.",
+          "type": "string"
+        },
+        "diffId": {
+          "description": "The diff ID (typically a sha256 hash) of the layer in the container image.",
+          "type": "string"
+        },
+        "index": {
+          "description": "The index of the layer in the container image.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1553,6 +1627,33 @@
         "directive": {
           "description": "Required. The recovered Dockerfile directive used to construct this layer. See https://docs.docker.com/engine/reference/builder/ for more information.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LayerDetails": {
+      "description": "Details about the layer a package was found in. This should be the same as the LayerDetails message in google3/third_party/scalibr/binary/proto/scan_result.proto.",
+      "id": "LayerDetails",
+      "properties": {
+        "baseImages": {
+          "description": "The base images the layer is found within.",
+          "items": {
+            "$ref": "BaseImage"
+          },
+          "type": "array"
+        },
+        "command": {
+          "description": "The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built.",
+          "type": "string"
+        },
+        "diffId": {
+          "description": "The diff ID (sha256 hash) of the layer in the container image.",
+          "type": "string"
+        },
+        "index": {
+          "description": "The index of the layer in the container image.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1897,6 +1998,9 @@
         "hashDigest": {
           "description": "HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.",
           "type": "string"
+        },
+        "layerDetails": {
+          "$ref": "LayerDetails"
         },
         "licenses": {
           "description": "The list of licenses found that are related to a given package. Note that licenses may also be stored on the BinarySourceInfo. If there is no BinarySourceInfo (because there's no concept of source vs binary), then it will be stored here, while if there are BinarySourceInfos, it will be stored there, as one source can have multiple binaries with different licenses.",

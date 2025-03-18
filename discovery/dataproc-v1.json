@@ -4978,7 +4978,7 @@
       }
     }
   },
-  "revision": "20250111",
+  "revision": "20250207",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5740,6 +5740,21 @@
         },
         "role": {
           "description": "Role that is assigned to the list of members, or principals. For example, roles/viewer, roles/editor, or roles/owner.For an overview of the IAM roles and permissions, see the IAM documentation (https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see here (https://cloud.google.com/iam/docs/understanding-roles).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BuildInfo": {
+      "description": "Native Build Info",
+      "id": "BuildInfo",
+      "properties": {
+        "buildKey": {
+          "description": "Optional. Build key.",
+          "type": "string"
+        },
+        "buildValue": {
+          "description": "Optional. Build value.",
           "type": "string"
         }
       },
@@ -6847,6 +6862,21 @@
       },
       "type": "object"
     },
+    "FallbackReason": {
+      "description": "Native SQL Execution Data",
+      "id": "FallbackReason",
+      "properties": {
+        "fallbackNode": {
+          "description": "Optional. Fallback node information.",
+          "type": "string"
+        },
+        "fallbackReason": {
+          "description": "Optional. Fallback to Spark reason.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FlinkJob": {
       "description": "A Dataproc job for running Apache Flink applications on YARN.",
       "id": "FlinkJob",
@@ -6937,6 +6967,13 @@
         "reservationAffinity": {
           "$ref": "ReservationAffinity",
           "description": "Optional. Reservation Affinity for consuming Zonal reservation."
+        },
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Resource manager tags to add to all instances (see Resource manager tags resources (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing)).",
+          "type": "object"
         },
         "serviceAccount": {
           "description": "Optional. The Dataproc service account (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_dataproc) (also see VM Data Plane identity (https://cloud.google.com/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity)) used by Dataproc cluster VM instances to access Google Cloud Platform services.If not specified, the Compute Engine default service account (https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.",
@@ -8467,6 +8504,60 @@
       },
       "type": "object"
     },
+    "NativeBuildInfoUiData": {
+      "id": "NativeBuildInfoUiData",
+      "properties": {
+        "buildClass": {
+          "description": "Optional. Build class of Native.",
+          "type": "string"
+        },
+        "buildInfo": {
+          "description": "Optional. Build related details.",
+          "items": {
+            "$ref": "BuildInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "NativeSqlExecutionUiData": {
+      "description": "Native SQL Execution Data",
+      "id": "NativeSqlExecutionUiData",
+      "properties": {
+        "description": {
+          "description": "Optional. Description of the execution.",
+          "type": "string"
+        },
+        "executionId": {
+          "description": "Required. Execution ID of the Native SQL Execution.",
+          "format": "int64",
+          "type": "string"
+        },
+        "fallbackDescription": {
+          "description": "Optional. Description of the fallback.",
+          "type": "string"
+        },
+        "fallbackNodeToReason": {
+          "description": "Optional. Fallback node to reason.",
+          "items": {
+            "$ref": "FallbackReason"
+          },
+          "type": "array"
+        },
+        "numFallbackNodes": {
+          "description": "Optional. Number of nodes fallen back to Spark.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numNativeNodes": {
+          "description": "Optional. Number of nodes in Native.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "NodeGroup": {
       "description": "Dataproc Node Group. The Dataproc NodeGroup resource is not related to the Dataproc NodeGroupAffinity resource.",
       "id": "NodeGroup",
@@ -9960,7 +10051,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Required. The resource name of the session.",
+          "description": "Identifier. The resource name of the session.",
           "type": "string"
         },
         "runtimeConfig": {
@@ -10447,6 +10538,7 @@
               "HIVE_WEBHCAT",
               "HUDI",
               "JUPYTER",
+              "PIG",
               "PRESTO",
               "TRINO",
               "RANGER",
@@ -10464,6 +10556,7 @@
               "The Hive Web HCatalog (the REST service for accessing HCatalog).",
               "Hudi.",
               "The Jupyter Notebook.",
+              "The Pig component.",
               "The Presto query engine.",
               "The Trino query engine.",
               "The Ranger service.",
@@ -10975,6 +11068,14 @@
         },
         "jobData": {
           "$ref": "JobData"
+        },
+        "nativeBuildInfoUiData": {
+          "$ref": "NativeBuildInfoUiData",
+          "description": "Native Build Info"
+        },
+        "nativeSqlExecutionUiData": {
+          "$ref": "NativeSqlExecutionUiData",
+          "description": "Native SQL Execution Info"
         },
         "poolData": {
           "$ref": "PoolData"

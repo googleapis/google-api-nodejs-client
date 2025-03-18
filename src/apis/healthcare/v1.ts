@@ -398,6 +398,15 @@ export namespace healthcare_v1 {
     blobStorageClass?: string | null;
   }
   /**
+   * The configuration for exporting to Cloud Storage using the bulk export API.
+   */
+  export interface Schema$BulkExportGcsDestination {
+    /**
+     * Optional. URI for a Cloud Storage directory where the server writes result files, in the format `gs://{bucket-id\}/{path/to/destination/dir\}`. If there is no trailing slash, the service appends one when composing the object path. The user is responsible for creating the Cloud Storage bucket referenced in `uri_prefix`.
+     */
+    uriPrefix?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -498,11 +507,11 @@ export namespace healthcare_v1 {
      */
     actor?: string | null;
     /**
-     * An abstract identifier that describes the environment or conditions under which the accessor is acting. Can be "*" if it applies to all environments.
+     * An abstract identifier that describes the environment or conditions under which the accessor is acting. If it's not specified, it applies to all environments.
      */
     environment?: string | null;
     /**
-     * The intent of data use. Can be "*" if it applies to all purposes.
+     * The intent of data use. If it's not specified, it applies to all purposes.
      */
     purpose?: string | null;
   }
@@ -663,6 +672,14 @@ export namespace healthcare_v1 {
      * Identifier. Resource name of the dataset, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
      */
     name?: string | null;
+    /**
+     * Output only. For future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. For future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Optional. The default timezone used by this dataset. Must be a either a valid IANA time zone name such as "America/New_York" or empty, which defaults to UTC. This is used for parsing times in resources, such as HL7 messages, where no explicit timezone is specified.
      */
@@ -1208,6 +1225,10 @@ export namespace healthcare_v1 {
    * Represents a FHIR store.
    */
   export interface Schema$FhirStore {
+    /**
+     * Optional. FHIR bulk export exports resources to the specified Cloud Storage destination. A Cloud Storage destination is a URI for a Cloud Storage directory where result files will be written. Only used in the spec-defined bulk $export methods. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM role on the destination.
+     */
+    bulkExportGcsDestination?: Schema$BulkExportGcsDestination;
     /**
      * Optional. Enable parsing of references within complex FHIR data types such as Extensions. If this value is set to ENABLED, then features like referential integrity and Bundle reference rewriting apply to all references. If this flag has not been specified the behavior of the FHIR store will not change, references in complex data types will not be parsed. New stores will have this value set to ENABLED after a notification period. Warning: turning on this flag causes processing existing resources to fail if they contain references to non-existent resources.
      */
@@ -11585,6 +11606,10 @@ export namespace healthcare_v1 {
      * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
+    /**
+     * Optional. The viewport setting to use as specified in https://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_8.3.5.html#sect_8.3.5.1.3
+     */
+    viewport?: string;
   }
 
   export class Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames {
@@ -11793,16 +11818,25 @@ export namespace healthcare_v1 {
      * Required. The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      */
     parent?: string;
+    /**
+     * Optional. The viewport setting to use as specified in https://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_8.3.5.html#sect_8.3.5.1.3
+     */
+    viewport?: string;
   }
 
   export class Resource$Projects$Locations$Datasets$Fhirstores {
     context: APIRequestContext;
     fhir: Resource$Projects$Locations$Datasets$Fhirstores$Fhir;
+    operations: Resource$Projects$Locations$Datasets$Fhirstores$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.fhir = new Resource$Projects$Locations$Datasets$Fhirstores$Fhir(
         this.context
       );
+      this.operations =
+        new Resource$Projects$Locations$Datasets$Fhirstores$Operations(
+          this.context
+        );
     }
 
     /**
@@ -11980,6 +12014,95 @@ export namespace healthcare_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Bulk exports a Group resource and resources in the member field, including related resources for each Patient member. The export for each Patient is identical to a GetPatientEverything request. Implements the FHIR implementation guide [$export group of patients](https://build.fhir.org/ig/HL7/bulk-data/export.html#endpoint---group-of-patients). The following headers must be set in the request: * `Accept`: specifies the format of the `OperationOutcome` response. Only `application/fhir+json` is supported. * `Prefer`: specifies whether the response is immediate or asynchronous. Must be to `respond-async` because only asynchronous responses are supported. Specify the destination for the server to write result files by setting the Cloud Storage location bulk_export_gcs_destination on the FHIR store. URI of an existing Cloud Storage directory where the server writes result files, in the format gs://{bucket-id\}/{path/to/destination/dir\}. If there is no trailing slash, the service appends one when composing the object path. The user is responsible for creating the Cloud Storage bucket referenced. Supports the following query parameters: * `_type`: string of comma-delimited FHIR resource types. If provided, only resources of the specified type(s) are exported. * `_since`: if provided, only resources updated after the specified time are exported. * `_outputFormat`: optional, specify ndjson to export data in NDJSON format. Exported file names use the format: {export_id\}_{resource_type\}.ndjson. * `organizeOutputBy`: resource type to organize the output by. Required and must be set to `Patient`. When specified, output files are organized by instances of the specified resource type, including the resource, referenced resources, and resources that contain references to that resource. On success, the `Content-Location` header of response is set to a URL that you can use to query the status of the export. The URL is in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/operations/{export_id\}`. See get-fhir-operation-status for more information. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkExportGroup(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkExportGroup(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    bulkExportGroup(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkExportGroup(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    bulkExportGroup(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    bulkExportGroup(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    bulkExportGroup(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/$export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
 
@@ -13260,6 +13383,29 @@ export namespace healthcare_v1 {
      */
     requestBody?: Schema$ApplyConsentsRequest;
   }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Bulkexportgroup
+    extends StandardParameters {
+    /**
+     * Required. Name of the Group resource that is exported, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`.
+     */
+    name?: string;
+    /**
+     * Optional. Required. The FHIR resource type used to organize exported resources. Only supports "Patient". When organized by Patient resource, output files are grouped as follows: * Patient file(s) containing the Patient resources. Each Patient is sequentially followed by all resources the Patient references, and all resources that reference the Patient (equivalent to a GetPatientEverything request). * Individual files grouped by resource type for resources in the Group's member field and the Group resource itself. Resources may be duplicated across multiple Patients. For example, if two Patient resources reference the same Organization resource, it will appear twice, once after each Patient. The Group resource from the request does not appear in the Patient files.
+     */
+    organizeOutputBy?: string;
+    /**
+     * Optional. Output format of the export. This field is optional and only `application/fhir+ndjson` is supported.
+     */
+    outputFormat?: string;
+    /**
+     * Optional. If provided, only resources updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
+     */
+    _since?: string;
+    /**
+     * Optional. String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are exported.
+     */
+    _type?: string;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Create
     extends StandardParameters {
     /**
@@ -13760,6 +13906,95 @@ export namespace healthcare_v1 {
         options: Object.assign(
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Bulk exports all resources from the FHIR store to the specified destination. Implements the FHIR implementation guide [system level $export](https://build.fhir.org/ig/HL7/bulk-data/export.html#endpoint---system-level-export. The following headers must be set in the request: * `Accept`: specifies the format of the `OperationOutcome` response. Only `application/fhir+json` is supported. * `Prefer`: specifies whether the response is immediate or asynchronous. Must be to `respond-async` because only asynchronous responses are supported. Specify the destination for the server to write result files by setting the Cloud Storage location bulk_export_gcs_destination on the FHIR store. URI of an existing Cloud Storage directory where the server writes result files, in the format gs://{bucket-id\}/{path/to/destination/dir\}. If there is no trailing slash, the service appends one when composing the object path. The user is responsible for creating the Cloud Storage bucket referenced. Supports the following query parameters: * `_type`: string of comma-delimited FHIR resource types. If provided, only the resources of the specified type(s) are exported. * `_since`: if provided, only the resources that are updated after the specified time are exported. * `_outputFormat`: optional, specify ndjson to export data in NDJSON format. Exported file names use the format: {export_id\}_{resource_type\}.ndjson. On success, the `Content-Location` header of the response is set to a URL that the user can use to query the status of the export. The URL is in the format: `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/operations/{export_id\}`. See get-fhir-operation-status for more information. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkExport(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkExport(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    bulkExport(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkExport(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    bulkExport(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    bulkExport(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    bulkExport(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/fhir/$export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
             apiVersion: '',
           },
@@ -15492,6 +15727,25 @@ export namespace healthcare_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Bulkexport
+    extends StandardParameters {
+    /**
+     * Required. The name of the FHIR store to export resources from, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     */
+    name?: string;
+    /**
+     * Optional. Output format of the export. This field is optional and only `application/fhir+ndjson` is supported.
+     */
+    outputFormat?: string;
+    /**
+     * Optional. If provided, only resources updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
+     */
+    _since?: string;
+    /**
+     * Optional. String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are exported.
+     */
+    _type?: string;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities
     extends StandardParameters {
     /**
@@ -15743,6 +15997,202 @@ export namespace healthcare_v1 {
     extends StandardParameters {
     /**
      * Required. The name of the resource version to retrieve.
+     */
+    name?: string;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Fhirstores$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes operations as defined in the FHIR specification. Implements the FHIR implementation guide [bulk data delete request](https://build.fhir.org/ig/HL7/bulk-data/export.html#bulk-data-delete-request). Returns success if the operation was successfully cancelled. If the operation is complete, or has already been cancelled, returns an error response.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteFhirOperation(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteFhirOperation(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    deleteFhirOperation(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteFhirOperation(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    deleteFhirOperation(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    deleteFhirOperation(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    deleteFhirOperation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Gets the status of operations as defined in the FHIR specification. Implements the FHIR implementation guide [bulk data status request](https://build.fhir.org/ig/HL7/bulk-data/export.html#bulk-data-status-request). Operations can have one of these states: * in-progress: response status code is `202` and `X-Progress` header is set to `in progress`. * complete: response status code is `200` and the body is a JSON-encoded operation response as defined by the spec. For a bulk export, this response is defined in https://build.fhir.org/ig/HL7/bulk-data/export.html#response---complete-status. * error: response status code is `5XX`, and the body is a JSON-encoded `OperationOutcome` resource describing the reason for the error.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getFhirOperationStatus(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getFhirOperationStatus(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    getFhirOperationStatus(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getFhirOperationStatus(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    getFhirOperationStatus(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    getFhirOperationStatus(
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    getFhirOperationStatus(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Deletefhiroperation
+    extends StandardParameters {
+    /**
+     * Required. Name of the operation to be deleted, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/operations/{operation_id\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Operations$Getfhiroperationstatus
+    extends StandardParameters {
+    /**
+     * Required. Name of the operation to query, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/operations/{operation_id\}`.
      */
     name?: string;
   }

@@ -216,7 +216,7 @@ export namespace analyticshub_v1 {
    */
   export interface Schema$BigQueryDatasetSource {
     /**
-     * Resource name of the dataset source for this listing. e.g. `projects/myproject/datasets/123`
+     * Optional. Resource name of the dataset source for this listing. e.g. `projects/myproject/datasets/123`
      */
     dataset?: string | null;
     /**
@@ -274,7 +274,7 @@ export namespace analyticshub_v1 {
      */
     maxBytes?: string | null;
     /**
-     * Optional. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.
+     * Optional. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgment deadline.
      */
     maxDuration?: string | null;
     /**
@@ -323,6 +323,10 @@ export namespace analyticshub_v1 {
      */
     listingCount?: number | null;
     /**
+     * Optional. By default, false. If true, the DataExchange has an email sharing mandate enabled.
+     */
+    logLinkedDatasetQueryUserEmail?: boolean | null;
+    /**
      * Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/US/dataExchanges/123`.
      */
     name?: string | null;
@@ -370,7 +374,7 @@ export namespace analyticshub_v1 {
      */
     deadLetterTopic?: string | null;
     /**
-     * Optional. The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgement deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.
+     * Optional. The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgment deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.
      */
     maxDeliveryAttempts?: number | null;
   }
@@ -403,9 +407,6 @@ export namespace analyticshub_v1 {
      */
     location?: string | null;
   }
-  /**
-   * Contains the reference that identifies a destination bigquery dataset.
-   */
   export interface Schema$DestinationDatasetReference {
     /**
      * Required. A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
@@ -546,7 +547,7 @@ export namespace analyticshub_v1 {
      */
     detached?: boolean | null;
     /**
-     * Optional. If true, Pub/Sub provides the following guarantees for the delivery of a message with a given value of `message_id` on this subscription: * The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires. * An acknowledged message will not be resent to a subscriber. Note that subscribers may still receive multiple copies of a message when `enable_exactly_once_delivery` is true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct `message_id` values.
+     * Optional. If true, Pub/Sub provides the following guarantees for the delivery of a message with a given value of `message_id` on this subscription: * The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgment deadline expires. * An acknowledged message will not be resent to a subscriber. Note that subscribers may still receive multiple copies of a message when `enable_exactly_once_delivery` is true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct `message_id` values.
      */
     enableExactlyOnceDelivery?: boolean | null;
     /**
@@ -570,6 +571,10 @@ export namespace analyticshub_v1 {
      */
     messageRetentionDuration?: string | null;
     /**
+     * Optional. Transforms to be applied to messages before they are delivered to subscribers. Transforms are applied in the order specified.
+     */
+    messageTransforms?: Schema$MessageTransform[];
+    /**
      * Required. Name of the subscription. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     name?: string | null;
@@ -582,7 +587,7 @@ export namespace analyticshub_v1 {
      */
     retainAckedMessages?: boolean | null;
     /**
-     * Optional. A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.
+     * Optional. A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded events for a given message.
      */
     retryPolicy?: Schema$RetryPolicy;
     /**
@@ -593,6 +598,19 @@ export namespace analyticshub_v1 {
      * Output only. Indicates the minimum duration for which a message is retained after it is published to the subscription's topic. If this field is set, messages published to the subscription's topic in the last `topic_message_retention_duration` are always available to subscribers. See the `message_retention_duration` field in `Topic`. This field is set only in responses from the server; it is ignored if it is set in any requests.
      */
     topicMessageRetentionDuration?: string | null;
+  }
+  /**
+   * User-defined JavaScript function that can transform or filter a Pub/Sub message.
+   */
+  export interface Schema$JavaScriptUDF {
+    /**
+     * Required. JavaScript code that contains a function `function_name` with the below signature: ``` /x* * Transforms a Pub/Sub message. * @return {(Object)\>|null)\} - To * filter a message, return `null`. To transform a message return a map * with the following keys: * - (required) 'data' : {string\} * - (optional) 'attributes' : {Object\} * Returning empty `attributes` will remove all attributes from the * message. * * @param {(Object)\>\} Pub/Sub * message. Keys: * - (required) 'data' : {string\} * - (required) 'attributes' : {Object\} * * @param {Object\} metadata - Pub/Sub message metadata. * Keys: * - (required) 'message_id' : {string\} * - (optional) 'publish_time': {string\} YYYY-MM-DDTHH:MM:SSZ format * - (optional) 'ordering_key': {string\} x/ function (message, metadata) { \} ```
+     */
+    code?: string | null;
+    /**
+     * Required. Name of the JavasScript function that should applied to Pub/Sub messages.
+     */
+    functionName?: string | null;
   }
   /**
    * Reference to a linked resource tracked by this Subscription.
@@ -629,7 +647,7 @@ export namespace analyticshub_v1 {
    */
   export interface Schema$Listing {
     /**
-     * Required. Shared dataset i.e. BigQuery dataset source.
+     * Shared dataset i.e. BigQuery dataset source.
      */
     bigqueryDataset?: Schema$BigQueryDatasetSource;
     /**
@@ -665,6 +683,10 @@ export namespace analyticshub_v1 {
      */
     icon?: string | null;
     /**
+     * Optional. By default, false. If true, the Listing has an email sharing mandate enabled.
+     */
+    logLinkedDatasetQueryUserEmail?: boolean | null;
+    /**
      * Output only. The resource name of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`
      */
     name?: string | null;
@@ -677,7 +699,7 @@ export namespace analyticshub_v1 {
      */
     publisher?: Schema$Publisher;
     /**
-     * Required. Pub/Sub topic source.
+     * Pub/Sub topic source.
      */
     pubsubTopic?: Schema$PubSubTopicSource;
     /**
@@ -748,6 +770,19 @@ export namespace analyticshub_v1 {
      * The list of subscriptions.
      */
     subscriptions?: Schema$Subscription[];
+  }
+  /**
+   * All supported message transforms types.
+   */
+  export interface Schema$MessageTransform {
+    /**
+     * Optional. If set to true, the transform is enabled. If false, the transform is disabled and will not be applied to messages. Defaults to `true`.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's are specified on a resource, each must have a unique `function_name`.
+     */
+    javascriptUdf?: Schema$JavaScriptUDF;
   }
   /**
    * Sets the `data` field as the HTTP body for delivery.
@@ -953,7 +988,7 @@ export namespace analyticshub_v1 {
     restrictQueryResult?: boolean | null;
   }
   /**
-   * A policy that specifies how Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.
+   * A policy that specifies how Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.
    */
   export interface Schema$RetryPolicy {
     /**
@@ -968,7 +1003,12 @@ export namespace analyticshub_v1 {
   /**
    * Message for revoking a subscription.
    */
-  export interface Schema$RevokeSubscriptionRequest {}
+  export interface Schema$RevokeSubscriptionRequest {
+    /**
+     * Optional. If the subscription is commercial then this field must be set to true, otherwise a failure is thrown. This acts as a safety guard to avoid revoking commercial subscriptions accidentally.
+     */
+    revokeCommercial?: boolean | null;
+  }
   /**
    * Message for response when you revoke a subscription. Empty for now.
    */
@@ -1068,7 +1108,7 @@ export namespace analyticshub_v1 {
      */
     destinationDataset?: Schema$DestinationDataset;
     /**
-     * Required. Input only. Destination Pub/Sub subscription to create for the subscriber.
+     * Input only. Destination Pub/Sub subscription to create for the subscriber.
      */
     destinationPubsubSubscription?: Schema$DestinationPubSubSubscription;
   }
@@ -1113,6 +1153,10 @@ export namespace analyticshub_v1 {
      * Output only. Resource name of the source Listing. e.g. projects/123/locations/US/dataExchanges/456/listings/789
      */
     listing?: string | null;
+    /**
+     * Output only. By default, false. If true, the Subscriber agreed to the email sharing mandate that is enabled for DataExchange/Listing.
+     */
+    logLinkedDatasetQueryUserEmail?: boolean | null;
     /**
      * Output only. The resource name of the subscription. e.g. `projects/myproject/locations/US/subscriptions/123`.
      */
@@ -3299,6 +3343,10 @@ export namespace analyticshub_v1 {
   }
   export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Delete
     extends StandardParameters {
+    /**
+     * Optional. If the listing is commercial then this field must be set to true, otherwise a failure is thrown. This acts as a safety guard to avoid deleting commercial listings accidentally.
+     */
+    deleteCommercial?: boolean;
     /**
      * Required. Resource name of the listing to delete. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
      */

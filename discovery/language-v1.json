@@ -246,7 +246,7 @@
       }
     }
   },
-  "revision": "20250105",
+  "revision": "20250309",
   "rootUrl": "https://language.googleapis.com/",
   "schemas": {
     "AnalyzeEntitiesRequest": {
@@ -762,6 +762,7 @@
             "A3_HIGHGPU_8G",
             "A3_MEGAGPU_8G",
             "A3_ULTRAGPU_8G",
+            "A3_EDGEGPU_8G",
             "E2_STANDARD_2",
             "E2_STANDARD_4",
             "E2_STANDARD_8",
@@ -890,6 +891,7 @@
             "C3_HIGHMEM_176"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -1433,9 +1435,11 @@
             "NVIDIA_TESLA_P4",
             "NVIDIA_TESLA_T4",
             "NVIDIA_TESLA_V100",
-            "NVIDIA_H100_80GB"
+            "NVIDIA_H100_80GB",
+            "NVIDIA_H200_141GB"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -1489,6 +1493,7 @@
             "A3_HIGHGPU_8G",
             "A3_MEGAGPU_8G",
             "A3_ULTRAGPU_8G",
+            "A3_EDGEGPU_8G",
             "E2_STANDARD_2",
             "E2_STANDARD_4",
             "E2_STANDARD_8",
@@ -1779,6 +1784,7 @@
             "",
             "",
             "",
+            "",
             ""
           ],
           "type": "string"
@@ -1794,7 +1800,7 @@
       "type": "object"
     },
     "InfraUsage": {
-      "description": "Infra Usage of billing metrics.",
+      "description": "LINT: LEGACY_NAMES Infra Usage of billing metrics.",
       "id": "InfraUsage",
       "properties": {
         "cpuMetrics": {
@@ -2175,6 +2181,7 @@
             "A3_HIGHGPU_8G",
             "A3_MEGAGPU_8G",
             "A3_ULTRAGPU_8G",
+            "A3_EDGEGPU_8G",
             "E2_STANDARD_2",
             "E2_STANDARD_4",
             "E2_STANDARD_8",
@@ -2303,6 +2310,7 @@
             "C3_HIGHMEM_176"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",

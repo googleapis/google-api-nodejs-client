@@ -270,6 +270,168 @@
         }
       }
     },
+    "backups": {
+      "methods": {
+        "createBackup": {
+          "description": "Creates a backup for a Cloud SQL instance. This API can be used only to create on-demand backups.",
+          "flatPath": "sql/v1beta4/projects/{projectsId}/backups",
+          "httpMethod": "POST",
+          "id": "sql.backups.createBackup",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. The parent resource where this backup is created. Format: projects/{project}",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/{+parent}/backups",
+          "request": {
+            "$ref": "Backup"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "deleteBackup": {
+          "description": "Deletes the backup.",
+          "flatPath": "sql/v1beta4/projects/{projectsId}/backups/{backupsId}",
+          "httpMethod": "DELETE",
+          "id": "sql.backups.deleteBackup",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the backup to delete. Format: projects/{project}/backups/{backup}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/backups/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/{+name}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "getBackup": {
+          "description": "Retrieves a resource containing information about a backup.",
+          "flatPath": "sql/v1beta4/projects/{projectsId}/backups/{backupsId}",
+          "httpMethod": "GET",
+          "id": "sql.backups.getBackup",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the backup to retrieve. Format: projects/{project}/backups/{backup}",
+              "location": "path",
+              "pattern": "^projects/[^/]+/backups/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/{+name}",
+          "response": {
+            "$ref": "Backup"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "listBackups": {
+          "description": "Lists all backups associated with the project.",
+          "flatPath": "sql/v1beta4/projects/{projectsId}/backups",
+          "httpMethod": "GET",
+          "id": "sql.backups.listBackups",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "Multiple filter queries are separated by spaces. For example, 'instance:abc AND type:FINAL, 'location:us', 'backupInterval.startTime>=1950-01-01T01:01:25.771Z'. You can filter by type, instance, backupInterval.startTime (creation time), or location.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of backups to return per response. The service might return fewer backups than this value. If a value for this parameter isn't specified, then, at most, 500 backups are returned. The maximum value is 2,000. Any values that you set, which are greater than 2,000, are changed to 2,000.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A page token, received from a previous `ListBackups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The parent that owns this collection of backups. Format: projects/{project}",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/{+parent}/backups",
+          "response": {
+            "$ref": "ListBackupsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "updateBackup": {
+          "description": "Updates the retention period and the description of the backup. You can use this API to update final backups only.",
+          "flatPath": "sql/v1beta4/projects/{projectsId}/backups/{backupsId}",
+          "httpMethod": "PATCH",
+          "id": "sql.backups.updateBackup",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Output only. The resource name of the backup. Format: projects/{project}/backups/{backup}.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/backups/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "The list of fields that you can update. You can update only the description and retention period of the final backup.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/{+name}",
+          "request": {
+            "$ref": "Backup"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        }
+      }
+    },
     "connect": {
       "methods": {
         "generateEphemeralCert": {
@@ -593,6 +755,21 @@
               "description": "Database type and version you want to retrieve flags for. By default, this method returns flags for all database types and versions.",
               "location": "query",
               "type": "string"
+            },
+            "flagScope": {
+              "description": "Optional. Specify the scope of flags to be returned by SqlFlagsListService. Return list of database flags if unspecified.",
+              "enum": [
+                "SQL_FLAG_SCOPE_UNSPECIFIED",
+                "SQL_FLAG_SCOPE_DATABASE",
+                "SQL_FLAG_SCOPE_CONNECTION_POOL"
+              ],
+              "enumDescriptions": [
+                "Assume database flags if unspecified",
+                "database flags",
+                "connection pool configuration flags"
+              ],
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "sql/v1beta4/flags",
@@ -819,6 +996,28 @@
             "instance"
           ],
           "parameters": {
+            "enableFinalBackup": {
+              "description": "Flag to opt-in for final backup. By default, it is turned off.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "finalBackupDescription": {
+              "description": "Optional. The description of the final backup.",
+              "location": "query",
+              "type": "string"
+            },
+            "finalBackupExpiryTime": {
+              "description": "Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.",
+              "format": "google-datetime",
+              "location": "query",
+              "type": "string"
+            },
+            "finalBackupTtlDays": {
+              "description": "Optional. Retention period of the final backup.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
             "instance": {
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
@@ -2366,7 +2565,7 @@
       }
     }
   },
-  "revision": "20250117",
+  "revision": "20250310",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2481,6 +2680,311 @@
       },
       "type": "object"
     },
+    "Backup": {
+      "description": "A backup resource.",
+      "id": "Backup",
+      "properties": {
+        "backupInterval": {
+          "$ref": "Interval",
+          "description": "Output only. This output contains the following values: start_time: All database writes up to this time are available. end_time: Any database writes after this time aren't available.",
+          "readOnly": true
+        },
+        "backupKind": {
+          "description": "Output only. Specifies the kind of backup, PHYSICAL or DEFAULT_SNAPSHOT.",
+          "enum": [
+            "SQL_BACKUP_KIND_UNSPECIFIED",
+            "SNAPSHOT",
+            "PHYSICAL"
+          ],
+          "enumDescriptions": [
+            "This is an unknown BackupKind.",
+            "Snapshot-based backups.",
+            "Physical backups."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "backupRun": {
+          "description": "Output only. The mapping to backup run resource used for IAM validations.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "databaseVersion": {
+          "description": "Output only. The database version of the instance of when this backup was made.",
+          "enum": [
+            "SQL_DATABASE_VERSION_UNSPECIFIED",
+            "MYSQL_5_1",
+            "MYSQL_5_5",
+            "MYSQL_5_6",
+            "MYSQL_5_7",
+            "MYSQL_8_0",
+            "MYSQL_8_0_18",
+            "MYSQL_8_0_26",
+            "MYSQL_8_0_27",
+            "MYSQL_8_0_28",
+            "MYSQL_8_0_29",
+            "MYSQL_8_0_30",
+            "MYSQL_8_0_31",
+            "MYSQL_8_0_32",
+            "MYSQL_8_0_33",
+            "MYSQL_8_0_34",
+            "MYSQL_8_0_35",
+            "MYSQL_8_0_36",
+            "MYSQL_8_0_37",
+            "MYSQL_8_0_38",
+            "MYSQL_8_0_39",
+            "MYSQL_8_0_40",
+            "MYSQL_8_0_41",
+            "MYSQL_8_0_42",
+            "MYSQL_8_4",
+            "SQLSERVER_2017_STANDARD",
+            "SQLSERVER_2017_ENTERPRISE",
+            "SQLSERVER_2017_EXPRESS",
+            "SQLSERVER_2017_WEB",
+            "POSTGRES_9_6",
+            "POSTGRES_10",
+            "POSTGRES_11",
+            "POSTGRES_12",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16",
+            "POSTGRES_17",
+            "SQLSERVER_2019_STANDARD",
+            "SQLSERVER_2019_ENTERPRISE",
+            "SQLSERVER_2019_EXPRESS",
+            "SQLSERVER_2019_WEB",
+            "SQLSERVER_2022_STANDARD",
+            "SQLSERVER_2022_ENTERPRISE",
+            "SQLSERVER_2022_EXPRESS",
+            "SQLSERVER_2022_WEB"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "This is an unknown database version.",
+            "The database version is MySQL 5.1.",
+            "The database version is MySQL 5.5.",
+            "The database version is MySQL 5.6.",
+            "The database version is MySQL 5.7.",
+            "The database version is MySQL 8.",
+            "The database major version is MySQL 8.0 and the minor version is 18.",
+            "The database major version is MySQL 8.0 and the minor version is 26.",
+            "The database major version is MySQL 8.0 and the minor version is 27.",
+            "The database major version is MySQL 8.0 and the minor version is 28.",
+            "The database major version is MySQL 8.0 and the minor version is 29.",
+            "The database major version is MySQL 8.0 and the minor version is 30.",
+            "The database major version is MySQL 8.0 and the minor version is 31.",
+            "The database major version is MySQL 8.0 and the minor version is 32.",
+            "The database major version is MySQL 8.0 and the minor version is 33.",
+            "The database major version is MySQL 8.0 and the minor version is 34.",
+            "The database major version is MySQL 8.0 and the minor version is 35.",
+            "The database major version is MySQL 8.0 and the minor version is 36.",
+            "The database major version is MySQL 8.0 and the minor version is 37.",
+            "The database major version is MySQL 8.0 and the minor version is 38.",
+            "The database major version is MySQL 8.0 and the minor version is 39.",
+            "The database major version is MySQL 8.0 and the minor version is 40.",
+            "The database major version is MySQL 8.0 and the minor version is 41.",
+            "The database major version is MySQL 8.0 and the minor version is 42.",
+            "The database version is MySQL 8.4.",
+            "The database version is SQL Server 2017 Standard.",
+            "The database version is SQL Server 2017 Enterprise.",
+            "The database version is SQL Server 2017 Express.",
+            "The database version is SQL Server 2017 Web.",
+            "The database version is PostgreSQL 9.6.",
+            "The database version is PostgreSQL 10.",
+            "The database version is PostgreSQL 11.",
+            "The database version is PostgreSQL 12.",
+            "The database version is PostgreSQL 13.",
+            "The database version is PostgreSQL 14.",
+            "The database version is PostgreSQL 15.",
+            "The database version is PostgreSQL 16.",
+            "The database version is PostgreSQL 17.",
+            "The database version is SQL Server 2019 Standard.",
+            "The database version is SQL Server 2019 Enterprise.",
+            "The database version is SQL Server 2019 Express.",
+            "The database version is SQL Server 2019 Web.",
+            "The database version is SQL Server 2022 Standard.",
+            "The database version is SQL Server 2022 Enterprise.",
+            "The database version is SQL Server 2022 Express.",
+            "The database version is SQL Server 2022 Web."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of this backup.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "OperationError",
+          "description": "Output only. Information about why the backup operation fails (for example, when the backup state fails).",
+          "readOnly": true
+        },
+        "expiryTime": {
+          "description": "Backup expiration time. A UTC timestamp of when this resource expired.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "instance": {
+          "description": "The name of the database instance.",
+          "type": "string"
+        },
+        "instanceDeletionTime": {
+          "description": "Optional. Output only. Timestamp in UTC of when the instance associated with this backup is deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "instanceSettings": {
+          "$ref": "DatabaseInstance",
+          "description": "Optional. Output only. Instance setting of the source instance that's associated with this backup.",
+          "readOnly": true
+        },
+        "kind": {
+          "description": "Output only. This is always `sql#backup`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kmsKey": {
+          "description": "Output only. This output contains the encryption configuration for a backup and the resource name of the KMS key for disk encryption.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kmsKeyVersion": {
+          "description": "Output only. This output contains the encryption status for a backup and the version of the KMS key that's used to encrypt the Cloud SQL instance.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "location": {
+          "description": "The storage location of the backups. The location can be multi-regional.",
+          "type": "string"
+        },
+        "maxChargeableBytes": {
+          "description": "Output only. The maximum chargeable bytes for the backup.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the backup. Format: projects/{project}/backups/{backup}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. This status indicates whether the backup satisfies PZI. The status is reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. This status indicates whether the backup satisfies PZS. The status is reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "selfLink": {
+          "description": "Output only. The URI of this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of this backup.",
+          "enum": [
+            "SQL_BACKUP_STATE_UNSPECIFIED",
+            "ENQUEUED",
+            "RUNNING",
+            "FAILED",
+            "SUCCESSFUL",
+            "DELETING",
+            "DELETION_FAILED"
+          ],
+          "enumDescriptions": [
+            "The state of the backup is unknown.",
+            "The backup that's added to a queue.",
+            "The backup is in progress.",
+            "The backup failed.",
+            "The backup is successful.",
+            "The backup is being deleted.",
+            "Deletion of the backup failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Output only. This output contains a backup time zone. If a Cloud SQL for SQL Server instance has a different time zone from the backup's time zone, then the restore to the instance doesn't happen.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ttlDays": {
+          "description": "Input only. The time-to-live (TTL) interval for this resource (in days). For example: ttlDays:7, means 7 days from the current time. The expiration time can't exceed 365 days from the time that the backup is created.",
+          "format": "int64",
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of this backup. The type can be \"AUTOMATED\", \"ON_DEMAND\", or “FINAL”.",
+          "enum": [
+            "SQL_BACKUP_TYPE_UNSPECIFIED",
+            "AUTOMATED",
+            "ON_DEMAND",
+            "FINAL"
+          ],
+          "enumDescriptions": [
+            "This is an unknown backup type.",
+            "The backup schedule triggers a backup automatically.",
+            "The user triggers a backup manually.",
+            "The backup that's created when the instance is deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BackupConfiguration": {
       "description": "Database instance backup configuration.",
       "id": "BackupConfiguration",
@@ -2556,6 +3060,10 @@
         "kind": {
           "description": "This is always `sql#backupContext`.",
           "type": "string"
+        },
+        "name": {
+          "description": "The name of the backup. Format: projects/{project}/backups/{backup}",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2626,6 +3134,155 @@
             "Snapshot-based backups.",
             "Physical backups."
           ],
+          "type": "string"
+        },
+        "databaseVersion": {
+          "description": "Output only. The instance database version when this backup was made.",
+          "enum": [
+            "SQL_DATABASE_VERSION_UNSPECIFIED",
+            "MYSQL_5_1",
+            "MYSQL_5_5",
+            "MYSQL_5_6",
+            "MYSQL_5_7",
+            "MYSQL_8_0",
+            "MYSQL_8_0_18",
+            "MYSQL_8_0_26",
+            "MYSQL_8_0_27",
+            "MYSQL_8_0_28",
+            "MYSQL_8_0_29",
+            "MYSQL_8_0_30",
+            "MYSQL_8_0_31",
+            "MYSQL_8_0_32",
+            "MYSQL_8_0_33",
+            "MYSQL_8_0_34",
+            "MYSQL_8_0_35",
+            "MYSQL_8_0_36",
+            "MYSQL_8_0_37",
+            "MYSQL_8_0_38",
+            "MYSQL_8_0_39",
+            "MYSQL_8_0_40",
+            "MYSQL_8_0_41",
+            "MYSQL_8_0_42",
+            "MYSQL_8_4",
+            "SQLSERVER_2017_STANDARD",
+            "SQLSERVER_2017_ENTERPRISE",
+            "SQLSERVER_2017_EXPRESS",
+            "SQLSERVER_2017_WEB",
+            "POSTGRES_9_6",
+            "POSTGRES_10",
+            "POSTGRES_11",
+            "POSTGRES_12",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16",
+            "POSTGRES_17",
+            "SQLSERVER_2019_STANDARD",
+            "SQLSERVER_2019_ENTERPRISE",
+            "SQLSERVER_2019_EXPRESS",
+            "SQLSERVER_2019_WEB",
+            "SQLSERVER_2022_STANDARD",
+            "SQLSERVER_2022_ENTERPRISE",
+            "SQLSERVER_2022_EXPRESS",
+            "SQLSERVER_2022_WEB"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "This is an unknown database version.",
+            "The database version is MySQL 5.1.",
+            "The database version is MySQL 5.5.",
+            "The database version is MySQL 5.6.",
+            "The database version is MySQL 5.7.",
+            "The database version is MySQL 8.",
+            "The database major version is MySQL 8.0 and the minor version is 18.",
+            "The database major version is MySQL 8.0 and the minor version is 26.",
+            "The database major version is MySQL 8.0 and the minor version is 27.",
+            "The database major version is MySQL 8.0 and the minor version is 28.",
+            "The database major version is MySQL 8.0 and the minor version is 29.",
+            "The database major version is MySQL 8.0 and the minor version is 30.",
+            "The database major version is MySQL 8.0 and the minor version is 31.",
+            "The database major version is MySQL 8.0 and the minor version is 32.",
+            "The database major version is MySQL 8.0 and the minor version is 33.",
+            "The database major version is MySQL 8.0 and the minor version is 34.",
+            "The database major version is MySQL 8.0 and the minor version is 35.",
+            "The database major version is MySQL 8.0 and the minor version is 36.",
+            "The database major version is MySQL 8.0 and the minor version is 37.",
+            "The database major version is MySQL 8.0 and the minor version is 38.",
+            "The database major version is MySQL 8.0 and the minor version is 39.",
+            "The database major version is MySQL 8.0 and the minor version is 40.",
+            "The database major version is MySQL 8.0 and the minor version is 41.",
+            "The database major version is MySQL 8.0 and the minor version is 42.",
+            "The database version is MySQL 8.4.",
+            "The database version is SQL Server 2017 Standard.",
+            "The database version is SQL Server 2017 Enterprise.",
+            "The database version is SQL Server 2017 Express.",
+            "The database version is SQL Server 2017 Web.",
+            "The database version is PostgreSQL 9.6.",
+            "The database version is PostgreSQL 10.",
+            "The database version is PostgreSQL 11.",
+            "The database version is PostgreSQL 12.",
+            "The database version is PostgreSQL 13.",
+            "The database version is PostgreSQL 14.",
+            "The database version is PostgreSQL 15.",
+            "The database version is PostgreSQL 16.",
+            "The database version is PostgreSQL 17.",
+            "The database version is SQL Server 2019 Standard.",
+            "The database version is SQL Server 2019 Enterprise.",
+            "The database version is SQL Server 2019 Express.",
+            "The database version is SQL Server 2019 Web.",
+            "The database version is SQL Server 2022 Standard.",
+            "The database version is SQL Server 2022 Enterprise.",
+            "The database version is SQL Server 2022 Express.",
+            "The database version is SQL Server 2022 Web."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -2830,6 +3487,39 @@
       },
       "type": "object"
     },
+    "ConnectPoolNodeConfig": {
+      "description": "Details of a single node of a read pool.",
+      "id": "ConnectPoolNodeConfig",
+      "properties": {
+        "dnsName": {
+          "description": "Output only. The DNS name of the node.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dnsNames": {
+          "description": "Output only. The list of DNS names used by this instance.",
+          "items": {
+            "$ref": "DnsNameMapping"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "ipAddresses": {
+          "description": "Output only. Mappings containing IP addresses that can be used to connect to the node.",
+          "items": {
+            "$ref": "IpMapping"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The name of the node. Doesn't include the project ID.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConnectSettings": {
       "description": "Connect settings retrieval response.",
       "id": "ConnectSettings",
@@ -3015,6 +3705,14 @@
           "description": "The dns name of the instance.",
           "type": "string"
         },
+        "dnsNames": {
+          "description": "Output only. The list of DNS names used by this instance.",
+          "items": {
+            "$ref": "DnsNameMapping"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "ipAddresses": {
           "description": "The assigned IP addresses for the instance.",
           "items": {
@@ -3025,6 +3723,19 @@
         "kind": {
           "description": "This is always `sql#connectSettings`.",
           "type": "string"
+        },
+        "nodeCount": {
+          "description": "The number of nodes in a read pool.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nodes": {
+          "description": "Output only. Entries containing information about each node of the read pool.",
+          "items": {
+            "$ref": "ConnectPoolNodeConfig"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "pscEnabled": {
           "description": "Whether PSC connectivity is enabled for this instance.",
@@ -3052,6 +3763,84 @@
             "Google-managed regional CA part of root CA hierarchy hosted on Google Cloud's Certificate Authority Service (CAS).",
             "Customer-managed CA hosted on Google Cloud's Certificate Authority Service (CAS)."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConnectionPoolConfig": {
+      "description": "The managed connection pooling configuration.",
+      "id": "ConnectionPoolConfig",
+      "properties": {
+        "clientConnectionIdleTimeout": {
+          "deprecated": true,
+          "description": "Client idle timeout.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "connPoolSize": {
+          "deprecated": true,
+          "description": "Managed connection pool size.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "connectionPoolingEnabled": {
+          "description": "Whether managed connection pooling is enabled.",
+          "type": "boolean"
+        },
+        "flags": {
+          "description": "Optional. List of connection pool configuration flags",
+          "items": {
+            "$ref": "ConnectionPoolFlags"
+          },
+          "type": "array"
+        },
+        "maxClientConnections": {
+          "deprecated": true,
+          "description": "Maximum number of client connections in connection pool.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "poolMode": {
+          "deprecated": true,
+          "description": "The managed connection pool mode for the instance.",
+          "enum": [
+            "POOL_MODE_UNSPECIFIED",
+            "SESSION",
+            "TRANSACTION"
+          ],
+          "enumDescriptions": [
+            "The pool mode is unknown.",
+            "The session mode for managed connection pooling.",
+            "The transaction(default) mode for managed connection pooling."
+          ],
+          "type": "string"
+        },
+        "queryWaitTimeout": {
+          "deprecated": true,
+          "description": "Query wait timeout.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "serverConnectionIdleTimeout": {
+          "deprecated": true,
+          "description": "Server idle timeout.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConnectionPoolFlags": {
+      "description": "Connection pool flags for Cloud SQL instances managed connection pool configuration.",
+      "id": "ConnectionPoolFlags",
+      "properties": {
+        "name": {
+          "description": "Required. The name of the flag.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The value of the flag. Boolean flags are set to `on` for true and `off` for false. This field must be omitted if the flag doesn't take a value.",
           "type": "string"
         }
       },
@@ -3341,6 +4130,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "dnsNames": {
+          "description": "Output only. The list of DNS names used by this instance.",
+          "items": {
+            "$ref": "DnsNameMapping"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "etag": {
           "description": "This field is deprecated and will be removed from a future version of the API. Use the `settings.settingsVersion` field instead.",
           "type": "string"
@@ -3367,19 +4164,25 @@
           "$ref": "GeminiInstanceConfig",
           "description": "Gemini instance configuration."
         },
+        "includeReplicasForMajorVersionUpgrade": {
+          "description": "Input only. Determines whether an in-place major version upgrade of replicas happens when an in-place major version upgrade of a primary instance is initiated.",
+          "type": "boolean"
+        },
         "instanceType": {
           "description": "The instance type.",
           "enum": [
             "SQL_INSTANCE_TYPE_UNSPECIFIED",
             "CLOUD_SQL_INSTANCE",
             "ON_PREMISES_INSTANCE",
-            "READ_REPLICA_INSTANCE"
+            "READ_REPLICA_INSTANCE",
+            "READ_POOL_INSTANCE"
           ],
           "enumDescriptions": [
             "This is an unknown Cloud SQL instance type.",
             "A regular Cloud SQL instance that is not replicating from a primary instance.",
             "An instance running on the customer's premises that is not managed by Cloud SQL.",
-            "A Cloud SQL instance acting as a read-replica."
+            "A Cloud SQL instance acting as a read-replica.",
+            "CloudSQL read pool."
           ],
           "type": "string"
         },
@@ -3416,6 +4219,19 @@
         "name": {
           "description": "Name of the Cloud SQL instance. This does not include the project ID.",
           "type": "string"
+        },
+        "nodeCount": {
+          "description": "The number of nodes in a read pool.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nodes": {
+          "description": "Output only. Entries containing information about each node of the read pool.",
+          "items": {
+            "$ref": "PoolNodeConfig"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "onPremisesConfiguration": {
           "$ref": "OnPremisesConfiguration",
@@ -3520,7 +4336,8 @@
             "PENDING_CREATE",
             "MAINTENANCE",
             "FAILED",
-            "ONLINE_MAINTENANCE"
+            "ONLINE_MAINTENANCE",
+            "REPAIRING"
           ],
           "enumDeprecated": [
             false,
@@ -3530,7 +4347,8 @@
             false,
             false,
             false,
-            true
+            true,
+            false
           ],
           "enumDescriptions": [
             "The state of the instance is unknown.",
@@ -3540,7 +4358,8 @@
             "The instance is being created.",
             "The instance is down for maintenance.",
             "The creation of the instance failed or a fatal error occurred during maintenance.",
-            "Deprecated"
+            "Deprecated",
+            "(Applicable to read pool nodes only.) The read pool node needs to be repaired. The database might be unavailable."
           ],
           "type": "string"
         },
@@ -3680,7 +4499,7 @@
           "type": "string"
         },
         "clientKey": {
-          "description": "PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8.",
+          "description": "PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8.",
           "type": "string"
         },
         "kind": {
@@ -3742,6 +4561,47 @@
         },
         "kmsKeyVersionName": {
           "description": "KMS key version used to encrypt the Cloud SQL instance resource",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DnsNameMapping": {
+      "description": "DNS metadata.",
+      "id": "DnsNameMapping",
+      "properties": {
+        "connectionType": {
+          "description": "Output only. The connection type of the DNS name.",
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "PUBLIC",
+            "PRIVATE_SERVICES_ACCESS",
+            "PRIVATE_SERVICE_CONNECT"
+          ],
+          "enumDescriptions": [
+            "Unknown connection type.",
+            "Public IP.",
+            "Private services access (private IP).",
+            "Private Service Connect."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "dnsScope": {
+          "description": "Output only. The scope that the DNS name applies to.",
+          "enum": [
+            "DNS_SCOPE_UNSPECIFIED",
+            "INSTANCE"
+          ],
+          "enumDescriptions": [
+            "Unknown DNS scope.",
+            "Indicates a instance-level DNS name."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The DNS name.",
           "type": "string"
         }
       },
@@ -3834,7 +4694,7 @@
           "type": "object"
         },
         "databases": {
-          "description": "Databases to be exported. `MySQL instances:` If `fileType` is `SQL` and no database is specified, all databases are exported, except for the `mysql` system database. If `fileType` is `CSV`, you can specify one database, either by using this property or by using the `csvExportOptions.selectQuery` property, which takes precedence over this property. `PostgreSQL instances:` You must specify one database to be exported. If `fileType` is `CSV`, this database must match the one specified in the `csvExportOptions.selectQuery` property. `SQL Server instances:` You must specify one database to be exported, and the `fileType` must be `BAK`.",
+          "description": "Databases to be exported. `MySQL instances:` If `fileType` is `SQL` and no database is specified, all databases are exported, except for the `mysql` system database. If `fileType` is `CSV`, you can specify one database, either by using this property or by using the `csvExportOptions.selectQuery` property, which takes precedence over this property. `PostgreSQL instances:` If you don't specify a database by name, all user databases in the instance are exported. This excludes system databases and Cloud SQL databases used to manage internal operations. Exporting all user databases is only available for directory-formatted parallel export. If `fileType` is `CSV`, this database must match the one specified in the `csvExportOptions.selectQuery` property. `SQL Server instances:` You must specify one database to be exported, and the `fileType` must be `BAK`.",
           "items": {
             "type": "string"
           },
@@ -3846,13 +4706,15 @@
             "SQL_FILE_TYPE_UNSPECIFIED",
             "SQL",
             "CSV",
-            "BAK"
+            "BAK",
+            "TDE"
           ],
           "enumDescriptions": [
             "Unknown file type.",
             "File containing SQL statements.",
             "File in CSV format.",
-            ""
+            "",
+            "TDE certificate."
           ],
           "type": "string"
         },
@@ -3911,6 +4773,28 @@
               "description": "Optional. The number of threads to use for parallel export.",
               "format": "int32",
               "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "tdeExportOptions": {
+          "description": "Optional. Export parameters specific to SQL Server TDE certificates",
+          "properties": {
+            "certificatePath": {
+              "description": "Required. Path to the TDE certificate public key in the form gs://bucketName/fileName. The instance must have write access to the location. Applicable only for SQL Server instances.",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. Certificate name. Applicable only for SQL Server instances.",
+              "type": "string"
+            },
+            "privateKeyPassword": {
+              "description": "Required. Password that encrypts the private key.",
+              "type": "string"
+            },
+            "privateKeyPath": {
+              "description": "Required. Path to the TDE certificate private key in the form gs://bucketName/fileName. The instance must have write access to the location. Applicable only for SQL Server instances.",
+              "type": "string"
             }
           },
           "type": "object"
@@ -4119,6 +5003,20 @@
           },
           "type": "array"
         },
+        "flagScope": {
+          "description": "Scope of flag.",
+          "enum": [
+            "SQL_FLAG_SCOPE_UNSPECIFIED",
+            "SQL_FLAG_SCOPE_DATABASE",
+            "SQL_FLAG_SCOPE_CONNECTION_POOL"
+          ],
+          "enumDescriptions": [
+            "Assume database flags if unspecified",
+            "database flags",
+            "connection pool configuration flags"
+          ],
+          "type": "string"
+        },
         "inBeta": {
           "description": "Whether or not the flag is considered in beta.",
           "type": "boolean"
@@ -4139,6 +5037,15 @@
         },
         "name": {
           "description": "This is the name of the flag. Flag names always use underscores, not hyphens, for example: `max_allowed_packet`",
+          "type": "string"
+        },
+        "recommendedIntValue": {
+          "description": "Recommended flag value in integer format for UI display.",
+          "format": "int64",
+          "type": "string"
+        },
+        "recommendedStringValue": {
+          "description": "Recommended flag value in string format for UI display.",
           "type": "string"
         },
         "requiresRestart": {
@@ -4292,6 +5199,10 @@
                   "description": "Path to the Certificate (.cer) in Cloud Storage, in the form `gs://bucketName/fileName`. The instance must have write permissions to the bucket and read access to the file.",
                   "type": "string"
                 },
+                "keepEncrypted": {
+                  "description": "Optional. Whether the imported file remains encrypted.",
+                  "type": "boolean"
+                },
                 "pvkPassword": {
                   "description": "Password that encrypts the private key",
                   "type": "string"
@@ -4361,7 +5272,7 @@
           "type": "object"
         },
         "database": {
-          "description": "The target database for the import. If `fileType` is `SQL`, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. If `fileType` is `CSV`, one database must be specified.",
+          "description": "The target database for the import. If `fileType` is `SQL`, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. For entire instance parallel import operations, the database is overridden by the database name stored in subdirectory name. If `fileType` is `CSV`, one database must be specified.",
           "type": "string"
         },
         "fileType": {
@@ -4370,13 +5281,15 @@
             "SQL_FILE_TYPE_UNSPECIFIED",
             "SQL",
             "CSV",
-            "BAK"
+            "BAK",
+            "TDE"
           ],
           "enumDescriptions": [
             "Unknown file type.",
             "File containing SQL statements.",
             "File in CSV format.",
-            ""
+            "",
+            "TDE certificate."
           ],
           "type": "string"
         },
@@ -4413,6 +5326,28 @@
               "description": "Optional. The number of threads to use for parallel import.",
               "format": "int32",
               "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "tdeImportOptions": {
+          "description": "Optional. Import parameters specific to SQL Server .TDE files Import parameters specific to SQL Server TDE certificates",
+          "properties": {
+            "certificatePath": {
+              "description": "Required. Path to the TDE certificate public key in the form gs://bucketName/fileName. The instance must have read access to the file. Applicable only for SQL Server instances.",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. Certificate name. Applicable only for SQL Server instances.",
+              "type": "string"
+            },
+            "privateKeyPassword": {
+              "description": "Required. Password that encrypts the private key.",
+              "type": "string"
+            },
+            "privateKeyPath": {
+              "description": "Required. Path to the TDE certificate private key in the form gs://bucketName/fileName. The instance must have read access to the file. Applicable only for SQL Server instances.",
+              "type": "string"
             }
           },
           "type": "object"
@@ -4643,9 +5578,17 @@
       "description": "Database instance restore backup request.",
       "id": "InstancesRestoreBackupRequest",
       "properties": {
+        "backup": {
+          "description": "The name of the backup that's used to restore a Cloud SQL instance: Format: projects/{project-id}/backups/{backup-uid}. Only one of restore_backup_context, backup, backupdr_backup can be passed to the input.",
+          "type": "string"
+        },
         "restoreBackupContext": {
           "$ref": "RestoreBackupContext",
           "description": "Parameters required to perform the restore backup operation."
+        },
+        "restoreInstanceSettings": {
+          "$ref": "DatabaseInstance",
+          "description": "Optional. By using this parameter, Cloud SQL overrides any instance settings stored in the backup you are restoring from. You can't change the instance's major database version and you can only increase the disk size. You can use this field to restore new instances only. This field is not applicable for restore to existing instances."
         }
       },
       "type": "object"
@@ -4679,6 +5622,23 @@
         "truncateLogContext": {
           "$ref": "TruncateLogContext",
           "description": "Contains details about the truncate log operation."
+        }
+      },
+      "type": "object"
+    },
+    "Interval": {
+      "description": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.",
+      "id": "Interval",
+      "properties": {
+        "endTime": {
+          "description": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4742,7 +5702,7 @@
           "type": "string"
         },
         "serverCaPool": {
-          "description": "Optional. The resource name of the server CA pool for an instance with `CUSTOMER_MANAGED_CAS_CA` as the `server_ca_mode`. Format: projects//locations//caPools/",
+          "description": "Optional. The resource name of the server CA pool for an instance with `CUSTOMER_MANAGED_CAS_CA` as the `server_ca_mode`. Format: projects/{PROJECT}/locations/{REGION}/caPools/{CA_POOL_ID}",
           "type": "string"
         },
         "sslMode": {
@@ -4794,6 +5754,31 @@
             "V1 IP of a migrated instance. We want the user to decommission this IP as soon as the migration is complete. Note: V1 instances with V1 ip addresses will be counted as PRIMARY."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListBackupsResponse": {
+      "description": "The response payload containing a list of the backups.",
+      "id": "ListBackupsResponse",
+      "properties": {
+        "backups": {
+          "description": "A list of backups.",
+          "items": {
+            "$ref": "Backup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, then there aren't subsequent pages.",
+          "type": "string"
+        },
+        "warnings": {
+          "description": "If a region isn't unavailable or if an unknown error occurs, then a warning message is returned.",
+          "items": {
+            "$ref": "ApiWarning"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4872,7 +5857,7 @@
           "type": "string"
         },
         "clientKey": {
-          "description": "PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate.",
+          "description": "PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate.",
           "type": "string"
         },
         "connectRetryInterval": {
@@ -4939,7 +5924,7 @@
           "type": "string"
         },
         "clientKey": {
-          "description": "PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate.",
+          "description": "PEM representation of the replica's private key. The corresponding public key is encoded in the client's certificate.",
           "type": "string"
         },
         "dumpFilePath": {
@@ -5080,6 +6065,7 @@
             "AUTO_RESTART",
             "REENCRYPT",
             "SWITCHOVER",
+            "UPDATE_BACKUP",
             "ACQUIRE_SSRS_LEASE",
             "RELEASE_SSRS_LEASE",
             "RECONFIGURE_OLD_PRIMARY",
@@ -5087,7 +6073,11 @@
             "SELF_SERVICE_MAINTENANCE",
             "SWITCHOVER_TO_REPLICA",
             "MAJOR_VERSION_UPGRADE",
-            "ADVANCED_BACKUP"
+            "ADVANCED_BACKUP",
+            "MANAGE_BACKUP",
+            "ENHANCED_BACKUP",
+            "REPAIR_READ_POOL",
+            "CREATE_READ_POOL"
           ],
           "enumDeprecated": [
             false,
@@ -5132,8 +6122,13 @@
             false,
             false,
             false,
+            false,
             true,
             true,
+            false,
+            false,
+            true,
+            false,
             false,
             false,
             false
@@ -5178,6 +6173,7 @@
             "Performs auto-restart of an HA-enabled Cloud SQL database for auto recovery.",
             "Re-encrypts CMEK instances with latest key version.",
             "Switches the roles of the primary and replica pair. The target instance should be the replica.",
+            "Update a backup.",
             "Acquire a lease for the setup of SQL Server Reporting Services (SSRS).",
             "Release a lease for the setup of SQL Server Reporting Services (SSRS).",
             "Reconfigures old primary after a promote replica operation. Effect of a promote operation to the old primary is executed in this operation, asynchronously from the promote replica operation executed to the replica.",
@@ -5185,7 +6181,11 @@
             "Indicates that the instance (and any of its replicas) are currently in maintenance. This is initiated as a self-service request by using SSM. Maintenance typically causes the instance to be unavailable for 1-3 minutes.",
             "Switches a primary instance to a replica. This operation runs as part of a switchover operation to the original primary instance.",
             "Updates the major version of a Cloud SQL instance.",
-            "Creates a backup for an Advanced BackupTier Cloud SQL instance."
+            "Deprecated: ADVANCED_BACKUP is deprecated. Use ENHANCED_BACKUP instead.",
+            "Changes the BackupTier of a Cloud SQL instance.",
+            "Creates a backup for an Enhanced BackupTier Cloud SQL instance.",
+            "Repairs entire read pool or specified nodes in the read pool.",
+            "Creates a Cloud SQL read pool instance."
           ],
           "type": "string"
         },
@@ -5219,6 +6219,7 @@
           "description": "Optional. The sub operation based on the operation type."
         },
         "targetId": {
+          "description": "Name of the resource on which this operation runs.",
           "type": "string"
         },
         "targetLink": {
@@ -5408,6 +6409,82 @@
         "targetSizeGb": {
           "description": "The target disk shrink size in GigaBytes.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PoolNodeConfig": {
+      "description": "Details of a single node of a read pool.",
+      "id": "PoolNodeConfig",
+      "properties": {
+        "dnsName": {
+          "description": "Output only. The DNS name of the node.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dnsNames": {
+          "description": "Output only. The list of DNS names used by this node.",
+          "items": {
+            "$ref": "DnsNameMapping"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "gceZone": {
+          "description": "Output only. The serving zone of the node.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ipAddresses": {
+          "description": "Output only. Mappings containing IP addresses that can be used to connect to the node.",
+          "items": {
+            "$ref": "IpMapping"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The name of the node, to be used for retrieving metrics and logs for the node.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the node.",
+          "enum": [
+            "SQL_INSTANCE_STATE_UNSPECIFIED",
+            "RUNNABLE",
+            "SUSPENDED",
+            "PENDING_DELETE",
+            "PENDING_CREATE",
+            "MAINTENANCE",
+            "FAILED",
+            "ONLINE_MAINTENANCE",
+            "REPAIRING"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false
+          ],
+          "enumDescriptions": [
+            "The state of the instance is unknown.",
+            "The instance is running, or has been stopped by owner.",
+            "The instance is not available, for example due to problems with billing.",
+            "The instance is being deleted.",
+            "The instance is being created.",
+            "The instance is down for maintenance.",
+            "The creation of the instance failed or a fatal error occurred during maintenance.",
+            "Deprecated",
+            "(Applicable to read pool nodes only.) The read pool node needs to be repaired. The database might be unavailable."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5665,6 +6742,10 @@
           "description": "The name of server Instance collation.",
           "type": "string"
         },
+        "connectionPoolConfig": {
+          "$ref": "ConnectionPoolConfig",
+          "description": "Optional. The managed connection pooling configuration for the instance."
+        },
         "connectorEnforcement": {
           "description": "Specifies if connections must use Cloud SQL connectors. Option values include the following: `NOT_REQUIRED` (Cloud SQL instances can be connected without Cloud SQL Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL Connectors) Note that using REQUIRED disables all existing authorized networks. If this field is not specified when creating a new instance, NOT_REQUIRED is used. If this field is not specified when patching or updating an existing instance, it is left unchanged in the instance.",
           "enum": [
@@ -5687,6 +6768,16 @@
         "dataCacheConfig": {
           "$ref": "DataCacheConfig",
           "description": "Configuration for data cache."
+        },
+        "dataDiskProvisionedIops": {
+          "description": "Optional. Provisioned number of I/O operations per second for the data disk. This field is only used for hyperdisk-balanced disk types.",
+          "format": "int64",
+          "type": "string"
+        },
+        "dataDiskProvisionedThroughput": {
+          "description": "Optional. Provisioned throughput measured in MiB per second for the data disk. This field is only used for hyperdisk-balanced disk types.",
+          "format": "int64",
+          "type": "string"
         },
         "dataDiskSizeGb": {
           "description": "The size of data disk, in GB. The data disk size minimum is 10GB.",
@@ -5819,6 +6910,10 @@
             "The asynchronous replication mode for First Generation instances. It provides a slight performance gain, but if an outage occurs while this option is set to asynchronous, you can lose up to a few seconds of updates to your data."
           ],
           "type": "string"
+        },
+        "retainBackupsOnDelete": {
+          "description": "Optional. When this parameter is set to true, Cloud SQL retains backups of the instance even after the instance is deleted. The ON_DEMAND backup will be retained until customer deletes the backup or the project. The AUTOMATED backup will be retained based on the backups retention setting.",
+          "type": "boolean"
         },
         "settingsVersion": {
           "description": "The version of instance settings. This is a required field for update method to make sure concurrent updates are handled properly. During update, use the most recent settingsVersion value for this instance and do not try to update this value.",

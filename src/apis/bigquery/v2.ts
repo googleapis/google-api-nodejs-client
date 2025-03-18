@@ -167,7 +167,7 @@ export namespace bigquery_v2 {
      */
     rocAuc?: number | null;
     /**
-     * Threshold at which the metrics are computed. For binary classification models this is the positive class threshold. For multi-class classfication models this is the confidence threshold.
+     * Threshold at which the metrics are computed. For binary classification models this is the positive class threshold. For multi-class classification models this is the confidence threshold.
      */
     threshold?: number | null;
   }
@@ -422,6 +422,19 @@ export namespace bigquery_v2 {
      * Optional. If sourceFormat is set to "AVRO", indicates whether to interpret logical types as the corresponding BigQuery data type (for example, TIMESTAMP), instead of using the raw type (for example, INTEGER).
      */
     useAvroLogicalTypes?: boolean | null;
+  }
+  /**
+   * Request message for the BatchDeleteRowAccessPoliciesRequest method.
+   */
+  export interface Schema$BatchDeleteRowAccessPoliciesRequest {
+    /**
+     * If set to true, it deletes the row access policy even if it's the last row access policy on the table and the deletion will widen the access rather narrowing it.
+     */
+    force?: boolean | null;
+    /**
+     * Required. Policy IDs of the row access policies.
+     */
+    policyIds?: string[] | null;
   }
   /**
    * Reason why BI Engine didn't accelerate the query (or sub-query).
@@ -834,6 +847,10 @@ export namespace bigquery_v2 {
      */
     nullMarker?: string | null;
     /**
+     * Optional. A list of strings represented as SQL NULL value in a CSV file. null_marker and null_markers can't be set at the same time. If null_marker is set, null_markers has to be not set. If null_markers is set, null_marker has to be not set. If both null_marker and null_markers are set at the same time, a user error would be thrown. Any strings listed in null_markers, including empty string would be interpreted as SQL NULL. This applies to all column types.
+     */
+    nullMarkers?: string[] | null;
+    /**
      * Optional. Indicates if the embedded ASCII control characters (the first 32 characters in the ASCII-table, from '\x00' to '\x1F') are preserved.
      */
     preserveAsciiControlCharacters?: boolean | null;
@@ -845,6 +862,10 @@ export namespace bigquery_v2 {
      * Optional. The number of rows at the top of a CSV file that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped. When autodetect is on, the behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N \> 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
      */
     skipLeadingRows?: string | null;
+    /**
+     * Optional. Controls the strategy used to match loaded columns to the schema. If not set, a sensible default is chosen based on how the schema is provided. If autodetect is used, then columns are matched by name. Otherwise, columns are matched by position. This is done to keep the behavior backward-compatible. Acceptable values are: POSITION - matches by position. This assumes that the columns are ordered the same way as the schema. NAME - matches by name. This reads the header row as column names and reorders columns to match the field names in the schema.
+     */
+    sourceColumnMatch?: string | null;
   }
   /**
    * Options for data format adjustments.
@@ -1524,7 +1545,15 @@ export namespace bigquery_v2 {
      */
     csvOptions?: Schema$CsvOptions;
     /**
-     * Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: * (38,9) -\> NUMERIC; * (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -\> BIGNUMERIC; * (77,38) -\> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
+     * Optional. Format used to parse DATE values. Supports C-style and SQL-style values.
+     */
+    dateFormat?: string | null;
+    /**
+     * Optional. Format used to parse DATETIME values. Supports C-style and SQL-style values.
+     */
+    datetimeFormat?: string | null;
+    /**
+     * Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: * (38,9) -\> NUMERIC; * (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -\> BIGNUMERIC; * (77,38) -\> BIGNUMERIC (error if value exceeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
      */
     decimalTargetTypes?: string[] | null;
     /**
@@ -1583,6 +1612,18 @@ export namespace bigquery_v2 {
      * [Required] The fully-qualified URIs that point to your data in Google Cloud. For Google Cloud Storage URIs: Each URI can contain one '*' wildcard character and it must come after the 'bucket' name. Size limits related to load jobs apply to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table. For Google Cloud Datastore backups, exactly one URI can be specified. Also, the '*' wildcard character is not allowed.
      */
     sourceUris?: string[] | null;
+    /**
+     * Optional. Format used to parse TIME values. Supports C-style and SQL-style values.
+     */
+    timeFormat?: string | null;
+    /**
+     * Optional. Format used to parse TIMESTAMP values. Supports C-style and SQL-style values.
+     */
+    timestampFormat?: string | null;
+    /**
+     * Optional. Time zone used when parsing timestamp values that do not have specific time zone information (e.g. 2024-04-20 12:34:56). The expected format is a IANA timezone string (e.g. America/Los_Angeles).
+     */
+    timeZone?: string | null;
   }
   /**
    * Configures the access a dataset defined in an external metadata storage.
@@ -2250,7 +2291,15 @@ export namespace bigquery_v2 {
      */
     createSession?: boolean | null;
     /**
-     * Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: * (38,9) -\> NUMERIC; * (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -\> BIGNUMERIC; * (77,38) -\> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
+     * Optional. Date format used for parsing DATE values.
+     */
+    dateFormat?: string | null;
+    /**
+     * Optional. Date format used for parsing DATETIME values.
+     */
+    datetimeFormat?: string | null;
+    /**
+     * Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: * (38,9) -\> NUMERIC; * (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -\> BIGNUMERIC; * (77,38) -\> BIGNUMERIC (error if value exceeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
      */
     decimalTargetTypes?: string[] | null;
     /**
@@ -2298,6 +2347,10 @@ export namespace bigquery_v2 {
      */
     nullMarker?: string | null;
     /**
+     * Optional. A list of strings represented as SQL NULL value in a CSV file. null_marker and null_markers can't be set at the same time. If null_marker is set, null_markers has to be not set. If null_markers is set, null_marker has to be not set. If both null_marker and null_markers are set at the same time, a user error would be thrown. Any strings listed in null_markers, including empty string would be interpreted as SQL NULL. This applies to all column types.
+     */
+    nullMarkers?: string[] | null;
+    /**
      * Optional. Additional properties to set if sourceFormat is set to PARQUET.
      */
     parquetOptions?: Schema$ParquetOptions;
@@ -2342,6 +2395,10 @@ export namespace bigquery_v2 {
      */
     skipLeadingRows?: number | null;
     /**
+     * Optional. Controls the strategy used to match loaded columns to the schema. If not set, a sensible default is chosen based on how the schema is provided. If autodetect is used, then columns are matched by name. Otherwise, columns are matched by position. This is done to keep the behavior backward-compatible.
+     */
+    sourceColumnMatch?: string | null;
+    /**
      * Optional. The format of the data files. For CSV files, specify "CSV". For datastore backups, specify "DATASTORE_BACKUP". For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro, specify "AVRO". For parquet, specify "PARQUET". For orc, specify "ORC". The default value is CSV.
      */
     sourceFormat?: string | null;
@@ -2350,9 +2407,21 @@ export namespace bigquery_v2 {
      */
     sourceUris?: string[] | null;
     /**
+     * Optional. Date format used for parsing TIME values.
+     */
+    timeFormat?: string | null;
+    /**
      * Time-based partitioning specification for the destination table. Only one of timePartitioning and rangePartitioning should be specified.
      */
     timePartitioning?: Schema$TimePartitioning;
+    /**
+     * Optional. Date format used for parsing TIMESTAMP values.
+     */
+    timestampFormat?: string | null;
+    /**
+     * Optional. [Experimental] Default time zone that will apply when parsing timestamp values that have no specific time zone.
+     */
+    timeZone?: string | null;
     /**
      * Optional. If sourceFormat is set to "AVRO", indicates whether to interpret logical types as the corresponding BigQuery data type (for example, TIMESTAMP), instead of using the raw type (for example, INTEGER).
      */
@@ -2474,6 +2543,10 @@ export namespace bigquery_v2 {
      * Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the data, removes the constraints, and uses the schema from the query result. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     writeDisposition?: string | null;
+    /**
+     * Optional. This is only supported for a SELECT query using a temporary table. If set, the query is allowed to write results incrementally to the temporary result table. This may incur a performance penalty. This option cannot be used with Legacy SQL. This feature is not yet available.
+     */
+    writeIncrementalResults?: boolean | null;
   }
   /**
    * JobConfigurationTableCopy configures a job that copies data from one table to another. For more information on copying tables, see [Copy a table](https://cloud.google.com/bigquery/docs/managing-tables#copy-table).
@@ -3116,7 +3189,7 @@ export namespace bigquery_v2 {
     refreshWatermark?: string | null;
   }
   /**
-   * Statistics for metadata caching in BigLake tables.
+   * Statistics for metadata caching in queried tables.
    */
   export interface Schema$MetadataCacheStatistics {
     /**
@@ -3541,6 +3614,10 @@ export namespace bigquery_v2 {
      */
     defaultDataset?: Schema$DatasetReference;
     /**
+     * Optional. Custom encryption configuration (e.g., Cloud KMS keys)
+     */
+    destinationEncryptionConfiguration?: Schema$EncryptionConfiguration;
+    /**
      * Optional. If set to true, BigQuery doesn't run the job. Instead, if the query is valid, BigQuery returns statistics about the job such as how many bytes would be processed. If the query is invalid, an error returns. The default value is false.
      */
     dryRun?: boolean | null;
@@ -3552,6 +3629,10 @@ export namespace bigquery_v2 {
      * Optional. If not set, jobs are always required. If set, the query request will follow the behavior described JobCreationMode. [Preview](https://cloud.google.com/products/#product-launch-stages)
      */
     jobCreationMode?: string | null;
+    /**
+     * Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery will attempt to stop a longer job, but may not always succeed in canceling it before the job completes. For example, a job that takes more than 60 seconds to complete has a better chance of being stopped than a job that takes 10 seconds to complete. This timeout applies to the query even if a job does not need to be created.
+     */
+    jobTimeoutMs?: string | null;
     /**
      * The resource type of the request.
      */
@@ -3604,6 +3685,10 @@ export namespace bigquery_v2 {
      * Optional. Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. The default value is true.
      */
     useQueryCache?: boolean | null;
+    /**
+     * Optional. This is only supported for SELECT query. If set, the query is allowed to write results incrementally to the temporary result table. This may incur a performance penalty. This option cannot be used with Legacy SQL. This feature is not yet available.
+     */
+    writeIncrementalResults?: boolean | null;
   }
   export interface Schema$QueryResponse {
     /**
@@ -3968,6 +4053,10 @@ export namespace bigquery_v2 {
      * Required. A SQL boolean expression that represents the rows defined by this row access policy, similar to the boolean expression in a WHERE clause of a SELECT query on a table. References to other tables, routines, and temporary functions are not supported. Examples: region="EU" date_field = CAST('2019-9-27' as DATE) nullable_field is not NULL numeric_field BETWEEN 1.0 AND 5.0
      */
     filterPredicate?: string | null;
+    /**
+     * Optional. Input only. The optional list of iam_member users or groups that specifies the initial members that the row-level access policy should be created with. grantees types: - "user:alice@example.com": An email address that represents a specific Google account. - "serviceAccount:my-other-app@appspot.gserviceaccount.com": An email address that represents a service account. - "group:admins@example.com": An email address that represents a Google group. - "domain:example.com":The Google Workspace domain (primary) that represents all the users of that domain. - "allAuthenticatedUsers": A special identifier that represents all service accounts and all users on the internet who have authenticated with a Google Account. This identifier includes accounts that aren't connected to a Google Workspace or Cloud Identity domain, such as personal Gmail accounts. Users who aren't authenticated, such as anonymous visitors, aren't included. - "allUsers":A special identifier that represents anyone who is on the internet, including authenticated and unauthenticated users. Because BigQuery requires authentication before a user can access the service, allUsers includes only authenticated users.
+     */
+    grantees?: string[] | null;
     /**
      * Output only. The time when this row access policy was last modified, in milliseconds since the epoch.
      */
@@ -4341,6 +4430,40 @@ export namespace bigquery_v2 {
      * Optional. Serializer and deserializer information.
      */
     serdeInfo?: Schema$SerDeInfo;
+  }
+  /**
+   * If the stored column was not used, explain why.
+   */
+  export interface Schema$StoredColumnsUnusedReason {
+    /**
+     * Specifies the high-level reason for the unused scenario, each reason must have a code associated.
+     */
+    code?: string | null;
+    /**
+     * Specifies the detailed description for the scenario.
+     */
+    message?: string | null;
+    /**
+     * Specifies which columns were not covered by the stored columns for the specified code up to 20 columns. This is populated when the code is STORED_COLUMNS_COVER_INSUFFICIENT and BASE_TABLE_HAS_CLS.
+     */
+    uncoveredColumns?: string[] | null;
+  }
+  /**
+   * Indicates the stored columns usage in the query.
+   */
+  export interface Schema$StoredColumnsUsage {
+    /**
+     * Specifies the base table.
+     */
+    baseTable?: Schema$TableReference;
+    /**
+     * Specifies whether the query was accelerated with stored columns.
+     */
+    isQueryAccelerated?: boolean | null;
+    /**
+     * If stored columns were not used, explain why.
+     */
+    storedColumnsUnusedReasons?: Schema$StoredColumnsUnusedReason[];
   }
   export interface Schema$Streamingbuffer {
     /**
@@ -5032,6 +5155,14 @@ export namespace bigquery_v2 {
      */
     fitIntercept?: boolean | null;
     /**
+     * The forecast limit lower bound that was used during ARIMA model training with limits. To see more details of the algorithm: https://otexts.com/fpp2/limits.html
+     */
+    forecastLimitLowerBound?: number | null;
+    /**
+     * The forecast limit upper bound that was used during ARIMA model training with limits.
+     */
+    forecastLimitUpperBound?: number | null;
+    /**
      * Hidden units for dnn models.
      */
     hiddenUnits?: string[] | null;
@@ -5373,6 +5504,10 @@ export namespace bigquery_v2 {
      * Specifies the index usage mode for the query.
      */
     indexUsageMode?: string | null;
+    /**
+     * Specifies the usage of stored columns in the query when stored columns are used in the query.
+     */
+    storedColumnsUsages?: Schema$StoredColumnsUsage[];
   }
   /**
    * Describes the definition of a logical view.
@@ -5383,7 +5518,7 @@ export namespace bigquery_v2 {
      */
     foreignDefinitions?: Schema$ForeignViewDefinition[];
     /**
-     * Optional. Specifices the privacy policy for the view.
+     * Optional. Specifies the privacy policy for the view.
      */
     privacyPolicy?: Schema$PrivacyPolicy;
     /**
@@ -6070,7 +6205,7 @@ export namespace bigquery_v2 {
      */
     all?: boolean;
     /**
-     * An expression for filtering the results of the request by label. The syntax is `labels.[:]`. Multiple filters can be ANDed together by connecting with a space. Example: `labels.department:receiving labels.active`. See [Filtering datasets using labels](https://cloud.google.com/bigquery/docs/filtering-labels#filtering_datasets_using_labels) for details.
+     * An expression for filtering the results of the request by label. The syntax is `labels.[:]`. Multiple filters can be AND-ed together by connecting with a space. Example: `labels.department:receiving labels.active`. See [Filtering datasets using labels](https://cloud.google.com/bigquery/docs/filtering-labels#filtering_datasets_using_labels) for details.
      */
     filter?: string;
     /**
@@ -8292,6 +8427,266 @@ export namespace bigquery_v2 {
     }
 
     /**
+     * Deletes provided row access policies.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Rowaccesspolicies$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
+      params?: Params$Resource$Rowaccesspolicies$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    batchDelete(
+      params: Params$Resource$Rowaccesspolicies$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Rowaccesspolicies$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Rowaccesspolicies$Batchdelete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    batchDelete(callback: BodyResponseCallback<void>): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Rowaccesspolicies$Batchdelete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rowaccesspolicies$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rowaccesspolicies$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies:batchDelete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a row access policy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Rowaccesspolicies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Rowaccesspolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Rowaccesspolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Rowaccesspolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Rowaccesspolicies$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Rowaccesspolicies$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rowaccesspolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rowaccesspolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId', 'tableId', 'policyId'],
+        pathParams: ['datasetId', 'policyId', 'projectId', 'tableId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Gets the specified row access policy by policy ID.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Rowaccesspolicies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Rowaccesspolicies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RowAccessPolicy>;
+    get(
+      params: Params$Resource$Rowaccesspolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Rowaccesspolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RowAccessPolicy>,
+      callback: BodyResponseCallback<Schema$RowAccessPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Rowaccesspolicies$Get,
+      callback: BodyResponseCallback<Schema$RowAccessPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RowAccessPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Rowaccesspolicies$Get
+        | BodyResponseCallback<Schema$RowAccessPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RowAccessPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RowAccessPolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RowAccessPolicy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rowaccesspolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rowaccesspolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId', 'tableId', 'policyId'],
+        pathParams: ['datasetId', 'policyId', 'projectId', 'tableId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RowAccessPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RowAccessPolicy>(parameters);
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      *
      * @param params - Parameters for request
@@ -8376,6 +8771,94 @@ export namespace bigquery_v2 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Creates a row access policy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Rowaccesspolicies$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
+      params?: Params$Resource$Rowaccesspolicies$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RowAccessPolicy>;
+    insert(
+      params: Params$Resource$Rowaccesspolicies$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Rowaccesspolicies$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$RowAccessPolicy>,
+      callback: BodyResponseCallback<Schema$RowAccessPolicy>
+    ): void;
+    insert(
+      params: Params$Resource$Rowaccesspolicies$Insert,
+      callback: BodyResponseCallback<Schema$RowAccessPolicy>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$RowAccessPolicy>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Rowaccesspolicies$Insert
+        | BodyResponseCallback<Schema$RowAccessPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RowAccessPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RowAccessPolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RowAccessPolicy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rowaccesspolicies$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rowaccesspolicies$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RowAccessPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RowAccessPolicy>(parameters);
       }
     }
 
@@ -8569,8 +9052,158 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+    /**
+     * Updates a row access policy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Rowaccesspolicies$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Rowaccesspolicies$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RowAccessPolicy>;
+    update(
+      params: Params$Resource$Rowaccesspolicies$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Rowaccesspolicies$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$RowAccessPolicy>,
+      callback: BodyResponseCallback<Schema$RowAccessPolicy>
+    ): void;
+    update(
+      params: Params$Resource$Rowaccesspolicies$Update,
+      callback: BodyResponseCallback<Schema$RowAccessPolicy>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$RowAccessPolicy>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Rowaccesspolicies$Update
+        | BodyResponseCallback<Schema$RowAccessPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RowAccessPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RowAccessPolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RowAccessPolicy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rowaccesspolicies$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rowaccesspolicies$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId', 'tableId', 'policyId'],
+        pathParams: ['datasetId', 'policyId', 'projectId', 'tableId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RowAccessPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RowAccessPolicy>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Rowaccesspolicies$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. Dataset ID of the table to delete the row access policies.
+     */
+    datasetId?: string;
+    /**
+     * Required. Project ID of the table to delete the row access policies.
+     */
+    projectId?: string;
+    /**
+     * Required. Table ID of the table to delete the row access policies.
+     */
+    tableId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchDeleteRowAccessPoliciesRequest;
+  }
+  export interface Params$Resource$Rowaccesspolicies$Delete
+    extends StandardParameters {
+    /**
+     * Required. Dataset ID of the table to delete the row access policy.
+     */
+    datasetId?: string;
+    /**
+     * If set to true, it deletes the row access policy even if it's the last row access policy on the table and the deletion will widen the access rather narrowing it.
+     */
+    force?: boolean;
+    /**
+     * Required. Policy ID of the row access policy.
+     */
+    policyId?: string;
+    /**
+     * Required. Project ID of the table to delete the row access policy.
+     */
+    projectId?: string;
+    /**
+     * Required. Table ID of the table to delete the row access policy.
+     */
+    tableId?: string;
+  }
+  export interface Params$Resource$Rowaccesspolicies$Get
+    extends StandardParameters {
+    /**
+     * Required. Dataset ID of the table to get the row access policy.
+     */
+    datasetId?: string;
+    /**
+     * Required. Policy ID of the row access policy.
+     */
+    policyId?: string;
+    /**
+     * Required. Project ID of the table to get the row access policy.
+     */
+    projectId?: string;
+    /**
+     * Required. Table ID of the table to get the row access policy.
+     */
+    tableId?: string;
+  }
   export interface Params$Resource$Rowaccesspolicies$Getiampolicy
     extends StandardParameters {
     /**
@@ -8582,6 +9215,26 @@ export namespace bigquery_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Rowaccesspolicies$Insert
+    extends StandardParameters {
+    /**
+     * Required. Dataset ID of the table to get the row access policy.
+     */
+    datasetId?: string;
+    /**
+     * Required. Project ID of the table to get the row access policy.
+     */
+    projectId?: string;
+    /**
+     * Required. Table ID of the table to get the row access policy.
+     */
+    tableId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RowAccessPolicy;
   }
   export interface Params$Resource$Rowaccesspolicies$List
     extends StandardParameters {
@@ -8617,6 +9270,30 @@ export namespace bigquery_v2 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Rowaccesspolicies$Update
+    extends StandardParameters {
+    /**
+     * Required. Dataset ID of the table to get the row access policy.
+     */
+    datasetId?: string;
+    /**
+     * Required. Policy ID of the row access policy.
+     */
+    policyId?: string;
+    /**
+     * Required. Project ID of the table to get the row access policy.
+     */
+    projectId?: string;
+    /**
+     * Required. Table ID of the table to get the row access policy.
+     */
+    tableId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RowAccessPolicy;
   }
 
   export class Resource$Tabledata {

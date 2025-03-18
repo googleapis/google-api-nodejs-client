@@ -378,12 +378,18 @@
                       "enum": [
                         "ASSET_VIEW_UNSPECIFIED",
                         "ASSET_VIEW_BASIC",
-                        "ASSET_VIEW_FULL"
+                        "ASSET_VIEW_FULL",
+                        "ASSET_VIEW_STANDARD",
+                        "ASSET_VIEW_UI",
+                        "ASSET_VIEW_LABELS"
                       ],
                       "enumDescriptions": [
                         "The asset view is not specified. The API displays the basic view by default.",
                         "The asset view includes only basic metadata of the asset.",
-                        "The asset view includes all the metadata of an asset and performance data."
+                        "The asset view includes all the metadata of an asset and performance data.",
+                        "The asset view includes the standard metadata of an asset.",
+                        "The asset view includes fields needed by UI.",
+                        "The asset view includes asset name and labels."
                       ],
                       "location": "query",
                       "type": "string"
@@ -439,12 +445,18 @@
                       "enum": [
                         "ASSET_VIEW_UNSPECIFIED",
                         "ASSET_VIEW_BASIC",
-                        "ASSET_VIEW_FULL"
+                        "ASSET_VIEW_FULL",
+                        "ASSET_VIEW_STANDARD",
+                        "ASSET_VIEW_UI",
+                        "ASSET_VIEW_LABELS"
                       ],
                       "enumDescriptions": [
                         "The asset view is not specified. The API displays the basic view by default.",
                         "The asset view includes only basic metadata of the asset.",
-                        "The asset view includes all the metadata of an asset and performance data."
+                        "The asset view includes all the metadata of an asset and performance data.",
+                        "The asset view includes the standard metadata of an asset.",
+                        "The asset view includes fields needed by UI.",
+                        "The asset view includes asset name and labels."
                       ],
                       "location": "query",
                       "type": "string"
@@ -2384,7 +2396,7 @@
       }
     }
   },
-  "revision": "20250115",
+  "revision": "20250227",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2802,6 +2814,12 @@
       },
       "type": "object"
     },
+    "AwsRds": {
+      "description": "Specific details for an AWS RDS database deployment.",
+      "id": "AwsRds",
+      "properties": {},
+      "type": "object"
+    },
     "AzureVmPlatformDetails": {
       "description": "Azure VM specific details.",
       "id": "AzureVmPlatformDetails",
@@ -3172,6 +3190,10 @@
           "$ref": "DatabaseDeploymentDetailsAggregatedStats",
           "description": "Output only. Aggregated stats for the database deployment.",
           "readOnly": true
+        },
+        "awsRds": {
+          "$ref": "AwsRds",
+          "description": "Optional. Details of an AWS RDS instance."
         },
         "edition": {
           "description": "Optional. The database deployment edition.",
@@ -3658,7 +3680,7 @@
           "type": "string"
         },
         "mountPoint": {
-          "description": "Mount pount (Linux/Windows) or drive letter (Windows).",
+          "description": "Mount point (Linux/Windows) or drive letter (Windows).",
           "type": "string"
         },
         "subPartitions": {
@@ -3671,6 +3693,29 @@
         },
         "uuid": {
           "description": "Partition UUID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiskPartitionDetails": {
+      "description": "Disk partition details.",
+      "id": "DiskPartitionDetails",
+      "properties": {
+        "freeSpaceBytes": {
+          "description": "Output only. Total free space of all partitions.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partitions": {
+          "$ref": "DiskPartitionList",
+          "description": "Optional. List of partitions."
+        },
+        "totalCapacityBytes": {
+          "description": "Output only. Total capacity of all partitions.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3695,17 +3740,17 @@
       "id": "DiskUsageSample",
       "properties": {
         "averageIops": {
-          "description": "Optional. Average IOPS sampled over a short window. Must be non-negative. Must be equal to the sum of read and write if one of them is positive. if both read and write are zero they are ignored.",
+          "description": "Optional. Average IOPS sampled over a short window. Must be non-negative. If read or write are set, the sum of read and write will override the value of the average_iops.",
           "format": "float",
           "type": "number"
         },
         "averageReadIops": {
-          "description": "Optional. Average read IOPS sampled over a short window. Must be non-negative.",
+          "description": "Optional. Average read IOPS sampled over a short window. Must be non-negative. If both read and write are zero they are ignored.",
           "format": "float",
           "type": "number"
         },
         "averageWriteIops": {
-          "description": "Optional. Average write IOPS sampled over a short window. Must be non-negative.",
+          "description": "Optional. Average write IOPS sampled over a short window. Must be non-negative. If both read and write are zero they are ignored.",
           "format": "float",
           "type": "number"
         }
@@ -4908,6 +4953,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "diskPartitions": {
+          "$ref": "DiskPartitionDetails",
+          "description": "Optional. Disk partitions details. Note: Partitions are not necessarily mounted on local disks and therefore might not have a one-to-one correspondence with local disks."
+        },
         "disks": {
           "$ref": "MachineDiskDetails",
           "description": "Disk details."
@@ -5281,7 +5330,7 @@
           ],
           "enumDescriptions": [
             "Unknown (default value).",
-            "Staticly assigned IP.",
+            "Statically assigned IP.",
             "Dynamically assigned IP (DHCP)."
           ],
           "type": "string"

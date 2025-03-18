@@ -1116,7 +1116,7 @@
       }
     }
   },
-  "revision": "20250110",
+  "revision": "20250219",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1344,14 +1344,16 @@
             "CREATING",
             "ACTIVE",
             "DELETING",
-            "UPDATING"
+            "UPDATING",
+            "FAILED"
           ],
           "enumDescriptions": [
             "No state information available",
             "The resource's create operation is in progress",
             "The resource is active",
             "The resource's Delete operation is in progress",
-            "The resource's Update operation is in progress"
+            "The resource's Update operation is in progress",
+            "The resource is in an undefined state due to resource creation or deletion failure. You can try to delete the resource later or contact support for help."
           ],
           "readOnly": true,
           "type": "string"
@@ -1622,7 +1624,7 @@
           "type": "string"
         },
         "target": {
-          "description": "Immutable. Resource path of the target resource. The target project can be different, as in the cases when migrating to peer networks. The resource For example: /projects/{project}/regions/{region}/subnetworks/{subnet}",
+          "description": "Immutable. Resource path of the target resource. The target project can be different, as in the cases when migrating to peer networks. For example: /projects/{project}/regions/{region}/subnetworks/{subnet}",
           "type": "string"
         }
       },
@@ -1794,14 +1796,16 @@
             "CREATING",
             "ACTIVE",
             "DELETING",
-            "UPDATING"
+            "UPDATING",
+            "FAILED"
           ],
           "enumDescriptions": [
             "No state information available",
             "The resource's create operation is in progress",
             "The resource is active",
             "The resource's Delete operation is in progress",
-            "The resource's Update operation is in progress"
+            "The resource's Update operation is in progress",
+            "The resource is in an undefined state due to resource creation or deletion failure. You can try to delete the resource later or contact support for help."
           ],
           "readOnly": true,
           "type": "string"

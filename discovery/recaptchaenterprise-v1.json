@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20241208",
+  "revision": "20250209",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -968,7 +968,7 @@
               "SOCIAL_SPAM"
             ],
             "enumDescriptions": [
-              "Default unspecified reason.",
+              "Unspecified reason. Do not use.",
               "Indicates that the transaction had a chargeback issued with no other details. When possible, specify the type by using CHARGEBACK_FRAUD or CHARGEBACK_DISPUTE instead.",
               "Indicates that the transaction had a chargeback issued related to an alleged unauthorized transaction from the cardholder's perspective (for example, the card number was stolen).",
               "Indicates that the transaction had a chargeback issued related to the cardholder having provided their card details but allegedly not being satisfied with the purchase (for example, misrepresentation, attempted cancellation).",
@@ -1177,7 +1177,7 @@
           "enumDescriptions": [
             "Default, unspecified setting. `fraud_prevention_assessment` is returned if `transaction_data` is present in `Event` and Fraud Prevention is enabled in the Google Cloud console.",
             "Enable Fraud Prevention for this assessment, if Fraud Prevention is enabled in the Google Cloud console.",
-            "Disable Fraud Prevention for this assessment, regardless of Google Cloud console settings."
+            "Disable Fraud Prevention for this assessment, regardless of the Google Cloud console settings."
           ],
           "type": "string"
         },
@@ -1195,7 +1195,11 @@
           "type": "array"
         },
         "ja3": {
-          "description": "Optional. JA3 fingerprint for SSL clients.",
+          "description": "Optional. JA3 fingerprint for SSL clients. To learn how to compute this fingerprint, please refer to https://github.com/salesforce/ja3.",
+          "type": "string"
+        },
+        "ja4": {
+          "description": "Optional. JA4 fingerprint for SSL clients. To learn how to compute this fingerprint, please refer to https://github.com/FoxIO-LLC/ja4.",
           "type": "string"
         },
         "requestedUri": {
@@ -1708,7 +1712,7 @@
           "type": "array"
         },
         "startTime": {
-          "description": "Inclusive start time aligned to a day (UTC).",
+          "description": "Inclusive start time aligned to a day in the America/Los_Angeles (Pacific) timezone.",
           "format": "google-datetime",
           "type": "string"
         }

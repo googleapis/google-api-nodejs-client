@@ -585,6 +585,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "import": {
+                  "description": "Imports data to the cluster. Imperative only.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:import",
+                  "httpMethod": "POST",
+                  "id": "alloydb.projects.locations.clusters.import",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the cluster.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:import",
+                  "request": {
+                    "$ref": "ImportClusterRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists Clusters in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters",
@@ -728,6 +756,34 @@
                   "path": "v1/{+parent}/clusters:restore",
                   "request": {
                     "$ref": "RestoreClusterRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "restoreFromCloudSQL": {
+                  "description": "Restores an AlloyDB cluster from a CloudSQL resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters:restoreFromCloudSQL",
+                  "httpMethod": "POST",
+                  "id": "alloydb.projects.locations.clusters.restoreFromCloudSQL",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The location of the new cluster. For the required format, see the comment on Cluster.name field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/clusters:restoreFromCloudSQL",
+                  "request": {
+                    "$ref": "RestoreFromCloudSQLRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -1528,6 +1584,21 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "scope": {
+                      "description": "Optional. The scope for which supported flags are requested. If not specified, default is DATABASE.",
+                      "enum": [
+                        "SCOPE_UNSPECIFIED",
+                        "DATABASE",
+                        "CONNECTION_POOL"
+                      ],
+                      "enumDescriptions": [
+                        "The scope of the flag is not specified. Default is DATABASE.",
+                        "The flag is a database flag.",
+                        "The flag is a connection pool flag."
+                      ],
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v1/{+parent}/supportedDatabaseFlags",
@@ -1545,7 +1616,7 @@
       }
     }
   },
-  "revision": "20241228",
+  "revision": "20250308",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1574,7 +1645,7 @@
         },
         "encryptionConfig": {
           "$ref": "EncryptionConfig",
-          "description": "Optional. The encryption config can be specified to encrypt the backups with a customer-managed encryption key (CMEK). When this field is not specified, the backup will then use default encryption scheme to protect the user data."
+          "description": "Optional. The encryption config can be specified to encrypt the backups with a customer-managed encryption key (CMEK). When this field is not specified, the backup will use the cluster's encryption config."
         },
         "labels": {
           "additionalProperties": {
@@ -1844,6 +1915,26 @@
       },
       "type": "object"
     },
+    "CloudSQLBackupRunSource": {
+      "description": "The source CloudSQL backup resource.",
+      "id": "CloudSQLBackupRunSource",
+      "properties": {
+        "backupRunId": {
+          "description": "Required. The CloudSQL backup run ID.",
+          "format": "int64",
+          "type": "string"
+        },
+        "instanceId": {
+          "description": "Required. The CloudSQL instance ID.",
+          "type": "string"
+        },
+        "project": {
+          "description": "The project ID of the source CloudSQL instance. This should be the same as the AlloyDB cluster's project.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Cluster": {
       "description": "A cluster is a collection of regional AlloyDB resources. It can include a primary instance and one or more read pool instances. All cluster resources share a storage layer, which scales as needed.",
       "id": "Cluster",
@@ -1862,6 +1953,11 @@
         "backupSource": {
           "$ref": "BackupSource",
           "description": "Output only. Cluster created from backup.",
+          "readOnly": true
+        },
+        "cloudsqlBackupRunSource": {
+          "$ref": "CloudSQLBackupRunSource",
+          "description": "Output only. Cluster created from CloudSQL snapshot.",
           "readOnly": true
         },
         "clusterType": {
@@ -2201,7 +2297,7 @@
         },
         "encryptionConfig": {
           "$ref": "EncryptionConfig",
-          "description": "The encryption config can be specified to encrypt the backups with a customer-managed encryption key (CMEK). When this field is not specified, the backup will then use default encryption scheme to protect the user data."
+          "description": "The encryption config can be specified to encrypt the backups with a customer-managed encryption key (CMEK). When this field is not specified, the backup will use the cluster's encryption config."
         },
         "recoveryWindowDays": {
           "description": "The number of days that are eligible to restore from using PITR. To support the entire recovery window, backups and logs are retained for one day more than the recovery window. If not set, defaults to 14 days.",
@@ -2298,6 +2394,55 @@
         "selectQuery": {
           "description": "Required. The SELECT query used to extract the data.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CsvImportOptions": {
+      "description": "Options for importing data in CSV format.",
+      "id": "CsvImportOptions",
+      "properties": {
+        "columns": {
+          "description": "Optional. The columns to which CSV data is imported. If not specified, all columns of the database table are loaded with CSV data.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "escapeCharacter": {
+          "description": "Optional. Specifies the character that should appear before a data character that needs to be escaped. The default is same as quote character. The value of this argument has to be a character in Hex ASCII Code.",
+          "type": "string"
+        },
+        "fieldDelimiter": {
+          "description": "Optional. Specifies the character that separates columns within each row (line) of the file. The default is comma. The value of this argument has to be a character in Hex ASCII Code.",
+          "type": "string"
+        },
+        "quoteCharacter": {
+          "description": "Optional. Specifies the quoting character to be used when a data value is quoted. The default is double-quote. The value of this argument has to be a character in Hex ASCII Code.",
+          "type": "string"
+        },
+        "table": {
+          "description": "Required. The database table to import CSV file into.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DenyMaintenancePeriod": {
+      "description": "DenyMaintenancePeriod definition. Excepting emergencies, maintenance will not be scheduled to start within this deny period. The start_date must be less than the end_date.",
+      "id": "DenyMaintenancePeriod",
+      "properties": {
+        "endDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Deny period end date. This can be: * A full date, with non-zero year, month and day values OR * A month and day value, with a zero year for recurring"
+        },
+        "startDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Deny period start date. This can be: * A full date, with non-zero year, month and day values OR * A month and day value, with a zero year for recurring"
+        },
+        "time": {
+          "$ref": "GoogleTypeTimeOfDay",
+          "description": "Time in UTC when the deny period starts on start_date and ends on end_date. This can be: * Full time OR * All zeros for 00:00:00 UTC"
         }
       },
       "type": "object"
@@ -2461,6 +2606,28 @@
       },
       "type": "object"
     },
+    "GoogleTypeDate": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "id": "GoogleTypeDate",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleTypeTimeOfDay": {
       "description": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.",
       "id": "GoogleTypeTimeOfDay",
@@ -2484,6 +2651,45 @@
           "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ImportClusterRequest": {
+      "description": "Import cluster request.",
+      "id": "ImportClusterRequest",
+      "properties": {
+        "csvImportOptions": {
+          "$ref": "CsvImportOptions",
+          "description": "Options for importing data in CSV format."
+        },
+        "database": {
+          "description": "Optional. Name of the database to which the import will be done. For import from SQL file, this is required only if the file does not specify a database. Note - Value provided should be the same as expected from `SELECT current_database();` and NOT as a resource reference.",
+          "type": "string"
+        },
+        "gcsUri": {
+          "description": "Required. The path to the file in Google Cloud Storage where the source file for import will be stored. The URI is in the form `gs://bucketName/fileName`.",
+          "type": "string"
+        },
+        "sqlImportOptions": {
+          "$ref": "SqlImportOptions",
+          "description": "Options for importing data in SQL format."
+        },
+        "user": {
+          "description": "Optional. Database user to be used for importing the data. Note - Value provided should be the same as expected from `SELECT current_user;` and NOT as a resource reference.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImportClusterResponse": {
+      "description": "Response of import rpc.",
+      "id": "ImportClusterResponse",
+      "properties": {
+        "bytesDownloaded": {
+          "description": "Required. Size of the object downloaded from Google Cloud Storage in bytes.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2624,6 +2830,10 @@
           "readOnly": true,
           "type": "array"
         },
+        "observabilityConfig": {
+          "$ref": "ObservabilityInstanceConfig",
+          "description": "Configuration for observability."
+        },
         "outboundPublicIpAddresses": {
           "description": "Output only. All outbound public IP addresses configured for the instance.",
           "items": {
@@ -2723,6 +2933,11 @@
         "enablePublicIp": {
           "description": "Optional. Enabling public ip for the instance.",
           "type": "boolean"
+        },
+        "network": {
+          "description": "Output only. The resource link for the VPC network in which instance resources are created and from which they are accessible via Private IP. This will be the same value as the parent cluster's network. It is specified in the form: // `projects/{project_number}/global/networks/{network_id}`.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2939,6 +3154,10 @@
           "description": "The number of CPU's in the VM instance.",
           "format": "int32",
           "type": "integer"
+        },
+        "machineType": {
+          "description": "Machine type of the VM instance. E.g. \"n2-highmem-4\", \"n2-highmem-8\", \"c4a-highmem-4-lssd\". cpu_count must match the number of vCPUs in the machine type.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2960,6 +3179,13 @@
       "description": "MaintenanceUpdatePolicy defines the policy for system updates.",
       "id": "MaintenanceUpdatePolicy",
       "properties": {
+        "denyMaintenancePeriods": {
+          "description": "Periods to deny maintenance. Currently limited to 1.",
+          "items": {
+            "$ref": "DenyMaintenancePeriod"
+          },
+          "type": "array"
+        },
         "maintenanceWindows": {
           "description": "Preferred windows to perform maintenance. Currently limited to 1.",
           "items": {
@@ -3051,7 +3277,7 @@
       "type": "object"
     },
     "Node": {
-      "description": "Details of a single node in the instance. Nodes in an AlloyDB instance are ephemereal, they can change during update, failover, autohealing and resize operations.",
+      "description": "Details of a single node in the instance. Nodes in an AlloyDB instance are ephemeral, they can change during update, failover, autohealing and resize operations.",
       "id": "Node",
       "properties": {
         "id": {
@@ -3073,6 +3299,48 @@
           "description": "Output only. The Compute Engine zone of the VM e.g. \"us-central1-b\".",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ObservabilityInstanceConfig": {
+      "description": "Observability Instance specific configuration.",
+      "id": "ObservabilityInstanceConfig",
+      "properties": {
+        "enabled": {
+          "description": "Observability feature status for an instance. This flag is turned \"off\" by default.",
+          "type": "boolean"
+        },
+        "maxQueryStringLength": {
+          "description": "Query string length. The default value is 10k.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "preserveComments": {
+          "description": "Preserve comments in query string for an instance. This flag is turned \"off\" by default.",
+          "type": "boolean"
+        },
+        "queryPlansPerMinute": {
+          "description": "Number of query execution plans captured by Insights per minute for all queries combined. The default value is 200. Any integer between 0 to 200 is considered valid.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "recordApplicationTags": {
+          "description": "Record application tags for an instance. This flag is turned \"off\" by default.",
+          "type": "boolean"
+        },
+        "trackActiveQueries": {
+          "description": "Track actively running queries on the instance. If not set, this flag is \"off\" by default.",
+          "type": "boolean"
+        },
+        "trackWaitEventTypes": {
+          "description": "Output only. Track wait event types during query execution for an instance. This flag is turned \"on\" by default but tracking is enabled only after observability enabled flag is also turned on. This is read-only flag and only modifiable by internal API.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "trackWaitEvents": {
+          "description": "Track wait events during query execution for an instance. This flag is turned \"on\" by default but tracking is enabled only after observability enabled flag is also turned on.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3148,6 +3416,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "upgradeClusterStatus": {
+          "$ref": "UpgradeClusterStatus",
+          "description": "Output only. UpgradeClusterStatus related metadata.",
+          "readOnly": true
+        },
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
@@ -3190,6 +3463,36 @@
       },
       "type": "object"
     },
+    "PscAutoConnectionConfig": {
+      "description": "Configuration for setting up PSC service automation. Consumer projects in the configs will be allowlisted automatically for the instance.",
+      "id": "PscAutoConnectionConfig",
+      "properties": {
+        "consumerNetwork": {
+          "description": "The consumer network for the PSC service automation, example: \"projects/vpc-host-project/global/networks/default\". The consumer network might be hosted a different project than the consumer project.",
+          "type": "string"
+        },
+        "consumerNetworkStatus": {
+          "description": "Output only. The status of the service connection policy.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "consumerProject": {
+          "description": "The consumer project to which the PSC service automation endpoint will be created.",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "Output only. The IP address of the PSC service automation endpoint.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. The status of the PSC service automation connection.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PscConfig": {
       "description": "PscConfig contains PSC related configuration at a cluster level.",
       "id": "PscConfig",
@@ -3197,6 +3500,12 @@
         "pscEnabled": {
           "description": "Optional. Create an instance that allows connections from Private Service Connect endpoints to the instance.",
           "type": "boolean"
+        },
+        "serviceOwnedProjectNumber": {
+          "description": "Output only. The project number that needs to be allowlisted on the network attachment to enable outbound connectivity.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3212,14 +3521,39 @@
           },
           "type": "array"
         },
+        "pscAutoConnections": {
+          "description": "Optional. Configurations for setting up PSC service automation.",
+          "items": {
+            "$ref": "PscAutoConnectionConfig"
+          },
+          "type": "array"
+        },
         "pscDnsName": {
           "description": "Output only. The DNS name of the instance for PSC connectivity. Name convention: ...alloydb-psc.goog",
           "readOnly": true,
           "type": "string"
         },
+        "pscInterfaceConfigs": {
+          "description": "Optional. Configurations for setting up PSC interfaces attached to the instance which are used for outbound connectivity. Only primary instances can have PSC interface attached. Currently we only support 0 or 1 PSC interface.",
+          "items": {
+            "$ref": "PscInterfaceConfig"
+          },
+          "type": "array"
+        },
         "serviceAttachmentLink": {
           "description": "Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscInterfaceConfig": {
+      "description": "Configuration for setting up a PSC interface to enable outbound connectivity.",
+      "id": "PscInterfaceConfig",
+      "properties": {
+        "networkAttachmentResource": {
+          "description": "The network attachment resource created in the consumer network to which the PSC interface will be linked. This is of the format: \"projects/${CONSUMER_PROJECT}/regions/${REGION}/networkAttachments/${NETWORK_ATTACHMENT_NAME}\". The network attachment must be in the same region as the instance.",
           "type": "string"
         }
       },
@@ -3293,6 +3627,17 @@
       },
       "type": "object"
     },
+    "ReadPoolInstancesUpgradeStageStatus": {
+      "description": "Read pool instances upgrade specific status.",
+      "id": "ReadPoolInstancesUpgradeStageStatus",
+      "properties": {
+        "upgradeStats": {
+          "$ref": "Stats",
+          "description": "Read pool instances upgrade statistics."
+        }
+      },
+      "type": "object"
+    },
     "RestartInstanceRequest": {
       "id": "RestartInstanceRequest",
       "properties": {
@@ -3345,6 +3690,25 @@
       },
       "type": "object"
     },
+    "RestoreFromCloudSQLRequest": {
+      "description": "Message for registering Restoring from CloudSQL resource.",
+      "id": "RestoreFromCloudSQLRequest",
+      "properties": {
+        "cloudsqlBackupRunSource": {
+          "$ref": "CloudSQLBackupRunSource",
+          "description": "Cluster created from CloudSQL backup run."
+        },
+        "cluster": {
+          "$ref": "Cluster",
+          "description": "Required. The resource being created"
+        },
+        "clusterId": {
+          "description": "Required. ID of the requesting object.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SecondaryConfig": {
       "description": "Configuration information for the secondary cluster. This should be set if and only if the cluster is of type SECONDARY.",
       "id": "SecondaryConfig",
@@ -3380,6 +3744,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "SqlImportOptions": {
+      "description": "Options for importing data in SQL format.",
+      "id": "SqlImportOptions",
+      "properties": {},
       "type": "object"
     },
     "SslConfig": {
@@ -3484,6 +3854,92 @@
             "Cancellation complete."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StageStatus": {
+      "description": "Status of an upgrade stage.",
+      "id": "StageStatus",
+      "properties": {
+        "readPoolInstancesUpgrade": {
+          "$ref": "ReadPoolInstancesUpgradeStageStatus",
+          "description": "Read pool instances upgrade metadata."
+        },
+        "stage": {
+          "description": "Upgrade stage.",
+          "enum": [
+            "STAGE_UNSPECIFIED",
+            "ALLOYDB_PRECHECK",
+            "PG_UPGRADE_CHECK",
+            "PREPARE_FOR_UPGRADE",
+            "PRIMARY_INSTANCE_UPGRADE",
+            "READ_POOL_INSTANCES_UPGRADE",
+            "ROLLBACK",
+            "CLEANUP"
+          ],
+          "enumDescriptions": [
+            "Unspecified stage.",
+            "Pre-upgrade custom checks, not covered by pg_upgrade.",
+            "Pre-upgrade pg_upgrade checks.",
+            "Clone the original cluster.",
+            "Upgrade the primary instance(downtime).",
+            "This stage is read pool upgrade.",
+            "Rollback in case of critical failures.",
+            "Cleanup."
+          ],
+          "type": "string"
+        },
+        "state": {
+          "description": "State of this stage.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "NOT_STARTED",
+            "IN_PROGRESS",
+            "SUCCESS",
+            "FAILED",
+            "PARTIAL_SUCCESS",
+            "CANCEL_IN_PROGRESS",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "Not started.",
+            "In progress.",
+            "Operation succeeded.",
+            "Operation failed.",
+            "Operation partially succeeded.",
+            "Cancel is in progress.",
+            "Cancellation complete."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Stats": {
+      "description": "Upgrade stats for read pool instances.",
+      "id": "Stats",
+      "properties": {
+        "failed": {
+          "description": "Number of read pool instances which failed to upgrade.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "notStarted": {
+          "description": "Number of read pool instances for which upgrade has not started.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ongoing": {
+          "description": "Number of read pool instances undergoing upgrade.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "success": {
+          "description": "Number of read pool instances successfully upgraded.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3875,7 +4331,16 @@
             "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
             "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
             "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
-            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY"
+            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
+            "SIGNAL_TYPE_HOT_NODE",
+            "SIGNAL_TYPE_NO_POINT_IN_TIME_RECOVERY",
+            "SIGNAL_TYPE_RESOURCE_SUSPENDED",
+            "SIGNAL_TYPE_EXPENSIVE_COMMANDS",
+            "SIGNAL_TYPE_NO_MAINTENANCE_POLICY_CONFIGURED",
+            "SIGNAL_TYPE_NO_DELETION_PROTECTION",
+            "SIGNAL_TYPE_INEFFICIENT_QUERY",
+            "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
+            "SIGNAL_TYPE_MEMORY_LIMIT"
           ],
           "enumDeprecated": [
             false,
@@ -3883,6 +4348,15 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -4041,7 +4515,16 @@
             "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
             "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible.",
             "Detects if a database instance is using a weak password hash algorithm.",
-            "Detects if a database instance has no user password policy set."
+            "Detects if a database instance has no user password policy set.",
+            "Detects if a database instance/cluster has a hot node.",
+            "Detects if a database instance has no point in time recovery enabled.",
+            "Detects if a database instance/cluster is suspended.",
+            "Detects that expensive commands are being run on a database instance impacting overall performance.",
+            "Indicates that the instance does not have a maintenance policy configured.",
+            "Deletion Protection Disabled for the resource",
+            "Indicates that the instance has inefficient queries detected.",
+            "Indicates that the instance has read intensive workload.",
+            "Indicates that the instance is nearing memory limit."
           ],
           "type": "string"
         },
@@ -4105,7 +4588,7 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 23",
+      "description": "Common model for database resource instance metadata. Next ID: 25",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -4190,6 +4673,10 @@
           ],
           "type": "string"
         },
+        "gcbdrConfiguration": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration",
+          "description": "GCBDR configuration for the resource."
+        },
         "id": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
           "description": "Required. Unique identifier for a Database resource"
@@ -4206,6 +4693,7 @@
             "SUB_RESOURCE_TYPE_PRIMARY",
             "SUB_RESOURCE_TYPE_SECONDARY",
             "SUB_RESOURCE_TYPE_READ_REPLICA",
+            "SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY",
             "SUB_RESOURCE_TYPE_OTHER"
           ],
           "enumDeprecated": [
@@ -4218,10 +4706,11 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified.",
             "For rest of the other categories.",
             "A regular primary database instance.",
             "A cluster or an instance acting as a secondary.",
@@ -4230,6 +4719,7 @@
             "A regular primary database instance.",
             "A cluster or an instance acting as a secondary.",
             "An instance acting as a read-replica.",
+            "An instance acting as an external primary.",
             "For rest of the other categories."
           ],
           "type": "string"
@@ -4260,6 +4750,28 @@
         },
         "resourceName": {
           "description": "Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named \"ABC\" is deleted, the name \"ABC\" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "type": "string"
+        },
+        "suspensionReason": {
+          "description": "Optional. Suspension reason for the resource.",
+          "enum": [
+            "SUSPENSION_REASON_UNSPECIFIED",
+            "WIPEOUT_HIDE_EVENT",
+            "WIPEOUT_PURGE_EVENT",
+            "BILLING_DISABLED",
+            "ABUSER_DETECTED",
+            "ENCRYPTION_KEY_INACCESSIBLE",
+            "REPLICATED_CLUSTER_ENCRYPTION_KEY_INACCESSIBLE"
+          ],
+          "enumDescriptions": [
+            "Suspension reason is unspecified.",
+            "Wipeout hide event.",
+            "Wipeout purge event.",
+            "Billing disabled for project",
+            "Abuse detected for resource",
+            "Encryption key inaccessible.",
+            "Replicated cluster encryption key inaccessible."
+          ],
           "type": "string"
         },
         "tagsSet": {
@@ -4414,7 +4926,16 @@
             "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
             "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
             "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
-            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY"
+            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
+            "SIGNAL_TYPE_HOT_NODE",
+            "SIGNAL_TYPE_NO_POINT_IN_TIME_RECOVERY",
+            "SIGNAL_TYPE_RESOURCE_SUSPENDED",
+            "SIGNAL_TYPE_EXPENSIVE_COMMANDS",
+            "SIGNAL_TYPE_NO_MAINTENANCE_POLICY_CONFIGURED",
+            "SIGNAL_TYPE_NO_DELETION_PROTECTION",
+            "SIGNAL_TYPE_INEFFICIENT_QUERY",
+            "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
+            "SIGNAL_TYPE_MEMORY_LIMIT"
           ],
           "enumDeprecated": [
             false,
@@ -4422,6 +4943,15 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -4580,7 +5110,16 @@
             "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
             "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible.",
             "Detects if a database instance is using a weak password hash algorithm.",
-            "Detects if a database instance has no user password policy set."
+            "Detects if a database instance has no user password policy set.",
+            "Detects if a database instance/cluster has a hot node.",
+            "Detects if a database instance has no point in time recovery enabled.",
+            "Detects if a database instance/cluster is suspended.",
+            "Detects that expensive commands are being run on a database instance impacting overall performance.",
+            "Indicates that the instance does not have a maintenance policy configured.",
+            "Deletion Protection Disabled for the resource",
+            "Indicates that the instance has inefficient queries detected.",
+            "Indicates that the instance has read intensive workload.",
+            "Indicates that the instance is nearing memory limit."
           ],
           "type": "string"
         }
@@ -4609,13 +5148,34 @@
           "description": "An enum that represents the type of this entitlement.",
           "enum": [
             "ENTITLEMENT_TYPE_UNSPECIFIED",
-            "GEMINI"
+            "GEMINI",
+            "NATIVE",
+            "GCA_STANDARD"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false
           ],
           "enumDescriptions": [
-            "",
-            "The root entitlement representing Gemini package ownership."
+            "The entitlement type is unspecified.",
+            "The root entitlement representing Gemini package ownership.This will no longer be supported in the future.",
+            "The entitlement representing Native Tier, This will be the default Entitlement going forward with GCA Enablement.",
+            "The entitlement representing GCA-Standard Tier."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration": {
+      "description": "GCBDR Configuration for the resource.",
+      "id": "StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration",
+      "properties": {
+        "gcbdrManaged": {
+          "description": "Whether the resource is managed by GCBDR.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4631,6 +5191,10 @@
         "backupRun": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupRun",
           "description": "Information about the last backup attempt for this database"
+        },
+        "isDeletionProtectionEnabled": {
+          "description": "Whether deletion protection is enabled for this internal resource.",
+          "type": "boolean"
         },
         "product": {
           "$ref": "StorageDatabasecenterProtoCommonProduct"
@@ -4651,12 +5215,12 @@
       "properties": {
         "cpuCount": {
           "deprecated": true,
-          "description": "The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "description": "The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482) add proto validations again after bug fix.",
           "format": "int32",
           "type": "integer"
         },
         "memorySizeInBytes": {
-          "description": "Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "description": "Memory size in bytes. TODO(b/342344482) add proto validations again after bug fix.",
           "format": "int64",
           "type": "string"
         },
@@ -4666,7 +5230,7 @@
           "type": "integer"
         },
         "vcpuCount": {
-          "description": "Optional. The number of vCPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "description": "Optional. The number of vCPUs. TODO(b/342344482) add proto validations again after bug fix.",
           "format": "double",
           "type": "number"
         }
@@ -4702,7 +5266,10 @@
             "MEMORY_UTILIZATION",
             "NETWORK_CONNECTIONS",
             "STORAGE_UTILIZATION",
-            "STORAGE_USED_BYTES"
+            "STORAGE_USED_BYTES",
+            "NODE_COUNT",
+            "MEMORY_USED_BYTES",
+            "PROCESSING_UNIT_COUNT"
           ],
           "enumDescriptions": [
             "Unspecified metric type.",
@@ -4710,7 +5277,10 @@
             "Memory utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
             "Number of network connections for a resource.",
             "Storage utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
-            "Sotrage used by a resource."
+            "Sotrage used by a resource.",
+            "Node count for a resource. It represents the number of node units in a bigtable/spanner instance.",
+            "Memory used by a resource (in bytes).",
+            "Processing units used by a resource. It represents the number of processing units in a spanner instance."
           ],
           "type": "string"
         },
@@ -5010,9 +5580,32 @@
           "description": "The name of the flag resource, following Google Cloud conventions, e.g.: * projects/{project}/locations/{location}/flags/{flag} This field currently has no semantic meaning.",
           "type": "string"
         },
+        "recommendedIntegerValue": {
+          "description": "The recommended value for an INTEGER flag.",
+          "format": "int64",
+          "type": "string"
+        },
+        "recommendedStringValue": {
+          "description": "The recommended value for a STRING flag.",
+          "type": "string"
+        },
         "requiresDbRestart": {
           "description": "Whether setting or updating this flag on an Instance requires a database restart. If a flag that requires database restart is set, the backend will automatically restart the database (making sure to satisfy any availability SLO's).",
           "type": "boolean"
+        },
+        "scope": {
+          "description": "The scope of the flag.",
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "DATABASE",
+            "CONNECTION_POOL"
+          ],
+          "enumDescriptions": [
+            "The scope of the flag is not specified. Default is DATABASE.",
+            "The flag is a database flag.",
+            "The flag is a connection pool flag."
+          ],
+          "type": "string"
         },
         "stringRestrictions": {
           "$ref": "StringRestrictions",
@@ -5200,6 +5793,98 @@
             "Operation partially succeeded.",
             "Cancel is in progress.",
             "Cancellation complete."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpgradeClusterStatus": {
+      "description": "Message for current status of the Major Version Upgrade operation.",
+      "id": "UpgradeClusterStatus",
+      "properties": {
+        "cancellable": {
+          "description": "Whether the operation is cancellable.",
+          "type": "boolean"
+        },
+        "sourceVersion": {
+          "description": "Source database major version.",
+          "enum": [
+            "DATABASE_VERSION_UNSPECIFIED",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "This is an unknown database version.",
+            "DEPRECATED - The database version is Postgres 13.",
+            "The database version is Postgres 14.",
+            "The database version is Postgres 15.",
+            "The database version is Postgres 16."
+          ],
+          "type": "string"
+        },
+        "stages": {
+          "description": "Status of all upgrade stages.",
+          "items": {
+            "$ref": "StageStatus"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Cluster Major Version Upgrade state.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "NOT_STARTED",
+            "IN_PROGRESS",
+            "SUCCESS",
+            "FAILED",
+            "PARTIAL_SUCCESS",
+            "CANCEL_IN_PROGRESS",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "Not started.",
+            "In progress.",
+            "Operation succeeded.",
+            "Operation failed.",
+            "Operation partially succeeded.",
+            "Cancel is in progress.",
+            "Cancellation complete."
+          ],
+          "type": "string"
+        },
+        "targetVersion": {
+          "description": "Target database major version.",
+          "enum": [
+            "DATABASE_VERSION_UNSPECIFIED",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "This is an unknown database version.",
+            "DEPRECATED - The database version is Postgres 13.",
+            "The database version is Postgres 14.",
+            "The database version is Postgres 15.",
+            "The database version is Postgres 16."
           ],
           "type": "string"
         }

@@ -526,6 +526,11 @@
                         "name"
                       ],
                       "parameters": {
+                        "deleteCommercial": {
+                          "description": "Optional. If the listing is commercial then this field must be set to true, otherwise a failure is thrown. This acts as a safety guard to avoid deleting commercial listings accidentally.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
                         "name": {
                           "description": "Required. Resource name of the listing to delete. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.",
                           "location": "path",
@@ -1022,7 +1027,7 @@
       }
     }
   },
-  "revision": "20250115",
+  "revision": "20250303",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AnalyticsHubSubscriptionInfo": {
@@ -1160,7 +1165,7 @@
       "id": "BigQueryDatasetSource",
       "properties": {
         "dataset": {
-          "description": "Resource name of the dataset source for this listing. e.g. `projects/myproject/datasets/123`",
+          "description": "Optional. Resource name of the dataset source for this listing. e.g. `projects/myproject/datasets/123`",
           "type": "string"
         },
         "restrictedExportPolicy": {
@@ -1229,7 +1234,7 @@
           "type": "string"
         },
         "maxDuration": {
-          "description": "Optional. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.",
+          "description": "Optional. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgment deadline.",
           "format": "google-duration",
           "type": "string"
         },
@@ -1311,6 +1316,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "logLinkedDatasetQueryUserEmail": {
+          "description": "Optional. By default, false. If true, the DataExchange has an email sharing mandate enabled.",
+          "type": "boolean"
+        },
         "name": {
           "description": "Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/US/dataExchanges/123`.",
           "readOnly": true,
@@ -1368,7 +1377,7 @@
           "type": "string"
         },
         "maxDeliveryAttempts": {
-          "description": "Optional. The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgement deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.",
+          "description": "Optional. The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgment deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.",
           "format": "int32",
           "type": "integer"
         }
@@ -1412,7 +1421,6 @@
       "type": "object"
     },
     "DestinationDatasetReference": {
-      "description": "Contains the reference that identifies a destination bigquery dataset.",
       "id": "DestinationDatasetReference",
       "properties": {
         "datasetId": {
@@ -1594,7 +1602,7 @@
           "type": "boolean"
         },
         "enableExactlyOnceDelivery": {
-          "description": "Optional. If true, Pub/Sub provides the following guarantees for the delivery of a message with a given value of `message_id` on this subscription: * The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires. * An acknowledged message will not be resent to a subscriber. Note that subscribers may still receive multiple copies of a message when `enable_exactly_once_delivery` is true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct `message_id` values.",
+          "description": "Optional. If true, Pub/Sub provides the following guarantees for the delivery of a message with a given value of `message_id` on this subscription: * The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgment deadline expires. * An acknowledged message will not be resent to a subscriber. Note that subscribers may still receive multiple copies of a message when `enable_exactly_once_delivery` is true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct `message_id` values.",
           "type": "boolean"
         },
         "enableMessageOrdering": {
@@ -1621,6 +1629,13 @@
           "format": "google-duration",
           "type": "string"
         },
+        "messageTransforms": {
+          "description": "Optional. Transforms to be applied to messages before they are delivered to subscribers. Transforms are applied in the order specified.",
+          "items": {
+            "$ref": "MessageTransform"
+          },
+          "type": "array"
+        },
         "name": {
           "description": "Required. Name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.",
           "type": "string"
@@ -1635,7 +1650,7 @@
         },
         "retryPolicy": {
           "$ref": "RetryPolicy",
-          "description": "Optional. A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message."
+          "description": "Optional. A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded events for a given message."
         },
         "state": {
           "description": "Output only. An output-only field indicating whether or not the subscription can receive messages.",
@@ -1656,6 +1671,21 @@
           "description": "Output only. Indicates the minimum duration for which a message is retained after it is published to the subscription's topic. If this field is set, messages published to the subscription's topic in the last `topic_message_retention_duration` are always available to subscribers. See the `message_retention_duration` field in `Topic`. This field is set only in responses from the server; it is ignored if it is set in any requests.",
           "format": "google-duration",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "JavaScriptUDF": {
+      "description": "User-defined JavaScript function that can transform or filter a Pub/Sub message.",
+      "id": "JavaScriptUDF",
+      "properties": {
+        "code": {
+          "description": "Required. JavaScript code that contains a function `function_name` with the below signature: ``` /** * Transforms a Pub/Sub message. * @return {(Object)>|null)} - To * filter a message, return `null`. To transform a message return a map * with the following keys: * - (required) 'data' : {string} * - (optional) 'attributes' : {Object} * Returning empty `attributes` will remove all attributes from the * message. * * @param {(Object)>} Pub/Sub * message. Keys: * - (required) 'data' : {string} * - (required) 'attributes' : {Object} * * @param {Object} metadata - Pub/Sub message metadata. * Keys: * - (required) 'message_id' : {string} * - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format * - (optional) 'ordering_key': {string} */ function (message, metadata) { } ```",
+          "type": "string"
+        },
+        "functionName": {
+          "description": "Required. Name of the JavasScript function that should applied to Pub/Sub messages.",
           "type": "string"
         }
       },
@@ -1779,7 +1809,7 @@
       "properties": {
         "bigqueryDataset": {
           "$ref": "BigQueryDatasetSource",
-          "description": "Required. Shared dataset i.e. BigQuery dataset source."
+          "description": "Shared dataset i.e. BigQuery dataset source."
         },
         "categories": {
           "description": "Optional. Categories of the listing. Up to two categories are allowed.",
@@ -1872,6 +1902,10 @@
           "format": "byte",
           "type": "string"
         },
+        "logLinkedDatasetQueryUserEmail": {
+          "description": "Optional. By default, false. If true, the Listing has an email sharing mandate enabled.",
+          "type": "boolean"
+        },
         "name": {
           "description": "Output only. The resource name of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`",
           "readOnly": true,
@@ -1887,7 +1921,7 @@
         },
         "pubsubTopic": {
           "$ref": "PubSubTopicSource",
-          "description": "Required. Pub/Sub topic source."
+          "description": "Pub/Sub topic source."
         },
         "requestAccess": {
           "description": "Optional. Email or URL of the request access of the listing. Subscribers can use this reference to request access. Max Length: 1000 bytes.",
@@ -1924,6 +1958,21 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MessageTransform": {
+      "description": "All supported message transforms types.",
+      "id": "MessageTransform",
+      "properties": {
+        "enabled": {
+          "description": "Optional. If set to true, the transform is enabled. If false, the transform is disabled and will not be applied to messages. Defaults to `true`.",
+          "type": "boolean"
+        },
+        "javascriptUdf": {
+          "$ref": "JavaScriptUDF",
+          "description": "Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's are specified on a resource, each must have a unique `function_name`."
         }
       },
       "type": "object"
@@ -2190,7 +2239,7 @@
       "type": "object"
     },
     "RetryPolicy": {
-      "description": "A policy that specifies how Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.",
+      "description": "A policy that specifies how Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.",
       "id": "RetryPolicy",
       "properties": {
         "maximumBackoff": {
@@ -2209,7 +2258,12 @@
     "RevokeSubscriptionRequest": {
       "description": "Message for revoking a subscription.",
       "id": "RevokeSubscriptionRequest",
-      "properties": {},
+      "properties": {
+        "revokeCommercial": {
+          "description": "Optional. If the subscription is commercial then this field must be set to true, otherwise a failure is thrown. This acts as a safety guard to avoid revoking commercial subscriptions accidentally.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "RevokeSubscriptionResponse": {
@@ -2335,7 +2389,7 @@
         },
         "destinationPubsubSubscription": {
           "$ref": "DestinationPubSubSubscription",
-          "description": "Required. Input only. Destination Pub/Sub subscription to create for the subscriber."
+          "description": "Input only. Destination Pub/Sub subscription to create for the subscriber."
         }
       },
       "type": "object"
@@ -2397,6 +2451,11 @@
           "description": "Output only. Resource name of the source Listing. e.g. projects/123/locations/US/dataExchanges/456/listings/789",
           "readOnly": true,
           "type": "string"
+        },
+        "logLinkedDatasetQueryUserEmail": {
+          "description": "Output only. By default, false. If true, the Subscriber agreed to the email sharing mandate that is enabled for DataExchange/Listing.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "name": {
           "description": "Output only. The resource name of the subscription. e.g. `projects/myproject/locations/US/subscriptions/123`.",

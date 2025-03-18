@@ -4453,7 +4453,7 @@
       }
     }
   },
-  "revision": "20250121",
+  "revision": "20250310",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4550,7 +4550,7 @@
           "type": "string"
         },
         "useTimeoutBasedEndpointing": {
-          "description": "Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.",
+          "description": "Use timeout based endpointing, interpreting endpointer sensitivity as seconds of timeout value.",
           "type": "boolean"
         }
       },
@@ -4921,7 +4921,7 @@
       "id": "GoogleCloudDialogflowCxV3BoostSpec",
       "properties": {
         "conditionBoostSpecs": {
-          "description": "Optional. Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
+          "description": "Optional. Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3BoostSpecConditionBoostSpec"
           },
@@ -6523,7 +6523,7 @@
           "type": "array"
         },
         "transitionRoutes": {
-          "description": "A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying \"help\" or \"can I talk to a human?\", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evalauted in the following order: * TransitionRoutes with intent specified. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.",
+          "description": "A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying \"help\" or \"can I talk to a human?\", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evaluated in the following order: * TransitionRoutes with intent specified. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3TransitionRoute"
           },
@@ -8167,7 +8167,7 @@
           "type": "array"
         },
         "transitionRoutes": {
-          "description": "A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.",
+          "description": "A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evaluated in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3TransitionRoute"
           },
@@ -8920,14 +8920,14 @@
       "id": "GoogleCloudDialogflowCxV3SearchConfig",
       "properties": {
         "boostSpecs": {
-          "description": "Optional. Boosting configuration for the datastores.",
+          "description": "Optional. Boosting configuration for the datastores. Maps from datastore name to their boost configuration. Do not specify more than one BoostSpecs for each datastore name. If multiple BoostSpecs are provided for the same datastore name, the behavior is undefined.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3BoostSpecs"
           },
           "type": "array"
         },
         "filterSpecs": {
-          "description": "Optional. Filter configuration for the datastores.",
+          "description": "Optional. Filter configuration for the datastores. Maps from datastore name to the filter expression for that datastore. Do not specify more than one FilterSpecs for each datastore name. If multiple FilterSpecs are provided for the same datastore name, the behavior is undefined.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3FilterSpecs"
           },
@@ -10041,7 +10041,7 @@
           "type": "string"
         },
         "clientSecret": {
-          "description": "Required. The client secret provided by the 3rd party platform.",
+          "description": "Optional. The client secret provided by the 3rd party platform.",
           "type": "string"
         },
         "scopes": {
@@ -10374,7 +10374,7 @@
           "type": "string"
         },
         "useTimeoutBasedEndpointing": {
-          "description": "Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.",
+          "description": "Use timeout based endpointing, interpreting endpointer sensitivity as seconds of timeout value.",
           "type": "boolean"
         }
       },
@@ -11541,7 +11541,7 @@
           "type": "array"
         },
         "transitionRoutes": {
-          "description": "A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.",
+          "description": "A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evaluated in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1TransitionRoute"
           },
@@ -12416,7 +12416,7 @@
           "type": "string"
         },
         "clientSecret": {
-          "description": "Required. The client secret provided by the 3rd party platform.",
+          "description": "Optional. The client secret provided by the 3rd party platform.",
           "type": "string"
         },
         "scopes": {
@@ -13260,6 +13260,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2FreeFormSuggestion": {
+      "description": "Suggestion generated using free form generator.",
+      "id": "GoogleCloudDialogflowV2FreeFormSuggestion",
+      "properties": {
+        "response": {
+          "description": "Required. Free form suggestion.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2GcsDestination": {
       "description": "Google Cloud Storage location for the output.",
       "id": "GoogleCloudDialogflowV2GcsDestination",
@@ -13267,6 +13278,58 @@
         "uri": {
           "description": "The Google Cloud Storage URIs for the output. A URI is of the form: `gs://bucket/object-prefix-or-name` Whether a prefix or name is used depends on the use case. The requesting user must have \"write-permission\" to the bucket.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GenerateSuggestionsResponse": {
+      "description": "The response message for Conversations.GenerateSuggestions.",
+      "id": "GoogleCloudDialogflowV2GenerateSuggestionsResponse",
+      "properties": {
+        "generatorSuggestionAnswers": {
+          "description": "The answers generated for the conversation based on context.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer"
+          },
+          "type": "array"
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used as context for compiling suggestion. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer": {
+      "description": "A GeneratorSuggestion answer.",
+      "id": "GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer",
+      "properties": {
+        "answerRecord": {
+          "description": "Answer record that uniquely identifies the suggestion. This can be used to provide suggestion feedback.",
+          "type": "string"
+        },
+        "generatorSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2GeneratorSuggestion",
+          "description": "Suggestion details."
+        },
+        "sourceGenerator": {
+          "description": "The name of the generator used to generate this suggestion. Format: `projects//locations//generators/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GeneratorSuggestion": {
+      "description": "Suggestion generated using a Generator.",
+      "id": "GoogleCloudDialogflowV2GeneratorSuggestion",
+      "properties": {
+        "freeFormSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2FreeFormSuggestion",
+          "description": "Optional. Free form suggestion."
+        },
+        "summarySuggestion": {
+          "$ref": "GoogleCloudDialogflowV2SummarySuggestion",
+          "description": "Optional. Suggested summary."
         }
       },
       "type": "object"
@@ -14479,7 +14542,7 @@
           "type": "string"
         },
         "sendTime": {
-          "description": "Optional. The time when the message was sent.",
+          "description": "Optional. The time when the message was sent. For voice messages, this is the time when an utterance started.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -14953,6 +15016,10 @@
           "$ref": "GoogleRpcStatus",
           "description": "Error status if the request failed."
         },
+        "generateSuggestionsResponse": {
+          "$ref": "GoogleCloudDialogflowV2GenerateSuggestionsResponse",
+          "description": "Suggestions generated using generators triggered by customer or agent messages."
+        },
         "suggestArticlesResponse": {
           "$ref": "GoogleCloudDialogflowV2SuggestArticlesResponse",
           "description": "SuggestArticlesResponse if request is for ARTICLE_SUGGESTION."
@@ -14968,6 +15035,35 @@
         "suggestSmartRepliesResponse": {
           "$ref": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse",
           "description": "SuggestSmartRepliesResponse if request is for SMART_REPLY."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarySuggestion": {
+      "description": "Suggested summary of the conversation.",
+      "id": "GoogleCloudDialogflowV2SummarySuggestion",
+      "properties": {
+        "summarySections": {
+          "description": "Required. All the parts of generated summary.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SummarySuggestionSummarySection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SummarySuggestionSummarySection": {
+      "description": "A component of the generated summary.",
+      "id": "GoogleCloudDialogflowV2SummarySuggestionSummarySection",
+      "properties": {
+        "section": {
+          "description": "Required. Name of the section.",
+          "type": "string"
+        },
+        "summary": {
+          "description": "Required. Summary text for the section.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -15455,6 +15551,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1FreeFormSuggestion": {
+      "description": "Suggestion generated using free form generator.",
+      "id": "GoogleCloudDialogflowV2beta1FreeFormSuggestion",
+      "properties": {
+        "response": {
+          "description": "Required. Free form suggestion.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1GcsDestination": {
       "description": "Google Cloud Storage location for the output.",
       "id": "GoogleCloudDialogflowV2beta1GcsDestination",
@@ -15462,6 +15569,58 @@
         "uri": {
           "description": "Required. The Google Cloud Storage URIs for the output. A URI is of the form: `gs://bucket/object-prefix-or-name` Whether a prefix or name is used depends on the use case. The requesting user must have \"write-permission\" to the bucket.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse": {
+      "description": "The response message for Conversations.GenerateSuggestions.",
+      "id": "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse",
+      "properties": {
+        "generatorSuggestionAnswers": {
+          "description": "The answers generated for the conversation based on context.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer"
+          },
+          "type": "array"
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used as context for compiling suggestion. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer": {
+      "description": "A GeneratorSuggestion answer.",
+      "id": "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer",
+      "properties": {
+        "answerRecord": {
+          "description": "Answer record that uniquely identifies the suggestion. This can be used to provide suggestion feedback.",
+          "type": "string"
+        },
+        "generatorSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2beta1GeneratorSuggestion",
+          "description": "Suggestion details."
+        },
+        "sourceGenerator": {
+          "description": "The name of the generator used to generate this suggestion. Format: `projects//locations//generators/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GeneratorSuggestion": {
+      "description": "Suggestion generated using a Generator.",
+      "id": "GoogleCloudDialogflowV2beta1GeneratorSuggestion",
+      "properties": {
+        "freeFormSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2beta1FreeFormSuggestion",
+          "description": "Optional. Free form suggestion."
+        },
+        "summarySuggestion": {
+          "$ref": "GoogleCloudDialogflowV2beta1SummarySuggestion",
+          "description": "Optional. Suggested summary."
         }
       },
       "type": "object"
@@ -17001,7 +17160,7 @@
           "type": "array"
         },
         "sendTime": {
-          "description": "Optional. The time when the message was sent.",
+          "description": "Optional. The time when the message was sent. For voice messages, this is the time when an utterance started.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -17191,7 +17350,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff": {
-      "description": "Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.",
+      "description": "Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a Dialogflow CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.",
       "id": "GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff",
       "properties": {
         "metadata": {
@@ -17614,6 +17773,10 @@
           "$ref": "GoogleRpcStatus",
           "description": "Error status if the request failed."
         },
+        "generateSuggestionsResponse": {
+          "$ref": "GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse",
+          "description": "Suggestions generated using generators triggered by customer or agent messages."
+        },
         "suggestArticlesResponse": {
           "$ref": "GoogleCloudDialogflowV2beta1SuggestArticlesResponse",
           "description": "SuggestArticlesResponse if request is for ARTICLE_SUGGESTION."
@@ -17637,6 +17800,35 @@
         "suggestSmartRepliesResponse": {
           "$ref": "GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse",
           "description": "SuggestSmartRepliesResponse if request is for SMART_REPLY."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SummarySuggestion": {
+      "description": "Suggested summary of the conversation.",
+      "id": "GoogleCloudDialogflowV2beta1SummarySuggestion",
+      "properties": {
+        "summarySections": {
+          "description": "Required. All the parts of generated summary.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection": {
+      "description": "A component of the generated summary.",
+      "id": "GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection",
+      "properties": {
+        "section": {
+          "description": "Required. Name of the section.",
+          "type": "string"
+        },
+        "summary": {
+          "description": "Required. Summary text for the section.",
+          "type": "string"
         }
       },
       "type": "object"

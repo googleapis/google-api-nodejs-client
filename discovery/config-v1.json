@@ -1187,7 +1187,7 @@
       }
     }
   },
-  "revision": "20250108",
+  "revision": "20250219",
   "rootUrl": "https://config.googleapis.com/",
   "schemas": {
     "ApplyResults": {
@@ -2000,7 +2000,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Arbitrary key-value metadata storage e.g. to help client tools identifiy preview during automation. See https://google.aip.dev/148#annotations for details on format and size limitations.",
+          "description": "Optional. Arbitrary key-value metadata storage e.g. to help client tools identify preview during automation. See https://google.aip.dev/148#annotations for details on format and size limitations.",
           "type": "object"
         },
         "artifactsGcsBucket": {

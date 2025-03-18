@@ -615,6 +615,10 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementConfigSync {
     /**
+     * Optional. Configuration for deployment overrides.
+     */
+    deploymentOverrides?: Schema$ConfigManagementDeploymentOverride[];
+    /**
      * Optional. Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of the git or oci field.
      */
     enabled?: boolean | null;
@@ -774,6 +778,48 @@ export namespace gkehub_v1alpha {
      * Version of the deployed syncer pod
      */
     syncer?: string | null;
+  }
+  /**
+   * Configuration for a container override.
+   */
+  export interface Schema$ConfigManagementContainerOverride {
+    /**
+     * Required. The name of the container.
+     */
+    containerName?: string | null;
+    /**
+     * Optional. The cpu limit of the container.
+     */
+    cpuLimit?: string | null;
+    /**
+     * Optional. The cpu request of the container.
+     */
+    cpuRequest?: string | null;
+    /**
+     * Optional. The memory limit of the container.
+     */
+    memoryLimit?: string | null;
+    /**
+     * Optional. The memory request of the container.
+     */
+    memoryRequest?: string | null;
+  }
+  /**
+   * Configuration for a deployment override.
+   */
+  export interface Schema$ConfigManagementDeploymentOverride {
+    /**
+     * Optional. The containers of the deployment resource to be overridden.
+     */
+    containers?: Schema$ConfigManagementContainerOverride[];
+    /**
+     * Required. The name of the deployment resource to be overridden.
+     */
+    deploymentName?: string | null;
+    /**
+     * Required. The namespace of the deployment resource to be overridden..
+     */
+    deploymentNamespace?: string | null;
   }
   /**
    * Model for a config file in the git repo with an associated Sync error
@@ -3099,7 +3145,7 @@ export namespace gkehub_v1alpha {
     type?: Schema$ServiceMeshType;
   }
   /**
-   * Condition being reported.
+   * Condition being reported. TODO b/395151419: Remove this message once the membership-level conditions field uses the common Condition message.
    */
   export interface Schema$ServiceMeshCondition {
     /**
@@ -3150,6 +3196,27 @@ export namespace gkehub_v1alpha {
     state?: string | null;
   }
   /**
+   * Condition being reported. TODO b/395151419: This message should be used to replace the membership-level Condition message.
+   */
+  export interface Schema$ServiceMeshFeatureCondition {
+    /**
+     * Unique identifier of the condition which describes the condition recognizable to the user.
+     */
+    code?: string | null;
+    /**
+     * A short summary about the issue.
+     */
+    details?: string | null;
+    /**
+     * Links contains actionable information.
+     */
+    documentationLink?: string | null;
+    /**
+     * Severity level of the condition.
+     */
+    severity?: string | null;
+  }
+  /**
    * **Service Mesh**: State for the whole Hub, as analyzed by the Service Mesh Hub Controller.
    */
   export interface Schema$ServiceMeshFeatureState {
@@ -3157,6 +3224,10 @@ export namespace gkehub_v1alpha {
      * Output only. Results of running Service Mesh analyzers.
      */
     analysisMessages?: Schema$ServiceMeshAnalysisMessage[];
+    /**
+     * Output only. List of conditions reported for this feature.
+     */
+    conditions?: Schema$ServiceMeshFeatureCondition[];
   }
   /**
    * **Service Mesh**: Spec for a single Membership for the servicemesh feature
@@ -3188,7 +3259,7 @@ export namespace gkehub_v1alpha {
      */
     analysisMessages?: Schema$ServiceMeshAnalysisMessage[];
     /**
-     * Output only. List of conditions reported for this membership.
+     * Output only. List of conditions reported for this membership. TODO b/395151419: Use the common Condition message.
      */
     conditions?: Schema$ServiceMeshCondition[];
     /**

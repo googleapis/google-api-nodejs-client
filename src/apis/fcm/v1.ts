@@ -102,7 +102,7 @@ export namespace fcm_v1 {
   /**
    * Firebase Cloud Messaging API
    *
-   * FCM send API that provides a cross-platform messaging solution to reliably deliver messages at no cost.
+   * FCM send API that provides a cross-platform messaging solution to reliably deliver messages.
    *
    * @example
    * ```js
@@ -128,6 +128,10 @@ export namespace fcm_v1 {
    * Android specific options for messages sent through [FCM connection server](https://goo.gl/4GLdUl).
    */
   export interface Schema$AndroidConfig {
+    /**
+     * Optional. If set to true, messages will be allowed to be delivered to the app while the device is in bandwidth constrained mode.
+     */
+    bandwidthConstrainedOk?: boolean | null;
     /**
      * An identifier of a group of messages that can be collapsed, so that only the last message gets sent when delivery can be resumed. A maximum of 4 different collapse keys is allowed at any given time.
      */
@@ -581,7 +585,7 @@ export namespace fcm_v1 {
   export interface Params$Resource$Projects$Messages$Send
     extends StandardParameters {
     /**
-     * Required. It contains the Firebase project id (i.e. the unique identifier for your Firebase project), in the format of `projects/{project_id\}`. For legacy support, the numeric project number with no padding is also supported in the format of `projects/{project_number\}`.
+     * Required. It contains the Firebase project id (i.e. the unique identifier for your Firebase project), in the format of `projects/{project_id\}`. The numeric project number with no padding is also supported in the format of `projects/{project_number\}`.
      */
     parent?: string;
 

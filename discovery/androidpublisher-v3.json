@@ -4732,7 +4732,7 @@
       }
     }
   },
-  "revision": "20250102",
+  "revision": "20250227",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -5705,6 +5705,10 @@
           },
           "description": "Map from region code to converted region price.",
           "type": "object"
+        },
+        "regionVersion": {
+          "$ref": "RegionsVersion",
+          "description": "The region version at which the prices were generated."
         }
       },
       "type": "object"

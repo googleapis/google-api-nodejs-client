@@ -206,6 +206,10 @@ export namespace certificatemanager_v1 {
      * Output only. The last update timestamp of a Certificate.
      */
     updateTime?: string | null;
+    /**
+     * Output only. The list of resources that use this Certificate.
+     */
+    usedBy?: Schema$UsedBy[];
   }
   /**
    * The CA that issues the workload certificate. It includes CA address, type, authentication to CA service, etc.
@@ -774,6 +778,15 @@ export namespace certificatemanager_v1 {
      * Optional. List of Trust Anchors to be used while performing validation against a given TrustStore.
      */
     trustAnchors?: Schema$TrustAnchor[];
+  }
+  /**
+   * Defines a resource that uses the certificate.
+   */
+  export interface Schema$UsedBy {
+    /**
+     * Output only. Full name of the resource https://google.aip.dev/122#full-resource-names, e.g. `//certificatemanager.googleapis.com/projects/x/locations/x/certificateMaps/x/certificateMapEntries/x` or `//compute.googleapis.com/projects/x/locations/x/targetHttpsProxies/x`.
+     */
+    name?: string | null;
   }
 
   export class Resource$Projects {

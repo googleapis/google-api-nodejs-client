@@ -795,6 +795,10 @@ export namespace netapp_v1beta1 {
    */
   export interface Schema$LocationMetadata {
     /**
+     * Output only. Supported flex performance in a location.
+     */
+    supportedFlexPerformance?: string[] | null;
+    /**
      * Output only. Supported service levels in a location.
      */
     supportedServiceLevels?: string[] | null;

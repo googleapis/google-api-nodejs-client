@@ -635,7 +635,7 @@
               ]
             },
             "lookupEntry": {
-              "description": "Looks up a single Entry by name using the permission on the source system.Caution: The BigQuery metadata that is stored in Dataplex Catalog is changing. For more information, see Changes to BigQuery metadata stored in Dataplex Catalog (https://cloud.google.com/dataplex/docs/biqquery-metadata-changes).",
+              "description": "Looks up an entry by name using the permission on the source system.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:lookupEntry",
               "httpMethod": "GET",
               "id": "dataplex.projects.locations.lookupEntry",
@@ -1020,6 +1020,7 @@
             "dataAttributeBindings": {
               "methods": {
                 "create": {
+                  "deprecated": true,
                   "description": "Create a DataAttributeBinding resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings",
                   "httpMethod": "POST",
@@ -1058,6 +1059,7 @@
                   ]
                 },
                 "delete": {
+                  "deprecated": true,
                   "description": "Deletes a DataAttributeBinding resource. All attributes within the DataAttributeBinding must be deleted before the DataAttributeBinding can be deleted.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings/{dataAttributeBindingsId}",
                   "httpMethod": "DELETE",
@@ -1088,6 +1090,7 @@
                   ]
                 },
                 "get": {
+                  "deprecated": true,
                   "description": "Retrieves a DataAttributeBinding resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings/{dataAttributeBindingsId}",
                   "httpMethod": "GET",
@@ -1144,6 +1147,7 @@
                   ]
                 },
                 "list": {
+                  "deprecated": true,
                   "description": "Lists DataAttributeBinding resources in a project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings",
                   "httpMethod": "GET",
@@ -1190,6 +1194,7 @@
                   ]
                 },
                 "patch": {
+                  "deprecated": true,
                   "description": "Updates a DataAttributeBinding resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings/{dataAttributeBindingsId}",
                   "httpMethod": "PATCH",
@@ -1744,6 +1749,7 @@
             "dataTaxonomies": {
               "methods": {
                 "create": {
+                  "deprecated": true,
                   "description": "Create a DataTaxonomy resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies",
                   "httpMethod": "POST",
@@ -1758,7 +1764,6 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the data taxonomy location, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1782,6 +1787,7 @@
                   ]
                 },
                 "delete": {
+                  "deprecated": true,
                   "description": "Deletes a DataTaxonomy resource. All attributes within the DataTaxonomy must be deleted before the DataTaxonomy can be deleted.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}",
                   "httpMethod": "DELETE",
@@ -1812,6 +1818,7 @@
                   ]
                 },
                 "get": {
+                  "deprecated": true,
                   "description": "Retrieves a DataTaxonomy resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}",
                   "httpMethod": "GET",
@@ -1821,7 +1828,6 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the DataTaxonomy: projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+$",
                       "required": true,
@@ -1868,6 +1874,7 @@
                   ]
                 },
                 "list": {
+                  "deprecated": true,
                   "description": "Lists DataTaxonomy resources in a project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies",
                   "httpMethod": "GET",
@@ -1914,6 +1921,7 @@
                   ]
                 },
                 "patch": {
+                  "deprecated": true,
                   "description": "Updates a DataTaxonomy resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}",
                   "httpMethod": "PATCH",
@@ -2013,6 +2021,7 @@
                 "attributes": {
                   "methods": {
                     "create": {
+                      "deprecated": true,
                       "description": "Create a DataAttribute resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes",
                       "httpMethod": "POST",
@@ -2051,6 +2060,7 @@
                       ]
                     },
                     "delete": {
+                      "deprecated": true,
                       "description": "Deletes a Data Attribute resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes/{attributesId}",
                       "httpMethod": "DELETE",
@@ -2081,6 +2091,7 @@
                       ]
                     },
                     "get": {
+                      "deprecated": true,
                       "description": "Retrieves a Data Attribute resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes/{attributesId}",
                       "httpMethod": "GET",
@@ -2137,6 +2148,7 @@
                       ]
                     },
                     "list": {
+                      "deprecated": true,
                       "description": "Lists Data Attribute resources in a DataTaxonomy.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes",
                       "httpMethod": "GET",
@@ -2183,6 +2195,7 @@
                       ]
                     },
                     "patch": {
+                      "deprecated": true,
                       "description": "Updates a DataAttribute resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes/{attributesId}",
                       "httpMethod": "PATCH",
@@ -2611,7 +2624,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets an Entry.Caution: The BigQuery metadata that is stored in Dataplex Catalog is changing. For more information, see Changes to BigQuery metadata stored in Dataplex Catalog (https://cloud.google.com/dataplex/docs/biqquery-metadata-changes).",
+                      "description": "Gets an Entry.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.entryGroups.entries.get",
@@ -6244,7 +6257,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250307",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -7095,6 +7108,49 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1BusinessGlossaryEvent": {
+      "description": "Payload associated with Business Glossary related log events.",
+      "id": "GoogleCloudDataplexV1BusinessGlossaryEvent",
+      "properties": {
+        "eventType": {
+          "description": "The type of the event.",
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "GLOSSARY_CREATE",
+            "GLOSSARY_UPDATE",
+            "GLOSSARY_DELETE",
+            "GLOSSARY_CATEGORY_CREATE",
+            "GLOSSARY_CATEGORY_UPDATE",
+            "GLOSSARY_CATEGORY_DELETE",
+            "GLOSSARY_TERM_CREATE",
+            "GLOSSARY_TERM_UPDATE",
+            "GLOSSARY_TERM_DELETE"
+          ],
+          "enumDescriptions": [
+            "An unspecified event type.",
+            "Glossary create event.",
+            "Glossary update event.",
+            "Glossary delete event.",
+            "Glossary category create event.",
+            "Glossary category update event.",
+            "Glossary category delete event.",
+            "Glossary term create event.",
+            "Glossary term update event.",
+            "Glossary term delete event."
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "The log message.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "Name of the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1CancelJobRequest": {
       "description": "Cancel task jobs.",
       "id": "GoogleCloudDataplexV1CancelJobRequest",
@@ -7216,6 +7272,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataAttribute": {
+      "deprecated": true,
       "description": "Denotes one dataAttribute in a dataTaxonomy, for example, PII. DataAttribute resources can be defined in a hierarchy. A single dataAttribute resource can contain specs of multiple types PII - ResourceAccessSpec : - readers :foo@bar.com - DataAccessSpec : - readers :bar@foo.com ",
       "id": "GoogleCloudDataplexV1DataAttribute",
       "properties": {
@@ -7282,6 +7339,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataAttributeBinding": {
+      "deprecated": true,
       "description": "DataAttributeBinding represents binding of attributes to resources. Eg: Bind 'CustomerInfo' entity with 'PII' attribute.",
       "id": "GoogleCloudDataplexV1DataAttributeBinding",
       "properties": {
@@ -7382,7 +7440,7 @@
       "id": "GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing",
       "properties": {
         "dataset": {
-          "description": "Output only. The BigQuery dataset to publish to. It takes the form projects/{project_id}/datasets/{dataset_id}. If not set, the service creates a default publishing dataset.",
+          "description": "Output only. The BigQuery dataset the discovered tables are published to.",
           "readOnly": true,
           "type": "string"
         }
@@ -7410,6 +7468,10 @@
       "properties": {
         "connection": {
           "description": "Optional. The BigQuery connection used to create BigLake tables. Must be in the form projects/{project_id}/locations/{location_id}/connections/{connection_id}",
+          "type": "string"
+        },
+        "location": {
+          "description": "Optional. The location of the BigQuery dataset to publish BigLake external or non-BigLake external tables to. 1. If the Cloud Storage bucket is located in a multi-region bucket, then BigQuery dataset can be in the same multi-region bucket or any single region that is included in the same multi-region bucket. The datascan can be created in any single region that is included in the same multi-region bucket 2. If the Cloud Storage bucket is located in a dual-region bucket, then BigQuery dataset can be located in regions that are included in the dual-region bucket, or in a multi-region that includes the dual-region. The datascan can be created in any single region that is included in the same dual-region bucket. 3. If the Cloud Storage bucket is located in a single region, then BigQuery dataset can be in the same single region or any multi-region bucket that includes the same single region. The datascan will be created in the same single region as the bucket. 4. If the BigQuery dataset is in single region, it must be in the same single region as the datascan.For supported values, refer to https://cloud.google.com/bigquery/docs/locations#supported_locations.",
           "type": "string"
         },
         "tableType": {
@@ -7770,7 +7832,7 @@
           "description": "Optional. Actions to take upon job completion.."
         },
         "rowFilter": {
-          "description": "Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in BigQuery standard SQL syntax. Example: col1 >= 0 AND col2 < 10",
+          "description": "Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#where_clause).Example: col1 >= 0 AND col2 < 10",
           "type": "string"
         },
         "samplingPercent": {
@@ -8120,7 +8182,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation": {
-      "description": "Evaluates whether each row passes the specified condition.The SQL expression needs to use BigQuery standard SQL syntax and should produce a boolean value per row as the result.Example: col1 >= 0 AND col2 < 10",
+      "description": "Evaluates whether each row passes the specified condition.The SQL expression needs to use GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax) and should produce a boolean value per row as the result.Example: col1 >= 0 AND col2 < 10",
       "id": "GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation",
       "properties": {
         "sqlExpression": {
@@ -8145,7 +8207,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataQualityRuleSqlAssertion": {
-      "description": "A SQL statement that is evaluated to return rows that match an invalid state. If any rows are are returned, this rule fails.The SQL statement must use BigQuery standard SQL syntax, and must not contain any semicolons.You can use the data reference parameter ${data()} to reference the source table with all of its precondition filters applied. Examples of precondition filters include row filters, incremental data filters, and sampling. For more information, see Data reference parameter (https://cloud.google.com/dataplex/docs/auto-data-quality-overview#data-reference-parameter).Example: SELECT * FROM ${data()} WHERE price < 0",
+      "description": "A SQL statement that is evaluated to return rows that match an invalid state. If any rows are are returned, this rule fails.The SQL statement must use GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax), and must not contain any semicolons.You can use the data reference parameter ${data()} to reference the source table with all of its precondition filters applied. Examples of precondition filters include row filters, incremental data filters, and sampling. For more information, see Data reference parameter (https://cloud.google.com/dataplex/docs/auto-data-quality-overview#data-reference-parameter).Example: SELECT * FROM ${data()} WHERE price < 0",
       "id": "GoogleCloudDataplexV1DataQualityRuleSqlAssertion",
       "properties": {
         "sqlStatement": {
@@ -8195,7 +8257,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation": {
-      "description": "Evaluates whether the provided expression is true.The SQL expression needs to use BigQuery standard SQL syntax and should produce a scalar boolean result.Example: MIN(col1) >= 0",
+      "description": "Evaluates whether the provided expression is true.The SQL expression needs to use GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax) and should produce a scalar boolean result.Example: MIN(col1) >= 0",
       "id": "GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation",
       "properties": {
         "sqlExpression": {
@@ -8328,7 +8390,7 @@
           "description": "Optional. Actions to take upon job completion."
         },
         "rowFilter": {
-          "description": "Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in BigQuery standard SQL syntax. Example: col1 >= 0 AND col2 < 10",
+          "description": "Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#where_clause).Example: col1 >= 0 AND col2 < 10",
           "type": "string"
         },
         "rules": {
@@ -8968,6 +9030,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataTaxonomy": {
+      "deprecated": true,
       "description": "DataTaxonomy represents a set of hierarchical DataAttributes resources, grouped with a common theme Eg: 'SensitiveDataTaxonomy' can have attributes to manage PII data. It is defined at project level.",
       "id": "GoogleCloudDataplexV1DataTaxonomy",
       "properties": {
@@ -9946,7 +10009,7 @@
       "id": "GoogleCloudDataplexV1ImportItem",
       "properties": {
         "aspectKeys": {
-          "description": "The aspects to modify. Supports the following syntaxes: {aspect_type_reference}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference}@{path}: matches aspects that belong to the specified aspect type and path. @* : matches aspects of the given type for all paths. *@path : matches aspects of all types on the given path. Replace {aspect_type_reference} with a reference to the aspect type, in the format {project_id_or_number}.{location_id}.{aspect_type_id}.If you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry.In FULL entry sync mode, Dataplex implicitly adds the keys for all of the required aspects of an entry.",
+          "description": "The aspects to modify. Supports the following syntaxes: {aspect_type_reference}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference}@{path}: matches aspects that belong to the specified aspect type and path. {aspect_type_reference}@* : matches aspects of the given type for all paths. *@path : matches aspects of all types on the given path.Replace {aspect_type_reference} with a reference to the aspect type, in the format {project_id_or_number}.{location_id}.{aspect_type_id}.In FULL entry sync mode, if you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry. Dataplex implicitly adds the keys for all of the required aspects of an entry.",
           "items": {
             "type": "string"
           },
@@ -9957,7 +10020,7 @@
           "description": "Information about an entry and its attached aspects."
         },
         "updateMask": {
-          "description": "The fields to update, in paths that are relative to the Entry resource. Separate each field with a comma.In FULL entry sync mode, Dataplex includes the paths of all of the fields for an entry that can be modified, including aspects. This means that Dataplex replaces the existing entry with the entry in the metadata import file. All modifiable fields are updated, regardless of the fields that are listed in the update mask, and regardless of whether a field is present in the entry object.The update_mask field is ignored when an entry is created or re-created.Dataplex also determines which entries and aspects to modify by comparing the values and timestamps that you provide in the metadata import file with the values and timestamps that exist in your project. For more information, see Comparison logic (https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).",
+          "description": "The fields to update, in paths that are relative to the Entry resource. Separate each field with a comma.In FULL entry sync mode, Dataplex includes the paths of all of the fields for an entry that can be modified, including aspects. This means that Dataplex replaces the existing entry with the entry in the metadata import file. All modifiable fields are updated, regardless of the fields that are listed in the update mask, and regardless of whether a field is present in the entry object.The update_mask field is ignored when an entry is created or re-created.In an aspect-only metadata job (when entry sync mode is NONE), set this value to aspects.Dataplex also determines which entries and aspects to modify by comparing the values and timestamps that you provide in the metadata import file with the values and timestamps that exist in your project. For more information, see Comparison logic (https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -10850,34 +10913,38 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1MetadataJobImportJobSpec": {
-      "description": "Job specification for a metadata import job",
+      "description": "Job specification for a metadata import job.You can run the following kinds of metadata import jobs: Full sync of entries with incremental import of their aspects. Supported for custom entries. Incremental import of aspects only. Supported for aspects that belong to custom entries and system entries. For custom entries, you can modify both optional aspects and required aspects. For system entries, you can modify optional aspects.",
       "id": "GoogleCloudDataplexV1MetadataJobImportJobSpec",
       "properties": {
         "aspectSyncMode": {
-          "description": "Required. The sync mode for aspects. Only INCREMENTAL mode is supported for aspects. An aspect is modified only if the metadata import file includes a reference to the aspect in the update_mask field and the aspect_keys field.",
+          "description": "Required. The sync mode for aspects.",
           "enum": [
             "SYNC_MODE_UNSPECIFIED",
             "FULL",
-            "INCREMENTAL"
+            "INCREMENTAL",
+            "NONE"
           ],
           "enumDescriptions": [
             "Sync mode unspecified.",
-            "All resources in the job's scope are modified. If a resource exists in Dataplex but isn't included in the metadata import file, the resource is deleted when you run the metadata job. Use this mode to perform a full sync of the set of entries in the job scope.",
-            "Only the entries and aspects that are explicitly included in the metadata import file are modified. Use this mode to modify a subset of resources while leaving unreferenced resources unchanged."
+            "All resources in the job's scope are modified. If a resource exists in Dataplex but isn't included in the metadata import file, the resource is deleted when you run the metadata job. Use this mode to perform a full sync of the set of entries in the job scope.This sync mode is supported for entries.",
+            "Only the resources that are explicitly included in the metadata import file are modified. Use this mode to modify a subset of resources while leaving unreferenced resources unchanged.This sync mode is supported for aspects.",
+            "If entry sync mode is NONE, then aspects are modified according to the aspect sync mode. Other metadata that belongs to entries in the job's scope isn't modified.This sync mode is supported for entries."
           ],
           "type": "string"
         },
         "entrySyncMode": {
-          "description": "Required. The sync mode for entries. Only FULL mode is supported for entries. All entries in the job's scope are modified. If an entry exists in Dataplex but isn't included in the metadata import file, the entry is deleted when you run the metadata job.",
+          "description": "Required. The sync mode for entries.",
           "enum": [
             "SYNC_MODE_UNSPECIFIED",
             "FULL",
-            "INCREMENTAL"
+            "INCREMENTAL",
+            "NONE"
           ],
           "enumDescriptions": [
             "Sync mode unspecified.",
-            "All resources in the job's scope are modified. If a resource exists in Dataplex but isn't included in the metadata import file, the resource is deleted when you run the metadata job. Use this mode to perform a full sync of the set of entries in the job scope.",
-            "Only the entries and aspects that are explicitly included in the metadata import file are modified. Use this mode to modify a subset of resources while leaving unreferenced resources unchanged."
+            "All resources in the job's scope are modified. If a resource exists in Dataplex but isn't included in the metadata import file, the resource is deleted when you run the metadata job. Use this mode to perform a full sync of the set of entries in the job scope.This sync mode is supported for entries.",
+            "Only the resources that are explicitly included in the metadata import file are modified. Use this mode to modify a subset of resources while leaving unreferenced resources unchanged.This sync mode is supported for aspects.",
+            "If entry sync mode is NONE, then aspects are modified according to the aspect sync mode. Other metadata that belongs to entries in the job's scope isn't modified.This sync mode is supported for entries."
           ],
           "type": "string"
         },
@@ -10916,21 +10983,21 @@
       "id": "GoogleCloudDataplexV1MetadataJobImportJobSpecImportJobScope",
       "properties": {
         "aspectTypes": {
-          "description": "Optional. The aspect types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id}/locations/{location_id}/aspectTypes/{aspect_type_id}. The job modifies only the aspects that belong to these aspect types.If the metadata import file attempts to modify an aspect whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an aspect type must either match the location of the job, or the aspect type must be global.",
+          "description": "Optional. The aspect types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id}/locations/{location_id}/aspectTypes/{aspect_type_id}. The job modifies only the aspects that belong to these aspect types.This field is required when creating an aspect-only import job.If the metadata import file attempts to modify an aspect whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an aspect type must either match the location of the job, or the aspect type must be global.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "entryGroups": {
-          "description": "Required. The entry group that is in scope for the import job, specified as a relative resource name in the format projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}. Only entries that belong to the specified entry group are affected by the job.Must contain exactly one element. The entry group and the job must be in the same location.",
+          "description": "Required. The entry group that is in scope for the import job, specified as a relative resource name in the format projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}. Only entries and aspects that belong to the specified entry group are affected by the job.Must contain exactly one element. The entry group and the job must be in the same location.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "entryTypes": {
-          "description": "Required. The entry types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id}/locations/{location_id}/entryTypes/{entry_type_id}. The job modifies only the entries that belong to these entry types.If the metadata import file attempts to modify an entry whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an entry type must either match the location of the job, or the entry type must be global.",
+          "description": "Required. The entry types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id}/locations/{location_id}/entryTypes/{entry_type_id}. The job modifies only the entries and aspects that belong to these entry types.If the metadata import file attempts to modify an entry whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an entry type must either match the location of the job, or the entry type must be global.",
           "items": {
             "type": "string"
           },

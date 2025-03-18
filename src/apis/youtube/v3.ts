@@ -1113,6 +1113,10 @@ export namespace youtube_v3 {
    */
   export interface Schema$ChannelStatus {
     /**
+     * Whether the channel is considered ypp monetization enabled. See go/yppornot for more details.
+     */
+    isChannelMonetizationEnabled?: boolean | null;
+    /**
      * If true, then the user is linked to either a YouTube username or G+ account. Otherwise, the user doesn't have a public YouTube identity.
      */
     isLinked?: boolean | null;

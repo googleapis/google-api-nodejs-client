@@ -172,7 +172,7 @@ export namespace tpu_v2alpha1 {
    */
   export interface Schema$ActiveData {}
   /**
-   * A node-attached disk resource. Next ID: 8;
+   * A node-attached disk resource.
    */
   export interface Schema$AttachedDisk {
     /**
@@ -183,6 +183,10 @@ export namespace tpu_v2alpha1 {
      * Specifies the full path to an existing disk. For example: "projects/my-project/zones/us-central1-c/disks/my-disk".
      */
     sourceDisk?: string | null;
+    /**
+     * Optional. The list of worker IDs this disk is attached to.
+     */
+    workerIds?: string[] | null;
   }
   /**
    * BestEffort tier definition.
@@ -896,6 +900,10 @@ export namespace tpu_v2alpha1 {
      * Optional. Defines whether the node is Spot VM.
      */
     spot?: boolean | null;
+    /**
+     * Output only. The time at which the node will be terminated.
+     */
+    terminationTimestamp?: string | null;
   }
   /**
    * A service account.
