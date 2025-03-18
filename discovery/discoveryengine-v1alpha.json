@@ -289,34 +289,6 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
-            "generateGroundedContent": {
-              "description": "Generates grounded content.",
-              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}:generateGroundedContent",
-              "httpMethod": "POST",
-              "id": "discoveryengine.projects.locations.generateGroundedContent",
-              "parameterOrder": [
-                "location"
-              ],
-              "parameters": {
-                "location": {
-                  "description": "Required. Location resource. Format: `projects/{project}/locations/{location}`.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/locations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+location}:generateGroundedContent",
-              "request": {
-                "$ref": "GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentRequest"
-              },
-              "response": {
-                "$ref": "GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
             "getAclConfig": {
               "description": "Gets the AclConfig.",
               "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/aclConfig",
@@ -18602,35 +18574,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1alphaGroundedGenerationContent": {
-      "description": "Base structured datatype containing multi-part content of a message.",
-      "id": "GoogleCloudDiscoveryengineV1alphaGroundedGenerationContent",
-      "properties": {
-        "parts": {
-          "description": "Ordered `Parts` that constitute a single message.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaGroundedGenerationContentPart"
-          },
-          "type": "array"
-        },
-        "role": {
-          "description": "Producer of the content. Must be either `user` or `model`. Intended to be used for multi-turn conversations. Otherwise, it can be left unset.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaGroundedGenerationContentPart": {
-      "description": "Single part of content.",
-      "id": "GoogleCloudDiscoveryengineV1alphaGroundedGenerationContentPart",
-      "properties": {
-        "text": {
-          "description": "Inline text.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1alphaGroundingFact": {
       "description": "Grounding Fact.",
       "id": "GoogleCloudDiscoveryengineV1alphaGroundingFact",
@@ -26414,27 +26357,39 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponse": {
-      "description": "Response message for SiteSearchEngineService.FetchSitemaps method.",
-      "id": "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponse",
+    "GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig": {
+      "description": "Config to data store for `HEALTHCARE_FHIR` vertical.",
+      "id": "GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig",
       "properties": {
-        "sitemapsMetadata": {
-          "description": "List of Sitemaps fetched.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponseSitemapMetadata"
-          },
-          "type": "array"
+        "enableConfigurableSchema": {
+          "description": "Whether to enable configurable schema for `HEALTHCARE_FHIR` vertical. If set to `true`, the predefined healthcare fhir schema can be extended for more customized searching and filtering.",
+          "type": "boolean"
+        },
+        "enableStaticIndexingForBatchIngestion": {
+          "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
+          "type": "boolean"
         }
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponseSitemapMetadata": {
-      "description": "Contains a Sitemap and its metadata.",
-      "id": "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponseSitemapMetadata",
+    "GoogleCloudDiscoveryengineV1betaIdentityMappingEntryOperationMetadata": {
+      "description": "IdentityMappingEntry LongRunningOperation metadata for IdentityMappingStoreService.ImportIdentityMappings and IdentityMappingStoreService.PurgeIdentityMappings",
+      "id": "GoogleCloudDiscoveryengineV1betaIdentityMappingEntryOperationMetadata",
       "properties": {
-        "sitemap": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSitemap",
-          "description": "The Sitemap."
+        "failureCount": {
+          "description": "The number of IdentityMappingEntries that failed to be processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of IdentityMappingEntries that were successfully processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalCount": {
+          "description": "The total number of IdentityMappingEntries that were processed.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"

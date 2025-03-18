@@ -7587,305 +7587,6 @@ export namespace discoveryengine_v1beta {
     inputUris?: string[] | null;
   }
   /**
-   * Top-level message sent by the client for the `GenerateGroundedContent` method.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequest {
-    /**
-     * Content of the current conversation with the model. For single-turn queries, this is a single instance. For multi-turn queries, this is a repeated field that contains conversation history + latest request.
-     */
-    contents?: Schema$GoogleCloudDiscoveryengineV1betaGroundedGenerationContent[];
-    /**
-     * Content generation specification.
-     */
-    generationSpec?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestGenerationSpec;
-    /**
-     * Grounding specification.
-     */
-    groundingSpec?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestGroundingSpec;
-    /**
-     * Content of the system instruction for the current API. These instructions will take priority over any other prompt instructions if the selected model is supporting them.
-     */
-    systemInstruction?: Schema$GoogleCloudDiscoveryengineV1betaGroundedGenerationContent;
-    /**
-     * The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
-     */
-    userLabels?: {[key: string]: string} | null;
-  }
-  /**
-   * Describes the options to customize dynamic retrieval.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestDynamicRetrievalConfiguration {
-    /**
-     * Specification for the predictor for dynamic retrieval.
-     */
-    predictor?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestDynamicRetrievalConfigurationDynamicRetrievalPredictor;
-  }
-  /**
-   * Describes the predictor settings for dynamic retrieval.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestDynamicRetrievalConfigurationDynamicRetrievalPredictor {
-    /**
-     * The value of the threshold. If the predictor will predict a value smaller than this, it would suppress grounding in the source.
-     */
-    threshold?: number | null;
-    /**
-     * The version of the predictor to be used in dynamic retrieval.
-     */
-    version?: string | null;
-  }
-  /**
-   * Content generation specification.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestGenerationSpec {
-    /**
-     * If specified, custom value for frequency penalty will be used.
-     */
-    frequencyPenalty?: number | null;
-    /**
-     * Language code for content. Use language tags defined by [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
-     */
-    languageCode?: string | null;
-    /**
-     * If specified, custom value for max output tokens will be used.
-     */
-    maxOutputTokens?: number | null;
-    /**
-     * Specifies which Vertex model id to use for generation.
-     */
-    modelId?: string | null;
-    /**
-     * If specified, custom value for presence penalty will be used.
-     */
-    presencePenalty?: number | null;
-    /**
-     * If specified, custom value for the seed will be used.
-     */
-    seed?: number | null;
-    /**
-     * If specified, custom value for the temperature will be used.
-     */
-    temperature?: number | null;
-    /**
-     * If specified, custom value for top-k sampling will be used.
-     */
-    topK?: number | null;
-    /**
-     * If specified, custom value for nucleus sampling will be used.
-     */
-    topP?: number | null;
-  }
-  /**
-   * Grounding source.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestGroundingSource {
-    /**
-     * If set, grounding is performed with Google Search.
-     */
-    googleSearchSource?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestGroundingSourceGoogleSearchSource;
-    /**
-     * If set, grounding is performed with inline content.
-     */
-    inlineSource?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestGroundingSourceInlineSource;
-    /**
-     * If set, grounding is performed with Vertex AI Search.
-     */
-    searchSource?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestGroundingSourceSearchSource;
-  }
-  /**
-   * Google Search config parameters.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestGroundingSourceGoogleSearchSource {
-    /**
-     * Optional. Specifies the dynamic retrieval configuration for the given source.
-     */
-    dynamicRetrievalConfig?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestDynamicRetrievalConfiguration;
-  }
-  /**
-   * Message to be used for grounding based on inline content.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestGroundingSourceInlineSource {
-    /**
-     * Attributes associated with the content. Common attributes include `source` (indicating where the content was sourced from) and `author` (indicating the author of the content).
-     */
-    attributes?: {[key: string]: string} | null;
-    /**
-     * List of facts to be used for grounding.
-     */
-    groundingFacts?: Schema$GoogleCloudDiscoveryengineV1betaGroundingFact[];
-  }
-  /**
-   * Message to be used for grounding with Vertex AI Search.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestGroundingSourceSearchSource {
-    /**
-     * Filter expression to be applied to the search. The syntax is the same as SearchRequest.filter.
-     */
-    filter?: string | null;
-    /**
-     * Number of search results to return. The default value is 10. The maximumm allowed value is 10.
-     */
-    maxResultCount?: number | null;
-    /**
-     * If set, safe search is enabled in Vertex AI Search requests.
-     */
-    safeSearch?: boolean | null;
-    /**
-     * The resource name of the Engine to use. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/servingConfigs/{serving_config_id\}`
-     */
-    servingConfig?: string | null;
-  }
-  /**
-   * Grounding specification.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestGroundingSpec {
-    /**
-     * Grounding sources.
-     */
-    groundingSources?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentRequestGroundingSource[];
-  }
-  /**
-   * Response for the `GenerateGroundedContent` method.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponse {
-    /**
-     * Generated candidates.
-     */
-    candidates?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidate[];
-  }
-  /**
-   * A response candidate generated from the model.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidate {
-    /**
-     * Content of the candidate.
-     */
-    content?: Schema$GoogleCloudDiscoveryengineV1betaGroundedGenerationContent;
-    /**
-     * Grounding metadata for the generated content.
-     */
-    groundingMetadata?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidateGroundingMetadata;
-    /**
-     * The overall grounding score for the candidate, in the range of [0, 1].
-     */
-    groundingScore?: number | null;
-    /**
-     * Index of the candidate.
-     */
-    index?: number | null;
-  }
-  /**
-   * Citation for the generated content.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidateGroundingMetadata {
-    /**
-     * GroundingSupport across all claims in the answer candidate. An support to a fact indicates that the claim is supported by the fact.
-     */
-    groundingSupport?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidateGroundingMetadataGroundingSupport[];
-    /**
-     * Retrieval metadata to provide an understanding in the retrieval steps performed by the model. There can be multiple such messages which can correspond to different parts of the retrieval. This is a mechanism used to ensure transparency to our users.
-     */
-    retrievalMetadata?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidateGroundingMetadataRetrievalMetadata[];
-    /**
-     * Google search entry for the following-up web searches.
-     */
-    searchEntryPoint?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidateGroundingMetadataSearchEntryPoint;
-    /**
-     * List of chunks to be attributed across all claims in the candidate. These are derived from the grounding sources supplied in the request.
-     */
-    supportChunks?: Schema$GoogleCloudDiscoveryengineV1betaFactChunk[];
-    /**
-     * Web search queries for the following-up web search.
-     */
-    webSearchQueries?: string[] | null;
-  }
-  /**
-   * Describes the metadata about dynamic retrieval.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidateGroundingMetadataDynamicRetrievalMetadata {
-    /**
-     * Metadata for the dynamic retrieval predictor.
-     */
-    predictorMetadata?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidateGroundingMetadataDynamicRetrievalPredictorMetadata;
-  }
-  /**
-   * Describes the metadata about the dynamic retrieval predictor.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidateGroundingMetadataDynamicRetrievalPredictorMetadata {
-    /**
-     * The value of the predictor. This should be between [0, 1] where a value of 0 means that the query would not benefit from grounding, while a value of 1.0 means that the query would benefit the most. In between values allow to differentiate between different usefulness scores for grounding.
-     */
-    prediction?: number | null;
-    /**
-     * The version of the predictor which was used in dynamic retrieval.
-     */
-    version?: string | null;
-  }
-  /**
-   * Grounding info for a claim in the candidate and its support.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidateGroundingMetadataGroundingSupport {
-    /**
-     * Text for the claim in the candidate. Always provided when a support is found.
-     */
-    claimText?: string | null;
-    /**
-     * A list of indices (into 'support_chunks') specifying the citations associated with the claim. For instance [1,3,4] means that support_chunks[1], support_chunks[3], support_chunks[4] are the chunks attributed to the claim.
-     */
-    supportChunkIndices?: number[] | null;
-    /**
-     * A score in the range of [0, 1] describing how grounded is a specific claim in the support chunks indicated. Higher value means that the claim is better supported by the chunks.
-     */
-    supportScore?: number | null;
-  }
-  /**
-   * Describes the metadata associated with a retrieval step.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidateGroundingMetadataRetrievalMetadata {
-    /**
-     * Metadata for dynamic retrieval.
-     */
-    dynamicRetrievalMetadata?: Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidateGroundingMetadataDynamicRetrievalMetadata;
-    /**
-     * Describes the source to which the metadata is referring to.
-     */
-    source?: string | null;
-  }
-  /**
-   * Google search entry point.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGenerateGroundedContentResponseCandidateGroundingMetadataSearchEntryPoint {
-    /**
-     * Web content snippet that can be embedded in a web page or an app webview.
-     */
-    renderedContent?: string | null;
-    /**
-     * Base64 encoded JSON representing array of tuple.
-     */
-    sdkBlob?: string | null;
-  }
-  /**
-   * Base structured datatype containing multi-part content of a message.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGroundedGenerationContent {
-    /**
-     * Ordered `Parts` that constitute a single message.
-     */
-    parts?: Schema$GoogleCloudDiscoveryengineV1betaGroundedGenerationContentPart[];
-    /**
-     * Producer of the content. Must be either `user` or `model`. Intended to be used for multi-turn conversations. Otherwise, it can be left unset.
-     */
-    role?: string | null;
-  }
-  /**
-   * Single part of content.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaGroundedGenerationContentPart {
-    /**
-     * Inline text.
-     */
-    text?: string | null;
-  }
-  /**
    * Grounding Fact.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaGroundingFact {
@@ -10782,6 +10483,53 @@ export namespace discoveryengine_v1beta {
      * Public URI for the sitemap, e.g. `www.example.com/sitemap.xml`.
      */
     uri?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the CrawlRateManagementService.SetDedicatedCrawlRate operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request message for CrawlRateManagementService.SetDedicatedCrawlRate method. The user can set the crawl rate for a crawl_rate_scope they own. They can set up an overall crawl rate, or set up a user-triggered crawl rate and a auto-refresh crawl rate separately. If an overall crawl rate is set, Vertex AI will automatically splits crawl_rate into user-triggered and auto-refresh.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateRequest {
+    /**
+     * Optional. The crawl QPS set by the user. It is not guaranteed that Vertex crawl bot will crawl at this QPS. If the crawl rate is too high, the real QPS may be lower than the value set by the user to avoid overloading the user's website.
+     */
+    crawlRate?: number | null;
+    /**
+     * Required. The scope of the crawl rate that the user wants to config. Currently, only domain and host name are supported. A domain name example: `example.com`. A host name example: `www.example.com`. Please do not include `/` in the domain or host name.
+     */
+    crawlRateScope?: string | null;
+    /**
+     * Optional. Whether it's the crawl rate of user-triggered or auto-refresh.
+     */
+    crawlType?: string | null;
+    /**
+     * Optional. Whether the rate is explicitly set by users, or set by vertex AI.
+     */
+    mode?: string | null;
+  }
+  /**
+   * Response message for CrawlRateManagementService.SetDedicatedCrawlRate method. It simply returns the state of the response, and an error message if the state is FAILED.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateResponse {
+    /**
+     * Errors from service when handling the request.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * Output only. The state of the response.
+     */
+    state?: string | null;
   }
   /**
    * Metadata for single-regional CMEKs.

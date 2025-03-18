@@ -4747,28 +4747,6 @@ export namespace discoveryengine_v1alpha {
     documentDataMap?: {[key: string]: {[key: string]: any}} | null;
   }
   /**
-   * Base structured datatype containing multi-part content of a message.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaGroundedGenerationContent {
-    /**
-     * Ordered `Parts` that constitute a single message.
-     */
-    parts?: Schema$GoogleCloudDiscoveryengineV1alphaGroundedGenerationContentPart[];
-    /**
-     * Producer of the content. Must be either `user` or `model`. Intended to be used for multi-turn conversations. Otherwise, it can be left unset.
-     */
-    role?: string | null;
-  }
-  /**
-   * Single part of content.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaGroundedGenerationContentPart {
-    /**
-     * Inline text.
-     */
-    text?: string | null;
-  }
-  /**
    * Grounding Fact.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaGroundingFact {
@@ -14717,104 +14695,6 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
-     * Generates grounded content.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    generateGroundedContent(
-      params: Params$Resource$Projects$Locations$Generategroundedcontent,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    generateGroundedContent(
-      params?: Params$Resource$Projects$Locations$Generategroundedcontent,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>;
-    generateGroundedContent(
-      params: Params$Resource$Projects$Locations$Generategroundedcontent,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    generateGroundedContent(
-      params: Params$Resource$Projects$Locations$Generategroundedcontent,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
-    ): void;
-    generateGroundedContent(
-      params: Params$Resource$Projects$Locations$Generategroundedcontent,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
-    ): void;
-    generateGroundedContent(
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
-    ): void;
-    generateGroundedContent(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Generategroundedcontent
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Generategroundedcontent;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Generategroundedcontent;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://discoveryengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha/{+location}:generateGroundedContent'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['location'],
-        pathParams: ['location'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Gets the AclConfig.
      * @example
      * ```js
@@ -16066,18 +15946,6 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Generategroundedcontent
-    extends StandardParameters {
-    /**
-     * Required. Location resource. Format: `projects/{project\}/locations/{location\}`.
-     */
-    location?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentRequest;
   }
   export interface Params$Resource$Projects$Locations$Getaclconfig
     extends StandardParameters {
