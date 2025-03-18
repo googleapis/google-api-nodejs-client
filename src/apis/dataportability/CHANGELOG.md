@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataportability-v3.0.0...dataportability-v3.1.0) (2025-03-18)
+
+
+### Features
+
+* **dataportability:** update the API ([10bb7ff](https://github.com/googleapis/google-api-nodejs-client/commit/10bb7ff1f4dbb0eb085dc890f3eb6de92ff2c3ac))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataportability-v2.0.0...dataportability-v3.0.0) (2024-05-02)
 
 
