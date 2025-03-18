@@ -149,7 +149,7 @@
               ],
               "parameters": {
                 "dataSource": {
-                  "description": "Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. Format: `accounts/{account}/dataSources/{datasource}`.",
+                  "description": "Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. Only API data sources are supported. Format: `accounts/{account}/dataSources/{datasource}`.",
                   "location": "query",
                   "type": "string"
                 },
@@ -242,7 +242,7 @@
       }
     }
   },
-  "revision": "20250106",
+  "revision": "20250311",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -829,6 +829,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -840,6 +841,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -869,12 +871,13 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
             "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
-            "[YouTube Checkout]("
+            "YouTube Checkout ."
           ],
           "type": "string"
         }
@@ -989,6 +992,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -1000,6 +1004,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -1029,12 +1034,13 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
             "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
-            "[YouTube Checkout]("
+            "YouTube Checkout ."
           ],
           "type": "string"
         },
@@ -1227,19 +1233,19 @@
       "id": "ProductChange",
       "properties": {
         "newValue": {
-          "description": "The new value of the changed resource or attribute.",
+          "description": "The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)",
           "type": "string"
         },
         "oldValue": {
-          "description": "The old value of the changed resource or attribute.",
+          "description": "The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)",
           "type": "string"
         },
         "regionCode": {
-          "description": "Countries that have the change (if applicable)",
+          "description": "Countries that have the change (if applicable). Represented in the ISO 3166 format.",
           "type": "string"
         },
         "reportingContext": {
-          "description": "Reporting contexts that have the change (if applicable)",
+          "description": "Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)",
           "enum": [
             "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
             "SHOPPING_ADS",
@@ -1253,6 +1259,7 @@
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
@@ -1264,6 +1271,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -1293,12 +1301,13 @@
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
             "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
-            "[YouTube Checkout]("
+            "YouTube Checkout ."
           ],
           "type": "string"
         }
@@ -1461,8 +1470,13 @@
           },
           "type": "array"
         },
+        "eventTime": {
+          "description": "The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "expirationTime": {
-          "description": "The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "description": "Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1471,7 +1485,7 @@
           "type": "string"
         },
         "resource": {
-          "description": "The product name. Format: `{product.name=accounts/{account}/products/{product}}`",
+          "description": "The product name. Format: `accounts/{account}/products/{product}`",
           "type": "string"
         },
         "resourceId": {
