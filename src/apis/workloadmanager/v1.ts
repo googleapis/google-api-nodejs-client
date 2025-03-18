@@ -542,6 +542,23 @@ export namespace workloadmanager_v1 {
     uri?: string | null;
   }
   /**
+   * The front end server
+   */
+  export interface Schema$FrontEndServer {
+    /**
+     * Output only. The frontend name
+     */
+    name?: string | null;
+    /**
+     * Output only. OS information
+     */
+    osVersion?: string | null;
+    /**
+     * Output only. resources in the component
+     */
+    resources?: Schema$CloudResource[];
+  }
+  /**
    * Message describing compute engine instance filter
    */
   export interface Schema$GceInstanceFilter {
@@ -752,6 +769,19 @@ export namespace workloadmanager_v1 {
      * All scanned resources in response
      */
     scannedResources?: Schema$ScannedResource[];
+  }
+  /**
+   * The load balancer for sqlserver
+   */
+  export interface Schema$LoadBalancerServer {
+    /**
+     * Output only. The IP address
+     */
+    ip?: string | null;
+    /**
+     * Output only. The VM name
+     */
+    vm?: string | null;
   }
   /**
    * A resource that represents a Google Cloud location.
@@ -1538,6 +1568,27 @@ export namespace workloadmanager_v1 {
     type?: string | null;
   }
   /**
+   * The body of sqlserver workload
+   */
+  export interface Schema$SqlserverWorkload {
+    /**
+     * Output only. The availability groups for sqlserver
+     */
+    ags?: Schema$AvailabilityGroup[];
+    /**
+     * Output only. The cluster for sqlserver
+     */
+    cluster?: Schema$Cluster;
+    /**
+     * Output only. The databases for sqlserver
+     */
+    databases?: Schema$Database[];
+    /**
+     * Output only. The load balancer for sqlserver
+     */
+    loadBalancerServer?: Schema$LoadBalancerServer;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1570,6 +1621,27 @@ export namespace workloadmanager_v1 {
      * Output only. Number of new fixes compared to the previous execution
      */
     newFixes?: string | null;
+  }
+  /**
+   * The body of three tier workload
+   */
+  export interface Schema$ThreeTierWorkload {
+    /**
+     * Output only. The API layer for three tier workload
+     */
+    apiLayer?: Schema$APILayerServer;
+    /**
+     * Output only. The backend for three tier workload
+     */
+    backend?: Schema$BackendServer;
+    /**
+     * Output only. the workload endpoint
+     */
+    endpoint?: string | null;
+    /**
+     * Output only. The frontend for three tier workload
+     */
+    frontend?: Schema$FrontEndServer;
   }
   /**
    * The schema of torso workload validation data.
