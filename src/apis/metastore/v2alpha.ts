@@ -214,6 +214,14 @@ export namespace metastore_v2alpha {
      * The regions constituting the multi-region.
      */
     constituentRegions?: string[] | null;
+    /**
+     * The continent for this multi-region.
+     */
+    continent?: string | null;
+    /**
+     * The Spanner witness region for this multi-region.
+     */
+    witnessRegion?: string | null;
   }
   /**
    * Represents the metadata of a long-running operation.
@@ -351,6 +359,14 @@ export namespace metastore_v2alpha {
      * The regions constituting the multi-region.
      */
     constituentRegions?: string[] | null;
+    /**
+     * The continent for this multi-region.
+     */
+    continent?: string | null;
+    /**
+     * The Spanner witness region for this multi-region.
+     */
+    witnessRegion?: string | null;
   }
   /**
    * Represents the metadata of a long-running operation.
@@ -462,6 +478,14 @@ export namespace metastore_v2alpha {
      * The regions constituting the multi-region.
      */
     constituentRegions?: string[] | null;
+    /**
+     * The continent for this multi-region.
+     */
+    continent?: string | null;
+    /**
+     * The Spanner witness region for this multi-region.
+     */
+    witnessRegion?: string | null;
   }
   /**
    * Represents the metadata of a long-running operation.
@@ -694,7 +718,7 @@ export namespace metastore_v2alpha {
    */
   export interface Schema$GoogleCloudMetastoreV2alphaCompleteMigrationRequest {}
   /**
-   * A specification of the location of and metadata about a database dump from a relational database management system.
+   * A specification of the location and metadata type for a database dump from a relational database management system.
    */
   export interface Schema$GoogleCloudMetastoreV2alphaDatabaseDump {
     /**
