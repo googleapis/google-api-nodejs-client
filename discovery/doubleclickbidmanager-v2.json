@@ -319,7 +319,7 @@
       }
     }
   },
-  "revision": "20240731",
+  "revision": "20250305",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "DataRange": {
@@ -513,7 +513,7 @@
           "enumDeprecated": [
             false,
             false,
-            false,
+            true,
             true,
             false,
             false,
@@ -527,7 +527,7 @@
           "enumDescriptions": [
             "Default value when report type is not specified or is unknown in this version.",
             "Standard report.",
-            "Inventory Availability report.",
+            "Inventory Availability report. See the [Display & Video 360 Help Center announcement](https://support.google.com/displayvideo/answer/15874746) for more information on this deprecation.",
             "Audience Composition report.",
             "Floodlight report.",
             "YouTube report.",

@@ -423,6 +423,7 @@ import {
   VERSIONS as managedidentitiesVersions,
   managedidentities,
 } from './managedidentities';
+import {VERSIONS as managedkafkaVersions, managedkafka} from './managedkafka';
 import {
   VERSIONS as manufacturersVersions,
   manufacturers,
@@ -919,6 +920,7 @@ export const APIS: APIList = {
   logging: loggingVersions,
   looker: lookerVersions,
   managedidentities: managedidentitiesVersions,
+  managedkafka: managedkafkaVersions,
   manufacturers: manufacturersVersions,
   marketingplatformadmin: marketingplatformadminVersions,
   meet: meetVersions,
@@ -1228,6 +1230,7 @@ export class GeneratedAPIs {
   logging = logging;
   looker = looker;
   managedidentities = managedidentities;
+  managedkafka = managedkafka;
   manufacturers = manufacturers;
   marketingplatformadmin = marketingplatformadmin;
   meet = meet;

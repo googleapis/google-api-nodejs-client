@@ -341,6 +341,7 @@ export {looker_v1} from './apis/looker/v1';
 export {managedidentities_v1} from './apis/managedidentities/v1';
 export {managedidentities_v1alpha1} from './apis/managedidentities/v1alpha1';
 export {managedidentities_v1beta1} from './apis/managedidentities/v1beta1';
+export {managedkafka_v1} from './apis/managedkafka/v1';
 export {manufacturers_v1} from './apis/manufacturers/v1';
 export {marketingplatformadmin_v1alpha} from './apis/marketingplatformadmin/v1alpha';
 export {meet_v2} from './apis/meet/v2';
