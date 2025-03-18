@@ -320,11 +320,11 @@ export namespace securityposture_v1 {
      */
     enforce?: boolean | null;
     /**
-     * Optional. Required for GMCs if parameters defined in constraints. Pass parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: { "allowedLocations" : ["us-east1", "us-west1"], "allowAll" : true \}
+     * Optional. Required for managed constraints if parameters are defined. Passes parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: { "allowedLocations" : ["us-east1", "us-west1"], "allowAll" : true \}
      */
     parameters?: {[key: string]: any} | null;
     /**
-     * Optional. The resource types policy can support, only used for Google managed constraint and method type is GOVERN_TAGS.
+     * Optional. The resource types policies can support, only used for managed constraints. Method type is `GOVERN_TAGS`.
      */
     resourceTypes?: Schema$ResourceTypes;
     /**
@@ -854,11 +854,11 @@ export namespace securityposture_v1 {
     resourceTypes?: string[] | null;
   }
   /**
-   * Set multiple resource types for one policy, eg: resourceTypes: included: - compute.googleapis.com/Instance - compute.googleapis.com/Disk Constraint definition contains an empty resource type in order to support multiple resource types in the policy. Only support Google managed constriaint and method type is GOVERN_TAGS Refer go/multi-resource-support-force-tags-gmc to get more details.
+   * Set multiple resource types for one policy, for example: resourceTypes: included: - compute.googleapis.com/Instance - compute.googleapis.com/Disk Constraint definition contains an empty resource type in order to support multiple resource types in the policy. Only supports managed constraints. Method type is `GOVERN_TAGS`. Refer go/multi-resource-support-force-tags-gmc to get more details.
    */
   export interface Schema$ResourceTypes {
     /**
-     * Optional. The resource type we currently support. cloud/orgpolicy/customconstraintconfig/prod/resource_types.prototext
+     * Optional. The resource types we currently support. cloud/orgpolicy/customconstraintconfig/prod/resource_types.prototext
      */
     included?: string[] | null;
   }
