@@ -125,6 +125,55 @@ export namespace vmwareengine_v1 {
   }
 
   /**
+   * Announcement for the resources of Vmware Engine.
+   */
+  export interface Schema$Announcement {
+    /**
+     * Optional. Activity type of the announcement There can be only one active announcement for a given activity type and target resource.
+     */
+    activityType?: string | null;
+    /**
+     * A Cluster resource name.
+     */
+    cluster?: string | null;
+    /**
+     * Required. Code of the announcement. Indicates the presence of a VMware Engine related announcement and corresponds to a related message in the `description` field.
+     */
+    code?: string | null;
+    /**
+     * Output only. Creation time of this resource. It also serves as start time of notification.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Description of the announcement.
+     */
+    description?: string | null;
+    /**
+     * Output only. Additional structured details about this announcement.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Output only. The resource name of the announcement. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/announcements/my-announcement-id`
+     */
+    name?: string | null;
+    /**
+     * A Private Cloud resource name.
+     */
+    privateCloud?: string | null;
+    /**
+     * Output only. State of the resource. New values may be added to this enum when appropriate.
+     */
+    state?: string | null;
+    /**
+     * Output only. Target Resource Type defines the type of the target for the announcement
+     */
+    targetResourceType?: string | null;
+    /**
+     * Output only. Last update time of this resource.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -257,6 +306,23 @@ export namespace vmwareengine_v1 {
      * Output only. Last update time of this resource.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Constraints to be applied while editing a schedule. These constraints ensure that `Upgrade` specific requirements are met.
+   */
+  export interface Schema$Constraints {
+    /**
+     * Output only. Minimum number of hours must be allotted for the upgrade activities for each selected day. This is a minimum; the upgrade schedule can allot more hours for the given day.
+     */
+    minHoursDay?: number | null;
+    /**
+     * Output only. The minimum number of weekly hours must be allotted for the upgrade activities. This is just a minimum; the schedule can assign more weekly hours.
+     */
+    minHoursWeek?: number | null;
+    /**
+     * Output only. Output Only. The user can only reschedule an upgrade that starts within this range.
+     */
+    rescheduleDateRange?: Schema$Interval;
   }
   /**
    * Credentials for a private cloud.
@@ -510,6 +576,19 @@ export namespace vmwareengine_v1 {
     uid?: string | null;
   }
   /**
+   * Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.
+   */
+  export interface Schema$Interval {
+    /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    startTime?: string | null;
+  }
+  /**
    * An IP range provided in any one of the supported formats.
    */
   export interface Schema$IpRange {
@@ -525,6 +604,23 @@ export namespace vmwareengine_v1 {
      * An IP address range in the CIDR format. For example: `10.0.0.0/24`.
      */
     ipAddressRange?: string | null;
+  }
+  /**
+   * Response message for VmwareEngine.ListAnnouncements
+   */
+  export interface Schema$ListAnnouncementsResponse {
+    /**
+     * A list of announcement runs.
+     */
+    announcements?: Schema$Announcement[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * list of unreachable locations
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response message for VmwareEngine.ListClusters
@@ -794,6 +890,23 @@ export namespace vmwareengine_v1 {
      * Locations that could not be reached when making an aggregated query using wildcards.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Response message for VmwareEngine.ListUpgrades.
+   */
+  export interface Schema$ListUpgradesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of unreachable resources.
+     */
+    unreachable?: string[] | null;
+    /**
+     * A list of `Upgrades`.
+     */
+    upgrades?: Schema$Upgrade[];
   }
   /**
    * Response message for VmwareEngine.ListVmwareEngineNetworks
@@ -1489,6 +1602,31 @@ export namespace vmwareengine_v1 {
     requestId?: string | null;
   }
   /**
+   * Schedule for the upgrade.
+   */
+  export interface Schema$Schedule {
+    /**
+     * Output only. Output Only. Constraints applied to the schedule. These constraints should be applicable at the time of any rescheduling.
+     */
+    constraints?: Schema$Constraints;
+    /**
+     * Output only. Output Only. The schedule is open for edits during this time interval or window.
+     */
+    editWindow?: Schema$Interval;
+    /**
+     * Output only. Output Only. Indicates who most recently edited the upgrade schedule. The value is updated whenever the upgrade is rescheduled.
+     */
+    lastEditor?: string | null;
+    /**
+     * Required. The scheduled start time for the upgrade.
+     */
+    startTime?: string | null;
+    /**
+     * Required. Weekly time windows for upgrade activities. The server performs upgrade activities during these time windows to minimize disruptions.
+     */
+    weeklyWindows?: Schema$TimeWindow[];
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -1592,6 +1730,44 @@ export namespace vmwareengine_v1 {
     scaleOut?: number | null;
   }
   /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+  }
+  /**
+   * Represents the time window to perform upgrade activities.
+   */
+  export interface Schema$TimeWindow {
+    /**
+     * Required. Day of the week for this window.
+     */
+    dayOfWeek?: string | null;
+    /**
+     * Required. The duration of the window. The max allowed duration for any window is 24 hours.
+     */
+    duration?: string | null;
+    /**
+     * Required. Time in UTC when the window starts.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
    * Request message for VmwareEngine.UndeletePrivateCloud
    */
   export interface Schema$UndeletePrivateCloudRequest {
@@ -1599,6 +1775,71 @@ export namespace vmwareengine_v1 {
      * Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
+  }
+  /**
+   * Describes Private cloud Upgrade.
+   */
+  export interface Schema$Upgrade {
+    /**
+     * Output only. Output Only. The list of component upgrades.
+     */
+    componentUpgrades?: Schema$VmwareUpgradeComponent[];
+    /**
+     * Output only. Output Only. Creation time of this resource.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Output Only. The description of the upgrade. This is used to provide additional information about the private cloud upgrade, such as the upgrade's purpose, the changes included in the upgrade, or any other relevant information about the upgrade.
+     */
+    description?: string | null;
+    /**
+     * Output only. Output Only. End time of the upgrade.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Output Only. The estimated total duration of the upgrade. This information can be used to plan or schedule upgrades to minimize disruptions. Please note that the estimated duration is only an estimate. The actual upgrade duration may vary.
+     */
+    estimatedDuration?: string | null;
+    /**
+     * The etag for the upgrade resource. If this is provided on update, it must match the server's etag.
+     */
+    etag?: string | null;
+    /**
+     * Output only. Identifier. The resource name of the private cloud `Upgrade`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/upgrades/my-upgrade`
+     */
+    name?: string | null;
+    /**
+     * Schedule details for the upgrade.
+     */
+    schedule?: Schema$Schedule;
+    /**
+     * Output only. Output Only. The start version
+     */
+    startVersion?: string | null;
+    /**
+     * Output only. The current state of the upgrade.
+     */
+    state?: string | null;
+    /**
+     * Output only. Output Only. The target version
+     */
+    targetVersion?: string | null;
+    /**
+     * Output only. Output Only. The type of upgrade.
+     */
+    type?: string | null;
+    /**
+     * Output only. System-generated unique identifier for the resource.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Output Only. Last update time of this resource.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only.
+     */
+    version?: string | null;
   }
   /**
    * Details about a vCenter Server management appliance.
@@ -1663,6 +1904,19 @@ export namespace vmwareengine_v1 {
     vpcNetworks?: Schema$VpcNetwork[];
   }
   /**
+   * Per component upgrade resource
+   */
+  export interface Schema$VmwareUpgradeComponent {
+    /**
+     * Output only. Type of component
+     */
+    componentType?: string | null;
+    /**
+     * Output only. Component's upgrade state.
+     */
+    state?: string | null;
+  }
+  /**
    * Represents a VMware Engine VPC network that is managed by a VMware Engine network resource.
    */
   export interface Schema$VpcNetwork {
@@ -1687,6 +1941,7 @@ export namespace vmwareengine_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    announcements: Resource$Projects$Locations$Announcements;
     dnsBindPermission: Resource$Projects$Locations$Dnsbindpermission;
     networkPeerings: Resource$Projects$Locations$Networkpeerings;
     networkPolicies: Resource$Projects$Locations$Networkpolicies;
@@ -1697,6 +1952,9 @@ export namespace vmwareengine_v1 {
     vmwareEngineNetworks: Resource$Projects$Locations$Vmwareenginenetworks;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.announcements = new Resource$Projects$Locations$Announcements(
+        this.context
+      );
       this.dnsBindPermission =
         new Resource$Projects$Locations$Dnsbindpermission(this.context);
       this.networkPeerings = new Resource$Projects$Locations$Networkpeerings(
@@ -2019,6 +2277,224 @@ export namespace vmwareengine_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Announcements {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves a `Announcement` by its resource name.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Announcements$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Announcements$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Announcement>;
+    get(
+      params: Params$Resource$Projects$Locations$Announcements$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Announcements$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Announcement>,
+      callback: BodyResponseCallback<Schema$Announcement>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Announcements$Get,
+      callback: BodyResponseCallback<Schema$Announcement>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Announcement>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Announcements$Get
+        | BodyResponseCallback<Schema$Announcement>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Announcement>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Announcement>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Announcement> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Announcements$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Announcements$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Announcement>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Announcement>(parameters);
+      }
+    }
+
+    /**
+     * Lists `Announcements` for a given region and project
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Announcements$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Announcements$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAnnouncementsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Announcements$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Announcements$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAnnouncementsResponse>,
+      callback: BodyResponseCallback<Schema$ListAnnouncementsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Announcements$List,
+      callback: BodyResponseCallback<Schema$ListAnnouncementsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAnnouncementsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Announcements$List
+        | BodyResponseCallback<Schema$ListAnnouncementsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAnnouncementsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAnnouncementsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAnnouncementsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Announcements$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Announcements$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/announcements').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAnnouncementsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAnnouncementsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Announcements$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the announcement to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/announcements/announcement-uuid`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Announcements$List
+    extends StandardParameters {
+    /**
+     * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of announcement runs, you can exclude the ones named `example-announcement` by specifying `name != "example-announcement"`. You can also filter nested fields. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-announcement") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "announcement-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "announcement-2") ```
+     */
+    filter?: string;
+    /**
+     * Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy="name desc"`. Currently, only ordering by `name` is supported.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of announcements to return in one page. The service may return fewer than this value. The maximum value is coerced to 1000. The default value of this field is 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListAnnouncements` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAnnouncements` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the location to be queried for announcements. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Dnsbindpermission {
@@ -4589,6 +5065,7 @@ export namespace vmwareengine_v1 {
     loggingServers: Resource$Projects$Locations$Privateclouds$Loggingservers;
     managementDnsZoneBindings: Resource$Projects$Locations$Privateclouds$Managementdnszonebindings;
     subnets: Resource$Projects$Locations$Privateclouds$Subnets;
+    upgrades: Resource$Projects$Locations$Privateclouds$Upgrades;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.clusters = new Resource$Projects$Locations$Privateclouds$Clusters(
@@ -4611,6 +5088,9 @@ export namespace vmwareengine_v1 {
           this.context
         );
       this.subnets = new Resource$Projects$Locations$Privateclouds$Subnets(
+        this.context
+      );
+      this.upgrades = new Resource$Projects$Locations$Privateclouds$Upgrades(
         this.context
       );
     }
@@ -9863,6 +10343,330 @@ export namespace vmwareengine_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Subnet;
+  }
+
+  export class Resource$Projects$Locations$Privateclouds$Upgrades {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves a private cloud `Upgrade` resource by its resource name.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Upgrade>;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Upgrade>,
+      callback: BodyResponseCallback<Schema$Upgrade>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get,
+      callback: BodyResponseCallback<Schema$Upgrade>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Upgrade>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get
+        | BodyResponseCallback<Schema$Upgrade>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Upgrade>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Upgrade>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Upgrade> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Upgrade>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Upgrade>(parameters);
+      }
+    }
+
+    /**
+     * Lists past, ongoing and upcoming `Upgrades` for the given private cloud.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Upgrades$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUpgradesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUpgradesResponse>,
+      callback: BodyResponseCallback<Schema$ListUpgradesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$List,
+      callback: BodyResponseCallback<Schema$ListUpgradesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListUpgradesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Upgrades$List
+        | BodyResponseCallback<Schema$ListUpgradesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUpgradesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUpgradesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUpgradesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Upgrades$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Upgrades$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/upgrades').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUpgradesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUpgradesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Update the private cloud `Upgrade` resource. Only `schedule` field can updated. The schedule can only be updated when the upgrade has not started and schedule edit window is open. Only fields specified in `update_mask` are considered.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Privateclouds$Upgrades$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the `Upgrade` resource to be retrieved. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/upgrades/my-upgrade`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Upgrades$List
+    extends StandardParameters {
+    /**
+     * A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of upgrades, you can exclude the ones named `example-upgrade1` by specifying `name != "example-upgrade1"`. You can also filter nested fields. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-upgrade") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "upgrade-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "upgrade-2") ```
+     */
+    filter?: string;
+    /**
+     * Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy="name desc"`. Currently, only ordering by `name` is supported.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of `Upgrades` to return in one page. The service may return fewer resources than this value. The maximum value is coerced to 1000. The default value of this field is 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListUpgrades` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUpgrades` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Query a list of `Upgrades` for the given private cloud resource name. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/privateClouds/my-cloud`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Upgrades$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Identifier. The resource name of the private cloud `Upgrade`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a/privateClouds/my-cloud/upgrades/my-upgrade`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the `Upgrade` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Upgrade;
   }
 
   export class Resource$Projects$Locations$Privateconnections {
