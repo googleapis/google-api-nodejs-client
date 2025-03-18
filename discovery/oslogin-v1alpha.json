@@ -114,6 +114,42 @@
   },
   "protocol": "rest",
   "resources": {
+    "projects": {
+      "resources": {
+        "locations": {
+          "methods": {
+            "signSshPublicKey": {
+              "description": "Signs an SSH public key for a user to authenticate to a virtual machine on Google Compute Engine.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}:signSshPublicKey",
+              "httpMethod": "POST",
+              "id": "oslogin.projects.locations.signSshPublicKey",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent for the signing request. Format: projects/{project}/locations/{location}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}:signSshPublicKey",
+              "request": {
+                "$ref": "GoogleCloudOsloginControlplaneRegionalV1alphaSignSshPublicKeyRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudOsloginControlplaneRegionalV1alphaSignSshPublicKeyResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    },
     "users": {
       "methods": {
         "getLoginProfile": {
@@ -278,6 +314,35 @@
               "path": "v1alpha/{+name}",
               "response": {
                 "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/compute"
+              ]
+            },
+            "provisionPosixAccount": {
+              "description": "Create a POSIX account if it doesn't exist.",
+              "flatPath": "v1alpha/users/{usersId}/projects/{projectsId}",
+              "httpMethod": "POST",
+              "id": "oslogin.users.projects.provisionPosixAccount",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The unique ID for the user in format `users/{user}/projects/{project}`.",
+                  "location": "path",
+                  "pattern": "^users/[^/]+/projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "ProvisionPosixAccountRequest"
+              },
+              "response": {
+                "$ref": "PosixAccount"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -477,13 +542,47 @@
       }
     }
   },
-  "revision": "20241208",
+  "revision": "20250302",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudOsloginControlplaneRegionalV1alphaSignSshPublicKeyRequest": {
+      "description": "A request message for signing an SSH public key.",
+      "id": "GoogleCloudOsloginControlplaneRegionalV1alphaSignSshPublicKeyRequest",
+      "properties": {
+        "appEngineInstance": {
+          "description": "The App Engine instance to sign the SSH public key for. Expected format: services/{service}/versions/{version}/instances/{instance}",
+          "type": "string"
+        },
+        "computeInstance": {
+          "description": "The compute instance to sign the SSH public key for. Expected format: projects/{project}/zones/{zone}/instances/{numeric_instance_id}",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Optional. The service account for the Compute instance. If the instance in question does not have a service account, this field should be left empty. If the wrong service account is provided, this operation will return a signed certificate that will not be accepted by the VM. During rollout of the new regionalized SignSshPublicKey API, this field will be required for all requests, but the VM will not initially carry out the",
+          "type": "string"
+        },
+        "sshPublicKey": {
+          "description": "Required. The SSH public key to sign.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOsloginControlplaneRegionalV1alphaSignSshPublicKeyResponse": {
+      "description": "The response message for signing an SSH public key.",
+      "id": "GoogleCloudOsloginControlplaneRegionalV1alphaSignSshPublicKeyResponse",
+      "properties": {
+        "signedSshPublicKey": {
+          "description": "The signed SSH public key to use in the SSH handshake.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ImportSshPublicKeyResponse": {
@@ -594,6 +693,20 @@
         "username": {
           "description": "The username of the POSIX account.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProvisionPosixAccountRequest": {
+      "description": "A request message for creating a POSIX account entry.",
+      "id": "ProvisionPosixAccountRequest",
+      "properties": {
+        "regions": {
+          "description": "Optional. The regions to wait for a POSIX account to be written to before returning a response. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
