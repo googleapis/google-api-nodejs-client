@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/travelimpactmodel",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "travelimpactmodel",
   "main": "build/index.js",
   "types": "build/index.d.ts",
