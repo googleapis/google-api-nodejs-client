@@ -1038,6 +1038,10 @@ export namespace dataflow_v1b3 {
      */
     additionalExperiments?: string[] | null;
     /**
+     * Optional. Additional pipeline option flags for the job.
+     */
+    additionalPipelineOptions?: string[] | null;
+    /**
      * Additional user labels to be specified for the job. Keys and values must follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1kg", "count": "3" \}.
      */
     additionalUserLabels?: {[key: string]: string} | null;
@@ -1899,7 +1903,7 @@ export namespace dataflow_v1b3 {
     origin?: string | null;
   }
   /**
-   * Describes the state of a metric. Next ID: 14
+   * Describes the state of a metric.
    */
   export interface Schema$MetricUpdate {
     /**
@@ -2489,6 +2493,10 @@ export namespace dataflow_v1b3 {
      * Optional. Additional experiment flags for the job, specified with the `--experiments` option.
      */
     additionalExperiments?: string[] | null;
+    /**
+     * Optional. Additional pipeline option flags for the job.
+     */
+    additionalPipelineOptions?: string[] | null;
     /**
      * Optional. Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1kg", "count": "3" \}.
      */
@@ -3669,6 +3677,10 @@ export namespace dataflow_v1b3 {
      * Optional. Indicates if the streaming template supports exactly once mode.
      */
     supportsExactlyOnce?: boolean | null;
+    /**
+     * Optional. For future use.
+     */
+    yamlDefinition?: string | null;
   }
   /**
    * Global topology of the streaming Dataflow job, including all computations and their sharded locations.
