@@ -428,7 +428,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "The sorting order of the resources returned. Value should be a comma separated list of fields. The default sorting oder is ascending. See https://google.aip.dev/132#ordering.",
+                      "description": "The sorting order of the resources returned. Value should be a comma separated list of fields. The default sorting order is ascending. See https://google.aip.dev/132#ordering.",
                       "location": "query",
                       "type": "string"
                     },
@@ -744,7 +744,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250228",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AbortFunctionUpgradeRequest": {
@@ -1086,6 +1086,11 @@
           "description": "A user-defined name of the function. Function names must be unique globally and match pattern `projects/*/locations/*/functions/*`",
           "type": "string"
         },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "satisfiesPzs": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -1103,7 +1108,9 @@
             "FAILED",
             "DEPLOYING",
             "DELETING",
-            "UNKNOWN"
+            "UNKNOWN",
+            "DETACHING",
+            "DETACH_FAILED"
           ],
           "enumDescriptions": [
             "Not specified. Invalid state.",
@@ -1111,7 +1118,9 @@
             "Function deployment failed and the function is not serving.",
             "Function is being created or updated.",
             "Function is being deleted.",
-            "Function deployment failed and the function serving state is undefined. The function should be updated or deleted to move it out of this state."
+            "Function deployment failed and the function serving state is undefined. The function should be updated or deleted to move it out of this state.",
+            "Function is being detached.",
+            "Function detach failed and the function is still serving."
           ],
           "readOnly": true,
           "type": "string"
@@ -1245,6 +1254,11 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "customIamRoleDetected": {
+          "description": "Output only. Whether a custom IAM role binding was detected during the upgrade.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "endTime": {
           "description": "The time the operation finished running.",
           "format": "google-datetime",
@@ -1333,7 +1347,7 @@
           ],
           "enumDescriptions": [
             "Not specified. Invalid name.",
-            "Artifact Regsitry Stage",
+            "Artifact Registry Stage",
             "Build Stage",
             "Service Stage",
             "Trigger Stage",
@@ -2095,7 +2109,7 @@
       "type": "object"
     },
     "UpgradeInfo": {
-      "description": "Information related to: * A function's eligibility for 1st Gen to 2nd Gen migration and 2nd Gen to CRf detach. * Current state of migration for function undergoing migration/detach.",
+      "description": "Information related to: * A function's eligibility for 1st Gen to 2nd Gen migration. * Current state of migration for function undergoing migration.",
       "id": "UpgradeInfo",
       "properties": {
         "buildConfig": {
@@ -2122,8 +2136,7 @@
             "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_SUCCESSFUL",
             "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_ERROR",
             "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC_ERROR",
-            "COMMIT_FUNCTION_UPGRADE_ERROR",
-            "DETACH_IN_PROGRESS"
+            "COMMIT_FUNCTION_UPGRADE_ERROR"
           ],
           "enumDescriptions": [
             "Unspecified state. Most functions are in this upgrade state.",
@@ -2135,8 +2148,7 @@
             "RedirectFunctionUpgradeTraffic API was successful and traffic is served by 2nd Gen function stack.",
             "RedirectFunctionUpgradeTraffic API was un-successful.",
             "RollbackFunctionUpgradeTraffic API was un-successful.",
-            "CommitFunctionUpgrade API was un-successful.",
-            "Function is requested to be detached from 2nd Gen to CRf."
+            "CommitFunctionUpgrade API was un-successful."
           ],
           "type": "string"
         }
