@@ -543,7 +543,7 @@ export namespace language_v1beta2 {
     trackingLabels?: {[key: string]: string} | null;
   }
   /**
-   * Infra Usage of billing metrics.
+   * LINT: LEGACY_NAMES Infra Usage of billing metrics.
    */
   export interface Schema$InfraUsage {
     /**
