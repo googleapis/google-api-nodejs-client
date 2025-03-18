@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkebackup-v8.2.0...gkebackup-v8.3.0) (2025-03-18)
+
+
+### Features
+
+* **gkebackup:** update the API ([f7885c4](https://github.com/googleapis/google-api-nodejs-client/commit/f7885c4f96039d80f2c65f665b9927e8df73b024))
+
+
+### Bug Fixes
+
+* **gkebackup:** update the API ([e22bef0](https://github.com/googleapis/google-api-nodejs-client/commit/e22bef0996ad5afcd8bbfb50dfab818fa85e6716))
+
 ## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkebackup-v8.1.1...gkebackup-v8.2.0) (2025-03-18)
 
 

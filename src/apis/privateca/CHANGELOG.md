@@ -1,5 +1,22 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v5.1.0...privateca-v6.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **privateca:** This release has breaking changes.
+
+### Features
+
+* **privateca:** update the API ([3fe49ca](https://github.com/googleapis/google-api-nodejs-client/commit/3fe49ca6af386170b2d8b648654765417d8c8467))
+* **privateca:** update the API ([36722ba](https://github.com/googleapis/google-api-nodejs-client/commit/36722ba87c8a94112e42732a3908a98c0a44610c))
+
+
+### Bug Fixes
+
+* **privateca:** update the API ([ecf5c60](https://github.com/googleapis/google-api-nodejs-client/commit/ecf5c60be112f44d6d77ca52f90e7f17f77a314f))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v5.0.0...privateca-v5.1.0) (2025-03-18)
 
 
