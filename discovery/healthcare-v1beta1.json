@@ -6120,6 +6120,17 @@
       },
       "type": "object"
     },
+    "BulkExportGcsDestination": {
+      "description": "The configuration for exporting to Cloud Storage using the bulk export API.",
+      "id": "BulkExportGcsDestination",
+      "properties": {
+        "uriPrefix": {
+          "description": "Optional. URI for a Cloud Storage directory where the server writes result files, in the format `gs://{bucket-id}/{path/to/destination/dir}`. If there is no trailing slash, the service appends one when composing the object path. The user is responsible for creating the Cloud Storage bucket referenced in `uri_prefix`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -7806,6 +7817,10 @@
       "description": "The BigQuery table where the server writes output.",
       "id": "GoogleCloudHealthcareV1beta1DicomBigQueryDestination",
       "properties": {
+        "changeDataCaptureConfig": {
+          "$ref": "GoogleCloudHealthcareV1beta1DicomChangeDataCaptureConfig",
+          "description": "Optional. Setting this field will enable BigQuery's Change Data Capture (CDC) on the destination tables. Set this field if you want to only keep the latest version of each instance. Updates and deletes to an existing' instance will overwrite the corresponding row. See https://cloud.google.com/bigquery/docs/change-data-capture for details."
+        },
         "force": {
           "description": "Use `write_disposition` instead. If `write_disposition` is specified, this parameter is ignored. force=false is equivalent to write_disposition=WRITE_EMPTY and force=true is equivalent to write_disposition=WRITE_TRUNCATE.",
           "type": "boolean"
@@ -7831,6 +7846,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudHealthcareV1beta1DicomChangeDataCaptureConfig": {
+      "description": "BigQuery Change Data Capture configuration.",
+      "id": "GoogleCloudHealthcareV1beta1DicomChangeDataCaptureConfig",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudHealthcareV1beta1DicomGcsDestination": {
