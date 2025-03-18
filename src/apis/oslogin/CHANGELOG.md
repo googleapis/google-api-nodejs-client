@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/oslogin-v3.0.6...oslogin-v3.1.0) (2025-03-18)
+
+
+### Features
+
+* **oslogin:** update the API ([e82e5c6](https://github.com/googleapis/google-api-nodejs-client/commit/e82e5c642d46c087323ffcf53e6e80f19fc7a21b))
+
 ## [3.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/oslogin-v3.0.5...oslogin-v3.0.6) (2025-02-04)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.9.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v9.8.0...batch-v9.9.0) (2025-03-18)
+
+
+### Features
+
+* **batch:** update the API ([143a50b](https://github.com/googleapis/google-api-nodejs-client/commit/143a50b53356e07a8e75f378895ee8fccc4b81aa))
+
 ## [9.8.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v9.7.0...batch-v9.8.0) (2025-02-04)
 
 

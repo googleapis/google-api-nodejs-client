@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datafusion-v10.0.0...datafusion-v10.1.0) (2025-03-18)
+
+
+### Features
+
+* **datafusion:** update the API ([fbee7b7](https://github.com/googleapis/google-api-nodejs-client/commit/fbee7b7b2222dde9ab5deff7fc902b6cc63f42fb))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datafusion-v9.0.0...datafusion-v10.0.0) (2025-02-04)
 
 

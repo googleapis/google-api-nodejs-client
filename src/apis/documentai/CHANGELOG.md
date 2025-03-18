@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v10.0.0...documentai-v10.0.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* **documentai:** update the API ([a311f23](https://github.com/googleapis/google-api-nodejs-client/commit/a311f2338742d2a080e33308cbfafaa4e32f6a66))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v9.0.0...documentai-v10.0.0) (2025-02-04)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v7.0.1...tasks-v7.0.2) (2025-03-18)
+
+
+### Bug Fixes
+
+* **tasks:** update the API ([fa7e976](https://github.com/googleapis/google-api-nodejs-client/commit/fa7e976a82e99666719f1b3596b8953a93dacbf2))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v7.0.0...tasks-v7.0.1) (2025-02-04)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v5.0.0...privateca-v5.1.0) (2025-03-18)
+
+
+### Features
+
+* **privateca:** update the API ([3fe49ca](https://github.com/googleapis/google-api-nodejs-client/commit/3fe49ca6af386170b2d8b648654765417d8c8467))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v4.2.1...privateca-v5.0.0) (2025-02-04)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v7.0.0...datamigration-v7.1.0) (2025-03-18)
+
+
+### Features
+
+* **datamigration:** update the API ([eff23a7](https://github.com/googleapis/google-api-nodejs-client/commit/eff23a74122ca057d165f2d55aa19572c42eec76))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v6.4.0...datamigration-v7.0.0) (2025-02-04)
 
 

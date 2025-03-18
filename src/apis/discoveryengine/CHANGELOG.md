@@ -1,5 +1,16 @@
 # Changelog
 
+## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v17.0.0...discoveryengine-v18.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **discoveryengine:** This release has breaking changes.
+
+### Features
+
+* **discoveryengine:** update the API ([5a21728](https://github.com/googleapis/google-api-nodejs-client/commit/5a217283b6fd3731d28be3c203900910c94080ca))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v16.0.0...discoveryengine-v17.0.0) (2025-02-04)
 
 

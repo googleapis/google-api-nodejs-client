@@ -1,5 +1,16 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v10.0.0...analyticshub-v11.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **analyticshub:** This release has breaking changes.
+
+### Features
+
+* **analyticshub:** update the API ([16fc986](https://github.com/googleapis/google-api-nodejs-client/commit/16fc986a81f2e3e2261809296915a0eab831d2e4))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v9.0.1...analyticshub-v10.0.0) (2025-02-04)
 
 
