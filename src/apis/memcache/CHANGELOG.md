@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v3.5.0...memcache-v4.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **memcache:** This release has breaking changes.
+
+### Features
+
+* **memcache:** update the API ([4cb1662](https://github.com/googleapis/google-api-nodejs-client/commit/4cb1662a7d6ddc692a7d63ae550364b8ee018870))
+
 ## [3.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v3.4.0...memcache-v3.5.0) (2025-02-04)
 
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v13.0.0...dataplex-v14.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataplex:** This release has breaking changes.
+
+### Features
+
+* **dataplex:** update the API ([c796b50](https://github.com/googleapis/google-api-nodejs-client/commit/c796b507d30a4b94e71e74072eefc286fd93fd51))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v12.0.0...dataplex-v13.0.0) (2025-02-04)
 
 

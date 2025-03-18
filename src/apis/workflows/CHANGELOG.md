@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.1](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v1.10.0...workflows-v1.10.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* **workflows:** update the API ([4cd01bb](https://github.com/googleapis/google-api-nodejs-client/commit/4cd01bb2e21be4f644b788572f66a12837940afc))
+
 ## [1.10.0](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v1.9.1...workflows-v1.10.0) (2025-02-04)
 
 

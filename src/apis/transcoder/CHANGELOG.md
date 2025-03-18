@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/transcoder-v4.0.3...transcoder-v4.0.4) (2025-03-18)
+
+
+### Bug Fixes
+
+* **transcoder:** update the API ([b599b7a](https://github.com/googleapis/google-api-nodejs-client/commit/b599b7ac4d0021b2a92959fddedaabb2406d9581))
+
 ## [4.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/transcoder-v4.0.2...transcoder-v4.0.3) (2025-02-04)
 
 

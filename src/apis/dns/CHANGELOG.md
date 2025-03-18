@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/dns-v6.1.0...dns-v6.1.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* **dns:** update the API ([a40a114](https://github.com/googleapis/google-api-nodejs-client/commit/a40a114addc594a20e324f587cd8433fadb082cf))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dns-v6.0.0...dns-v6.1.0) (2025-02-04)
 
 

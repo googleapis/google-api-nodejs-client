@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/monitoring-v9.2.0...monitoring-v9.3.0) (2025-03-18)
+
+
+### Features
+
+* **monitoring:** update the API ([5448212](https://github.com/googleapis/google-api-nodejs-client/commit/5448212a42323a16755388809120ed04b8686fc0))
+
 ## [9.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/monitoring-v9.1.0...monitoring-v9.2.0) (2025-02-04)
 
 
