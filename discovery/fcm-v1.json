@@ -15,7 +15,7 @@
   "baseUrl": "https://fcm.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Firebase Cloud Messaging",
-  "description": "FCM send API that provides a cross-platform messaging solution to reliably deliver messages at no cost.",
+  "description": "FCM send API that provides a cross-platform messaging solution to reliably deliver messages.",
   "discoveryVersion": "v1",
   "documentationLink": "https://firebase.google.com/docs/cloud-messaging",
   "fullyEncodeReservedExpansion": true,
@@ -122,7 +122,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. It contains the Firebase project id (i.e. the unique identifier for your Firebase project), in the format of `projects/{project_id}`. For legacy support, the numeric project number with no padding is also supported in the format of `projects/{project_number}`.",
+                  "description": "Required. It contains the Firebase project id (i.e. the unique identifier for your Firebase project), in the format of `projects/{project_id}`. The numeric project number with no padding is also supported in the format of `projects/{project_number}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -146,13 +146,17 @@
       }
     }
   },
-  "revision": "20241112",
+  "revision": "20250311",
   "rootUrl": "https://fcm.googleapis.com/",
   "schemas": {
     "AndroidConfig": {
       "description": "Android specific options for messages sent through [FCM connection server](https://goo.gl/4GLdUl).",
       "id": "AndroidConfig",
       "properties": {
+        "bandwidthConstrainedOk": {
+          "description": "Optional. If set to true, messages will be allowed to be delivered to the app while the device is in bandwidth constrained mode.",
+          "type": "boolean"
+        },
         "collapseKey": {
           "description": "An identifier of a group of messages that can be collapsed, so that only the last message gets sent when delivery can be resumed. A maximum of 4 different collapse keys is allowed at any given time.",
           "type": "string"
