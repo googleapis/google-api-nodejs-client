@@ -305,7 +305,7 @@ export namespace datafusion_v1 {
      */
     enableRbac?: boolean | null;
     /**
-     * Optional. Option to enable Stackdriver Logging.
+     * Optional. Option to enable Dataproc Stackdriver Logging.
      */
     enableStackdriverLogging?: boolean | null;
     /**
@@ -328,6 +328,10 @@ export namespace datafusion_v1 {
      * The resource labels for instance to use to annotate any related underlying resources such as Compute Engine VMs. The character '=' is not allowed to be used within the labels.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. The logging configuration for this instance. This field is supported only in CDF versions 6.11.0 and above.
+     */
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * Output only. The maintenance events for this instance.
      */
@@ -360,6 +364,10 @@ export namespace datafusion_v1 {
      * Optional. Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will have private IP addresses and will not be able to access the public internet.
      */
     privateInstance?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
     /**
      * Output only. Reserved for future use.
      */
@@ -502,6 +510,15 @@ export namespace datafusion_v1 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * Logging configuration for a Data Fusion instance.
+   */
+  export interface Schema$LoggingConfig {
+    /**
+     * Optional. Option to determine whether instance logs should be written to Cloud Logging. By default, instance logs are written to Cloud Logging.
+     */
+    instanceCloudLoggingDisabled?: boolean | null;
   }
   /**
    * Represents a maintenance event.
