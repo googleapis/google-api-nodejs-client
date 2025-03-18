@@ -375,6 +375,24 @@ export namespace vault_v1 {
     totalCount?: string | null;
   }
   /**
+   * Specify Drive documents by document ID.
+   */
+  export interface Schema$DriveDocumentIds {
+    /**
+     * Required. A list of Drive document IDs.
+     */
+    ids?: string[] | null;
+  }
+  /**
+   * The Drive documents to search.
+   */
+  export interface Schema$DriveDocumentInfo {
+    /**
+     * Specify Drive documents by document ID.
+     */
+    documentIds?: Schema$DriveDocumentIds;
+  }
+  /**
    * Options for Drive exports.
    */
   export interface Schema$DriveExportOptions {
@@ -384,7 +402,7 @@ export namespace vault_v1 {
     includeAccessInfo?: boolean | null;
   }
   /**
-   * Additional options for Drive search
+   * Additional options for Drive search.
    */
   export interface Schema$DriveOptions {
     /**
@@ -470,6 +488,10 @@ export namespace vault_v1 {
      */
     driveOptions?: Schema$DriveExportOptions;
     /**
+     * Option available for Gemini export.
+     */
+    geminiOptions?: Schema$GeminiExportOptions;
+    /**
      * Options for Groups exports.
      */
     groupsOptions?: Schema$GroupsExportOptions;
@@ -507,6 +529,19 @@ export namespace vault_v1 {
      */
     totalArtifactCount?: string | null;
   }
+  /**
+   * The options for Gemini exports.
+   */
+  export interface Schema$GeminiExportOptions {
+    /**
+     * The file format for exported messages.
+     */
+    exportFormat?: string | null;
+  }
+  /**
+   * Additional options for Gemini search
+   */
+  export interface Schema$GeminiOptions {}
   /**
    * Groups specific count metrics.
    */
@@ -938,6 +973,10 @@ export namespace vault_v1 {
      */
     dataScope?: string | null;
     /**
+     * Required when **SearchMethod** is **DRIVE_DOCUMENT**.
+     */
+    driveDocumentInfo?: Schema$DriveDocumentInfo;
+    /**
      * Set Drive search-specific options.
      */
     driveOptions?: Schema$DriveOptions;
@@ -945,6 +984,10 @@ export namespace vault_v1 {
      * The end time for the search query. Specify in GMT. The value is rounded to 12 AM on the specified date.
      */
     endTime?: string | null;
+    /**
+     * Set Gemini search-specific options.
+     */
+    geminiOptions?: Schema$GeminiOptions;
     /**
      * Required when **SearchMethod** is **ROOM**. (read-only)
      */
