@@ -6829,7 +6829,7 @@
       "type": "object"
     },
     "ServiceMeshCondition": {
-      "description": "Condition being reported.",
+      "description": "Condition being reported. TODO b/395151419: Remove this message once the membership-level conditions field uses the common Condition message.",
       "id": "ServiceMeshCondition",
       "properties": {
         "code": {
@@ -7270,7 +7270,7 @@
           "type": "array"
         },
         "conditions": {
-          "description": "Output only. List of conditions reported for this membership.",
+          "description": "Output only. List of conditions reported for this membership. TODO b/395151419: Use the common Condition message.",
           "items": {
             "$ref": "ServiceMeshCondition"
           },

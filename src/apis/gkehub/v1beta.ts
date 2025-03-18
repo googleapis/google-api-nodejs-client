@@ -2971,7 +2971,7 @@ export namespace gkehub_v1beta {
     vulnerabilityMode?: string | null;
   }
   /**
-   * Condition being reported.
+   * Condition being reported. TODO b/395151419: Remove this message once the membership-level conditions field uses the common Condition message.
    */
   export interface Schema$ServiceMeshCondition {
     /**
@@ -3043,7 +3043,7 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$ServiceMeshMembershipState {
     /**
-     * Output only. List of conditions reported for this membership.
+     * Output only. List of conditions reported for this membership. TODO b/395151419: Use the common Condition message.
      */
     conditions?: Schema$ServiceMeshCondition[];
     /**
