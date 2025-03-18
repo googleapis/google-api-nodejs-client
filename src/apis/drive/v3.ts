@@ -120,7 +120,6 @@ export namespace drive_v3 {
     comments: Resource$Comments;
     drives: Resource$Drives;
     files: Resource$Files;
-    operation: Resource$Operation;
     operations: Resource$Operations;
     permissions: Resource$Permissions;
     replies: Resource$Replies;
@@ -141,7 +140,6 @@ export namespace drive_v3 {
       this.comments = new Resource$Comments(this.context);
       this.drives = new Resource$Drives(this.context);
       this.files = new Resource$Files(this.context);
-      this.operation = new Resource$Operation(this.context);
       this.operations = new Resource$Operations(this.context);
       this.permissions = new Resource$Permissions(this.context);
       this.replies = new Resource$Replies(this.context);
@@ -621,6 +619,19 @@ export namespace drive_v3 {
     type?: string | null;
   }
   /**
+   * A restriction for copy and download of the file.
+   */
+  export interface Schema$DownloadRestriction {
+    /**
+     * Whether download and copy is restricted for readers.
+     */
+    restrictedForReaders?: boolean | null;
+    /**
+     * Whether download and copy is restricted for writers. If true, download is also restricted for readers.
+     */
+    restrictedForWriters?: boolean | null;
+  }
+  /**
    * Representation of a shared drive. Some resource methods (such as `drives.update`) require a `driveId`. Use the `drives.list` method to retrieve the ID for a shared drive.
    */
   export interface Schema$Drive {
@@ -697,6 +708,7 @@ export namespace drive_v3 {
       adminManagedRestrictions?: boolean;
       copyRequiresWriterPermission?: boolean;
       domainUsersOnly?: boolean;
+      downloadRestriction?: Schema$DownloadRestriction;
       driveMembersOnly?: boolean;
       sharingFoldersRequiresOrganizerPermission?: boolean;
     } | null;
@@ -746,8 +758,10 @@ export namespace drive_v3 {
       canCopy?: boolean;
       canDelete?: boolean;
       canDeleteChildren?: boolean;
+      canDisableInheritedPermissions?: boolean;
       canDownload?: boolean;
       canEdit?: boolean;
+      canEnableInheritedPermissions?: boolean;
       canListChildren?: boolean;
       canModifyContent?: boolean;
       canModifyContentRestriction?: boolean;
@@ -870,6 +884,10 @@ export namespace drive_v3 {
       whiteBalance?: string;
       width?: number;
     } | null;
+    /**
+     * Whether this file has inherited permissions disabled. Inherited permissions are enabled by default.
+     */
+    inheritedPermissionsDisabled?: boolean | null;
     /**
      * Output only. Whether the file was created or opened by the requesting app.
      */
@@ -1336,6 +1354,10 @@ export namespace drive_v3 {
      */
     id?: string | null;
     /**
+     * When true, only organizers, owners, and users with permissions added directly on the item can access it.
+     */
+    inheritedPermissionsDisabled?: boolean | null;
+    /**
      * Output only. Identifies what kind of resource this is. Value: the fixed string `"drive#permission"`.
      */
     kind?: string | null;
@@ -1344,7 +1366,7 @@ export namespace drive_v3 {
      */
     pendingOwner?: boolean | null;
     /**
-     * Output only. Details of whether the permissions on this shared drive item are inherited or directly on this item. This is an output-only field which is present only for shared drive items.
+     * Output only. Details of whether the permissions on this item are inherited or directly on this item.
      */
     permissionDetails?: Array<{
       inherited?: boolean;
@@ -1374,7 +1396,7 @@ export namespace drive_v3 {
      */
     type?: string | null;
     /**
-     * Indicates the view for this permission. Only populated for permissions that belong to a view. 'published' is the only supported value.
+     * Indicates the view for this permission. Only populated for permissions that belong to a view. published and metadata are the only supported values. - published: The permission's role is published_reader. - metadata: The item is only visible to the metadata view because the item has limited access and the scope has at least read access to the parent. Note: The metadata view is currently only supported on folders.
      */
     view?: string | null;
   }
@@ -1653,6 +1675,7 @@ export namespace drive_v3 {
       adminManagedRestrictions?: boolean;
       copyRequiresWriterPermission?: boolean;
       domainUsersOnly?: boolean;
+      downloadRestriction?: Schema$DownloadRestriction;
       sharingFoldersRequiresOrganizerPermission?: boolean;
       teamMembersOnly?: boolean;
     } | null;
@@ -5548,7 +5571,7 @@ export namespace drive_v3 {
     requestBody?: Schema$Channel;
   }
 
-  export class Resource$Operation {
+  export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -5563,31 +5586,31 @@ export namespace drive_v3 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
-      params: Params$Resource$Operation$Cancel,
+      params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     cancel(
-      params?: Params$Resource$Operation$Cancel,
+      params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<void>;
     cancel(
-      params: Params$Resource$Operation$Cancel,
+      params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     cancel(
-      params: Params$Resource$Operation$Cancel,
+      params: Params$Resource$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<void>,
       callback: BodyResponseCallback<void>
     ): void;
     cancel(
-      params: Params$Resource$Operation$Cancel,
+      params: Params$Resource$Operations$Cancel,
       callback: BodyResponseCallback<void>
     ): void;
     cancel(callback: BodyResponseCallback<void>): void;
     cancel(
       paramsOrCallback?:
-        | Params$Resource$Operation$Cancel
+        | Params$Resource$Operations$Cancel
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -5597,12 +5620,13 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Operation$Cancel;
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Operation$Cancel;
+        params = {} as Params$Resource$Operations$Cancel;
         options = {};
       }
 
@@ -5615,7 +5639,7 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/operation/{name}:cancel').replace(
+            url: (rootUrl + '/drive/v3/operations/{name}:cancel').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5648,31 +5672,31 @@ export namespace drive_v3 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
-      params: Params$Resource$Operation$Delete,
+      params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     delete(
-      params?: Params$Resource$Operation$Delete,
+      params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
     delete(
-      params: Params$Resource$Operation$Delete,
+      params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     delete(
-      params: Params$Resource$Operation$Delete,
+      params: Params$Resource$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
       callback: BodyResponseCallback<void>
     ): void;
     delete(
-      params: Params$Resource$Operation$Delete,
+      params: Params$Resource$Operations$Delete,
       callback: BodyResponseCallback<void>
     ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
       paramsOrCallback?:
-        | Params$Resource$Operation$Delete
+        | Params$Resource$Operations$Delete
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -5682,12 +5706,13 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Operation$Delete;
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Operation$Delete;
+        params = {} as Params$Resource$Operations$Delete;
         options = {};
       }
 
@@ -5700,7 +5725,7 @@ export namespace drive_v3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/drive/v3/operation/{name}').replace(
+            url: (rootUrl + '/drive/v3/operations/{name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5722,26 +5747,6 @@ export namespace drive_v3 {
       } else {
         return createAPIRequest<void>(parameters);
       }
-    }
-  }
-
-  export interface Params$Resource$Operation$Cancel extends StandardParameters {
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Operation$Delete extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
-
-  export class Resource$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
     }
 
     /**
@@ -5924,6 +5929,20 @@ export namespace drive_v3 {
     }
   }
 
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Operations$Delete
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
@@ -6436,6 +6455,10 @@ export namespace drive_v3 {
   export interface Params$Resource$Permissions$Delete
     extends StandardParameters {
     /**
+     * Whether the request should enforce expansive access rules.
+     */
+    enforceExpansiveAccess?: boolean;
+    /**
      * The ID of the file or shared drive.
      */
     fileId?: string;
@@ -6510,6 +6533,10 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Permissions$Update
     extends StandardParameters {
+    /**
+     * Whether the request should enforce expansive access rules.
+     */
+    enforceExpansiveAccess?: boolean;
     /**
      * The ID of the file or shared drive.
      */
