@@ -125,6 +125,15 @@ export namespace verifiedaccess_v2 {
   }
 
   /**
+   * Antivirus information on a device.
+   */
+  export interface Schema$Antivirus {
+    /**
+     * Output only. The state of the antivirus on the device. Introduced in Chrome M136.
+     */
+    state?: string | null;
+  }
+  /**
    * Result message for VerifiedAccess.GenerateChallenge.
    */
   export interface Schema$Challenge {
@@ -138,11 +147,11 @@ export namespace verifiedaccess_v2 {
    */
   export interface Schema$CrowdStrikeAgent {
     /**
-     * The Agent ID of the Crowdstrike agent.
+     * Output only. The Agent ID of the Crowdstrike agent.
      */
     agentId?: string | null;
     /**
-     * The Customer ID to which the agent belongs to.
+     * Output only. The Customer ID to which the agent belongs to.
      */
     customerId?: string | null;
   }
@@ -151,47 +160,51 @@ export namespace verifiedaccess_v2 {
    */
   export interface Schema$DeviceSignals {
     /**
-     * Value of the AllowScreenLock policy on the device. See https://chromeenterprise.google/policies/?policy=AllowScreenLock for more details. Available on ChromeOS only.
+     * Output only. Value of the AllowScreenLock policy on the device. See https://chromeenterprise.google/policies/?policy=AllowScreenLock for more details. Available on ChromeOS only.
      */
     allowScreenLock?: boolean | null;
     /**
-     * Current version of the Chrome browser which generated this set of signals. Example value: "107.0.5286.0".
+     * Output only. Information about Antivirus software on the device. Available on Windows only.
+     */
+    antivirus?: Schema$Antivirus;
+    /**
+     * Output only. Current version of the Chrome browser which generated this set of signals. Example value: "107.0.5286.0".
      */
     browserVersion?: string | null;
     /**
-     * Whether Chrome's built-in DNS client is used. The OS DNS client is otherwise used. This value may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#BuiltInDnsClientEnabled.
+     * Output only. Whether Chrome's built-in DNS client is used. The OS DNS client is otherwise used. This value may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#BuiltInDnsClientEnabled.
      */
     builtInDnsClientEnabled?: boolean | null;
     /**
-     * Whether access to the Chrome Remote Desktop application is blocked via a policy.
+     * Output only. Whether access to the Chrome Remote Desktop application is blocked via a policy.
      */
     chromeRemoteDesktopAppBlocked?: boolean | null;
     /**
-     * Crowdstrike agent properties installed on the device, if any. Available on Windows and MacOS only.
+     * Output only. Crowdstrike agent properties installed on the device, if any. Available on Windows and MacOS only.
      */
     crowdStrikeAgent?: Schema$CrowdStrikeAgent;
     /**
-     * Affiliation IDs of the organizations that are affiliated with the organization that is currently managing the device. When the sets of device and profile affiliation IDs overlap, it means that the organizations managing the device and user are affiliated. To learn more about user affiliation, visit https://support.google.com/chrome/a/answer/12801245?ref_topic=9027936.
+     * Output only. Affiliation IDs of the organizations that are affiliated with the organization that is currently managing the device. When the sets of device and profile affiliation IDs overlap, it means that the organizations managing the device and user are affiliated. To learn more about user affiliation, visit https://support.google.com/chrome/a/answer/12801245?ref_topic=9027936.
      */
     deviceAffiliationIds?: string[] | null;
     /**
-     * Enrollment domain of the customer which is currently managing the device.
+     * Output only. Enrollment domain of the customer which is currently managing the device.
      */
     deviceEnrollmentDomain?: string | null;
     /**
-     * The name of the device's manufacturer.
+     * Output only. The name of the device's manufacturer.
      */
     deviceManufacturer?: string | null;
     /**
-     * The name of the device's model.
+     * Output only. The name of the device's model.
      */
     deviceModel?: string | null;
     /**
-     * The encryption state of the disk. On ChromeOS, the main disk is always ENCRYPTED.
+     * Output only. The encryption state of the disk. On ChromeOS, the main disk is always ENCRYPTED.
      */
     diskEncryption?: string | null;
     /**
-     * The display name of the device, as defined by the user.
+     * Output only. The display name of the device, as defined by the user.
      */
     displayName?: string | null;
     /**
@@ -199,63 +212,63 @@ export namespace verifiedaccess_v2 {
      */
     hostname?: string | null;
     /**
-     * International Mobile Equipment Identity (IMEI) of the device. Available on ChromeOS only.
+     * Output only. International Mobile Equipment Identity (IMEI) of the device. Available on ChromeOS only.
      */
     imei?: string[] | null;
     /**
-     * MAC addresses of the device.
+     * Output only. MAC addresses of the device.
      */
     macAddresses?: string[] | null;
     /**
-     * Mobile Equipment Identifier (MEID) of the device. Available on ChromeOS only.
+     * Output only. Mobile Equipment Identifier (MEID) of the device. Available on ChromeOS only.
      */
     meid?: string[] | null;
     /**
-     * The type of the Operating System currently running on the device.
+     * Output only. The type of the Operating System currently running on the device.
      */
     operatingSystem?: string | null;
     /**
-     * The state of the OS level firewall. On ChromeOS, the value will always be ENABLED on regular devices and UNKNOWN on devices in developer mode. Support for MacOS 15 (Sequoia) and later has been introduced in Chrome M131.
+     * Output only. The state of the OS level firewall. On ChromeOS, the value will always be ENABLED on regular devices and UNKNOWN on devices in developer mode. Support for MacOS 15 (Sequoia) and later has been introduced in Chrome M131.
      */
     osFirewall?: string | null;
     /**
-     * The current version of the Operating System. On Windows and linux, the value will also include the security patch information.
+     * Output only. The current version of the Operating System. On Windows and linux, the value will also include the security patch information.
      */
     osVersion?: string | null;
     /**
-     * Whether the Password Protection Warning feature is enabled or not. Password protection alerts users when they reuse their protected password on potentially suspicious sites. This setting is controlled by an enterprise policy: https://chromeenterprise.google/policies/#PasswordProtectionWarningTrigger. Note that the policy unset does not have the same effects as having the policy explicitly set to `PASSWORD_PROTECTION_OFF`.
+     * Output only. Whether the Password Protection Warning feature is enabled or not. Password protection alerts users when they reuse their protected password on potentially suspicious sites. This setting is controlled by an enterprise policy: https://chromeenterprise.google/policies/#PasswordProtectionWarningTrigger. Note that the policy unset does not have the same effects as having the policy explicitly set to `PASSWORD_PROTECTION_OFF`.
      */
     passwordProtectionWarningTrigger?: string | null;
     /**
-     * Affiliation IDs of the organizations that are affiliated with the organization that is currently managing the Chrome Profile’s user or ChromeOS user.
+     * Output only. Affiliation IDs of the organizations that are affiliated with the organization that is currently managing the Chrome Profile’s user or ChromeOS user.
      */
     profileAffiliationIds?: string[] | null;
     /**
-     * Enrollment domain of the customer which is currently managing the profile.
+     * Output only. Enrollment domain of the customer which is currently managing the profile.
      */
     profileEnrollmentDomain?: string | null;
     /**
-     * Whether Enterprise-grade (i.e. custom) unsafe URL scanning is enabled or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#EnterpriseRealTimeUrlCheckMode
+     * Output only. Whether Enterprise-grade (i.e. custom) unsafe URL scanning is enabled or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#EnterpriseRealTimeUrlCheckMode
      */
     realtimeUrlCheckMode?: string | null;
     /**
-     * Safe Browsing Protection Level. That setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#SafeBrowsingProtectionLevel.
+     * Output only. Safe Browsing Protection Level. That setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#SafeBrowsingProtectionLevel.
      */
     safeBrowsingProtectionLevel?: string | null;
     /**
-     * The state of the Screen Lock password protection. On ChromeOS, this value will always be ENABLED as there is not way to disable requiring a password or pin when unlocking the device.
+     * Output only. The state of the Screen Lock password protection. On ChromeOS, this value will always be ENABLED as there is not way to disable requiring a password or pin when unlocking the device.
      */
     screenLockSecured?: string | null;
     /**
-     * Whether the device's startup software has its Secure Boot feature enabled. Available on Windows only.
+     * Output only. Whether the device's startup software has its Secure Boot feature enabled. Available on Windows only.
      */
     secureBootMode?: string | null;
     /**
-     * The serial number of the device. On Windows, this represents the BIOS's serial number. Not available on most Linux distributions.
+     * Output only. The serial number of the device. On Windows, this represents the BIOS's serial number. Not available on most Linux distributions.
      */
     serialNumber?: string | null;
     /**
-     * Whether the Site Isolation (a.k.a Site Per Process) setting is enabled. That setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#SitePerProcess
+     * Output only. Whether the Site Isolation (a.k.a Site Per Process) setting is enabled. That setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#SitePerProcess
      */
     siteIsolationEnabled?: boolean | null;
     /**
@@ -263,19 +276,19 @@ export namespace verifiedaccess_v2 {
      */
     systemDnsServers?: string[] | null;
     /**
-     * Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled. Available on Windows only.
+     * Output only. Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled. Available on Windows only.
      */
     thirdPartyBlockingEnabled?: boolean | null;
     /**
-     * The trigger which generated this set of signals.
+     * Output only. The trigger which generated this set of signals.
      */
     trigger?: string | null;
     /**
-     * Windows domain that the current machine has joined. Available on Windows only.
+     * Output only. Windows domain that the current machine has joined. Available on Windows only.
      */
     windowsMachineDomain?: string | null;
     /**
-     * Windows domain for the current OS user. Available on Windows only.
+     * Output only. Windows domain for the current OS user. Available on Windows only.
      */
     windowsUserDomain?: string | null;
   }
@@ -301,51 +314,55 @@ export namespace verifiedaccess_v2 {
    */
   export interface Schema$VerifyChallengeResponseResult {
     /**
-     * Attested device ID (ADID).
+     * Output only. Attested device ID (ADID).
      */
     attestedDeviceId?: string | null;
     /**
-     * Unique customer id that this device belongs to, as defined by the Google Admin SDK at https://developers.google.com/admin-sdk/directory/v1/guides/manage-customers
+     * Output only. Unique customer id that this device belongs to, as defined by the Google Admin SDK at https://developers.google.com/admin-sdk/directory/v1/guides/manage-customers
      */
     customerId?: string | null;
     /**
-     * Device enrollment id for ChromeOS devices.
+     * Output only. Device enrollment id for ChromeOS devices.
      */
     deviceEnrollmentId?: string | null;
     /**
-     * Device permanent id is returned in this field (for the machine response only).
+     * Output only. Device permanent id is returned in this field (for the machine response only).
      */
     devicePermanentId?: string | null;
     /**
-     * Deprecated. Device signal in json string representation. Prefer using `device_signals` instead.
+     * Output only. Deprecated. Device signal in json string representation. Prefer using `device_signals` instead.
      */
     deviceSignal?: string | null;
     /**
-     * Device signals.
+     * Output only. Device signals.
      */
     deviceSignals?: Schema$DeviceSignals;
     /**
-     * Device attested key trust level.
+     * Output only. Device attested key trust level.
      */
     keyTrustLevel?: string | null;
     /**
-     * Unique customer id that this profile belongs to, as defined by the Google Admin SDK at https://developers.google.com/admin-sdk/directory/v1/guides/manage-customers
+     * Output only. Unique customer id that this profile belongs to, as defined by the Google Admin SDK at https://developers.google.com/admin-sdk/directory/v1/guides/manage-customers
      */
     profileCustomerId?: string | null;
     /**
-     * Profile attested key trust level.
+     * Output only. Profile attested key trust level.
      */
     profileKeyTrustLevel?: string | null;
     /**
-     * Certificate Signing Request (in the SPKAC format, base64 encoded) is returned in this field. This field will be set only if device has included CSR in its challenge response. (the option to include CSR is now available for both user and machine responses)
+     * Output only. The unique server-side ID of a profile on the device.
+     */
+    profilePermanentId?: string | null;
+    /**
+     * Output only. Certificate Signing Request (in the SPKAC format, base64 encoded) is returned in this field. This field will be set only if device has included CSR in its challenge response. (the option to include CSR is now available for both user and machine responses)
      */
     signedPublicKeyAndChallenge?: string | null;
     /**
-     * Virtual device id of the device. The definition of virtual device id is platform-specific.
+     * Output only. Virtual device id of the device. The definition of virtual device id is platform-specific.
      */
     virtualDeviceId?: string | null;
     /**
-     * The ID of a profile on the device.
+     * Output only. The client-provided ID of a profile on the device.
      */
     virtualProfileId?: string | null;
   }
