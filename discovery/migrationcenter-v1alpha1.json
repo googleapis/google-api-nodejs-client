@@ -2548,7 +2548,7 @@
       }
     }
   },
-  "revision": "20250123",
+  "revision": "20250220",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -3157,6 +3157,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "AwsRds": {
+      "description": "Specific details for an AWS RDS database deployment.",
+      "id": "AwsRds",
+      "properties": {},
       "type": "object"
     },
     "AzureVmPlatformDetails": {
@@ -3904,6 +3910,10 @@
           "description": "Output only. Aggregated stats for the database deployment.",
           "readOnly": true
         },
+        "awsRds": {
+          "$ref": "AwsRds",
+          "description": "Optional. Details of an AWS RDS instance."
+        },
         "edition": {
           "description": "The database deployment edition.",
           "type": "string"
@@ -4643,7 +4653,7 @@
           "type": "string"
         },
         "mountPoint": {
-          "description": "Mount pount (Linux/Windows) or drive letter (Windows).",
+          "description": "Mount point (Linux/Windows) or drive letter (Windows).",
           "type": "string"
         },
         "subPartitions": {
@@ -4656,6 +4666,29 @@
         },
         "uuid": {
           "description": "Partition UUID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiskPartitionDetails": {
+      "description": "Disk partition details.",
+      "id": "DiskPartitionDetails",
+      "properties": {
+        "freeSpaceBytes": {
+          "description": "Output only. Total free space of all partitions.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partitions": {
+          "$ref": "DiskPartitionList",
+          "description": "Optional. List of partitions."
+        },
+        "totalCapacityBytes": {
+          "description": "Output only. Total capacity of all partitions.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4680,17 +4713,17 @@
       "id": "DiskUsageSample",
       "properties": {
         "averageIops": {
-          "description": "Average IOPS sampled over a short window. Must be non-negative. Must be equal to the sum of read and write if one of them is positive. if both read and write are zero they are ignored.",
+          "description": "Average IOPS sampled over a short window. Must be non-negative. If read or write are set, the sum of read and write will override the value of the average_iops.",
           "format": "float",
           "type": "number"
         },
         "averageReadIops": {
-          "description": "Average read IOPS sampled over a short window. Must be non-negative.",
+          "description": "Average read IOPS sampled over a short window. Must be non-negative. If both read and write are zero they are ignored.",
           "format": "float",
           "type": "number"
         },
         "averageWriteIops": {
-          "description": "Average write IOPS sampled over a short window. Must be non-negative.",
+          "description": "Average write IOPS sampled over a short window. Must be non-negative. If both read and write are zero they are ignored.",
           "format": "float",
           "type": "number"
         }
@@ -6068,6 +6101,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "diskPartitions": {
+          "$ref": "DiskPartitionDetails",
+          "description": "Optional. Disk partitions details. Note: Partitions are not necessarily mounted on local disks and therefore might not have a one-to-one correspondence with local disks."
+        },
         "disks": {
           "$ref": "MachineDiskDetails",
           "description": "Disk details."
@@ -6477,7 +6514,7 @@
           ],
           "enumDescriptions": [
             "Unknown (default value).",
-            "Staticly assigned IP.",
+            "Statically assigned IP.",
             "Dynamically assigned IP (DHCP)."
           ],
           "type": "string"
@@ -8589,6 +8626,10 @@
           "description": "VM creation timestamp.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "diskPartitions": {
+          "$ref": "DiskPartitionDetails",
+          "description": "Optional. Disk partitions details. Note: Partitions are not necessarily mounted on local disks and therefore might not have a one-to-one correspondence with local disks."
         },
         "guestOs": {
           "$ref": "GuestOsDetails",
