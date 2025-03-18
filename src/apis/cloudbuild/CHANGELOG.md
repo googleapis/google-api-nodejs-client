@@ -1,5 +1,18 @@
 # Changelog
 
+## [11.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v11.2.0...cloudbuild-v11.3.0) (2025-03-18)
+
+
+### Features
+
+* **cloudbuild:** update the API ([4bdcaa4](https://github.com/googleapis/google-api-nodejs-client/commit/4bdcaa43fdaef040ffc1891e144d2abdafbce0d6))
+* **cloudbuild:** update the API ([5d6d16c](https://github.com/googleapis/google-api-nodejs-client/commit/5d6d16c1f380d8cc66a47f878dedc602cf1b6cb3))
+
+
+### Bug Fixes
+
+* **cloudbuild:** update the API ([16cacdc](https://github.com/googleapis/google-api-nodejs-client/commit/16cacdcfb2cba2f4023a889a347feb06b7f209a8))
+
 ## [11.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v11.1.0...cloudbuild-v11.2.0) (2025-03-18)
 
 

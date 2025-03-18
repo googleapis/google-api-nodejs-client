@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v13.1.0...contactcenterinsights-v14.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **contactcenterinsights:** This release has breaking changes.
+
+### Features
+
+* **contactcenterinsights:** update the API ([4c8aa1b](https://github.com/googleapis/google-api-nodejs-client/commit/4c8aa1bcc8dc65d049b3f073c57a55cbb18b1774))
+* **contactcenterinsights:** update the API ([10e04f5](https://github.com/googleapis/google-api-nodejs-client/commit/10e04f5b4737aa80890f845f0f5b85e87274f944))
+* **contactcenterinsights:** update the API ([00ff65c](https://github.com/googleapis/google-api-nodejs-client/commit/00ff65c2bc52543c0f3de0339edc4e75936d4055))
+
 ## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v13.0.0...contactcenterinsights-v13.1.0) (2025-03-18)
 
 
