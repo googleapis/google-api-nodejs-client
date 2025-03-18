@@ -5508,6 +5508,31 @@ export namespace dialogflow_v3beta1 {
     updateTime?: string | null;
   }
   /**
+   * Tool version is a snapshot of the tool at certain timestamp.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolVersion {
+    /**
+     * Output only. Last time the tool version was created or modified.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The display name of the tool version.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The unique identifier of the tool version. Format: `projects//locations//agents//tools//versions/`.
+     */
+    name?: string | null;
+    /**
+     * Required. Snapshot of the tool to be associated with this version.
+     */
+    tool?: Schema$GoogleCloudDialogflowCxV3beta1Tool;
+    /**
+     * Output only. Last time the tool version was created or modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * The request message for Flows.TrainFlow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TrainFlowRequest {}

@@ -15215,6 +15215,37 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1ToolVersion": {
+      "description": "Tool version is a snapshot of the tool at certain timestamp.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolVersion",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Last time the tool version was created or modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the tool version.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The unique identifier of the tool version. Format: `projects//locations//agents//tools//versions/`.",
+          "type": "string"
+        },
+        "tool": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1Tool",
+          "description": "Required. Snapshot of the tool to be associated with this version."
+        },
+        "updateTime": {
+          "description": "Output only. Last time the tool version was created or modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1TrainFlowRequest": {
       "description": "The request message for Flows.TrainFlow.",
       "id": "GoogleCloudDialogflowCxV3beta1TrainFlowRequest",
