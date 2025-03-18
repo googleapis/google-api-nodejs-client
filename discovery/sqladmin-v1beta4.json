@@ -996,6 +996,28 @@
             "instance"
           ],
           "parameters": {
+            "enableFinalBackup": {
+              "description": "Flag to opt-in for final backup. By default, it is turned off.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "finalBackupDescription": {
+              "description": "Optional. The description of the final backup.",
+              "location": "query",
+              "type": "string"
+            },
+            "finalBackupExpiryTime": {
+              "description": "Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.",
+              "format": "google-datetime",
+              "location": "query",
+              "type": "string"
+            },
+            "finalBackupTtlDays": {
+              "description": "Optional. Retention period of the final backup.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
             "instance": {
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
@@ -3098,6 +3120,10 @@
         },
         "kind": {
           "description": "This is always `sql#backupContext`.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the backup. Format: projects/{project}/backups/{backup}",
           "type": "string"
         }
       },
@@ -6099,6 +6125,7 @@
             "AUTO_RESTART",
             "REENCRYPT",
             "SWITCHOVER",
+            "UPDATE_BACKUP",
             "ACQUIRE_SSRS_LEASE",
             "RELEASE_SSRS_LEASE",
             "RECONFIGURE_OLD_PRIMARY",
@@ -6146,6 +6173,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -6207,6 +6235,7 @@
             "Performs auto-restart of an HA-enabled Cloud SQL database for auto recovery.",
             "Re-encrypts CMEK instances with latest key version.",
             "Switches the roles of the primary and replica pair. The target instance should be the replica.",
+            "Update a backup.",
             "Acquire a lease for the setup of SQL Server Reporting Services (SSRS).",
             "Release a lease for the setup of SQL Server Reporting Services (SSRS).",
             "Reconfigures old primary after a promote replica operation. Effect of a promote operation to the old primary is executed in this operation, asynchronously from the promote replica operation executed to the replica.",

@@ -387,6 +387,10 @@ export namespace sqladmin_v1beta4 {
      * This is always `sql#backupContext`.
      */
     kind?: string | null;
+    /**
+     * The name of the backup. Format: projects/{project\}/backups/{backup\}
+     */
+    name?: string | null;
   }
   /**
    * Backup Reencryption Config
@@ -11324,6 +11328,22 @@ export namespace sqladmin_v1beta4 {
     requestBody?: Schema$InstancesCloneRequest;
   }
   export interface Params$Resource$Instances$Delete extends StandardParameters {
+    /**
+     * Flag to opt-in for final backup. By default, it is turned off.
+     */
+    enableFinalBackup?: boolean;
+    /**
+     * Optional. The description of the final backup.
+     */
+    finalBackupDescription?: string;
+    /**
+     * Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.
+     */
+    finalBackupExpiryTime?: string;
+    /**
+     * Optional. Retention period of the final backup.
+     */
+    finalBackupTtlDays?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
