@@ -1985,6 +1985,10 @@ export namespace connectors_v2 {
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{entityType\}
      */
     name?: string;
+    /**
+     * Specifies view for entity type schema.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Connections$Entitytypes$List
     extends StandardParameters {
