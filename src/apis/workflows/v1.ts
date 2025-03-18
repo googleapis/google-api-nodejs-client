@@ -322,7 +322,7 @@ export namespace workflows_v1 {
      */
     description?: string | null;
     /**
-     * Optional. Describes the level of the execution history feature to apply to this workflow.
+     * Optional. Describes the execution history level to apply to this workflow.
      */
     executionHistoryLevel?: string | null;
     /**
