@@ -1394,15 +1394,15 @@ export namespace dfareporting_v4 {
      */
     items?: Schema$CartDataItem[];
     /**
-     * The feed labels associated with the feed where your items are uploaded. For more information, please refer to ​​ https://support.google.com/merchants/answer/12453549. This is a required field.
+     * The feed labels associated with the feed where your items are uploaded. For more information, please refer to ​​ https://support.google.com/merchants/answer/12453549. Providing the feed label reduces ambiguity in identifying the right offer details.
      */
     merchantFeedLabel?: string | null;
     /**
-     * The language associated with the feed where your items are uploaded. Use ISO 639-1 language codes. This field is needed only when item IDs are not unique across multiple Merchant Center feeds.
+     * The language associated with the feed where your items are uploaded. Use ISO 639-1 language codes. Providing the feed language reduces ambiguity in identifying the right offer details.
      */
     merchantFeedLanguage?: string | null;
     /**
-     * The Merchant Center ID where the items are uploaded. This is a required field.
+     * The Merchant Center ID where the items are uploaded. Providing Merchant Center ID reduces ambiguity in identifying the right offer details.
      */
     merchantId?: string | null;
   }
@@ -1824,7 +1824,7 @@ export namespace dfareporting_v4 {
      */
     userIdentifiers?: Schema$UserIdentifier[];
     /**
-     * The value of the conversion. This is a required field.
+     * The value of the conversion. Interpreted in CM360 Floodlight config parent advertiser's currency code. This is a required field.
      */
     value?: number | null;
   }
@@ -6385,6 +6385,10 @@ export namespace dfareporting_v4 {
      * Whether click-tracking string should be included in the tags.
      */
     includeClickTracking?: boolean | null;
+    /**
+     * Optional. Indicates that the unescapedlpurl macro should be included in the tag for the static landing page. New placements will default to the value set on their site.
+     */
+    includeUnescapedlpurlMacro?: boolean | null;
     /**
      * Option specifying how keywords are embedded in ad tags. This setting can be used to specify whether keyword placeholders are inserted in placement tags for this site. Publishers can then add keywords to those placeholders.
      */
