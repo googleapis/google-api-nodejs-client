@@ -761,13 +761,15 @@
                         "DATABASE_ENTITY_VIEW_UNSPECIFIED",
                         "DATABASE_ENTITY_VIEW_BASIC",
                         "DATABASE_ENTITY_VIEW_FULL",
-                        "DATABASE_ENTITY_VIEW_ROOT_SUMMARY"
+                        "DATABASE_ENTITY_VIEW_ROOT_SUMMARY",
+                        "DATABASE_ENTITY_VIEW_FULL_COMPACT"
                       ],
                       "enumDescriptions": [
                         "Unspecified view. Defaults to basic view.",
                         "Default view. Does not return DDLs or Issues.",
                         "Return full entity details including mappings, ddl and issues.",
-                        "Top-most (Database, Schema) nodes which are returned contains summary details for their decendents such as the number of entities per type and issues rollups. When this view is used, only a single page of result is returned and the page_size property of the request is ignored. The returned page will only include the top-most node types."
+                        "Top-most (Database, Schema) nodes which are returned contains summary details for their descendants such as the number of entities per type and issues rollups. When this view is used, only a single page of result is returned and the page_size property of the request is ignored. The returned page will only include the top-most node types.",
+                        "Returns full entity details except for ddls and schema custom features."
                       ],
                       "location": "query",
                       "type": "string"
@@ -2332,7 +2334,7 @@
       }
     }
   },
-  "revision": "20250115",
+  "revision": "20250226",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2722,22 +2724,34 @@
           "$ref": "DataCacheConfig",
           "description": "Optional. Data cache is an optional feature available for Cloud SQL for MySQL Enterprise Plus edition only. For more information on data cache, see [Data cache overview](https://cloud.google.com/sql/help/mysql-data-cache) in Cloud SQL documentation."
         },
+        "dataDiskProvisionedIops": {
+          "description": "Optional. Provisioned number of I/O operations per second for the data disk. This field is only used for hyperdisk-balanced disk types.",
+          "format": "int64",
+          "type": "string"
+        },
+        "dataDiskProvisionedThroughput": {
+          "description": "Optional. Provisioned throughput measured in MiB per second for the data disk. This field is only used for hyperdisk-balanced disk types.",
+          "format": "int64",
+          "type": "string"
+        },
         "dataDiskSizeGb": {
           "description": "The storage capacity available to the database, in GB. The minimum (and default) size is 10GB.",
           "format": "int64",
           "type": "string"
         },
         "dataDiskType": {
-          "description": "The type of storage: `PD_SSD` (default) or `PD_HDD`.",
+          "description": "The type of storage: `PD_SSD` (default) or `PD_HDD` or `HYPERDISK_BALANCED`.",
           "enum": [
             "SQL_DATA_DISK_TYPE_UNSPECIFIED",
             "PD_SSD",
-            "PD_HDD"
+            "PD_HDD",
+            "HYPERDISK_BALANCED"
           ],
           "enumDescriptions": [
             "Unspecified.",
             "SSD disk.",
-            "HDD disk."
+            "HDD disk.",
+            "A Hyperdisk Balanced data disk."
           ],
           "type": "string"
         },
@@ -3087,12 +3101,12 @@
           "type": "string"
         },
         "satisfiesPzi": {
-          "description": "Output only. Zone Isolation compliance state of the resource.",
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
         "satisfiesPzs": {
-          "description": "Output only. Zone Separation compliance state of the resource.",
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -3651,8 +3665,44 @@
           "description": "The actual ddl code.",
           "type": "string"
         },
+        "ddlKind": {
+          "description": "The DDL Kind selected for apply, or UNSPECIFIED if the entity wasn't converted yet.",
+          "enum": [
+            "DDL_KIND_UNSPECIFIED",
+            "SOURCE",
+            "DETERMINISTIC",
+            "AI",
+            "USER_EDIT"
+          ],
+          "enumDescriptions": [
+            "The kind of the DDL is unknown.",
+            "DDL of the source entity",
+            "Deterministic converted DDL",
+            "Gemini AI converted DDL",
+            "User edited DDL"
+          ],
+          "type": "string"
+        },
         "ddlType": {
           "description": "Type of DDL (Create, Alter).",
+          "type": "string"
+        },
+        "editedDdlKind": {
+          "description": "If ddl_kind is USER_EDIT, this holds the DDL kind of the original content - DETERMINISTIC or AI. Otherwise, this is DDL_KIND_UNSPECIFIED.",
+          "enum": [
+            "DDL_KIND_UNSPECIFIED",
+            "SOURCE",
+            "DETERMINISTIC",
+            "AI",
+            "USER_EDIT"
+          ],
+          "enumDescriptions": [
+            "The kind of the DDL is unknown.",
+            "DDL of the source entity",
+            "Deterministic converted DDL",
+            "Gemini AI converted DDL",
+            "User edited DDL"
+          ],
           "type": "string"
         },
         "entity": {
@@ -4860,12 +4910,12 @@
           "description": "The details needed to communicate to the source over Reverse SSH tunnel connectivity."
         },
         "satisfiesPzi": {
-          "description": "Output only. Zone Isolation compliance state of the resource.",
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
         "satisfiesPzs": {
-          "description": "Output only. Zone Separation compliance state of the resource.",
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -5695,12 +5745,12 @@
           "type": "string"
         },
         "satisfiesPzi": {
-          "description": "Output only. Zone Isolation compliance state of the resource.",
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
         "satisfiesPzs": {
-          "description": "Output only. Zone Separation compliance state of the resource.",
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },

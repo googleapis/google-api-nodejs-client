@@ -399,11 +399,19 @@ export namespace datamigration_v1 {
      */
     dataCacheConfig?: Schema$DataCacheConfig;
     /**
+     * Optional. Provisioned number of I/O operations per second for the data disk. This field is only used for hyperdisk-balanced disk types.
+     */
+    dataDiskProvisionedIops?: string | null;
+    /**
+     * Optional. Provisioned throughput measured in MiB per second for the data disk. This field is only used for hyperdisk-balanced disk types.
+     */
+    dataDiskProvisionedThroughput?: string | null;
+    /**
      * The storage capacity available to the database, in GB. The minimum (and default) size is 10GB.
      */
     dataDiskSizeGb?: string | null;
     /**
-     * The type of storage: `PD_SSD` (default) or `PD_HDD`.
+     * The type of storage: `PD_SSD` (default) or `PD_HDD` or `HYPERDISK_BALANCED`.
      */
     dataDiskType?: string | null;
     /**
@@ -611,11 +619,11 @@ export namespace datamigration_v1 {
      */
     role?: string | null;
     /**
-     * Output only. Zone Isolation compliance state of the resource.
+     * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
     /**
-     * Output only. Zone Separation compliance state of the resource.
+     * Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
     /**
@@ -961,9 +969,17 @@ export namespace datamigration_v1 {
      */
     ddl?: string | null;
     /**
+     * The DDL Kind selected for apply, or UNSPECIFIED if the entity wasn't converted yet.
+     */
+    ddlKind?: string | null;
+    /**
      * Type of DDL (Create, Alter).
      */
     ddlType?: string | null;
+    /**
+     * If ddl_kind is USER_EDIT, this holds the DDL kind of the original content - DETERMINISTIC or AI. Otherwise, this is DDL_KIND_UNSPECIFIED.
+     */
+    editedDdlKind?: string | null;
     /**
      * The name of the database entity the ddl refers to.
      */
@@ -1702,11 +1718,11 @@ export namespace datamigration_v1 {
      */
     reverseSshConnectivity?: Schema$ReverseSshConnectivity;
     /**
-     * Output only. Zone Isolation compliance state of the resource.
+     * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
     /**
-     * Output only. Zone Separation compliance state of the resource.
+     * Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
     /**
@@ -2233,11 +2249,11 @@ export namespace datamigration_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Zone Isolation compliance state of the resource.
+     * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
     /**
-     * Output only. Zone Separation compliance state of the resource.
+     * Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
     /**
