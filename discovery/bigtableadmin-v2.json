@@ -4319,13 +4319,22 @@
     "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes": {
       "description": "UTF-8 encoding. Sorted mode: - All values are supported. - Code point order is preserved. Distinct mode: all values are supported. Compatible with: - BigQuery `TEXT` encoding - HBase `Bytes.toBytes` - Java `String#getBytes(StandardCharsets.UTF_8)`",
       "id": "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes",
-      "properties": {},
+      "properties": {
+        "nullEscapeChar": {
+          "description": "Single-character escape sequence used to support NULL values. If set, allows NULL values to be encoded as the empty string \"\". The actual empty string, or any value where every character equals `null_escape_char`, has one more `null_escape_char` appended. If `null_escape_char` is set and does not equal the ASCII null character 0x00, then the encoding will not support sorted mode. .",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeStruct": {
       "description": "A structured data value, consisting of fields which map to dynamically typed values. Values of type `Struct` are stored in `Value.array_value` where entries are in the same order and number as `field_types`.",
       "id": "GoogleBigtableAdminV2TypeStruct",
       "properties": {
+        "encoding": {
+          "$ref": "GoogleBigtableAdminV2TypeStructEncoding",
+          "description": "The encoding to use when converting to or from lower level types."
+        },
         "fields": {
           "description": "The names and types of the fields in this struct.",
           "items": {
@@ -4334,6 +4343,49 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStructEncoding": {
+      "description": "Rules used to convert to or from lower level types.",
+      "id": "GoogleBigtableAdminV2TypeStructEncoding",
+      "properties": {
+        "delimitedBytes": {
+          "$ref": "GoogleBigtableAdminV2TypeStructEncodingDelimitedBytes",
+          "description": "Use `DelimitedBytes` encoding."
+        },
+        "orderedCodeBytes": {
+          "$ref": "GoogleBigtableAdminV2TypeStructEncodingOrderedCodeBytes",
+          "description": "User `OrderedCodeBytes` encoding."
+        },
+        "singleton": {
+          "$ref": "GoogleBigtableAdminV2TypeStructEncodingSingleton",
+          "description": "Use `Singleton` encoding."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStructEncodingDelimitedBytes": {
+      "description": "Fields are encoded independently and concatenated with a configurable `delimiter` in between. A struct with no fields defined is encoded as a single `delimiter`. Sorted mode: - Fields are encoded in sorted mode. - Encoded field values must not contain any bytes <= `delimiter[0]` - Element-wise order is preserved: `A < B` if `A[0] < B[0]`, or if `A[0] == B[0] && A[1] < B[1]`, etc. Strict prefixes sort first. Distinct mode: - Fields are encoded in distinct mode. - Encoded field values must not contain `delimiter[0]`.",
+      "id": "GoogleBigtableAdminV2TypeStructEncodingDelimitedBytes",
+      "properties": {
+        "delimiter": {
+          "description": "Byte sequence used to delimit concatenated fields. The delimiter must contain at least 1 character and at most 50 characters.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStructEncodingOrderedCodeBytes": {
+      "description": "Fields are encoded independently and concatenated with the fixed byte pair {0x00, 0x01} in between. Any null (0x00) byte in an encoded field is replaced by the fixed byte pair {0x00, 0xFF}. Fields that encode to the empty string \"\" have special handling: - If *every* field encodes to \"\", or if the STRUCT has no fields defined, then the STRUCT is encoded as the fixed byte pair {0x00, 0x00}. - Otherwise, the STRUCT only encodes until the last non-empty field, omitting any trailing empty fields. Any empty fields that aren't omitted are replaced with the fixed byte pair {0x00, 0x00}. Examples: - STRUCT() -> \"\\00\\00\" - STRUCT(\"\") -> \"\\00\\00\" - STRUCT(\"\", \"\") -> \"\\00\\00\" - STRUCT(\"\", \"B\") -> \"\\00\\00\" + \"\\00\\01\" + \"B\" - STRUCT(\"A\", \"\") -> \"A\" - STRUCT(\"\", \"B\", \"\") -> \"\\00\\00\" + \"\\00\\01\" + \"B\" - STRUCT(\"A\", \"\", \"C\") -> \"A\" + \"\\00\\01\" + \"\\00\\00\" + \"\\00\\01\" + \"C\" Since null bytes are always escaped, this encoding can cause size blowup for encodings like `Int64.BigEndianBytes` that are likely to produce many such bytes. Sorted mode: - Fields are encoded in sorted mode. - All values supported by the field encodings are allowed - Element-wise order is preserved: `A < B` if `A[0] < B[0]`, or if `A[0] == B[0] && A[1] < B[1]`, etc. Strict prefixes sort first. Distinct mode: - Fields are encoded in distinct mode. - All values supported by the field encodings are allowed.",
+      "id": "GoogleBigtableAdminV2TypeStructEncodingOrderedCodeBytes",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStructEncodingSingleton": {
+      "description": "Uses the encoding of `fields[0].type` as-is. Only valid if `fields.size == 1`.",
+      "id": "GoogleBigtableAdminV2TypeStructEncodingSingleton",
+      "properties": {},
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeStructField": {
@@ -4354,7 +4406,23 @@
     "GoogleBigtableAdminV2TypeTimestamp": {
       "description": "Timestamp Values of type `Timestamp` are stored in `Value.timestamp_value`.",
       "id": "GoogleBigtableAdminV2TypeTimestamp",
-      "properties": {},
+      "properties": {
+        "encoding": {
+          "$ref": "GoogleBigtableAdminV2TypeTimestampEncoding",
+          "description": "The encoding to use when converting to or from lower level types."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeTimestampEncoding": {
+      "description": "Rules used to convert to or from lower level types.",
+      "id": "GoogleBigtableAdminV2TypeTimestampEncoding",
+      "properties": {
+        "unixMicrosInt64": {
+          "$ref": "GoogleBigtableAdminV2TypeInt64Encoding",
+          "description": "Encodes the number of microseconds since the Unix epoch using the given `Int64` encoding. Values must be microsecond-aligned. Compatible with: - Java `Instant.truncatedTo()` with `ChronoUnit.MICROS`"
+        }
+      },
       "type": "object"
     },
     "HotTablet": {
