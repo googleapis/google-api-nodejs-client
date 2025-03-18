@@ -1311,6 +1311,212 @@
                 }
               }
             },
+            "logicalViews": {
+              "methods": {
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for an instance resource. Returns an empty policy if an instance exists but does not have a policy set.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/logicalViews/{logicalViewsId}:getIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "bigtableadmin.projects.instances.logicalViews.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/logicalViews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+resource}:getIamPolicy",
+                  "request": {
+                    "$ref": "GetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on an instance resource. Replaces any existing policy.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/logicalViews/{logicalViewsId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "bigtableadmin.projects.instances.logicalViews.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/logicalViews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that the caller has on the specified instance resource.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/logicalViews/{logicalViewsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "bigtableadmin.projects.instances.logicalViews.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/logicalViews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "materializedViews": {
+              "methods": {
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for an instance resource. Returns an empty policy if an instance exists but does not have a policy set.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/materializedViews/{materializedViewsId}:getIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "bigtableadmin.projects.instances.materializedViews.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/materializedViews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+resource}:getIamPolicy",
+                  "request": {
+                    "$ref": "GetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on an instance resource. Replaces any existing policy.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/materializedViews/{materializedViewsId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "bigtableadmin.projects.instances.materializedViews.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/materializedViews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that the caller has on the specified instance resource.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/materializedViews/{materializedViewsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "bigtableadmin.projects.instances.materializedViews.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/materializedViews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "tables": {
               "methods": {
                 "checkConsistency": {
@@ -1668,7 +1874,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.",
+                      "description": "Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` * `automated_backup_policy` * `automated_backup_policy.retention_period` * `automated_backup_policy.frequency` * `row_key_schema` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -2194,7 +2400,7 @@
       }
     }
   },
-  "revision": "20241203",
+  "revision": "20250308",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -2928,6 +3134,86 @@
       },
       "type": "object"
     },
+    "CreateLogicalViewMetadata": {
+      "description": "The metadata for the Operation returned by CreateLogicalView.",
+      "id": "CreateLogicalViewMetadata",
+      "properties": {
+        "endTime": {
+          "description": "If set, the time at which this operation finished or was canceled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "originalRequest": {
+          "$ref": "CreateLogicalViewRequest",
+          "description": "The request that prompted the initiation of this CreateLogicalView operation."
+        },
+        "startTime": {
+          "description": "The time at which this operation started.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateLogicalViewRequest": {
+      "description": "Request message for BigtableInstanceAdmin.CreateLogicalView.",
+      "id": "CreateLogicalViewRequest",
+      "properties": {
+        "logicalView": {
+          "$ref": "LogicalView",
+          "description": "Required. The logical view to create."
+        },
+        "logicalViewId": {
+          "description": "Required. The ID to use for the logical view, which will become the final component of the logical view's resource name.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. The parent instance where this logical view will be created. Format: `projects/{project}/instances/{instance}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateMaterializedViewMetadata": {
+      "description": "The metadata for the Operation returned by CreateMaterializedView.",
+      "id": "CreateMaterializedViewMetadata",
+      "properties": {
+        "endTime": {
+          "description": "If set, the time at which this operation finished or was canceled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "originalRequest": {
+          "$ref": "CreateMaterializedViewRequest",
+          "description": "The request that prompted the initiation of this CreateMaterializedView operation."
+        },
+        "startTime": {
+          "description": "The time at which this operation started.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateMaterializedViewRequest": {
+      "description": "Request message for BigtableInstanceAdmin.CreateMaterializedView.",
+      "id": "CreateMaterializedViewRequest",
+      "properties": {
+        "materializedView": {
+          "$ref": "MaterializedView",
+          "description": "Required. The materialized view to create."
+        },
+        "materializedViewId": {
+          "description": "Required. The ID to use for the materialized view, which will become the final component of the materialized view's resource name.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. The parent instance where this materialized view will be created. Format: `projects/{project}/instances/{instance}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CreateTableRequest": {
       "description": "Request message for google.bigtable.admin.v2.BigtableTableAdmin.CreateTable",
       "id": "CreateTableRequest",
@@ -3271,7 +3557,12 @@
     "GoogleBigtableAdminV2TypeBytesEncodingRaw": {
       "description": "Leaves the value as-is. Sorted mode: all values are supported. Distinct mode: all values are supported.",
       "id": "GoogleBigtableAdminV2TypeBytesEncodingRaw",
-      "properties": {},
+      "properties": {
+        "escapeNulls": {
+          "description": "If set, allows NULL values to be encoded as the empty string \"\". The actual empty string, or any value which only contains the null byte 0x00, has one more null byte appended.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeDate": {
@@ -3310,6 +3601,10 @@
         "bigEndianBytes": {
           "$ref": "GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes",
           "description": "Use `BigEndianBytes` encoding."
+        },
+        "orderedCodeBytes": {
+          "$ref": "GoogleBigtableAdminV2TypeInt64EncodingOrderedCodeBytes",
+          "description": "Use `OrderedCodeBytes` encoding."
         }
       },
       "type": "object"
@@ -3324,6 +3619,12 @@
           "description": "Deprecated: ignored if set."
         }
       },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeInt64EncodingOrderedCodeBytes": {
+      "description": "Encodes the value in a variable length binary format of up to 10 bytes. Values that are closer to zero use fewer bytes. Sorted mode: all values are supported. Distinct mode: all values are supported.",
+      "id": "GoogleBigtableAdminV2TypeInt64EncodingOrderedCodeBytes",
+      "properties": {},
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeMap": {
@@ -3371,7 +3672,12 @@
     "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes": {
       "description": "UTF-8 encoding. Sorted mode: - All values are supported. - Code point order is preserved. Distinct mode: all values are supported. Compatible with: - BigQuery `TEXT` encoding - HBase `Bytes.toBytes` - Java `String#getBytes(StandardCharsets.UTF_8)`",
       "id": "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes",
-      "properties": {},
+      "properties": {
+        "nullEscapeChar": {
+          "description": "Single-character escape sequence used to support NULL values. If set, allows NULL values to be encoded as the empty string \"\". The actual empty string, or any value where every character equals `null_escape_char`, has one more `null_escape_char` appended. If `null_escape_char` is set and does not equal the ASCII null character 0x00, then the encoding will not support sorted mode. .",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeStringEncodingUtf8Raw": {
@@ -3385,6 +3691,10 @@
       "description": "A structured data value, consisting of fields which map to dynamically typed values. Values of type `Struct` are stored in `Value.array_value` where entries are in the same order and number as `field_types`.",
       "id": "GoogleBigtableAdminV2TypeStruct",
       "properties": {
+        "encoding": {
+          "$ref": "GoogleBigtableAdminV2TypeStructEncoding",
+          "description": "The encoding to use when converting to or from lower level types."
+        },
         "fields": {
           "description": "The names and types of the fields in this struct.",
           "items": {
@@ -3393,6 +3703,49 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStructEncoding": {
+      "description": "Rules used to convert to or from lower level types.",
+      "id": "GoogleBigtableAdminV2TypeStructEncoding",
+      "properties": {
+        "delimitedBytes": {
+          "$ref": "GoogleBigtableAdminV2TypeStructEncodingDelimitedBytes",
+          "description": "Use `DelimitedBytes` encoding."
+        },
+        "orderedCodeBytes": {
+          "$ref": "GoogleBigtableAdminV2TypeStructEncodingOrderedCodeBytes",
+          "description": "User `OrderedCodeBytes` encoding."
+        },
+        "singleton": {
+          "$ref": "GoogleBigtableAdminV2TypeStructEncodingSingleton",
+          "description": "Use `Singleton` encoding."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStructEncodingDelimitedBytes": {
+      "description": "Fields are encoded independently and concatenated with a configurable `delimiter` in between. A struct with no fields defined is encoded as a single `delimiter`. Sorted mode: - Fields are encoded in sorted mode. - Encoded field values must not contain any bytes <= `delimiter[0]` - Element-wise order is preserved: `A < B` if `A[0] < B[0]`, or if `A[0] == B[0] && A[1] < B[1]`, etc. Strict prefixes sort first. Distinct mode: - Fields are encoded in distinct mode. - Encoded field values must not contain `delimiter[0]`.",
+      "id": "GoogleBigtableAdminV2TypeStructEncodingDelimitedBytes",
+      "properties": {
+        "delimiter": {
+          "description": "Byte sequence used to delimit concatenated fields. The delimiter must contain at least 1 character and at most 50 characters.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStructEncodingOrderedCodeBytes": {
+      "description": "Fields are encoded independently and concatenated with the fixed byte pair {0x00, 0x01} in between. Any null (0x00) byte in an encoded field is replaced by the fixed byte pair {0x00, 0xFF}. Fields that encode to the empty string \"\" have special handling: - If *every* field encodes to \"\", or if the STRUCT has no fields defined, then the STRUCT is encoded as the fixed byte pair {0x00, 0x00}. - Otherwise, the STRUCT only encodes until the last non-empty field, omitting any trailing empty fields. Any empty fields that aren't omitted are replaced with the fixed byte pair {0x00, 0x00}. Examples: - STRUCT() -> \"\\00\\00\" - STRUCT(\"\") -> \"\\00\\00\" - STRUCT(\"\", \"\") -> \"\\00\\00\" - STRUCT(\"\", \"B\") -> \"\\00\\00\" + \"\\00\\01\" + \"B\" - STRUCT(\"A\", \"\") -> \"A\" - STRUCT(\"\", \"B\", \"\") -> \"\\00\\00\" + \"\\00\\01\" + \"B\" - STRUCT(\"A\", \"\", \"C\") -> \"A\" + \"\\00\\01\" + \"\\00\\00\" + \"\\00\\01\" + \"C\" Since null bytes are always escaped, this encoding can cause size blowup for encodings like `Int64.BigEndianBytes` that are likely to produce many such bytes. Sorted mode: - Fields are encoded in sorted mode. - All values supported by the field encodings are allowed - Element-wise order is preserved: `A < B` if `A[0] < B[0]`, or if `A[0] == B[0] && A[1] < B[1]`, etc. Strict prefixes sort first. Distinct mode: - Fields are encoded in distinct mode. - All values supported by the field encodings are allowed.",
+      "id": "GoogleBigtableAdminV2TypeStructEncodingOrderedCodeBytes",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStructEncodingSingleton": {
+      "description": "Uses the encoding of `fields[0].type` as-is. Only valid if `fields.size == 1`.",
+      "id": "GoogleBigtableAdminV2TypeStructEncodingSingleton",
+      "properties": {},
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeStructField": {
@@ -3413,7 +3766,23 @@
     "GoogleBigtableAdminV2TypeTimestamp": {
       "description": "Timestamp Values of type `Timestamp` are stored in `Value.timestamp_value`.",
       "id": "GoogleBigtableAdminV2TypeTimestamp",
-      "properties": {},
+      "properties": {
+        "encoding": {
+          "$ref": "GoogleBigtableAdminV2TypeTimestampEncoding",
+          "description": "The encoding to use when converting to or from lower level types."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeTimestampEncoding": {
+      "description": "Rules used to convert to or from lower level types.",
+      "id": "GoogleBigtableAdminV2TypeTimestampEncoding",
+      "properties": {
+        "unixMicrosInt64": {
+          "$ref": "GoogleBigtableAdminV2TypeInt64Encoding",
+          "description": "Encodes the number of microseconds since the Unix epoch using the given `Int64` encoding. Values must be microsecond-aligned. Compatible with: - Java `Instant.truncatedTo()` with `ChronoUnit.MICROS`"
+        }
+      },
       "type": "object"
     },
     "HotTablet": {
@@ -3750,6 +4119,48 @@
         },
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LogicalView": {
+      "description": "A SQL logical view object that can be referenced in SQL queries.",
+      "id": "LogicalView",
+      "properties": {
+        "etag": {
+          "description": "Optional. The etag for this logical view. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The unique name of the logical view. Format: `projects/{project}/instances/{instance}/logicalViews/{logical_view}`",
+          "type": "string"
+        },
+        "query": {
+          "description": "Required. The logical view's select query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MaterializedView": {
+      "description": "A materialized view object that can be referenced in SQL queries.",
+      "id": "MaterializedView",
+      "properties": {
+        "deletionProtection": {
+          "description": "Set to true to make the MaterializedView protected against deletion.",
+          "type": "boolean"
+        },
+        "etag": {
+          "description": "Optional. The etag for this materialized view. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The unique name of the materialized view. Format: `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`",
+          "type": "string"
+        },
+        "query": {
+          "description": "Required. Immutable. The materialized view's select query.",
           "type": "string"
         }
       },
@@ -4481,6 +4892,43 @@
         "requestTime": {
           "description": "The time at which the original request was received.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateLogicalViewMetadata": {
+      "description": "The metadata for the Operation returned by UpdateLogicalView.",
+      "id": "UpdateLogicalViewMetadata",
+      "properties": {
+        "endTime": {
+          "description": "If set, the time at which this operation finished or was canceled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "originalRequest": {
+          "$ref": "UpdateLogicalViewRequest",
+          "description": "The request that prompted the initiation of this UpdateLogicalView operation."
+        },
+        "startTime": {
+          "description": "The time at which this operation was started.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateLogicalViewRequest": {
+      "description": "Request message for BigtableInstanceAdmin.UpdateLogicalView.",
+      "id": "UpdateLogicalViewRequest",
+      "properties": {
+        "logicalView": {
+          "$ref": "LogicalView",
+          "description": "Required. The logical view to update. The logical view's `name` field is used to identify the view to update. Format: `projects/{project}/instances/{instance}/logicalViews/{logical_view}`."
+        },
+        "updateMask": {
+          "description": "Optional. The list of fields to update.",
+          "format": "google-fieldmask",
           "type": "string"
         }
       },
