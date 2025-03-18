@@ -201,7 +201,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -234,7 +234,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -287,7 +287,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results.",
+                      "description": "Optional. Hint about how to order the results.",
                       "location": "query",
                       "type": "string"
                     },
@@ -303,7 +303,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The project and location from which the `AuthzExtension` resources are listed, specified in the following format: `projects/{project}/locations/{location}`.",
+                      "description": "Required. The project and location from which the `AuthzExtension` resources are listed. These values are specified in the following format: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -335,7 +335,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -1057,11 +1057,6 @@
                     "name"
                   ],
                   "parameters": {
-                    "etag": {
-                      "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
-                      "location": "query",
-                      "type": "string"
-                    },
                     "name": {
                       "description": "Required. A name of the GrpcRoute to delete. Must be in the format `projects/*/locations/global/grpcRoutes/*`.",
                       "location": "path",
@@ -1219,11 +1214,6 @@
                     "name"
                   ],
                   "parameters": {
-                    "etag": {
-                      "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
-                      "location": "query",
-                      "type": "string"
-                    },
                     "name": {
                       "description": "Required. A name of the HttpRoute to delete. Must be in the format `projects/*/locations/global/httpRoutes/*`.",
                       "location": "path",
@@ -1361,7 +1351,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -1394,7 +1384,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -1447,7 +1437,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results.",
+                      "description": "Optional. Hint about how to order the results.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1463,7 +1453,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The project and location from which the `LbRouteExtension` resources are listed, specified in the following format: `projects/{project}/locations/{location}`.",
+                      "description": "Required. The project and location from which the `LbRouteExtension` resources are listed. These values are specified in the following format: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1495,7 +1485,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -1543,7 +1533,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -1576,7 +1566,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -1629,7 +1619,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Hint for how to order the results.",
+                      "description": "Optional. Hint about how to order the results.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1645,7 +1635,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The project and location from which the `LbTrafficExtension` resources are listed, specified in the following format: `projects/{project}/locations/{location}`.",
+                      "description": "Required. The project and location from which the `LbTrafficExtension` resources are listed. These values are specified in the following format: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1677,7 +1667,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -1812,6 +1802,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/meshes",
@@ -2060,7 +2055,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent resource of the ServiceBinding. Must be in the format `projects/*/locations/global`.",
+                      "description": "Required. The parent resource of the ServiceBinding. Must be in the format `projects/*/locations/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2093,7 +2088,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. A name of the ServiceBinding to delete. Must be in the format `projects/*/locations/global/serviceBindings/*`.",
+                      "description": "Required. A name of the ServiceBinding to delete. Must be in the format `projects/*/locations/*/serviceBindings/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/serviceBindings/[^/]+$",
                       "required": true,
@@ -2118,7 +2113,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. A name of the ServiceBinding to get. Must be in the format `projects/*/locations/global/serviceBindings/*`.",
+                      "description": "Required. A name of the ServiceBinding to get. Must be in the format `projects/*/locations/*/serviceBindings/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/serviceBindings/[^/]+$",
                       "required": true,
@@ -2154,7 +2149,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The project and location from which the ServiceBindings should be listed, specified in the format `projects/*/locations/global`.",
+                      "description": "Required. The project and location from which the ServiceBindings should be listed, specified in the format `projects/*/locations/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2372,11 +2367,6 @@
                     "name"
                   ],
                   "parameters": {
-                    "etag": {
-                      "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
-                      "location": "query",
-                      "type": "string"
-                    },
                     "name": {
                       "description": "Required. A name of the TcpRoute to delete. Must be in the format `projects/*/locations/global/tcpRoutes/*`.",
                       "location": "path",
@@ -2534,11 +2524,6 @@
                     "name"
                   ],
                   "parameters": {
-                    "etag": {
-                      "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
-                      "location": "query",
-                      "type": "string"
-                    },
                     "name": {
                       "description": "Required. A name of the TlsRoute to delete. Must be in the format `projects/*/locations/global/tlsRoutes/*`.",
                       "location": "path",
@@ -2954,7 +2939,7 @@
       }
     }
   },
-  "revision": "20250120",
+  "revision": "20250310",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3083,14 +3068,14 @@
           "type": "string"
         },
         "wireFormat": {
-          "description": "Optional. The format of communication supported by the callout extension. If not specified, the default is `EXT_PROC_GRPC`.",
+          "description": "Optional. The format of communication supported by the callout extension. If not specified, the default value `EXT_PROC_GRPC` is used.",
           "enum": [
             "WIRE_FORMAT_UNSPECIFIED",
             "EXT_PROC_GRPC"
           ],
           "enumDescriptions": [
             "Not specified.",
-            "The extension service uses ExtProc GRPC API over a gRPC stream. This is the default value if the wire format is not specified. The backend service for the extension must use HTTP2 or H2C as the protocol. All `supported_events` for a client request will be sent as part of the same gRPC stream."
+            "The extension service uses ExtProc GRPC API over a gRPC stream. This is the default value if the wire format is not specified. The backend service for the extension must use HTTP2 or H2C as the protocol. All `supported_events` for a client request are sent as part of the same gRPC stream."
           ],
           "type": "string"
         }
@@ -3334,7 +3319,7 @@
           "type": "string"
         },
         "supportedEvents": {
-          "description": "Optional. A set of events during request or response processing for which this extension is called. This field is required for the `LbTrafficExtension` resource. It must not be set for the `LbRouteExtension` resource, otherwise a validation error is returned.",
+          "description": "Optional. A set of events during request or response processing for which this extension is called. This field is required for the `LbTrafficExtension` resource. It is optional for the `LbRouteExtension` resource. If unspecified `REQUEST_HEADERS` event is assumed as supported.",
           "items": {
             "enum": [
               "EVENT_TYPE_UNSPECIFIED",
@@ -3557,11 +3542,6 @@
         },
         "description": {
           "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
-          "type": "string"
-        },
-        "etag": {
-          "description": "Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
-          "readOnly": true,
           "type": "string"
         },
         "gateways": {
@@ -3859,11 +3839,6 @@
         },
         "description": {
           "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
-          "type": "string"
-        },
-        "etag": {
-          "description": "Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
-          "readOnly": true,
           "type": "string"
         },
         "gateways": {
@@ -4518,7 +4493,7 @@
           "type": "object"
         },
         "loadBalancingScheme": {
-          "description": "Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
+          "description": "Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
@@ -4609,6 +4584,13 @@
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4756,6 +4738,13 @@
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4774,6 +4763,13 @@
         "nextPageToken": {
           "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request opts into `return_partial_success` and reading across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4810,6 +4806,13 @@
             "$ref": "ServiceBinding"
           },
           "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4826,6 +4829,13 @@
           "description": "List of ServiceLbPolicy resources.",
           "items": {
             "$ref": "ServiceLbPolicy"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -5185,7 +5195,7 @@
       "type": "object"
     },
     "ServiceBinding": {
-      "description": "ServiceBinding is the resource that defines a Service Directory Service to be used in a BackendService resource.",
+      "description": "ServiceBinding can be used to: - Bind a Service Directory Service to be used in a BackendService resource. - Bind a Private Service Connect producer service to be used in consumer Cloud Service Mesh or Application Load Balancers.",
       "id": "ServiceBinding",
       "properties": {
         "createTime": {
@@ -5206,15 +5216,15 @@
           "type": "object"
         },
         "name": {
-          "description": "Identifier. Name of the ServiceBinding resource. It matches pattern `projects/*/locations/global/serviceBindings/service_binding_name`.",
+          "description": "Identifier. Name of the ServiceBinding resource. It matches pattern `projects/*/locations/*/serviceBindings/`.",
           "type": "string"
         },
         "service": {
-          "description": "Required. The full Service Directory Service name of the format projects/*/locations/*/namespaces/*/services/*",
+          "description": "Optional. The full Service Directory Service name of the format `projects/*/locations/*/namespaces/*/services/*`. This field must be set.",
           "type": "string"
         },
         "serviceId": {
-          "description": "Output only. The unique identifier of the Service Directory Service against which the Service Binding resource is validated. This is populated when the Service Binding resource is used in another resource (like Backend Service). This is of the UUID4 format.",
+          "description": "Output only. The unique identifier of the Service Directory Service against which the ServiceBinding resource is validated. This is populated when the Service Binding resource is used in another resource (like Backend Service). This is of the UUID4 format.",
           "readOnly": true,
           "type": "string"
         },
@@ -5365,11 +5375,6 @@
         },
         "description": {
           "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
-          "type": "string"
-        },
-        "etag": {
-          "description": "Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
-          "readOnly": true,
           "type": "string"
         },
         "gateways": {
@@ -5532,11 +5537,6 @@
           "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
           "type": "string"
         },
-        "etag": {
-          "description": "Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
-          "readOnly": true,
-          "type": "string"
-        },
         "gateways": {
           "description": "Optional. Gateways defines a list of gateways this TlsRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/*/locations/global/gateways/`",
           "items": {
@@ -5619,7 +5619,7 @@
       "type": "object"
     },
     "TlsRouteRouteMatch": {
-      "description": "RouteMatch defines the predicate used to match requests to a given action. Multiple match types are \"AND\"ed for evaluation. If no routeMatch field is specified, this rule will unconditionally match traffic.",
+      "description": "RouteMatch defines the predicate used to match requests to a given action. Multiple match types are \"AND\"ed for evaluation.",
       "id": "TlsRouteRouteMatch",
       "properties": {
         "alpn": {
@@ -5648,7 +5648,7 @@
           "description": "Required. The detailed rule defining how to route matched traffic."
         },
         "matches": {
-          "description": "Required. RouteMatch defines the predicate used to match requests to a given action. Multiple match types are \"OR\"ed for evaluation.",
+          "description": "Required. RouteMatch defines the predicate used to match requests to a given action. Multiple match types are \"OR\"ed for evaluation. Atleast one RouteMatch must be supplied.",
           "items": {
             "$ref": "TlsRouteRouteMatch"
           },

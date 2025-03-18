@@ -177,7 +177,7 @@ export namespace networkservices_v1beta1 {
      */
     updateTime?: string | null;
     /**
-     * Optional. The format of communication supported by the callout extension. If not specified, the default is `EXT_PROC_GRPC`.
+     * Optional. The format of communication supported by the callout extension. If not specified, the default value `EXT_PROC_GRPC` is used.
      */
     wireFormat?: string | null;
   }
@@ -293,7 +293,7 @@ export namespace networkservices_v1beta1 {
      */
     service?: string | null;
     /**
-     * Optional. A set of events during request or response processing for which this extension is called. This field is required for the `LbTrafficExtension` resource. It must not be set for the `LbRouteExtension` resource, otherwise a validation error is returned.
+     * Optional. A set of events during request or response processing for which this extension is called. This field is required for the `LbTrafficExtension` resource. It is optional for the `LbRouteExtension` resource. If unspecified `REQUEST_HEADERS` event is assumed as supported.
      */
     supportedEvents?: string[] | null;
     /**
@@ -424,10 +424,6 @@ export namespace networkservices_v1beta1 {
      * Optional. A free-text description of the resource. Max length 1024 characters.
      */
     description?: string | null;
-    /**
-     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string | null;
     /**
      * Optional. Gateways defines a list of gateways this GrpcRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
@@ -640,10 +636,6 @@ export namespace networkservices_v1beta1 {
      * Optional. A free-text description of the resource. Max length 1024 characters.
      */
     description?: string | null;
-    /**
-     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string | null;
     /**
      * Optional. Gateways defines a list of gateways this HttpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
@@ -1129,7 +1121,7 @@ export namespace networkservices_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
+     * Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
      */
     loadBalancingScheme?: string | null;
     /**
@@ -1187,6 +1179,10 @@ export namespace networkservices_v1beta1 {
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListGateways method.
@@ -1290,6 +1286,10 @@ export namespace networkservices_v1beta1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request opts into `return_partial_success` and reading across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListMeshRouteViews method.
@@ -1303,6 +1303,10 @@ export namespace networkservices_v1beta1 {
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -1329,6 +1333,10 @@ export namespace networkservices_v1beta1 {
      * List of ServiceBinding resources.
      */
     serviceBindings?: Schema$ServiceBinding[];
+    /**
+     * Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListServiceLbPolicies method.
@@ -1342,6 +1350,10 @@ export namespace networkservices_v1beta1 {
      * List of ServiceLbPolicy resources.
      */
     serviceLbPolicies?: Schema$ServiceLbPolicy[];
+    /**
+     * Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListTcpRoutes method.
@@ -1582,7 +1594,7 @@ export namespace networkservices_v1beta1 {
     cryptoKeyName?: string | null;
   }
   /**
-   * ServiceBinding is the resource that defines a Service Directory Service to be used in a BackendService resource.
+   * ServiceBinding can be used to: - Bind a Service Directory Service to be used in a BackendService resource. - Bind a Private Service Connect producer service to be used in consumer Cloud Service Mesh or Application Load Balancers.
    */
   export interface Schema$ServiceBinding {
     /**
@@ -1598,15 +1610,15 @@ export namespace networkservices_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Identifier. Name of the ServiceBinding resource. It matches pattern `projects/x/locations/global/serviceBindings/service_binding_name`.
+     * Identifier. Name of the ServiceBinding resource. It matches pattern `projects/x/locations/x/serviceBindings/`.
      */
     name?: string | null;
     /**
-     * Required. The full Service Directory Service name of the format projects/x/locations/x/namespaces/x/services/x
+     * Optional. The full Service Directory Service name of the format `projects/x/locations/x/namespaces/x/services/x`. This field must be set.
      */
     service?: string | null;
     /**
-     * Output only. The unique identifier of the Service Directory Service against which the Service Binding resource is validated. This is populated when the Service Binding resource is used in another resource (like Backend Service). This is of the UUID4 format.
+     * Output only. The unique identifier of the Service Directory Service against which the ServiceBinding resource is validated. This is populated when the Service Binding resource is used in another resource (like Backend Service). This is of the UUID4 format.
      */
     serviceId?: string | null;
     /**
@@ -1698,10 +1710,6 @@ export namespace networkservices_v1beta1 {
      * Optional. A free-text description of the resource. Max length 1024 characters.
      */
     description?: string | null;
-    /**
-     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string | null;
     /**
      * Optional. Gateways defines a list of gateways this TcpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
@@ -1800,10 +1808,6 @@ export namespace networkservices_v1beta1 {
      */
     description?: string | null;
     /**
-     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string | null;
-    /**
      * Optional. Gateways defines a list of gateways this TlsRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
     gateways?: string[] | null;
@@ -1859,7 +1863,7 @@ export namespace networkservices_v1beta1 {
     weight?: number | null;
   }
   /**
-   * RouteMatch defines the predicate used to match requests to a given action. Multiple match types are "AND"ed for evaluation. If no routeMatch field is specified, this rule will unconditionally match traffic.
+   * RouteMatch defines the predicate used to match requests to a given action. Multiple match types are "AND"ed for evaluation.
    */
   export interface Schema$TlsRouteRouteMatch {
     /**
@@ -1880,7 +1884,7 @@ export namespace networkservices_v1beta1 {
      */
     action?: Schema$TlsRouteRouteAction;
     /**
-     * Required. RouteMatch defines the predicate used to match requests to a given action. Multiple match types are "OR"ed for evaluation.
+     * Required. RouteMatch defines the predicate used to match requests to a given action. Multiple match types are "OR"ed for evaluation. Atleast one RouteMatch must be supplied.
      */
     matches?: Schema$TlsRouteRouteMatch[];
   }
@@ -2778,7 +2782,7 @@ export namespace networkservices_v1beta1 {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
 
@@ -2794,7 +2798,7 @@ export namespace networkservices_v1beta1 {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
   }
@@ -2812,7 +2816,7 @@ export namespace networkservices_v1beta1 {
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results.
+     * Optional. Hint about how to order the results.
      */
     orderBy?: string;
     /**
@@ -2824,7 +2828,7 @@ export namespace networkservices_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location from which the `AuthzExtension` resources are listed, specified in the following format: `projects/{project\}/locations/{location\}`.
+     * Required. The project and location from which the `AuthzExtension` resources are listed. These values are specified in the following format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
@@ -2835,7 +2839,7 @@ export namespace networkservices_v1beta1 {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
@@ -4563,10 +4567,6 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Grpcroutes$Delete
     extends StandardParameters {
     /**
-     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string;
-    /**
      * Required. A name of the GrpcRoute to delete. Must be in the format `projects/x/locations/global/grpcRoutes/x`.
      */
     name?: string;
@@ -5076,10 +5076,6 @@ export namespace networkservices_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Httproutes$Delete
     extends StandardParameters {
-    /**
-     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string;
     /**
      * Required. A name of the HttpRoute to delete. Must be in the format `projects/x/locations/global/httpRoutes/x`.
      */
@@ -5591,7 +5587,7 @@ export namespace networkservices_v1beta1 {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
 
@@ -5607,7 +5603,7 @@ export namespace networkservices_v1beta1 {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
   }
@@ -5625,7 +5621,7 @@ export namespace networkservices_v1beta1 {
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results.
+     * Optional. Hint about how to order the results.
      */
     orderBy?: string;
     /**
@@ -5637,7 +5633,7 @@ export namespace networkservices_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location from which the `LbRouteExtension` resources are listed, specified in the following format: `projects/{project\}/locations/{location\}`.
+     * Required. The project and location from which the `LbRouteExtension` resources are listed. These values are specified in the following format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
@@ -5648,7 +5644,7 @@ export namespace networkservices_v1beta1 {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
@@ -6133,7 +6129,7 @@ export namespace networkservices_v1beta1 {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
 
@@ -6149,7 +6145,7 @@ export namespace networkservices_v1beta1 {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
   }
@@ -6167,7 +6163,7 @@ export namespace networkservices_v1beta1 {
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results.
+     * Optional. Hint about how to order the results.
      */
     orderBy?: string;
     /**
@@ -6179,7 +6175,7 @@ export namespace networkservices_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location from which the `LbTrafficExtension` resources are listed, specified in the following format: `projects/{project\}/locations/{location\}`.
+     * Required. The project and location from which the `LbTrafficExtension` resources are listed. These values are specified in the following format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
@@ -6190,7 +6186,7 @@ export namespace networkservices_v1beta1 {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
@@ -6698,6 +6694,10 @@ export namespace networkservices_v1beta1 {
      * Required. The project and location from which the Meshes should be listed, specified in the format `projects/x/locations/global`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Meshes$Patch
     extends StandardParameters {
@@ -7706,7 +7706,7 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Servicebindings$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource of the ServiceBinding. Must be in the format `projects/x/locations/global`.
+     * Required. The parent resource of the ServiceBinding. Must be in the format `projects/x/locations/x`.
      */
     parent?: string;
     /**
@@ -7722,14 +7722,14 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Servicebindings$Delete
     extends StandardParameters {
     /**
-     * Required. A name of the ServiceBinding to delete. Must be in the format `projects/x/locations/global/serviceBindings/x`.
+     * Required. A name of the ServiceBinding to delete. Must be in the format `projects/x/locations/x/serviceBindings/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Servicebindings$Get
     extends StandardParameters {
     /**
-     * Required. A name of the ServiceBinding to get. Must be in the format `projects/x/locations/global/serviceBindings/x`.
+     * Required. A name of the ServiceBinding to get. Must be in the format `projects/x/locations/x/serviceBindings/x`.
      */
     name?: string;
   }
@@ -7744,7 +7744,7 @@ export namespace networkservices_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location from which the ServiceBindings should be listed, specified in the format `projects/x/locations/global`.
+     * Required. The project and location from which the ServiceBindings should be listed, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
   }
@@ -8734,10 +8734,6 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tcproutes$Delete
     extends StandardParameters {
     /**
-     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string;
-    /**
      * Required. A name of the TcpRoute to delete. Must be in the format `projects/x/locations/global/tcpRoutes/x`.
      */
     name?: string;
@@ -9247,10 +9243,6 @@ export namespace networkservices_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Tlsroutes$Delete
     extends StandardParameters {
-    /**
-     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
-     */
-    etag?: string;
     /**
      * Required. A name of the TlsRoute to delete. Must be in the format `projects/x/locations/global/tlsRoutes/x`.
      */
