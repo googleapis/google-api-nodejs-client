@@ -79,6 +79,9 @@
         },
         "https://www.googleapis.com/auth/chat.users.readstate.readonly": {
           "description": "View last read time for Google Chat conversations"
+        },
+        "https://www.googleapis.com/auth/chat.users.spacesettings": {
+          "description": "Read and update your space settings"
         }
       }
     }
@@ -1052,7 +1055,7 @@
             "reactions": {
               "methods": {
                 "create": {
-                  "description": "Creates a reaction and adds it to a message. Only unicode emojis are supported. For an example, see [Add a reaction to a message](https://developers.google.com/workspace/chat/create-reactions). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
+                  "description": "Creates a reaction and adds it to a message. For an example, see [Add a reaction to a message](https://developers.google.com/workspace/chat/create-reactions). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
                   "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}/reactions",
                   "httpMethod": "POST",
                   "id": "chat.spaces.messages.reactions.create",
@@ -1083,7 +1086,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a reaction to a message. Only unicode emojis are supported. For an example, see [Delete a reaction](https://developers.google.com/workspace/chat/delete-reactions). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
+                  "description": "Deletes a reaction to a message. For an example, see [Delete a reaction](https://developers.google.com/workspace/chat/delete-reactions). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
                   "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}/reactions/{reactionsId}",
                   "httpMethod": "DELETE",
                   "id": "chat.spaces.messages.reactions.delete",
@@ -1309,6 +1312,69 @@
             }
           },
           "resources": {
+            "spaceNotificationSetting": {
+              "methods": {
+                "get": {
+                  "description": "Gets the space notification setting. For an example, see [Get the caller's space notification setting](https://developers.google.com/workspace/chat/get-space-notification-setting). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
+                  "flatPath": "v1/users/{usersId}/spaces/{spacesId}/spaceNotificationSetting",
+                  "httpMethod": "GET",
+                  "id": "chat.users.spaces.spaceNotificationSetting.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: users/{user}/spaces/{space}/spaceNotificationSetting - `users/me/spaces/{space}/spaceNotificationSetting`, OR - `users/user@example.com/spaces/{space}/spaceNotificationSetting`, OR - `users/123456789/spaces/{space}/spaceNotificationSetting`. Note: Only the caller's user id or email is allowed in the path.",
+                      "location": "path",
+                      "pattern": "^users/[^/]+/spaces/[^/]+/spaceNotificationSetting$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "SpaceNotificationSetting"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chat.users.spacesettings"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the space notification setting. For an example, see [Update the caller's space notification setting](https://developers.google.com/workspace/chat/update-space-notification-setting). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
+                  "flatPath": "v1/users/{usersId}/spaces/{spacesId}/spaceNotificationSetting",
+                  "httpMethod": "PATCH",
+                  "id": "chat.users.spaces.spaceNotificationSetting.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the space notification setting. Format: `users/{user}/spaces/{space}/spaceNotificationSetting`.",
+                      "location": "path",
+                      "pattern": "^users/[^/]+/spaces/[^/]+/spaceNotificationSetting$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Supported field paths: - `notification_setting` - `mute_setting`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "SpaceNotificationSetting"
+                  },
+                  "response": {
+                    "$ref": "SpaceNotificationSetting"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chat.users.spacesettings"
+                  ]
+                }
+              }
+            },
             "threads": {
               "methods": {
                 "getThreadReadState": {
@@ -1344,7 +1410,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250311",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -1497,6 +1563,10 @@
       "description": "Output only. Annotations associated with the plain-text body of the message. To add basic formatting to a text message, see [Format text messages](https://developers.google.com/workspace/chat/format-messages). Example plain-text message body: ``` Hello @FooBot how are you!\" ``` The corresponding annotations metadata: ``` \"annotations\":[{ \"type\":\"USER_MENTION\", \"startIndex\":6, \"length\":7, \"userMention\": { \"user\": { \"name\":\"users/{user}\", \"displayName\":\"FooBot\", \"avatarUrl\":\"https://goo.gl/aeDtrS\", \"type\":\"BOT\" }, \"type\":\"MENTION\" } }] ```",
       "id": "Annotation",
       "properties": {
+        "customEmojiMetadata": {
+          "$ref": "CustomEmojiMetadata",
+          "description": "The metadata for a custom emoji."
+        },
         "length": {
           "description": "Length of the substring in the plain-text message body this annotation corresponds to.",
           "format": "int32",
@@ -1521,19 +1591,47 @@
             "ANNOTATION_TYPE_UNSPECIFIED",
             "USER_MENTION",
             "SLASH_COMMAND",
-            "RICH_LINK"
+            "RICH_LINK",
+            "CUSTOM_EMOJI"
           ],
           "enumDescriptions": [
             "Default value for the enum. Don't use.",
             "A user is mentioned.",
             "A slash command is invoked.",
-            "A rich link annotation."
+            "A rich link annotation.",
+            "A custom emoji annotation."
           ],
           "type": "string"
         },
         "userMention": {
           "$ref": "UserMentionMetadata",
           "description": "The metadata of user mention."
+        }
+      },
+      "type": "object"
+    },
+    "AppCommandMetadata": {
+      "description": "Metadata about a [Chat app command](https://developers.google.com/workspace/chat/commands).",
+      "id": "AppCommandMetadata",
+      "properties": {
+        "appCommandId": {
+          "description": "The ID for the command specified in the Chat API configuration.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "appCommandType": {
+          "description": "The type of Chat app command.",
+          "enum": [
+            "APP_COMMAND_TYPE_UNSPECIFIED",
+            "SLASH_COMMAND",
+            "QUICK_COMMAND"
+          ],
+          "enumDescriptions": [
+            "Default value. Unspecified.",
+            "A slash command. The user sends the command in a Chat message.",
+            "A quick command. The user selects the command from the Chat menu in the message reply area."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1839,7 +1937,7 @@
             "The add-on launches from Google Sheets.",
             "The add-on launches from Google Slides.",
             "The add-on launches from Google Drawings.",
-            "A Google Chat app. Not used for Google Workspace Add-ons."
+            "A Google Chat app. Not used for Google Workspace add-ons."
           ],
           "type": "string"
         },
@@ -1910,6 +2008,17 @@
       },
       "type": "object"
     },
+    "CustomEmojiMetadata": {
+      "description": "Annotation metadata for custom emoji.",
+      "id": "CustomEmojiMetadata",
+      "properties": {
+        "customEmoji": {
+          "$ref": "CustomEmoji",
+          "description": "The custom emoji."
+        }
+      },
+      "type": "object"
+    },
     "DateInput": {
       "description": "Date input values.",
       "id": "DateInput",
@@ -1955,16 +2064,18 @@
             "ADMIN",
             "APP_MESSAGE_EXPIRY",
             "CREATOR_VIA_APP",
-            "SPACE_OWNER_VIA_APP"
+            "SPACE_OWNER_VIA_APP",
+            "SPACE_MEMBER"
           ],
           "enumDescriptions": [
             "This value is unused.",
             "User deleted their own message.",
-            "The space owner deleted the message.",
-            "A Google Workspace admin deleted the message.",
+            "A space manager deleted the message.",
+            "A Google Workspace administrator deleted the message. Administrators can delete any message in the space, including messages sent by any space member or Chat app.",
             "A Chat app deleted its own message when it expired.",
-            "A Chat app deleted the message on behalf of the user.",
-            "A Chat app deleted the message on behalf of the space owner."
+            "A Chat app deleted the message on behalf of the creator (using user authentication).",
+            "A Chat app deleted the message on behalf of a space manager (using user authentication).",
+            "A member of the space deleted the message. Users can delete messages sent by apps."
           ],
           "type": "string"
         }
@@ -1979,12 +2090,16 @@
           "$ref": "FormAction",
           "description": "For `CARD_CLICKED` interaction events, the form action data associated when a user clicks a card or dialog. To learn more, see [Read form data input by users on cards](https://developers.google.com/workspace/chat/read-form-data)."
         },
+        "appCommandMetadata": {
+          "$ref": "AppCommandMetadata",
+          "description": "Metadata about a Chat app command."
+        },
         "common": {
           "$ref": "CommonEventObject",
           "description": "Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/workspace/chat/dialogs), like data entered on a card."
         },
         "configCompleteRedirectUrl": {
-          "description": "For `MESSAGE` interaction events, the URL that users must be redirected to after they complete an authorization or configuration flow outside of Google Chat. For more information, see [Connect a Chat app with other services and tools](https://developers.google.com/workspace/chat/connect-web-services-tools).",
+          "description": "This URL is populated for `MESSAGE`, `ADDED_TO_SPACE`, and `APP_COMMAND` interaction events. After completing an authorization or configuration flow outside of Google Chat, users must be redirected to this URL to signal to Google Chat that the authorization or configuration flow was successful. For more information, see [Connect a Chat app with other services and tools](https://developers.google.com/workspace/chat/connect-web-services-tools).",
           "type": "string"
         },
         "dialogEventType": {
@@ -2020,6 +2135,10 @@
           "$ref": "Space",
           "description": "The space in which the user interacted with the Chat app."
         },
+        "thread": {
+          "$ref": "Thread",
+          "description": "The thread in which the user interacted with the Chat app. This could be in a new thread created by a newly sent message. This field is populated if the interaction event is associated with a specific message or thread."
+        },
         "threadKey": {
           "description": "The Chat app-defined key for the thread related to the interaction event. See [`spaces.messages.thread.threadKey`](/chat/api/reference/rest/v1/spaces.messages#Thread.FIELDS.thread_key) for more information.",
           "type": "string"
@@ -2036,15 +2155,17 @@
             "ADDED_TO_SPACE",
             "REMOVED_FROM_SPACE",
             "CARD_CLICKED",
-            "WIDGET_UPDATED"
+            "WIDGET_UPDATED",
+            "APP_COMMAND"
           ],
           "enumDescriptions": [
             "Default value for the enum. DO NOT USE.",
-            "A user sends the Chat app a message, or invokes the Chat app in a space, such as any of the following examples: * Any message in a direct message (DM) space with the Chat app. * A message in a multi-person space where a person @mentions the Chat app, or uses one of its slash commands. * If you've configured link previews for your Chat app, a user posts a message that contains a link that matches the configured URL pattern.",
+            "A user sends the Chat app a message, or invokes the Chat app in a space, such as any of the following examples: * Any message in a direct message (DM) space with the Chat app. * A message in a multi-person space where a person @mentions the Chat app, or uses one of its [slash commands](https://developers.google.com/workspace/chat/commands#types). * If you've configured link previews for your Chat app, a user posts a message that contains a link that matches the configured URL pattern.",
             "A user adds the Chat app to a space, or a Google Workspace administrator installs the Chat app in direct message spaces for users in their organization. Chat apps typically respond to this interaction event by posting a welcome message in the space. When administrators install Chat apps, the `space.adminInstalled` field is set to `true` and users can't uninstall them. To learn about Chat apps installed by administrators, see Google Workspace Admin Help's documentation, [Install Marketplace apps in your domain](https://support.google.com/a/answer/172482).",
             "A user removes the Chat app from a space, or a Google Workspace administrator uninstalls the Chat app for a user in their organization. Chat apps can't respond with messages to this event, because they have already been removed. When administrators uninstall Chat apps, the `space.adminInstalled` field is set to `false`. If a user installed the Chat app before the administrator, the Chat app remains installed for the user and the Chat app doesn't receive a `REMOVED_FROM_SPACE` interaction event.",
             "A user clicks an interactive element of a card or dialog from a Chat app, such as a button. To receive an interaction event, the button must trigger another interaction with the Chat app. For example, a Chat app doesn't receive a `CARD_CLICKED` interaction event if a user clicks a button that opens a link to a website, but receives interaction events in the following examples: * The user clicks a `Send feedback` button on a card, which opens a dialog for the user to input information. * The user clicks a `Submit` button after inputting information into a card or dialog. If a user clicks a button to open, submit, or cancel a dialog, the `CARD_CLICKED` interaction event's `isDialogEvent` field is set to `true` and includes a [`DialogEventType`](https://developers.google.com/workspace/chat/api/reference/rest/v1/DialogEventType).",
-            "A user updates a widget in a card message or dialog."
+            "A user updates a widget in a card message or dialog.",
+            "A user uses a Chat app [quick command](https://developers.google.com/workspace/chat/commands#types)."
           ],
           "type": "string"
         },
@@ -2113,8 +2234,7 @@
       "properties": {
         "customEmoji": {
           "$ref": "CustomEmoji",
-          "description": "Output only. A custom emoji.",
-          "readOnly": true
+          "description": "A custom emoji."
         },
         "unicode": {
           "description": "Optional. A basic emoji represented by a unicode string.",
@@ -4524,11 +4644,11 @@
       "type": "object"
     },
     "SlashCommand": {
-      "description": "A [slash command](https://developers.google.com/workspace/chat/slash-commands) in Google Chat.",
+      "description": "Metadata about a [slash command](https://developers.google.com/workspace/chat/commands) in Google Chat.",
       "id": "SlashCommand",
       "properties": {
         "commandId": {
-          "description": "The ID of the slash command invoked.",
+          "description": "The ID of the slash command.",
           "format": "int64",
           "type": "string"
         }
@@ -4855,6 +4975,49 @@
         "spaceUpdatedEventData": {
           "$ref": "SpaceUpdatedEventData",
           "description": "Event payload for a space update. Event type: `google.workspace.chat.space.v1.updated`"
+        }
+      },
+      "type": "object"
+    },
+    "SpaceNotificationSetting": {
+      "description": "The notification setting of a user in a space.",
+      "id": "SpaceNotificationSetting",
+      "properties": {
+        "muteSetting": {
+          "description": "The space notification mute setting.",
+          "enum": [
+            "MUTE_SETTING_UNSPECIFIED",
+            "UNMUTED",
+            "MUTED"
+          ],
+          "enumDescriptions": [
+            "Reserved.",
+            "The user will receive notifications for the space based on the notification setting.",
+            "The user will not receive any notifications for the space, regardless of the notification setting."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the space notification setting. Format: `users/{user}/spaces/{space}/spaceNotificationSetting`.",
+          "type": "string"
+        },
+        "notificationSetting": {
+          "description": "The notification setting.",
+          "enum": [
+            "NOTIFICATION_SETTING_UNSPECIFIED",
+            "ALL",
+            "MAIN_CONVERSATIONS",
+            "FOR_YOU",
+            "OFF"
+          ],
+          "enumDescriptions": [
+            "Reserved.",
+            "Notifications are triggered by @mentions, followed threads, first message of new threads. All new threads are automatically followed, unless manually unfollowed by the user.",
+            "The notification is triggered by @mentions, followed threads, first message of new threads. Not available for 1:1 direct messages.",
+            "The notification is triggered by @mentions, followed threads. Not available for 1:1 direct messages.",
+            "Notification is off."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
