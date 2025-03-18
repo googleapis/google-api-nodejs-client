@@ -180,6 +180,31 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
+        "getAutomaticImprovements": {
+          "description": "Retrieves the automatic improvements of an account.",
+          "flatPath": "accounts/v1beta/accounts/{accountsId}/automaticImprovements",
+          "httpMethod": "GET",
+          "id": "merchantapi.accounts.getAutomaticImprovements",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The resource name of the automatic improvements. Format: `accounts/{account}/automaticImprovements`",
+              "location": "path",
+              "pattern": "^accounts/[^/]+/automaticImprovements$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "accounts/v1beta/{+name}",
+          "response": {
+            "$ref": "AutomaticImprovements"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
         "list": {
           "description": "Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.",
           "flatPath": "accounts/v1beta/accounts",
@@ -277,6 +302,40 @@
           },
           "response": {
             "$ref": "Account"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "updateAutomaticImprovements": {
+          "description": "Updates the automatic improvements of an account.",
+          "flatPath": "accounts/v1beta/accounts/{accountsId}/automaticImprovements",
+          "httpMethod": "PATCH",
+          "id": "merchantapi.accounts.updateAutomaticImprovements",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Identifier. The resource name of the automatic improvements. Format: `accounts/{account}/automaticImprovements`.",
+              "location": "path",
+              "pattern": "^accounts/[^/]+/automaticImprovements$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `item_updates` - `item_updates.account_level_settings` - `image_improvements` - `image_improvements.account_level_settings` - `shipping_improvements` - `shipping_improvements.allow_shipping_improvements`",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "accounts/v1beta/{+name}",
+          "request": {
+            "$ref": "AutomaticImprovements"
+          },
+          "response": {
+            "$ref": "AutomaticImprovements"
           },
           "scopes": [
             "https://www.googleapis.com/auth/content"
