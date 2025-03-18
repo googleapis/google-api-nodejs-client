@@ -105,6 +105,209 @@
   },
   "protocol": "rest",
   "resources": {
+    "organizations": {
+      "resources": {
+        "locations": {
+          "methods": {
+            "get": {
+              "description": "Gets information about a location.",
+              "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}",
+              "httpMethod": "GET",
+              "id": "networkmanagement.organizations.locations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Resource name for the location.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "Location"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists information about the supported locations for this service.",
+              "flatPath": "v1beta1/organizations/{organizationsId}/locations",
+              "httpMethod": "GET",
+              "id": "networkmanagement.organizations.locations.list",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The resource that owns the locations collection, if applicable.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}/locations",
+              "response": {
+                "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "global": {
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+                      "flatPath": "v1beta1/organizations/{organizationsId}/locations/global/operations/{operationsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "networkmanagement.organizations.locations.global.operations.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be cancelled.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/global/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:cancel",
+                      "request": {
+                        "$ref": "CancelOperationRequest"
+                      },
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                      "flatPath": "v1beta1/organizations/{organizationsId}/locations/global/operations/{operationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "networkmanagement.organizations.locations.global.operations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be deleted.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/global/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1beta1/organizations/{organizationsId}/locations/global/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "networkmanagement.organizations.locations.global.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/global/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                      "flatPath": "v1beta1/organizations/{organizationsId}/locations/global/operations",
+                      "httpMethod": "GET",
+                      "id": "networkmanagement.organizations.locations.global.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}/operations",
+                      "response": {
+                        "$ref": "ListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "projects": {
       "resources": {
         "locations": {
@@ -589,7 +792,7 @@
             "vpcFlowLogsConfigs": {
               "methods": {
                 "create": {
-                  "description": "Creates a new `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Creating a configuration with state=DISABLED will fail. 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - creating another configuration with the same fields but different values for the following fields will fail as well: - name - create_time - update_time - labels - description ",
+                  "description": "Creates a new `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Creating a configuration with state=DISABLED will fail 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - creating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/vpcFlowLogsConfigs",
                   "httpMethod": "POST",
                   "id": "networkmanagement.projects.locations.vpcFlowLogsConfigs.create",
@@ -598,7 +801,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent resource of the VPC Flow Logs configuration to create: `projects/{project_id}/locations/global`",
+                      "description": "Required. The parent resource of the VPC Flow Logs configuration to create: `projects/{project_id}/locations/global` `organizations/{organization_id}/locations/global`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -631,7 +834,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. `VpcFlowLogsConfig` resource name using the form: `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`",
+                      "description": "Required. `VpcFlowLogsConfig` resource name using one of the form: `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}` `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/vpcFlowLogsConfigs/[^/]+$",
                       "required": true,
@@ -656,7 +859,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. `VpcFlowLogsConfig` resource name using the form: `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`",
+                      "description": "Required. `VpcFlowLogsConfig` resource name using the form: `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}` `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/vpcFlowLogsConfigs/[^/]+$",
                       "required": true,
@@ -702,7 +905,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id}/locations/global`",
+                      "description": "Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id}/locations/global` `organizations/{organization_id}/locations/global`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -718,7 +921,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates an existing `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Updating a configuration with state=DISABLED will fail. 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - updating another configuration with the same fields but different values for the following fields will fail as well: - name - create_time - update_time - labels - description ",
+                  "description": "Updates an existing `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Updating a configuration with state=DISABLED will fail 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - updating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/vpcFlowLogsConfigs/{vpcFlowLogsConfigsId}",
                   "httpMethod": "PATCH",
                   "id": "networkmanagement.projects.locations.vpcFlowLogsConfigs.patch",
@@ -727,7 +930,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. Unique name of the configuration using the form: `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`",
+                      "description": "Identifier. Unique name of the configuration using one of the forms: `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}` `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/vpcFlowLogsConfigs/[^/]+$",
                       "required": true,
@@ -758,7 +961,7 @@
       }
     }
   },
-  "revision": "20250108",
+  "revision": "20250305",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -803,7 +1006,8 @@
             "SOURCE_FORWARDING_RULE_UNSUPPORTED",
             "NON_ROUTABLE_IP_ADDRESS",
             "UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT",
-            "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG"
+            "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG",
+            "NO_SERVERLESS_IP_RANGES"
           ],
           "enumDeprecated": [
             false,
@@ -815,6 +1019,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -879,7 +1084,8 @@
             "Aborted because tests with a forwarding rule as a source are not supported.",
             "Aborted because one of the endpoints is a non-routable IP address (loopback, link-local, etc).",
             "Aborted due to an unknown issue in the Google-managed project.",
-            "Aborted due to an unsupported configuration of the Google-managed project."
+            "Aborted due to an unsupported configuration of the Google-managed project.",
+            "Aborted because the source endpoint is a Cloud Run revision with direct VPC access enabled, but there are no reserved serverless IP ranges."
           ],
           "type": "string"
         },
@@ -1259,6 +1465,33 @@
       },
       "type": "object"
     },
+    "DirectVpcEgressConnectionInfo": {
+      "description": "For display only. Metadata associated with a serverless direct VPC egress connection.",
+      "id": "DirectVpcEgressConnectionInfo",
+      "properties": {
+        "networkUri": {
+          "description": "URI of direct access network.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Region in which the Direct VPC egress is deployed.",
+          "type": "string"
+        },
+        "selectedIpAddress": {
+          "description": "Selected starting IP address, from the selected IP range.",
+          "type": "string"
+        },
+        "selectedIpRange": {
+          "description": "Selected IP range.",
+          "type": "string"
+        },
+        "subnetworkUri": {
+          "description": "URI of direct access subnetwork.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DropInfo": {
       "description": "Details of the final state \"drop\" and associated resource.",
       "id": "DropInfo",
@@ -1291,6 +1524,7 @@
             "FORWARDING_RULE_MISMATCH",
             "FORWARDING_RULE_NO_INSTANCES",
             "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
+            "INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS",
             "INSTANCE_NOT_RUNNING",
             "GKE_CLUSTER_NOT_RUNNING",
             "CLOUD_SQL_INSTANCE_NOT_RUNNING",
@@ -1377,6 +1611,7 @@
             "Forwarding rule's protocol and ports do not match the packet header.",
             "Forwarding rule does not have backends configured.",
             "Firewalls block the health check probes to the backends and cause the backends to be unavailable for traffic from the load balancer. For more details, see [Health check firewall rules](https://cloud.google.com/load-balancing/docs/health-checks#firewall_rules).",
+            "Matching ingress firewall rules by network tags for packets sent via serverless VPC direct egress is unsupported. Behavior is undefined. https://cloud.google.com/run/docs/configuring/vpc-direct-vpc#limitations",
             "Packet is sent from or to a Compute Engine instance that is not in a running state.",
             "Packet sent from or to a GKE cluster that is not in running state.",
             "Packet sent from or to a Cloud SQL instance that is not in running state.",
@@ -2676,7 +2911,7 @@
           "type": "string"
         },
         "networkUri": {
-          "description": "URI of a Redis Cluster network in format \"projects/{project_id}/global/networks/{network_id}\".",
+          "description": "URI of the network containing the Redis Cluster endpoints in format \"projects/{project_id}/global/networks/{network_id}\".",
           "type": "string"
         },
         "secondaryEndpointIpAddress": {
@@ -2908,6 +3143,17 @@
       },
       "type": "object"
     },
+    "ServerlessExternalConnectionInfo": {
+      "description": "For display only. Metadata associated with a serverless public connection.",
+      "id": "ServerlessExternalConnectionInfo",
+      "properties": {
+        "selectedIpAddress": {
+          "description": "Selected starting IP address, from the Google dynamic address pool.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServerlessNegInfo": {
       "description": "For display only. Metadata associated with the serverless network endpoint group backend.",
       "id": "ServerlessNegInfo",
@@ -2998,6 +3244,10 @@
           "description": "A description of the step. Usually this is a summary of the state.",
           "type": "string"
         },
+        "directVpcEgressConnection": {
+          "$ref": "DirectVpcEgressConnectionInfo",
+          "description": "Display information of a serverless direct VPC egress connection."
+        },
         "drop": {
           "$ref": "DropInfo",
           "description": "Display information of the final state \"drop\" and reason."
@@ -3067,6 +3317,10 @@
           "$ref": "RouteInfo",
           "description": "Display information of a Compute Engine route."
         },
+        "serverlessExternalConnection": {
+          "$ref": "ServerlessExternalConnectionInfo",
+          "description": "Display information of a serverless public (external) connection."
+        },
         "serverlessNeg": {
           "$ref": "ServerlessNegInfo",
           "description": "Display information of a Serverless network endpoint group backend. Used only for return traces."
@@ -3101,6 +3355,8 @@
             "ARRIVE_AT_VPN_GATEWAY",
             "ARRIVE_AT_VPN_TUNNEL",
             "ARRIVE_AT_VPC_CONNECTOR",
+            "DIRECT_VPC_EGRESS_CONNECTION",
+            "SERVERLESS_EXTERNAL_CONNECTION",
             "NAT",
             "PROXY_CONNECTION",
             "DELIVER",
@@ -3143,6 +3399,8 @@
             false,
             false,
             false,
+            false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3173,6 +3431,8 @@
             "Forwarding state: arriving at a Cloud VPN gateway.",
             "Forwarding state: arriving at a Cloud VPN tunnel.",
             "Forwarding state: arriving at a VPC connector.",
+            "Forwarding state: for packets originating from a serverless endpoint forwarded through Direct VPC egress.",
+            "Forwarding state: for packets originating from a serverless endpoint forwarded through public (external) connectivity.",
             "Transition state: packet header translated.",
             "Transition state: original connection is terminated and a new proxied connection is initiated.",
             "Final state: packet could be delivered.",
@@ -3363,7 +3623,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Identifier. Unique name of the configuration using the form: `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`",
+          "description": "Identifier. Unique name of the configuration using one of the forms: `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}` `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`",
           "type": "string"
         },
         "state": {
