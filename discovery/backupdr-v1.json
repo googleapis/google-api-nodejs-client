@@ -1658,6 +1658,56 @@
                 }
               }
             },
+            "resourceBackupConfigs": {
+              "methods": {
+                "list": {
+                  "description": "Lists ResourceBackupConfigs.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/resourceBackupConfigs",
+                  "httpMethod": "GET",
+                  "id": "backupdr.projects.locations.resourceBackupConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location for which to retrieve resource backup configs. Format: 'projects/{project_id}/locations/{location}'. In Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/resourceBackupConfigs",
+                  "response": {
+                    "$ref": "ListResourceBackupConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "serviceConfig": {
               "methods": {
                 "initialize": {
@@ -1695,7 +1745,7 @@
       }
     }
   },
-  "revision": "20241204",
+  "revision": "20250305",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -2282,6 +2332,95 @@
       },
       "type": "object"
     },
+    "BackupConfigDetails": {
+      "description": "BackupConfigDetails has information about how the resource is configured for backups and about the most recent backup taken for this configuration.",
+      "id": "BackupConfigDetails",
+      "properties": {
+        "applicableResource": {
+          "description": "Output only. The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format) of the resource that is applicable for the backup configuration. Example: \"//compute.googleapis.com/projects/{project}/zones/{zone}/instances/{instance}\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "backupConfigSource": {
+          "description": "Output only. The full resource name of the backup config source resource. For example, \"//backupdr.googleapis.com/v1/projects/{project}/locations/{region}/backupPlans/{backupplanId}\" or \"//compute.googleapis.com/projects/{project}/locations/{region}/resourcePolicies/{resourcePolicyId}\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "backupConfigSourceDisplayName": {
+          "description": "Output only. The display name of the backup config source resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "backupDrPlanConfig": {
+          "$ref": "BackupDrPlanConfig",
+          "description": "Backup and DR's Backup Plan specific data."
+        },
+        "backupDrTemplateConfig": {
+          "$ref": "BackupDrTemplateConfig",
+          "description": "Backup and DR's Template specific data."
+        },
+        "backupLocations": {
+          "description": "The locations where the backups are to be stored.",
+          "items": {
+            "$ref": "BackupLocation"
+          },
+          "type": "array"
+        },
+        "backupVault": {
+          "description": "Output only. The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format) of the backup vault that will store the backups generated through this backup configuration. Example: \"//backupdr.googleapis.com/v1/projects/{project}/locations/{region}/backupVaults/{backupvaultId}\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "latestSuccessfulBackupTime": {
+          "description": "Output only. Timestamp of the latest successful backup created via this backup configuration.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pitrSettings": {
+          "$ref": "PitrSettings",
+          "description": "Output only. Point in time recovery settings of the backup configuration resource.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The state of the backup config resource.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "INACTIVE",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Backup config state not set.",
+            "The config is in an active state protecting the resource",
+            "The config is currently not protecting the resource. Either because it is disabled or the owning project has been deleted without cleanup of the actual resource.",
+            "The config still exists but because of some error state it is not protecting the resource. Like the source project is deleted. For eg. PlanAssociation, BackupPlan is deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of the backup config resource.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "CLOUD_SQL_INSTANCE_BACKUP_CONFIG",
+            "COMPUTE_ENGINE_RESOURCE_POLICY",
+            "BACKUPDR_BACKUP_PLAN",
+            "BACKUPDR_TEMPLATE"
+          ],
+          "enumDescriptions": [
+            "Backup config type is unspecified.",
+            "Backup config is Cloud SQL instance's automated backup config.",
+            "Backup config is Compute Engine Resource Policy.",
+            "Backup config is Backup and DR's Backup Plan.",
+            "Backup config is Backup and DR's Template."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BackupConfigInfo": {
       "description": "BackupConfigInfo has information about how the resource is configured for Backup and about the most recent backup to this vault.",
       "id": "BackupConfigInfo",
@@ -2321,6 +2460,90 @@
         "lastSuccessfulBackupConsistencyTime": {
           "description": "Output only. If the last backup were successful, this field has the consistency date.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastSuccessfulLogBackupConsistencyTime": {
+          "description": "Output only. If the last log backup were successful, this field has the consistency date.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackupDrPlanConfig": {
+      "description": "BackupDrPlanConfig has additional information about Backup and DR's Plan backup configuration.",
+      "id": "BackupDrPlanConfig",
+      "properties": {
+        "backupDrPlanRules": {
+          "description": "Backup rules of the backup plan resource.",
+          "items": {
+            "$ref": "BackupDrPlanRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BackupDrPlanRule": {
+      "description": "BackupDrPlanRule has rule specific information of the backup plan resource.",
+      "id": "BackupDrPlanRule",
+      "properties": {
+        "lastSuccessfulBackupTime": {
+          "description": "Output only. Timestamp of the latest successful backup created via this backup rule.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ruleId": {
+          "description": "Output only. Unique Id of the backup rule.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackupDrTemplateConfig": {
+      "description": "BackupDrTemplateConfig has additional information about Backup and DR's Template backup configuration.",
+      "id": "BackupDrTemplateConfig",
+      "properties": {
+        "firstPartyManagementUri": {
+          "description": "Output only. The URI of the BackupDr template resource for the first party identity users.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "thirdPartyManagementUri": {
+          "description": "Output only. The URI of the BackupDr template resource for the third party identity users.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackupLocation": {
+      "description": "BackupLocation represents a cloud location where a backup can be stored.",
+      "id": "BackupLocation",
+      "properties": {
+        "locationId": {
+          "description": "Output only. The id of the cloud location. Example: \"us-central1\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of the location.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ZONAL",
+            "REGIONAL",
+            "MULTI_REGIONAL"
+          ],
+          "enumDescriptions": [
+            "Location type is unspecified.",
+            "Location type is zonal.",
+            "Location type is regional.",
+            "Location type is multi regional."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -2395,7 +2618,7 @@
           "type": "string"
         },
         "resourceType": {
-          "description": "Required. The resource type to which the `BackupPlan` will be applied. Examples include, \"compute.googleapis.com/Instance\", \"sqladmin.googleapis.com/Instance\", or \"alloydb.googleapis.com/Cluster\".",
+          "description": "Required. ",
           "type": "string"
         },
         "state": {
@@ -2455,7 +2678,7 @@
           "type": "string"
         },
         "resourceType": {
-          "description": "Required. Immutable. Resource type of workload on which backupplan is applied",
+          "description": "Required. Immutable. ",
           "type": "string"
         },
         "rulesConfigInfo": {
@@ -3677,6 +3900,24 @@
       },
       "type": "object"
     },
+    "ListResourceBackupConfigsResponse": {
+      "description": "Response for ListResourceBackupConfigs.",
+      "id": "ListResourceBackupConfigsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "resourceBackupConfigs": {
+          "description": "The list of ResourceBackupConfigs for the specified scope.",
+          "items": {
+            "$ref": "ResourceBackupConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Location": {
       "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
@@ -4131,6 +4372,19 @@
       },
       "type": "object"
     },
+    "PitrSettings": {
+      "description": "Point in time recovery settings of the backup configuration resource.",
+      "id": "PitrSettings",
+      "properties": {
+        "retentionDays": {
+          "description": "Output only. Number of days to retain the backup.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Policy": {
       "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
@@ -4169,6 +4423,71 @@
         "requestId": {
           "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceBackupConfig": {
+      "description": "ResourceBackupConfig represents a resource along with its backup configurations.",
+      "id": "ResourceBackupConfig",
+      "properties": {
+        "backupConfigsDetails": {
+          "description": "Backup configurations applying to the target resource, including those targeting its related/child resources. For example, backup configuration applicable to Compute Engine disks will be populated in this field for a Compute Engine VM which has the disk associated.",
+          "items": {
+            "$ref": "BackupConfigDetails"
+          },
+          "type": "array"
+        },
+        "backupConfigured": {
+          "description": "Output only. Whether the target resource is configured for backup. This is true if the backup_configs_details is not empty.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the ResourceBackupConfig. Format: projects/{project}/locations/{location}/resourceBackupConfigs/{uid}",
+          "type": "string"
+        },
+        "targetResource": {
+          "description": "Output only. The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format) of the cloud resource that this configuration applies to. Supported resource types are ResourceBackupConfig.ResourceType.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetResourceDisplayName": {
+          "description": "Output only. The human friendly name of the target resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetResourceLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels associated with the target resource.",
+          "type": "object"
+        },
+        "targetResourceType": {
+          "description": "Output only. The type of the target resource.",
+          "enum": [
+            "RESOURCE_TYPE_UNSPECIFIED",
+            "CLOUD_SQL_INSTANCE",
+            "COMPUTE_ENGINE_VM"
+          ],
+          "enumDescriptions": [
+            "Resource type not set.",
+            "Cloud SQL instance.",
+            "Compute Engine VM."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. The unique identifier of the resource backup config.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vaulted": {
+          "description": "Output only. Whether the target resource is protected by a backup vault. This is true if the backup_configs_details is not empty and any of the ResourceBackupConfig.backup_configs_details has a backup configuration with BackupConfigDetails.backup_vault set. set.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4462,7 +4781,7 @@
           "type": "array"
         },
         "hourlyFrequency": {
-          "description": "Optional. Specifies frequency for hourly backups. A hourly frequency of 2 means jobs will run every 2 hours from start time till end time defined. This is required for `recurrence_type`, `HOURLY` and is not applicable otherwise. A validation error will occur if a value is supplied and `recurrence_type` is not `HOURLY`. Value of hourly frequency should be between 6 and 23. Reason for limit : We found that there is bandwidth limitation of 3GB/S for GMI while taking a backup and 5GB/S while doing a restore. Given the amount of parallel backups and restore we are targeting, this will potentially take the backup time to mins and hours (in worst case scenario).",
+          "description": "Optional. Specifies frequency for hourly backups. A hourly frequency of 2 means jobs will run every 2 hours from start time till end time defined. This is required for `recurrence_type`, `HOURLY` and is not applicable otherwise. A validation error will occur if a value is supplied and `recurrence_type` is not `HOURLY`. Value of hourly frequency should be between 4 and 23. Reason for limit : We found that there is bandwidth limitation of 3GB/S for GMI while taking a backup and 5GB/S while doing a restore. Given the amount of parallel backups and restore we are targeting, this will potentially take the backup time to mins and hours (in worst case scenario).",
           "format": "int32",
           "type": "integer"
         },
