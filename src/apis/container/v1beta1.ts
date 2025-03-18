@@ -351,7 +351,7 @@ export namespace container_v1beta1 {
      */
     description?: string | null;
     /**
-     * A URL to a public documnetation, which addresses resolving this issue.
+     * A URL to a public documentation, which addresses resolving this issue.
      */
     documentationUrl?: string | null;
     /**
@@ -366,6 +366,15 @@ export namespace container_v1beta1 {
      * The name of the resources which are subject to this issue.
      */
     subjects?: string[] | null;
+  }
+  /**
+   * AutopilotConfig contains configuration of autopilot feature for this nodepool.
+   */
+  export interface Schema$AutopilotConfig {
+    /**
+     * Denotes that nodes belonging to this node pool are Autopilot nodes.
+     */
+    enabled?: boolean | null;
   }
   /**
    * AutopilotConversionStatus represents conversion status.
@@ -562,7 +571,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$CertificateAuthorityDomainConfig {
     /**
-     * List of fully qualified domain names (FQDN). Specifying port is supported. Wilcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000
+     * List of fully qualified domain names (FQDN). Specifying port is supported. Wildcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000
      */
     fqdns?: string[] | null;
     /**
@@ -707,7 +716,7 @@ export namespace container_v1beta1 {
      */
     enableKubernetesAlpha?: boolean | null;
     /**
-     * Enable the ability to use Cloud TPUs in this cluster. This field is deprecated, use tpu_config.enabled instead.
+     * Enable the ability to use Cloud TPUs in this cluster. This field is deprecated, use tpu_config.enabled instead. This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.
      */
     enableTpu?: boolean | null;
     /**
@@ -931,11 +940,11 @@ export namespace container_v1beta1 {
      */
     subnetwork?: string | null;
     /**
-     * Configuration for Cloud TPU support;
+     * Configuration for Cloud TPU support; This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.
      */
     tpuConfig?: Schema$TpuConfig;
     /**
-     * Output only. The IP address range of the Cloud TPUs in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`).
+     * Output only. The IP address range of the Cloud TPUs in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.
      */
     tpuIpv4CidrBlock?: string | null;
     /**
@@ -1275,7 +1284,7 @@ export namespace container_v1beta1 {
      */
     desiredStackType?: string | null;
     /**
-     * The desired Cloud TPU configuration.
+     * The desired Cloud TPU configuration. This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.
      */
     desiredTpuConfig?: Schema$TpuConfig;
     /**
@@ -1740,7 +1749,7 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
-   * GetJSONWebKeysResponse is a valid JSON Web Key Set as specififed in rfc 7517
+   * GetJSONWebKeysResponse is a valid JSON Web Key Set as specified in rfc 7517
    */
   export interface Schema$GetJSONWebKeysResponse {
     /**
@@ -2133,7 +2142,7 @@ export namespace container_v1beta1 {
      */
     hugepages?: Schema$HugepagesConfig;
     /**
-     * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse kernel.shmmni kernel.shmmax kernel.shmall
+     * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall vm.max_map_count
      */
     sysctls?: {[key: string]: string} | null;
   }
@@ -2349,7 +2358,7 @@ export namespace container_v1beta1 {
      */
     enabled?: boolean | null;
     /**
-     * Whether master is accessbile via Google Compute Engine Public IP addresses.
+     * Whether master is accessible via Google Compute Engine Public IP addresses.
      */
     gcpPublicCidrsAccessEnabled?: boolean | null;
     /**
@@ -2475,7 +2484,7 @@ export namespace container_v1beta1 {
      */
     inTransitEncryptionConfig?: string | null;
     /**
-     * Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network
+     * Output only. The relative name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network
      */
     network?: string | null;
     /**
@@ -2645,7 +2654,7 @@ export namespace container_v1beta1 {
      */
     localSsdCount?: number | null;
     /**
-     * Specifies which method should be used for encrypting the Local SSDs attahced to the node.
+     * Specifies which method should be used for encrypting the Local SSDs attached to the node.
      */
     localSsdEncryptionMode?: string | null;
     /**
@@ -2771,6 +2780,18 @@ export namespace container_v1beta1 {
    */
   export interface Schema$NodeKubeletConfig {
     /**
+     * Optional. Defines a comma-separated allowlist of unsafe sysctls or sysctl patterns (ending in `*`). The unsafe namespaced sysctl groups are `kernel.shm*`, `kernel.msg*`, `kernel.sem`, `fs.mqueue.*`, and `net.*`. Leaving this allowlist empty means they cannot be set on Pods. To allow certain sysctls or sysctl patterns to be set on Pods, list them separated by commas. For example: `kernel.msg*,net.ipv4.route.min_pmtu`. See https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/ for more details.
+     */
+    allowedUnsafeSysctls?: string[] | null;
+    /**
+     * Optional. Defines the maximum number of container log files that can be present for a container. See https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation The value must be an integer between 2 and 10, inclusive. The default value is 5 if unspecified.
+     */
+    containerLogMaxFiles?: number | null;
+    /**
+     * Optional. Defines the maximum size of the container log file before it is rotated. See https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation Valid format is positive number + unit, e.g. 100Ki, 10Mi. Valid units are Ki, Mi, Gi. The value must be between 10Mi and 500Mi, inclusive. Note that the total container log size (container_log_max_size * container_log_max_files) cannot exceed 1% of the total storage of the node, to avoid disk pressure caused by log files. The default value is 10Mi if unspecified.
+     */
+    containerLogMaxSize?: string | null;
+    /**
      * Enable CPU CFS quota enforcement for containers that specify CPU limits. This option is enabled by default which makes kubelet use CFS quota (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to enforce container CPU limits. Otherwise, CPU limits will not be enforced at all. Disable this option to mitigate CPU throttling problems while still having your pods to be in Guaranteed QoS class by specifying the CPU limits. The default value is 'true' if unspecified.
      */
     cpuCfsQuota?: boolean | null;
@@ -2782,6 +2803,22 @@ export namespace container_v1beta1 {
      * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. * "none": the default, which represents the existing scheduling behavior. * "static": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.
      */
     cpuManagerPolicy?: string | null;
+    /**
+     * Optional. Defines the percent of disk usage after which image garbage collection is always run. The percent is calculated as this field value out of 100. The value must be between 10 and 85, inclusive and greater than image_gc_low_threshold_percent. The default value is 85 if unspecified.
+     */
+    imageGcHighThresholdPercent?: number | null;
+    /**
+     * Optional. Defines the percent of disk usage before which image garbage collection is never run. Lowest disk usage to garbage collect to. The percent is calculated as this field value out of 100. The value must be between 10 and 85, inclusive and smaller than image_gc_high_threshold_percent. The default value is 80 if unspecified.
+     */
+    imageGcLowThresholdPercent?: number | null;
+    /**
+     * Optional. Defines the maximum age an image can be unused before it is garbage collected. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300s", "1.5h", and "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". The value must be a positive duration greater than image_minimum_gc_age or "0s". The default value is "0s" if unspecified, which disables this field, meaning images won't be garbage collected based on being unused for too long.
+     */
+    imageMaximumGcAge?: string | null;
+    /**
+     * Optional. Defines the minimum age for an unused image before it is garbage collected. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300s", "1.5h", and "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". The value must be a positive duration less than or equal to 2 minutes. The default value is "2m0s" if unspecified.
+     */
+    imageMinimumGcAge?: string | null;
     /**
      * Enable or disable Kubelet read only port.
      */
@@ -2862,6 +2899,10 @@ export namespace container_v1beta1 {
    * NodePool contains the name and configuration for a cluster's node pool. Node pools are a set of nodes (i.e. VM's), with a common configuration and specification, under the control of the cluster master. They may have a set of Kubernetes labels applied to them, which may be used to reference them during pod scheduling. They may also be resized up or down, to accommodate the workload.
    */
   export interface Schema$NodePool {
+    /**
+     * Specifies the autopilot configuration for this node pool. This field is exclusively reserved for Cluster Autoscaler to implement go/gke-managed-nodes-ccc-api
+     */
+    autopilotConfig?: Schema$AutopilotConfig;
     /**
      * Autoscaler configuration for this NodePool. Autoscaler is enabled only if a valid configuration is present.
      */
@@ -4179,7 +4220,7 @@ export namespace container_v1beta1 {
     startTime?: string | null;
   }
   /**
-   * Configuration for Cloud TPU.
+   * Configuration for Cloud TPU. This message is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.
    */
   export interface Schema$TpuConfig {
     /**
@@ -4741,6 +4782,10 @@ export namespace container_v1beta1 {
      * If true, workloads can use NET_ADMIN capability.
      */
     allowNetAdmin?: boolean | null;
+    /**
+     * If true, enables the GCW Auditor that audits workloads on standard clusters.
+     */
+    autopilotCompatibilityAuditingEnabled?: boolean | null;
   }
 
   export class Resource$Projects {
