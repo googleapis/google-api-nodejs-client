@@ -131,6 +131,7 @@ export namespace walletobjects_v1 {
     smarttap: Resource$Smarttap;
     transitclass: Resource$Transitclass;
     transitobject: Resource$Transitobject;
+    walletobjects: Resource$Walletobjects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -157,6 +158,7 @@ export namespace walletobjects_v1 {
       this.smarttap = new Resource$Smarttap(this.context);
       this.transitclass = new Resource$Transitclass(this.context);
       this.transitobject = new Resource$Transitobject(this.context);
+      this.walletobjects = new Resource$Walletobjects(this.context);
     }
   }
 
@@ -2147,7 +2149,7 @@ export namespace walletobjects_v1 {
     sortIndex?: number | null;
   }
   /**
-   * Wrapping type for Google hosted images. Next ID: 7
+   * Wrapping type for Google hosted images.
    */
   export interface Schema$Image {
     /**
@@ -3584,6 +3586,27 @@ export namespace walletobjects_v1 {
      */
     animationType?: string | null;
   }
+  /**
+   * Request to send a private pass update notice information to Google, so that devices can then fetch the notice prompting the user to update a pass.
+   */
+  export interface Schema$SetPassUpdateNoticeRequest {
+    /**
+     * Required. A fully qualified identifier of the pass that the issuer wants to notify the pass holder(s) about. Formatted as .
+     */
+    externalPassId?: string | null;
+    /**
+     * Required. The JWT signature of the updated pass that the issuer wants to notify Google about. Only devices that report a different JWT signature than this JWT signature will receive the update notification.
+     */
+    updatedPassJwtSignature?: string | null;
+    /**
+     * Required. The issuer endpoint URI the pass holder needs to follow in order to receive an updated pass JWT. It can not contain any sensitive information. The endpoint needs to authenticate the user before giving the user the updated JWT. Example update URI https://someissuer.com/update/passId=someExternalPassId
+     */
+    updateUri?: string | null;
+  }
+  /**
+   * A response to a request to notify Google of an awaiting update to a private pass.
+   */
+  export interface Schema$SetPassUpdateNoticeResponse {}
   export interface Schema$SignUpInfo {
     /**
      * ID of the class the user can sign up for.
@@ -14291,5 +14314,136 @@ export namespace walletobjects_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TransitObject;
+  }
+
+  export class Resource$Walletobjects {
+    context: APIRequestContext;
+    v1: Resource$Walletobjects$V1;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.v1 = new Resource$Walletobjects$V1(this.context);
+    }
+  }
+
+  export class Resource$Walletobjects$V1 {
+    context: APIRequestContext;
+    privateContent: Resource$Walletobjects$V1$Privatecontent;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.privateContent = new Resource$Walletobjects$V1$Privatecontent(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Walletobjects$V1$Privatecontent {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Provide Google with information about awaiting private pass update. This will allow Google to provide the update notification to the device that currently holds this pass.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setPassUpdateNotice(
+      params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setPassUpdateNotice(
+      params?: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SetPassUpdateNoticeResponse>;
+    setPassUpdateNotice(
+      params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setPassUpdateNotice(
+      params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>,
+      callback: BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>
+    ): void;
+    setPassUpdateNotice(
+      params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
+      callback: BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>
+    ): void;
+    setPassUpdateNotice(
+      callback: BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>
+    ): void;
+    setPassUpdateNotice(
+      paramsOrCallback?:
+        | Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice
+        | BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SetPassUpdateNoticeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SetPassUpdateNoticeResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://walletobjects.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/walletobjects/v1/privateContent/setPassUpdateNotice'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SetPassUpdateNoticeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SetPassUpdateNoticeResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetPassUpdateNoticeRequest;
   }
 }
