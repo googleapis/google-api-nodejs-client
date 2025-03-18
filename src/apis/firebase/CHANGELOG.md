@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.6.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v6.6.0...firebase-v6.6.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* **firebase:** update the API ([1cabcab](https://github.com/googleapis/google-api-nodejs-client/commit/1cabcab245e451ed59cae1f9f04cd5ae9c682eb3))
+
 ## [6.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v6.5.0...firebase-v6.6.0) (2025-02-04)
 
 

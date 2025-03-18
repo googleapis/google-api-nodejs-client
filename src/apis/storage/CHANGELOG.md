@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.8.1](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v15.8.0...storage-v15.8.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* **storage:** update the API ([6e6acfc](https://github.com/googleapis/google-api-nodejs-client/commit/6e6acfc0934a86ee93fd7cfe1269b9d8ca39654a))
+
 ## [15.8.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v15.7.0...storage-v15.8.0) (2025-02-04)
 
 

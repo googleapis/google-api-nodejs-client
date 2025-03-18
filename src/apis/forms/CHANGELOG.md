@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v2.1.0...forms-v2.2.0) (2025-03-18)
+
+
+### Features
+
+* **forms:** update the API ([8c73626](https://github.com/googleapis/google-api-nodejs-client/commit/8c73626132b8f3179bf49326c9a7e9efdb0ee82e))
+
 ## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v2.0.7...forms-v2.1.0) (2025-02-04)
 
 
