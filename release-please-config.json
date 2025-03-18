@@ -308,6 +308,7 @@
     "src/apis/netapp": {},
     "src/apis/parallelstore": {},
     "src/apis/securityposture": {},
-    "src/apis/areainsights": {}
+    "src/apis/areainsights": {},
+    "src/apis/managedkafka": {}
   }
 }
