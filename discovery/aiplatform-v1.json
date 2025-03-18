@@ -24114,7 +24114,7 @@
           "type": "integer"
         },
         "requiredReplicaCount": {
-          "description": "Optional. Number of required available replicas for the deployment to succeed. This field is only needed when partial model deployment/mutation is desired. If set, the model deploy/mutate operation will succeed once available_replica_count reaches required_replica_count, and the rest of the replicas will be retried. If not set, the default required_replica_count will be min_replica_count.",
+          "description": "Optional. Number of required available replicas for the deployment to succeed. This field is only needed when partial deployment/mutation is desired. If set, the deploy/mutate operation will succeed once available_replica_count reaches required_replica_count, and the rest of the replicas will be retried. If not set, the default required_replica_count will be min_replica_count.",
           "format": "int32",
           "type": "integer"
         },
@@ -28650,6 +28650,59 @@
             "Type for Provisioned Throughput traffic."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GenerateVideoResponse": {
+      "description": "Generate video response.",
+      "id": "GoogleCloudAiplatformV1GenerateVideoResponse",
+      "properties": {
+        "generatedSamples": {
+          "deprecated": true,
+          "description": "The cloud storage uris of the generated videos.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "raiMediaFilteredCount": {
+          "description": "Returns if any videos were filtered due to RAI policies.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "raiMediaFilteredReasons": {
+          "description": "Returns rai failure reasons if any.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "videos": {
+          "description": "List of video bytes or Cloud Storage URIs of the generated videos.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1GenerateVideoResponseVideo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GenerateVideoResponseVideo": {
+      "description": "A generated video.",
+      "id": "GoogleCloudAiplatformV1GenerateVideoResponseVideo",
+      "properties": {
+        "bytesBase64Encoded": {
+          "description": "Base64 encoded bytes string representing the video.",
+          "type": "string"
+        },
+        "gcsUri": {
+          "description": "Cloud Storage URI where the generated video is written.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The MIME type of the content of the video. - video/mp4",
           "type": "string"
         }
       },
@@ -37732,6 +37785,27 @@
         "packageSpec": {
           "$ref": "GoogleCloudAiplatformV1ReasoningEngineSpecPackageSpec",
           "description": "Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpec": {
+      "description": "The specification of a Reasoning Engine deployment.",
+      "id": "GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpec",
+      "properties": {
+        "env": {
+          "description": "Optional. Environment variables to be set with the Reasoning Engine deployment. The environment variables can be updated through the UpdateReasoningEngine API.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1EnvVar"
+          },
+          "type": "array"
+        },
+        "secretEnv": {
+          "description": "Optional. Environment variables where the value is a secret in Cloud Secret Manager. To use this feature, add 'Secret Manager Secret Accessor' role (roles/secretmanager.secretAccessor) to AI Platform Reasoning Engine Service Agent.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1SecretEnvVar"
+          },
+          "type": "array"
         }
       },
       "type": "object"
