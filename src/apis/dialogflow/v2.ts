@@ -204,7 +204,7 @@ export namespace dialogflow_v2 {
      */
     noSpeechTimeout?: string | null;
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
+     * Use timeout based endpointing, interpreting endpointer sensitivity as seconds of timeout value.
      */
     useTimeoutBasedEndpointing?: boolean | null;
   }
@@ -332,7 +332,7 @@ export namespace dialogflow_v2 {
      */
     noSpeechTimeout?: string | null;
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
+     * Use timeout based endpointing, interpreting endpointer sensitivity as seconds of timeout value.
      */
     useTimeoutBasedEndpointing?: boolean | null;
   }
@@ -1195,7 +1195,7 @@ export namespace dialogflow_v2 {
      */
     transitionRouteGroups?: string[] | null;
     /**
-     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
+     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evaluated in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute[];
   }
@@ -1827,7 +1827,7 @@ export namespace dialogflow_v2 {
      */
     clientId?: string | null;
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      */
     clientSecret?: string | null;
     /**
@@ -2834,7 +2834,7 @@ export namespace dialogflow_v2 {
      */
     transitionRouteGroups?: string[] | null;
     /**
-     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
+     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evaluated in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3TransitionRoute[];
   }
@@ -3415,7 +3415,7 @@ export namespace dialogflow_v2 {
      */
     clientId?: string | null;
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      */
     clientSecret?: string | null;
     /**
@@ -3669,7 +3669,7 @@ export namespace dialogflow_v2 {
      */
     answerRelevance?: string | null;
     /**
-     * Optional. Whether or not the information in the document is correct. For example: * Query: "Can I return the package in 2 days once received?" * Suggested document says: "Items must be returned/exchanged within 60 days of the purchase date." * Ground truth: "No return or exchange is allowed." * [document_correctness]: INCORRECT
+     * Optional. Whether or not the information in the document is correct. For example: * Query: "Can I return the package in 2 days once received?" * Suggested document says: "Items must be returned/exchanged within 60 days of the purchase date." * Ground truth: "No return or exchange is allowed." * document_correctness: INCORRECT
      */
     documentCorrectness?: string | null;
     /**
@@ -4370,6 +4370,15 @@ export namespace dialogflow_v2 {
     source?: string | null;
   }
   /**
+   * Suggestion generated using free form generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1FreeFormSuggestion {
+    /**
+     * Required. Free form suggestion.
+     */
+    response?: string | null;
+  }
+  /**
    * Google Cloud Storage location for the output.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1GcsDestination {
@@ -4377,6 +4386,49 @@ export namespace dialogflow_v2 {
      * Required. The Google Cloud Storage URIs for the output. A URI is of the form: `gs://bucket/object-prefix-or-name` Whether a prefix or name is used depends on the use case. The requesting user must have "write-permission" to the bucket.
      */
     uri?: string | null;
+  }
+  /**
+   * The response message for Conversations.GenerateSuggestions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse {
+    /**
+     * The answers generated for the conversation based on context.
+     */
+    generatorSuggestionAnswers?: Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer[];
+    /**
+     * The name of the latest conversation message used as context for compiling suggestion. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * A GeneratorSuggestion answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer {
+    /**
+     * Answer record that uniquely identifies the suggestion. This can be used to provide suggestion feedback.
+     */
+    answerRecord?: string | null;
+    /**
+     * Suggestion details.
+     */
+    generatorSuggestion?: Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestion;
+    /**
+     * The name of the generator used to generate this suggestion. Format: `projects//locations//generators/`.
+     */
+    sourceGenerator?: string | null;
+  }
+  /**
+   * Suggestion generated using a Generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestion {
+    /**
+     * Optional. Free form suggestion.
+     */
+    freeFormSuggestion?: Schema$GoogleCloudDialogflowV2beta1FreeFormSuggestion;
+    /**
+     * Optional. Suggested summary.
+     */
+    summarySuggestion?: Schema$GoogleCloudDialogflowV2beta1SummarySuggestion;
   }
   /**
    * Output only. Represents a notification sent to Pub/Sub subscribers for agent assistant events in a specific conversation.
@@ -5471,7 +5523,7 @@ export namespace dialogflow_v2 {
      */
     responseMessages?: Schema$GoogleCloudDialogflowV2beta1ResponseMessage[];
     /**
-     * Optional. The time when the message was sent.
+     * Optional. The time when the message was sent. For voice messages, this is the time when an utterance started.
      */
     sendTime?: string | null;
     /**
@@ -5616,7 +5668,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction {}
   /**
-   * Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
+   * Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a Dialogflow CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff {
     /**
@@ -5871,6 +5923,10 @@ export namespace dialogflow_v2 {
      */
     error?: Schema$GoogleRpcStatus;
     /**
+     * Suggestions generated using generators triggered by customer or agent messages.
+     */
+    generateSuggestionsResponse?: Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse;
+    /**
      * SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.
      */
     suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse;
@@ -5928,6 +5984,28 @@ export namespace dialogflow_v2 {
      * Output only. Multiple reply options provided by smart reply service. The order is based on the rank of the model prediction. The maximum number of the returned replies is set in SmartReplyConfig.
      */
     smartReplyAnswers?: Schema$GoogleCloudDialogflowV2beta1SmartReplyAnswer[];
+  }
+  /**
+   * Suggested summary of the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SummarySuggestion {
+    /**
+     * Required. All the parts of generated summary.
+     */
+    summarySections?: Schema$GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection[];
+  }
+  /**
+   * A component of the generated summary.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection {
+    /**
+     * Required. Name of the section.
+     */
+    section?: string | null;
+    /**
+     * Required. Summary text for the section.
+     */
+    summary?: string | null;
   }
   /**
    * A wrapper of repeated TelephonyDtmf digits.
@@ -6076,6 +6154,12 @@ export namespace dialogflow_v2 {
      */
     endTime?: string | null;
     /**
+     * Output only. The context reference updates provided by external systems.
+     */
+    ingestedContextReferences?: {
+      [key: string]: Schema$GoogleCloudDialogflowV2ConversationContextReference;
+    } | null;
+    /**
      * Output only. The current state of the Conversation.
      */
     lifecycleState?: string | null;
@@ -6104,6 +6188,44 @@ export namespace dialogflow_v2 {
      * Optional. List of message transcripts in the conversation.
      */
     messageEntries?: Schema$GoogleCloudDialogflowV2MessageEntry[];
+  }
+  /**
+   * Represents a section of ingested context information.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ConversationContextReference {
+    /**
+     * Required. The list of content updates for a context reference.
+     */
+    contextContents?: Schema$GoogleCloudDialogflowV2ConversationContextReferenceContextContent[];
+    /**
+     * Output only. The time the context reference was first created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The language of the information ingested, defaults to "en-US" if not set.
+     */
+    languageCode?: string | null;
+    /**
+     * Required. The mode in which context reference contents are updated.
+     */
+    updateMode?: string | null;
+  }
+  /**
+   * Contents ingested.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ConversationContextReferenceContextContent {
+    /**
+     * Required. The information ingested in a single request.
+     */
+    content?: string | null;
+    /**
+     * Required. The format of the ingested string.
+     */
+    contentFormat?: string | null;
+    /**
+     * Output only. The time when this information was incorporated into the relevant context reference.
+     */
+    ingestionTime?: string | null;
   }
   /**
    * Represents a conversation dataset that a user imports raw data into. The data inside ConversationDataset can not be changed after ImportConversationData finishes (and calling ImportConversationData on a dataset that already has data is not allowed).
@@ -6246,7 +6368,7 @@ export namespace dialogflow_v2 {
      */
     name?: string | null;
     /**
-     * Output only. Human eval template in csv format. It tooks real-world conversations provided through input dataset, generates example suggestions for customer to verify quality of the model. For Smart Reply, the generated csv file contains columns of Context, (Suggestions,Q1,Q2)*3, Actual reply. Context contains at most 10 latest messages in the conversation prior to the current suggestion. Q1: "Would you send it as the next message of agent?" Evaluated based on whether the suggest is appropriate to be sent by agent in current context. Q2: "Does the suggestion move the conversation closer to resolution?" Evaluated based on whether the suggestion provide solutions, or answers customer's question or collect information from customer to resolve the customer's issue. Actual reply column contains the actual agent reply sent in the context.
+     * Output only. Human eval template in csv format. It takes real-world conversations provided through input dataset, generates example suggestions for customer to verify quality of the model. For Smart Reply, the generated csv file contains columns of Context, (Suggestions,Q1,Q2)*3, Actual reply. Context contains at most 10 latest messages in the conversation prior to the current suggestion. Q1: "Would you send it as the next message of agent?" Evaluated based on whether the suggest is appropriate to be sent by agent in current context. Q2: "Does the suggestion move the conversation closer to resolution?" Evaluated based on whether the suggestion provide solutions, or answers customer's question or collect information from customer to resolve the customer's issue. Actual reply column contains the actual agent reply sent in the context.
      */
     rawHumanEvalTemplateCsv?: string | null;
     /**
@@ -6747,11 +6869,11 @@ export namespace dialogflow_v2 {
      */
     datasets?: Schema$GoogleCloudDialogflowV2InputDataset[];
     /**
-     * Configuration for smart compose model evalution.
+     * Configuration for smart compose model evaluation.
      */
     smartComposeConfig?: Schema$GoogleCloudDialogflowV2EvaluationConfigSmartComposeConfig;
     /**
-     * Configuration for smart reply model evalution.
+     * Configuration for smart reply model evaluation.
      */
     smartReplyConfig?: Schema$GoogleCloudDialogflowV2EvaluationConfigSmartReplyConfig;
   }
@@ -6897,6 +7019,24 @@ export namespace dialogflow_v2 {
     summarizationSectionList?: Schema$GoogleCloudDialogflowV2SummarizationSectionList;
   }
   /**
+   * Free form generator context that customer can configure.
+   */
+  export interface Schema$GoogleCloudDialogflowV2FreeFormContext {
+    /**
+     * Optional. Free form text input to LLM.
+     */
+    text?: string | null;
+  }
+  /**
+   * Suggestion generated using free form generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2FreeFormSuggestion {
+    /**
+     * Required. Free form suggestion.
+     */
+    response?: string | null;
+  }
+  /**
    * By default, your agent responds to a matched intent with a static response. As an alternative, you can provide a more dynamic response by using fulfillment. When you enable fulfillment for an intent, Dialogflow responds to that intent by calling a service that you define. For example, if an end-user wants to schedule a haircut on Friday, your service can check your database and respond to the end-user with availability information for Friday. For more information, see the [fulfillment guide](https://cloud.google.com/dialogflow/docs/fulfillment-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2Fulfillment {
@@ -6977,6 +7117,12 @@ export namespace dialogflow_v2 {
    * The request message for Conversations.GenerateStatelessSuggestion.
    */
   export interface Schema$GoogleCloudDialogflowV2GenerateStatelessSuggestionRequest {
+    /**
+     * Optional. A section of ingested context information. The key is the name of the context reference and the value contains the contents of the context reference. The key is used to incorporate ingested context references to enhance the generator.
+     */
+    contextReferences?: {
+      [key: string]: Schema$GoogleCloudDialogflowV2ConversationContextReference;
+    } | null;
     /**
      * Optional. Context of the conversation, including transcripts.
      */
@@ -7068,6 +7214,49 @@ export namespace dialogflow_v2 {
     textSections?: {[key: string]: string} | null;
   }
   /**
+   * The request message for Conversations.GenerateSuggestions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GenerateSuggestionsRequest {
+    /**
+     * Optional. The name of the latest conversation message for which the request is triggered. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+    /**
+     * Optional. A list of trigger events. Only generators configured in the conversation_profile whose trigger_event is listed here will be triggered.
+     */
+    triggerEvents?: string[] | null;
+  }
+  /**
+   * The response message for Conversations.GenerateSuggestions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse {
+    /**
+     * The answers generated for the conversation based on context.
+     */
+    generatorSuggestionAnswers?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer[];
+    /**
+     * The name of the latest conversation message used as context for compiling suggestion. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * A GeneratorSuggestion answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer {
+    /**
+     * Answer record that uniquely identifies the suggestion. This can be used to provide suggestion feedback.
+     */
+    answerRecord?: string | null;
+    /**
+     * Suggestion details.
+     */
+    generatorSuggestion?: Schema$GoogleCloudDialogflowV2GeneratorSuggestion;
+    /**
+     * The name of the generator used to generate this suggestion. Format: `projects//locations//generators/`.
+     */
+    sourceGenerator?: string | null;
+  }
+  /**
    * LLM generator.
    */
   export interface Schema$GoogleCloudDialogflowV2Generator {
@@ -7080,6 +7269,10 @@ export namespace dialogflow_v2 {
      */
     description?: string | null;
     /**
+     * Input of free from generator to LLM.
+     */
+    freeFormContext?: Schema$GoogleCloudDialogflowV2FreeFormContext;
+    /**
      * Optional. Inference parameters for this generator.
      */
     inferenceParameter?: Schema$GoogleCloudDialogflowV2InferenceParameter;
@@ -7087,6 +7280,10 @@ export namespace dialogflow_v2 {
      * Output only. Identifier. The resource name of the generator. Format: `projects//locations//generators/`
      */
     name?: string | null;
+    /**
+     * Optional. The published Large Language Model name. * To use the latest model version, specify the model name without version number. Example: `text-bison` * To use a stable model version, specify the version number as well. Example: `text-bison@002`.
+     */
+    publishedModel?: string | null;
     /**
      * Input of prebuilt Summarization feature.
      */
@@ -7104,6 +7301,10 @@ export namespace dialogflow_v2 {
    * Suggestion generated using a Generator.
    */
   export interface Schema$GoogleCloudDialogflowV2GeneratorSuggestion {
+    /**
+     * Optional. Free form suggestion.
+     */
+    freeFormSuggestion?: Schema$GoogleCloudDialogflowV2FreeFormSuggestion;
     /**
      * Optional. Suggested summary.
      */
@@ -7522,6 +7723,28 @@ export namespace dialogflow_v2 {
      * Optional. Top-p changes how the model selects tokens for output. Tokens are selected from most K (see topK parameter) probable to least until the sum of their probabilities equals the top-p value. For example, if tokens A, B, and C have a probability of 0.3, 0.2, and 0.1 and the top-p value is 0.5, then the model will select either A or B as the next token (using temperature) and doesn't consider C. The default top-p value is 0.95. Specify a lower value for less random responses and a higher value for more random responses. Acceptable value is [0.0, 1.0], default to 0.95.
      */
     topP?: number | null;
+  }
+  /**
+   * The request message for ConversationsService.IngestContextReferences.
+   */
+  export interface Schema$GoogleCloudDialogflowV2IngestContextReferencesRequest {
+    /**
+     * Required. The context references to ingest. The key is the name of the context reference and the value contains the contents of the context reference. The key is used to incorporate ingested context references to enhance the generator.
+     */
+    contextReferences?: {
+      [key: string]: Schema$GoogleCloudDialogflowV2ConversationContextReference;
+    } | null;
+  }
+  /**
+   * The response message for ConversationsService.IngestContextReferences.
+   */
+  export interface Schema$GoogleCloudDialogflowV2IngestContextReferencesResponse {
+    /**
+     * All context references ingested.
+     */
+    ingestedContextReferences?: {
+      [key: string]: Schema$GoogleCloudDialogflowV2ConversationContextReference;
+    } | null;
   }
   /**
    * Metadata for initializing a location-level encryption specification.
@@ -8670,7 +8893,7 @@ export namespace dialogflow_v2 {
      */
     participantRole?: string | null;
     /**
-     * Optional. The time when the message was sent.
+     * Optional. The time when the message was sent. For voice messages, this is the time when an utterance started.
      */
     sendTime?: string | null;
     /**
@@ -9059,11 +9282,11 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfig {
     /**
-     * Optional. Boost specifications for data stores.
+     * Optional. Boost specifications for data stores. Maps from datastore name to their boost configuration. Do not specify more than one BoostSpecs for each datastore name. If multiple BoostSpecs are provided for the same datastore name, the behavior is undefined.
      */
     boostSpecs?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecs[];
     /**
-     * Optional. Filter specification for data store queries.
+     * Optional. Filter specification for data store queries. TMaps from datastore name to the filter expression for that datastore. Do not specify more than one FilterSpecs for each datastore name. If multiple FilterSpecs are provided for the same datastore name, the behavior is undefined.
      */
     filterSpecs?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigFilterSpecs[];
   }
@@ -9085,7 +9308,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpec {
     /**
-     * Optional. Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
+     * Optional. Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
      */
     conditionBoostSpecs?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpec[];
   }
@@ -9338,7 +9561,7 @@ export namespace dialogflow_v2 {
      */
     model?: string | null;
     /**
-     * List of names of Cloud Speech phrase sets that are used for transcription.
+     * List of names of Cloud Speech phrase sets that are used for transcription. For phrase set limitations, please refer to [Cloud Speech API quotas and limits](https://cloud.google.com/speech-to-text/quotas#content).
      */
     phraseSets?: string[] | null;
     /**
@@ -9350,7 +9573,7 @@ export namespace dialogflow_v2 {
      */
     speechModelVariant?: string | null;
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
+     * Use timeout based endpointing, interpreting endpointer sensitivity as seconds of timeout value.
      */
     useTimeoutBasedEndpointing?: boolean | null;
   }
@@ -9558,6 +9781,10 @@ export namespace dialogflow_v2 {
      */
     error?: Schema$GoogleRpcStatus;
     /**
+     * Suggestions generated using generators triggered by customer or agent messages.
+     */
+    generateSuggestionsResponse?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse;
+    /**
      * SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.
      */
     suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2SuggestArticlesResponse;
@@ -9587,7 +9814,7 @@ export namespace dialogflow_v2 {
      */
     latestMessage?: string | null;
     /**
-     * Optional. The previously suggested query for the given conversation. This helps identify whether the next suggestion we generate is resonably different from the previous one. This is useful to avoid similar suggestions within the conversation.
+     * Optional. The previously suggested query for the given conversation. This helps identify whether the next suggestion we generate is reasonably different from the previous one. This is useful to avoid similar suggestions within the conversation.
      */
     previousSuggestedQuery?: string | null;
   }
@@ -18537,7 +18764,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Answerrecords$List
     extends StandardParameters {
     /**
-     * Optional. Filters to restrict results to specific answer records. Marked deprecated as it hasn't been, and isn't currently, supported. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. Filters to restrict results to specific answer records. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * conversation_id with equals(=) operator Examples: * `conversation_id=bar` matches answer records in the `projects/foo/locations/global/conversations/bar` conversation (assuming the parent is `projects/foo/locations/global`). For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
     filter?: string;
     /**
@@ -22105,6 +22332,104 @@ export namespace dialogflow_v2 {
     }
 
     /**
+     * Generates all the suggestions using generators configured in the conversation profile. A generator is used only if its trigger event is matched.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generate(
+      params: Params$Resource$Projects$Conversations$Suggestions$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
+      params?: Params$Resource$Projects$Conversations$Suggestions$Generate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>;
+    generate(
+      params: Params$Resource$Projects$Conversations$Suggestions$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generate(
+      params: Params$Resource$Projects$Conversations$Suggestions$Generate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+    ): void;
+    generate(
+      params: Params$Resource$Projects$Conversations$Suggestions$Generate,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+    ): void;
+    generate(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+    ): void;
+    generate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Suggestions$Generate
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Suggestions$Generate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Conversations$Suggestions$Generate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+conversation}/suggestions:generate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['conversation'],
+        pathParams: ['conversation'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Get answers for the given query based on knowledge documents.
      *
      * @param params - Parameters for request
@@ -22300,6 +22625,18 @@ export namespace dialogflow_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Conversations$Suggestions$Generate
+    extends StandardParameters {
+    /**
+     * Required. The conversation for which the suggestions are generated. Format: `projects//locations//conversations/`. The conversation must be created with a conversation profile which has generators configured in it to be able to get suggestions.
+     */
+    conversation?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsRequest;
+  }
   export interface Params$Resource$Projects$Conversations$Suggestions$Searchknowledge
     extends StandardParameters {
     /**
@@ -31585,7 +31922,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Locations$Answerrecords$List
     extends StandardParameters {
     /**
-     * Optional. Filters to restrict results to specific answer records. Marked deprecated as it hasn't been, and isn't currently, supported. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. Filters to restrict results to specific answer records. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * conversation_id with equals(=) operator Examples: * `conversation_id=bar` matches answer records in the `projects/foo/locations/global/conversations/bar` conversation (assuming the parent is `projects/foo/locations/global`). For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
     filter?: string;
     /**
@@ -34200,6 +34537,103 @@ export namespace dialogflow_v2 {
     }
 
     /**
+     * Data ingestion API. Ingests context references for an existing conversation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    ingestContextReferences(
+      params: Params$Resource$Projects$Locations$Conversations$Ingestcontextreferences,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    ingestContextReferences(
+      params?: Params$Resource$Projects$Locations$Conversations$Ingestcontextreferences,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2IngestContextReferencesResponse>;
+    ingestContextReferences(
+      params: Params$Resource$Projects$Locations$Conversations$Ingestcontextreferences,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    ingestContextReferences(
+      params: Params$Resource$Projects$Locations$Conversations$Ingestcontextreferences,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2IngestContextReferencesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2IngestContextReferencesResponse>
+    ): void;
+    ingestContextReferences(
+      params: Params$Resource$Projects$Locations$Conversations$Ingestcontextreferences,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2IngestContextReferencesResponse>
+    ): void;
+    ingestContextReferences(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2IngestContextReferencesResponse>
+    ): void;
+    ingestContextReferences(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Ingestcontextreferences
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2IngestContextReferencesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2IngestContextReferencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2IngestContextReferencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2IngestContextReferencesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Ingestcontextreferences;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversations$Ingestcontextreferences;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+conversation}:ingestContextReferences'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['conversation'],
+        pathParams: ['conversation'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2IngestContextReferencesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2IngestContextReferencesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns the list of all conversations in the specified project.
      *
      * @param params - Parameters for request
@@ -34331,6 +34765,18 @@ export namespace dialogflow_v2 {
      * Required. The name of the conversation. Format: `projects//locations//conversations/`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Ingestcontextreferences
+    extends StandardParameters {
+    /**
+     * Required. Resource identifier of the conversation to ingest context information for. Format: `projects//locations//conversations/`.
+     */
+    conversation?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2IngestContextReferencesRequest;
   }
   export interface Params$Resource$Projects$Locations$Conversations$List
     extends StandardParameters {
@@ -35487,6 +35933,104 @@ export namespace dialogflow_v2 {
     }
 
     /**
+     * Generates all the suggestions using generators configured in the conversation profile. A generator is used only if its trigger event is matched.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generate(
+      params: Params$Resource$Projects$Locations$Conversations$Suggestions$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
+      params?: Params$Resource$Projects$Locations$Conversations$Suggestions$Generate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>;
+    generate(
+      params: Params$Resource$Projects$Locations$Conversations$Suggestions$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generate(
+      params: Params$Resource$Projects$Locations$Conversations$Suggestions$Generate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+    ): void;
+    generate(
+      params: Params$Resource$Projects$Locations$Conversations$Suggestions$Generate,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+    ): void;
+    generate(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+    ): void;
+    generate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Suggestions$Generate
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Suggestions$Generate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversations$Suggestions$Generate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+conversation}/suggestions:generate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['conversation'],
+        pathParams: ['conversation'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Get answers for the given query based on knowledge documents.
      *
      * @param params - Parameters for request
@@ -35682,6 +36226,18 @@ export namespace dialogflow_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Conversations$Suggestions$Generate
+    extends StandardParameters {
+    /**
+     * Required. The conversation for which the suggestions are generated. Format: `projects//locations//conversations/`. The conversation must be created with a conversation profile which has generators configured in it to be able to get suggestions.
+     */
+    conversation?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge
     extends StandardParameters {
     /**

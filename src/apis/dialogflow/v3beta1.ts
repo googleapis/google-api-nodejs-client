@@ -204,7 +204,7 @@ export namespace dialogflow_v3beta1 {
      */
     noSpeechTimeout?: string | null;
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
+     * Use timeout based endpointing, interpreting endpointer sensitivity as seconds of timeout value.
      */
     useTimeoutBasedEndpointing?: boolean | null;
   }
@@ -357,7 +357,7 @@ export namespace dialogflow_v3beta1 {
      */
     noSpeechTimeout?: string | null;
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
+     * Use timeout based endpointing, interpreting endpointer sensitivity as seconds of timeout value.
      */
     useTimeoutBasedEndpointing?: boolean | null;
   }
@@ -506,9 +506,38 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettings {
     /**
+     * Git connection settings.
+     */
+    gitConnectionSettings?: Schema$GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGitConnectionSettings;
+    /**
      * GitHub settings.
      */
     githubSettings?: Schema$GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGithubSettings;
+  }
+  /**
+   * Integration settings for a Git service hosted on Cloud Run.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGitConnectionSettings {
+    /**
+     * The name of the SecretManager secret version resource storing the git access token. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    accessTokenSecret?: string | null;
+    /**
+     * Optional. List of branches configured for the repository.
+     */
+    branches?: string[] | null;
+    /**
+     * Required. Display name for the repository
+     */
+    displayName?: string | null;
+    /**
+     * Required. Git server reporitory URI.
+     */
+    repositoryUri?: string | null;
+    /**
+     * Required. Default branch of the repository.
+     */
+    trackingBranch?: string | null;
   }
   /**
    * Settings of integration with GitHub.
@@ -680,7 +709,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1BoostSpec {
     /**
-     * Optional. Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
+     * Optional. Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
      */
     conditionBoostSpecs?: Schema$GoogleCloudDialogflowCxV3beta1BoostSpecConditionBoostSpec[];
   }
@@ -2104,7 +2133,7 @@ export namespace dialogflow_v3beta1 {
      */
     transitionRouteGroups?: string[] | null;
     /**
-     * A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying "help" or "can I talk to a human?", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evalauted in the following order: * TransitionRoutes with intent specified. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.
+     * A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying "help" or "can I talk to a human?", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evaluated in the following order: * TransitionRoutes with intent specified. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute[];
   }
@@ -2526,6 +2555,53 @@ export namespace dialogflow_v3beta1 {
      * Custom placeholder value in the prompt text.
      */
     name?: string | null;
+  }
+  /**
+   * Handler can be used to define custom logic to be executed based on the user-specified triggers.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1Handler {
+    /**
+     * A handler triggered by event.
+     */
+    eventHandler?: Schema$GoogleCloudDialogflowCxV3beta1HandlerEventHandler;
+    /**
+     * A handler triggered during specific lifecycle of the playbook execution.
+     */
+    lifecycleHandler?: Schema$GoogleCloudDialogflowCxV3beta1HandlerLifecycleHandler;
+  }
+  /**
+   * A handler that is triggered by the specified event.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1HandlerEventHandler {
+    /**
+     * Optional. The condition that must be satisfied to trigger this handler.
+     */
+    condition?: string | null;
+    /**
+     * Required. The name of the event that triggers this handler.
+     */
+    event?: string | null;
+    /**
+     * Required. The fulfillment to call when the event occurs.
+     */
+    fulfillment?: Schema$GoogleCloudDialogflowCxV3beta1Fulfillment;
+  }
+  /**
+   * A handler that is triggered on the specific lifecycle_stage of the playbook execution.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1HandlerLifecycleHandler {
+    /**
+     * Optional. The condition that must be satisfied to trigger this handler.
+     */
+    condition?: string | null;
+    /**
+     * Required. The fulfillment to call when this handler is triggered.
+     */
+    fulfillment?: Schema$GoogleCloudDialogflowCxV3beta1Fulfillment;
+    /**
+     * Required. The name of the lifecycle stage that triggers this handler. Supported values: * `playbook-start` * `pre-action-selection` * `pre-action-execution`
+     */
+    lifecycleStage?: string | null;
   }
   /**
    * Metadata returned for the EntityTypes.ImportEntityTypes long running operation.
@@ -3184,6 +3260,19 @@ export namespace dialogflow_v3beta1 {
     tools?: Schema$GoogleCloudDialogflowCxV3beta1Tool[];
   }
   /**
+   * The response message for Tools.ListToolVersions.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of tool versions. There will be a maximum number of items returned based on the page_size field in the request.
+     */
+    toolVersions?: Schema$GoogleCloudDialogflowCxV3beta1ToolVersion[];
+  }
+  /**
    * The response message for TransitionRouteGroups.ListTransitionRouteGroups.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse {
@@ -3407,7 +3496,7 @@ export namespace dialogflow_v3beta1 {
      */
     transitionRouteGroups?: string[] | null;
     /**
-     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
+     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evaluated in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute[];
   }
@@ -3508,6 +3597,10 @@ export namespace dialogflow_v3beta1 {
      * Required. High level description of the goal the playbook intend to accomplish. A goal should be concise since it's visible to other playbooks that may reference this playbook.
      */
     goal?: string | null;
+    /**
+     * Optional. A list of registered handlers to execute based on the specified triggers.
+     */
+    handlers?: Schema$GoogleCloudDialogflowCxV3beta1Handler[];
     /**
      * Optional. Defined structured input parameters for this playbook.
      */
@@ -4067,6 +4160,19 @@ export namespace dialogflow_v3beta1 {
     trackingBranch?: string | null;
   }
   /**
+   * The request message for Tools.RestoreToolVersion.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionRequest {}
+  /**
+   * The response message for Tools.RestoreToolVersion.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse {
+    /**
+     * The updated tool.
+     */
+    tool?: Schema$GoogleCloudDialogflowCxV3beta1Tool;
+  }
+  /**
    * The configuration for auto rollout.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1RolloutConfig {
@@ -4192,11 +4298,11 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SearchConfig {
     /**
-     * Optional. Boosting configuration for the datastores.
+     * Optional. Boosting configuration for the datastores. Maps from datastore name to their boost configuration. Do not specify more than one BoostSpecs for each datastore name. If multiple BoostSpecs are provided for the same datastore name, the behavior is undefined.
      */
     boostSpecs?: Schema$GoogleCloudDialogflowCxV3beta1BoostSpecs[];
     /**
-     * Optional. Filter configuration for the datastores.
+     * Optional. Filter configuration for the datastores. Maps from datastore name to the filter expression for that datastore. Do not specify more than one FilterSpecs for each datastore name. If multiple FilterSpecs are provided for the same datastore name, the behavior is undefined.
      */
     filterSpecs?: Schema$GoogleCloudDialogflowCxV3beta1FilterSpecs[];
   }
@@ -4534,6 +4640,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Tool {
     /**
+     * Integration connectors tool specification.
+     */
+    connectorSpec?: Schema$GoogleCloudDialogflowCxV3beta1ToolConnectorTool;
+    /**
      * Data store search tool specification.
      */
     dataStoreSpec?: Schema$GoogleCloudDialogflowCxV3beta1ToolDataStoreTool;
@@ -4695,6 +4805,57 @@ export namespace dialogflow_v3beta1 {
     message?: string | null;
   }
   /**
+   * A ConnectorTool enabling using Integration Connectors Connections as tools.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolConnectorTool {
+    /**
+     * Required. Actions for the tool to use.
+     */
+    actions?: Schema$GoogleCloudDialogflowCxV3beta1ToolConnectorToolAction[];
+    /**
+     * Optional. Integration Connectors end-user authentication configuration. If configured, the end-user authentication fields will be passed in the Integration Connectors API request and override the admin, default authentication configured for the Connection. **Note**: The Connection must have authentication override enabled in order to specify an EUC configuration here - otherwise, the ConnectorTool creation will fail. See: https://cloud.google.com/application-integration/docs/configure-connectors-task#configure-authentication-override
+     */
+    endUserAuthConfig?: Schema$GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfig;
+    /**
+     * Required. The full resource name of the referenced Integration Connectors Connection. Format: `projects/x/locations/x/connections/x`
+     */
+    name?: string | null;
+  }
+  /**
+   * Configuration of a Connection operation for the tool to use.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolConnectorToolAction {
+    /**
+     * ID of a Connection action for the tool to use.
+     */
+    connectionActionId?: string | null;
+    /**
+     * Entity operation configuration for the tool to use.
+     */
+    entityOperation?: Schema$GoogleCloudDialogflowCxV3beta1ToolConnectorToolActionEntityOperation;
+    /**
+     * Optional. Entity fields to use as inputs for the operation. If no fields are specified, all fields of the Entity will be used.
+     */
+    inputFields?: string[] | null;
+    /**
+     * Optional. Entity fields to return from the operation. If no fields are specified, all fields of the Entity will be returned.
+     */
+    outputFields?: string[] | null;
+  }
+  /**
+   * Entity CRUD operation specification.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolConnectorToolActionEntityOperation {
+    /**
+     * Required. ID of the entity.
+     */
+    entityId?: string | null;
+    /**
+     * Required. Operation to perform on the entity.
+     */
+    operation?: string | null;
+  }
+  /**
    * A DataStoreTool is a way to provide specifications needed to search a list of data stores.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ToolDataStoreTool {
@@ -4711,6 +4872,45 @@ export namespace dialogflow_v3beta1 {
    * A FallbackPrompt is a way to provide specifications for the Data Store fallback prompt when generating responses.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ToolDataStoreToolFallbackPrompt {}
+  /**
+   * End-user authentication configuration used for Connection calls. The field values can either be hardcoded authentication values or the names of [session parameters](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#session-ref) or [request parameters](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#request-scoped). If parameter names are provided, then those parameters can be used to pass the authentication values dynamically, through `$session.params.param-id` or `$request.payload.param-id`.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfig {
+    /**
+     * Oauth 2.0 Authorization Code authentication.
+     */
+    oauth2AuthCodeConfig?: Schema$GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfigOauth2AuthCodeConfig;
+    /**
+     * JWT Profile Oauth 2.0 Authorization Grant authentication.
+     */
+    oauth2JwtBearerConfig?: Schema$GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfigOauth2JwtBearerConfig;
+  }
+  /**
+   * Oauth 2.0 Authorization Code authentication configuration.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfigOauth2AuthCodeConfig {
+    /**
+     * Required. Oauth token value or parameter name to pass it through.
+     */
+    oauthToken?: string | null;
+  }
+  /**
+   * JWT Profile Oauth 2.0 Authorization Grant authentication configuration.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolEndUserAuthConfigOauth2JwtBearerConfig {
+    /**
+     * Required. Client key value or parameter name to pass it through.
+     */
+    clientKey?: string | null;
+    /**
+     * Required. Issuer value or parameter name to pass it through.
+     */
+    issuer?: string | null;
+    /**
+     * Required. Subject value or parameter name to pass it through.
+     */
+    subject?: string | null;
+  }
   /**
    * An ExtensionTool is a way to use Vertex Extensions as a tool.
    */
@@ -4777,7 +4977,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ToolTLSConfigCACert {
     /**
-     * Required. The allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with "subject alt name". For instance a certificate can be self-signed using the following command, openssl x509 -req -days 200 -in example.com.csr \ -signkey example.com.key \ -out example.com.crt \ -extfile <(printf "\nsubjectAltName='DNS:www.example.com'")
+     * Required. The allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with "subject alt name". For instance a certificate can be self-signed using the following command: ``` openssl x509 -req -days 200 -in example.com.csr \ -signkey example.com.key \ -out example.com.crt \ -extfile <(printf "\nsubjectAltName='DNS:www.example.com'") ```
      */
     cert?: string | null;
     /**
@@ -4809,6 +5009,31 @@ export namespace dialogflow_v3beta1 {
      * Required. The tool that should be used. Format: `projects//locations//agents//tools/`.
      */
     tool?: string | null;
+  }
+  /**
+   * Tool version is a snapshot of the tool at certain timestamp.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolVersion {
+    /**
+     * Output only. Last time the tool version was created or modified.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The display name of the tool version.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The unique identifier of the tool version. Format: `projects//locations//agents//tools//versions/`.
+     */
+    name?: string | null;
+    /**
+     * Required. Snapshot of the tool to be associated with this version.
+     */
+    tool?: Schema$GoogleCloudDialogflowCxV3beta1Tool;
+    /**
+     * Output only. Last time the tool version was created or modified.
+     */
+    updateTime?: string | null;
   }
   /**
    * The request message for Flows.TrainFlow.
@@ -5253,7 +5478,7 @@ export namespace dialogflow_v3beta1 {
      */
     clientId?: string | null;
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      */
     clientSecret?: string | null;
     /**
@@ -6260,7 +6485,7 @@ export namespace dialogflow_v3beta1 {
      */
     transitionRouteGroups?: string[] | null;
     /**
-     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
+     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evaluated in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3TransitionRoute[];
   }
@@ -6841,7 +7066,7 @@ export namespace dialogflow_v3beta1 {
      */
     clientId?: string | null;
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      */
     clientSecret?: string | null;
     /**
@@ -7370,6 +7595,15 @@ export namespace dialogflow_v3beta1 {
     source?: string | null;
   }
   /**
+   * Suggestion generated using free form generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1FreeFormSuggestion {
+    /**
+     * Required. Free form suggestion.
+     */
+    response?: string | null;
+  }
+  /**
    * Google Cloud Storage location for the output.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1GcsDestination {
@@ -7377,6 +7611,49 @@ export namespace dialogflow_v3beta1 {
      * Required. The Google Cloud Storage URIs for the output. A URI is of the form: `gs://bucket/object-prefix-or-name` Whether a prefix or name is used depends on the use case. The requesting user must have "write-permission" to the bucket.
      */
     uri?: string | null;
+  }
+  /**
+   * The response message for Conversations.GenerateSuggestions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse {
+    /**
+     * The answers generated for the conversation based on context.
+     */
+    generatorSuggestionAnswers?: Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer[];
+    /**
+     * The name of the latest conversation message used as context for compiling suggestion. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * A GeneratorSuggestion answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseGeneratorSuggestionAnswer {
+    /**
+     * Answer record that uniquely identifies the suggestion. This can be used to provide suggestion feedback.
+     */
+    answerRecord?: string | null;
+    /**
+     * Suggestion details.
+     */
+    generatorSuggestion?: Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestion;
+    /**
+     * The name of the generator used to generate this suggestion. Format: `projects//locations//generators/`.
+     */
+    sourceGenerator?: string | null;
+  }
+  /**
+   * Suggestion generated using a Generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestion {
+    /**
+     * Optional. Free form suggestion.
+     */
+    freeFormSuggestion?: Schema$GoogleCloudDialogflowV2beta1FreeFormSuggestion;
+    /**
+     * Optional. Suggested summary.
+     */
+    summarySuggestion?: Schema$GoogleCloudDialogflowV2beta1SummarySuggestion;
   }
   /**
    * Output only. Represents a notification sent to Pub/Sub subscribers for agent assistant events in a specific conversation.
@@ -8471,7 +8748,7 @@ export namespace dialogflow_v3beta1 {
      */
     responseMessages?: Schema$GoogleCloudDialogflowV2beta1ResponseMessage[];
     /**
-     * Optional. The time when the message was sent.
+     * Optional. The time when the message was sent. For voice messages, this is the time when an utterance started.
      */
     sendTime?: string | null;
     /**
@@ -8616,7 +8893,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction {}
   /**
-   * Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
+   * Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a Dialogflow CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff {
     /**
@@ -8871,6 +9148,10 @@ export namespace dialogflow_v3beta1 {
      */
     error?: Schema$GoogleRpcStatus;
     /**
+     * Suggestions generated using generators triggered by customer or agent messages.
+     */
+    generateSuggestionsResponse?: Schema$GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse;
+    /**
      * SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.
      */
     suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse;
@@ -8928,6 +9209,28 @@ export namespace dialogflow_v3beta1 {
      * Output only. Multiple reply options provided by smart reply service. The order is based on the rank of the model prediction. The maximum number of the returned replies is set in SmartReplyConfig.
      */
     smartReplyAnswers?: Schema$GoogleCloudDialogflowV2beta1SmartReplyAnswer[];
+  }
+  /**
+   * Suggested summary of the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SummarySuggestion {
+    /**
+     * Required. All the parts of generated summary.
+     */
+    summarySections?: Schema$GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection[];
+  }
+  /**
+   * A component of the generated summary.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection {
+    /**
+     * Required. Name of the section.
+     */
+    section?: string | null;
+    /**
+     * Required. Summary text for the section.
+     */
+    summary?: string | null;
   }
   /**
    * A wrapper of repeated TelephonyDtmf digits.
@@ -9313,6 +9616,15 @@ export namespace dialogflow_v3beta1 {
     source?: string | null;
   }
   /**
+   * Suggestion generated using free form generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2FreeFormSuggestion {
+    /**
+     * Required. Free form suggestion.
+     */
+    response?: string | null;
+  }
+  /**
    * Google Cloud Storage location for the output.
    */
   export interface Schema$GoogleCloudDialogflowV2GcsDestination {
@@ -9320,6 +9632,49 @@ export namespace dialogflow_v3beta1 {
      * The Google Cloud Storage URIs for the output. A URI is of the form: `gs://bucket/object-prefix-or-name` Whether a prefix or name is used depends on the use case. The requesting user must have "write-permission" to the bucket.
      */
     uri?: string | null;
+  }
+  /**
+   * The response message for Conversations.GenerateSuggestions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse {
+    /**
+     * The answers generated for the conversation based on context.
+     */
+    generatorSuggestionAnswers?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer[];
+    /**
+     * The name of the latest conversation message used as context for compiling suggestion. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * A GeneratorSuggestion answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer {
+    /**
+     * Answer record that uniquely identifies the suggestion. This can be used to provide suggestion feedback.
+     */
+    answerRecord?: string | null;
+    /**
+     * Suggestion details.
+     */
+    generatorSuggestion?: Schema$GoogleCloudDialogflowV2GeneratorSuggestion;
+    /**
+     * The name of the generator used to generate this suggestion. Format: `projects//locations//generators/`.
+     */
+    sourceGenerator?: string | null;
+  }
+  /**
+   * Suggestion generated using a Generator.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GeneratorSuggestion {
+    /**
+     * Optional. Free form suggestion.
+     */
+    freeFormSuggestion?: Schema$GoogleCloudDialogflowV2FreeFormSuggestion;
+    /**
+     * Optional. Suggested summary.
+     */
+    summarySuggestion?: Schema$GoogleCloudDialogflowV2SummarySuggestion;
   }
   /**
    * Represents a notification sent to Cloud Pub/Sub subscribers for human agent assistant events in a specific conversation.
@@ -10185,7 +10540,7 @@ export namespace dialogflow_v3beta1 {
      */
     participantRole?: string | null;
     /**
-     * Optional. The time when the message was sent.
+     * Optional. The time when the message was sent. For voice messages, this is the time when an utterance started.
      */
     sendTime?: string | null;
     /**
@@ -10475,6 +10830,10 @@ export namespace dialogflow_v3beta1 {
      */
     error?: Schema$GoogleRpcStatus;
     /**
+     * Suggestions generated using generators triggered by customer or agent messages.
+     */
+    generateSuggestionsResponse?: Schema$GoogleCloudDialogflowV2GenerateSuggestionsResponse;
+    /**
      * SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.
      */
     suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2SuggestArticlesResponse;
@@ -10524,6 +10883,28 @@ export namespace dialogflow_v3beta1 {
      * Output only. Multiple reply options provided by smart reply service. The order is based on the rank of the model prediction. The maximum number of the returned replies is set in SmartReplyConfig.
      */
     smartReplyAnswers?: Schema$GoogleCloudDialogflowV2SmartReplyAnswer[];
+  }
+  /**
+   * Suggested summary of the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarySuggestion {
+    /**
+     * Required. All the parts of generated summary.
+     */
+    summarySections?: Schema$GoogleCloudDialogflowV2SummarySuggestionSummarySection[];
+  }
+  /**
+   * A component of the generated summary.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SummarySuggestionSummarySection {
+    /**
+     * Required. Name of the section.
+     */
+    section?: string | null;
+    /**
+     * Required. Summary text for the section.
+     */
+    summary?: string | null;
   }
   /**
    * Metadata for a ConversationModels.UndeployConversationModel operation.
@@ -24792,8 +25173,12 @@ export namespace dialogflow_v3beta1 {
 
   export class Resource$Projects$Locations$Agents$Tools {
     context: APIRequestContext;
+    versions: Resource$Projects$Locations$Agents$Tools$Versions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.versions = new Resource$Projects$Locations$Agents$Tools$Versions(
+        this.context
+      );
     }
 
     /**
@@ -25434,6 +25819,549 @@ export namespace dialogflow_v3beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3beta1Tool;
+  }
+
+  export class Resource$Projects$Locations$Agents$Tools$Versions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a version for the specified Tool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Agents$Tools$Versions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Tools$Versions$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Tools$Versions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Tools$Versions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+parent}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified version of the Tool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Agents$Tools$Versions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Tools$Versions$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Tools$Versions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Tools$Versions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the specified version of the Tool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Agents$Tools$Versions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Tools$Versions$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Tools$Versions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Tools$Versions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * List versions of the specified Tool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Agents$Tools$Versions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Tools$Versions$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Tools$Versions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Tools$Versions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+parent}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Retrieves the specified version of the Tool and stores it as the current tool draft, returning the tool with resources updated.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restore(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Projects$Locations$Agents$Tools$Versions$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>;
+    restore(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Restore,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Versions$Restore,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>
+    ): void;
+    restore(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>
+    ): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Tools$Versions$Restore
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Tools$Versions$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Tools$Versions$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}:restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$Create
+    extends StandardParameters {
+    /**
+     * Required. The tool to create a version for. Format: `projects//locations//agents//tools/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1ToolVersion;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$Delete
+    extends StandardParameters {
+    /**
+     * Optional. This field has no effect for Tools not being used. For Tools that are used: * If `force` is set to false, an error will be returned with message indicating the referenced resources. * If `force` is set to true, Dialogflow will remove the tool, as well as any references to the tool.
+     */
+    force?: boolean;
+    /**
+     * Required. The name of the tool version to delete. Format: `projects//locations//agents//tools//versions/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the tool version. Format: `projects//locations//agents//tools//versions/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent of the tool versions. Format: `projects//locations//agents//tools/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Versions$Restore
+    extends StandardParameters {
+    /**
+     * Required. The name of the tool version. Format: `projects//locations//agents//tools//versions/`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionRequest;
   }
 
   export class Resource$Projects$Locations$Agents$Transitionroutegroups {
