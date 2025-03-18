@@ -853,6 +853,10 @@ export namespace androidpublisher_v3 {
      * Map from region code to converted region price.
      */
     convertedRegionPrices?: {[key: string]: Schema$ConvertedRegionPrice} | null;
+    /**
+     * The region version at which the prices were generated.
+     */
+    regionVersion?: Schema$RegionsVersion;
   }
   /**
    * Country targeting specification.
