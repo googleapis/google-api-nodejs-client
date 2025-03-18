@@ -726,6 +726,23 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
+   * Payload associated with Business Glossary related log events.
+   */
+  export interface Schema$GoogleCloudDataplexV1BusinessGlossaryEvent {
+    /**
+     * The type of the event.
+     */
+    eventType?: string | null;
+    /**
+     * The log message.
+     */
+    message?: string | null;
+    /**
+     * Name of the resource.
+     */
+    resource?: string | null;
+  }
+  /**
    * Cancel task jobs.
    */
   export interface Schema$GoogleCloudDataplexV1CancelJobRequest {}
@@ -934,7 +951,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing {
     /**
-     * Output only. The BigQuery dataset to publish to. It takes the form projects/{project_id\}/datasets/{dataset_id\}. If not set, the service creates a default publishing dataset.
+     * Output only. The BigQuery dataset the discovered tables are published to.
      */
     dataset?: string | null;
   }
@@ -959,6 +976,10 @@ export namespace dataplex_v1 {
      * Optional. The BigQuery connection used to create BigLake tables. Must be in the form projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}
      */
     connection?: string | null;
+    /**
+     * Optional. The location of the BigQuery dataset to publish BigLake external or non-BigLake external tables to. 1. If the Cloud Storage bucket is located in a multi-region bucket, then BigQuery dataset can be in the same multi-region bucket or any single region that is included in the same multi-region bucket. The datascan can be created in any single region that is included in the same multi-region bucket 2. If the Cloud Storage bucket is located in a dual-region bucket, then BigQuery dataset can be located in regions that are included in the dual-region bucket, or in a multi-region that includes the dual-region. The datascan can be created in any single region that is included in the same dual-region bucket. 3. If the Cloud Storage bucket is located in a single region, then BigQuery dataset can be in the same single region or any multi-region bucket that includes the same single region. The datascan will be created in the same single region as the bucket. 4. If the BigQuery dataset is in single region, it must be in the same single region as the datascan.For supported values, refer to https://cloud.google.com/bigquery/docs/locations#supported_locations.
+     */
+    location?: string | null;
     /**
      * Optional. Determines whether to publish discovered tables as BigLake external tables or non-BigLake external tables.
      */
@@ -1226,7 +1247,7 @@ export namespace dataplex_v1 {
      */
     postScanActions?: Schema$GoogleCloudDataplexV1DataProfileSpecPostScanActions;
     /**
-     * Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in BigQuery standard SQL syntax. Example: col1 \>= 0 AND col2 < 10
+     * Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#where_clause).Example: col1 \>= 0 AND col2 < 10
      */
     rowFilter?: string | null;
     /**
@@ -1500,7 +1521,7 @@ export namespace dataplex_v1 {
     rule?: Schema$GoogleCloudDataplexV1DataQualityRule;
   }
   /**
-   * Evaluates whether each row passes the specified condition.The SQL expression needs to use BigQuery standard SQL syntax and should produce a boolean value per row as the result.Example: col1 \>= 0 AND col2 < 10
+   * Evaluates whether each row passes the specified condition.The SQL expression needs to use GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax) and should produce a boolean value per row as the result.Example: col1 \>= 0 AND col2 < 10
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation {
     /**
@@ -1518,7 +1539,7 @@ export namespace dataplex_v1 {
     values?: string[] | null;
   }
   /**
-   * A SQL statement that is evaluated to return rows that match an invalid state. If any rows are are returned, this rule fails.The SQL statement must use BigQuery standard SQL syntax, and must not contain any semicolons.You can use the data reference parameter ${data()\} to reference the source table with all of its precondition filters applied. Examples of precondition filters include row filters, incremental data filters, and sampling. For more information, see Data reference parameter (https://cloud.google.com/dataplex/docs/auto-data-quality-overview#data-reference-parameter).Example: SELECT * FROM ${data()\} WHERE price < 0
+   * A SQL statement that is evaluated to return rows that match an invalid state. If any rows are are returned, this rule fails.The SQL statement must use GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax), and must not contain any semicolons.You can use the data reference parameter ${data()\} to reference the source table with all of its precondition filters applied. Examples of precondition filters include row filters, incremental data filters, and sampling. For more information, see Data reference parameter (https://cloud.google.com/dataplex/docs/auto-data-quality-overview#data-reference-parameter).Example: SELECT * FROM ${data()\} WHERE price < 0
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleSqlAssertion {
     /**
@@ -1552,7 +1573,7 @@ export namespace dataplex_v1 {
     strictMinEnabled?: boolean | null;
   }
   /**
-   * Evaluates whether the provided expression is true.The SQL expression needs to use BigQuery standard SQL syntax and should produce a scalar boolean result.Example: MIN(col1) \>= 0
+   * Evaluates whether the provided expression is true.The SQL expression needs to use GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax) and should produce a scalar boolean result.Example: MIN(col1) \>= 0
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation {
     /**
@@ -1630,7 +1651,7 @@ export namespace dataplex_v1 {
      */
     postScanActions?: Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActions;
     /**
-     * Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in BigQuery standard SQL syntax. Example: col1 \>= 0 AND col2 < 10
+     * Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#where_clause).Example: col1 \>= 0 AND col2 < 10
      */
     rowFilter?: string | null;
     /**
@@ -2716,7 +2737,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ImportItem {
     /**
-     * The aspects to modify. Supports the following syntaxes: {aspect_type_reference\}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference\}@{path\}: matches aspects that belong to the specified aspect type and path. @* : matches aspects of the given type for all paths. *@path : matches aspects of all types on the given path. Replace {aspect_type_reference\} with a reference to the aspect type, in the format {project_id_or_number\}.{location_id\}.{aspect_type_id\}.If you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry.In FULL entry sync mode, Dataplex implicitly adds the keys for all of the required aspects of an entry.
+     * The aspects to modify. Supports the following syntaxes: {aspect_type_reference\}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference\}@{path\}: matches aspects that belong to the specified aspect type and path. {aspect_type_reference\}@* : matches aspects of the given type for all paths. *@path : matches aspects of all types on the given path.Replace {aspect_type_reference\} with a reference to the aspect type, in the format {project_id_or_number\}.{location_id\}.{aspect_type_id\}.In FULL entry sync mode, if you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry. Dataplex implicitly adds the keys for all of the required aspects of an entry.
      */
     aspectKeys?: string[] | null;
     /**
@@ -2724,7 +2745,7 @@ export namespace dataplex_v1 {
      */
     entry?: Schema$GoogleCloudDataplexV1Entry;
     /**
-     * The fields to update, in paths that are relative to the Entry resource. Separate each field with a comma.In FULL entry sync mode, Dataplex includes the paths of all of the fields for an entry that can be modified, including aspects. This means that Dataplex replaces the existing entry with the entry in the metadata import file. All modifiable fields are updated, regardless of the fields that are listed in the update mask, and regardless of whether a field is present in the entry object.The update_mask field is ignored when an entry is created or re-created.Dataplex also determines which entries and aspects to modify by comparing the values and timestamps that you provide in the metadata import file with the values and timestamps that exist in your project. For more information, see Comparison logic (https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
+     * The fields to update, in paths that are relative to the Entry resource. Separate each field with a comma.In FULL entry sync mode, Dataplex includes the paths of all of the fields for an entry that can be modified, including aspects. This means that Dataplex replaces the existing entry with the entry in the metadata import file. All modifiable fields are updated, regardless of the fields that are listed in the update mask, and regardless of whether a field is present in the entry object.The update_mask field is ignored when an entry is created or re-created.In an aspect-only metadata job (when entry sync mode is NONE), set this value to aspects.Dataplex also determines which entries and aspects to modify by comparing the values and timestamps that you provide in the metadata import file with the values and timestamps that exist in your project. For more information, see Comparison logic (https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
      */
     updateMask?: string | null;
   }
@@ -3293,15 +3314,15 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * Job specification for a metadata import job
+   * Job specification for a metadata import job.You can run the following kinds of metadata import jobs: Full sync of entries with incremental import of their aspects. Supported for custom entries. Incremental import of aspects only. Supported for aspects that belong to custom entries and system entries. For custom entries, you can modify both optional aspects and required aspects. For system entries, you can modify optional aspects.
    */
   export interface Schema$GoogleCloudDataplexV1MetadataJobImportJobSpec {
     /**
-     * Required. The sync mode for aspects. Only INCREMENTAL mode is supported for aspects. An aspect is modified only if the metadata import file includes a reference to the aspect in the update_mask field and the aspect_keys field.
+     * Required. The sync mode for aspects.
      */
     aspectSyncMode?: string | null;
     /**
-     * Required. The sync mode for entries. Only FULL mode is supported for entries. All entries in the job's scope are modified. If an entry exists in Dataplex but isn't included in the metadata import file, the entry is deleted when you run the metadata job.
+     * Required. The sync mode for entries.
      */
     entrySyncMode?: string | null;
     /**
@@ -3326,15 +3347,15 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1MetadataJobImportJobSpecImportJobScope {
     /**
-     * Optional. The aspect types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}. The job modifies only the aspects that belong to these aspect types.If the metadata import file attempts to modify an aspect whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an aspect type must either match the location of the job, or the aspect type must be global.
+     * Optional. The aspect types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}. The job modifies only the aspects that belong to these aspect types.This field is required when creating an aspect-only import job.If the metadata import file attempts to modify an aspect whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an aspect type must either match the location of the job, or the aspect type must be global.
      */
     aspectTypes?: string[] | null;
     /**
-     * Required. The entry group that is in scope for the import job, specified as a relative resource name in the format projects/{project_number_or_id\}/locations/{location_id\}/entryGroups/{entry_group_id\}. Only entries that belong to the specified entry group are affected by the job.Must contain exactly one element. The entry group and the job must be in the same location.
+     * Required. The entry group that is in scope for the import job, specified as a relative resource name in the format projects/{project_number_or_id\}/locations/{location_id\}/entryGroups/{entry_group_id\}. Only entries and aspects that belong to the specified entry group are affected by the job.Must contain exactly one element. The entry group and the job must be in the same location.
      */
     entryGroups?: string[] | null;
     /**
-     * Required. The entry types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/entryTypes/{entry_type_id\}. The job modifies only the entries that belong to these entry types.If the metadata import file attempts to modify an entry whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an entry type must either match the location of the job, or the entry type must be global.
+     * Required. The entry types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/entryTypes/{entry_type_id\}. The job modifies only the entries and aspects that belong to these entry types.If the metadata import file attempts to modify an entry whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an entry type must either match the location of the job, or the entry type must be global.
      */
     entryTypes?: string[] | null;
   }
@@ -5372,7 +5393,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Looks up a single Entry by name using the permission on the source system.Caution: The BigQuery metadata that is stored in Dataplex Catalog is changing. For more information, see Changes to BigQuery metadata stored in Dataplex Catalog (https://cloud.google.com/dataplex/docs/biqquery-metadata-changes).
+     * Looks up an entry by name using the permission on the source system.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9617,7 +9638,7 @@ export namespace dataplex_v1 {
      */
     dataTaxonomyId?: string;
     /**
-     * Required. The resource name of the data taxonomy location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     *
      */
     parent?: string;
     /**
@@ -9644,7 +9665,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Datataxonomies$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the DataTaxonomy: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}
+     *
      */
     name?: string;
   }
@@ -11692,7 +11713,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets an Entry.Caution: The BigQuery metadata that is stored in Dataplex Catalog is changing. For more information, see Changes to BigQuery metadata stored in Dataplex Catalog (https://cloud.google.com/dataplex/docs/biqquery-metadata-changes).
+     * Gets an Entry.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
