@@ -3512,10 +3512,6 @@
           "description": "Track actively running queries on the instance. If not set, this flag is \"off\" by default.",
           "type": "boolean"
         },
-        "trackClientAddress": {
-          "description": "Track client address for an instance. If not set, default value is \"off\".",
-          "type": "boolean"
-        },
         "trackWaitEventTypes": {
           "description": "Output only. Track wait event types during query execution for an instance. This flag is turned \"on\" by default but tracking is enabled only after observability enabled flag is also turned on. This is read-only flag and only modifiable by internal API.",
           "readOnly": true,
@@ -4633,6 +4629,15 @@
             false,
             false,
             false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -5157,6 +5162,15 @@
             true,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
