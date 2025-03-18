@@ -110,7 +110,7 @@
         "products": {
           "methods": {
             "list": {
-              "description": "To retrieve the products that can be resold by the partner. It should be autenticated with a service account. - This API doesn't apply to YouTube products currently.",
+              "description": "Currently, it doesn't support **YouTube** products. Retrieves the products that can be resold by the partner. It should be autenticated with a service account.",
               "flatPath": "v1/partners/{partnersId}/products",
               "httpMethod": "GET",
               "id": "paymentsresellersubscription.partners.products.list",
@@ -155,7 +155,7 @@
         "promotions": {
           "methods": {
             "findEligible": {
-              "description": "To find eligible promotions for the current user. The API requires user authorization via OAuth. The bare minimum oauth scope `openid` is sufficient, which will skip the consent screen.",
+              "description": "Currently, it is only enabeld for **YouTube**. Finds eligible promotions for the current user. The API requires user authorization via OAuth. The bare minimum oauth scope `openid` is sufficient, which will skip the consent screen.",
               "flatPath": "v1/partners/{partnersId}/promotions:findEligible",
               "httpMethod": "POST",
               "id": "paymentsresellersubscription.partners.promotions.findEligible",
@@ -183,7 +183,7 @@
               ]
             },
             "list": {
-              "description": "Retrieves the promotions, such as free trial, that can be used by the partner. - This API doesn't apply to YouTube promotions currently. It should be autenticated with a service account.",
+              "description": "Currently, it doesn't support **YouTube** promotions. Retrieves the promotions, such as free trial, that can be used by the partner. It should be autenticated with a service account.",
               "flatPath": "v1/partners/{partnersId}/promotions",
               "httpMethod": "GET",
               "id": "paymentsresellersubscription.partners.promotions.list",
@@ -228,7 +228,7 @@
         "subscriptions": {
           "methods": {
             "cancel": {
-              "description": "Used by partners to cancel a subscription service either immediately or by the end of the current billing cycle for their customers. It should be called directly by the partner using service accounts.",
+              "description": "Cancels a subscription service either immediately or by the end of the current billing cycle for their customers. It should be called directly by the partner using service accounts.",
               "flatPath": "v1/partners/{partnersId}/subscriptions/{subscriptionsId}:cancel",
               "httpMethod": "POST",
               "id": "paymentsresellersubscription.partners.subscriptions.cancel",
@@ -289,7 +289,7 @@
               ]
             },
             "entitle": {
-              "description": "Used by partners to entitle a previously provisioned subscription to the current end user. The end user identity is inferred from the authorized credential of the request. This API must be authorized by the end user using OAuth.",
+              "description": "Entitles a previously provisioned subscription to the current end user. The end user identity is inferred from the authorized credential of the request. This API must be authorized by the end user using OAuth.",
               "flatPath": "v1/partners/{partnersId}/subscriptions/{subscriptionsId}:entitle",
               "httpMethod": "POST",
               "id": "paymentsresellersubscription.partners.subscriptions.entitle",
@@ -317,7 +317,7 @@
               ]
             },
             "extend": {
-              "description": "[Opt-in only] Most partners should be on auto-extend by default. Used by partners to extend a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.",
+              "description": "[Opt-in only] Most partners should be on auto-extend by default. Extends a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.",
               "flatPath": "v1/partners/{partnersId}/subscriptions/{subscriptionsId}:extend",
               "httpMethod": "POST",
               "id": "paymentsresellersubscription.partners.subscriptions.extend",
@@ -345,7 +345,7 @@
               ]
             },
             "get": {
-              "description": "Used by partners to get a subscription by id. It should be called directly by the partner using service accounts.",
+              "description": "Gets a subscription by id. It should be called directly by the partner using service accounts.",
               "flatPath": "v1/partners/{partnersId}/subscriptions/{subscriptionsId}",
               "httpMethod": "GET",
               "id": "paymentsresellersubscription.partners.subscriptions.get",
@@ -403,7 +403,7 @@
               ]
             },
             "undoCancel": {
-              "description": "Revokes the pending cancellation of a subscription, which is currently in `STATE_CANCEL_AT_END_OF_CYCLE` state. If the subscription is already cancelled, the request will fail. - **This API doesn't apply to YouTube subscriptions.** It should be called directly by the partner using service accounts.",
+              "description": "Currently, it is used by **Google One, Play Pass** partners. Revokes the pending cancellation of a subscription, which is currently in `STATE_CANCEL_AT_END_OF_CYCLE` state. If the subscription is already cancelled, the request will fail. It should be called directly by the partner using service accounts.",
               "flatPath": "v1/partners/{partnersId}/subscriptions/{subscriptionsId}:undoCancel",
               "httpMethod": "POST",
               "id": "paymentsresellersubscription.partners.subscriptions.undoCancel",
@@ -435,7 +435,7 @@
         "userSessions": {
           "methods": {
             "generate": {
-              "description": "This API replaces user authorized OAuth consent based APIs (Create, Entitle). Generates a short-lived token for a user session based on the user intent. You can use the session token to redirect the user to Google to finish the signup flow. You can re-generate new session token repeatedly for the same request if necessary, regardless of the previous tokens being expired or not.",
+              "description": "This API replaces user authorized OAuth consent based APIs (Create, Entitle). Issues a timed session token for the given user intent. You can use the session token to redirect the user to Google to finish the signup flow. You can re-generate new session token repeatedly for the same request if necessary, regardless of the previous tokens being expired or not.",
               "flatPath": "v1/partners/{partnersId}/userSessions:generate",
               "httpMethod": "POST",
               "id": "paymentsresellersubscription.partners.userSessions.generate",
@@ -467,7 +467,7 @@
       }
     }
   },
-  "revision": "20241211",
+  "revision": "20250312",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -765,6 +765,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload": {
+      "description": "Payload specific for Google Home products.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload",
+      "properties": {
+        "attachedToGoogleStructure": {
+          "description": "Output only. This identifies whether the subscription is attached to a Google Home structure.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "partnerStructureId": {
+          "description": "Optional. This identifies the structure ID on partner side that the subscription should be applied to. Only required when the partner requires structure mapping.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload": {
       "description": "Payload specific to Google One products.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload",
@@ -891,7 +907,7 @@
       "properties": {
         "bundleDetails": {
           "$ref": "ProductBundleDetails",
-          "description": "Output only. Output Only. Specifies the details for a bundle product.",
+          "description": "Output only. Specifies the details for a bundle product.",
           "readOnly": true
         },
         "finiteBillingCycleDetails": {
@@ -911,7 +927,7 @@
           "type": "array"
         },
         "productType": {
-          "description": "Output only. Output Only. Specifies the type of the product.",
+          "description": "Output only. Specifies the type of the product.",
           "enum": [
             "PRODUCT_TYPE_UNSPECIFIED",
             "PRODUCT_TYPE_SUBSCRIPTION",
@@ -965,6 +981,10 @@
       "description": "Specifies product specific payload.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1ProductPayload",
       "properties": {
+        "googleHomePayload": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload",
+          "description": "Payload specific to Google Home products."
+        },
         "googleOnePayload": {
           "$ref": "GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload",
           "description": "Product-specific payloads. Payload specific to Google One products."
@@ -1023,7 +1043,7 @@
           "type": "string"
         },
         "promotionType": {
-          "description": "Output only. Output Only. Specifies the type of the promotion.",
+          "description": "Output only. Specifies the type of the promotion.",
           "enum": [
             "PROMOTION_TYPE_UNSPECIFIED",
             "PROMOTION_TYPE_FREE_TRIAL",
@@ -1092,7 +1112,7 @@
           "type": "string"
         },
         "recurrenceCount": {
-          "description": "Output only. Output Only. The duration of an introductory offer in billing cycles.",
+          "description": "Output only. The duration of an introductory offer in billing cycles.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
