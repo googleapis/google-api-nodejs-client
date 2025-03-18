@@ -185,6 +185,19 @@ export namespace networksecurity_v1 {
     updateTime?: string | null;
   }
   /**
+   * Defines what action to take for antivirus threats per protocol.
+   */
+  export interface Schema$AntivirusOverride {
+    /**
+     * Required. Threat action override. For some threat types, only a subset of actions applies.
+     */
+    action?: string | null;
+    /**
+     * Required. Protocol to match.
+     */
+    protocol?: string | null;
+  }
+  /**
    * AuthorizationPolicy is a resource that specifies how a server should authorize incoming connections. This resource in itself does not change the configuration unless it's attached to a target https proxy or endpoint config selector resource.
    */
   export interface Schema$AuthorizationPolicy {
@@ -293,7 +306,7 @@ export namespace networksecurity_v1 {
    */
   export interface Schema$AuthzPolicyAuthzRuleFromRequestSource {
     /**
-     * Optional. A list of identities derived from the client's certificate. This field will not match on a request unless mutual TLS is enabled for the Forwarding rule or Gateway. Each identity is a string whose value is matched against the URI SAN, or DNS SAN or the subject field in the client's certificate. The match can be exact, prefix, suffix or a substring match. One of exact, prefix, suffix or contains must be specified. Limited to 5 principals.
+     * Optional. A list of identities derived from the client's certificate. This field will not match on a request unless mutual TLS is enabled for the forwarding rule or Gateway. For Application Load Balancers, each identity is a string whose value is matched against the URI SAN, or DNS SAN, or SPIFFE ID, or the subject field in the client's certificate. For Cloud Service Mesh, each identity is a string whose value is matched against the URI SAN, or DNS SAN, or the subject field in the client's certificate. The match can be exact, prefix, suffix, or a substring match. One of exact, prefix, suffix, or contains must be specified. Limited to 5 principals.
      */
     principals?: Schema$AuthzPolicyAuthzRuleStringMatch[];
     /**
@@ -507,20 +520,20 @@ export namespace networksecurity_v1 {
     sourceAddressGroup?: string | null;
   }
   /**
-   * CustomInterceptProfile defines the Packet Intercept Endpoint Group used to intercept traffic to a third-party firewall in a Firewall rule.
+   * CustomInterceptProfile defines in-band integration behavior (intercept). It is used by firewall rules with an APPLY_SECURITY_PROFILE_GROUP action.
    */
   export interface Schema$CustomInterceptProfile {
     /**
-     * Required. The InterceptEndpointGroup to which traffic associated with the SP should be mirrored.
+     * Required. The target InterceptEndpointGroup. When a firewall rule with this security profile attached matches a packet, the packet will be intercepted to the location-local target in this group.
      */
     interceptEndpointGroup?: string | null;
   }
   /**
-   * CustomMirroringProfile defines an action for mirroring traffic to a collector's EndpointGroup
+   * CustomMirroringProfile defines out-of-band integration behavior (mirroring). It is used by mirroring rules with a MIRROR action.
    */
   export interface Schema$CustomMirroringProfile {
     /**
-     * Required. The MirroringEndpointGroup to which traffic associated with the SP should be mirrored.
+     * Required. The target MirroringEndpointGroup. When a mirroring rule with this security profile attached matches a packet, a replica will be mirrored to the location-local target in this group.
      */
     mirroringEndpointGroup?: string | null;
   }
@@ -606,6 +619,14 @@ export namespace networksecurity_v1 {
      * Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.
      */
     reconciling?: boolean | null;
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. Current state of the endpoint.
      */
@@ -915,6 +936,10 @@ export namespace networksecurity_v1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListAuthorizationPolicies method.
@@ -1041,6 +1066,62 @@ export namespace networksecurity_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ListMirroringDeploymentGroups.
+   */
+  export interface Schema$ListMirroringDeploymentGroupsResponse {
+    /**
+     * The deployment groups from the specified parent.
+     */
+    mirroringDeploymentGroups?: Schema$MirroringDeploymentGroup[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListMirroringDeployments.
+   */
+  export interface Schema$ListMirroringDeploymentsResponse {
+    /**
+     * The deployments from the specified parent.
+     */
+    mirroringDeployments?: Schema$MirroringDeployment[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for ListMirroringEndpointGroupAssociations.
+   */
+  export interface Schema$ListMirroringEndpointGroupAssociationsResponse {
+    /**
+     * The associations from the specified parent.
+     */
+    mirroringEndpointGroupAssociations?: Schema$MirroringEndpointGroupAssociation[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListMirroringEndpointGroups.
+   */
+  export interface Schema$ListMirroringEndpointGroupsResponse {
+    /**
+     * The endpoint groups from the specified parent.
+     */
+    mirroringEndpointGroups?: Schema$MirroringEndpointGroup[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -1091,6 +1172,10 @@ export namespace networksecurity_v1 {
      * List of ServerTlsPolicy resources.
      */
     serverTlsPolicies?: Schema$ServerTlsPolicy[];
+    /**
+     * Unreachable resources. Populated when the request opts into `return_partial_success` and reading across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListTlsInspectionPolicies method.
@@ -1150,6 +1235,264 @@ export namespace networksecurity_v1 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * A deployment represents a zonal mirroring backend ready to accept GENEVE-encapsulated replica traffic, e.g. a zonal instance group fronted by an internal passthrough load balancer. Deployments are always part of a global deployment group which represents a global mirroring service.
+   */
+  export interface Schema$MirroringDeployment {
+    /**
+     * Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-provided description of the deployment. Used as additional context for the deployment.
+     */
+    description?: string | null;
+    /**
+     * Required. Immutable. The regional forwarding rule that fronts the mirroring collectors, for example: `projects/123456789/regions/us-central1/forwardingRules/my-rule`. See https://google.aip.dev/124.
+     */
+    forwardingRule?: string | null;
+    /**
+     * Optional. Labels are key/value pairs that help to organize and filter resources.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. Immutable. The deployment group that this deployment is a part of, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/124.
+     */
+    mirroringDeploymentGroup?: string | null;
+    /**
+     * Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/mirroringDeployments/my-dep`. See https://google.aip.dev/122 for more details.
+     */
+    name?: string | null;
+    /**
+     * Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. linking a new association to the parent group). See https://google.aip.dev/128.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Output only. The current state of the deployment. See https://google.aip.dev/216.
+     */
+    state?: string | null;
+    /**
+     * Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A deployment group aggregates many zonal mirroring backends (deployments) into a single global mirroring service. Consumers can connect this service using an endpoint group.
+   */
+  export interface Schema$MirroringDeploymentGroup {
+    /**
+     * Output only. The list of endpoint groups that are connected to this resource.
+     */
+    connectedEndpointGroups?: Schema$MirroringDeploymentGroupConnectedEndpointGroup[];
+    /**
+     * Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-provided description of the deployment group. Used as additional context for the deployment group.
+     */
+    description?: string | null;
+    /**
+     * Optional. Labels are key/value pairs that help to organize and filter resources.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The list of locations where the deployment group is present.
+     */
+    locations?: Schema$MirroringLocation[];
+    /**
+     * Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.
+     */
+    name?: string | null;
+    /**
+     * Output only. The list of Mirroring Deployments that belong to this group.
+     */
+    nestedDeployments?: Schema$MirroringDeploymentGroupDeployment[];
+    /**
+     * Required. Immutable. The network that will be used for all child deployments, for example: `projects/{project\}/global/networks/{network\}`. See https://google.aip.dev/124.
+     */
+    network?: string | null;
+    /**
+     * Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new deployment to the group) See https://google.aip.dev/128.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Output only. The current state of the deployment group. See https://google.aip.dev/216.
+     */
+    state?: string | null;
+    /**
+     * Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * An endpoint group connected to this deployment group.
+   */
+  export interface Schema$MirroringDeploymentGroupConnectedEndpointGroup {
+    /**
+     * Output only. The connected endpoint group's resource name, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/124.
+     */
+    name?: string | null;
+  }
+  /**
+   * A deployment belonging to this deployment group.
+   */
+  export interface Schema$MirroringDeploymentGroupDeployment {
+    /**
+     * Output only. The name of the Mirroring Deployment, in the format: `projects/{project\}/locations/{location\}/mirroringDeployments/{mirroring_deployment\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Most recent known state of the deployment.
+     */
+    state?: string | null;
+  }
+  /**
+   * An endpoint group is a consumer frontend for a deployment group (backend). In order to configure mirroring for a network, consumers must create: - An association between their network and the endpoint group. - A security profile that points to the endpoint group. - A mirroring rule that references the security profile (group).
+   */
+  export interface Schema$MirroringEndpointGroup {
+    /**
+     * Output only. List of associations to this endpoint group.
+     */
+    associations?: Schema$MirroringEndpointGroupAssociationDetails[];
+    /**
+     * Output only. List of details about the connected deployment groups to this endpoint group.
+     */
+    connectedDeploymentGroups?: Schema$MirroringEndpointGroupConnectedDeploymentGroup[];
+    /**
+     * Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-provided description of the endpoint group. Used as additional context for the endpoint group.
+     */
+    description?: string | null;
+    /**
+     * Optional. Labels are key/value pairs that help to organize and filter resources.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. The deployment group that this DIRECT endpoint group is connected to, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/124.
+     */
+    mirroringDeploymentGroup?: string | null;
+    /**
+     * Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.
+     */
+    name?: string | null;
+    /**
+     * Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new association to the group). See https://google.aip.dev/128.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Output only. The current state of the endpoint group. See https://google.aip.dev/216.
+     */
+    state?: string | null;
+    /**
+     * Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * An endpoint group association represents a link between a network and an endpoint group in the organization. Creating an association creates the networking infrastructure linking the network to the endpoint group, but does not enable mirroring by itself. To enable mirroring, the user must also create a network firewall policy containing mirroring rules and associate it with the network.
+   */
+  export interface Schema$MirroringEndpointGroupAssociation {
+    /**
+     * Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Labels are key/value pairs that help to organize and filter resources.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The list of locations where the association is configured. This information is retrieved from the linked endpoint group.
+     */
+    locations?: Schema$MirroringLocation[];
+    /**
+     * Output only. The list of locations where the association is present. This information is retrieved from the linked endpoint group, and not configured as part of the association itself.
+     */
+    locationsDetails?: Schema$MirroringEndpointGroupAssociationLocationDetails[];
+    /**
+     * Immutable. The endpoint group that this association is connected to, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/124.
+     */
+    mirroringEndpointGroup?: string | null;
+    /**
+     * Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.
+     */
+    name?: string | null;
+    /**
+     * Immutable. The VPC network that is associated. for example: `projects/123456789/global/networks/my-network`. See https://google.aip.dev/124.
+     */
+    network?: string | null;
+    /**
+     * Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. adding a new location to the target deployment group). See https://google.aip.dev/128.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Output only. Current state of the endpoint group association.
+     */
+    state?: string | null;
+    /**
+     * Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The endpoint group's view of a connected association.
+   */
+  export interface Schema$MirroringEndpointGroupAssociationDetails {
+    /**
+     * Output only. The connected association's resource name, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-ega`. See https://google.aip.dev/124.
+     */
+    name?: string | null;
+    /**
+     * Output only. The associated network, for example: projects/123456789/global/networks/my-network. See https://google.aip.dev/124.
+     */
+    network?: string | null;
+    /**
+     * Output only. Most recent known state of the association.
+     */
+    state?: string | null;
+  }
+  /**
+   * Contains details about the state of an association in a specific cloud location.
+   */
+  export interface Schema$MirroringEndpointGroupAssociationLocationDetails {
+    /**
+     * Output only. The cloud location, e.g. "us-central1-a" or "asia-south1".
+     */
+    location?: string | null;
+    /**
+     * Output only. The current state of the association in this location.
+     */
+    state?: string | null;
+  }
+  /**
+   * The endpoint group's view of a connected deployment group.
+   */
+  export interface Schema$MirroringEndpointGroupConnectedDeploymentGroup {
+    /**
+     * Output only. The list of locations where the deployment group is present.
+     */
+    locations?: Schema$MirroringLocation[];
+    /**
+     * Output only. The connected deployment group's resource name, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/124.
+     */
+    name?: string | null;
+  }
+  /**
+   * Details about mirroring in a specific cloud location.
+   */
+  export interface Schema$MirroringLocation {
+    /**
+     * Output only. The cloud location, e.g. "us-central1-a" or "asia-south1".
+     */
+    location?: string | null;
+    /**
+     * Output only. The current state of the association in this location.
+     */
+    state?: string | null;
   }
   /**
    * Specification of the MTLSPolicy.
@@ -1314,6 +1657,10 @@ export namespace networksecurity_v1 {
      */
     customMirroringProfile?: string | null;
     /**
+     * Output only. Identifier used by the data-path. Unique within {container, location\}.
+     */
+    dataPathId?: string | null;
+    /**
      * Optional. An optional description of the profile group. Max length 2048 characters.
      */
     description?: string | null;
@@ -1439,6 +1786,10 @@ export namespace networksecurity_v1 {
    * ThreatPreventionProfile defines an action for specific threat signatures or severity levels.
    */
   export interface Schema$ThreatPreventionProfile {
+    /**
+     * Optional. Configuration for overriding antivirus actions per protocol.
+     */
+    antivirusOverrides?: Schema$AntivirusOverride[];
     /**
      * Optional. Configuration for overriding threats actions by severity match.
      */
@@ -2467,6 +2818,10 @@ export namespace networksecurity_v1 {
      * Required. The project and location from which the AddressGroups should be listed, specified in the format `projects/x/locations/{location\}`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Organizations$Locations$Addressgroups$Listreferences
     extends StandardParameters {
@@ -4530,6 +4885,10 @@ export namespace networksecurity_v1 {
     clientTlsPolicies: Resource$Projects$Locations$Clienttlspolicies;
     firewallEndpointAssociations: Resource$Projects$Locations$Firewallendpointassociations;
     gatewaySecurityPolicies: Resource$Projects$Locations$Gatewaysecuritypolicies;
+    mirroringDeploymentGroups: Resource$Projects$Locations$Mirroringdeploymentgroups;
+    mirroringDeployments: Resource$Projects$Locations$Mirroringdeployments;
+    mirroringEndpointGroupAssociations: Resource$Projects$Locations$Mirroringendpointgroupassociations;
+    mirroringEndpointGroups: Resource$Projects$Locations$Mirroringendpointgroups;
     operations: Resource$Projects$Locations$Operations;
     serverTlsPolicies: Resource$Projects$Locations$Servertlspolicies;
     tlsInspectionPolicies: Resource$Projects$Locations$Tlsinspectionpolicies;
@@ -4552,6 +4911,16 @@ export namespace networksecurity_v1 {
         );
       this.gatewaySecurityPolicies =
         new Resource$Projects$Locations$Gatewaysecuritypolicies(this.context);
+      this.mirroringDeploymentGroups =
+        new Resource$Projects$Locations$Mirroringdeploymentgroups(this.context);
+      this.mirroringDeployments =
+        new Resource$Projects$Locations$Mirroringdeployments(this.context);
+      this.mirroringEndpointGroupAssociations =
+        new Resource$Projects$Locations$Mirroringendpointgroupassociations(
+          this.context
+        );
+      this.mirroringEndpointGroups =
+        new Resource$Projects$Locations$Mirroringendpointgroups(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -5965,6 +6334,10 @@ export namespace networksecurity_v1 {
      * Required. The project and location from which the AddressGroups should be listed, specified in the format `projects/x/locations/{location\}`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Addressgroups$Listreferences
     extends StandardParameters {
@@ -10179,6 +10552,2182 @@ export namespace networksecurity_v1 {
     requestBody?: Schema$GatewaySecurityPolicyRule;
   }
 
+  export class Resource$Projects$Locations$Mirroringdeploymentgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a deployment group in a given project and location. See https://google.aip.dev/133.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/mirroringDeploymentGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a deployment group. See https://google.aip.dev/135.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a specific deployment group. See https://google.aip.dev/131.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MirroringDeploymentGroup>;
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MirroringDeploymentGroup>,
+      callback: BodyResponseCallback<Schema$MirroringDeploymentGroup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get,
+      callback: BodyResponseCallback<Schema$MirroringDeploymentGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MirroringDeploymentGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get
+        | BodyResponseCallback<Schema$MirroringDeploymentGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MirroringDeploymentGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MirroringDeploymentGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$MirroringDeploymentGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MirroringDeploymentGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MirroringDeploymentGroup>(parameters);
+      }
+    }
+
+    /**
+     * Lists deployment groups in a given project and location. See https://google.aip.dev/132.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMirroringDeploymentGroupsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMirroringDeploymentGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListMirroringDeploymentGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List,
+      callback: BodyResponseCallback<Schema$ListMirroringDeploymentGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMirroringDeploymentGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List
+        | BodyResponseCallback<Schema$ListMirroringDeploymentGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMirroringDeploymentGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMirroringDeploymentGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMirroringDeploymentGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/mirroringDeploymentGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMirroringDeploymentGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMirroringDeploymentGroupsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a deployment group. See https://google.aip.dev/134.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the new deployment group, which will become the final component of the deployment group's resource name.
+     */
+    mirroringDeploymentGroupId?: string;
+    /**
+     * Required. The parent resource where this deployment group will be created. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+    /**
+     * Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MirroringDeploymentGroup;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete
+    extends StandardParameters {
+    /**
+     * Required. The deployment group to delete.
+     */
+    name?: string;
+    /**
+     * Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the deployment group to retrieve. Format: projects/{project\}/locations/{location\}/mirroringDeploymentGroups/{mirroring_deployment_group\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.
+     */
+    filter?: string;
+    /**
+     * Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListMirroringDeploymentGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMirroringDeploymentGroups` must match the call that provided the page token. See https://google.aip.dev/158 for more details.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of deployment groups. Example: `projects/123456789/locations/global`. See https://google.aip.dev/132 for more details.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.
+     */
+    name?: string;
+    /**
+     * Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.
+     */
+    requestId?: string;
+    /**
+     * Optional. The list of fields to update. Fields are specified relative to the deployment group (e.g. `description`; *not* `mirroring_deployment_group.description`). See https://google.aip.dev/161 for more details.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MirroringDeploymentGroup;
+  }
+
+  export class Resource$Projects$Locations$Mirroringdeployments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a deployment in a given project and location. See https://google.aip.dev/133.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Mirroringdeployments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringdeployments$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringdeployments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringdeployments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/mirroringDeployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a deployment. See https://google.aip.dev/135.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Mirroringdeployments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringdeployments$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringdeployments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringdeployments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a specific deployment. See https://google.aip.dev/131.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Mirroringdeployments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MirroringDeployment>;
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MirroringDeployment>,
+      callback: BodyResponseCallback<Schema$MirroringDeployment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Get,
+      callback: BodyResponseCallback<Schema$MirroringDeployment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MirroringDeployment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringdeployments$Get
+        | BodyResponseCallback<Schema$MirroringDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MirroringDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MirroringDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$MirroringDeployment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringdeployments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringdeployments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MirroringDeployment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MirroringDeployment>(parameters);
+      }
+    }
+
+    /**
+     * Lists deployments in a given project and location. See https://google.aip.dev/132.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Mirroringdeployments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMirroringDeploymentsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMirroringDeploymentsResponse>,
+      callback: BodyResponseCallback<Schema$ListMirroringDeploymentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$List,
+      callback: BodyResponseCallback<Schema$ListMirroringDeploymentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMirroringDeploymentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringdeployments$List
+        | BodyResponseCallback<Schema$ListMirroringDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMirroringDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMirroringDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMirroringDeploymentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringdeployments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringdeployments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/mirroringDeployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMirroringDeploymentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMirroringDeploymentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a deployment. See https://google.aip.dev/134.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Mirroringdeployments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringdeployments$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringdeployments$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringdeployments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringdeployments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Mirroringdeployments$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the new deployment, which will become the final component of the deployment's resource name.
+     */
+    mirroringDeploymentId?: string;
+    /**
+     * Required. The parent resource where this deployment will be created. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+    /**
+     * Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MirroringDeployment;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringdeployments$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+    /**
+     * Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringdeployments$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the deployment to retrieve. Format: projects/{project\}/locations/{location\}/mirroringDeployments/{mirroring_deployment\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringdeployments$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.
+     */
+    filter?: string;
+    /**
+     * Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListMirroringDeployments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMirroringDeployments` must match the call that provided the page token. See https://google.aip.dev/158 for more details.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of deployments. Example: `projects/123456789/locations/us-central1-a`. See https://google.aip.dev/132 for more details.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringdeployments$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/mirroringDeployments/my-dep`. See https://google.aip.dev/122 for more details.
+     */
+    name?: string;
+    /**
+     * Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.
+     */
+    requestId?: string;
+    /**
+     * Optional. The list of fields to update. Fields are specified relative to the deployment (e.g. `description`; *not* `mirroring_deployment.description`). See https://google.aip.dev/161 for more details.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MirroringDeployment;
+  }
+
+  export class Resource$Projects$Locations$Mirroringendpointgroupassociations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an association in a given project and location. See https://google.aip.dev/133.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/mirroringEndpointGroupAssociations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an association. See https://google.aip.dev/135.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a specific association. See https://google.aip.dev/131.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MirroringEndpointGroupAssociation>;
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MirroringEndpointGroupAssociation>,
+      callback: BodyResponseCallback<Schema$MirroringEndpointGroupAssociation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get,
+      callback: BodyResponseCallback<Schema$MirroringEndpointGroupAssociation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$MirroringEndpointGroupAssociation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get
+        | BodyResponseCallback<Schema$MirroringEndpointGroupAssociation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MirroringEndpointGroupAssociation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MirroringEndpointGroupAssociation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$MirroringEndpointGroupAssociation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MirroringEndpointGroupAssociation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MirroringEndpointGroupAssociation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists associations in a given project and location. See https://google.aip.dev/132.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMirroringEndpointGroupAssociationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMirroringEndpointGroupAssociationsResponse>,
+      callback: BodyResponseCallback<Schema$ListMirroringEndpointGroupAssociationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List,
+      callback: BodyResponseCallback<Schema$ListMirroringEndpointGroupAssociationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMirroringEndpointGroupAssociationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List
+        | BodyResponseCallback<Schema$ListMirroringEndpointGroupAssociationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMirroringEndpointGroupAssociationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMirroringEndpointGroupAssociationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMirroringEndpointGroupAssociationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/mirroringEndpointGroupAssociations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMirroringEndpointGroupAssociationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMirroringEndpointGroupAssociationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an association. See https://google.aip.dev/134.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create
+    extends StandardParameters {
+    /**
+     * Optional. The ID to use for the new association, which will become the final component of the endpoint group's resource name. If not provided, the server will generate a unique ID.
+     */
+    mirroringEndpointGroupAssociationId?: string;
+    /**
+     * Required. The parent resource where this association will be created. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+    /**
+     * Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MirroringEndpointGroupAssociation;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete
+    extends StandardParameters {
+    /**
+     * Required. The association to delete.
+     */
+    name?: string;
+    /**
+     * Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the association to retrieve. Format: projects/{project\}/locations/{location\}/mirroringEndpointGroupAssociations/{mirroring_endpoint_group_association\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.
+     */
+    filter?: string;
+    /**
+     * Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListMirroringEndpointGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMirroringEndpointGroups` must match the call that provided the page token. See https://google.aip.dev/158 for more details.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of associations. Example: `projects/123456789/locations/global`. See https://google.aip.dev/132 for more details.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.
+     */
+    name?: string;
+    /**
+     * Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.
+     */
+    requestId?: string;
+    /**
+     * Optional. The list of fields to update. Fields are specified relative to the association (e.g. `description`; *not* `mirroring_endpoint_group_association.description`). See https://google.aip.dev/161 for more details.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MirroringEndpointGroupAssociation;
+  }
+
+  export class Resource$Projects$Locations$Mirroringendpointgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an endpoint group in a given project and location. See https://google.aip.dev/133.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Mirroringendpointgroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringendpointgroups$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringendpointgroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringendpointgroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/mirroringEndpointGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an endpoint group. See https://google.aip.dev/135.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a specific endpoint group. See https://google.aip.dev/131.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Mirroringendpointgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MirroringEndpointGroup>;
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MirroringEndpointGroup>,
+      callback: BodyResponseCallback<Schema$MirroringEndpointGroup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Get,
+      callback: BodyResponseCallback<Schema$MirroringEndpointGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MirroringEndpointGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringendpointgroups$Get
+        | BodyResponseCallback<Schema$MirroringEndpointGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MirroringEndpointGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MirroringEndpointGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$MirroringEndpointGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringendpointgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringendpointgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MirroringEndpointGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MirroringEndpointGroup>(parameters);
+      }
+    }
+
+    /**
+     * Lists endpoint groups in a given project and location. See https://google.aip.dev/132.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Mirroringendpointgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMirroringEndpointGroupsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMirroringEndpointGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListMirroringEndpointGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$List,
+      callback: BodyResponseCallback<Schema$ListMirroringEndpointGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMirroringEndpointGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringendpointgroups$List
+        | BodyResponseCallback<Schema$ListMirroringEndpointGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMirroringEndpointGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMirroringEndpointGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMirroringEndpointGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringendpointgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringendpointgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/mirroringEndpointGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMirroringEndpointGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMirroringEndpointGroupsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an endpoint group. See https://google.aip.dev/134.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the endpoint group, which will become the final component of the endpoint group's resource name.
+     */
+    mirroringEndpointGroupId?: string;
+    /**
+     * Required. The parent resource where this endpoint group will be created. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+    /**
+     * Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MirroringEndpointGroup;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete
+    extends StandardParameters {
+    /**
+     * Required. The endpoint group to delete.
+     */
+    name?: string;
+    /**
+     * Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the endpoint group to retrieve. Format: projects/{project\}/locations/{location\}/mirroringEndpointGroups/{mirroring_endpoint_group\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.
+     */
+    filter?: string;
+    /**
+     * Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListMirroringEndpointGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMirroringEndpointGroups` must match the call that provided the page token. See https://google.aip.dev/158 for more details.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of endpoint groups. Example: `projects/123456789/locations/global`. See https://google.aip.dev/132 for more details.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.
+     */
+    name?: string;
+    /**
+     * Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.
+     */
+    requestId?: string;
+    /**
+     * Optional. The list of fields to update. Fields are specified relative to the endpoint group (e.g. `description`; *not* `mirroring_endpoint_group.description`). See https://google.aip.dev/161 for more details.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MirroringEndpointGroup;
+  }
+
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -11384,6 +13933,10 @@ export namespace networksecurity_v1 {
      * Required. The project and location from which the ServerTlsPolicies should be listed, specified in the format `projects/x/locations/{location\}`.
      */
     parent?: string;
+    /**
+     * Optional. Setting this field to `true` will opt the request into returning the resources that are reachable, and into including the names of those that were unreachable in the [ListServerTlsPoliciesResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Servertlspolicies$Patch
     extends StandardParameters {
