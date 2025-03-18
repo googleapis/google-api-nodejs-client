@@ -304,6 +304,10 @@ export namespace contactcenterinsights_v1 {
      */
     conversationProfile?: string | null;
     /**
+     * The resource name of the existing created generator. Format: projects//locations//generators/
+     */
+    generator?: string | null;
+    /**
      * Default summarization model to be used.
      */
     summarizationModel?: string | null;
@@ -468,6 +472,36 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsResponse {}
   /**
+   * Metadata for the BulkDeleteFeedbackLabels endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1BulkDeleteFeedbackLabelsMetadata {
+    /**
+     * Partial errors during deletion operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for delete.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1alpha1BulkDeleteFeedbackLabelsRequest;
+  }
+  /**
+   * Request for the BulkDeleteFeedbackLabels endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1BulkDeleteFeedbackLabelsRequest {
+    /**
+     * Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Supported fields: * `issue_model_id` * `qa_question_id` * `qa_scorecard_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING
+     */
+    filter?: string | null;
+    /**
+     * Required. The parent resource for new feedback labels.
+     */
+    parent?: string | null;
+  }
+  /**
+   * Response for the BulkDeleteFeedbackLabels endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1BulkDeleteFeedbackLabelsResponse {}
+  /**
    * A piece of metadata that applies to a window of a call.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1CallAnnotation {
@@ -573,7 +607,7 @@ export namespace contactcenterinsights_v1 {
      */
     medium?: string | null;
     /**
-     * Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with various telphony systems and must be in one of Insight's supported formats.
+     * Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with various telephony systems and must be in one of Insight's supported formats.
      */
     metadataJson?: string | null;
     /**
@@ -1182,6 +1216,10 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataMetadata {
     /**
+     * The number of conversations that were exported successfully.
+     */
+    completedExportCount?: number | null;
+    /**
      * Output only. The time the operation was created.
      */
     createTime?: string | null;
@@ -1189,6 +1227,10 @@ export namespace contactcenterinsights_v1 {
      * Output only. The time the operation finished running.
      */
     endTime?: string | null;
+    /**
+     * The number of conversations that failed to be exported.
+     */
+    failedExportCount?: number | null;
     /**
      * Partial errors during export operation that might cause the operation output to be incomplete.
      */
@@ -1206,6 +1248,10 @@ export namespace contactcenterinsights_v1 {
      * Specified if sink is a BigQuery table.
      */
     bigQueryDestination?: Schema$GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestination;
+    /**
+     * Optional. Version of the export schema.
+     */
+    exportSchemaVersion?: string | null;
     /**
      * A filter to reduce results to a specific subset. Useful for exporting conversations with specific properties.
      */
@@ -1317,7 +1363,7 @@ export namespace contactcenterinsights_v1 {
     source?: string | null;
   }
   /**
-   * Represents a conversation, resource, and label provided by the user.
+   * Represents a conversation, resource, and label provided by the user. Can take the form of a string label or a QaAnswer label. QaAnswer labels are used for Quality AI example conversations. String labels are used for Topic Modeling.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1FeedbackLabel {
     /**
@@ -1325,11 +1371,11 @@ export namespace contactcenterinsights_v1 {
      */
     createTime?: string | null;
     /**
-     * String label.
+     * String label used for Topic Modeling.
      */
     label?: string | null;
     /**
-     * Resource name of the resource to be labeled.
+     * Resource name of the resource to be labeled. Supported resources: - qaScorecards/{scorecard\}/revisions/{revision\}/qaQuestions/{question\} - issueModels/{issue_model\}
      */
     labeledResource?: string | null;
     /**
@@ -1337,7 +1383,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
-     * QaAnswer label.
+     * QaAnswer label used for Quality AI example conversations.
      */
     qaAnswerLabel?: Schema$GoogleCloudContactcenterinsightsV1alpha1QaAnswerAnswerValue;
     /**
@@ -1638,7 +1684,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IssueAssignment {
     /**
-     * Immutable. Display name of the assigned issue. This field is set at time of analyis and immutable since then.
+     * Immutable. Display name of the assigned issue. This field is set at time of analysis and immutable since then.
      */
     displayName?: string | null;
     /**
@@ -2200,7 +2246,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SentimentData {
     /**
-     * A non-negative number from 0 to infinity which represents the abolute magnitude of sentiment regardless of score.
+     * A non-negative number from 0 to infinity which represents the absolute magnitude of sentiment regardless of score.
      */
     magnitude?: number | null;
     /**
@@ -2558,6 +2604,10 @@ export namespace contactcenterinsights_v1 {
      */
     conversationProfile?: string | null;
     /**
+     * The resource name of the existing created generator. Format: projects//locations//generators/
+     */
+    generator?: string | null;
+    /**
      * Default summarization model to be used.
      */
     summarizationModel?: string | null;
@@ -2721,6 +2771,36 @@ export namespace contactcenterinsights_v1 {
    * The response for a bulk delete conversations operation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1BulkDeleteConversationsResponse {}
+  /**
+   * Metadata for the BulkDeleteFeedbackLabels endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsMetadata {
+    /**
+     * Partial errors during deletion operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for delete.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsRequest;
+  }
+  /**
+   * Request for the BulkDeleteFeedbackLabels endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsRequest {
+    /**
+     * Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Supported fields: * `issue_model_id` * `qa_question_id` * `qa_scorecard_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING
+     */
+    filter?: string | null;
+    /**
+     * Required. The parent resource for new feedback labels.
+     */
+    parent?: string | null;
+  }
+  /**
+   * Response for the BulkDeleteFeedbackLabels endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsResponse {}
   /**
    * Metadata for the BulkDownloadFeedbackLabel endpoint.
    */
@@ -3035,7 +3115,7 @@ export namespace contactcenterinsights_v1 {
      */
     medium?: string | null;
     /**
-     * Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with various telphony systems and must be in one of Insight's supported formats.
+     * Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with various telephony systems and must be in one of Insight's supported formats.
      */
     metadataJson?: string | null;
     /**
@@ -3657,6 +3737,10 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ExportInsightsDataMetadata {
     /**
+     * The number of conversations that were exported successfully.
+     */
+    completedExportCount?: number | null;
+    /**
      * Output only. The time the operation was created.
      */
     createTime?: string | null;
@@ -3664,6 +3748,10 @@ export namespace contactcenterinsights_v1 {
      * Output only. The time the operation finished running.
      */
     endTime?: string | null;
+    /**
+     * The number of conversations that failed to be exported.
+     */
+    failedExportCount?: number | null;
     /**
      * Partial errors during export operation that might cause the operation output to be incomplete.
      */
@@ -3681,6 +3769,10 @@ export namespace contactcenterinsights_v1 {
      * Specified if sink is a BigQuery table.
      */
     bigQueryDestination?: Schema$GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestination;
+    /**
+     * Optional. Version of the export schema.
+     */
+    exportSchemaVersion?: string | null;
     /**
      * A filter to reduce results to a specific subset. Useful for exporting conversations with specific properties.
      */
@@ -3792,7 +3884,7 @@ export namespace contactcenterinsights_v1 {
     source?: string | null;
   }
   /**
-   * Represents a conversation, resource, and label provided by the user.
+   * Represents a conversation, resource, and label provided by the user. Can take the form of a string label or a QaAnswer label. QaAnswer labels are used for Quality AI example conversations. String labels are used for Topic Modeling.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel {
     /**
@@ -3800,11 +3892,11 @@ export namespace contactcenterinsights_v1 {
      */
     createTime?: string | null;
     /**
-     * String label.
+     * String label used for Topic Modeling.
      */
     label?: string | null;
     /**
-     * Resource name of the resource to be labeled.
+     * Resource name of the resource to be labeled. Supported resources: - qaScorecards/{scorecard\}/revisions/{revision\}/qaQuestions/{question\} - issueModels/{issue_model\}
      */
     labeledResource?: string | null;
     /**
@@ -3812,7 +3904,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
-     * QaAnswer label.
+     * QaAnswer label used for Quality AI example conversations.
      */
     qaAnswerLabel?: Schema$GoogleCloudContactcenterinsightsV1QaAnswerAnswerValue;
     /**
@@ -4113,7 +4205,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1IssueAssignment {
     /**
-     * Immutable. Display name of the assigned issue. This field is set at time of analyis and immutable since then.
+     * Immutable. Display name of the assigned issue. This field is set at time of analysis and immutable since then.
      */
     displayName?: string | null;
     /**
@@ -5060,7 +5152,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1SentimentData {
     /**
-     * A non-negative number from 0 to infinity which represents the abolute magnitude of sentiment regardless of score.
+     * A non-negative number from 0 to infinity which represents the absolute magnitude of sentiment regardless of score.
      */
     magnitude?: number | null;
     /**
@@ -5429,7 +5521,104 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
-     * Download feedback labels in bulk.
+     * Delete feedback labels in bulk using a filter.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkDeleteFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkDeleteFeedbackLabels(
+      params?: Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    bulkDeleteFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkDeleteFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDeleteFeedbackLabels(
+      params: Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDeleteFeedbackLabels(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDeleteFeedbackLabels(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:bulkDeleteFeedbackLabels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Download feedback labels in bulk from an external source. Currently supports exporting Quality AI example conversations with transcripts and question bodies.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5526,7 +5715,7 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
-     * Upload feedback labels in bulk.
+     * Upload feedback labels from an external source in bulk. Currently supports labeling Quality AI example conversations.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6102,6 +6291,18 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Bulkdeletefeedbacklabels
+    extends StandardParameters {
+    /**
+     * Required. The parent resource for new feedback labels.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Bulkdownloadfeedbacklabels
     extends StandardParameters {
     /**
