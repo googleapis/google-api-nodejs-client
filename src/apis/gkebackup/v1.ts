@@ -235,6 +235,14 @@ export namespace gkebackup_v1 {
      */
     retainExpireTime?: string | null;
     /**
+     * Output only. [Output Only] Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. If set, the list of ProtectedApplications whose resources were included in the Backup.
      */
     selectedApplications?: Schema$NamespacedNames;
@@ -336,6 +344,10 @@ export namespace gkebackup_v1 {
      * Optional. A set of custom labels supplied by user.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Completion time of the last successful Backup. This is sourced from a successful Backup's complete_time field. This field is added to maintain consistency with BackupPlanBinding to display last successful backup time.
+     */
+    lastSuccessfulBackupTime?: string | null;
     /**
      * Output only. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
      */
@@ -654,6 +666,10 @@ export namespace gkebackup_v1 {
      * A token which may be sent as page_token in a subsequent `ListBackups` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.
      */
     nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -905,7 +921,7 @@ export namespace gkebackup_v1 {
      */
     etag?: string | null;
     /**
-     * Optional. Immutable. Filters resources for `Restore`. If not specified, the scope of the restore will remain the same as defined in the `RestorePlan`. If this is specified and no resources are matched by the `inclusion_filters` or everyting is excluded by the `exclusion_filters`, nothing will be restored. This filter can only be specified if the value of namespaced_resource_restore_mode is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or `MERGE_REPLACE_ON_CONFLICT`.
+     * Optional. Immutable. Filters resources for `Restore`. If not specified, the scope of the restore will remain the same as defined in the `RestorePlan`. If this is specified and no resources are matched by the `inclusion_filters` or everything is excluded by the `exclusion_filters`, nothing will be restored. This filter can only be specified if the value of namespaced_resource_restore_mode is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or `MERGE_REPLACE_ON_CONFLICT`.
      */
     filter?: Schema$Filter;
     /**
@@ -1270,6 +1286,14 @@ export namespace gkebackup_v1 {
      * Output only. The full name of the VolumeBackup resource. Format: `projects/x/locations/x/backupPlans/x/backups/x/volumeBackups/x`.
      */
     name?: string | null;
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. A reference to the source Kubernetes PVC from which this VolumeBackup was created.
      */
@@ -3385,6 +3409,10 @@ export namespace gkebackup_v1 {
      * Required. The BackupPlan that contains the Backups to list. Format: `projects/x/locations/x/backupPlans/x`
      */
     parent?: string;
+    /**
+     * Optional. If set to true, the response will return partial results when some regions are unreachable and the unreachable field will be populated.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Backupplans$Backups$Patch
     extends StandardParameters {
