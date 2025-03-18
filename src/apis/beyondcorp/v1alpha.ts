@@ -14657,7 +14657,7 @@ export namespace beyondcorp_v1alpha {
      */
     requestId?: string;
     /**
-     * Required. Mutable fields include: display_name.
+     * Optional. Mutable fields include: display_name.
      */
     updateMask?: string;
 

@@ -1704,6 +1704,7 @@
                   ]
                 },
                 "shouldThrottle": {
+                  "deprecated": true,
                   "description": "Calls the Bouncer method ShouldThrottle to check if a request should be throttled.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/appGateways/{appGatewaysId}:shouldThrottle",
                   "httpMethod": "GET",
@@ -2746,7 +2747,7 @@
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "Required. Mutable fields include: display_name.",
+                              "description": "Optional. Mutable fields include: display_name.",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -6422,6 +6423,7 @@
       "type": "object"
     },
     "ShouldThrottleResponse": {
+      "deprecated": true,
       "description": "Response message for calling ShouldThrottle",
       "id": "ShouldThrottleResponse",
       "properties": {
