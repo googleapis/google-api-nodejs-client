@@ -146,7 +146,7 @@ export namespace alloydb_v1beta {
      */
     enabled?: boolean | null;
     /**
-     * Optional. The encryption config can be specified to encrypt the backups with a customer-managed encryption key (CMEK). When this field is not specified, the backup will then use default encryption scheme to protect the user data.
+     * Optional. The encryption config can be specified to encrypt the backups with a customer-managed encryption key (CMEK). When this field is not specified, the backup will use the cluster's encryption config.
      */
     encryptionConfig?: Schema$EncryptionConfig;
     /**
@@ -532,7 +532,7 @@ export namespace alloydb_v1beta {
      */
     enabled?: boolean | null;
     /**
-     * The encryption config can be specified to encrypt the backups with a customer-managed encryption key (CMEK). When this field is not specified, the backup will then use default encryption scheme to protect the user data.
+     * The encryption config can be specified to encrypt the backups with a customer-managed encryption key (CMEK). When this field is not specified, the backup will use the cluster's encryption config.
      */
     encryptionConfig?: Schema$EncryptionConfig;
     /**
@@ -596,6 +596,48 @@ export namespace alloydb_v1beta {
     selectQuery?: string | null;
   }
   /**
+   * Options for importing data in CSV format.
+   */
+  export interface Schema$CsvImportOptions {
+    /**
+     * Optional. The columns to which CSV data is imported. If not specified, all columns of the database table are loaded with CSV data.
+     */
+    columns?: string[] | null;
+    /**
+     * Optional. Specifies the character that should appear before a data character that needs to be escaped. The default is same as quote character. The value of this argument has to be a character in Hex ASCII Code.
+     */
+    escapeCharacter?: string | null;
+    /**
+     * Optional. Specifies the character that separates columns within each row (line) of the file. The default is comma. The value of this argument has to be a character in Hex ASCII Code.
+     */
+    fieldDelimiter?: string | null;
+    /**
+     * Optional. Specifies the quoting character to be used when a data value is quoted. The default is double-quote. The value of this argument has to be a character in Hex ASCII Code.
+     */
+    quoteCharacter?: string | null;
+    /**
+     * Required. The database table to import CSV file into.
+     */
+    table?: string | null;
+  }
+  /**
+   * DenyMaintenancePeriod definition. Excepting emergencies, maintenance will not be scheduled to start within this deny period. The start_date must be less than the end_date.
+   */
+  export interface Schema$DenyMaintenancePeriod {
+    /**
+     * Deny period end date. This can be: * A full date, with non-zero year, month and day values OR * A month and day value, with a zero year for recurring
+     */
+    endDate?: Schema$GoogleTypeDate;
+    /**
+     * Deny period start date. This can be: * A full date, with non-zero year, month and day values OR * A month and day value, with a zero year for recurring
+     */
+    startDate?: Schema$GoogleTypeDate;
+    /**
+     * Time in UTC when the deny period starts on start_date and ends on end_date. This can be: * Full time OR * All zeros for 00:00:00 UTC
+     */
+    time?: Schema$GoogleTypeTimeOfDay;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -654,6 +696,15 @@ export namespace alloydb_v1beta {
      * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean | null;
+  }
+  /**
+   * Instance level configuration parameters related to the Gemini Cloud Assist product.
+   */
+  export interface Schema$GCAInstanceConfig {
+    /**
+     * Output only. Represents the GCA entitlement state of the instance.
+     */
+    gcaEntitlement?: string | null;
   }
   /**
    * Destination for Export. Export will be done to cloud storage.
@@ -721,6 +772,23 @@ export namespace alloydb_v1beta {
     name?: string | null;
   }
   /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
+  export interface Schema$GoogleTypeDate {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
    */
   export interface Schema$GoogleTypeTimeOfDay {
@@ -740,6 +808,31 @@ export namespace alloydb_v1beta {
      * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
+  }
+  /**
+   * Import cluster request.
+   */
+  export interface Schema$ImportClusterRequest {
+    /**
+     * Options for importing data in CSV format.
+     */
+    csvImportOptions?: Schema$CsvImportOptions;
+    /**
+     * Optional. Name of the database to which the import will be done. For import from SQL file, this is required only if the file does not specify a database. Note - Value provided should be the same as expected from `SELECT current_database();` and NOT as a resource reference.
+     */
+    database?: string | null;
+    /**
+     * Required. The path to the file in Google Cloud Storage where the source file for import will be stored. The URI is in the form `gs://bucketName/fileName`.
+     */
+    gcsUri?: string | null;
+    /**
+     * Options for importing data in SQL format.
+     */
+    sqlImportOptions?: Schema$SqlImportOptions;
+    /**
+     * Optional. Database user to be used for importing the data. Note - Value provided should be the same as expected from `SELECT current_user;` and NOT as a resource reference.
+     */
+    user?: string | null;
   }
   /**
    * Message for triggering fault injection on an instance
@@ -794,6 +887,10 @@ export namespace alloydb_v1beta {
      * For Resource freshness validation (https://google.aip.dev/154)
      */
     etag?: string | null;
+    /**
+     * Output only. Configuration parameters related to Gemini Cloud Assist.
+     */
+    gcaConfig?: Schema$GCAInstanceConfig;
     /**
      * The Compute Engine zone that the instance should serve from, per https://cloud.google.com/compute/docs/regions-zones This can ONLY be specified for ZONAL instances. If present for a REGIONAL instance, an error will be thrown. If this is absent for a ZONAL instance, instance is created in a random zone with available capacity.
      */
@@ -899,6 +996,10 @@ export namespace alloydb_v1beta {
      * Optional. Enabling public ip for the instance.
      */
     enablePublicIp?: boolean | null;
+    /**
+     * Output only. The resource link for the VPC network in which instance resources are created and from which they are accessible via Private IP. This will be the same value as the parent cluster's network. It is specified in the form: // `projects/{project_number\}/global/networks/{network_id\}`.
+     */
+    network?: string | null;
   }
   /**
    * Details regarding the upgrade of instaces associated with a cluster.
@@ -1032,6 +1133,10 @@ export namespace alloydb_v1beta {
      * The number of CPU's in the VM instance.
      */
     cpuCount?: number | null;
+    /**
+     * Machine type of the VM instance. E.g. "n2-highmem-4", "n2-highmem-8", "c4a-highmem-4-lssd". cpu_count must match the number of vCPUs in the machine type.
+     */
+    machineType?: string | null;
   }
   /**
    * MaintenanceSchedule stores the maintenance schedule generated from the MaintenanceUpdatePolicy, once a maintenance rollout is triggered, if MaintenanceWindow is set, and if there is no conflicting DenyPeriod. The schedule is cleared once the update takes place. This field cannot be manually changed; modify the MaintenanceUpdatePolicy instead.
@@ -1046,6 +1151,10 @@ export namespace alloydb_v1beta {
    * MaintenanceUpdatePolicy defines the policy for system updates.
    */
   export interface Schema$MaintenanceUpdatePolicy {
+    /**
+     * Periods to deny maintenance. Currently limited to 1.
+     */
+    denyMaintenancePeriods?: Schema$DenyMaintenancePeriod[];
     /**
      * Preferred windows to perform maintenance. Currently limited to 1.
      */
@@ -1095,7 +1204,7 @@ export namespace alloydb_v1beta {
     network?: string | null;
   }
   /**
-   * Details of a single node in the instance. Nodes in an AlloyDB instance are ephemereal, they can change during update, failover, autohealing and resize operations.
+   * Details of a single node in the instance. Nodes in an AlloyDB instance are ephemeral, they can change during update, failover, autohealing and resize operations.
    */
   export interface Schema$Node {
     /**
@@ -1119,6 +1228,10 @@ export namespace alloydb_v1beta {
    * Observability Instance specific configuration.
    */
   export interface Schema$ObservabilityInstanceConfig {
+    /**
+     * Whether assistive experiences are enabled for this AlloyDB instance.
+     */
+    assistiveExperiencesEnabled?: boolean | null;
     /**
      * Observability feature status for an instance. This flag is turned "off" by default.
      */
@@ -1144,15 +1257,11 @@ export namespace alloydb_v1beta {
      */
     trackActiveQueries?: boolean | null;
     /**
-     * Track client address for an instance. If not set, default value is "off".
-     */
-    trackClientAddress?: boolean | null;
-    /**
      * Track wait events during query execution for an instance. This flag is turned "on" by default but tracking is enabled only after observability enabled flag is also turned on.
      */
     trackWaitEvents?: boolean | null;
     /**
-     * Output only. Track wait event types during query execution for an instance. This flag is turned "on" by default but tracking is enabled only after observability enabled flag is also turned on. This is read-only flag and only modifiable by producer API.
+     * Output only. Track wait event types during query execution for an instance. This flag is turned "on" by default but tracking is enabled only after observability enabled flag is also turned on. This is read-only flag and only modifiable by internal API.
      */
     trackWaitEventTypes?: boolean | null;
   }
@@ -1210,6 +1319,10 @@ export namespace alloydb_v1beta {
      */
     target?: string | null;
     /**
+     * Output only. UpgradeClusterStatus related metadata.
+     */
+    upgradeClusterStatus?: Schema$UpgradeClusterStatus;
+    /**
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
@@ -1241,6 +1354,31 @@ export namespace alloydb_v1beta {
     validateOnly?: boolean | null;
   }
   /**
+   * Configuration for setting up PSC service automation. Consumer projects in the configs will be allowlisted automatically for the instance.
+   */
+  export interface Schema$PscAutoConnectionConfig {
+    /**
+     * The consumer network for the PSC service automation, example: "projects/vpc-host-project/global/networks/default". The consumer network might be hosted a different project than the consumer project.
+     */
+    consumerNetwork?: string | null;
+    /**
+     * Output only. The status of the service connection policy.
+     */
+    consumerNetworkStatus?: string | null;
+    /**
+     * The consumer project to which the PSC service automation endpoint will be created.
+     */
+    consumerProject?: string | null;
+    /**
+     * Output only. The IP address of the PSC service automation endpoint.
+     */
+    ipAddress?: string | null;
+    /**
+     * Output only. The status of the PSC service automation connection.
+     */
+    status?: string | null;
+  }
+  /**
    * PscConfig contains PSC related configuration at a cluster level.
    */
   export interface Schema$PscConfig {
@@ -1248,6 +1386,10 @@ export namespace alloydb_v1beta {
      * Optional. Create an instance that allows connections from Private Service Connect endpoints to the instance.
      */
     pscEnabled?: boolean | null;
+    /**
+     * Output only. The project number that needs to be allowlisted on the network attachment to enable outbound connectivity.
+     */
+    serviceOwnedProjectNumber?: string | null;
   }
   /**
    * PscInstanceConfig contains PSC related configuration at an instance level.
@@ -1258,13 +1400,30 @@ export namespace alloydb_v1beta {
      */
     allowedConsumerProjects?: string[] | null;
     /**
+     * Optional. Configurations for setting up PSC service automation.
+     */
+    pscAutoConnections?: Schema$PscAutoConnectionConfig[];
+    /**
      * Output only. The DNS name of the instance for PSC connectivity. Name convention: ...alloydb-psc.goog
      */
     pscDnsName?: string | null;
     /**
+     * Optional. Configurations for setting up PSC interfaces attached to the instance which are used for outbound connectivity. Only primary instances can have PSC interface attached. Currently we only support 0 or 1 PSC interface.
+     */
+    pscInterfaceConfigs?: Schema$PscInterfaceConfig[];
+    /**
      * Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`
      */
     serviceAttachmentLink?: string | null;
+  }
+  /**
+   * Configuration for setting up a PSC interface to enable outbound connectivity.
+   */
+  export interface Schema$PscInterfaceConfig {
+    /**
+     * The network attachment resource created in the consumer network to which the PSC interface will be linked. This is of the format: "projects/${CONSUMER_PROJECT\}/regions/${REGION\}/networkAttachments/${NETWORK_ATTACHMENT_NAME\}". The network attachment must be in the same region as the instance.
+     */
+    networkAttachmentResource?: string | null;
   }
   /**
    * A backup's position in a quantity-based retention queue, of backups with the same source cluster and type, with length, retention, specified by the backup's retention policy. Once the position is greater than the retention, the backup is eligible to be garbage collected. Example: 5 backups from the same source cluster and type with a quantity-based retention of 3 and denoted by backup_id (position, retention). Safe: backup_5 (1, 3), backup_4, (2, 3), backup_3 (3, 3). Awaiting garbage collection: backup_2 (4, 3), backup_1 (5, 3)
@@ -1317,6 +1476,15 @@ export namespace alloydb_v1beta {
      * Read capacity, i.e. number of nodes in a read pool instance.
      */
     nodeCount?: number | null;
+  }
+  /**
+   * Read pool instances upgrade specific status.
+   */
+  export interface Schema$ReadPoolInstancesUpgradeStageStatus {
+    /**
+     * Read pool instances upgrade statistics.
+     */
+    upgradeStats?: Schema$Stats;
   }
   export interface Schema$RestartInstanceRequest {
     /**
@@ -1409,6 +1577,10 @@ export namespace alloydb_v1beta {
     tables?: string[] | null;
   }
   /**
+   * Options for importing data in SQL format.
+   */
+  export interface Schema$SqlImportOptions {}
+  /**
    * SSL configuration.
    */
   export interface Schema$SslConfig {
@@ -1437,6 +1609,44 @@ export namespace alloydb_v1beta {
      * Status of the stage.
      */
     status?: string | null;
+  }
+  /**
+   * Status of an upgrade stage.
+   */
+  export interface Schema$StageStatus {
+    /**
+     * Read pool instances upgrade metadata.
+     */
+    readPoolInstancesUpgrade?: Schema$ReadPoolInstancesUpgradeStageStatus;
+    /**
+     * Upgrade stage.
+     */
+    stage?: string | null;
+    /**
+     * State of this stage.
+     */
+    state?: string | null;
+  }
+  /**
+   * Upgrade stats for read pool instances.
+   */
+  export interface Schema$Stats {
+    /**
+     * Number of read pool instances which failed to upgrade.
+     */
+    failed?: number | null;
+    /**
+     * Number of read pool instances for which upgrade has not started.
+     */
+    notStarted?: number | null;
+    /**
+     * Number of read pool instances undergoing upgrade.
+     */
+    ongoing?: number | null;
+    /**
+     * Number of read pool instances successfully upgraded.
+     */
+    success?: number | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1635,7 +1845,7 @@ export namespace alloydb_v1beta {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 23
+   * Common model for database resource instance metadata. Next ID: 25
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
     /**
@@ -1675,6 +1885,10 @@ export namespace alloydb_v1beta {
      */
     expectedState?: string | null;
     /**
+     * GCBDR configuration for the resource.
+     */
+    gcbdrConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration;
+    /**
      * Required. Unique identifier for a Database resource
      */
     id?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
@@ -1710,6 +1924,10 @@ export namespace alloydb_v1beta {
      * Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named "ABC" is deleted, the name "ABC" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
      */
     resourceName?: string | null;
+    /**
+     * Optional. Suspension reason for the resource.
+     */
+    suspensionReason?: string | null;
     /**
      * Optional. Tags associated with this resources.
      */
@@ -1774,6 +1992,15 @@ export namespace alloydb_v1beta {
     type?: string | null;
   }
   /**
+   * GCBDR Configuration for the resource.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration {
+    /**
+     * Whether the resource is managed by GCBDR.
+     */
+    gcbdrManaged?: boolean | null;
+  }
+  /**
    * Metadata for individual internal resources in an instance. e.g. spanner instance can have multiple databases with unique configuration settings. Similarly bigtable can have multiple clusters within same bigtable instance.
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata {
@@ -1785,6 +2012,10 @@ export namespace alloydb_v1beta {
      * Information about the last backup attempt for this database
      */
     backupRun?: Schema$StorageDatabasecenterPartnerapiV1mainBackupRun;
+    /**
+     * Whether deletion protection is enabled for this internal resource.
+     */
+    isDeletionProtectionEnabled?: boolean | null;
     product?: Schema$StorageDatabasecenterProtoCommonProduct;
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
@@ -1797,11 +2028,11 @@ export namespace alloydb_v1beta {
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration {
     /**
-     * The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     * The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482) add proto validations again after bug fix.
      */
     cpuCount?: number | null;
     /**
-     * Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     * Memory size in bytes. TODO(b/342344482) add proto validations again after bug fix.
      */
     memorySizeInBytes?: string | null;
     /**
@@ -1809,7 +2040,7 @@ export namespace alloydb_v1beta {
      */
     shardCount?: number | null;
     /**
-     * Optional. The number of vCPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     * Optional. The number of vCPUs. TODO(b/342344482) add proto validations again after bug fix.
      */
     vcpuCount?: number | null;
   }
@@ -1948,9 +2179,21 @@ export namespace alloydb_v1beta {
      */
     name?: string | null;
     /**
+     * The recommended value for an INTEGER flag.
+     */
+    recommendedIntegerValue?: string | null;
+    /**
+     * The recommended value for a STRING flag.
+     */
+    recommendedStringValue?: string | null;
+    /**
      * Whether setting or updating this flag on an Instance requires a database restart. If a flag that requires database restart is set, the backend will automatically restart the database (making sure to satisfy any availability SLO's).
      */
     requiresDbRestart?: boolean | null;
+    /**
+     * The scope of the flag.
+     */
+    scope?: string | null;
     /**
      * Restriction on STRING type value.
      */
@@ -2050,6 +2293,31 @@ export namespace alloydb_v1beta {
      * Status of upgrade operation.
      */
     status?: string | null;
+  }
+  /**
+   * Message for current status of the Major Version Upgrade operation.
+   */
+  export interface Schema$UpgradeClusterStatus {
+    /**
+     * Whether the operation is cancellable.
+     */
+    cancellable?: boolean | null;
+    /**
+     * Source database major version.
+     */
+    sourceVersion?: string | null;
+    /**
+     * Status of all upgrade stages.
+     */
+    stages?: Schema$StageStatus[];
+    /**
+     * Cluster Major Version Upgrade state.
+     */
+    state?: string | null;
+    /**
+     * Target database major version.
+     */
+    targetVersion?: string | null;
   }
   /**
    * Message describing User object.
@@ -3336,6 +3604,94 @@ export namespace alloydb_v1beta {
     }
 
     /**
+     * Imports data to the cluster. Imperative only.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Clusters$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Clusters$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Clusters$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Clusters$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Clusters$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Import
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alloydb.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Lists Clusters in a given project and location.
      *
      * @param params - Parameters for request
@@ -4047,6 +4403,18 @@ export namespace alloydb_v1beta {
      * Optional. The view of the cluster to return. Returns all default fields if not set.
      */
     view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Import
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the cluster.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportClusterRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$List
     extends StandardParameters {
@@ -6288,5 +6656,9 @@ export namespace alloydb_v1beta {
      * Required. The name of the parent resource. The required format is: * projects/{project\}/locations/{location\} Regardless of the parent specified here, as long it is contains a valid project and location, the service will return a static list of supported flags resources. Note that we do not yet support region-specific flags.
      */
     parent?: string;
+    /**
+     * Optional. The scope for which supported flags are requested. If not specified, default is DATABASE.
+     */
+    scope?: string;
   }
 }
