@@ -114,6 +114,7 @@
                 "partnerTenants": {
                   "methods": {
                     "create": {
+                      "deprecated": true,
                       "description": "Creates a new BeyondCorp Enterprise partnerTenant in a given organization and can only be called by onboarded BeyondCorp Enterprise partner.",
                       "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants",
                       "httpMethod": "POST",
@@ -147,6 +148,7 @@
                       ]
                     },
                     "delete": {
+                      "deprecated": true,
                       "description": "Deletes a single PartnerTenant.",
                       "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}",
                       "httpMethod": "DELETE",
@@ -201,37 +203,6 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
-                    "getIamPolicy": {
-                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                      "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}:getIamPolicy",
-                      "httpMethod": "GET",
-                      "id": "beyondcorp.organizations.locations.global.partnerTenants.getIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "options.requestedPolicyVersion": {
-                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+resource}:getIamPolicy",
-                      "response": {
-                        "$ref": "GoogleIamV1Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "list": {
                       "description": "Lists PartnerTenants in a given organization.",
                       "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants",
@@ -279,6 +250,7 @@
                       ]
                     },
                     "patch": {
+                      "deprecated": true,
                       "description": "Updates a single PartnerTenant.",
                       "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}",
                       "httpMethod": "PATCH",
@@ -312,34 +284,6 @@
                       },
                       "response": {
                         "$ref": "GoogleLongrunningOperation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "setIamPolicy": {
-                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                      "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}:setIamPolicy",
-                      "httpMethod": "POST",
-                      "id": "beyondcorp.organizations.locations.global.partnerTenants.setIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+resource}:setIamPolicy",
-                      "request": {
-                        "$ref": "GoogleIamV1SetIamPolicyRequest"
-                      },
-                      "response": {
-                        "$ref": "GoogleIamV1Policy"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -465,37 +409,6 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
-                        "getIamPolicy": {
-                          "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                          "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/browserDlpRules/{browserDlpRulesId}:getIamPolicy",
-                          "httpMethod": "GET",
-                          "id": "beyondcorp.organizations.locations.global.partnerTenants.browserDlpRules.getIamPolicy",
-                          "parameterOrder": [
-                            "resource"
-                          ],
-                          "parameters": {
-                            "options.requestedPolicyVersion": {
-                              "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-                              "format": "int32",
-                              "location": "query",
-                              "type": "integer"
-                            },
-                            "resource": {
-                              "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                              "location": "path",
-                              "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+/browserDlpRules/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1alpha/{+resource}:getIamPolicy",
-                          "response": {
-                            "$ref": "GoogleIamV1Policy"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
                         "list": {
                           "description": "Lists BrowserDlpRules for PartnerTenant in a given organization.",
                           "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/browserDlpRules",
@@ -560,34 +473,6 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
-                        "setIamPolicy": {
-                          "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                          "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/browserDlpRules/{browserDlpRulesId}:setIamPolicy",
-                          "httpMethod": "POST",
-                          "id": "beyondcorp.organizations.locations.global.partnerTenants.browserDlpRules.setIamPolicy",
-                          "parameterOrder": [
-                            "resource"
-                          ],
-                          "parameters": {
-                            "resource": {
-                              "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                              "location": "path",
-                              "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+/browserDlpRules/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1alpha/{+resource}:setIamPolicy",
-                          "request": {
-                            "$ref": "GoogleIamV1SetIamPolicyRequest"
-                          },
-                          "response": {
-                            "$ref": "GoogleIamV1Policy"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
                         "testIamPermissions": {
                           "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
                           "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/browserDlpRules/{browserDlpRulesId}:testIamPermissions",
@@ -621,6 +506,7 @@
                     "proxyConfigs": {
                       "methods": {
                         "create": {
+                          "deprecated": true,
                           "description": "Creates a new BeyondCorp Enterprise ProxyConfig in a given organization and PartnerTenant. Can only be called by on onboarded Beyondcorp Enterprise partner.",
                           "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/proxyConfigs",
                           "httpMethod": "POST",
@@ -654,6 +540,7 @@
                           ]
                         },
                         "delete": {
+                          "deprecated": true,
                           "description": "Deletes a single ProxyConfig.",
                           "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/proxyConfigs/{proxyConfigsId}",
                           "httpMethod": "DELETE",
@@ -684,6 +571,7 @@
                           ]
                         },
                         "get": {
+                          "deprecated": true,
                           "description": "Gets details of a single ProxyConfig.",
                           "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/proxyConfigs/{proxyConfigsId}",
                           "httpMethod": "GET",
@@ -708,38 +596,8 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
-                        "getIamPolicy": {
-                          "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                          "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/proxyConfigs/{proxyConfigsId}:getIamPolicy",
-                          "httpMethod": "GET",
-                          "id": "beyondcorp.organizations.locations.global.partnerTenants.proxyConfigs.getIamPolicy",
-                          "parameterOrder": [
-                            "resource"
-                          ],
-                          "parameters": {
-                            "options.requestedPolicyVersion": {
-                              "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-                              "format": "int32",
-                              "location": "query",
-                              "type": "integer"
-                            },
-                            "resource": {
-                              "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                              "location": "path",
-                              "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+/proxyConfigs/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1alpha/{+resource}:getIamPolicy",
-                          "response": {
-                            "$ref": "GoogleIamV1Policy"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
                         "list": {
+                          "deprecated": true,
                           "description": "Lists ProxyConfigs for PartnerTenant in a given organization.",
                           "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/proxyConfigs",
                           "httpMethod": "GET",
@@ -786,6 +644,7 @@
                           ]
                         },
                         "patch": {
+                          "deprecated": true,
                           "description": "Updates a single proxy config.",
                           "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/proxyConfigs/{proxyConfigsId}",
                           "httpMethod": "PATCH",
@@ -819,34 +678,6 @@
                           },
                           "response": {
                             "$ref": "GoogleLongrunningOperation"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
-                        "setIamPolicy": {
-                          "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                          "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/proxyConfigs/{proxyConfigsId}:setIamPolicy",
-                          "httpMethod": "POST",
-                          "id": "beyondcorp.organizations.locations.global.partnerTenants.proxyConfigs.setIamPolicy",
-                          "parameterOrder": [
-                            "resource"
-                          ],
-                          "parameters": {
-                            "resource": {
-                              "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                              "location": "path",
-                              "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+/proxyConfigs/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1alpha/{+resource}:setIamPolicy",
-                          "request": {
-                            "$ref": "GoogleIamV1SetIamPolicyRequest"
-                          },
-                          "response": {
-                            "$ref": "GoogleIamV1Policy"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -2365,6 +2196,7 @@
                   ]
                 },
                 "shouldThrottle": {
+                  "deprecated": true,
                   "description": "Calls the Bouncer method ShouldThrottle to check if a request should be throttled.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/appGateways/{appGatewaysId}:shouldThrottle",
                   "httpMethod": "GET",
@@ -2737,34 +2569,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientGateways/{clientGatewaysId}:setIamPolicy",
-                  "httpMethod": "POST",
-                  "id": "beyondcorp.projects.locations.clientGateways.setIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/clientGateways/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+resource}:setIamPolicy",
-                  "request": {
-                    "$ref": "GoogleIamV1SetIamPolicyRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleIamV1Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientGateways/{clientGatewaysId}:testIamPermissions",
@@ -3094,34 +2898,6 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
-                },
-                "testIamPermissions": {
-                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:testIamPermissions",
-                  "httpMethod": "POST",
-                  "id": "beyondcorp.projects.locations.connections.testIamPermissions",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+resource}:testIamPermissions",
-                  "request": {
-                    "$ref": "GoogleIamV1TestIamPermissionsRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
                 }
               }
             },
@@ -3431,34 +3207,6 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
-                },
-                "testIamPermissions": {
-                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/connectors/{connectorsId}:testIamPermissions",
-                  "httpMethod": "POST",
-                  "id": "beyondcorp.projects.locations.connectors.testIamPermissions",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/connectors/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+resource}:testIamPermissions",
-                  "request": {
-                    "$ref": "GoogleIamV1TestIamPermissionsRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
                 }
               }
             },
@@ -3528,7 +3276,7 @@
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "Required. Mutable fields include: display_name.",
+                              "description": "Optional. Mutable fields include: display_name.",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -4129,7 +3877,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Mutable fields include: display_name, hubs.",
+                      "description": "Optional. Mutable fields include: display_name, hubs.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -4380,7 +4128,7 @@
       }
     }
   },
-  "revision": "20241204",
+  "revision": "20250305",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -6470,10 +6218,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "csgCustomer": {
+          "description": "Optional. Whether the subscription is being created as part of the Citrix flow. If this field is set to true, the subscription should have both the start_time and end_time set in the request and the billing account used will be the Citrix master billing account regardless of what its set to in the request. This field can only be set to true in create requests.",
+          "type": "boolean"
+        },
         "endTime": {
-          "description": "Output only. End time of the subscription.",
+          "description": "Optional. End time of the subscription.",
           "format": "google-datetime",
-          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -6498,9 +6249,8 @@
           "type": "string"
         },
         "startTime": {
-          "description": "Output only. Start time of the subscription.",
+          "description": "Optional. Start time of the subscription.",
           "format": "google-datetime",
-          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -7376,6 +7126,7 @@
       "type": "object"
     },
     "ShouldThrottleResponse": {
+      "deprecated": true,
       "description": "Response message for calling ShouldThrottle",
       "id": "ShouldThrottleResponse",
       "properties": {
