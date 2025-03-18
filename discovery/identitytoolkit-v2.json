@@ -1655,7 +1655,7 @@
       }
     }
   },
-  "revision": "20241024",
+  "revision": "20250130",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitAdminV2AllowByDefault": {
@@ -1822,6 +1822,11 @@
           "$ref": "GoogleCloudIdentitytoolkitAdminV2ClientConfig",
           "description": "Options related to how clients making requests on behalf of a project should be configured."
         },
+        "defaultHostingSite": {
+          "description": "Output only. Default Firebase hosting site name",
+          "readOnly": true,
+          "type": "string"
+        },
         "emailPrivacyConfig": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig",
           "description": "Configuration for settings related to email privacy and public visibility."
@@ -1829,6 +1834,10 @@
         "mfa": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig",
           "description": "Configuration for this project's multi-factor authentication, including whether it is active and what factors can be used for the second factor"
+        },
+        "mobileLinksConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig",
+          "description": "Configuration for settings related to univeral links (iOS) and app links (Android)."
         },
         "monitoring": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2MonitoringConfig",
@@ -2336,6 +2345,27 @@
             "$ref": "GoogleCloudIdentitytoolkitAdminV2Tenant"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig": {
+      "description": "Configuration mobile links.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig",
+      "properties": {
+        "domain": {
+          "description": "Open code in app domain to use for app links and universal links.",
+          "enum": [
+            "DOMAIN_UNSPECIFIED",
+            "FIREBASE_DYNAMIC_LINK_DOMAIN",
+            "HOSTING_DOMAIN"
+          ],
+          "enumDescriptions": [
+            "Default value. The default domain is the Firebase Dynamic Link domain before the FDL deprecation and the hosting domain after the FDL deprecation.",
+            "Use Firebase Dynamic Link domain as app link domain. Default value.",
+            "Use hosting domain as app link domain."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3044,6 +3074,11 @@
         "mfaConfig": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig",
           "description": "The tenant-level configuration of MFA options."
+        },
+        "mobileLinksConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig",
+          "deprecated": true,
+          "description": "Optional. Deprecated. Never launched. Configuration for settings related to univeral links (iOS) and app links (Android)."
         },
         "monitoring": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2MonitoringConfig",
