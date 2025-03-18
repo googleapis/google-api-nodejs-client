@@ -204,7 +204,7 @@
                       "type": "boolean"
                     },
                     "entity": {
-                      "description": "The entity for customers who run multiple entities, domains, sites, or regions, for example, `Google US`, `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. If this is set, it must be an exact match with UserEvent.entity to get per-entity autocomplete results.",
+                      "description": "The entity for customers who run multiple entities, domains, sites, or regions, for example, `Google US`, `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. If this is set, it must be an exact match with UserEvent.entity to get per-entity autocomplete results. Also, this entity should be limited to 256 characters, if too long, it will be truncated to 256 characters in both generation and serving time, and may lead to mis-match. To ensure it works, please set the entity with string within 256 characters.",
                       "location": "query",
                       "type": "string"
                     },
@@ -226,7 +226,7 @@
                       "type": "string"
                     },
                     "visitorId": {
-                      "description": "Required field. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+                      "description": "Recommended field. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
                       "location": "query",
                       "type": "string"
                     }
@@ -2368,7 +2368,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250314",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6982,6 +6982,10 @@
           "description": "The labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. For more information, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) in the Resource Manager documentation.",
           "type": "object"
         },
+        "languageCode": {
+          "description": "Optional. The BCP-47 language code, such as \"en-US\" or \"sr-Latn\" [list](https://www.unicode.org/cldr/charts/46/summary/root.html). For more information, see [Standardized codes](https://google.aip.dev/143). This field helps to better interpret the query. If a value isn't specified, the query language code is automatically detected, which may not be accurate.",
+          "type": "string"
+        },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Products deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an INVALID_ARGUMENT is returned.",
           "format": "int32",
@@ -7011,6 +7015,10 @@
           "$ref": "GoogleCloudRetailV2betaSearchRequestPersonalizationSpec",
           "description": "The specification for personalization. Notice that if both ServingConfig.personalization_spec and SearchRequest.personalization_spec are set. SearchRequest.personalization_spec will override ServingConfig.personalization_spec."
         },
+        "placeId": {
+          "description": "Optional. An id corresponding to a place, such as a store id or region id. When specified, we use the price from the local inventory with the matching product's LocalInventory.place_id for revenue optimization.",
+          "type": "string"
+        },
         "query": {
           "description": "Raw search query. If this field is empty, the request is considered a category browsing request and returned results are based on filter and page_categories.",
           "type": "string"
@@ -7018,6 +7026,10 @@
         "queryExpansionSpec": {
           "$ref": "GoogleCloudRetailV2betaSearchRequestQueryExpansionSpec",
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs. For more information, see [Query expansion](https://cloud.google.com/retail/docs/result-size#query_expansion)."
+        },
+        "regionCode": {
+          "description": "Optional. The Unicode country/region code (CLDR) of a location, such as \"US\" and \"419\" [list](https://www.unicode.org/cldr/charts/46/supplemental/territory_information.html). For more information, see [Standardized codes](https://google.aip.dev/143). If set, then results will be boosted based on the region_code provided.",
+          "type": "string"
         },
         "searchMode": {
           "description": "The search mode of the search request. If not specified, a single search request triggers both product search and faceted search.",
@@ -7321,7 +7333,7 @@
       "id": "GoogleCloudRetailV2betaSearchRequestTileNavigationSpec",
       "properties": {
         "appliedTiles": {
-          "description": "This field specifies the tiles which are already clicked in client side. NOTE: This field is not being used for filtering search products. Client side should also put all the applied tiles in SearchRequest.filter.",
+          "description": "This optional field specifies the tiles which are already clicked in client side. While the feature works without this field set, particularly for an initial query, it is highly recommended to set this field because it can improve the quality of the search response and removes possible duplicate tiles. NOTE: This field is not being used for filtering search products. Client side should also put all the applied tiles in SearchRequest.filter.",
           "items": {
             "$ref": "GoogleCloudRetailV2betaTile"
           },
@@ -7881,7 +7893,7 @@
           "type": "string"
         },
         "eventType": {
-          "description": "Required. User event type. Allowed values are: * `add-to-cart`: Products being added to cart. * `remove-from-cart`: Products being removed from cart. * `category-page-view`: Special pages such as sale or promotion pages viewed. * `detail-page-view`: Products detail page viewed. * `home-page-view`: Homepage viewed. * `promotion-offered`: Promotion is offered to a user. * `promotion-not-offered`: Promotion is not offered to a user. * `purchase-complete`: User finishing a purchase. * `search`: Product search. * `shopping-cart-page-view`: User viewing a shopping cart.",
+          "description": "Required. User event type. Allowed values are: * `add-to-cart`: Products being added to cart. * `remove-from-cart`: Products being removed from cart. * `category-page-view`: Special pages such as sale or promotion pages viewed. * `detail-page-view`: Products detail page viewed. * `home-page-view`: Homepage viewed. * `purchase-complete`: User finishing a purchase. * `search`: Product search. * `shopping-cart-page-view`: User viewing a shopping cart.",
           "type": "string"
         },
         "experimentIds": {
