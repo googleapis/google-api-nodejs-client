@@ -1,5 +1,18 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v11.1.0...testing-v12.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **testing:** This release has breaking changes.
+
+### Features
+
+* **testing:** update the API ([4ab28c7](https://github.com/googleapis/google-api-nodejs-client/commit/4ab28c78e4b0babe0efe17888ba158ff6e767ec1))
+* **testing:** update the API ([c624d3a](https://github.com/googleapis/google-api-nodejs-client/commit/c624d3a9e164966204ce34541acc75472ec9f383))
+* **testing:** update the API ([89acbc3](https://github.com/googleapis/google-api-nodejs-client/commit/89acbc39bdde866596132de464a2b70a64988936))
+
 ## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v11.0.0...testing-v11.1.0) (2025-03-18)
 
 
