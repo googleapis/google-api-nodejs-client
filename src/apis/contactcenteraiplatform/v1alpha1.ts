@@ -155,7 +155,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
     serviceAttachmentNames?: string[] | null;
   }
   /**
-   * Message describing ContactCenter object Next ID: 24
+   * Message describing ContactCenter object
    */
   export interface Schema$ContactCenter {
     /**
