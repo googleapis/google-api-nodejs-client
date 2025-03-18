@@ -148,6 +148,24 @@ export namespace aiplatform_v1beta1 {
      * Returns rai failure reasons if any.
      */
     raiMediaFilteredReasons?: string[] | null;
+    /**
+     * List of videos, used to align naming with the external response.
+     */
+    videos?: Schema$CloudAiLargeModelsVisionGenerateVideoResponseVideo[];
+  }
+  export interface Schema$CloudAiLargeModelsVisionGenerateVideoResponseVideo {
+    /**
+     * Base64 encoded bytes string representing the video.
+     */
+    bytesBase64Encoded?: string | null;
+    /**
+     * Cloud Storage URI where the generated video is written.
+     */
+    gcsUri?: string | null;
+    /**
+     * The MIME type of the content of the video. - video/mp4
+     */
+    mimeType?: string | null;
   }
   /**
    * Image.
@@ -335,6 +353,10 @@ export namespace aiplatform_v1beta1 {
      * Video encoding, for example "video/mp4".
      */
     encoding?: string | null;
+    /**
+     * Text/Expanded text input for Help Me Write.
+     */
+    text?: string | null;
     /**
      * Path to another storage (typically Google Cloud Storage).
      */
@@ -749,11 +771,11 @@ export namespace aiplatform_v1beta1 {
      */
     apiKeyString?: string | null;
     /**
-     * Required. The location of the API key.
+     * Optional. The location of the API key.
      */
     httpElementLocation?: string | null;
     /**
-     * Required. The parameter name of the API key. E.g. If the API request is "https://example.com/act?api_key=", "api_key" would be the parameter name.
+     * Optional. The parameter name of the API key. E.g. If the API request is "https://example.com/act?api_key=", "api_key" would be the parameter name.
      */
     name?: string | null;
   }
@@ -806,13 +828,30 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1AutomaticResources {
     /**
-     * Immutable. The maximum number of replicas this DeployedModel may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale the model to that many replicas is guaranteed (barring service outages). If traffic against the DeployedModel increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, a no upper bound for scaling under heavy traffic will be assume, though Vertex AI may be unable to scale beyond certain replica number.
+     * Immutable. The maximum number of replicas that may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale to that many replicas is guaranteed (barring service outages). If traffic increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, a no upper bound for scaling under heavy traffic will be assume, though Vertex AI may be unable to scale beyond certain replica number.
      */
     maxReplicaCount?: number | null;
     /**
-     * Immutable. The minimum number of replicas this DeployedModel will be always deployed on. If traffic against it increases, it may dynamically be deployed onto more replicas up to max_replica_count, and as traffic decreases, some of these extra replicas may be freed. If the requested value is too large, the deployment will error.
+     * Immutable. The minimum number of replicas that will be always deployed on. If traffic against it increases, it may dynamically be deployed onto more replicas up to max_replica_count, and as traffic decreases, some of these extra replicas may be freed. If the requested value is too large, the deployment will error.
      */
     minReplicaCount?: number | null;
+  }
+  /**
+   * The configs for autorater. This is applicable to both EvaluateInstances and EvaluateDataset.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AutoraterConfig {
+    /**
+     * Optional. The fully qualified name of the publisher model or tuned autorater endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    autoraterModel?: string | null;
+    /**
+     * Optional. Whether to flip the candidate and baseline responses. This is only applicable to the pairwise metric. If enabled, also provide PairwiseMetricSpec.candidate_response_field_name and PairwiseMetricSpec.baseline_response_field_name. When rendering PairwiseMetricSpec.metric_prompt_template, the candidate and baseline fields will be flipped for half of the samples to reduce bias.
+     */
+    flipEnabled?: boolean | null;
+    /**
+     * Optional. Number of samples for each instance in the dataset. If not specified, the default is 4. Minimum value is 1, maximum value is 32.
+     */
+    samplingCount?: number | null;
   }
   /**
    * The metric specification that defines the target resource utilization (CPU utilization, accelerator's duty cycle, and so on) for calculating the desired replica count.
@@ -1402,6 +1441,10 @@ export namespace aiplatform_v1beta1 {
      */
     data?: string | null;
     /**
+     * Optional. Display name of the blob. Used to provide a label or filename to distinguish blobs. This field is only returned in PromptMessage for prompt management. It is not currently used in the Gemini GenerateContent calls.
+     */
+    displayName?: string | null;
+    /**
      * Required. The IANA standard MIME type of the source data.
      */
     mimeType?: string | null;
@@ -1446,7 +1489,7 @@ export namespace aiplatform_v1beta1 {
      */
     contents?: Schema$GoogleCloudAiplatformV1beta1Content[];
     /**
-     * Output only. Creatation time of the cache entry.
+     * Output only. Creation time of the cache entry.
      */
     createTime?: string | null;
     /**
@@ -1458,7 +1501,7 @@ export namespace aiplatform_v1beta1 {
      */
     expireTime?: string | null;
     /**
-     * Immutable. The name of the publisher model to use for cached content. Format: projects/{project\}/locations/{location\}/publishers/{publisher\}/models/{model\}
+     * Immutable. The name of the `Model` to use for cached content. Currently, only the published Gemini base models are supported, in form of projects/{PROJECT\}/locations/{LOCATION\}/publishers/google/models/{MODEL\}
      */
     model?: string | null;
     /**
@@ -2087,6 +2130,10 @@ export namespace aiplatform_v1beta1 {
    * Response message for PredictionService.CountTokens.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1CountTokensResponse {
+    /**
+     * Output only. List of modalities that were processed in the request input.
+     */
+    promptTokensDetails?: Schema$GoogleCloudAiplatformV1beta1ModalityTokenCount[];
     /**
      * The total number of billable characters counted across all instances from the request.
      */
@@ -2902,7 +2949,7 @@ export namespace aiplatform_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * A description of resources that are dedicated to a DeployedModel, and that need a higher degree of manual configuration.
+   * A description of resources that are dedicated to a DeployedModel or DeployedIndex, and that need a higher degree of manual configuration.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1DedicatedResources {
     /**
@@ -2910,19 +2957,19 @@ export namespace aiplatform_v1beta1 {
      */
     autoscalingMetricSpecs?: Schema$GoogleCloudAiplatformV1beta1AutoscalingMetricSpec[];
     /**
-     * Required. Immutable. The specification of a single machine used by the prediction.
+     * Required. Immutable. The specification of a single machine being used.
      */
     machineSpec?: Schema$GoogleCloudAiplatformV1beta1MachineSpec;
     /**
-     * Immutable. The maximum number of replicas this DeployedModel may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale the model to that many replicas is guaranteed (barring service outages). If traffic against the DeployedModel increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, will use min_replica_count as the default value. The value of this field impacts the charge against Vertex CPU and GPU quotas. Specifically, you will be charged for (max_replica_count * number of cores in the selected machine type) and (max_replica_count * number of GPUs per replica in the selected machine type).
+     * Immutable. The maximum number of replicas that may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale to that many replicas is guaranteed (barring service outages). If traffic increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, will use min_replica_count as the default value. The value of this field impacts the charge against Vertex CPU and GPU quotas. Specifically, you will be charged for (max_replica_count * number of cores in the selected machine type) and (max_replica_count * number of GPUs per replica in the selected machine type).
      */
     maxReplicaCount?: number | null;
     /**
-     * Required. Immutable. The minimum number of machine replicas this DeployedModel will be always deployed on. This value must be greater than or equal to 1. If traffic against the DeployedModel increases, it may dynamically be deployed onto more replicas, and as traffic decreases, some of these extra replicas may be freed.
+     * Required. Immutable. The minimum number of machine replicas that will be always deployed on. This value must be greater than or equal to 1. If traffic increases, it may dynamically be deployed onto more replicas, and as traffic decreases, some of these extra replicas may be freed.
      */
     minReplicaCount?: number | null;
     /**
-     * Optional. Number of required available replicas for the deployment to succeed. This field is only needed when partial model deployment/mutation is desired. If set, the model deploy/mutate operation will succeed once available_replica_count reaches required_replica_count, and the rest of the replicas will be retried. If not set, the default required_replica_count will be min_replica_count.
+     * Optional. Number of required available replicas for the deployment to succeed. This field is only needed when partial deployment/mutation is desired. If set, the deploy/mutate operation will succeed once available_replica_count reaches required_replica_count, and the rest of the replicas will be retried. If not set, the default required_replica_count will be min_replica_count.
      */
     requiredReplicaCount?: number | null;
     /**
@@ -3192,6 +3239,10 @@ export namespace aiplatform_v1beta1 {
      */
     privateEndpoints?: Schema$GoogleCloudAiplatformV1beta1PrivateEndpoints;
     /**
+     * Options for configuring rolling deployments.
+     */
+    rolloutOptions?: Schema$GoogleCloudAiplatformV1beta1RolloutOptions;
+    /**
      * The service account that the DeployedModel's container runs as. Specify the email address of the service account. If this service account is not specified, the container runs as a service account that doesn't have access to the resource project. Users deploying the Model must have the `iam.serviceAccounts.actAs` permission on this service account.
      */
     serviceAccount?: string | null;
@@ -3199,6 +3250,10 @@ export namespace aiplatform_v1beta1 {
      * The resource name of the shared DeploymentResourcePool to deploy on. Format: `projects/{project\}/locations/{location\}/deploymentResourcePools/{deployment_resource_pool\}`
      */
     sharedResources?: string | null;
+    /**
+     * Optional. Spec for configuring speculative decoding.
+     */
+    speculativeDecodingSpec?: Schema$GoogleCloudAiplatformV1beta1SpeculativeDecodingSpec;
     /**
      * Output only. Runtime status of the deployed model.
      */
@@ -3358,9 +3413,85 @@ export namespace aiplatform_v1beta1 {
      */
     huggingFaceAccessToken?: string | null;
     /**
-     * Required. The name of the PublisherModel resource. Format: `publishers/{publisher\}/models/{publisher_model\}@{version_id\}`, or `publishers/hf-{hugging-face-author\}/models/{hugging-face-model-name\}@001` or Hugging Face model ID like `google/gemma-2-2b-it`.
+     * Required. The model to deploy. Format: 1. `publishers/{publisher\}/models/{publisher_model\}@{version_id\}`, or `publishers/hf-{hugging-face-author\}/models/{hugging-face-model-name\}@001`. 2. Hugging Face model ID like `google/gemma-2-2b-it`. 3. Custom model Google Cloud Storage URI like `gs://bucket`. 4. Custom model zip file like `https://example.com/a.zip`.
      */
     model?: string | null;
+    /**
+     * Optional. The user-specified display name of the uploaded model. If not set, a default name will be used.
+     */
+    modelDisplayName?: string | null;
+  }
+  /**
+   * Request message for ModelGardenService.Deploy.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DeployRequest {
+    /**
+     * Optional. The deploy config to use for the deployment. If not specified, the default deploy config will be used.
+     */
+    deployConfig?: Schema$GoogleCloudAiplatformV1beta1DeployRequestDeployConfig;
+    /**
+     * Optional. The endpoint config to use for the deployment. If not specified, the default endpoint config will be used.
+     */
+    endpointConfig?: Schema$GoogleCloudAiplatformV1beta1DeployRequestEndpointConfig;
+    /**
+     * The Hugging Face model to deploy. Format: Hugging Face model ID like `google/gemma-2-2b-it`.
+     */
+    huggingFaceModelId?: string | null;
+    /**
+     * Optional. The model config to use for the deployment. If not specified, the default model config will be used.
+     */
+    modelConfig?: Schema$GoogleCloudAiplatformV1beta1DeployRequestModelConfig;
+    /**
+     * The Model Garden model to deploy. Format: `publishers/{publisher\}/models/{publisher_model\}@{version_id\}`, or `publishers/hf-{hugging-face-author\}/models/{hugging-face-model-name\}@001`.
+     */
+    publisherModelName?: string | null;
+  }
+  /**
+   * The deploy config to use for the deployment.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DeployRequestDeployConfig {
+    /**
+     * Optional. The dedicated resources to use for the endpoint. If not set, the default resources will be used.
+     */
+    dedicatedResources?: Schema$GoogleCloudAiplatformV1beta1DedicatedResources;
+    /**
+     * Optional. If true, enable the QMT fast tryout feature for this model if possible.
+     */
+    fastTryoutEnabled?: boolean | null;
+  }
+  /**
+   * The endpoint config to use for the deployment.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DeployRequestEndpointConfig {
+    /**
+     * Optional. If true, the endpoint will be exposed through a dedicated DNS [Endpoint.dedicated_endpoint_dns]. Your request to the dedicated DNS will be isolated from other users' traffic and will have better performance and reliability. Note: Once you enabled dedicated endpoint, you won't be able to send request to the shared DNS {region\}-aiplatform.googleapis.com. The limitations will be removed soon.
+     */
+    dedicatedEndpointEnabled?: boolean | null;
+    /**
+     * Optional. The user-specified display name of the endpoint. If not set, a default name will be used.
+     */
+    endpointDisplayName?: string | null;
+  }
+  /**
+   * The model config to use for the deployment.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DeployRequestModelConfig {
+    /**
+     * Optional. Whether the user accepts the End User License Agreement (EULA) for the model.
+     */
+    acceptEula?: boolean | null;
+    /**
+     * Optional. The specification of the container that is to be used when deploying. If not set, the default container spec will be used.
+     */
+    containerSpec?: Schema$GoogleCloudAiplatformV1beta1ModelContainerSpec;
+    /**
+     * Optional. The Hugging Face read access token used to access the model artifacts of gated models.
+     */
+    huggingFaceAccessToken?: string | null;
+    /**
+     * Optional. If true, the model will deploy with a cached version instead of directly downloading the model artifacts from Hugging Face. This is suitable for VPC-SC users with limited internet access.
+     */
+    huggingFaceCacheEnabled?: boolean | null;
     /**
      * Optional. The user-specified display name of the uploaded model. If not set, a default name will be used.
      */
@@ -3446,7 +3577,7 @@ export namespace aiplatform_v1beta1 {
      */
     bootDiskSizeGb?: number | null;
     /**
-     * Type of the boot disk (default is "pd-ssd"). Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Type of the boot disk. For non-A3U machines, the default value is "pd-ssd", for A3U machines, the default value is "hyperdisk-balanced". Valid values: "pd-ssd" (Persistent Disk Solid State Drive), "pd-standard" (Persistent Disk Hard Disk Drive) or "hyperdisk-balanced".
      */
     bootDiskType?: string | null;
   }
@@ -3585,6 +3716,10 @@ export namespace aiplatform_v1beta1 {
      */
     etag?: string | null;
     /**
+     * Optional. Configuration for GenAiAdvancedFeatures. If the endpoint is serving GenAI models, advanced features like native RAG integration can be configured. Currently, only Model Garden models are supported.
+     */
+    genAiAdvancedFeaturesConfig?: Schema$GoogleCloudAiplatformV1beta1GenAiAdvancedFeaturesConfig;
+    /**
      * The labels with user-defined metadata to organize your Endpoints. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels.
      */
     labels?: {[key: string]: string} | null;
@@ -3625,6 +3760,10 @@ export namespace aiplatform_v1beta1 {
      */
     updateTime?: string | null;
   }
+  /**
+   * Tool to search public web data, powered by Vertex AI Search and Sec4 compliance.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1EnterpriseWebSearch {}
   /**
    * Selector for entityId. Getting ids from the given source.
    */
@@ -3777,9 +3916,34 @@ export namespace aiplatform_v1beta1 {
     explanationType?: string | null;
   }
   /**
+   * Request message for EvaluationService.EvaluateDataset.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1EvaluateDatasetRequest {
+    /**
+     * Optional. Autorater config used for evaluation.
+     */
+    autoraterConfig?: Schema$GoogleCloudAiplatformV1beta1AutoraterConfig;
+    /**
+     * Required. The dataset used for evaluation.
+     */
+    dataset?: Schema$GoogleCloudAiplatformV1beta1EvaluationDataset;
+    /**
+     * Required. The metrics used for evaluation.
+     */
+    metrics?: Schema$GoogleCloudAiplatformV1beta1Metric[];
+    /**
+     * Required. Config for evaluation output.
+     */
+    outputConfig?: Schema$GoogleCloudAiplatformV1beta1OutputConfig;
+  }
+  /**
    * Request message for EvaluationService.EvaluateInstances.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1EvaluateInstancesRequest {
+    /**
+     * Optional. Autorater config used for evaluation.
+     */
+    autoraterConfig?: Schema$GoogleCloudAiplatformV1beta1AutoraterConfig;
     /**
      * Instances and metric spec for bleu metric.
      */
@@ -4033,6 +4197,19 @@ export namespace aiplatform_v1beta1 {
      * Results for trajectory single tool use metric.
      */
     trajectorySingleToolUseResults?: Schema$GoogleCloudAiplatformV1beta1TrajectorySingleToolUseResults;
+  }
+  /**
+   * The dataset used for evaluation.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1EvaluationDataset {
+    /**
+     * BigQuery source holds the dataset.
+     */
+    bigquerySource?: Schema$GoogleCloudAiplatformV1beta1BigQuerySource;
+    /**
+     * Cloud storage source holds the dataset.
+     */
+    gcsSource?: Schema$GoogleCloudAiplatformV1beta1GcsSource;
   }
   /**
    * An edge describing the relationship between an Artifact and an Execution in a lineage graph.
@@ -6041,6 +6218,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FileData {
     /**
+     * Optional. Display name of the file data. Used to provide a label or filename to distinguish file datas. This field is only returned in PromptMessage for prompt management. It is not currently used in the Gemini GenerateContent calls.
+     */
+    displayName?: string | null;
+    /**
      * Required. URI.
      */
     fileUri?: string | null;
@@ -6369,6 +6550,24 @@ export namespace aiplatform_v1beta1 {
     uris?: string[] | null;
   }
   /**
+   * Configuration for GenAiAdvancedFeatures.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenAiAdvancedFeaturesConfig {
+    /**
+     * Configuration for Retrieval Augmented Generation feature.
+     */
+    ragConfig?: Schema$GoogleCloudAiplatformV1beta1GenAiAdvancedFeaturesConfigRagConfig;
+  }
+  /**
+   * Configuration for Retrieval Augmented Generation feature.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenAiAdvancedFeaturesConfigRagConfig {
+    /**
+     * If true, enable Retrieval Augmented Generation in ChatCompletion request. Once enabled, the endpoint will be identified as GenAI endpoint and Arthedain router will be used.
+     */
+    enableRag?: boolean | null;
+  }
+  /**
    * Request message for NotebookInternalService.GenerateAccessToken.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenRequest {
@@ -6444,6 +6643,10 @@ export namespace aiplatform_v1beta1 {
      */
     candidates?: Schema$GoogleCloudAiplatformV1beta1Candidate[];
     /**
+     * Output only. Timestamp when the request is made to the server.
+     */
+    createTime?: string | null;
+    /**
      * Output only. The model version used to generate the response.
      */
     modelVersion?: string | null;
@@ -6451,6 +6654,10 @@ export namespace aiplatform_v1beta1 {
      * Output only. Content filter results for a prompt sent in the request. Note: Sent only in the first stream chunk. Only happens when no candidates were generated due to content violations.
      */
     promptFeedback?: Schema$GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback;
+    /**
+     * Output only. response_id is used to identify each response. It is the encoding of the event_id.
+     */
+    responseId?: string | null;
     /**
      * Usage metadata about the response(s).
      */
@@ -6482,15 +6689,39 @@ export namespace aiplatform_v1beta1 {
      */
     cachedContentTokenCount?: number | null;
     /**
+     * Output only. List of modalities of the cached content in the request input.
+     */
+    cacheTokensDetails?: Schema$GoogleCloudAiplatformV1beta1ModalityTokenCount[];
+    /**
      * Number of tokens in the response(s).
      */
     candidatesTokenCount?: number | null;
+    /**
+     * Output only. List of modalities that were returned in the response.
+     */
+    candidatesTokensDetails?: Schema$GoogleCloudAiplatformV1beta1ModalityTokenCount[];
     /**
      * Number of tokens in the request. When `cached_content` is set, this is still the total effective prompt size meaning this includes the number of tokens in the cached content.
      */
     promptTokenCount?: number | null;
     /**
-     * Total token count for prompt and response candidates.
+     * Output only. List of modalities that were processed in the request input.
+     */
+    promptTokensDetails?: Schema$GoogleCloudAiplatformV1beta1ModalityTokenCount[];
+    /**
+     * Output only. Number of tokens present in thoughts output.
+     */
+    thoughtsTokenCount?: number | null;
+    /**
+     * Output only. Number of tokens present in tool-use prompt(s).
+     */
+    toolUsePromptTokenCount?: number | null;
+    /**
+     * Output only. List of modalities that were processed for tool-use request inputs.
+     */
+    toolUsePromptTokensDetails?: Schema$GoogleCloudAiplatformV1beta1ModalityTokenCount[];
+    /**
+     * Total token count for prompt, response candidates, and tool-use prompts (if present).
      */
     totalTokenCount?: number | null;
   }
@@ -6510,6 +6741,27 @@ export namespace aiplatform_v1beta1 {
      * Returns rai failure reasons if any.
      */
     raiMediaFilteredReasons?: string[] | null;
+    /**
+     * List of video bytes or Cloud Storage URIs of the generated videos.
+     */
+    videos?: Schema$GoogleCloudAiplatformV1beta1GenerateVideoResponseVideo[];
+  }
+  /**
+   * A generated video.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerateVideoResponseVideo {
+    /**
+     * Base64 encoded bytes string representing the video.
+     */
+    bytesBase64Encoded?: string | null;
+    /**
+     * Cloud Storage URI where the generated video is written.
+     */
+    gcsUri?: string | null;
+    /**
+     * The MIME type of the content of the video. - video/mp4
+     */
+    mimeType?: string | null;
   }
   /**
    * Generation config.
@@ -7981,6 +8233,19 @@ export namespace aiplatform_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ModelService.ListModelVersionCheckpoints
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ListModelVersionCheckpointsResponse {
+    /**
+     * List of Model Version checkpoints.
+     */
+    checkpoints?: Schema$GoogleCloudAiplatformV1beta1ModelVersionCheckpoint[];
+    /**
+     * A token to retrieve the next page of results. Pass to ListModelVersionCheckpointsRequest.page_token to obtain that page.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for ModelService.ListModelVersions
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ListModelVersionsResponse {
@@ -8354,6 +8619,10 @@ export namespace aiplatform_v1beta1 {
      */
     machineType?: string | null;
     /**
+     * Optional. Immutable. The number of nodes per replica for multihost GPU deployments.
+     */
+    multihostGpuNodeCount?: number | null;
+    /**
      * Optional. Immutable. Configuration controlling how this resource pool consumes reservation.
      */
     reservationAffinity?: Schema$GoogleCloudAiplatformV1beta1ReservationAffinity;
@@ -8489,6 +8758,35 @@ export namespace aiplatform_v1beta1 {
      * The disk utilization of the MetadataStore in bytes.
      */
     diskUtilizationBytes?: string | null;
+  }
+  /**
+   * The metric used for dataset level evaluation.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1Metric {
+    /**
+     * Optional. The aggregation metrics to use.
+     */
+    aggregationMetrics?: string[] | null;
+    /**
+     * Spec for bleu metric.
+     */
+    bleuSpec?: Schema$GoogleCloudAiplatformV1beta1BleuSpec;
+    /**
+     * Spec for exact match metric.
+     */
+    exactMatchSpec?: Schema$GoogleCloudAiplatformV1beta1ExactMatchSpec;
+    /**
+     * Spec for pairwise metric.
+     */
+    pairwiseMetricSpec?: Schema$GoogleCloudAiplatformV1beta1PairwiseMetricSpec;
+    /**
+     * Spec for pointwise metric.
+     */
+    pointwiseMetricSpec?: Schema$GoogleCloudAiplatformV1beta1PointwiseMetricSpec;
+    /**
+     * Spec for rouge metric.
+     */
+    rougeSpec?: Schema$GoogleCloudAiplatformV1beta1RougeSpec;
   }
   /**
    * Input for MetricX metric.
@@ -8752,6 +9050,19 @@ export namespace aiplatform_v1beta1 {
     model?: string | null;
   }
   /**
+   * Represents token counting info for a single modality.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ModalityTokenCount {
+    /**
+     * The modality associated with this token count.
+     */
+    modality?: string | null;
+    /**
+     * Number of tokens.
+     */
+    tokenCount?: number | null;
+  }
+  /**
    * A trained machine learning Model.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Model {
@@ -8771,6 +9082,10 @@ export namespace aiplatform_v1beta1 {
      * Output only. Timestamp when this Model was uploaded into Vertex AI.
      */
     createTime?: string | null;
+    /**
+     * The default checkpoint id of a model version.
+     */
+    defaultCheckpointId?: string | null;
     /**
      * Output only. The pointers to DeployedModels created from this Model. Note that Model could have been deployed to Endpoints in different Locations.
      */
@@ -9303,7 +9618,7 @@ export namespace aiplatform_v1beta1 {
      */
     exportableContents?: string[] | null;
     /**
-     * Output only. The ID of the export format. The possible format IDs are: * `tflite` Used for Android mobile devices. * `edgetpu-tflite` Used for [Edge TPU](https://cloud.google.com/edge-tpu/) devices. * `tf-saved-model` A tensorflow model in SavedModel format. * `tf-js` A [TensorFlow.js](https://www.tensorflow.org/js) model that can be used in the browser and in Node.js using JavaScript. * `core-ml` Used for iOS mobile devices. * `custom-trained` A Model that was uploaded or trained by custom code.
+     * Output only. The ID of the export format. The possible format IDs are: * `tflite` Used for Android mobile devices. * `edgetpu-tflite` Used for [Edge TPU](https://cloud.google.com/edge-tpu/) devices. * `tf-saved-model` A tensorflow model in SavedModel format. * `tf-js` A [TensorFlow.js](https://www.tensorflow.org/js) model that can be used in the browser and in Node.js using JavaScript. * `core-ml` Used for iOS mobile devices. * `custom-trained` A Model that was uploaded or trained by custom code. * `genie` A tuned Model Garden model.
      */
     id?: string | null;
   }
@@ -9315,6 +9630,14 @@ export namespace aiplatform_v1beta1 {
      * Required. The model garden source model resource name.
      */
     publicModelName?: string | null;
+    /**
+     * Optional. Whether to avoid pulling the model from the HF cache.
+     */
+    skipHfModelCache?: boolean | null;
+    /**
+     * Optional. The model garden source model version ID.
+     */
+    versionId?: string | null;
   }
   /**
    * Vertex AI Model Monitoring Service serves as a central hub for the analysis and visualization of data quality and performance related to models. ModelMonitor stands as a top level resource for overseeing your model monitoring tasks.
@@ -10159,6 +10482,27 @@ export namespace aiplatform_v1beta1 {
     sourceType?: string | null;
   }
   /**
+   * Describes the machine learning model version checkpoint.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ModelVersionCheckpoint {
+    /**
+     * The ID of the checkpoint.
+     */
+    checkpointId?: string | null;
+    /**
+     * The epoch of the checkpoint.
+     */
+    epoch?: string | null;
+    /**
+     * Identifier. The resource name of the ModelVersionCheckpoint. Format: `projects/{project\}/locations/{location\}/models/{model\}/versions/{version\}/checkpoints/{checkpoint\}`
+     */
+    name?: string | null;
+    /**
+     * The step of the checkpoint.
+     */
+    step?: string | null;
+  }
+  /**
    * Runtime operation information for IndexEndpointService.MutateDeployedIndex.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1MutateDeployedIndexOperationMetadata {
@@ -10932,6 +11276,10 @@ export namespace aiplatform_v1beta1 {
      */
     shieldedVmConfig?: Schema$GoogleCloudAiplatformV1beta1ShieldedVmConfig;
     /**
+     * Output only. Software config of the notebook runtime.
+     */
+    softwareConfig?: Schema$GoogleCloudAiplatformV1beta1NotebookSoftwareConfig;
+    /**
      * Output only. Timestamp when this NotebookRuntime was most recently updated.
      */
     updateTime?: string | null;
@@ -11013,6 +11361,10 @@ export namespace aiplatform_v1beta1 {
      */
     shieldedVmConfig?: Schema$GoogleCloudAiplatformV1beta1ShieldedVmConfig;
     /**
+     * Optional. The notebook software configuration of the notebook runtime.
+     */
+    softwareConfig?: Schema$GoogleCloudAiplatformV1beta1NotebookSoftwareConfig;
+    /**
      * Output only. Timestamp when this NotebookRuntimeTemplate was most recently updated.
      */
     updateTime?: string | null;
@@ -11025,6 +11377,28 @@ export namespace aiplatform_v1beta1 {
      * Immutable. A resource name of the NotebookRuntimeTemplate.
      */
     notebookRuntimeTemplate?: string | null;
+  }
+  /**
+   * Notebook Software Config.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1NotebookSoftwareConfig {
+    /**
+     * Optional. Environment variables to be passed to the container. Maximum limit is 100.
+     */
+    env?: Schema$GoogleCloudAiplatformV1beta1EnvVar[];
+    /**
+     * Optional. Post startup script config.
+     */
+    postStartupScriptConfig?: Schema$GoogleCloudAiplatformV1beta1PostStartupScriptConfig;
+  }
+  /**
+   * Config for evaluation output.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1OutputConfig {
+    /**
+     * Cloud storage destination for evaluation output.
+     */
+    gcsDestination?: Schema$GoogleCloudAiplatformV1beta1GcsDestination;
   }
   /**
    * Input for pairwise metric.
@@ -11066,9 +11440,21 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1PairwiseMetricSpec {
     /**
+     * Optional. The field name of the baseline response.
+     */
+    baselineResponseFieldName?: string | null;
+    /**
+     * Optional. The field name of the candidate response.
+     */
+    candidateResponseFieldName?: string | null;
+    /**
      * Required. Metric prompt template for pairwise metric.
      */
     metricPromptTemplate?: string | null;
+    /**
+     * Optional. System instructions for pairwise metric.
+     */
+    systemInstruction?: string | null;
   }
   /**
    * Input for pairwise question answering quality metric.
@@ -11791,6 +12177,10 @@ export namespace aiplatform_v1beta1 {
      * Required. Metric prompt template for pointwise metric.
      */
     metricPromptTemplate?: string | null;
+    /**
+     * Optional. System instructions for pointwise metric.
+     */
+    systemInstruction?: string | null;
   }
   /**
    * Represents a network port in a container.
@@ -11800,6 +12190,23 @@ export namespace aiplatform_v1beta1 {
      * The number of the port to expose on the pod's IP address. Must be a valid port number, between 1 and 65535 inclusive.
      */
     containerPort?: number | null;
+  }
+  /**
+   * Post startup script config.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PostStartupScriptConfig {
+    /**
+     * Optional. Post startup script to run after runtime is started.
+     */
+    postStartupScript?: string | null;
+    /**
+     * Optional. Post startup script behavior that defines download and execution behavior.
+     */
+    postStartupScriptBehavior?: string | null;
+    /**
+     * Optional. Post startup script url to download. Example: https://bucket/script.sh
+     */
+    postStartupScriptUrl?: string | null;
   }
   /**
    * The configuration for the prebuilt speaker to use.
@@ -11985,6 +12392,10 @@ export namespace aiplatform_v1beta1 {
      */
     exec?: Schema$GoogleCloudAiplatformV1beta1ProbeExecAction;
     /**
+     * Number of consecutive failures before the probe is considered failed. Defaults to 3. Minimum value is 1. Maps to Kubernetes probe argument 'failureThreshold'.
+     */
+    failureThreshold?: number | null;
+    /**
      * GrpcAction probes the health of a container by sending a gRPC request.
      */
     grpc?: Schema$GoogleCloudAiplatformV1beta1ProbeGrpcAction;
@@ -11993,9 +12404,17 @@ export namespace aiplatform_v1beta1 {
      */
     httpGet?: Schema$GoogleCloudAiplatformV1beta1ProbeHttpGetAction;
     /**
+     * Number of seconds to wait before starting the probe. Defaults to 0. Minimum value is 0. Maps to Kubernetes probe argument 'initialDelaySeconds'.
+     */
+    initialDelaySeconds?: number | null;
+    /**
      * How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Must be less than timeout_seconds. Maps to Kubernetes probe argument 'periodSeconds'.
      */
     periodSeconds?: number | null;
+    /**
+     * Number of consecutive successes before the probe is considered successful. Defaults to 1. Minimum value is 1. Maps to Kubernetes probe argument 'successThreshold'.
+     */
+    successThreshold?: number | null;
     /**
      * TcpSocketAction probes the health of a container by opening a TCP socket connection.
      */
@@ -12932,6 +13351,10 @@ export namespace aiplatform_v1beta1 {
      */
     ragEmbeddingModelConfig?: Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfig;
     /**
+     * Output only. Number of RagFiles in the RagCorpus.
+     */
+    ragFilesCount?: number | null;
+    /**
      * Optional. Immutable. The Vector DB config of the RagCorpus.
      */
     ragVectorDbConfig?: Schema$GoogleCloudAiplatformV1beta1RagVectorDbConfig;
@@ -13164,7 +13587,7 @@ export namespace aiplatform_v1beta1 {
      */
     maxParsingRequestsPerMin?: number | null;
     /**
-     * The name of a LLM model used for parsing. Format: `gemini-1.5-pro-002`
+     * The name of a LLM model used for parsing. Format: * `projects/{project_id\}/locations/{location\}/publishers/{publisher\}/models/{model\}`
      */
     modelName?: string | null;
   }
@@ -13622,9 +14045,26 @@ export namespace aiplatform_v1beta1 {
      */
     classMethods?: Array<{[key: string]: any}> | null;
     /**
+     * Optional. The specification of a Reasoning Engine deployment.
+     */
+    deploymentSpec?: Schema$GoogleCloudAiplatformV1beta1ReasoningEngineSpecDeploymentSpec;
+    /**
      * Required. User provided package spec of the ReasoningEngine.
      */
     packageSpec?: Schema$GoogleCloudAiplatformV1beta1ReasoningEngineSpecPackageSpec;
+  }
+  /**
+   * The specification of a Reasoning Engine deployment.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ReasoningEngineSpecDeploymentSpec {
+    /**
+     * Optional. Environment variables to be set with the Reasoning Engine deployment. The environment variables can be updated through the UpdateReasoningEngine API.
+     */
+    env?: Schema$GoogleCloudAiplatformV1beta1EnvVar[];
+    /**
+     * Optional. Environment variables where the value is a secret in Cloud Secret Manager. To use this feature, add 'Secret Manager Secret Accessor' role (roles/secretmanager.secretAccessor) to AI Platform Reasoning Engine Service Agent.
+     */
+    secretEnv?: Schema$GoogleCloudAiplatformV1beta1SecretEnvVar[];
   }
   /**
    * User provided package spec like pickled object and package requirements.
@@ -13779,7 +14219,7 @@ export namespace aiplatform_v1beta1 {
      */
     reservationAffinityType?: string | null;
     /**
-     * Optional. Corresponds to the label values of a reservation resource. This must be the full resource name of the reservation.
+     * Optional. Corresponds to the label values of a reservation resource. This must be the full resource name of the reservation or reservation block.
      */
     values?: string[] | null;
   }
@@ -13972,6 +14412,35 @@ export namespace aiplatform_v1beta1 {
      * The contexts of the query.
      */
     contexts?: Schema$GoogleCloudAiplatformV1beta1RagContexts;
+  }
+  /**
+   * Configuration for rolling deployments.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RolloutOptions {
+    /**
+     * Percentage of allowed additional replicas. For autoscaling deployments, this refers to the target replica count.
+     */
+    maxSurgePercentage?: number | null;
+    /**
+     * Absolute count of allowed additional replicas.
+     */
+    maxSurgeReplicas?: number | null;
+    /**
+     * Percentage of replicas allowed to be unavailable. For autoscaling deployments, this refers to the target replica count.
+     */
+    maxUnavailablePercentage?: number | null;
+    /**
+     * Absolute count of replicas allowed to be unavailable.
+     */
+    maxUnavailableReplicas?: number | null;
+    /**
+     * ID of the DeployedModel that this deployment should replace.
+     */
+    previousDeployedModel?: string | null;
+    /**
+     * Output only. Read-only. Revision number determines the relative priority of DeployedModels in the same rollout. The DeployedModel with the largest revision number specifies the intended state of the deployment.
+     */
+    revisionNumber?: number | null;
   }
   /**
    * Input for rouge metric.
@@ -16085,7 +16554,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1SchemaTextDataItem {
     /**
-     * Output only. Google Cloud Storage URI points to the original text in user's bucket. The text file is up to 10MB in size.
+     * Output only. Google Cloud Storage URI points to a copy of the original text in the Vertex-managed bucket in the user's project. The text file is up to 10MB in size.
      */
     gcsUri?: string | null;
   }
@@ -17640,6 +18109,32 @@ export namespace aiplatform_v1beta1 {
     nearestNeighbors?: Schema$GoogleCloudAiplatformV1beta1NearestNeighbors;
   }
   /**
+   * Represents an environment variable where the value is a secret in Cloud Secret Manager.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SecretEnvVar {
+    /**
+     * Required. Name of the secret environment variable.
+     */
+    name?: string | null;
+    /**
+     * Required. Reference to a secret stored in the Cloud Secret Manager that will provide the value for this environment variable.
+     */
+    secretRef?: Schema$GoogleCloudAiplatformV1beta1SecretRef;
+  }
+  /**
+   * Reference to a secret stored in the Cloud Secret Manager that will provide the value for this environment variable.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SecretRef {
+    /**
+     * Required. The name of the secret in Cloud Secret Manager. Format: {secret_name\} if the secret is in the same project. projects/{project\}/secrets/{secret_name\} if the secret is in a different project.
+     */
+    secret?: string | null;
+    /**
+     * The Cloud Secret Manager secret version. Can be 'latest' for the latest version, an integer for a specific version, or a version alias.
+     */
+    version?: string | null;
+  }
+  /**
    * Segment of the content.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Segment {
@@ -17816,6 +18311,41 @@ export namespace aiplatform_v1beta1 {
      * The email addresses of workers in the SpecialistPool.
      */
     specialistWorkerEmails?: string[] | null;
+  }
+  /**
+   * Configuration for Speculative Decoding.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SpeculativeDecodingSpec {
+    /**
+     * draft model speculation.
+     */
+    draftModelSpeculation?: Schema$GoogleCloudAiplatformV1beta1SpeculativeDecodingSpecDraftModelSpeculation;
+    /**
+     * N-Gram speculation.
+     */
+    ngramSpeculation?: Schema$GoogleCloudAiplatformV1beta1SpeculativeDecodingSpecNgramSpeculation;
+    /**
+     * The number of speculative tokens to generate at each step.
+     */
+    speculativeTokenCount?: number | null;
+  }
+  /**
+   * Draft model speculation works by using the smaller model to generate candidate tokens for speculative decoding.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SpeculativeDecodingSpecDraftModelSpeculation {
+    /**
+     * Required. The resource name of the draft model.
+     */
+    draftModel?: string | null;
+  }
+  /**
+   * N-Gram speculation works by trying to find matching tokens in the previous prompt sequence and use those as speculation for generating new tokens.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SpeculativeDecodingSpecNgramSpeculation {
+    /**
+     * The number of last N input tokens used as ngram to search/match against the previous prompt sequence. This is equal to the N in N-Gram. The default value is 3 if not specified.
+     */
+    ngramSize?: number | null;
   }
   /**
    * The speech generation config.
@@ -19156,9 +19686,13 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Tool {
     /**
-     * Optional. CodeExecution tool type. Enables the model to execute code as part of generation. This field is only used by the Gemini Developer API services.
+     * Optional. CodeExecution tool type. Enables the model to execute code as part of generation.
      */
     codeExecution?: Schema$GoogleCloudAiplatformV1beta1ToolCodeExecution;
+    /**
+     * Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance.
+     */
+    enterpriseWebSearch?: Schema$GoogleCloudAiplatformV1beta1EnterpriseWebSearch;
     /**
      * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 128 function declarations can be provided.
      */
@@ -19910,7 +20444,7 @@ export namespace aiplatform_v1beta1 {
     value?: any | null;
   }
   /**
-   * The Model Registry Model and Online Prediction Endpoint assiociated with this TuningJob.
+   * The Model Registry Model and Online Prediction Endpoint associated with this TuningJob.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1TunedModel {
     /**
@@ -20021,7 +20555,7 @@ export namespace aiplatform_v1beta1 {
      */
     supervisedTuningSpec?: Schema$GoogleCloudAiplatformV1beta1SupervisedTuningSpec;
     /**
-     * Output only. The tuned model resources assiociated with this TuningJob.
+     * Output only. The tuned model resources associated with this TuningJob.
      */
     tunedModel?: Schema$GoogleCloudAiplatformV1beta1TunedModel;
     /**
@@ -20413,11 +20947,11 @@ export namespace aiplatform_v1beta1 {
     stringValue?: string | null;
   }
   /**
-   * Retrieve from Vertex AI Search datastore for grounding. See https://cloud.google.com/products/agent-builder
+   * Retrieve from Vertex AI Search datastore or engine for grounding. datastore and engine are mutually exclusive. See https://cloud.google.com/products/agent-builder
    */
   export interface Schema$GoogleCloudAiplatformV1beta1VertexAISearch {
     /**
-     * Required. Fully-qualified Vertex AI Search data store resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}`
+     * Optional. Fully-qualified Vertex AI Search data store resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}`
      */
     datastore?: string | null;
   }
@@ -22367,6 +22901,103 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
+     * Perform an online prediction.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    predict(
+      params: Params$Resource$Endpoints$Predict,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    predict(
+      params?: Params$Resource$Endpoints$Predict,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1PredictResponse>;
+    predict(
+      params: Params$Resource$Endpoints$Predict,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    predict(
+      params: Params$Resource$Endpoints$Predict,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+    ): void;
+    predict(
+      params: Params$Resource$Endpoints$Predict,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+    ): void;
+    predict(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+    ): void;
+    predict(
+      paramsOrCallback?:
+        | Params$Resource$Endpoints$Predict
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Endpoints$Predict;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Endpoints$Predict;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+endpoint}:predict').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1PredictResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1PredictResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Generate content with multimodal inputs with streaming support.
      *
      * @param params - Parameters for request
@@ -22499,6 +23130,18 @@ export namespace aiplatform_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1GenerateContentRequest;
+  }
+  export interface Params$Resource$Endpoints$Predict
+    extends StandardParameters {
+    /**
+     * Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1PredictRequest;
   }
   export interface Params$Resource$Endpoints$Streamgeneratecontent
     extends StandardParameters {
@@ -23201,7 +23844,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Deploys publisher models.
+     * Deploys a model to a new endpoint.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23283,6 +23926,195 @@ export namespace aiplatform_v1beta1 {
         params,
         requiredParams: ['destination'],
         pathParams: ['destination'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deploys publisher models.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deployPublisherModel(
+      params: Params$Resource$Projects$Locations$Deploypublishermodel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deployPublisherModel(
+      params?: Params$Resource$Projects$Locations$Deploypublishermodel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    deployPublisherModel(
+      params: Params$Resource$Projects$Locations$Deploypublishermodel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deployPublisherModel(
+      params: Params$Resource$Projects$Locations$Deploypublishermodel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deployPublisherModel(
+      params: Params$Resource$Projects$Locations$Deploypublishermodel,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deployPublisherModel(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deployPublisherModel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deploypublishermodel
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deploypublishermodel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Deploypublishermodel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+destination}:deployPublisherModel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['destination'],
+        pathParams: ['destination'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Evaluates a dataset based on a set of given metrics.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    evaluateDataset(
+      params: Params$Resource$Projects$Locations$Evaluatedataset,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    evaluateDataset(
+      params?: Params$Resource$Projects$Locations$Evaluatedataset,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    evaluateDataset(
+      params: Params$Resource$Projects$Locations$Evaluatedataset,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    evaluateDataset(
+      params: Params$Resource$Projects$Locations$Evaluatedataset,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    evaluateDataset(
+      params: Params$Resource$Projects$Locations$Evaluatedataset,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    evaluateDataset(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    evaluateDataset(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Evaluatedataset
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Evaluatedataset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Evaluatedataset;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+location}:evaluateDataset').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
         context: this.context,
       };
       if (callback) {
@@ -23713,7 +24545,31 @@ export namespace aiplatform_v1beta1 {
     /**
      * Request body metadata
      */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1DeployRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Deploypublishermodel
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Location to deploy the model in. Format: `projects/{project\}/locations/{location\}`
+     */
+    destination?: string;
+
+    /**
+     * Request body metadata
+     */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1DeployPublisherModelRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Evaluatedataset
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Location to evaluate the dataset. Format: `projects/{project\}/locations/{location\}`
+     */
+    location?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1EvaluateDatasetRequest;
   }
   export interface Params$Resource$Projects$Locations$Evaluateinstances
     extends StandardParameters {
@@ -41677,7 +42533,7 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the FeatureGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `description` * `big_query` * `big_query.entity_id_columns`
+     * Field mask is used to specify the fields to be overwritten in the FeatureGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `description` * `big_query` * `big_query.entity_id_columns` * `service_agent_type`
      */
     updateMask?: string;
 
@@ -42107,6 +42963,99 @@ export namespace aiplatform_v1beta1 {
         );
       }
     }
+
+    /**
+     * Updates the parameters of a single FeatureMonitor.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Create
@@ -42161,6 +43110,22 @@ export namespace aiplatform_v1beta1 {
      * Required. The resource name of the FeatureGroup to list FeatureMonitors. Format: `projects/{project\}/locations/{location\}/featureGroups/{featureGroup\}`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Featuremonitors$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Name of the FeatureMonitor. Format: `projects/{project\}/locations/{location\}/featureGroups/{featureGroup\}/featureMonitors/{featureMonitor\}`
+     */
+    name?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the FeatureMonitor resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `description` * `schedule_config` * `feature_selection_config`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1FeatureMonitor;
   }
 
   export class Resource$Projects$Locations$Featuregroups$Featuremonitors$Featuremonitorjobs {
@@ -53960,7 +54925,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Deploys an Index into this IndexEndpoint, creating a DeployedIndex within it. Only non-empty Indexes can be deployed.
+     * Deploys an Index into this IndexEndpoint, creating a DeployedIndex within it.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -66949,6 +67914,104 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
+     * Lists checkpoints of the specified model version.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listCheckpoints(
+      params: Params$Resource$Projects$Locations$Models$Listcheckpoints,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listCheckpoints(
+      params?: Params$Resource$Projects$Locations$Models$Listcheckpoints,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1ListModelVersionCheckpointsResponse>;
+    listCheckpoints(
+      params: Params$Resource$Projects$Locations$Models$Listcheckpoints,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listCheckpoints(
+      params: Params$Resource$Projects$Locations$Models$Listcheckpoints,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListModelVersionCheckpointsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListModelVersionCheckpointsResponse>
+    ): void;
+    listCheckpoints(
+      params: Params$Resource$Projects$Locations$Models$Listcheckpoints,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListModelVersionCheckpointsResponse>
+    ): void;
+    listCheckpoints(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListModelVersionCheckpointsResponse>
+    ): void;
+    listCheckpoints(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Models$Listcheckpoints
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListModelVersionCheckpointsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListModelVersionCheckpointsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListModelVersionCheckpointsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1ListModelVersionCheckpointsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Models$Listcheckpoints;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Models$Listcheckpoints;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:listCheckpoints').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1ListModelVersionCheckpointsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1ListModelVersionCheckpointsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lists versions of the specified model.
      *
      * @param params - Parameters for request
@@ -67697,6 +68760,21 @@ export namespace aiplatform_v1beta1 {
      * Mask specifying which fields to read.
      */
     readMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Models$Listcheckpoints
+    extends StandardParameters {
+    /**
+     * Required. The name of the model version to list checkpoints for. `projects/{project\}/locations/{location\}/models/{model\}@{version\}` Example: `projects/{project\}/locations/{location\}/models/{model\}@2` or `projects/{project\}/locations/{location\}/models/{model\}@golden` If no version ID or alias is specified, the latest version will be used.
+     */
+    name?: string;
+    /**
+     * Optional. The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The standard list page token. Typically obtained via next_page_token of the previous ListModelVersionCheckpoints call.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Models$Listversions
     extends StandardParameters {
@@ -95013,6 +96091,103 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
+     * Perform an online prediction.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    predict(
+      params: Params$Resource$Publishers$Models$Predict,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    predict(
+      params?: Params$Resource$Publishers$Models$Predict,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1PredictResponse>;
+    predict(
+      params: Params$Resource$Publishers$Models$Predict,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    predict(
+      params: Params$Resource$Publishers$Models$Predict,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+    ): void;
+    predict(
+      params: Params$Resource$Publishers$Models$Predict,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+    ): void;
+    predict(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+    ): void;
+    predict(
+      paramsOrCallback?:
+        | Params$Resource$Publishers$Models$Predict
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1PredictResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Publishers$Models$Predict;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Publishers$Models$Predict;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+endpoint}:predict').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1PredictResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1PredictResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Generate content with multimodal inputs with streaming support.
      *
      * @param params - Parameters for request
@@ -95153,6 +96328,10 @@ export namespace aiplatform_v1beta1 {
      */
     huggingFaceToken?: string;
     /**
+     * Optional. Whether to cnclude the deployment configs from the equivalent Model Garden model if the requested model is a Hugging Face model.
+     */
+    includeEquivalentModelGardenModelDeploymentConfigs?: boolean;
+    /**
      * Optional. Boolean indicates whether the requested model is a Hugging Face model.
      */
     isHuggingFaceModel?: boolean;
@@ -95203,6 +96382,18 @@ export namespace aiplatform_v1beta1 {
      * Optional. PublisherModel view specifying which fields to read.
      */
     view?: string;
+  }
+  export interface Params$Resource$Publishers$Models$Predict
+    extends StandardParameters {
+    /**
+     * Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1PredictRequest;
   }
   export interface Params$Resource$Publishers$Models$Streamgeneratecontent
     extends StandardParameters {
