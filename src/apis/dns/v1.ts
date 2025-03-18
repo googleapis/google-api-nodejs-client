@@ -1057,7 +1057,7 @@ export namespace dns_v1 {
   export interface Schema$RRSetRoutingPolicy {
     geo?: Schema$RRSetRoutingPolicyGeoPolicy;
     /**
-     * The selfLink attribute of the HealthCheck resource to use for this RRSetRoutingPolicy. https://cloud.google.com/compute/docs/reference/rest/v1/healthChecks
+     * The fully qualified URL of the HealthCheck to use for this RRSetRoutingPolicy. Format this URL like `https://www.googleapis.com/compute/v1/projects/{project\}/global/healthChecks/{healthCheck\}`. https://cloud.google.com/compute/docs/reference/rest/v1/healthChecks
      */
     healthCheck?: string | null;
     kind?: string | null;
@@ -1093,12 +1093,12 @@ export namespace dns_v1 {
     location?: string | null;
     rrdatas?: string[] | null;
     /**
-     * DNSSEC generated signatures for all the `rrdata` within this item. If health checked targets are provided for DNSSEC enabled zones, there's a restriction of 1 IP address per item.
+     * DNSSEC generated signatures for all the `rrdata` within this item. When using health-checked targets for DNSSEC-enabled zones, you can only use at most one health-checked IP address per item.
      */
     signatureRrdatas?: string[] | null;
   }
   /**
-   * HealthCheckTargets describes endpoints to health-check when responding to Routing Policy queries. Only the healthy endpoints will be included in the response.
+   * HealthCheckTargets describes endpoints to health-check when responding to Routing Policy queries. Only the healthy endpoints will be included in the response. Set either `internal_load_balancer` or `external_endpoints`. Do not set both.
    */
   export interface Schema$RRSetRoutingPolicyHealthCheckTargets {
     /**
@@ -1180,7 +1180,7 @@ export namespace dns_v1 {
     kind?: string | null;
     rrdatas?: string[] | null;
     /**
-     * DNSSEC generated signatures for all the `rrdata` within this item. Note that if health checked targets are provided for DNSSEC enabled zones, there's a restriction of 1 IP address per item.
+     * DNSSEC generated signatures for all the `rrdata` within this item. When using health-checked targets for DNSSEC-enabled zones, you can only use at most one health-checked IP address per item.
      */
     signatureRrdatas?: string[] | null;
     /**
