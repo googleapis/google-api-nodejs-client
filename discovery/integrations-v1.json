@@ -1382,6 +1382,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "GCPCloudEventsMode": {
+                      "description": "Optional. LINT: LEGACY_NAMES The query parameter value for __GCP_CloudEventsMode, set by the Eventarc service when configuring triggers.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "name": {
                       "description": "Required. The integration resource name. Format: projects/{gcp_project_id}/locations/{location}/integrations/{integration_id}",
                       "location": "path",
