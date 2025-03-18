@@ -629,7 +629,7 @@ export namespace run_v1 {
    */
   export interface Schema$ExecutionSpec {
     /**
-     * Optional. Specifies the maximum desired number of tasks the execution should run at given time. Must be <= task_count. When the job is run, if this field is 0 or unset, the maximum possible value will be used for that execution. The actual number of tasks running in steady state will be less than this number when there are fewer tasks waiting to be completed, i.e. when the work left to do is less than max parallelism.
+     * Optional. Specifies the maximum desired number of tasks the execution should run at given time. When the job is run, if this field is 0 or unset, the maximum possible value will be used for that execution. The actual number of tasks running in steady state will be less than this number when there are fewer tasks waiting to be completed, i.e. when the work left to do is less than max parallelism.
      */
     parallelism?: number | null;
     /**
@@ -854,6 +854,10 @@ export namespace run_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Dependencies that the Cloud Build worker will fetch before executing user steps.
+     */
+    dependencies?: Schema$GoogleDevtoolsCloudbuildV1Dependency[];
+    /**
      * Output only. Contains information about the build when status=FAILURE.
      */
     failureInfo?: Schema$GoogleDevtoolsCloudbuildV1FailureInfo;
@@ -1025,6 +1029,10 @@ export namespace run_v1 {
      */
     pool?: Schema$GoogleDevtoolsCloudbuildV1PoolOption;
     /**
+     * Optional. Option to specify the Pub/Sub topic to receive build status updates.
+     */
+    pubsubTopic?: string | null;
+    /**
      * Requested verifiability options.
      */
     requestedVerifyOption?: string | null;
@@ -1161,6 +1169,19 @@ export namespace run_v1 {
     revision?: string | null;
   }
   /**
+   * A dependency that the Cloud Build worker will fetch before executing user steps.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1Dependency {
+    /**
+     * If set to true disable all dependency fetching (ignoring the default source as well).
+     */
+    empty?: boolean | null;
+    /**
+     * Represents a git repository as a build dependency.
+     */
+    gitSource?: Schema$GoogleDevtoolsCloudbuildV1GitSourceDependency;
+  }
+  /**
    * This config defines the location of a source through Developer Connect.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1DeveloperConnectConfig {
@@ -1222,6 +1243,44 @@ export namespace run_v1 {
     revision?: string | null;
     /**
      * Required. Location of the Git repo to build. This will be used as a `git remote`, see https://git-scm.com/docs/git-remote.
+     */
+    url?: string | null;
+  }
+  /**
+   * Represents a git repository as a build dependency.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1GitSourceDependency {
+    /**
+     * Optional. How much history should be fetched for the build (default 1, -1 for all history).
+     */
+    depth?: string | null;
+    /**
+     * Required. Where should the files be placed on the worker.
+     */
+    destPath?: string | null;
+    /**
+     * Optional. True if submodules should be fetched too (default false).
+     */
+    recurseSubmodules?: boolean | null;
+    /**
+     * Required. The kind of repo (url or dev connect).
+     */
+    repository?: Schema$GoogleDevtoolsCloudbuildV1GitSourceRepository;
+    /**
+     * Required. The revision that we will fetch the repo at.
+     */
+    revision?: string | null;
+  }
+  /**
+   * A repository for a git source.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1GitSourceRepository {
+    /**
+     * The Developer Connect Git repository link or the url that matches a repository link in the current project, formatted as `projects/x/locations/x/connections/x/gitRepositoryLink/x`
+     */
+    developerConnect?: string | null;
+    /**
+     * Location of the Git repository.
      */
     url?: string | null;
   }
@@ -2817,6 +2876,10 @@ export namespace run_v1 {
      * Optional. Number of retries allowed per task, before marking this job failed. Defaults to 3.
      */
     maxRetries?: number | null;
+    /**
+     * Optional. The Node Selector configuration. Map of selector key to a value which matches a node.
+     */
+    nodeSelector?: {[key: string]: string} | null;
     /**
      * Optional. Email address of the IAM service account associated with the task of a job execution. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.
      */
