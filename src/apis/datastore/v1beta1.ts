@@ -448,7 +448,7 @@ export namespace datastore_v1beta1 {
    */
   export interface Schema$GoogleDatastoreAdminV1RedirectWritesStepDetails {
     /**
-     * Ths concurrency mode for this database.
+     * The concurrency mode for this database.
      */
     concurrencyMode?: string | null;
   }
