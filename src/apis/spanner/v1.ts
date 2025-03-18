@@ -1964,7 +1964,7 @@ export namespace spanner_v1 {
     seqNum?: number | null;
   }
   /**
-   * When a read-write transaction is executed on a multiplexed session, this precommit token is sent back to the client as a part of the [Transaction] message in the BeginTransaction response and also as a part of the [ResultSet] and [PartialResultSet] responses.
+   * When a read-write transaction is executed on a multiplexed session, this precommit token is sent back to the client as a part of the Transaction message in the BeginTransaction response and also as a part of the ResultSet and PartialResultSet responses.
    */
   export interface Schema$MultiplexedSessionPrecommitToken {
     /**
