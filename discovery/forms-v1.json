@@ -29,7 +29,7 @@
   "canonicalName": "Forms",
   "description": "Reads and writes Google Forms and responses.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/forms/api",
+  "documentationLink": "https://developers.google.com/workspace/forms/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -157,7 +157,13 @@
           "httpMethod": "POST",
           "id": "forms.forms.create",
           "parameterOrder": [],
-          "parameters": {},
+          "parameters": {
+            "unpublished": {
+              "description": "Optional. Whether the form is unpublished. If set to `true`, the form doesn't accept responses. If set to `false` or unset, the form is published and accepts responses.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
           "path": "v1/forms",
           "request": {
             "$ref": "Form"
@@ -197,6 +203,35 @@
             "https://www.googleapis.com/auth/drive.readonly",
             "https://www.googleapis.com/auth/forms.body",
             "https://www.googleapis.com/auth/forms.body.readonly"
+          ]
+        },
+        "setPublishSettings": {
+          "description": "Updates the publish settings of a form. Legacy forms aren't supported because they don't have the `publish_settings` field.",
+          "flatPath": "v1/forms/{formId}:setPublishSettings",
+          "httpMethod": "POST",
+          "id": "forms.forms.setPublishSettings",
+          "parameterOrder": [
+            "formId"
+          ],
+          "parameters": {
+            "formId": {
+              "description": "Required. The ID of the form. You can get the id from `Form.form_id` field.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/forms/{formId}:setPublishSettings",
+          "request": {
+            "$ref": "SetPublishSettingsRequest"
+          },
+          "response": {
+            "$ref": "SetPublishSettingsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/forms.body"
           ]
         }
       },
@@ -423,7 +458,7 @@
       }
     }
   },
-  "revision": "20241112",
+  "revision": "20250304",
   "rootUrl": "https://forms.googleapis.com/",
   "schemas": {
     "Answer": {
@@ -794,6 +829,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "publishSettings": {
+          "$ref": "PublishSettings",
+          "description": "Output only. The publishing settings for a form. This field isn't set for legacy forms because they don't have the `publish_settings` field. All newly created forms support publish settings. Forms with `publish_settings` value set can call UpdatePublishSettings API to publish or unpublish the form.",
+          "readOnly": true
+        },
         "responderUri": {
           "description": "Output only. The form URI to share with responders. This opens a page that allows the user to submit responses but not edit the questions.",
           "readOnly": true,
@@ -863,6 +903,22 @@
       "description": "A form's settings.",
       "id": "FormSettings",
       "properties": {
+        "emailCollectionType": {
+          "description": "Optional. The setting that determines whether the form collects email addresses from respondents.",
+          "enum": [
+            "EMAIL_COLLECTION_TYPE_UNSPECIFIED",
+            "DO_NOT_COLLECT",
+            "VERIFIED",
+            "RESPONDER_INPUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value is unused.",
+            "The form doesn't collect email addresses. Default value if the form owner uses a Google account.",
+            "The form collects email addresses automatically based on the account of the signed-in user. Default value if the form owner uses a Google Workspace account.",
+            "The form collects email addresses using a field that the respondent completes on the form."
+          ],
+          "type": "string"
+        },
         "quizSettings": {
           "$ref": "QuizSettings",
           "description": "Settings related to quiz forms and grading."
@@ -1166,6 +1222,32 @@
       "properties": {},
       "type": "object"
     },
+    "PublishSettings": {
+      "description": "The publishing settings of a form.",
+      "id": "PublishSettings",
+      "properties": {
+        "publishState": {
+          "$ref": "PublishState",
+          "description": "Optional. The publishing state of a form. When updating `publish_state`, both `is_published` and `is_accepting_responses` must be set. However, setting `is_accepting_responses` to `true` and `is_published` to `false` isn't supported and returns an error."
+        }
+      },
+      "type": "object"
+    },
+    "PublishState": {
+      "description": "The publishing state of a form.",
+      "id": "PublishState",
+      "properties": {
+        "isAcceptingResponses": {
+          "description": "Required. Whether the form accepts responses. If `is_published` is set to `false`, this field is forced to `false`.",
+          "type": "boolean"
+        },
+        "isPublished": {
+          "description": "Required. Whether the form is published and visible to others.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Question": {
       "description": "Any question. The specific type of question is known by its `kind`.",
       "id": "Question",
@@ -1373,6 +1455,37 @@
         "lowLabel": {
           "description": "The label to display describing the lowest point on the scale.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SetPublishSettingsRequest": {
+      "description": "Updates the publish settings of a Form.",
+      "id": "SetPublishSettingsRequest",
+      "properties": {
+        "publishSettings": {
+          "$ref": "PublishSettings",
+          "description": "Required. The desired publish settings to apply to the form."
+        },
+        "updateMask": {
+          "description": "Optional. The `publish_settings` fields to update. This field mask accepts the following values: * `publish_state`: Updates or replaces all `publish_state` settings. * `\"*\"`: Updates or replaces all `publish_settings` fields.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SetPublishSettingsResponse": {
+      "description": "The response of a `SetPublishSettings` request.",
+      "id": "SetPublishSettingsResponse",
+      "properties": {
+        "formId": {
+          "description": "Required. The ID of the Form. This is same as the `Form.form_id` field.",
+          "type": "string"
+        },
+        "publishSettings": {
+          "$ref": "PublishSettings",
+          "description": "The publish settings of the form."
         }
       },
       "type": "object"
