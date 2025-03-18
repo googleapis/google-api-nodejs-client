@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/realtimebidding-v4.5.0...realtimebidding-v4.6.0) (2025-03-18)
+
+
+### Features
+
+* **realtimebidding:** update the API ([42c22f5](https://github.com/googleapis/google-api-nodejs-client/commit/42c22f52b13b587cb822802babf7ffd8b46ce5dd))
+
 ## [4.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/realtimebidding-v4.4.1...realtimebidding-v4.5.0) (2025-02-04)
 
 

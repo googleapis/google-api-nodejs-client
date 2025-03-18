@@ -1,5 +1,12 @@
 # Changelog
 
+## [23.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v23.1.0...admin-v23.1.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* **admin:** update the API ([fbe6446](https://github.com/googleapis/google-api-nodejs-client/commit/fbe644667d8c5a3a871dac864cf765e3acde3c26))
+
 ## [23.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v23.0.1...admin-v23.1.0) (2025-02-04)
 
 

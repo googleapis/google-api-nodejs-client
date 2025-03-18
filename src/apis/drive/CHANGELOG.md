@@ -1,5 +1,16 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v8.16.0...drive-v9.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **drive:** This release has breaking changes.
+
+### Features
+
+* **drive:** update the API ([b5ef473](https://github.com/googleapis/google-api-nodejs-client/commit/b5ef47311b7ec66e02429f1097345a2899cb4013))
+
 ## [8.16.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v8.15.0...drive-v8.16.0) (2025-02-04)
 
 

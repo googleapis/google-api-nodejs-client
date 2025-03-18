@@ -1,5 +1,16 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v10.2.0...firebaseml-v11.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firebaseml:** This release has breaking changes.
+
+### Features
+
+* **firebaseml:** update the API ([1fcb037](https://github.com/googleapis/google-api-nodejs-client/commit/1fcb03759ac0302be7b18c0a2dfee0bebeeebec9))
+
 ## [10.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v10.1.0...firebaseml-v10.2.0) (2025-02-04)
 
 
