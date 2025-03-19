@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v19.0.0...discoveryengine-v19.1.0) (2025-03-19)
+
+
+### Features
+
+* **discoveryengine:** update the API ([285a5cc](https://github.com/googleapis/google-api-nodejs-client/commit/285a5ccf5cc2daca0545c525eb44aced9afe7de2))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v18.0.0...discoveryengine-v19.0.0) (2025-03-18)
 
 
