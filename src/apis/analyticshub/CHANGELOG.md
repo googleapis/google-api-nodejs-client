@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v12.0.0...analyticshub-v12.1.0) (2025-03-19)
+
+
+### Features
+
+* **analyticshub:** update the API ([248f8d1](https://github.com/googleapis/google-api-nodejs-client/commit/248f8d18eaeac34e8d55a3cbddd5bcf4ba753af3))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v11.0.0...analyticshub-v12.0.0) (2025-03-18)
 
 

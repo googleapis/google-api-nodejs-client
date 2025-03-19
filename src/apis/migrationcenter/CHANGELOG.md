@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v8.2.0...migrationcenter-v8.2.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* **migrationcenter:** update the API ([14ea9eb](https://github.com/googleapis/google-api-nodejs-client/commit/14ea9eba9feb3945efef4bfdc032fbca326765ca))
+
 ## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v8.1.0...migrationcenter-v8.2.0) (2025-03-18)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v17.1.0...aiplatform-v17.2.0) (2025-03-19)
+
+
+### Features
+
+* **aiplatform:** update the API ([7a60c1e](https://github.com/googleapis/google-api-nodejs-client/commit/7a60c1e9c57b87da999d11793b25d745c569ef20))
+
 ## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v17.0.0...aiplatform-v17.1.0) (2025-03-18)
 
 
