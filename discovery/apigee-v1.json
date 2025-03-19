@@ -3821,6 +3821,129 @@
             }
           }
         },
+        "dnsZones": {
+          "methods": {
+            "create": {
+              "description": "Creates a new DNS zone.",
+              "flatPath": "v1/organizations/{organizationsId}/dnsZones",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.dnsZones.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "dnsZoneId": {
+                  "description": "Required. User assigned ID for this resource. Must be unique within the organization. The name must be 1-63 characters long, must begin with a letter, end with a letter or digit, and only contain lowercase letters, digits or dashes.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Organization where the DNS zone will be created.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/dnsZones",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1DnsZone"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a previously created DNS zone.",
+              "flatPath": "v1/organizations/{organizationsId}/dnsZones/{dnsZonesId}",
+              "httpMethod": "DELETE",
+              "id": "apigee.organizations.dnsZones.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the DNS zone to delete. Use the following structure in your request: `organizations/{org}/dnsZones/{dns_zone}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/dnsZones/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Fetches the representation of an existing DNS zone.",
+              "flatPath": "v1/organizations/{organizationsId}/dnsZones/{dnsZonesId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.dnsZones.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the DNS zone to fetch. Use the following structure in your request: `organizations/{org}/dnsZones/{dns_zone}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/dnsZones/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1DnsZone"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Enumerates DNS zones that have been created but not yet deleted.",
+              "flatPath": "v1/organizations/{organizationsId}/dnsZones",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.dnsZones.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. Maximum number of DNS zones to return. If unspecified, at most 25 DNS zones will be returned.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Page token, returned from a previous `ListDnsZones` call, that you can use to retrieve the next page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the organization for which to list the DNS zones. Use the following structure in your request: `organizations/{org}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/dnsZones",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListDnsZonesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "endpointAttachments": {
           "methods": {
             "create": {
@@ -9405,6 +9528,168 @@
             }
           }
         },
+        "securityMonitoringConditions": {
+          "methods": {
+            "create": {
+              "description": "Create a security monitoring condition.",
+              "flatPath": "v1/organizations/{organizationsId}/securityMonitoringConditions",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.securityMonitoringConditions.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent resource name. Format: `organizations/{org}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "securityMonitoringConditionId": {
+                  "description": "Optional. Optional: The security monitoring condition id. If not specified, a monitoring condition uuid will be generated by the backend. This value should be 4-63 characters, and valid characters are /a-z-/.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/securityMonitoringConditions",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1SecurityMonitoringCondition"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityMonitoringCondition"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Delete a security monitoring condition.",
+              "flatPath": "v1/organizations/{organizationsId}/securityMonitoringConditions/{securityMonitoringConditionsId}",
+              "httpMethod": "DELETE",
+              "id": "apigee.organizations.securityMonitoringConditions.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the security monitoring condition to delete. Format: `organizations/{org}/securityMonitoringConditions/{security_monitoring_condition}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/securityMonitoringConditions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Get a security monitoring condition.",
+              "flatPath": "v1/organizations/{organizationsId}/securityMonitoringConditions/{securityMonitoringConditionsId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.securityMonitoringConditions.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the security monitoring condition to get. Format: `organizations/{org}/securityMonitoringConditions/{security_monitoring_condition}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/securityMonitoringConditions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityMonitoringCondition"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "List security monitoring conditions.",
+              "flatPath": "v1/organizations/{organizationsId}/securityMonitoringConditions",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.securityMonitoringConditions.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. Filter for the monitoring conditions. For example: `profile=profile1 AND scope=env1`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of monitoring conditions to return.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListSecurityMonitoringConditions` call. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. For a specific organization, list all the security monitoring conditions. Format: `organizations/{org}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/securityMonitoringConditions",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListSecurityMonitoringConditionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Update a security monitoring condition.",
+              "flatPath": "v1/organizations/{organizationsId}/securityMonitoringConditions/{securityMonitoringConditionsId}",
+              "httpMethod": "PATCH",
+              "id": "apigee.organizations.securityMonitoringConditions.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. Name of the security monitoring condition resource. Format: organizations/{org}/securityMonitoringConditions/{security_monitoring_condition}",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/securityMonitoringConditions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to update. Valid fields to update are `profile`, `scope`, `include_all_resources`, `include`, and `exclude`.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1SecurityMonitoringCondition"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityMonitoringCondition"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "securityProfiles": {
           "methods": {
             "create": {
@@ -10778,7 +11063,7 @@
       }
     }
   },
-  "revision": "20250306",
+  "revision": "20250312",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -13670,6 +13955,75 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudApigeeV1DnsZone": {
+      "description": "A DNS zone is a resource under an Apigee organization that is used to create a DNS peering with Apigee's network. DNS peering will let Apigee instances resolve the hostnames created in a peered network.",
+      "id": "GoogleCloudApigeeV1DnsZone",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time that this resource was created on the server.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Required. Description of the resource. String of at most 1024 characters associated with this resource for the user's convenience.",
+          "type": "string"
+        },
+        "domain": {
+          "description": "Required. The domain name for hosts in this private zone, for instance \"example.com.\".",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Unique name for the resource. Defined by the server Format: \"organizations/{organization}/dnsZones/{dns_zone}\".",
+          "type": "string"
+        },
+        "peeringConfig": {
+          "$ref": "GoogleCloudApigeeV1DnsZonePeeringConfig",
+          "description": "DNS PEERING zone configuration."
+        },
+        "state": {
+          "description": "Output only. State of the DNS Peering. Values other than `ACTIVE` mean the resource is not ready to use.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "Resource is in an unspecified state.",
+            "Resource is being created.",
+            "Resource is provisioned and ready to use.",
+            "The resource is being deleted.",
+            "The resource is being updated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time that this resource was updated on the server.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1DnsZonePeeringConfig": {
+      "description": "Fields for DNS PEERING zone.",
+      "id": "GoogleCloudApigeeV1DnsZonePeeringConfig",
+      "properties": {
+        "targetNetworkId": {
+          "description": "Required. The VPC network where the records for that private DNS zone's namespace are available. Apigee will be performing DNS peering with this VPC network.",
+          "type": "string"
+        },
+        "targetProjectId": {
+          "description": "Required. The ID of the project containing the private DNS zone.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1DocumentationFile": {
       "description": "Documentation file contents for a catalog item.",
       "id": "GoogleCloudApigeeV1DocumentationFile",
@@ -15179,6 +15533,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListDnsZonesResponse": {
+      "description": "Response for list DNS zones.",
+      "id": "GoogleCloudApigeeV1ListDnsZonesResponse",
+      "properties": {
+        "dnsZones": {
+          "description": "DNS zones in a given organization.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1DnsZone"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token that you can include in an `ListDnsZones` request to retrieve the next page. If omitted, no subsequent pages exist.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListEndpointAttachmentsResponse": {
       "description": "Response for ListEndpointAttachments method.",
       "id": "GoogleCloudApigeeV1ListEndpointAttachmentsResponse",
@@ -15420,6 +15792,24 @@
           "description": "List of security incidents in the organization",
           "items": {
             "$ref": "GoogleCloudApigeeV1SecurityIncident"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListSecurityMonitoringConditionsResponse": {
+      "description": "Response for ListSecurityMonitoringConditions.",
+      "id": "GoogleCloudApigeeV1ListSecurityMonitoringConditionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "securityMonitoringConditions": {
+          "description": "List of security monitoring conditions in the organization.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityMonitoringCondition"
           },
           "type": "array"
         }
@@ -18031,6 +18421,57 @@
         "trafficCount": {
           "description": "Total traffic detected as part of the incident.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityMonitoringCondition": {
+      "description": "Security monitoring condition for risk assessment version 2.",
+      "id": "GoogleCloudApigeeV1SecurityMonitoringCondition",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time of the security monitoring condition creation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "include": {
+          "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray",
+          "description": "Include only these resources."
+        },
+        "includeAllResources": {
+          "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestIncludeAll",
+          "description": "Include all resources under the scope."
+        },
+        "name": {
+          "description": "Identifier. Name of the security monitoring condition resource. Format: organizations/{org}/securityMonitoringConditions/{security_monitoring_condition}",
+          "type": "string"
+        },
+        "profile": {
+          "description": "Required. ID of security profile of the security monitoring condition.",
+          "type": "string"
+        },
+        "scope": {
+          "description": "Required. Scope of the security monitoring condition. For Apigee, the environment is the scope of the resources.",
+          "type": "string"
+        },
+        "totalDeployedResources": {
+          "description": "Output only. Total number of deployed resources within scope.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "totalMonitoredResources": {
+          "description": "Output only. Total number of monitored resources within this condition.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "updateTime": {
+          "description": "Output only. The time of the security monitoring condition update.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
