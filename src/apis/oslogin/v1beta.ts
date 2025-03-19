@@ -302,7 +302,7 @@ export namespace oslogin_v1beta {
      */
     fingerprint?: string | null;
     /**
-     * Public key text in SSH format, defined by RFC4253 section 6.6.
+     * Required. Public key text in SSH format, defined by [RFC4253](https://www.ietf.org/rfc/rfc4253.txt) section 6.6.
      */
     key?: string | null;
     /**

@@ -349,7 +349,7 @@
       }
     }
   },
-  "revision": "20231217",
+  "revision": "20250317",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -478,7 +478,7 @@
           "type": "string"
         },
         "key": {
-          "description": "Public key text in SSH format, defined by RFC4253 section 6.6.",
+          "description": "Required. Public key text in SSH format, defined by [RFC4253](https://www.ietf.org/rfc/rfc4253.txt) section 6.6.",
           "type": "string"
         },
         "name": {
