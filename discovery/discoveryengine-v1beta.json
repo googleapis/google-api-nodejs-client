@@ -8612,6 +8612,23 @@
           "readOnly": true,
           "type": "string"
         },
+        "notebooklmState": {
+          "description": "Output only. Whether the NotebookLM Corpus is ready to be used.",
+          "enum": [
+            "NOTEBOOK_LM_STATE_UNSPECIFIED",
+            "NOTEBOOK_LM_NOT_READY",
+            "NOTEBOOK_LM_READY",
+            "NOTEBOOK_LM_NOT_ENABLED"
+          ],
+          "enumDescriptions": [
+            "The NotebookLM state is unknown.",
+            "The NotebookLM is not ready.",
+            "The NotebookLM is ready to be used.",
+            "The NotebookLM is not enabled."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "singleRegionKeys": {
           "description": "Optional. Single-regional CMEKs that are required for some VAIS features.",
           "items": {
@@ -11886,6 +11903,23 @@
         },
         "name": {
           "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmek_config}`.",
+          "type": "string"
+        },
+        "notebooklmState": {
+          "description": "Output only. Whether the NotebookLM Corpus is ready to be used.",
+          "enum": [
+            "NOTEBOOK_LM_STATE_UNSPECIFIED",
+            "NOTEBOOK_LM_NOT_READY",
+            "NOTEBOOK_LM_READY",
+            "NOTEBOOK_LM_NOT_ENABLED"
+          ],
+          "enumDescriptions": [
+            "The NotebookLM state is unknown.",
+            "The NotebookLM is not ready.",
+            "The NotebookLM is ready to be used.",
+            "The NotebookLM is not enabled."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "notebooklmState": {
@@ -19299,6 +19333,23 @@
         },
         "name": {
           "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmek_config}`.",
+          "type": "string"
+        },
+        "notebooklmState": {
+          "description": "Output only. Whether the NotebookLM Corpus is ready to be used.",
+          "enum": [
+            "NOTEBOOK_LM_STATE_UNSPECIFIED",
+            "NOTEBOOK_LM_NOT_READY",
+            "NOTEBOOK_LM_READY",
+            "NOTEBOOK_LM_NOT_ENABLED"
+          ],
+          "enumDescriptions": [
+            "The NotebookLM state is unknown.",
+            "The NotebookLM is not ready.",
+            "The NotebookLM is ready to be used.",
+            "The NotebookLM is not enabled."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "notebooklmState": {
