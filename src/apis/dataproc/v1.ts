@@ -156,6 +156,24 @@ export namespace dataproc_v1 {
     jobData?: Schema$JobData;
   }
   /**
+   * Details of a native build info for a Spark Application
+   */
+  export interface Schema$AccessSessionSparkApplicationNativeBuildInfoResponse {
+    /**
+     * Native SQL Execution Data
+     */
+    executionData?: Schema$NativeBuildInfoUiData;
+  }
+  /**
+   * Details of a native query for a Spark Application
+   */
+  export interface Schema$AccessSessionSparkApplicationNativeSqlQueryResponse {
+    /**
+     * Native SQL Execution Data
+     */
+    executionData?: Schema$NativeSqlExecutionUiData;
+  }
+  /**
    * A summary of Spark Application
    */
   export interface Schema$AccessSessionSparkApplicationResponse {
@@ -217,6 +235,24 @@ export namespace dataproc_v1 {
      * Output only. Data corresponding to a spark job.
      */
     jobData?: Schema$JobData;
+  }
+  /**
+   * Details of Native Build Info for a Spark Application
+   */
+  export interface Schema$AccessSparkApplicationNativeBuildInfoResponse {
+    /**
+     * Native Build Info Data
+     */
+    buildInfo?: Schema$NativeBuildInfoUiData;
+  }
+  /**
+   * Details of a query for a Spark Application
+   */
+  export interface Schema$AccessSparkApplicationNativeSqlQueryResponse {
+    /**
+     * Native SQL Execution Data
+     */
+    executionData?: Schema$NativeSqlExecutionUiData;
   }
   /**
    * A summary of Spark Application
@@ -357,6 +393,15 @@ export namespace dataproc_v1 {
   export interface Schema$AppSummary {
     numCompletedJobs?: number | null;
     numCompletedStages?: number | null;
+  }
+  /**
+   * Authentication configuration for a workload is used to set the default identity for the workload execution. The config specifies the type of identity (service account or user) that will be used by workloads to access resources on the project(s).
+   */
+  export interface Schema$AuthenticationConfig {
+    /**
+     * Optional. Authentication type for the user workload running in containers.
+     */
+    userWorkloadAuthenticationType?: string | null;
   }
   /**
    * Autoscaling Policy config associated with the cluster.
@@ -1035,6 +1080,10 @@ export namespace dataproc_v1 {
    */
   export interface Schema$ExecutionConfig {
     /**
+     * Optional. Authentication configuration used to set the default identity for the workload execution. The config specifies the type of identity (service account or user) that will be used by workloads to access resources on the project(s).
+     */
+    authenticationConfig?: Schema$AuthenticationConfig;
+    /**
      * Optional. Applies to sessions only. The duration to keep the session alive while it's idling. Exceeding this threshold causes the session to terminate. This field cannot be set on a batch workload. Minimum value is 10 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)). Defaults to 1 hour if not set. If both ttl and idle_ttl are specified for an interactive session, the conditions are treated as OR conditions: the workload will be terminated when it has been idle for idle_ttl or when ttl has been exceeded, whichever occurs first.
      */
     idleTtl?: string | null;
@@ -1259,7 +1308,7 @@ export namespace dataproc_v1 {
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
-     * Optional. Resource manager tags to add to all instances (see Resource manager tags resources (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing)).
+     * Optional. Resource manager tags (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing) to add to all instances (see Use secure tags in Dataproc (https://cloud.google.com/dataproc/docs/guides/attach-secure-tags)).
      */
     resourceManagerTags?: {[key: string]: string} | null;
     /**
@@ -2241,7 +2290,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$Metric {
     /**
-     * Optional. Specify one or more Custom metrics (https://cloud.google.com/dataproc/docs/guides/dataproc-metrics#custom_metrics) to collect for the metric course (for the SPARK metric source (any Spark metric (https://spark.apache.org/docs/latest/monitoring.html#metrics) can be specified).Provide metrics in the following format: METRIC_SOURCE: INSTANCE:GROUP:METRIC Use camelcase as appropriate.Examples: yarn:ResourceManager:QueueMetrics:AppsCompleted spark:driver:DAGScheduler:job.allJobs sparkHistoryServer:JVM:Memory:NonHeapMemoryUsage.committed hiveserver2:JVM:Memory:NonHeapMemoryUsage.used Notes: Only the specified overridden metrics are collected for the metric source. For example, if one or more spark:executive metrics are listed as metric overrides, other SPARK metrics are not collected. The collection of the metrics for other enabled custom metric sources is unaffected. For example, if both SPARK andd YARN metric sources are enabled, and overrides are provided for Spark metrics only, all YARN metrics are collected.
+     * Optional. Specify one or more Custom metrics (https://cloud.google.com/dataproc/docs/guides/dataproc-metrics#custom_metrics) to collect for the metric course (for the SPARK metric source (any Spark metric (https://spark.apache.org/docs/latest/monitoring.html#metrics) can be specified).Provide metrics in the following format: METRIC_SOURCE: INSTANCE:GROUP:METRIC Use camelcase as appropriate.Examples: yarn:ResourceManager:QueueMetrics:AppsCompleted spark:driver:DAGScheduler:job.allJobs sparkHistoryServer:JVM:Memory:NonHeapMemoryUsage.committed hiveserver2:JVM:Memory:NonHeapMemoryUsage.used Notes: Only the specified overridden metrics are collected for the metric source. For example, if one or more spark:executive metrics are listed as metric overrides, other SPARK metrics are not collected. The collection of the metrics for other enabled custom metric sources is unaffected. For example, if both SPARK and YARN metric sources are enabled, and overrides are provided for Spark metrics only, all YARN metrics are collected.
      */
     metricOverrides?: string[] | null;
     /**
@@ -3011,6 +3060,19 @@ export namespace dataproc_v1 {
     sparkApplicationJobs?: Schema$JobData[];
   }
   /**
+   * List of all Native queries for a Spark Application.
+   */
+  export interface Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSessionSparkApplicationSqlQueriesRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Native SQL Execution Data
+     */
+    sparkApplicationNativeSqlQueries?: Schema$NativeSqlExecutionUiData[];
+  }
+  /**
    * List of all queries for a Spark Application.
    */
   export interface Schema$SearchSessionSparkApplicationSqlQueriesResponse {
@@ -3113,6 +3175,19 @@ export namespace dataproc_v1 {
      * Output only. Data corresponding to a spark job.
      */
     sparkApplicationJobs?: Schema$JobData[];
+  }
+  /**
+   * List of all Native SQL queries details for a Spark Application.
+   */
+  export interface Schema$SearchSparkApplicationNativeSqlQueriesResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSparkApplicationNativeSqlQueriesRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Native SQL Execution Data
+     */
+    sparkApplicationNativeSqlQueries?: Schema$NativeSqlExecutionUiData[];
   }
   /**
    * List of all queries for a Spark Application.
@@ -4359,9 +4434,17 @@ export namespace dataproc_v1 {
      */
     milliDcuSeconds?: string | null;
     /**
+     * Optional. Slot usage in (milliSlot x seconds).
+     */
+    milliSlotSeconds?: string | null;
+    /**
      * Optional. Shuffle storage usage in (GB x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
      */
     shuffleStorageGbSeconds?: string | null;
+    /**
+     * Optional. The timestamp of the usage metrics.
+     */
+    updateTime?: string | null;
   }
   /**
    * The usage snapshot represents the resources consumed by a workload at a specified time.
@@ -4383,6 +4466,10 @@ export namespace dataproc_v1 {
      * Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at premium tier (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
      */
     milliDcuPremium?: string | null;
+    /**
+     * Optional. Milli (one-thousandth) Slot usage of the workload.
+     */
+    milliSlot?: string | null;
     /**
      * Optional. Shuffle Storage in gigabytes (GB). (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
      */
@@ -6305,6 +6392,202 @@ export namespace dataproc_v1 {
     }
 
     /**
+     * Obtain build data for Native Job
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessNativeBuildInfo(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSparkApplicationNativeBuildInfoResponse>;
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+    ): void;
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+    ): void;
+    accessNativeBuildInfo(
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+    ): void;
+    accessNativeBuildInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSparkApplicationNativeBuildInfoResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessNativeBuildInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSparkApplicationNativeBuildInfoResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSparkApplicationNativeBuildInfoResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to a particular Native SQL Query for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessNativeSqlQuery(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSparkApplicationNativeSqlQueryResponse>;
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+    ): void;
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+    ): void;
+    accessNativeSqlQuery(
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+    ): void;
+    accessNativeSqlQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSparkApplicationNativeSqlQueryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessNativeSqlQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSparkApplicationNativeSqlQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSparkApplicationNativeSqlQueryResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Obtain Spark Plan Graph for a Spark Application SQL execution. Limits the number of clusters returned as part of the graph to 10000.
      *
      * @param params - Parameters for request
@@ -7083,6 +7366,104 @@ export namespace dataproc_v1 {
         );
       } else {
         return createAPIRequest<Schema$SearchSparkApplicationJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to Native SQL Queries for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchNativeSqlQueries(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSparkApplicationNativeSqlQueriesResponse>;
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+    ): void;
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+    ): void;
+    searchNativeSqlQueries(
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+    ): void;
+    searchNativeSqlQueries(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries
+        | BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSparkApplicationNativeSqlQueriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchNativeSqlQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSparkApplicationNativeSqlQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSparkApplicationNativeSqlQueriesResponse>(
           parameters
         );
       }
@@ -8005,6 +8386,32 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativebuildinfo
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessnativesqlquery
+    extends StandardParameters {
+    /**
+     * Required. Execution ID
+     */
+    executionId?: string;
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan
     extends StandardParameters {
     /**
@@ -8182,6 +8589,25 @@ export namespace dataproc_v1 {
     pageSize?: number;
     /**
      * Optional. A page token received from a previous SearchSparkApplicationJobs call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchnativesqlqueries
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of queries to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSparkApplicationNativeSqlQueries call. Provide this token to retrieve the subsequent page.
      */
     pageToken?: string;
     /**
@@ -9582,6 +10008,202 @@ export namespace dataproc_v1 {
     }
 
     /**
+     * Obtain data corresponding to Native Build Information for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessNativeBuildInfo(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>;
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+    ): void;
+    accessNativeBuildInfo(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+    ): void;
+    accessNativeBuildInfo(
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+    ): void;
+    accessNativeBuildInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessNativeBuildInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSessionSparkApplicationNativeBuildInfoResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to a particular Native SQL Query for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessNativeSqlQuery(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>;
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+    ): void;
+    accessNativeSqlQuery(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+    ): void;
+    accessNativeSqlQuery(
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+    ): void;
+    accessNativeSqlQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessNativeSqlQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSessionSparkApplicationNativeSqlQueryResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Obtain Spark Plan Graph for a Spark Application SQL execution. Limits the number of clusters returned as part of the graph to 10000.
      *
      * @param params - Parameters for request
@@ -10360,6 +10982,104 @@ export namespace dataproc_v1 {
         );
       } else {
         return createAPIRequest<Schema$SearchSessionSparkApplicationJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to Native SQL Queries for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchNativeSqlQueries(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>;
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+    ): void;
+    searchNativeSqlQueries(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+    ): void;
+    searchNativeSqlQueries(
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+    ): void;
+    searchNativeSqlQueries(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchNativeSqlQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSessionSparkApplicationNativeSqlQueriesResponse>(
           parameters
         );
       }
@@ -11282,6 +12002,32 @@ export namespace dataproc_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativebuildinfo
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessnativesqlquery
+    extends StandardParameters {
+    /**
+     * Required. Execution ID
+     */
+    executionId?: string;
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan
     extends StandardParameters {
     /**
@@ -11459,6 +12205,25 @@ export namespace dataproc_v1 {
     pageSize?: number;
     /**
      * Optional. A page token received from a previous SearchSessionSparkApplicationJobs call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchnativesqlqueries
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of queries to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSessionSparkApplicationSqlQueries call. Provide this token to retrieve the subsequent page.
      */
     pageToken?: string;
     /**
