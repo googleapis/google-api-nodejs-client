@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/certificatemanager",
-  "version": "4.2.1",
+  "version": "4.4.0",
   "description": "certificatemanager",
   "main": "build/index.js",
   "types": "build/index.d.ts",

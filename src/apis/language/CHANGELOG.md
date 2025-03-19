@@ -1,5 +1,29 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/language-v5.0.1...language-v6.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **language:** This release has breaking changes.
+
+### Features
+
+* **language:** update the API ([ab1d906](https://github.com/googleapis/google-api-nodejs-client/commit/ab1d906884c89890cea66bd0016f540eef356627))
+* **language:** update the API ([923b951](https://github.com/googleapis/google-api-nodejs-client/commit/923b951d3ebe7523ac2ea6e88e9dd810cd9478eb))
+
+
+### Bug Fixes
+
+* **language:** update the API ([91cfefe](https://github.com/googleapis/google-api-nodejs-client/commit/91cfefe291401cf3658f12505d7286fea91f7676))
+
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/language-v5.0.0...language-v5.0.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* **language:** update the API ([91cfefe](https://github.com/googleapis/google-api-nodejs-client/commit/91cfefe291401cf3658f12505d7286fea91f7676))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/language-v4.1.0...language-v5.0.0) (2025-02-04)
 
 

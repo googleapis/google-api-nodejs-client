@@ -1,5 +1,21 @@
 # Changelog
 
+## [6.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v6.5.0...eventarc-v6.6.0) (2025-03-18)
+
+
+### Features
+
+* **eventarc:** update the API ([d9641a3](https://github.com/googleapis/google-api-nodejs-client/commit/d9641a32c188b4f89983dd954e75feb5d998642c))
+* **eventarc:** update the API ([28e11ff](https://github.com/googleapis/google-api-nodejs-client/commit/28e11ff154d69e8e045a2e6c7cb15dc2b93f3987))
+* **eventarc:** update the API ([a770614](https://github.com/googleapis/google-api-nodejs-client/commit/a770614e4baa362722fdc6b34794b2018c7c59a8))
+
+## [6.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v6.4.0...eventarc-v6.5.0) (2025-03-18)
+
+
+### Features
+
+* **eventarc:** update the API ([d9641a3](https://github.com/googleapis/google-api-nodejs-client/commit/d9641a32c188b4f89983dd954e75feb5d998642c))
+
 ## [6.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v6.3.0...eventarc-v6.4.0) (2025-02-04)
 
 

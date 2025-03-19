@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/solar-v0.2.1...solar-v0.2.2) (2025-03-18)
+
+
+### Bug Fixes
+
+* **solar:** update the API ([4d718f8](https://github.com/googleapis/google-api-nodejs-client/commit/4d718f85abc0dfa13a894c8b10c31a34b64bbaa6))
+
 ## [0.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/solar-v0.2.0...solar-v0.2.1) (2025-02-04)
 
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v11.2.0...firestore-v12.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firestore:** This release has breaking changes.
+
+### Features
+
+* **firestore:** update the API ([1550a14](https://github.com/googleapis/google-api-nodejs-client/commit/1550a14856edabf4e39cef32600c3092d59d7157))
+
 ## [11.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v11.1.0...firestore-v11.2.0) (2025-02-04)
 
 

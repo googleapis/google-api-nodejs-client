@@ -1,5 +1,28 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v12.0.0...identitytoolkit-v13.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **identitytoolkit:** This release has breaking changes.
+
+### Features
+
+* **identitytoolkit:** update the API ([150260b](https://github.com/googleapis/google-api-nodejs-client/commit/150260b72a9e9c3af2c6e8aaa72140fea082bdee))
+* **identitytoolkit:** update the API ([ecb87ee](https://github.com/googleapis/google-api-nodejs-client/commit/ecb87ee2f9815fe3101791d19010047287f413ba))
+
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v11.1.0...identitytoolkit-v12.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **identitytoolkit:** This release has breaking changes.
+
+### Features
+
+* **identitytoolkit:** update the API ([150260b](https://github.com/googleapis/google-api-nodejs-client/commit/150260b72a9e9c3af2c6e8aaa72140fea082bdee))
+
 ## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v11.0.0...identitytoolkit-v11.1.0) (2025-02-04)
 
 

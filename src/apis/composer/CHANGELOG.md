@@ -1,5 +1,20 @@
 # Changelog
 
+## [9.2.3](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v9.2.2...composer-v9.2.3) (2025-03-18)
+
+
+### Bug Fixes
+
+* **composer:** update the API ([5de06da](https://github.com/googleapis/google-api-nodejs-client/commit/5de06da443e196f1e2fd7128cc532da404ced48f))
+* **composer:** update the API ([15e006b](https://github.com/googleapis/google-api-nodejs-client/commit/15e006b7293787d9096ec2a3e381d1a718257961))
+
+## [9.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v9.2.1...composer-v9.2.2) (2025-03-18)
+
+
+### Bug Fixes
+
+* **composer:** update the API ([5de06da](https://github.com/googleapis/google-api-nodejs-client/commit/5de06da443e196f1e2fd7128cc532da404ced48f))
+
 ## [9.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v9.2.0...composer-v9.2.1) (2025-02-04)
 
 

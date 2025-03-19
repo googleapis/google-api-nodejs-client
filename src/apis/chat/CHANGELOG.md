@@ -1,5 +1,29 @@
 # Changelog
 
+## [34.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v33.0.0...chat-v34.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chat:** This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([ee13c98](https://github.com/googleapis/google-api-nodejs-client/commit/ee13c9825a805930ae7b3dad116193f4d4763b16))
+* **chat:** update the API ([ee5a283](https://github.com/googleapis/google-api-nodejs-client/commit/ee5a28358cee7593c73635cdacc09c2f2b667311))
+* **chat:** update the API ([0e9cbfa](https://github.com/googleapis/google-api-nodejs-client/commit/0e9cbfa2f5b08224a647e3f385f3c37c4159eb64))
+
+## [33.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v32.2.0...chat-v33.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chat:** This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([ee13c98](https://github.com/googleapis/google-api-nodejs-client/commit/ee13c9825a805930ae7b3dad116193f4d4763b16))
+
 ## [32.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v32.1.0...chat-v32.2.0) (2025-02-04)
 
 

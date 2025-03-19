@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v9.3.0...dataproc-v9.4.0) (2025-03-18)
+
+
+### Features
+
+* **dataproc:** update the API ([ab6cf1f](https://github.com/googleapis/google-api-nodejs-client/commit/ab6cf1f9a0f96239309df889e2ff8749de3c1fad))
+
 ## [9.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v9.2.0...dataproc-v9.3.0) (2025-02-04)
 
 

@@ -1,5 +1,21 @@
 # Changelog
 
+## [14.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v14.3.0...bigquery-v14.4.0) (2025-03-18)
+
+
+### Features
+
+* **bigquery:** update the API ([646e06d](https://github.com/googleapis/google-api-nodejs-client/commit/646e06d37db65de11ac8c44bc4d5d8eaa8eb54ad))
+* **bigquery:** update the API ([d18d412](https://github.com/googleapis/google-api-nodejs-client/commit/d18d41247e4509456b5a0bdae0c092bf0ec43f77))
+* **bigquery:** update the API ([6ca0027](https://github.com/googleapis/google-api-nodejs-client/commit/6ca00276facbb58a97d4e0cc219e4464c976227a))
+
+## [14.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v14.2.0...bigquery-v14.3.0) (2025-03-18)
+
+
+### Features
+
+* **bigquery:** update the API ([646e06d](https://github.com/googleapis/google-api-nodejs-client/commit/646e06d37db65de11ac8c44bc4d5d8eaa8eb54ad))
+
 ## [14.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v14.1.0...bigquery-v14.2.0) (2025-02-04)
 
 

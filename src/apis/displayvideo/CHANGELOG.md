@@ -1,5 +1,29 @@
 # Changelog
 
+## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v26.1.0...displayvideo-v27.0.0) (2025-03-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **displayvideo:** This release has breaking changes.
+
+### Features
+
+* **displayvideo:** update the API ([9156d58](https://github.com/googleapis/google-api-nodejs-client/commit/9156d5842580e9007cecd74163bca03e3288a4f5))
+* **displayvideo:** update the API ([82e9ae0](https://github.com/googleapis/google-api-nodejs-client/commit/82e9ae04467b00cdca976f6e8c636728095286b0))
+
+
+### Bug Fixes
+
+* **displayvideo:** update the API ([bce6c6d](https://github.com/googleapis/google-api-nodejs-client/commit/bce6c6de140ccb630af8ae2ef040096a0a6fba59))
+
+## [26.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v26.0.0...displayvideo-v26.1.0) (2025-03-18)
+
+
+### Features
+
+* **displayvideo:** update the API ([9156d58](https://github.com/googleapis/google-api-nodejs-client/commit/9156d5842580e9007cecd74163bca03e3288a4f5))
+
 ## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v25.0.1...displayvideo-v26.0.0) (2025-02-04)
 
 

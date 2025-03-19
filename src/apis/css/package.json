@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/css",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "css",
   "main": "build/index.js",
   "types": "build/index.d.ts",

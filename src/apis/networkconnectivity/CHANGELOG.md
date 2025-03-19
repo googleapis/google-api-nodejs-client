@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v9.0.0...networkconnectivity-v9.1.0) (2025-03-18)
+
+
+### Features
+
+* **networkconnectivity:** update the API ([ed49cac](https://github.com/googleapis/google-api-nodejs-client/commit/ed49cac0a8fc44f2e7ab9914a1d81655ff49844b))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v8.4.0...networkconnectivity-v9.0.0) (2025-02-04)
 
 
