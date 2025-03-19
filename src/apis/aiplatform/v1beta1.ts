@@ -624,6 +624,54 @@ export namespace aiplatform_v1beta1 {
     schemaVersion?: string | null;
   }
   /**
+   * Request message for DatasetService.AssembleData. Used only for MULTIMODAL datasets.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AssembleDataRequest {
+    /**
+     * Optional. Config for assembling templates with a Gemini API structure.
+     */
+    geminiTemplateConfig?: Schema$GoogleCloudAiplatformV1beta1GeminiTemplateConfig;
+  }
+  /**
+   * Request message for DatasetService.AssessData. Used only for MULTIMODAL datasets.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AssessDataRequest {
+    /**
+     * Optional. Config for assembling templates with a Gemini API structure to assess assembled data.
+     */
+    geminiTemplateConfig?: Schema$GoogleCloudAiplatformV1beta1GeminiTemplateConfig;
+    /**
+     * Optional. Configuration for the tuning resource usage assessment.
+     */
+    tuningResourceUsageAssessmentConfig?: Schema$GoogleCloudAiplatformV1beta1AssessDataRequestTuningResourceUsageAssessmentConfig;
+    /**
+     * Optional. Configuration for the tuning validation assessment.
+     */
+    tuningValidationAssessmentConfig?: Schema$GoogleCloudAiplatformV1beta1AssessDataRequestTuningValidationAssessmentConfig;
+  }
+  /**
+   * Configuration for the tuning resource usage assessment.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AssessDataRequestTuningResourceUsageAssessmentConfig {
+    /**
+     * Required. The name of the model used for tuning.
+     */
+    modelName?: string | null;
+  }
+  /**
+   * Configuration for the tuning validation assessment.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AssessDataRequestTuningValidationAssessmentConfig {
+    /**
+     * Required. The dataset usage (e.g. training/validation).
+     */
+    datasetUsage?: string | null;
+    /**
+     * Required. The name of the model used for tuning.
+     */
+    modelName?: string | null;
+  }
+  /**
    * Metadata information for NotebookService.AssignNotebookRuntime.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1AssignNotebookRuntimeOperationMetadata {
@@ -6550,6 +6598,60 @@ export namespace aiplatform_v1beta1 {
     uris?: string[] | null;
   }
   /**
+   * Format for Gemini examples used for Vertex Multimodal datasets.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GeminiExample {
+    /**
+     * Optional. The name of the cached content used as context to serve the prediction. Note: only used in explicit caching, where users can have control over caching (e.g. what content to cache) and enjoy guaranteed cost savings. Format: `projects/{project\}/locations/{location\}/cachedContents/{cachedContent\}`
+     */
+    cachedContent?: string | null;
+    /**
+     * Required. The content of the current conversation with the model. For single-turn queries, this is a single instance. For multi-turn queries, this is a repeated field that contains conversation history + latest request.
+     */
+    contents?: Schema$GoogleCloudAiplatformV1beta1Content[];
+    /**
+     * Optional. Generation config.
+     */
+    generationConfig?: Schema$GoogleCloudAiplatformV1beta1GenerationConfig;
+    /**
+     * Optional. The labels with user-defined metadata for the request. It is used for billing and reporting only. Label keys and values can be no longer than 63 characters (Unicode codepoints) and can only contain lowercase letters, numeric characters, underscores, and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    model?: string | null;
+    /**
+     * Optional. Per request settings for blocking unsafe content. Enforced on GenerateContentResponse.candidates.
+     */
+    safetySettings?: Schema$GoogleCloudAiplatformV1beta1SafetySetting[];
+    /**
+     * Optional. The user provided system instructions for the model. Note: only text should be used in parts and content in each part will be in a separate paragraph.
+     */
+    systemInstruction?: Schema$GoogleCloudAiplatformV1beta1Content;
+    /**
+     * Optional. Tool config. This config is shared for all tools provided in the request.
+     */
+    toolConfig?: Schema$GoogleCloudAiplatformV1beta1ToolConfig;
+    /**
+     * Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.
+     */
+    tools?: Schema$GoogleCloudAiplatformV1beta1Tool[];
+  }
+  /**
+   * Template configuration to create Gemini examples from a multimodal dataset.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GeminiTemplateConfig {
+    /**
+     * Required. Map of template params to the columns in the dataset table.
+     */
+    fieldMapping?: {[key: string]: string} | null;
+    /**
+     * Required. The template that will be used for assembling the request to use for downstream applications.
+     */
+    geminiExample?: Schema$GoogleCloudAiplatformV1beta1GeminiExample;
+  }
+  /**
    * Configuration for GenAiAdvancedFeatures.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GenAiAdvancedFeaturesConfig {
@@ -7331,6 +7433,14 @@ export namespace aiplatform_v1beta1 {
      * Google Drive location. Supports importing individual files as well as Google Drive folders.
      */
     googleDriveSource?: Schema$GoogleCloudAiplatformV1beta1GoogleDriveSource;
+    /**
+     * The BigQuery destination to write import result to. It should be a bigquery table resource name (e.g. "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the table does not exist, it will be created with the expected schema. If the table exists, the schema will be validated and data will be added to this existing table.
+     */
+    importResultBigquerySink?: Schema$GoogleCloudAiplatformV1beta1BigQueryDestination;
+    /**
+     * The Cloud Storage path to write import result to.
+     */
+    importResultGcsSink?: Schema$GoogleCloudAiplatformV1beta1GcsDestination;
     /**
      * Jira queries with their corresponding authentication.
      */
@@ -12204,7 +12314,7 @@ export namespace aiplatform_v1beta1 {
      */
     postStartupScriptBehavior?: string | null;
     /**
-     * Optional. Post startup script url to download. Example: https://bucket/script.sh
+     * Optional. Post startup script url to download. Example: `gs://bucket/script.sh`
      */
     postStartupScriptUrl?: string | null;
   }
@@ -14041,6 +14151,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ReasoningEngineSpec {
     /**
+     * Optional. The OSS agent framework used to develop the agent. Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     */
+    agentFramework?: string | null;
+    /**
      * Optional. Declarations for object class methods in OpenAPI specification format.
      */
     classMethods?: Array<{[key: string]: any}> | null;
@@ -14049,7 +14163,7 @@ export namespace aiplatform_v1beta1 {
      */
     deploymentSpec?: Schema$GoogleCloudAiplatformV1beta1ReasoningEngineSpecDeploymentSpec;
     /**
-     * Required. User provided package spec of the ReasoningEngine.
+     * Required. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes.
      */
     packageSpec?: Schema$GoogleCloudAiplatformV1beta1ReasoningEngineSpecPackageSpec;
   }
@@ -20954,6 +21068,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. Fully-qualified Vertex AI Search data store resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}`
      */
     datastore?: string | null;
+    /**
+     * Optional. Fully-qualified Vertex AI Search engine resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     */
+    engine?: string | null;
   }
   /**
    * Config for the Vertex AI Search.
@@ -28949,6 +29067,196 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
+     * Assembles each row of a multimodal dataset and writes the result into a BigQuery table.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    assemble(
+      params: Params$Resource$Projects$Locations$Datasets$Assemble,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    assemble(
+      params?: Params$Resource$Projects$Locations$Datasets$Assemble,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    assemble(
+      params: Params$Resource$Projects$Locations$Datasets$Assemble,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    assemble(
+      params: Params$Resource$Projects$Locations$Datasets$Assemble,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    assemble(
+      params: Params$Resource$Projects$Locations$Datasets$Assemble,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    assemble(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    assemble(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Assemble
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Assemble;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Assemble;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:assemble').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Assesses the state or validity of the dataset with respect to a given use case.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    assess(
+      params: Params$Resource$Projects$Locations$Datasets$Assess,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    assess(
+      params?: Params$Resource$Projects$Locations$Datasets$Assess,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    assess(
+      params: Params$Resource$Projects$Locations$Datasets$Assess,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    assess(
+      params: Params$Resource$Projects$Locations$Datasets$Assess,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    assess(
+      params: Params$Resource$Projects$Locations$Datasets$Assess,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    assess(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    assess(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Assess
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Assess;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Assess;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:assess').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Creates a Dataset.
      *
      * @param params - Parameters for request
@@ -29709,6 +30017,30 @@ export namespace aiplatform_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datasets$Assemble
+    extends StandardParameters {
+    /**
+     * Required. The name of the Dataset resource (used only for MULTIMODAL datasets). Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1AssembleDataRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Assess
+    extends StandardParameters {
+    /**
+     * Required. The name of the Dataset resource. Used only for MULTIMODAL datasets. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1AssessDataRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Create
     extends StandardParameters {
     /**

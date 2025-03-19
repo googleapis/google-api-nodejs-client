@@ -2439,6 +2439,62 @@
             },
             "datasets": {
               "methods": {
+                "assemble": {
+                  "description": "Assembles each row of a multimodal dataset and writes the result into a BigQuery table.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}:assemble",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.datasets.assemble",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Dataset resource (used only for MULTIMODAL datasets). Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:assemble",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1AssembleDataRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "assess": {
+                  "description": "Assesses the state or validity of the dataset with respect to a given use case.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}:assess",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.datasets.assess",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Dataset resource. Used only for MULTIMODAL datasets. Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:assess",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1AssessDataRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a Dataset.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets",
@@ -22154,7 +22210,7 @@
       }
     }
   },
-  "revision": "20250304",
+  "revision": "20250307",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -22896,6 +22952,72 @@
         },
         "schemaVersion": {
           "description": "The schema version of the artifact. If the value is not set, it defaults to the latest version in the system.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1AssembleDataRequest": {
+      "description": "Request message for DatasetService.AssembleData. Used only for MULTIMODAL datasets.",
+      "id": "GoogleCloudAiplatformV1beta1AssembleDataRequest",
+      "properties": {
+        "geminiTemplateConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1GeminiTemplateConfig",
+          "description": "Optional. Config for assembling templates with a Gemini API structure."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1AssessDataRequest": {
+      "description": "Request message for DatasetService.AssessData. Used only for MULTIMODAL datasets.",
+      "id": "GoogleCloudAiplatformV1beta1AssessDataRequest",
+      "properties": {
+        "geminiTemplateConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1GeminiTemplateConfig",
+          "description": "Optional. Config for assembling templates with a Gemini API structure to assess assembled data."
+        },
+        "tuningResourceUsageAssessmentConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1AssessDataRequestTuningResourceUsageAssessmentConfig",
+          "description": "Optional. Configuration for the tuning resource usage assessment."
+        },
+        "tuningValidationAssessmentConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1AssessDataRequestTuningValidationAssessmentConfig",
+          "description": "Optional. Configuration for the tuning validation assessment."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1AssessDataRequestTuningResourceUsageAssessmentConfig": {
+      "description": "Configuration for the tuning resource usage assessment.",
+      "id": "GoogleCloudAiplatformV1beta1AssessDataRequestTuningResourceUsageAssessmentConfig",
+      "properties": {
+        "modelName": {
+          "description": "Required. The name of the model used for tuning.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1AssessDataRequestTuningValidationAssessmentConfig": {
+      "description": "Configuration for the tuning validation assessment.",
+      "id": "GoogleCloudAiplatformV1beta1AssessDataRequestTuningValidationAssessmentConfig",
+      "properties": {
+        "datasetUsage": {
+          "description": "Required. The dataset usage (e.g. training/validation).",
+          "enum": [
+            "DATASET_USAGE_UNSPECIFIED",
+            "SFT_TRAINING",
+            "SFT_VALIDATION"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used.",
+            "Supervised fine-tuning training dataset.",
+            "Supervised fine-tuning validation dataset."
+          ],
+          "type": "string"
+        },
+        "modelName": {
+          "description": "Required. The name of the model used for tuning.",
           "type": "string"
         }
       },
@@ -30905,6 +31027,79 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1GeminiExample": {
+      "description": "Format for Gemini examples used for Vertex Multimodal datasets.",
+      "id": "GoogleCloudAiplatformV1beta1GeminiExample",
+      "properties": {
+        "cachedContent": {
+          "description": "Optional. The name of the cached content used as context to serve the prediction. Note: only used in explicit caching, where users can have control over caching (e.g. what content to cache) and enjoy guaranteed cost savings. Format: `projects/{project}/locations/{location}/cachedContents/{cachedContent}`",
+          "type": "string"
+        },
+        "contents": {
+          "description": "Required. The content of the current conversation with the model. For single-turn queries, this is a single instance. For multi-turn queries, this is a repeated field that contains conversation history + latest request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Content"
+          },
+          "type": "array"
+        },
+        "generationConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenerationConfig",
+          "description": "Optional. Generation config."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata for the request. It is used for billing and reporting only. Label keys and values can be no longer than 63 characters (Unicode codepoints) and can only contain lowercase letters, numeric characters, underscores, and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.",
+          "type": "object"
+        },
+        "model": {
+          "description": "Optional. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Tuned model endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+          "type": "string"
+        },
+        "safetySettings": {
+          "description": "Optional. Per request settings for blocking unsafe content. Enforced on GenerateContentResponse.candidates.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1SafetySetting"
+          },
+          "type": "array"
+        },
+        "systemInstruction": {
+          "$ref": "GoogleCloudAiplatformV1beta1Content",
+          "description": "Optional. The user provided system instructions for the model. Note: only text should be used in parts and content in each part will be in a separate paragraph."
+        },
+        "toolConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1ToolConfig",
+          "description": "Optional. Tool config. This config is shared for all tools provided in the request."
+        },
+        "tools": {
+          "description": "Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Tool"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GeminiTemplateConfig": {
+      "description": "Template configuration to create Gemini examples from a multimodal dataset.",
+      "id": "GoogleCloudAiplatformV1beta1GeminiTemplateConfig",
+      "properties": {
+        "fieldMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. Map of template params to the columns in the dataset table.",
+          "type": "object"
+        },
+        "geminiExample": {
+          "$ref": "GoogleCloudAiplatformV1beta1GeminiExample",
+          "description": "Required. The template that will be used for assembling the request to use for downstream applications."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1GenAiAdvancedFeaturesConfig": {
       "description": "Configuration for GenAiAdvancedFeatures.",
       "id": "GoogleCloudAiplatformV1beta1GenAiAdvancedFeaturesConfig",
@@ -32032,6 +32227,14 @@
         "googleDriveSource": {
           "$ref": "GoogleCloudAiplatformV1beta1GoogleDriveSource",
           "description": "Google Drive location. Supports importing individual files as well as Google Drive folders."
+        },
+        "importResultBigquerySink": {
+          "$ref": "GoogleCloudAiplatformV1beta1BigQueryDestination",
+          "description": "The BigQuery destination to write import result to. It should be a bigquery table resource name (e.g. \"bq://projectId.bqDatasetId.bqTableId\"). The dataset must exist. If the table does not exist, it will be created with the expected schema. If the table exists, the schema will be validated and data will be added to this existing table."
+        },
+        "importResultGcsSink": {
+          "$ref": "GoogleCloudAiplatformV1beta1GcsDestination",
+          "description": "The Cloud Storage path to write import result to."
         },
         "jiraSource": {
           "$ref": "GoogleCloudAiplatformV1beta1JiraSource",
@@ -33846,6 +34049,7 @@
             "NVIDIA_L4",
             "NVIDIA_H100_80GB",
             "NVIDIA_H100_MEGA_80GB",
+            "NVIDIA_H200_141GB",
             "TPU_V2",
             "TPU_V3",
             "TPU_V4_POD",
@@ -33854,6 +34058,7 @@
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -33880,6 +34085,7 @@
             "Nvidia L4 GPU.",
             "Nvidia H100 80Gb GPU.",
             "Nvidia H100 Mega 80Gb GPU.",
+            "Nvidia H200 141Gb GPU.",
             "TPU v2.",
             "TPU v3.",
             "TPU v4.",
@@ -38956,7 +39162,7 @@
           "type": "string"
         },
         "postStartupScriptUrl": {
-          "description": "Optional. Post startup script url to download. Example: https://bucket/script.sh",
+          "description": "Optional. Post startup script url to download. Example: `gs://bucket/script.sh`",
           "type": "string"
         }
       },
@@ -41282,6 +41488,10 @@
       "description": "ReasoningEngine configurations",
       "id": "GoogleCloudAiplatformV1beta1ReasoningEngineSpec",
       "properties": {
+        "agentFramework": {
+          "description": "Optional. The OSS agent framework used to develop the agent. Currently supported values: \"langchain\", \"langgraph\", \"ag2\", \"custom\".",
+          "type": "string"
+        },
         "classMethods": {
           "description": "Optional. Declarations for object class methods in OpenAPI specification format.",
           "items": {
@@ -41299,7 +41509,7 @@
         },
         "packageSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1ReasoningEngineSpecPackageSpec",
-          "description": "Required. User provided package spec of the ReasoningEngine."
+          "description": "Required. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes."
         }
       },
       "type": "object"
@@ -51088,6 +51298,10 @@
       "properties": {
         "datastore": {
           "description": "Optional. Fully-qualified Vertex AI Search data store resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`",
+          "type": "string"
+        },
+        "engine": {
+          "description": "Optional. Fully-qualified Vertex AI Search engine resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
           "type": "string"
         }
       },

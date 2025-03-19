@@ -6434,6 +6434,14 @@ export namespace aiplatform_v1 {
      */
     googleDriveSource?: Schema$GoogleCloudAiplatformV1GoogleDriveSource;
     /**
+     * The BigQuery destination to write import result to. It should be a bigquery table resource name (e.g. "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the table does not exist, it will be created with the expected schema. If the table exists, the schema will be validated and data will be added to this existing table.
+     */
+    importResultBigquerySink?: Schema$GoogleCloudAiplatformV1BigQueryDestination;
+    /**
+     * The Cloud Storage path to write import result to.
+     */
+    importResultGcsSink?: Schema$GoogleCloudAiplatformV1GcsDestination;
+    /**
      * Jira queries with their corresponding authentication.
      */
     jiraSource?: Schema$GoogleCloudAiplatformV1JiraSource;
@@ -10477,7 +10485,7 @@ export namespace aiplatform_v1 {
      */
     postStartupScriptBehavior?: string | null;
     /**
-     * Optional. Post startup script url to download. Example: https://bucket/script.sh
+     * Optional. Post startup script url to download. Example: `gs://bucket/script.sh`
      */
     postStartupScriptUrl?: string | null;
   }
@@ -12029,6 +12037,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1ReasoningEngineSpec {
     /**
+     * Optional. The OSS agent framework used to develop the agent. Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     */
+    agentFramework?: string | null;
+    /**
      * Optional. Declarations for object class methods in OpenAPI specification format.
      */
     classMethods?: Array<{[key: string]: any}> | null;
@@ -12037,7 +12049,7 @@ export namespace aiplatform_v1 {
      */
     deploymentSpec?: Schema$GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpec;
     /**
-     * Required. User provided package spec of the ReasoningEngine.
+     * Required. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes.
      */
     packageSpec?: Schema$GoogleCloudAiplatformV1ReasoningEngineSpecPackageSpec;
   }
@@ -18498,6 +18510,10 @@ export namespace aiplatform_v1 {
      * Optional. Fully-qualified Vertex AI Search data store resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}`
      */
     datastore?: string | null;
+    /**
+     * Optional. Fully-qualified Vertex AI Search engine resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     */
+    engine?: string | null;
   }
   /**
    * Retrieve from Vertex RAG Store for grounding.

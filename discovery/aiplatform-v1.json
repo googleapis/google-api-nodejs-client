@@ -19449,7 +19449,7 @@
       }
     }
   },
-  "revision": "20250304",
+  "revision": "20250307",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -28107,6 +28107,14 @@
           "$ref": "GoogleCloudAiplatformV1GoogleDriveSource",
           "description": "Google Drive location. Supports importing individual files as well as Google Drive folders."
         },
+        "importResultBigquerySink": {
+          "$ref": "GoogleCloudAiplatformV1BigQueryDestination",
+          "description": "The BigQuery destination to write import result to. It should be a bigquery table resource name (e.g. \"bq://projectId.bqDatasetId.bqTableId\"). The dataset must exist. If the table does not exist, it will be created with the expected schema. If the table exists, the schema will be validated and data will be added to this existing table."
+        },
+        "importResultGcsSink": {
+          "$ref": "GoogleCloudAiplatformV1GcsDestination",
+          "description": "The Cloud Storage path to write import result to."
+        },
         "jiraSource": {
           "$ref": "GoogleCloudAiplatformV1JiraSource",
           "description": "Jira queries with their corresponding authentication."
@@ -29754,6 +29762,7 @@
             "NVIDIA_L4",
             "NVIDIA_H100_80GB",
             "NVIDIA_H100_MEGA_80GB",
+            "NVIDIA_H200_141GB",
             "TPU_V2",
             "TPU_V3",
             "TPU_V4_POD",
@@ -29762,6 +29771,7 @@
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -29788,6 +29798,7 @@
             "Nvidia L4 GPU.",
             "Nvidia H100 80Gb GPU.",
             "Nvidia H100 Mega 80Gb GPU.",
+            "Nvidia H200 141Gb GPU.",
             "TPU v2.",
             "TPU v3.",
             "TPU v4.",
@@ -33927,7 +33938,7 @@
           "type": "string"
         },
         "postStartupScriptUrl": {
-          "description": "Optional. Post startup script url to download. Example: https://bucket/script.sh",
+          "description": "Optional. Post startup script url to download. Example: `gs://bucket/script.sh`",
           "type": "string"
         }
       },
@@ -35889,6 +35900,10 @@
       "description": "ReasoningEngine configurations",
       "id": "GoogleCloudAiplatformV1ReasoningEngineSpec",
       "properties": {
+        "agentFramework": {
+          "description": "Optional. The OSS agent framework used to develop the agent. Currently supported values: \"langchain\", \"langgraph\", \"ag2\", \"custom\".",
+          "type": "string"
+        },
         "classMethods": {
           "description": "Optional. Declarations for object class methods in OpenAPI specification format.",
           "items": {
@@ -35906,7 +35921,7 @@
         },
         "packageSpec": {
           "$ref": "GoogleCloudAiplatformV1ReasoningEngineSpecPackageSpec",
-          "description": "Required. User provided package spec of the ReasoningEngine."
+          "description": "Required. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes."
         }
       },
       "type": "object"
@@ -45092,6 +45107,10 @@
       "properties": {
         "datastore": {
           "description": "Optional. Fully-qualified Vertex AI Search data store resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`",
+          "type": "string"
+        },
+        "engine": {
+          "description": "Optional. Fully-qualified Vertex AI Search engine resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
           "type": "string"
         }
       },
