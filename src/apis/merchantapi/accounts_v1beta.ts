@@ -928,7 +928,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string | null;
     /**
-     * The return policy.
+     * Optional. The return policy.
      */
     policy?: Schema$Policy;
     /**
@@ -936,7 +936,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     processRefundDays?: number | null;
     /**
-     * The restocking fee that applies to all return reason categories. This would be treated as a free restocking fee if the value is not set.
+     * Optional. The restocking fee that applies to all return reason categories. This would be treated as a free restocking fee if the value is not set.
      */
     restockingFee?: Schema$RestockingFee;
     /**

@@ -1363,6 +1363,94 @@ export namespace merchantapi_products_v1beta {
         return createAPIRequest<Schema$ProductInput>(parameters);
       }
     }
+
+    /**
+     * Updates the existing product input in your Merchant Center account. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounts$Productinputs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Accounts$Productinputs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductInput>;
+    patch(
+      params: Params$Resource$Accounts$Productinputs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Productinputs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ProductInput>,
+      callback: BodyResponseCallback<Schema$ProductInput>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Productinputs$Patch,
+      callback: BodyResponseCallback<Schema$ProductInput>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$ProductInput>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Productinputs$Patch
+        | BodyResponseCallback<Schema$ProductInput>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProductInput>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProductInput>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ProductInput> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Productinputs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Productinputs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/products/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProductInput>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProductInput>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Accounts$Productinputs$Delete
@@ -1386,6 +1474,26 @@ export namespace merchantapi_products_v1beta {
      * Required. The account where this product will be inserted. Format: accounts/{account\}
      */
     parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProductInput;
+  }
+  export interface Params$Resource$Accounts$Productinputs$Patch
+    extends StandardParameters {
+    /**
+     * Required. The primary or supplemental product data source where `data_source` name identifies the product input to be updated. Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`.
+     */
+    dataSource?: string;
+    /**
+     * Identifier. The name of the product input. Format: `"{productinput.name=accounts/{account\}/productInputs/{productinput\}\}"` where the last section `productinput` consists of 4 parts: channel~content_language~feed_label~offer_id example for product input name is "accounts/123/productInputs/online~en~US~sku123"
+     */
+    name?: string;
+    /**
+     * Optional. The list of product attributes to be updated. If the update mask is omitted, then it is treated as implied field mask equivalent to all fields that are populated (have a non-empty value). Attributes specified in the update mask without a value specified in the body will be deleted from the product. Update mask can only be specified for top level fields in attributes and custom attributes. To specify the update mask for custom attributes you need to add the `custom_attribute.` prefix. Providing special "*" value for full product replacement is not supported.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata

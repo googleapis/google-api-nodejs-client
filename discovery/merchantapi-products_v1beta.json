@@ -171,6 +171,45 @@
               "scopes": [
                 "https://www.googleapis.com/auth/content"
               ]
+            },
+            "patch": {
+              "description": "Updates the existing product input in your Merchant Center account. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.",
+              "flatPath": "products/v1beta/accounts/{accountsId}/productInputs/{productInputsId}",
+              "httpMethod": "PATCH",
+              "id": "merchantapi.accounts.productInputs.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "dataSource": {
+                  "description": "Required. The primary or supplemental product data source where `data_source` name identifies the product input to be updated. Only API data sources are supported. Format: `accounts/{account}/dataSources/{datasource}`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Identifier. The name of the product input. Format: `\"{productinput.name=accounts/{account}/productInputs/{productinput}}\"` where the last section `productinput` consists of 4 parts: channel~content_language~feed_label~offer_id example for product input name is \"accounts/123/productInputs/online~en~US~sku123\"",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/productInputs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of product attributes to be updated. If the update mask is omitted, then it is treated as implied field mask equivalent to all fields that are populated (have a non-empty value). Attributes specified in the update mask without a value specified in the body will be deleted from the product. Update mask can only be specified for top level fields in attributes and custom attributes. To specify the update mask for custom attributes you need to add the `custom_attribute.` prefix. Providing special \"*\" value for full product replacement is not supported.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "products/v1beta/{+name}",
+              "request": {
+                "$ref": "ProductInput"
+              },
+              "response": {
+                "$ref": "ProductInput"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
             }
           }
         },
@@ -242,7 +281,7 @@
       }
     }
   },
-  "revision": "20250311",
+  "revision": "20250317",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
