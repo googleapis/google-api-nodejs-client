@@ -1,5 +1,18 @@
 # Changelog
 
+## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v26.0.0...sqladmin-v27.0.0) (2025-03-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **sqladmin:** This release has breaking changes.
+
+### Features
+
+* **sqladmin:** update the API ([a5c472d](https://github.com/googleapis/google-api-nodejs-client/commit/a5c472d33158f8459df7ae5e38d992a84936b328))
+* **sqladmin:** update the API ([fa3846b](https://github.com/googleapis/google-api-nodejs-client/commit/fa3846be19c2d078483c2f1f11ff582de41c194e))
+* **sqladmin:** update the API ([3c85e30](https://github.com/googleapis/google-api-nodejs-client/commit/3c85e30276f6bf23f274890cadad731f9e021db9))
+
 ## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v25.1.0...sqladmin-v26.0.0) (2025-03-18)
 
 

@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v6.7.0...firebase-v7.0.0) (2025-03-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firebase:** This release has breaking changes.
+
+### Features
+
+* **firebase:** update the API ([aec1a0d](https://github.com/googleapis/google-api-nodejs-client/commit/aec1a0d58e432b4d0576d9ee958151cdc07debb4))
+* **firebase:** update the API ([d85644b](https://github.com/googleapis/google-api-nodejs-client/commit/d85644b76a03ca70c3063a678357fbc94ced69dd))
+
+
+### Bug Fixes
+
+* **firebase:** update the API ([1cabcab](https://github.com/googleapis/google-api-nodejs-client/commit/1cabcab245e451ed59cae1f9f04cd5ae9c682eb3))
+* **firebase:** update the API ([2c5637d](https://github.com/googleapis/google-api-nodejs-client/commit/2c5637d35ebc92ddc7c5001d2f09dfe6c683fcf6))
+
 ## [6.7.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v6.6.1...firebase-v6.7.0) (2025-03-18)
 
 
