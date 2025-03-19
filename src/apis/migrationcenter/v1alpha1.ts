@@ -3162,7 +3162,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     displayName?: string | null;
     /**
-     * Output only. Name of the preference set.
+     * Output only. Name of the PreferenceSet.
      */
     name?: string | null;
     /**
@@ -9792,7 +9792,7 @@ export namespace migrationcenter_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Preferencesets$Patch
     extends StandardParameters {
     /**
-     * Output only. Name of the preference set.
+     * Output only. Name of the PreferenceSet.
      */
     name?: string;
     /**

@@ -1831,7 +1831,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. Name of the preference set.",
+                      "description": "Output only. Name of the PreferenceSet.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/preferenceSets/[^/]+$",
                       "required": true,
@@ -2548,7 +2548,7 @@
       }
     }
   },
-  "revision": "20250220",
+  "revision": "20250312",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -7100,7 +7100,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Name of the preference set.",
+          "description": "Output only. Name of the PreferenceSet.",
           "readOnly": true,
           "type": "string"
         },
