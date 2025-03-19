@@ -1476,7 +1476,7 @@
       }
     }
   },
-  "revision": "20250311",
+  "revision": "20250317",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Accepted": {
@@ -2651,7 +2651,7 @@
         },
         "policy": {
           "$ref": "Policy",
-          "description": "The return policy."
+          "description": "Optional. The return policy."
         },
         "processRefundDays": {
           "description": "The field specifies the number of days it takes for merchants to process refunds, field is optional.",
@@ -2660,7 +2660,7 @@
         },
         "restockingFee": {
           "$ref": "RestockingFee",
-          "description": "The restocking fee that applies to all return reason categories. This would be treated as a free restocking fee if the value is not set."
+          "description": "Optional. The restocking fee that applies to all return reason categories. This would be treated as a free restocking fee if the value is not set."
         },
         "returnMethods": {
           "description": "Optional. The return methods of how customers can return an item. This value is required to not be empty unless the type of return policy is noReturns.",
