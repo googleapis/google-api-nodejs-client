@@ -222,6 +222,10 @@ export namespace notebooks_v2 {
      */
     defaultValues?: Schema$DefaultValues;
     /**
+     * Output only. Flag to disable the creation of legacy Workbench notebooks (User-managed notebooks and Google-managed notebooks).
+     */
+    disableWorkbenchLegacyCreation?: boolean | null;
+    /**
      * Output only. The supported values for configuration.
      */
     supportedValues?: Schema$SupportedValues;

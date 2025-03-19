@@ -904,7 +904,7 @@
       }
     }
   },
-  "revision": "20250101",
+  "revision": "20250224",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1079,6 +1079,11 @@
           "$ref": "DefaultValues",
           "description": "Output only. The default values for configuration.",
           "readOnly": true
+        },
+        "disableWorkbenchLegacyCreation": {
+          "description": "Output only. Flag to disable the creation of legacy Workbench notebooks (User-managed notebooks and Google-managed notebooks).",
+          "readOnly": true,
+          "type": "boolean"
         },
         "supportedValues": {
           "$ref": "SupportedValues",
