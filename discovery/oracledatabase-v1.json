@@ -436,6 +436,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "restart": {
+                  "description": "Restarts an Autonomous Database.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autonomousDatabases/{autonomousDatabasesId}:restart",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.autonomousDatabases.restart",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Autonomous Database in the following format: projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autonomousDatabases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:restart",
+                  "request": {
+                    "$ref": "RestartAutonomousDatabaseRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "restore": {
                   "description": "Restores a single Autonomous Database.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autonomousDatabases/{autonomousDatabasesId}:restore",
@@ -456,6 +484,62 @@
                   "path": "v1/{+name}:restore",
                   "request": {
                     "$ref": "RestoreAutonomousDatabaseRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "start": {
+                  "description": "Starts an Autonomous Database.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autonomousDatabases/{autonomousDatabasesId}:start",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.autonomousDatabases.start",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Autonomous Database in the following format: projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autonomousDatabases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:start",
+                  "request": {
+                    "$ref": "StartAutonomousDatabaseRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "stop": {
+                  "description": "Stops an Autonomous Database.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autonomousDatabases/{autonomousDatabasesId}:stop",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.autonomousDatabases.stop",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Autonomous Database in the following format: projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autonomousDatabases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:stop",
+                  "request": {
+                    "$ref": "StopAutonomousDatabaseRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -1119,7 +1203,7 @@
       }
     }
   },
-  "revision": "20250223",
+  "revision": "20250312",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -3639,6 +3723,12 @@
       },
       "type": "object"
     },
+    "RestartAutonomousDatabaseRequest": {
+      "description": "The request for `AutonomousDatabase.Restart`.",
+      "id": "RestartAutonomousDatabaseRequest",
+      "properties": {},
+      "type": "object"
+    },
     "RestoreAutonomousDatabaseRequest": {
       "description": "The request for `AutonomousDatabase.Restore`.",
       "id": "RestoreAutonomousDatabaseRequest",
@@ -3693,6 +3783,12 @@
       },
       "type": "object"
     },
+    "StartAutonomousDatabaseRequest": {
+      "description": "The request for `AutonomousDatabase.Start`.",
+      "id": "StartAutonomousDatabaseRequest",
+      "properties": {},
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -3718,6 +3814,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "StopAutonomousDatabaseRequest": {
+      "description": "The request for `AutonomousDatabase.Stop`.",
+      "id": "StopAutonomousDatabaseRequest",
+      "properties": {},
       "type": "object"
     },
     "TimeOfDay": {
