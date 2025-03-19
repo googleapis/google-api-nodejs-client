@@ -1027,7 +1027,7 @@
       }
     }
   },
-  "revision": "20250303",
+  "revision": "20250310",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AnalyticsHubSubscriptionInfo": {
@@ -1966,8 +1966,13 @@
       "description": "All supported message transforms types.",
       "id": "MessageTransform",
       "properties": {
+        "disabled": {
+          "description": "Optional. If true, the transform is disabled and will not be applied to messages. Defaults to `false`.",
+          "type": "boolean"
+        },
         "enabled": {
-          "description": "Optional. If set to true, the transform is enabled. If false, the transform is disabled and will not be applied to messages. Defaults to `true`.",
+          "deprecated": true,
+          "description": "Optional. This field is deprecated, use the `disabled` field to disable transforms.",
           "type": "boolean"
         },
         "javascriptUdf": {
