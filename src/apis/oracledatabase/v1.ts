@@ -1623,6 +1623,10 @@ export namespace oracledatabase_v1 {
     verb?: string | null;
   }
   /**
+   * The request for `AutonomousDatabase.Restart`.
+   */
+  export interface Schema$RestartAutonomousDatabaseRequest {}
+  /**
    * The request for `AutonomousDatabase.Restore`.
    */
   export interface Schema$RestoreAutonomousDatabaseRequest {
@@ -1649,6 +1653,10 @@ export namespace oracledatabase_v1 {
     stopTime?: Schema$TimeOfDay;
   }
   /**
+   * The request for `AutonomousDatabase.Start`.
+   */
+  export interface Schema$StartAutonomousDatabaseRequest {}
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1665,6 +1673,10 @@ export namespace oracledatabase_v1 {
      */
     message?: string | null;
   }
+  /**
+   * The request for `AutonomousDatabase.Stop`.
+   */
+  export interface Schema$StopAutonomousDatabaseRequest {}
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
    */
@@ -2685,6 +2697,96 @@ export namespace oracledatabase_v1 {
     }
 
     /**
+     * Restarts an Autonomous Database.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restart(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Restart,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restart(
+      params?: Params$Resource$Projects$Locations$Autonomousdatabases$Restart,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    restart(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Restart,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restart(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Restart,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restart(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Restart,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restart(callback: BodyResponseCallback<Schema$Operation>): void;
+    restart(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autonomousdatabases$Restart
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autonomousdatabases$Restart;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autonomousdatabases$Restart;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:restart').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Restores a single Autonomous Database.
      *
      * @param params - Parameters for request
@@ -2754,6 +2856,180 @@ export namespace oracledatabase_v1 {
               /([^:]\/)\/+/g,
               '$1'
             ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Starts an Autonomous Database.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    start(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Start,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    start(
+      params?: Params$Resource$Projects$Locations$Autonomousdatabases$Start,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    start(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Start,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Start,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Start,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    start(callback: BodyResponseCallback<Schema$Operation>): void;
+    start(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autonomousdatabases$Start
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autonomousdatabases$Start;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autonomousdatabases$Start;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Stops an Autonomous Database.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stop(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
+      params?: Params$Resource$Projects$Locations$Autonomousdatabases$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    stop(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Stop,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Stop,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(callback: BodyResponseCallback<Schema$Operation>): void;
+    stop(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autonomousdatabases$Stop
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autonomousdatabases$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autonomousdatabases$Stop;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2848,6 +3124,18 @@ export namespace oracledatabase_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Restart
+    extends StandardParameters {
+    /**
+     * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestartAutonomousDatabaseRequest;
+  }
   export interface Params$Resource$Projects$Locations$Autonomousdatabases$Restore
     extends StandardParameters {
     /**
@@ -2859,6 +3147,30 @@ export namespace oracledatabase_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RestoreAutonomousDatabaseRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Start
+    extends StandardParameters {
+    /**
+     * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StartAutonomousDatabaseRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Stop
+    extends StandardParameters {
+    /**
+     * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StopAutonomousDatabaseRequest;
   }
 
   export class Resource$Projects$Locations$Autonomousdbversions {
