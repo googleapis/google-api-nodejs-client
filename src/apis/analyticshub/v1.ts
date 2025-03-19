@@ -776,7 +776,11 @@ export namespace analyticshub_v1 {
    */
   export interface Schema$MessageTransform {
     /**
-     * Optional. If set to true, the transform is enabled. If false, the transform is disabled and will not be applied to messages. Defaults to `true`.
+     * Optional. If true, the transform is disabled and will not be applied to messages. Defaults to `false`.
+     */
+    disabled?: boolean | null;
+    /**
+     * Optional. This field is deprecated, use the `disabled` field to disable transforms.
      */
     enabled?: boolean | null;
     /**
