@@ -529,6 +529,10 @@ export namespace discoveryengine_v1beta {
      */
     answerText?: string | null;
     /**
+     * List of blob attachments in the answer.
+     */
+    blobAttachments?: Schema$GoogleCloudDiscoveryengineV1alphaAnswerBlobAttachment[];
+    /**
      * Citations.
      */
     citations?: Schema$GoogleCloudDiscoveryengineV1alphaAnswerCitation[];
@@ -576,6 +580,32 @@ export namespace discoveryengine_v1beta {
      * Answer generation steps.
      */
     steps?: Schema$GoogleCloudDiscoveryengineV1alphaAnswerStep[];
+  }
+  /**
+   * Stores binarydata attached to text answer, e.g. image, video, audio, etc.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAnswerBlobAttachment {
+    /**
+     * Output only. The attribution type of the blob.
+     */
+    attributionType?: string | null;
+    /**
+     * Output only. The mime type and data of the blob.
+     */
+    data?: Schema$GoogleCloudDiscoveryengineV1alphaAnswerBlobAttachmentBlob;
+  }
+  /**
+   * The media type and data of the blob.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAnswerBlobAttachmentBlob {
+    /**
+     * Output only. Raw bytes.
+     */
+    data?: string | null;
+    /**
+     * Output only. The media type (MIME type) of the generated or retrieved data.
+     */
+    mimeType?: string | null;
   }
   /**
    * Citation info for a segment.
@@ -672,6 +702,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAnswerReferenceChunkInfo {
     /**
+     * Output only. Stores indexes of blobattachments linked to this chunk.
+     */
+    blobAttachmentIndexes?: string[] | null;
+    /**
      * Chunk resource name.
      */
     chunk?: string | null;
@@ -763,6 +797,10 @@ export namespace discoveryengine_v1beta {
    * Chunk content.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAnswerReferenceUnstructuredDocumentInfoChunkContent {
+    /**
+     * Output only. Stores indexes of blobattachments linked to this chunk.
+     */
+    blobAttachmentIndexes?: string[] | null;
     /**
      * Chunk textual content.
      */
@@ -939,6 +977,10 @@ export namespace discoveryengine_v1beta {
      * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmekConfig\}`.
      */
     name?: string | null;
+    /**
+     * Output only. Whether the NotebookLM Corpus is ready to be used.
+     */
+    notebooklmState?: string | null;
     /**
      * Optional. Single-regional CMEKs that are required for some VAIS features.
      */
@@ -3407,6 +3449,10 @@ export namespace discoveryengine_v1beta {
      */
     modelSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelSpec;
     /**
+     * Optional. Multimodal specification.
+     */
+    multimodalSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecMultiModalSpec;
+    /**
      * The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most 10 results for documents mode, or 50 for chunks mode, can be used to generate a summary. The chunks mode is used when SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS.
      */
     summaryResultCount?: number | null;
@@ -3432,6 +3478,15 @@ export namespace discoveryengine_v1beta {
      * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models). * `preview`: string. (Public preview) Uses a preview model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models).
      */
     version?: string | null;
+  }
+  /**
+   * Multimodal specification: Will return an image from specified source. If multiple sources are specified, the pick is a quality based decision.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecMultiModalSpec {
+    /**
+     * Optional. Source of image returned in the answer.
+     */
+    imageSource?: string | null;
   }
   /**
    * A struct to define data stores to filter on in a search call and configurations for those data stores. Otherwise, an `INVALID_ARGUMENT` error is returned.
@@ -4250,6 +4305,10 @@ export namespace discoveryengine_v1beta {
      */
     answerText?: string | null;
     /**
+     * List of blob attachments in the answer.
+     */
+    blobAttachments?: Schema$GoogleCloudDiscoveryengineV1betaAnswerBlobAttachment[];
+    /**
      * Citations.
      */
     citations?: Schema$GoogleCloudDiscoveryengineV1betaAnswerCitation[];
@@ -4297,6 +4356,32 @@ export namespace discoveryengine_v1beta {
      * Answer generation steps.
      */
     steps?: Schema$GoogleCloudDiscoveryengineV1betaAnswerStep[];
+  }
+  /**
+   * Stores binarydata attached to text answer, e.g. image, video, audio, etc.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAnswerBlobAttachment {
+    /**
+     * Output only. The attribution type of the blob.
+     */
+    attributionType?: string | null;
+    /**
+     * Output only. The mime type and data of the blob.
+     */
+    data?: Schema$GoogleCloudDiscoveryengineV1betaAnswerBlobAttachmentBlob;
+  }
+  /**
+   * The media type and data of the blob.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAnswerBlobAttachmentBlob {
+    /**
+     * Output only. Raw bytes.
+     */
+    data?: string | null;
+    /**
+     * Output only. The media type (MIME type) of the generated or retrieved data.
+     */
+    mimeType?: string | null;
   }
   /**
    * Citation info for a segment.
@@ -4435,6 +4520,10 @@ export namespace discoveryengine_v1beta {
      */
     modelSpec?: Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryRequestAnswerGenerationSpecModelSpec;
     /**
+     * Optional. Multimodal specification.
+     */
+    multimodalSpec?: Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryRequestAnswerGenerationSpecMultimodalSpec;
+    /**
      * Answer generation prompt specification.
      */
     promptSpec?: Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryRequestAnswerGenerationSpecPromptSpec;
@@ -4447,6 +4536,15 @@ export namespace discoveryengine_v1beta {
      * Model version. If not set, it will use the default stable model. Allowed values are: stable, preview.
      */
     modelVersion?: string | null;
+  }
+  /**
+   * Multimodal specification: Will return an image from specified source. If multiple sources are specified, the pick is a quality based decision.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAnswerQueryRequestAnswerGenerationSpecMultimodalSpec {
+    /**
+     * Optional. Source of image returned in the answer.
+     */
+    imageSource?: string | null;
   }
   /**
    * Answer generation prompt specification.
@@ -4824,6 +4922,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaAnswerReferenceChunkInfo {
     /**
+     * Output only. Stores indexes of blobattachments linked to this chunk.
+     */
+    blobAttachmentIndexes?: string[] | null;
+    /**
      * Chunk resource name.
      */
     chunk?: string | null;
@@ -4915,6 +5017,10 @@ export namespace discoveryengine_v1beta {
    * Chunk content.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaAnswerReferenceUnstructuredDocumentInfoChunkContent {
+    /**
+     * Output only. Stores indexes of blobattachments linked to this chunk.
+     */
+    blobAttachmentIndexes?: string[] | null;
     /**
      * Chunk textual content.
      */
@@ -5441,6 +5547,10 @@ export namespace discoveryengine_v1beta {
      * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmekConfig\}`.
      */
     name?: string | null;
+    /**
+     * Output only. Whether the NotebookLM Corpus is ready to be used.
+     */
+    notebooklmState?: string | null;
     /**
      * Optional. Single-regional CMEKs that are required for some VAIS features.
      */
@@ -8606,6 +8716,10 @@ export namespace discoveryengine_v1beta {
      */
     modelSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec;
     /**
+     * Optional. Multimodal specification.
+     */
+    multimodalSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecMultiModalSpec;
+    /**
      * The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most 10 results for documents mode, or 50 for chunks mode, can be used to generate a summary. The chunks mode is used when SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS.
      */
     summaryResultCount?: number | null;
@@ -8631,6 +8745,15 @@ export namespace discoveryengine_v1beta {
      * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models). * `preview`: string. (Public preview) Uses a preview model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models).
      */
     version?: string | null;
+  }
+  /**
+   * Multimodal specification: Will return an image from specified source. If multiple sources are specified, the pick is a quality based decision.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecMultiModalSpec {
+    /**
+     * Optional. Source of image returned in the answer.
+     */
+    imageSource?: string | null;
   }
   /**
    * A struct to define data stores to filter on in a search call and configurations for those data stores. Otherwise, an `INVALID_ARGUMENT` error is returned.
@@ -9194,6 +9317,32 @@ export namespace discoveryengine_v1beta {
     summaryWithMetadata?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSummarySummaryWithMetadata;
   }
   /**
+   * Stores binarydata attached to text answer, e.g. image, video, audio, etc.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSummaryBlobAttachment {
+    /**
+     * Output only. The attribution type of the blob.
+     */
+    attributionType?: string | null;
+    /**
+     * Output only. The blob data.
+     */
+    data?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSummaryBlobAttachmentBlob;
+  }
+  /**
+   * Stores type and data of the blob.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSummaryBlobAttachmentBlob {
+    /**
+     * Output only. Raw bytes.
+     */
+    data?: string | null;
+    /**
+     * Output only. The media type (MIME type) of the generated data.
+     */
+    mimeType?: string | null;
+  }
+  /**
    * Citation info for a segment.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSummaryCitation {
@@ -9254,6 +9403,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSummaryReferenceChunkContent {
     /**
+     * Output only. Stores indexes of blobattachments linked to this chunk.
+     */
+    blobAttachmentIndexes?: string[] | null;
+    /**
      * Chunk textual content.
      */
     content?: string | null;
@@ -9279,6 +9432,10 @@ export namespace discoveryengine_v1beta {
    * Summary with metadata information.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSummarySummaryWithMetadata {
+    /**
+     * Output only. Store multimodal data for answer enhancement.
+     */
+    blobAttachments?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSummaryBlobAttachment[];
     /**
      * Citation metadata for given summary.
      */
@@ -9983,6 +10140,10 @@ export namespace discoveryengine_v1beta {
      * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmekConfig\}`.
      */
     name?: string | null;
+    /**
+     * Output only. Whether the NotebookLM Corpus is ready to be used.
+     */
+    notebooklmState?: string | null;
     /**
      * Optional. Single-regional CMEKs that are required for some VAIS features.
      */
@@ -11884,6 +12045,7 @@ export namespace discoveryengine_v1beta {
     groundingConfigs: Resource$Projects$Locations$Groundingconfigs;
     identityMappingStores: Resource$Projects$Locations$Identitymappingstores;
     operations: Resource$Projects$Locations$Operations;
+    podcasts: Resource$Projects$Locations$Podcasts;
     rankingConfigs: Resource$Projects$Locations$Rankingconfigs;
     sampleQuerySets: Resource$Projects$Locations$Samplequerysets;
     userEvents: Resource$Projects$Locations$Userevents;
@@ -11906,6 +12068,7 @@ export namespace discoveryengine_v1beta {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.podcasts = new Resource$Projects$Locations$Podcasts(this.context);
       this.rankingConfigs = new Resource$Projects$Locations$Rankingconfigs(
         this.context
       );
@@ -36388,6 +36551,126 @@ export namespace discoveryengine_v1beta {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Podcasts {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Podcasts$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Locations$Podcasts$Operations(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Locations$Podcasts$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Podcasts$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Podcasts$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Projects$Locations$Podcasts$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Podcasts$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Podcasts$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Podcasts$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Podcasts$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Podcasts$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Podcasts$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Rankingconfigs {
