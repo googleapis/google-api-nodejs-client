@@ -504,9 +504,6 @@ export namespace firebase_v1beta1 {
      */
     type?: string | null;
   }
-  /**
-   * This is proto2's version of MessageSet.
-   */
   export interface Schema$MessageSet {}
   /**
    * This resource represents a long-running operation that is the result of a network API call.
