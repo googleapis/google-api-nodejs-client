@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/docs",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "description": "docs",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -4,6 +4,39 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [148.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v147.0.0...googleapis-v148.0.0) (2025-03-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firebase:** This release has breaking changes.
+
+### Features
+
+* **aiplatform:** update the API ([7a60c1e](https://github.com/googleapis/google-api-nodejs-client/commit/7a60c1e9c57b87da999d11793b25d745c569ef20))
+* **analyticshub:** update the API ([248f8d1](https://github.com/googleapis/google-api-nodejs-client/commit/248f8d18eaeac34e8d55a3cbddd5bcf4ba753af3))
+* **bigqueryreservation:** update the API ([ecb255f](https://github.com/googleapis/google-api-nodejs-client/commit/ecb255fcb26b389d57cf3c3b2b0f3e4a014b4270))
+* **bigquery:** update the API ([9bed272](https://github.com/googleapis/google-api-nodejs-client/commit/9bed2726d6a8b2d863025a9b0f875897cdb8cac0))
+* **dataproc:** update the API ([8a3fb81](https://github.com/googleapis/google-api-nodejs-client/commit/8a3fb81321e61f402043193e20b71063d72acfe7))
+* **dialogflow:** update the API ([f4cee8f](https://github.com/googleapis/google-api-nodejs-client/commit/f4cee8f9ae94d03e13b273cc412bc88f6626b71f))
+* **discoveryengine:** update the API ([285a5cc](https://github.com/googleapis/google-api-nodejs-client/commit/285a5ccf5cc2daca0545c525eb44aced9afe7de2))
+* **firebase:** update the API ([aec1a0d](https://github.com/googleapis/google-api-nodejs-client/commit/aec1a0d58e432b4d0576d9ee958151cdc07debb4))
+* **merchantapi:** update the API ([8746072](https://github.com/googleapis/google-api-nodejs-client/commit/8746072672fa3625b7c15d3ed240541b66036dcb))
+* **notebooks:** update the API ([4b176f2](https://github.com/googleapis/google-api-nodejs-client/commit/4b176f29553ef1f5bfca49cb1d1a31f52e5a374a))
+* **oracledatabase:** update the API ([ad14290](https://github.com/googleapis/google-api-nodejs-client/commit/ad14290e7970a2ee6914c864b2bf14ccf26d61a6))
+* regenerate index files ([24aafb2](https://github.com/googleapis/google-api-nodejs-client/commit/24aafb26869eb62cbe9c7e91f8f72cd03a3a8d81))
+
+
+### Bug Fixes
+
+* **androidpublisher:** update the API ([d185db5](https://github.com/googleapis/google-api-nodejs-client/commit/d185db5a59da1cc2138b8f822972c5467fffded6))
+* **chat:** update the API ([837ad02](https://github.com/googleapis/google-api-nodejs-client/commit/837ad02e90c509dcd79b13a9d2a3220d5eae4f0c))
+* **migrationcenter:** update the API ([14ea9eb](https://github.com/googleapis/google-api-nodejs-client/commit/14ea9eba9feb3945efef4bfdc032fbca326765ca))
+* **oslogin:** update the API ([ee2b715](https://github.com/googleapis/google-api-nodejs-client/commit/ee2b715731b5483cb38b6208375def04cbff1255))
+* **serviceconsumermanagement:** update the API ([15963c8](https://github.com/googleapis/google-api-nodejs-client/commit/15963c83179ab7369b1a797d901249beacc0578a))
+* **servicenetworking:** update the API ([18a7f19](https://github.com/googleapis/google-api-nodejs-client/commit/18a7f19287184111ce1d5aea83ffc0666f1b2639))
+* **serviceusage:** update the API ([d401728](https://github.com/googleapis/google-api-nodejs-client/commit/d4017284583b51756845c241cebbfee816730099))
+
 ## [147.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v146.0.0...googleapis-v147.0.0) (2025-03-18)
 
 
