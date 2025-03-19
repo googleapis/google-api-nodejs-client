@@ -17,7 +17,7 @@
   "canonicalName": "Tasks",
   "description": "The Google Tasks API lets you manage your tasks and task lists.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/tasks/",
+  "documentationLink": "https://developers.google.com/workspace/tasks/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -576,7 +576,7 @@
       }
     }
   },
-  "revision": "20250302",
+  "revision": "20250316",
   "rootUrl": "https://tasks.googleapis.com/",
   "schemas": {
     "AssignmentInfo": {
@@ -689,7 +689,7 @@
           "items": {
             "properties": {
               "description": {
-                "description": "The description. In HTML speak: Everything between <a> and </a>.",
+                "description": "The description (might be empty).",
                 "type": "string"
               },
               "link": {
@@ -697,7 +697,7 @@
                 "type": "string"
               },
               "type": {
-                "description": "Type of the link, e.g. \"email\".",
+                "description": "Type of the link, e.g. \"email\", \"generic\", \"chat_message\", \"keep_note\".",
                 "type": "string"
               }
             },

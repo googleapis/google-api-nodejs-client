@@ -6324,7 +6324,7 @@
     {
       "description": "The Google Tasks API lets you manage your tasks and task lists.",
       "discoveryRestUrl": "https://tasks.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://developers.google.com/tasks/",
+      "documentationLink": "https://developers.google.com/workspace/tasks/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
