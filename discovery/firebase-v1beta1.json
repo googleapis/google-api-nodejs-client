@@ -1324,7 +1324,7 @@
       }
     }
   },
-  "revision": "20250303",
+  "revision": "20250314",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -1919,7 +1919,6 @@
       "type": "object"
     },
     "MessageSet": {
-      "description": "This is proto2's version of MessageSet.",
       "id": "MessageSet",
       "properties": {},
       "type": "object"
