@@ -935,7 +935,7 @@
       }
     }
   },
-  "revision": "20250304",
+  "revision": "20250316",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -1266,6 +1266,10 @@
       "description": "The request for ReservationService.MergeCapacityCommitments.",
       "id": "MergeCapacityCommitmentsRequest",
       "properties": {
+        "capacityCommitmentId": {
+          "description": "Optional. The optional resulting capacity commitment ID. Capacity commitment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dashes. The first and last character cannot be a dash. Max length is 64 characters.",
+          "type": "string"
+        },
         "capacityCommitmentIds": {
           "description": "Ids of capacity commitments to merge. These capacity commitments must exist under admin project and location specified in the parent. ID is the last portion of capacity commitment name e.g., 'abc' for projects/myproject/locations/US/capacityCommitments/abc",
           "items": {
