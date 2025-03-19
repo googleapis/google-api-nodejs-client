@@ -5343,7 +5343,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250313",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -7676,13 +7676,25 @@
           "$ref": "GoogleCloudDialogflowCxV3beta1AgentUtterance",
           "description": "Optional. Action performed by the agent as a message."
         },
+        "event": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1Event",
+          "description": "Optional. The agent received an event from the customer or a system event is emitted."
+        },
         "flowInvocation": {
           "$ref": "GoogleCloudDialogflowCxV3beta1FlowInvocation",
           "description": "Optional. Action performed on behalf of the agent by invoking a CX flow."
         },
+        "flowTransition": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1FlowTransition",
+          "description": "Optional. Action performed on behalf of the agent by transitioning to a target CX flow."
+        },
         "playbookInvocation": {
           "$ref": "GoogleCloudDialogflowCxV3beta1PlaybookInvocation",
           "description": "Optional. Action performed on behalf of the agent by invoking a child playbook."
+        },
+        "playbookTransition": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1PlaybookTransition",
+          "description": "Optional. Action performed on behalf of the agent by transitioning to a target playbook."
         },
         "toolUse": {
           "$ref": "GoogleCloudDialogflowCxV3beta1ToolUse",
@@ -9507,6 +9519,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1Event": {
+      "description": "Event represents the event sent by the customer.",
+      "id": "GoogleCloudDialogflowCxV3beta1Event",
+      "properties": {
+        "event": {
+          "description": "Required. Name of the event.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1EventHandler": {
       "description": "An event handler specifies an event that can be handled during a session. When the specified event happens, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the event, it will be called. * If there is a `target_page` associated with the event, the session will transition into the specified page. * If there is a `target_flow` associated with the event, the session will transition into the specified flow.",
       "id": "GoogleCloudDialogflowCxV3beta1EventHandler",
@@ -10337,6 +10360,22 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1FlowTransition": {
+      "description": "Stores metadata of the transition to a target CX flow. Flow transition actions exit the caller playbook and enter the child flow.",
+      "id": "GoogleCloudDialogflowCxV3beta1FlowTransition",
+      "properties": {
+        "displayName": {
+          "description": "Output only. The display name of the flow.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "flow": {
+          "description": "Required. The unique identifier of the flow. Format: `projects//locations//agents/`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -12347,6 +12386,20 @@
           },
           "type": "array"
         },
+        "playbookType": {
+          "description": "Optional. Type of the playbook.",
+          "enum": [
+            "PLAYBOOK_TYPE_UNSPECIFIED",
+            "TASK",
+            "ROUTINE"
+          ],
+          "enumDescriptions": [
+            "Unspecified type. Default to TASK.",
+            "Task playbook.",
+            "Routine playbook."
+          ],
+          "type": "string"
+        },
         "referencedFlows": {
           "description": "Output only. The resource name of flows referenced by the current playbook in the instructions.",
           "items": {
@@ -12502,6 +12555,22 @@
         },
         "text": {
           "description": "Step instruction in text format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1PlaybookTransition": {
+      "description": "Stores metadata of the transition to another target playbook. Playbook transition actions exit the caller playbook and enter the target playbook.",
+      "id": "GoogleCloudDialogflowCxV3beta1PlaybookTransition",
+      "properties": {
+        "displayName": {
+          "description": "Output only. The display name of the playbook.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "playbook": {
+          "description": "Required. The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.",
           "type": "string"
         }
       },

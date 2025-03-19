@@ -261,13 +261,25 @@ export namespace dialogflow_v3beta1 {
      */
     agentUtterance?: Schema$GoogleCloudDialogflowCxV3beta1AgentUtterance;
     /**
+     * Optional. The agent received an event from the customer or a system event is emitted.
+     */
+    event?: Schema$GoogleCloudDialogflowCxV3beta1Event;
+    /**
      * Optional. Action performed on behalf of the agent by invoking a CX flow.
      */
     flowInvocation?: Schema$GoogleCloudDialogflowCxV3beta1FlowInvocation;
     /**
+     * Optional. Action performed on behalf of the agent by transitioning to a target CX flow.
+     */
+    flowTransition?: Schema$GoogleCloudDialogflowCxV3beta1FlowTransition;
+    /**
      * Optional. Action performed on behalf of the agent by invoking a child playbook.
      */
     playbookInvocation?: Schema$GoogleCloudDialogflowCxV3beta1PlaybookInvocation;
+    /**
+     * Optional. Action performed on behalf of the agent by transitioning to a target playbook.
+     */
+    playbookTransition?: Schema$GoogleCloudDialogflowCxV3beta1PlaybookTransition;
     /**
      * Optional. Action performed on behalf of the agent by calling a plugin tool.
      */
@@ -1619,6 +1631,15 @@ export namespace dialogflow_v3beta1 {
     webhookOverrides?: Schema$GoogleCloudDialogflowCxV3beta1Webhook[];
   }
   /**
+   * Event represents the event sent by the customer.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1Event {
+    /**
+     * Required. Name of the event.
+     */
+    event?: string | null;
+  }
+  /**
    * An event handler specifies an event that can be handled during a session. When the specified event happens, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the event, it will be called. * If there is a `target_page` associated with the event, the session will transition into the specified page. * If there is a `target_flow` associated with the event, the session will transition into the specified flow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1EventHandler {
@@ -2183,6 +2204,19 @@ export namespace dialogflow_v3beta1 {
      * Optional. Agent will respond in the detected language if the detected language code is in the supported resolved languages for this flow. This will be used only if multi-language training is enabled in the agent and multi-language detection is enabled in the flow. The supported languages must be a subset of the languages supported by the agent.
      */
     supportedResponseLanguageCodes?: string[] | null;
+  }
+  /**
+   * Stores metadata of the transition to a target CX flow. Flow transition actions exit the caller playbook and enter the child flow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1FlowTransition {
+    /**
+     * Output only. The display name of the flow.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The unique identifier of the flow. Format: `projects//locations//agents/`.
+     */
+    flow?: string | null;
   }
   /**
    * The response message for Flows.GetFlowValidationResult.
@@ -3622,6 +3656,10 @@ export namespace dialogflow_v3beta1 {
      */
     outputParameterDefinitions?: Schema$GoogleCloudDialogflowCxV3beta1ParameterDefinition[];
     /**
+     * Optional. Type of the playbook.
+     */
+    playbookType?: string | null;
+    /**
      * Output only. The resource name of flows referenced by the current playbook in the instructions.
      */
     referencedFlows?: string[] | null;
@@ -3722,6 +3760,19 @@ export namespace dialogflow_v3beta1 {
      * Step instruction in text format.
      */
     text?: string | null;
+  }
+  /**
+   * Stores metadata of the transition to another target playbook. Playbook transition actions exit the caller playbook and enter the target playbook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1PlaybookTransition {
+    /**
+     * Output only. The display name of the playbook.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.
+     */
+    playbook?: string | null;
   }
   /**
    * Playbook version is a snapshot of the playbook at certain timestamp.
