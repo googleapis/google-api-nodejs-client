@@ -494,6 +494,10 @@ import {
 import {VERSIONS as notebooksVersions, notebooks} from './notebooks';
 import {VERSIONS as oauth2Versions, oauth2} from './oauth2';
 import {
+  VERSIONS as observabilityVersions,
+  observability,
+} from './observability';
+import {
   VERSIONS as ondemandscanningVersions,
   ondemandscanning,
 } from './ondemandscanning';
@@ -945,6 +949,7 @@ export const APIS: APIList = {
   networkservices: networkservicesVersions,
   notebooks: notebooksVersions,
   oauth2: oauth2Versions,
+  observability: observabilityVersions,
   ondemandscanning: ondemandscanningVersions,
   oracledatabase: oracledatabaseVersions,
   orgpolicy: orgpolicyVersions,
@@ -1255,6 +1260,7 @@ export class GeneratedAPIs {
   networkservices = networkservices;
   notebooks = notebooks;
   oauth2 = oauth2;
+  observability = observability;
   ondemandscanning = ondemandscanning;
   oracledatabase = oracledatabase;
   orgpolicy = orgpolicy;

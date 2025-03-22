@@ -1184,6 +1184,8 @@
                 "$ref": "SpaceEvent"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/chat.app.memberships",
+                "https://www.googleapis.com/auth/chat.app.spaces",
                 "https://www.googleapis.com/auth/chat.memberships",
                 "https://www.googleapis.com/auth/chat.memberships.readonly",
                 "https://www.googleapis.com/auth/chat.messages",
@@ -1232,6 +1234,8 @@
                 "$ref": "ListSpaceEventsResponse"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/chat.app.memberships",
+                "https://www.googleapis.com/auth/chat.app.spaces",
                 "https://www.googleapis.com/auth/chat.memberships",
                 "https://www.googleapis.com/auth/chat.memberships.readonly",
                 "https://www.googleapis.com/auth/chat.messages",
@@ -1410,7 +1414,7 @@
       }
     }
   },
-  "revision": "20250313",
+  "revision": "20250316",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {

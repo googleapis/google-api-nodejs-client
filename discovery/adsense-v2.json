@@ -1193,8 +1193,8 @@
                     "Number of page views.",
                     "Number of ad units that requested ads (for content ads) or search queries (for search ads). An ad request may result in zero, one, or multiple individual ad impressions depending on the size of the ad unit and whether any ads were available.",
                     "Requests that returned at least one ad.",
-                    "Impressions. An impression is counted for each ad request where at least one ad has been downloaded to the user’s device and has begun to load. It is the number of ad units (for content ads) or search queries (for search ads) that showed ads.",
-                    "Impressions. An impression is counted for each ad request where at least one ad has been downloaded to the user’s device and has begun to load. It is the number of ad units (for content ads) or search queries (for search ads) that showed ads.",
+                    "Impressions. An impression is counted for each ad request where at least one ad has been downloaded to the user's device and has begun to load. It is the number of ad units (for content ads) or search queries (for search ads) that showed ads.",
+                    "Impressions. An impression is counted for each ad request where at least one ad has been downloaded to the user's device and has begun to load. It is the number of ad units (for content ads) or search queries (for search ads) that showed ads.",
                     "Ads shown. Different ad formats will display varying numbers of ads. For example, a vertical banner may consist of 2 or more ads. Also, the number of ads in an ad unit may vary depending on whether the ad unit is displaying standard text ads, expanded text ads or image ads.",
                     "Number of times a user clicked on a standard content ad.",
                     "Fraction of page views considered to be spam. Only available to premium accounts.",
@@ -1221,7 +1221,7 @@
                     "Amount the publisher earns each time a user clicks on an ad. CPC is calculated by dividing the estimated revenue by the number of clicks received.",
                     "Number of ad views per impression.",
                     "Total earnings are the gross estimated earnings from revenue shared traffic before any parent and child account revenue share is applied.",
-                    "Number of results pages.",
+                    "Number of results pages. This metric can only be used when generating a report in the Google timezone, not the account timezone. Since the account timezone is the default for report generation, this metric can only be used by explicitly specifying `reportingTimeZone=GOOGLE_TIME_ZONE`.",
                     "Number of requests for non-ad units (for example a related search unit). For more information, see [Funnel requests](https://support.google.com/adsense/answer/11586959).",
                     "Number of requests for non-ad units ads that returned content that was shown to the user. For more information, see [Funnel impressions](https://support.google.com/adsense/answer/11585767).",
                     "Number of times a user clicked on a non-ad unit, triggering further ad requests. For more information, see [Funnel clicks](https://support.google.com/adsense/answer/11586382).",
@@ -1566,8 +1566,8 @@
                     "Number of page views.",
                     "Number of ad units that requested ads (for content ads) or search queries (for search ads). An ad request may result in zero, one, or multiple individual ad impressions depending on the size of the ad unit and whether any ads were available.",
                     "Requests that returned at least one ad.",
-                    "Impressions. An impression is counted for each ad request where at least one ad has been downloaded to the user’s device and has begun to load. It is the number of ad units (for content ads) or search queries (for search ads) that showed ads.",
-                    "Impressions. An impression is counted for each ad request where at least one ad has been downloaded to the user’s device and has begun to load. It is the number of ad units (for content ads) or search queries (for search ads) that showed ads.",
+                    "Impressions. An impression is counted for each ad request where at least one ad has been downloaded to the user's device and has begun to load. It is the number of ad units (for content ads) or search queries (for search ads) that showed ads.",
+                    "Impressions. An impression is counted for each ad request where at least one ad has been downloaded to the user's device and has begun to load. It is the number of ad units (for content ads) or search queries (for search ads) that showed ads.",
                     "Ads shown. Different ad formats will display varying numbers of ads. For example, a vertical banner may consist of 2 or more ads. Also, the number of ads in an ad unit may vary depending on whether the ad unit is displaying standard text ads, expanded text ads or image ads.",
                     "Number of times a user clicked on a standard content ad.",
                     "Fraction of page views considered to be spam. Only available to premium accounts.",
@@ -1594,7 +1594,7 @@
                     "Amount the publisher earns each time a user clicks on an ad. CPC is calculated by dividing the estimated revenue by the number of clicks received.",
                     "Number of ad views per impression.",
                     "Total earnings are the gross estimated earnings from revenue shared traffic before any parent and child account revenue share is applied.",
-                    "Number of results pages.",
+                    "Number of results pages. This metric can only be used when generating a report in the Google timezone, not the account timezone. Since the account timezone is the default for report generation, this metric can only be used by explicitly specifying `reportingTimeZone=GOOGLE_TIME_ZONE`.",
                     "Number of requests for non-ad units (for example a related search unit). For more information, see [Funnel requests](https://support.google.com/adsense/answer/11586959).",
                     "Number of requests for non-ad units ads that returned content that was shown to the user. For more information, see [Funnel impressions](https://support.google.com/adsense/answer/11585767).",
                     "Number of times a user clicked on a non-ad unit, triggering further ad requests. For more information, see [Funnel clicks](https://support.google.com/adsense/answer/11586382).",
@@ -2018,7 +2018,7 @@
       }
     }
   },
-  "revision": "20250313",
+  "revision": "20250320",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {

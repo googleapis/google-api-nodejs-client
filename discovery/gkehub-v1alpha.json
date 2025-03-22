@@ -2255,7 +2255,7 @@
       }
     }
   },
-  "revision": "20250302",
+  "revision": "20250313",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -6817,6 +6817,11 @@
             "QUOTA_EXCEEDED_HTTP_FILTERS",
             "QUOTA_EXCEEDED_TCP_FILTERS",
             "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+            "LEGACY_MC_SECRETS",
+            "WORKLOAD_IDENTITY_REQUIRED",
+            "NON_STANDARD_BINARY_USAGE",
+            "UNSUPPORTED_GATEWAY_CLASS",
+            "MANAGED_CNI_NOT_ENABLED",
             "MODERNIZATION_SCHEDULED",
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
@@ -6856,6 +6861,11 @@
             "HTTPFilter quota exceeded error code.",
             "TCPFilter quota exceeded error code.",
             "NetworkEndpointGroup quota exceeded error code.",
+            "Legacy istio secrets found for multicluster error code",
+            "Workload identity required error code",
+            "Non-standard binary usage error code",
+            "Unsupported gateway class error code",
+            "Managed CNI not enabled error code",
             "Modernization is scheduled for a cluster.",
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
