@@ -405,7 +405,7 @@
       }
     }
   },
-  "revision": "20240806",
+  "revision": "20250317",
   "rootUrl": "https://bigquerydatapolicy.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -526,7 +526,7 @@
           "type": "string"
         },
         "dataPolicyType": {
-          "description": "Type of data policy.",
+          "description": "Required. Data policy type. Type of data policy.",
           "enum": [
             "DATA_POLICY_TYPE_UNSPECIFIED",
             "COLUMN_LEVEL_SECURITY_POLICY",
