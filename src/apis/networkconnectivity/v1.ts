@@ -671,6 +671,10 @@ export namespace networkconnectivity_v1 {
      */
     producerNetwork?: string | null;
     /**
+     * Output only. The proposed exclude export IP ranges waiting for hub administration's approval.
+     */
+    proposedExcludeExportRanges?: string[] | null;
+    /**
      * Optional. The proposed include export IP ranges waiting for hub administration's approval.
      */
     proposedIncludeExportRanges?: string[] | null;
@@ -716,6 +720,10 @@ export namespace networkconnectivity_v1 {
      * Output only. The list of Producer VPC spokes that this VPC spoke is a service consumer VPC spoke for. These producer VPCs are connected through VPC peering to this spoke's backing VPC network. Because they are directly connected throuh VPC peering, NCC export filters do not apply between the service consumer VPC spoke and any of its producer VPC spokes. This VPC spoke cannot be deleted as long as any of these producer VPC spokes are connected to the NCC Hub.
      */
     producerVpcSpokes?: string[] | null;
+    /**
+     * Output only. The proposed exclude export IP ranges waiting for hub administration's approval.
+     */
+    proposedExcludeExportRanges?: string[] | null;
     /**
      * Optional. The proposed include export IP ranges waiting for hub administration's approval.
      */
