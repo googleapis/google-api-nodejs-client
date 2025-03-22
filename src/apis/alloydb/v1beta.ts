@@ -524,6 +524,59 @@ export namespace alloydb_v1beta {
     publicIpAddress?: string | null;
   }
   /**
+   * Configuration for Managed Connection Pool (MCP).
+   */
+  export interface Schema$ConnectionPoolConfig {
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The default pool size. Defaults to 20.
+     */
+    defaultPoolSize?: string | null;
+    /**
+     * Optional. Deprecated; Prefer 'enabled' as this will be removed soon. TODO(b/394996708) move to reserved once the field is removed from the gcloud client.
+     */
+    enable?: boolean | null;
+    /**
+     * Optional. Whether to enable Managed Connection Pool (MCP).
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. Connection Pool flags, as a list of "key": "value" pairs.
+     */
+    flags?: {[key: string]: string} | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The list of startup parameters to ignore. Defaults to ["extra_float_digits"]
+     */
+    ignoreStartupParameters?: string[] | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The maximum number of client connections allowed.
+     */
+    maxClientConn?: string | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The maximum number of prepared statements allowed. MCP makes sure that any statement prepared by a client, up to this limit, is available on the backing server connection in transaction and statement pooling mode. Even if the statement was originally prepared on another server connection. Defaults to 0.
+     */
+    maxPreparedStatements?: string | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The minimum pool size. Defaults to 0.
+     */
+    minPoolSize?: string | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The pool mode. Defaults to `POOL_MODE_TRANSACTION`.
+     */
+    poolMode?: string | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The maximum number of seconds queries are allowed to spend waiting for execution. If the query is not assigned to a server during that time, the client is disconnected. 0 disables.
+     */
+    queryWaitTimeout?: string | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The maximum number of seconds a server is allowed to be idle before it is disconnected. 0 disables.
+     */
+    serverIdleTimeout?: string | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The list of users that are allowed to connect to the MCP stats console. The users must exist in the database.
+     */
+    statsUsers?: string[] | null;
+  }
+  /**
    * ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster.
    */
   export interface Schema$ContinuousBackupConfig {
@@ -867,6 +920,10 @@ export namespace alloydb_v1beta {
      * Optional. Client connection specific configurations
      */
     clientConnectionConfig?: Schema$ClientConnectionConfig;
+    /**
+     * Optional. The configuration for Managed Connection Pool (MCP).
+     */
+    connectionPoolConfig?: Schema$ConnectionPoolConfig;
     /**
      * Output only. Create time stamp
      */
