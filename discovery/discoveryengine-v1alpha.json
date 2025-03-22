@@ -9016,7 +9016,7 @@
       }
     }
   },
-  "revision": "20250314",
+  "revision": "20250320",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -10515,6 +10515,10 @@
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1DataStore",
       "properties": {
+        "aclEnabled": {
+          "description": "Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.",
+          "type": "boolean"
+        },
         "advancedSiteSearchConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1AdvancedSiteSearchConfig",
           "description": "Optional. Configuration for advanced site search."
@@ -12335,6 +12339,10 @@
           "description": "Output only. The connector contains the necessary parameters and is configured to support actions.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "serviceName": {
+          "description": "Optional. The Service Directory resource name (projects/*/locations/*/namespaces/*/services/*) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -12405,7 +12413,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpec",
       "properties": {
         "conditionBoostSpecs": {
-          "description": "Condition boost specifications. If a suggestion matches multiple conditions in the specifictions, boost values from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20. Note: Currently only support language condition boost.",
+          "description": "Condition boost specifications. If a suggestion matches multiple conditions in the specifications, boost values from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20. Note: Currently only support language condition boost.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpecConditionBoostSpec"
           },
@@ -20247,7 +20255,7 @@
           "description": "Custom fine tuning configs. If set, it has higher priority than the configs set in ServingConfig.custom_fine_tuning_spec."
         },
         "dataStoreSpecs": {
-          "description": "Specifications that define the specific [DataStore]s to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.",
+          "description": "Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec"
           },
@@ -20327,13 +20335,13 @@
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
         },
         "rankingExpression": {
-          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking expression is not provided or set to BYOE, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking expression is set to CLEARBOX, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double > 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result",
+          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking_expression_backend is not provided or set to `BYOE`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking_expression_backend is set to `CLEARBOX`, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double > 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result",
           "type": "string"
         },
         "rankingExpressionBackend": {
           "description": "Optional. The backend to use for the ranking expression evaluation.",
           "enum": [
-            "UNKNOWN",
+            "RANKING_EXPRESSION_BACKEND_UNSPECIFIED",
             "BYOE",
             "CLEARBOX"
           ],
@@ -20417,7 +20425,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpec",
       "properties": {
         "conditionBoostSpecs": {
-          "description": "Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
+          "description": "Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpecConditionBoostSpec"
           },
@@ -24043,6 +24051,10 @@
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1betaDataStore",
       "properties": {
+        "aclEnabled": {
+          "description": "Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.",
+          "type": "boolean"
+        },
         "advancedSiteSearchConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig",
           "description": "Optional. Configuration for advanced site search."
@@ -25535,7 +25547,7 @@
           "description": "A specification for configuring the behavior of content search."
         },
         "dataStoreSpecs": {
-          "description": "Specifications that define the specific [DataStore]s to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.",
+          "description": "Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec"
           },
@@ -25615,13 +25627,13 @@
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
         },
         "rankingExpression": {
-          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking expression is not provided or set to BYOE, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking expression is set to CLEARBOX, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double > 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result",
+          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking_expression_backend is not provided or set to `BYOE`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking_expression_backend is set to `CLEARBOX`, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double > 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result",
           "type": "string"
         },
         "rankingExpressionBackend": {
           "description": "Optional. The backend to use for the ranking expression evaluation.",
           "enum": [
-            "UNKNOWN",
+            "RANKING_EXPRESSION_BACKEND_UNSPECIFIED",
             "BYOE",
             "CLEARBOX"
           ],
@@ -25705,7 +25717,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec",
       "properties": {
         "conditionBoostSpecs": {
-          "description": "Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
+          "description": "Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpec"
           },
