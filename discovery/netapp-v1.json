@@ -2264,7 +2264,7 @@
       }
     }
   },
-  "revision": "20250129",
+  "revision": "20250312",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -4083,7 +4083,7 @@
       "id": "TieringPolicy",
       "properties": {
         "coolingThresholdDays": {
-          "description": "Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 7-183. Default is 31.",
+          "description": "Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 2-183. Default is 31.",
           "format": "int32",
           "type": "integer"
         },
