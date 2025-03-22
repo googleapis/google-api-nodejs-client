@@ -1300,7 +1300,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityDimension {
     /**
-     * The dimension name a rule belongs to. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "FRESHNESS", "VOLUME"
+     * Optional. The dimension name a rule belongs to. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.
      */
     name?: string | null;
   }
@@ -1313,7 +1313,7 @@ export namespace dataplex_v1 {
      */
     dimension?: Schema$GoogleCloudDataplexV1DataQualityDimension;
     /**
-     * Whether the dimension passed or failed.
+     * Output only. Whether the dimension passed or failed.
      */
     passed?: boolean | null;
     /**
@@ -1330,11 +1330,11 @@ export namespace dataplex_v1 {
      */
     columns?: Schema$GoogleCloudDataplexV1DataQualityColumnResult[];
     /**
-     * A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.
+     * Output only. A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.
      */
     dimensions?: Schema$GoogleCloudDataplexV1DataQualityDimensionResult[];
     /**
-     * Overall data quality result -- true if all rules passed.
+     * Output only. Overall data quality result -- true if all rules passed.
      */
     passed?: boolean | null;
     /**
@@ -1342,15 +1342,15 @@ export namespace dataplex_v1 {
      */
     postScanActionsResult?: Schema$GoogleCloudDataplexV1DataQualityResultPostScanActionsResult;
     /**
-     * The count of rows processed.
+     * Output only. The count of rows processed.
      */
     rowCount?: string | null;
     /**
-     * A list of all the rules in a job, and their results.
+     * Output only. A list of all the rules in a job, and their results.
      */
     rules?: Schema$GoogleCloudDataplexV1DataQualityRuleResult[];
     /**
-     * The data scanned for this result.
+     * Output only. The data scanned for this result.
      */
     scannedData?: Schema$GoogleCloudDataplexV1ScannedData;
     /**
@@ -1492,31 +1492,31 @@ export namespace dataplex_v1 {
      */
     assertionRowCount?: string | null;
     /**
-     * The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.
+     * Output only. The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.
      */
     evaluatedCount?: string | null;
     /**
-     * The query to find rows that did not pass this rule.This field is only valid for row-level type rules.
+     * Output only. The query to find rows that did not pass this rule.This field is only valid for row-level type rules.
      */
     failingRowsQuery?: string | null;
     /**
-     * The number of rows with null values in the specified column.
+     * Output only. The number of rows with null values in the specified column.
      */
     nullCount?: string | null;
     /**
-     * Whether the rule passed or failed.
+     * Output only. Whether the rule passed or failed.
      */
     passed?: boolean | null;
     /**
-     * This field is not set for rule SqlAssertion.
+     * Output only. The number of rows which passed a rule evaluation.This field is only valid for row-level type rules.This field is not set for rule SqlAssertion.
      */
     passedCount?: string | null;
     /**
-     * The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.
+     * Output only. The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.
      */
     passRatio?: number | null;
     /**
-     * The rule specified in the DataQualitySpec, as is.
+     * Output only. The rule specified in the DataQualitySpec, as is.
      */
     rule?: Schema$GoogleCloudDataplexV1DataQualityRule;
   }
@@ -2419,6 +2419,23 @@ export namespace dataplex_v1 {
      * Output only. The time when the EntryGroup was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Payload associated with Entry related log events.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntryLinkEvent {
+    /**
+     * The type of the event.
+     */
+    eventType?: string | null;
+    /**
+     * The log message.
+     */
+    message?: string | null;
+    /**
+     * Name of the resource.
+     */
+    resource?: string | null;
   }
   /**
    * Information related to the source system of the data resource that is represented by the entry.

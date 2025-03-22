@@ -1616,7 +1616,7 @@
       }
     }
   },
-  "revision": "20250308",
+  "revision": "20250312",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2315,6 +2315,80 @@
       },
       "type": "object"
     },
+    "ConnectionPoolConfig": {
+      "description": "Configuration for Managed Connection Pool (MCP).",
+      "id": "ConnectionPoolConfig",
+      "properties": {
+        "defaultPoolSize": {
+          "description": "Optional. Deprecated. Use 'flags' instead. The default pool size. Defaults to 20.",
+          "type": "string"
+        },
+        "enable": {
+          "description": "Optional. Deprecated; Prefer 'enabled' as this will be removed soon. TODO(b/394996708) move to reserved once the field is removed from the gcloud client.",
+          "type": "boolean"
+        },
+        "enabled": {
+          "description": "Optional. Whether to enable Managed Connection Pool (MCP).",
+          "type": "boolean"
+        },
+        "flags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Connection Pool flags, as a list of \"key\": \"value\" pairs.",
+          "type": "object"
+        },
+        "ignoreStartupParameters": {
+          "description": "Optional. Deprecated. Use 'flags' instead. The list of startup parameters to ignore. Defaults to [\"extra_float_digits\"]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "maxClientConn": {
+          "description": "Optional. Deprecated. Use 'flags' instead. The maximum number of client connections allowed.",
+          "type": "string"
+        },
+        "maxPreparedStatements": {
+          "description": "Optional. Deprecated. Use 'flags' instead. The maximum number of prepared statements allowed. MCP makes sure that any statement prepared by a client, up to this limit, is available on the backing server connection in transaction and statement pooling mode. Even if the statement was originally prepared on another server connection. Defaults to 0.",
+          "type": "string"
+        },
+        "minPoolSize": {
+          "description": "Optional. Deprecated. Use 'flags' instead. The minimum pool size. Defaults to 0.",
+          "type": "string"
+        },
+        "poolMode": {
+          "description": "Optional. Deprecated. Use 'flags' instead. The pool mode. Defaults to `POOL_MODE_TRANSACTION`.",
+          "enum": [
+            "POOL_MODE_UNSPECIFIED",
+            "POOL_MODE_SESSION",
+            "POOL_MODE_TRANSACTION"
+          ],
+          "enumDescriptions": [
+            "The pool mode is not specified. Defaults to `POOL_MODE_TRANSACTION`.",
+            "Server is released back to pool after a client disconnects.",
+            "Server is released back to pool after a transaction finishes."
+          ],
+          "type": "string"
+        },
+        "queryWaitTimeout": {
+          "description": "Optional. Deprecated. Use 'flags' instead. The maximum number of seconds queries are allowed to spend waiting for execution. If the query is not assigned to a server during that time, the client is disconnected. 0 disables.",
+          "type": "string"
+        },
+        "serverIdleTimeout": {
+          "description": "Optional. Deprecated. Use 'flags' instead. The maximum number of seconds a server is allowed to be idle before it is disconnected. 0 disables.",
+          "type": "string"
+        },
+        "statsUsers": {
+          "description": "Optional. Deprecated. Use 'flags' instead. The list of users that are allowed to connect to the MCP stats console. The users must exist in the database.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ContinuousBackupConfig": {
       "description": "ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster.",
       "id": "ContinuousBackupConfig",
@@ -2798,6 +2872,10 @@
         "clientConnectionConfig": {
           "$ref": "ClientConnectionConfig",
           "description": "Optional. Client connection specific configurations"
+        },
+        "connectionPoolConfig": {
+          "$ref": "ConnectionPoolConfig",
+          "description": "Optional. The configuration for Managed Connection Pool (MCP)."
         },
         "createTime": {
           "description": "Output only. Create time stamp",

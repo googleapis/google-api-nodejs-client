@@ -1962,7 +1962,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Update default config for a given project and location. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields
+     * Update default config for a given project and location. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2956,7 +2956,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Updates a single Repository. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields
+     * Updates a single Repository. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4417,7 +4417,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Updates a single ReleaseConfig. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields
+     * Updates a single ReleaseConfig. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4929,7 +4929,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Updates a single WorkflowConfig. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields
+     * Updates a single WorkflowConfig. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

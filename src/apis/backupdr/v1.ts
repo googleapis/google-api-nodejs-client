@@ -6962,7 +6962,7 @@ export namespace backupdr_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will use 100 as default. Maximum value is 500 and values above 500 will be coerced to 500.
      */
     pageSize?: number;
     /**

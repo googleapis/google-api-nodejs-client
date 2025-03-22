@@ -11063,7 +11063,7 @@
       }
     }
   },
-  "revision": "20250312",
+  "revision": "20250313",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -14018,7 +14018,7 @@
           "type": "string"
         },
         "targetProjectId": {
-          "description": "Required. The ID of the project containing the private DNS zone.",
+          "description": "Required. The ID of the project that contains the producer VPC network.",
           "type": "string"
         }
       },

@@ -276,7 +276,7 @@ export namespace verifiedaccess_v2 {
      */
     systemDnsServers?: string[] | null;
     /**
-     * Output only. Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled. Available on Windows only.
+     * Output only. Deprecated. The corresponding policy is now deprecated. Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled. Available on Windows only.
      */
     thirdPartyBlockingEnabled?: boolean | null;
     /**

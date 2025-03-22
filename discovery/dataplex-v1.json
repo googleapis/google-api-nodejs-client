@@ -6257,7 +6257,7 @@
       }
     }
   },
-  "revision": "20250307",
+  "revision": "20250313",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -7902,7 +7902,7 @@
       "id": "GoogleCloudDataplexV1DataQualityDimension",
       "properties": {
         "name": {
-          "description": "The dimension name a rule belongs to. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"FRESHNESS\", \"VOLUME\"",
+          "description": "Optional. The dimension name a rule belongs to. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.",
           "type": "string"
         }
       },
@@ -7918,7 +7918,8 @@
           "readOnly": true
         },
         "passed": {
-          "description": "Whether the dimension passed or failed.",
+          "description": "Output only. Whether the dimension passed or failed.",
+          "readOnly": true,
           "type": "boolean"
         },
         "score": {
@@ -7943,14 +7944,16 @@
           "type": "array"
         },
         "dimensions": {
-          "description": "A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.",
+          "description": "Output only. A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataQualityDimensionResult"
           },
+          "readOnly": true,
           "type": "array"
         },
         "passed": {
-          "description": "Overall data quality result -- true if all rules passed.",
+          "description": "Output only. Overall data quality result -- true if all rules passed.",
+          "readOnly": true,
           "type": "boolean"
         },
         "postScanActionsResult": {
@@ -7959,20 +7962,23 @@
           "readOnly": true
         },
         "rowCount": {
-          "description": "The count of rows processed.",
+          "description": "Output only. The count of rows processed.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "rules": {
-          "description": "A list of all the rules in a job, and their results.",
+          "description": "Output only. A list of all the rules in a job, and their results.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataQualityRuleResult"
           },
+          "readOnly": true,
           "type": "array"
         },
         "scannedData": {
           "$ref": "GoogleCloudDataplexV1ScannedData",
-          "description": "The data scanned for this result."
+          "description": "Output only. The data scanned for this result.",
+          "readOnly": true
         },
         "score": {
           "description": "Output only. The overall data quality score.The score ranges between 0, 100 (up to two decimal points).",
@@ -8147,36 +8153,43 @@
           "type": "string"
         },
         "evaluatedCount": {
-          "description": "The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.",
+          "description": "Output only. The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "failingRowsQuery": {
-          "description": "The query to find rows that did not pass this rule.This field is only valid for row-level type rules.",
+          "description": "Output only. The query to find rows that did not pass this rule.This field is only valid for row-level type rules.",
+          "readOnly": true,
           "type": "string"
         },
         "nullCount": {
-          "description": "The number of rows with null values in the specified column.",
+          "description": "Output only. The number of rows with null values in the specified column.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "passRatio": {
-          "description": "The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.",
+          "description": "Output only. The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "passed": {
-          "description": "Whether the rule passed or failed.",
+          "description": "Output only. Whether the rule passed or failed.",
+          "readOnly": true,
           "type": "boolean"
         },
         "passedCount": {
-          "description": "This field is not set for rule SqlAssertion.",
+          "description": "Output only. The number of rows which passed a rule evaluation.This field is only valid for row-level type rules.This field is not set for rule SqlAssertion.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "rule": {
           "$ref": "GoogleCloudDataplexV1DataQualityRule",
-          "description": "The rule specified in the DataQualitySpec, as is."
+          "description": "Output only. The rule specified in the DataQualitySpec, as is.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -9536,6 +9549,35 @@
           "description": "Output only. The time when the EntryGroup was last updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1EntryLinkEvent": {
+      "description": "Payload associated with Entry related log events.",
+      "id": "GoogleCloudDataplexV1EntryLinkEvent",
+      "properties": {
+        "eventType": {
+          "description": "The type of the event.",
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "ENTRY_LINK_CREATE",
+            "ENTRY_LINK_DELETE"
+          ],
+          "enumDescriptions": [
+            "An unspecified event type.",
+            "EntryLink create event.",
+            "EntryLink delete event."
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "The log message.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "Name of the resource.",
           "type": "string"
         }
       },

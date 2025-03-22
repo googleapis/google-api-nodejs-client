@@ -390,6 +390,7 @@ export {networkservices_v1beta1} from './apis/networkservices/v1beta1';
 export {notebooks_v1} from './apis/notebooks/v1';
 export {notebooks_v2} from './apis/notebooks/v2';
 export {oauth2_v2} from './apis/oauth2/v2';
+export {observability_v1} from './apis/observability/v1';
 export {ondemandscanning_v1} from './apis/ondemandscanning/v1';
 export {ondemandscanning_v1beta1} from './apis/ondemandscanning/v1beta1';
 export {oracledatabase_v1} from './apis/oracledatabase/v1';

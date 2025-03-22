@@ -1205,6 +1205,10 @@ export namespace netapp_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Optional. True if using Independent Scaling of capacity and performance (Hyperdisk) By default set to false
+     */
+    customPerformanceEnabled?: boolean | null;
+    /**
      * Optional. Description of the storage pool
      */
     description?: string | null;
@@ -1265,6 +1269,14 @@ export namespace netapp_v1beta1 {
      */
     stateDetails?: string | null;
     /**
+     * Optional. Custom Performance Total IOPS of the pool If not provided, it will be calculated based on the total_throughput_mibps
+     */
+    totalIops?: string | null;
+    /**
+     * Optional. Custom Performance Total Throughput of the pool (in MiB/s)
+     */
+    totalThroughputMibps?: string | null;
+    /**
      * Output only. Allocated size of all volumes in GIB in the storage pool
      */
     volumeCapacityGib?: string | null;
@@ -1290,7 +1302,7 @@ export namespace netapp_v1beta1 {
    */
   export interface Schema$TieringPolicy {
     /**
-     * Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 7-183. Default is 31.
+     * Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 2-183. Default is 31.
      */
     coolingThresholdDays?: number | null;
     /**

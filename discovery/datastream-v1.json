@@ -598,6 +598,11 @@
                       "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. When supplied with PSC Interface config, will get/create the tenant project required for the customer to allow list and won't actually create the private connection.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/privateConnections",
@@ -1250,7 +1255,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250316",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -2925,6 +2930,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "pscInterfaceConfig": {
+          "$ref": "PscInterfaceConfig",
+          "description": "PSC Interface Config."
+        },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -2975,6 +2984,17 @@
       "properties": {
         "privateConnection": {
           "description": "Required. A reference to a private connection resource. Format: `projects/{project}/locations/{location}/privateConnections/{name}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscInterfaceConfig": {
+      "description": "The PSC Interface configuration is used to create PSC Interface between Datastream and the consumer's PSC.",
+      "id": "PscInterfaceConfig",
+      "properties": {
+        "networkAttachment": {
+          "description": "Required. Fully qualified name of the Network Attachment that Datastream will connect to. Format: `projects/{{project}}/regions/{{region}}/networkAttachments/{{name}}`",
           "type": "string"
         }
       },

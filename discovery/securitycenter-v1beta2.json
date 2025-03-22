@@ -2003,7 +2003,7 @@
       }
     }
   },
-  "revision": "20250308",
+  "revision": "20250315",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2421,6 +2421,20 @@
         "storagePool": {
           "description": "The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, `DiskPoolOne`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Chokepoint": {
+      "description": "Contains details about a chokepoint, which is a resource or resource group where high-risk attack paths converge, based on [attack path simulations] (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).",
+      "id": "Chokepoint",
+      "properties": {
+        "relatedFindings": {
+          "description": "List of resource names of findings associated with this chokepoint. For example, organizations/123/sources/456/findings/789. This list will have at most 100 findings.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3459,6 +3473,10 @@
           "description": "The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: \"XSS_FLASH_INJECTION\"",
           "type": "string"
         },
+        "chokepoint": {
+          "$ref": "Chokepoint",
+          "description": "Contains details about a chokepoint, which is a resource or resource group where high-risk attack paths converge, based on [attack path simulations] (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations). This field cannot be updated. Its value is ignored in all update requests."
+        },
         "cloudArmor": {
           "$ref": "CloudArmor",
           "description": "Fields related to Cloud Armor findings."
@@ -3577,7 +3595,8 @@
             "SCC_ERROR",
             "POSTURE_VIOLATION",
             "TOXIC_COMBINATION",
-            "SENSITIVE_DATA_RISK"
+            "SENSITIVE_DATA_RISK",
+            "CHOKEPOINT"
           ],
           "enumDescriptions": [
             "Unspecified finding class.",
@@ -3588,7 +3607,8 @@
             "Describes an error that prevents some SCC functionality.",
             "Describes a potential security risk due to a change in the security posture.",
             "Describes a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination.",
-            "Describes a potential security risk to data assets that contain sensitive data."
+            "Describes a potential security risk to data assets that contain sensitive data.",
+            "Describes a resource or resource group where high risk attack paths converge, based on attack path simulations (APS)."
           ],
           "type": "string"
         },
@@ -5241,6 +5261,20 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2Chokepoint": {
+      "description": "Contains details about a chokepoint, which is a resource or resource group where high-risk attack paths converge, based on [attack path simulations] (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).",
+      "id": "GoogleCloudSecuritycenterV2Chokepoint",
+      "properties": {
+        "relatedFindings": {
+          "description": "List of resource names of findings associated with this chokepoint. For example, organizations/123/sources/456/findings/789. This list will have at most 100 findings.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2CloudArmor": {
       "description": "Fields related to Google Cloud Armor findings.",
       "id": "GoogleCloudSecuritycenterV2CloudArmor",
@@ -6104,6 +6138,10 @@
           "description": "Immutable. The additional taxonomy group within findings from a given source. Example: \"XSS_FLASH_INJECTION\"",
           "type": "string"
         },
+        "chokepoint": {
+          "$ref": "GoogleCloudSecuritycenterV2Chokepoint",
+          "description": "Contains details about a chokepoint, which is a resource or resource group where high-risk attack paths converge, based on [attack path simulations] (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations). This field cannot be updated. Its value is ignored in all update requests."
+        },
         "cloudArmor": {
           "$ref": "GoogleCloudSecuritycenterV2CloudArmor",
           "description": "Fields related to Cloud Armor findings."
@@ -6223,7 +6261,8 @@
             "SCC_ERROR",
             "POSTURE_VIOLATION",
             "TOXIC_COMBINATION",
-            "SENSITIVE_DATA_RISK"
+            "SENSITIVE_DATA_RISK",
+            "CHOKEPOINT"
           ],
           "enumDescriptions": [
             "Unspecified finding class.",
@@ -6234,7 +6273,8 @@
             "Describes an error that prevents some SCC functionality.",
             "Describes a potential security risk due to a change in the security posture.",
             "Describes a combination of security issues that represent a more severe security problem when taken together.",
-            "Describes a potential security risk to data assets that contain sensitive data."
+            "Describes a potential security risk to data assets that contain sensitive data.",
+            "Describes a resource or resource group where high risk attack paths converge, based on attack path simulations (APS)."
           ],
           "type": "string"
         },
@@ -6469,11 +6509,13 @@
           "description": "Type of group.",
           "enum": [
             "GROUP_TYPE_UNSPECIFIED",
-            "GROUP_TYPE_TOXIC_COMBINATION"
+            "GROUP_TYPE_TOXIC_COMBINATION",
+            "GROUP_TYPE_CHOKEPOINT"
           ],
           "enumDescriptions": [
             "Default value.",
-            "Group represents a toxic combination."
+            "Group represents a toxic combination.",
+            "Group represents a chokepoint."
           ],
           "type": "string"
         }
@@ -8577,11 +8619,13 @@
           "description": "Type of group.",
           "enum": [
             "GROUP_TYPE_UNSPECIFIED",
-            "GROUP_TYPE_TOXIC_COMBINATION"
+            "GROUP_TYPE_TOXIC_COMBINATION",
+            "GROUP_TYPE_CHOKEPOINT"
           ],
           "enumDescriptions": [
             "Default value.",
-            "Group represents a toxic combination."
+            "Group represents a toxic combination.",
+            "Group represents a chokepoint."
           ],
           "type": "string"
         }

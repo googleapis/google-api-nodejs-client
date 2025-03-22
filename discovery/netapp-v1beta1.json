@@ -2264,7 +2264,7 @@
       }
     }
   },
-  "revision": "20250129",
+  "revision": "20250312",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -3934,6 +3934,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "customPerformanceEnabled": {
+          "description": "Optional. True if using Independent Scaling of capacity and performance (Hyperdisk) By default set to false",
+          "type": "boolean"
+        },
         "description": {
           "description": "Optional. Description of the storage pool",
           "type": "string"
@@ -4047,6 +4051,16 @@
           "readOnly": true,
           "type": "string"
         },
+        "totalIops": {
+          "description": "Optional. Custom Performance Total IOPS of the pool If not provided, it will be calculated based on the total_throughput_mibps",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalThroughputMibps": {
+          "description": "Optional. Custom Performance Total Throughput of the pool (in MiB/s)",
+          "format": "int64",
+          "type": "string"
+        },
         "volumeCapacityGib": {
           "description": "Output only. Allocated size of all volumes in GIB in the storage pool",
           "format": "int64",
@@ -4083,7 +4097,7 @@
       "id": "TieringPolicy",
       "properties": {
         "coolingThresholdDays": {
-          "description": "Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 7-183. Default is 31.",
+          "description": "Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 2-183. Default is 31.",
           "format": "int32",
           "type": "integer"
         },

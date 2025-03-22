@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20250225",
+  "revision": "20250311",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Antivirus": {
@@ -468,7 +468,8 @@
           "type": "array"
         },
         "thirdPartyBlockingEnabled": {
-          "description": "Output only. Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled. Available on Windows only.",
+          "deprecated": true,
+          "description": "Output only. Deprecated. The corresponding policy is now deprecated. Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled. Available on Windows only.",
           "readOnly": true,
           "type": "boolean"
         },

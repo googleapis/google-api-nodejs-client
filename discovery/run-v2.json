@@ -1863,7 +1863,7 @@
       }
     }
   },
-  "revision": "20250309",
+  "revision": "20250314",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -3365,6 +3365,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "gpuZonalRedundancyDisabled": {
+          "description": "Optional. Output only. True if GPU zonal redundancy is disabled on this revision.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -3571,6 +3576,10 @@
             "Uses Second Generation environment."
           ],
           "type": "string"
+        },
+        "gpuZonalRedundancyDisabled": {
+          "description": "Optional. True if GPU zonal redundancy is disabled on this revision.",
+          "type": "boolean"
         },
         "healthCheckDisabled": {
           "description": "Optional. Disables health checking containers during deployment.",
@@ -6543,7 +6552,6 @@
       "type": "object"
     },
     "Proto2BridgeMessageSet": {
-      "description": "This is proto2's version of MessageSet.",
       "id": "Proto2BridgeMessageSet",
       "properties": {},
       "type": "object"

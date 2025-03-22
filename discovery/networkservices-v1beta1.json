@@ -470,6 +470,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/endpointPolicies",
@@ -851,6 +856,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/grpcRoutes",
@@ -1008,6 +1018,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/httpRoutes",
@@ -2161,6 +2176,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/tcpRoutes",
@@ -2318,6 +2338,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/tlsRoutes",
@@ -2666,7 +2691,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250311",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuthzExtension": {
@@ -2878,6 +2903,10 @@
       "description": "A single extension in the chain to execute for the matching request.",
       "id": "ExtensionChainExtension",
       "properties": {
+        "allowDynamicForwarding": {
+          "description": "Optional. When set to `TRUE`, the response from an extension service is allowed to set the `com.google.envoy.dynamic_forwarding` namespace in the dynamic metadata. This field is not supported for plugin extensions. Setting it results in a validation error.",
+          "type": "boolean"
+        },
         "authority": {
           "description": "Optional. The `:authority` header in the gRPC request sent from Envoy to the extension service. Required for Callout extensions. This field is not supported for plugin extensions. Setting it results in a validation error.",
           "type": "string"
@@ -2898,7 +2927,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google....`. For example: `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`. The following variables are supported in the metadata: `{forwarding_rule_id}` - substituted with the forwarding rule's fully qualified resource name. This field is not supported for plugin extensions. Setting it results in a validation error.",
+          "description": "Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google....`. For example: `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`. The following variables are supported in the metadata: `{forwarding_rule_id}` - substituted with the forwarding rule's fully qualified resource name. This field is subject to following limitations: * The total size of the metadata must be less than 1KiB. * The total number of keys in the metadata must be less than 20. * The length of each key must be less than 64 characters. * The length of each value must be less than 1024 characters. * All values must be strings. This field is not supported for plugin extensions. Setting it results in a validation error.",
           "type": "object"
         },
         "name": {
@@ -4157,6 +4186,13 @@
         "nextPageToken": {
           "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4225,6 +4261,13 @@
         "nextPageToken": {
           "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4243,6 +4286,13 @@
         "nextPageToken": {
           "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4447,6 +4497,13 @@
             "$ref": "TcpRoute"
           },
           "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4465,6 +4522,13 @@
             "$ref": "TlsRoute"
           },
           "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4476,6 +4540,13 @@
         "nextPageToken": {
           "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "wasmPluginVersions": {
           "description": "List of `WasmPluginVersion` resources.",
@@ -4494,6 +4565,13 @@
         "nextPageToken": {
           "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "wasmPlugins": {
           "description": "List of `WasmPlugin` resources.",
@@ -4798,7 +4876,7 @@
       "type": "object"
     },
     "ServiceBinding": {
-      "description": "ServiceBinding can be used to: - Bind a Service Directory Service to be used in a BackendService resource. - Bind a Private Service Connect producer service to be used in consumer Cloud Service Mesh or Application Load Balancers.",
+      "description": "ServiceBinding can be used to: - Bind a Service Directory Service to be used in a BackendService resource. This feature will be deprecated soon. - Bind a Private Service Connect producer service to be used in consumer Cloud Service Mesh or Application Load Balancers.",
       "id": "ServiceBinding",
       "properties": {
         "createTime": {
@@ -4823,11 +4901,11 @@
           "type": "string"
         },
         "service": {
-          "description": "Optional. The full Service Directory Service name of the format `projects/*/locations/*/namespaces/*/services/*`. This field must be set.",
+          "description": "Optional. The full Service Directory Service name of the format `projects/*/locations/*/namespaces/*/services/*`. This field is for Service Directory integration which will be deprecated soon.",
           "type": "string"
         },
         "serviceId": {
-          "description": "Output only. The unique identifier of the Service Directory Service against which the ServiceBinding resource is validated. This is populated when the Service Binding resource is used in another resource (like Backend Service). This is of the UUID4 format.",
+          "description": "Output only. The unique identifier of the Service Directory Service against which the ServiceBinding resource is validated. This is populated when the Service Binding resource is used in another resource (like Backend Service). This is of the UUID4 format. This field is for Service Directory integration which will be deprecated soon.",
           "readOnly": true,
           "type": "string"
         },
@@ -5170,7 +5248,7 @@
           "type": "string"
         },
         "weight": {
-          "description": "Optional. Specifies the proportion of requests forwareded to the backend referenced by the service_name field. This is computed as: - weight/Sum(weights in destinations) Weights in all destinations does not need to sum up to 100.",
+          "description": "Optional. Specifies the proportion of requests forwarded to the backend referenced by the service_name field. This is computed as: - weight/Sum(weights in destinations) Weights in all destinations does not need to sum up to 100.",
           "format": "int32",
           "type": "integer"
         }
