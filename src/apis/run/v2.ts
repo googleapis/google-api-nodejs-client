@@ -1105,6 +1105,10 @@ export namespace run_v2 {
      */
     generation?: string | null;
     /**
+     * Optional. Output only. True if GPU zonal redundancy is disabled on this revision.
+     */
+    gpuZonalRedundancyDisabled?: boolean | null;
+    /**
      * Output only. Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels.
      */
     labels?: {[key: string]: string} | null;
@@ -1235,6 +1239,10 @@ export namespace run_v2 {
      * Optional. The sandbox environment to host this Revision.
      */
     executionEnvironment?: string | null;
+    /**
+     * Optional. True if GPU zonal redundancy is disabled on this revision.
+     */
+    gpuZonalRedundancyDisabled?: boolean | null;
     /**
      * Optional. Disables health checking containers during deployment.
      */
@@ -3267,9 +3275,6 @@ export namespace run_v2 {
      */
     title?: string | null;
   }
-  /**
-   * This is proto2's version of MessageSet.
-   */
   export interface Schema$Proto2BridgeMessageSet {}
   /**
    * Wire-format for a Status object
