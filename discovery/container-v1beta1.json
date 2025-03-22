@@ -2685,7 +2685,7 @@
       }
     }
   },
-  "revision": "20250225",
+  "revision": "20250311",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3076,7 +3076,7 @@
           "type": "string"
         },
         "insecureKubeletReadonlyPortEnabled": {
-          "description": "Enable or disable Kubelet read only port.",
+          "description": "DEPRECATED. Use NodePoolAutoConfig.NodeKubeletConfig instead.",
           "type": "boolean"
         },
         "management": {
@@ -3600,7 +3600,7 @@
           "description": "Monitoring configuration for the cluster."
         },
         "monitoringService": {
-          "description": "The monitoring service the cluster should use to write metrics. Currently available options: * \"monitoring.googleapis.com/kubernetes\" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
+          "description": "The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
           "type": "string"
         },
         "name": {
@@ -4074,7 +4074,7 @@
           "description": "The desired monitoring configuration."
         },
         "desiredMonitoringService": {
-          "description": "The monitoring service the cluster should use to write metrics. Currently available options: * \"monitoring.googleapis.com/kubernetes\" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
+          "description": "The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
           "type": "string"
         },
         "desiredNetworkPerformanceConfig": {
@@ -6211,7 +6211,7 @@
           "description": "Parameters for containerd customization."
         },
         "diskSizeGb": {
-          "description": "Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.",
+          "description": "Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. TODO(b/395671893) - Deprecate disk_size_gb and disk_type fields. If unspecified, the default disk size is 100GB.",
           "format": "int32",
           "type": "integer"
         },
@@ -7836,6 +7836,13 @@
           "description": "If this field is specified, it means there are manual steps that the user must take to make their clusters safe.",
           "type": "boolean"
         },
+        "mitigatedVersions": {
+          "description": "The GKE versions where this vulnerability is mitigated.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "patchedVersions": {
           "description": "The GKE versions where this vulnerability is patched.",
           "items": {
@@ -8201,7 +8208,7 @@
           "type": "string"
         },
         "monitoringService": {
-          "description": "Required. The monitoring service the cluster should use to write metrics. Currently available options: * \"monitoring.googleapis.com/kubernetes\" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
+          "description": "Required. The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
           "type": "string"
         },
         "name": {
@@ -8886,6 +8893,20 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "startType": {
+          "description": "The start type of the upgrade.",
+          "enum": [
+            "START_TYPE_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL"
+          ],
+          "enumDescriptions": [
+            "Upgrade start type is unspecified.",
+            "Upgrade started automatically.",
+            "Upgrade started manually."
+          ],
+          "type": "string"
+        },
         "state": {
           "description": "Output only. The state of the upgrade.",
           "enum": [
@@ -9214,11 +9235,11 @@
       "type": "object"
     },
     "WindowsNodeConfig": {
-      "description": "Parameters that can be configured on Windows nodes. Windows Node Config that define the parameters that will be used to configure the Windows node pool settings",
+      "description": "Parameters that can be configured on Windows nodes. Windows Node Config that define the parameters that will be used to configure the Windows node pool settings.",
       "id": "WindowsNodeConfig",
       "properties": {
         "osVersion": {
-          "description": "OSVersion specifies the Windows node config to be used on the node",
+          "description": "OSVersion specifies the Windows node config to be used on the node.",
           "enum": [
             "OS_VERSION_UNSPECIFIED",
             "OS_VERSION_LTSC2019",
@@ -9226,8 +9247,8 @@
           ],
           "enumDescriptions": [
             "When OSVersion is not specified",
-            "LTSC2019 specifies to use LTSC2019 as the Windows Servercore Base Image",
-            "LTSC2022 specifies to use LTSC2022 as the Windows Servercore Base Image"
+            "LTSC2019 specifies to use LTSC2019 as the Windows Servercore Base Image.",
+            "LTSC2022 specifies to use LTSC2022 as the Windows Servercore Base Image."
           ],
           "type": "string"
         }
