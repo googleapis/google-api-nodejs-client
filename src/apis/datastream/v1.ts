@@ -1431,6 +1431,10 @@ export namespace datastream_v1 {
      */
     name?: string | null;
     /**
+     * PSC Interface Config.
+     */
+    pscInterfaceConfig?: Schema$PscInterfaceConfig;
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -1459,6 +1463,15 @@ export namespace datastream_v1 {
      * Required. A reference to a private connection resource. Format: `projects/{project\}/locations/{location\}/privateConnections/{name\}`
      */
     privateConnection?: string | null;
+  }
+  /**
+   * The PSC Interface configuration is used to create PSC Interface between Datastream and the consumer's PSC.
+   */
+  export interface Schema$PscInterfaceConfig {
+    /**
+     * Required. Fully qualified name of the Network Attachment that Datastream will connect to. Format: `projects/{{project\}\}/regions/{{region\}\}/networkAttachments/{{name\}\}`
+     */
+    networkAttachment?: string | null;
   }
   /**
    * The route resource is the child of the private connection resource, used for defining a route for a private connection.
@@ -3903,6 +3916,10 @@ export namespace datastream_v1 {
      * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+    /**
+     * Optional. When supplied with PSC Interface config, will get/create the tenant project required for the customer to allow list and won't actually create the private connection.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
