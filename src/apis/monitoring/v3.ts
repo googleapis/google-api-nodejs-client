@@ -2375,6 +2375,10 @@ export namespace monitoring_v3 {
      */
     contentMatchers?: Schema$ContentMatcher[];
     /**
+     * Whether the check is disabled or not.
+     */
+    disabled?: boolean | null;
+    /**
      * A human-friendly name for the Uptime check configuration. The display name should be unique within a Cloud Monitoring Workspace in order to make it easier to identify; however, uniqueness is not enforced. Required.
      */
     displayName?: string | null;
