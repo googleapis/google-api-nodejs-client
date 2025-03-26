@@ -16,7 +16,7 @@
 
 set -eo pipefail
 
-# build jsdocs (Python is installed on the Node 10 docker image).
+# build jsdocs (Python is installed on the Node 18 docker image).
 if [[ -z "$CREDENTIALS" ]]; then
   # if CREDENTIALS are explicitly set, assume we're testing locally
   # and don't set NPM_CONFIG_PREFIX.
