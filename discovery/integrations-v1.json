@@ -1206,6 +1206,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "enableNaturalLanguageQueryUnderstanding": {
+                      "description": "Optional. Whether to enable natural language query understanding.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "filter": {
                       "description": "Optional. The pre-filter to be applied to the search. This should follow the expressions defined in https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata. For example, \"status:ANY(\"ACTIVE\")\" will return all the resources whose status contains the \"ACTIVE\".",
                       "location": "query",
@@ -4546,7 +4551,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250316",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -10754,6 +10759,10 @@
           "description": "Description of what the client is used for",
           "type": "string"
         },
+        "enableHttpCall": {
+          "description": "Optional. Indicates the client enables making HTTP call.",
+          "type": "boolean"
+        },
         "enableInternalIp": {
           "description": "Optional. Indicates the client enables internal IP feature, this is applicable for internal clients only.",
           "type": "boolean"
@@ -13109,6 +13118,10 @@
         },
         "createSampleWorkflows": {
           "description": "Optional. Indicates if sample workflow should be created along with provisioning",
+          "type": "boolean"
+        },
+        "enableHttpCall": {
+          "description": "Optional. Indicates if the client should be allowed to make HTTP calls.",
           "type": "boolean"
         },
         "provisionGmek": {
