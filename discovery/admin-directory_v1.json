@@ -1011,7 +1011,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id}/printServers/{print_server.id}`",
+                      "description": "Identifier. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id}/printServers/{print_server.id}`",
                       "location": "path",
                       "pattern": "^customers/[^/]+/chrome/printServers/[^/]+$",
                       "required": true,
@@ -1284,7 +1284,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "The resource name of the Printer object, in the format customers/{customer-id}/printers/{printer-id} (During printer creation leave empty)",
+                      "description": "Identifier. The resource name of the Printer object, in the format customers/{customer-id}/printers/{printer-id} (During printer creation leave empty)",
                       "location": "path",
                       "pattern": "^customers/[^/]+/chrome/printers/[^/]+$",
                       "required": true,
@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20250217",
+  "revision": "20250325",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -7202,7 +7202,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id}/printServers/{print_server.id}`",
+          "description": "Identifier. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id}/printServers/{print_server.id}`",
           "type": "string"
         },
         "orgUnitId": {
@@ -7312,7 +7312,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the Printer object, in the format customers/{customer-id}/printers/{printer-id} (During printer creation leave empty)",
+          "description": "Identifier. The resource name of the Printer object, in the format customers/{customer-id}/printers/{printer-id} (During printer creation leave empty)",
           "type": "string"
         },
         "orgUnitId": {
