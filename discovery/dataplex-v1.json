@@ -602,6 +602,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
                   "location": "query",
@@ -6257,7 +6263,7 @@
       }
     }
   },
-  "revision": "20250307",
+  "revision": "20250325",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -6860,7 +6866,7 @@
           "description": "Optional. Configuration for Json data."
         },
         "schedule": {
-          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.",
+          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes.To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.",
           "type": "string"
         }
       },
@@ -7431,6 +7437,11 @@
           "$ref": "GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing",
           "description": "Output only. Configuration for metadata publishing.",
           "readOnly": true
+        },
+        "scanStatistics": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoveryResultScanStatistics",
+          "description": "Output only. Statistics of the DataDiscoveryScan.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -7443,6 +7454,63 @@
           "description": "Output only. The BigQuery dataset the discovered tables are published to.",
           "readOnly": true,
           "type": "string"
+        },
+        "location": {
+          "description": "Output only. The location of the BigQuery publishing dataset.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDiscoveryResultScanStatistics": {
+      "description": "Statistics of the DataDiscoveryScan.",
+      "id": "GoogleCloudDataplexV1DataDiscoveryResultScanStatistics",
+      "properties": {
+        "dataProcessedBytes": {
+          "description": "The data processed in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "filesExcluded": {
+          "description": "The number of files excluded.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "filesetsCreated": {
+          "description": "The number of filesets created.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "filesetsDeleted": {
+          "description": "The number of filesets deleted.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "filesetsUpdated": {
+          "description": "The number of filesets updated.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "scannedFileCount": {
+          "description": "The number of files scanned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "tablesCreated": {
+          "description": "The number of tables created.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "tablesDeleted": {
+          "description": "The number of tables deleted.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "tablesUpdated": {
+          "description": "The number of tables updated.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -7902,7 +7970,7 @@
       "id": "GoogleCloudDataplexV1DataQualityDimension",
       "properties": {
         "name": {
-          "description": "The dimension name a rule belongs to. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"FRESHNESS\", \"VOLUME\"",
+          "description": "Optional. The dimension name a rule belongs to. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.",
           "type": "string"
         }
       },
@@ -7918,7 +7986,8 @@
           "readOnly": true
         },
         "passed": {
-          "description": "Whether the dimension passed or failed.",
+          "description": "Output only. Whether the dimension passed or failed.",
+          "readOnly": true,
           "type": "boolean"
         },
         "score": {
@@ -7943,14 +8012,16 @@
           "type": "array"
         },
         "dimensions": {
-          "description": "A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.",
+          "description": "Output only. A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataQualityDimensionResult"
           },
+          "readOnly": true,
           "type": "array"
         },
         "passed": {
-          "description": "Overall data quality result -- true if all rules passed.",
+          "description": "Output only. Overall data quality result -- true if all rules passed.",
+          "readOnly": true,
           "type": "boolean"
         },
         "postScanActionsResult": {
@@ -7959,20 +8030,23 @@
           "readOnly": true
         },
         "rowCount": {
-          "description": "The count of rows processed.",
+          "description": "Output only. The count of rows processed.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "rules": {
-          "description": "A list of all the rules in a job, and their results.",
+          "description": "Output only. A list of all the rules in a job, and their results.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataQualityRuleResult"
           },
+          "readOnly": true,
           "type": "array"
         },
         "scannedData": {
           "$ref": "GoogleCloudDataplexV1ScannedData",
-          "description": "The data scanned for this result."
+          "description": "Output only. The data scanned for this result.",
+          "readOnly": true
         },
         "score": {
           "description": "Output only. The overall data quality score.The score ranges between 0, 100 (up to two decimal points).",
@@ -8147,36 +8221,43 @@
           "type": "string"
         },
         "evaluatedCount": {
-          "description": "The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.",
+          "description": "Output only. The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "failingRowsQuery": {
-          "description": "The query to find rows that did not pass this rule.This field is only valid for row-level type rules.",
+          "description": "Output only. The query to find rows that did not pass this rule.This field is only valid for row-level type rules.",
+          "readOnly": true,
           "type": "string"
         },
         "nullCount": {
-          "description": "The number of rows with null values in the specified column.",
+          "description": "Output only. The number of rows with null values in the specified column.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "passRatio": {
-          "description": "The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.",
+          "description": "Output only. The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "passed": {
-          "description": "Whether the rule passed or failed.",
+          "description": "Output only. Whether the rule passed or failed.",
+          "readOnly": true,
           "type": "boolean"
         },
         "passedCount": {
-          "description": "This field is not set for rule SqlAssertion.",
+          "description": "Output only. The number of rows which passed a rule evaluation.This field is only valid for row-level type rules.This field is not set for rule SqlAssertion.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "rule": {
           "$ref": "GoogleCloudDataplexV1DataQualityRule",
-          "description": "The rule specified in the DataQualitySpec, as is."
+          "description": "Output only. The rule specified in the DataQualitySpec, as is.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -9541,6 +9622,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1EntryLinkEvent": {
+      "description": "Payload associated with Entry related log events.",
+      "id": "GoogleCloudDataplexV1EntryLinkEvent",
+      "properties": {
+        "eventType": {
+          "description": "The type of the event.",
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "ENTRY_LINK_CREATE",
+            "ENTRY_LINK_DELETE"
+          ],
+          "enumDescriptions": [
+            "An unspecified event type.",
+            "EntryLink create event.",
+            "EntryLink delete event."
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "The log message.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "Name of the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1EntrySource": {
       "description": "Information related to the source system of the data resource that is represented by the entry.",
       "id": "GoogleCloudDataplexV1EntrySource",
@@ -10817,6 +10927,15 @@
           "readOnly": true,
           "type": "string"
         },
+        "exportResult": {
+          "$ref": "GoogleCloudDataplexV1MetadataJobExportJobResult",
+          "description": "Output only. Export job result.",
+          "readOnly": true
+        },
+        "exportSpec": {
+          "$ref": "GoogleCloudDataplexV1MetadataJobExportJobSpec",
+          "description": "Export job specification."
+        },
         "importResult": {
           "$ref": "GoogleCloudDataplexV1MetadataJobImportJobResult",
           "description": "Output only. Import job result.",
@@ -10847,11 +10966,13 @@
           "description": "Required. Metadata job type.",
           "enum": [
             "TYPE_UNSPECIFIED",
-            "IMPORT"
+            "IMPORT",
+            "EXPORT"
           ],
           "enumDescriptions": [
             "Unspecified.",
-            "Import job."
+            "Import job.",
+            "Export job type."
           ],
           "type": "string"
         },
@@ -10865,6 +10986,78 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1MetadataJobExportJobResult": {
+      "description": "Export Job Results. The result is based on the snapshot at the time when the job is created.",
+      "id": "GoogleCloudDataplexV1MetadataJobExportJobResult",
+      "properties": {
+        "errorMessage": {
+          "description": "Output only. The error message if the export job failed.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "exportedEntries": {
+          "description": "Output only. The number of entries that have been exported.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1MetadataJobExportJobSpec": {
+      "description": "Export job specification.",
+      "id": "GoogleCloudDataplexV1MetadataJobExportJobSpec",
+      "properties": {
+        "outputPath": {
+          "description": "Required. The root path of the exported metadata. Must be in the format: \"gs://\" Or specify a customized prefix after the bucket: \"gs://///.../\". The length limit of the customized prefix is 128 characters. The bucket must be in the same VPC-SC perimeter with the job.",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "GoogleCloudDataplexV1MetadataJobExportJobSpecExportJobScope",
+          "description": "Required. Selects the entries to be exported by this job."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1MetadataJobExportJobSpecExportJobScope": {
+      "description": "Scope of the export job.",
+      "id": "GoogleCloudDataplexV1MetadataJobExportJobSpecExportJobScope",
+      "properties": {
+        "aspectTypes": {
+          "description": "The aspect types that are in scope for the export job. Optional. If specified, only aspects of the specified types will be affected by the job. Must follow the format: \"projects//locations//aspectTypes/\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entryGroups": {
+          "description": "The entry groups that are in scope for the export job. Optional. If specified, only entries in the specified entry groups will be exported by the job. Must be in the VPC-SC perimeter of the job. The location of the entry groups must be the same as the job. Either projects or entry_groups can be specified when organization_level_export is set to false. Must follow the format: \"projects//locations//entryGroups/\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entryTypes": {
+          "description": "If specified, only entries of the specified types will be affected by the job. Must follow the format: \"projects//locations//entryTypes/\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "organizationLevel": {
+          "description": "Indicating if it is an organization level export job. - When set to true, exports all entries from entry groups and projects sharing the same organization id of the Metadata Job. Only projects and entry groups in the VPC-SC perimeter will be exported. The projects and entry groups are ignored. - When set to false, one of the projects or entry groups must be specified. - Default to false.",
+          "type": "boolean"
+        },
+        "projects": {
+          "description": "The projects that are in the scope of the export job. Can either be project numbers or project IDs. If specified, only the entries from the specified projects will be exported. The projects must be in the same organization and in the VPC-SC perimeter. Either projects or entry_groups can be specified when organization_level_export is set to false. Must follow the format: \"projects/\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -12229,7 +12422,7 @@
           "description": "Optional. Configuration for Json data."
         },
         "schedule": {
-          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.",
+          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes.To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.",
           "type": "string"
         }
       },
