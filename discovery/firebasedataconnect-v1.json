@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "firebasedataconnect:v1beta",
+  "id": "firebasedataconnect:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://firebasedataconnect.mtls.googleapis.com/",
   "name": "firebasedataconnect",
@@ -111,7 +111,7 @@
           "methods": {
             "get": {
               "description": "Gets information about a location.",
-              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
               "httpMethod": "GET",
               "id": "firebasedataconnect.projects.locations.get",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "Location"
               },
@@ -136,7 +136,7 @@
             },
             "list": {
               "description": "Lists information about the supported locations for this service.",
-              "flatPath": "v1beta/projects/{projectsId}/locations",
+              "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "firebasedataconnect.projects.locations.list",
               "parameterOrder": [
@@ -173,7 +173,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta/{+name}/locations",
+              "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
               },
@@ -187,7 +187,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "firebasedataconnect.projects.locations.operations.cancel",
                   "parameterOrder": [
@@ -202,7 +202,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}:cancel",
+                  "path": "v1/{+name}:cancel",
                   "request": {
                     "$ref": "CancelOperationRequest"
                   },
@@ -215,7 +215,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "firebasedataconnect.projects.locations.operations.delete",
                   "parameterOrder": [
@@ -230,7 +230,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -240,7 +240,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "firebasedataconnect.projects.locations.operations.get",
                   "parameterOrder": [
@@ -255,7 +255,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -265,7 +265,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "firebasedataconnect.projects.locations.operations.list",
                   "parameterOrder": [
@@ -296,7 +296,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}/operations",
+                  "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -310,7 +310,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new Service in a given project and location.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services",
                   "httpMethod": "POST",
                   "id": "firebasedataconnect.projects.locations.services.create",
                   "parameterOrder": [
@@ -340,7 +340,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta/{+parent}/services",
+                  "path": "v1/{+parent}/services",
                   "request": {
                     "$ref": "Service"
                   },
@@ -353,7 +353,7 @@
                 },
                 "delete": {
                   "description": "Deletes a single Service.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}",
                   "httpMethod": "DELETE",
                   "id": "firebasedataconnect.projects.locations.services.delete",
                   "parameterOrder": [
@@ -393,7 +393,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -403,7 +403,7 @@
                 },
                 "executeGraphql": {
                   "description": "Execute any GraphQL query and mutation against the Firebase Data Connect's generated GraphQL schema. Grants full read and write access to the connected data sources. Note: Use introspection query to explore the generated GraphQL schema.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:executeGraphql",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:executeGraphql",
                   "httpMethod": "POST",
                   "id": "firebasedataconnect.projects.locations.services.executeGraphql",
                   "parameterOrder": [
@@ -418,7 +418,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}:executeGraphql",
+                  "path": "v1/{+name}:executeGraphql",
                   "request": {
                     "$ref": "GraphqlRequest"
                   },
@@ -431,7 +431,7 @@
                 },
                 "executeGraphqlRead": {
                   "description": "Execute any GraphQL query against the Firebase Data Connect's generated GraphQL schema. Grants full read to the connected data sources. `ExecuteGraphqlRead` is identical to `ExecuteGraphql` except it only accepts read-only query.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:executeGraphqlRead",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:executeGraphqlRead",
                   "httpMethod": "POST",
                   "id": "firebasedataconnect.projects.locations.services.executeGraphqlRead",
                   "parameterOrder": [
@@ -446,7 +446,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}:executeGraphqlRead",
+                  "path": "v1/{+name}:executeGraphqlRead",
                   "request": {
                     "$ref": "GraphqlRequest"
                   },
@@ -459,7 +459,7 @@
                 },
                 "get": {
                   "description": "Gets details of a single Service.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}",
                   "httpMethod": "GET",
                   "id": "firebasedataconnect.projects.locations.services.get",
                   "parameterOrder": [
@@ -474,7 +474,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Service"
                   },
@@ -484,7 +484,7 @@
                 },
                 "list": {
                   "description": "Lists Services in a given project and location.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services",
                   "httpMethod": "GET",
                   "id": "firebasedataconnect.projects.locations.services.list",
                   "parameterOrder": [
@@ -520,7 +520,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+parent}/services",
+                  "path": "v1/{+parent}/services",
                   "response": {
                     "$ref": "ListServicesResponse"
                   },
@@ -530,7 +530,7 @@
                 },
                 "patch": {
                   "description": "Updates the parameters of a single Service.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}",
                   "httpMethod": "PATCH",
                   "id": "firebasedataconnect.projects.locations.services.patch",
                   "parameterOrder": [
@@ -566,7 +566,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Service"
                   },
@@ -583,7 +583,7 @@
                   "methods": {
                     "create": {
                       "description": "Creates a new Connector in a given project and location. The operations are validated against and must be compatible with the active schema. If the operations and schema are not compatible or if the schema is not present, this will result in an error.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors",
                       "httpMethod": "POST",
                       "id": "firebasedataconnect.projects.locations.services.connectors.create",
                       "parameterOrder": [
@@ -613,7 +613,7 @@
                           "type": "boolean"
                         }
                       },
-                      "path": "v1beta/{+parent}/connectors",
+                      "path": "v1/{+parent}/connectors",
                       "request": {
                         "$ref": "Connector"
                       },
@@ -626,7 +626,7 @@
                     },
                     "delete": {
                       "description": "Deletes a single Connector.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors/{connectorsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors/{connectorsId}",
                       "httpMethod": "DELETE",
                       "id": "firebasedataconnect.projects.locations.services.connectors.delete",
                       "parameterOrder": [
@@ -666,7 +666,7 @@
                           "type": "boolean"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Operation"
                       },
@@ -676,7 +676,7 @@
                     },
                     "executeMutation": {
                       "description": "Execute a predefined mutation in a Connector.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors/{connectorsId}:executeMutation",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors/{connectorsId}:executeMutation",
                       "httpMethod": "POST",
                       "id": "firebasedataconnect.projects.locations.services.connectors.executeMutation",
                       "parameterOrder": [
@@ -691,7 +691,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}:executeMutation",
+                      "path": "v1/{+name}:executeMutation",
                       "request": {
                         "$ref": "ExecuteMutationRequest"
                       },
@@ -704,7 +704,7 @@
                     },
                     "executeQuery": {
                       "description": "Execute a predefined query in a Connector.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors/{connectorsId}:executeQuery",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors/{connectorsId}:executeQuery",
                       "httpMethod": "POST",
                       "id": "firebasedataconnect.projects.locations.services.connectors.executeQuery",
                       "parameterOrder": [
@@ -719,7 +719,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}:executeQuery",
+                      "path": "v1/{+name}:executeQuery",
                       "request": {
                         "$ref": "ExecuteQueryRequest"
                       },
@@ -732,7 +732,7 @@
                     },
                     "get": {
                       "description": "Gets details of a single Connector.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors/{connectorsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors/{connectorsId}",
                       "httpMethod": "GET",
                       "id": "firebasedataconnect.projects.locations.services.connectors.get",
                       "parameterOrder": [
@@ -747,7 +747,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Connector"
                       },
@@ -757,7 +757,7 @@
                     },
                     "list": {
                       "description": "Lists Connectors in a given project and location.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors",
                       "httpMethod": "GET",
                       "id": "firebasedataconnect.projects.locations.services.connectors.list",
                       "parameterOrder": [
@@ -793,7 +793,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+parent}/connectors",
+                      "path": "v1/{+parent}/connectors",
                       "response": {
                         "$ref": "ListConnectorsResponse"
                       },
@@ -803,7 +803,7 @@
                     },
                     "patch": {
                       "description": "Updates the parameters of a single Connector, and creates a new ConnectorRevision with the updated Connector. The operations are validated against and must be compatible with the live schema. If the operations and schema are not compatible or if the schema is not present, this will result in an error.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors/{connectorsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/connectors/{connectorsId}",
                       "httpMethod": "PATCH",
                       "id": "firebasedataconnect.projects.locations.services.connectors.patch",
                       "parameterOrder": [
@@ -839,7 +839,7 @@
                           "type": "boolean"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "request": {
                         "$ref": "Connector"
                       },
@@ -856,7 +856,7 @@
                   "methods": {
                     "create": {
                       "description": "Creates a new Schema in a given project and location. Only creation of `schemas/main` is supported and calling create with any other schema ID will result in an error.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas",
                       "httpMethod": "POST",
                       "id": "firebasedataconnect.projects.locations.services.schemas.create",
                       "parameterOrder": [
@@ -886,7 +886,7 @@
                           "type": "boolean"
                         }
                       },
-                      "path": "v1beta/{+parent}/schemas",
+                      "path": "v1/{+parent}/schemas",
                       "request": {
                         "$ref": "Schema"
                       },
@@ -899,7 +899,7 @@
                     },
                     "delete": {
                       "description": "Deletes a single Schema. Because the schema and connectors must be compatible at all times, if this is called while any connectors are active, this will result in an error.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas/{schemasId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas/{schemasId}",
                       "httpMethod": "DELETE",
                       "id": "firebasedataconnect.projects.locations.services.schemas.delete",
                       "parameterOrder": [
@@ -939,7 +939,7 @@
                           "type": "boolean"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Operation"
                       },
@@ -949,7 +949,7 @@
                     },
                     "get": {
                       "description": "Gets details of a single Schema.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas/{schemasId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas/{schemasId}",
                       "httpMethod": "GET",
                       "id": "firebasedataconnect.projects.locations.services.schemas.get",
                       "parameterOrder": [
@@ -964,7 +964,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Schema"
                       },
@@ -974,7 +974,7 @@
                     },
                     "list": {
                       "description": "Lists Schemas in a given project and location. Note that only `schemas/main` is supported, so this will always return at most one Schema.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas",
                       "httpMethod": "GET",
                       "id": "firebasedataconnect.projects.locations.services.schemas.list",
                       "parameterOrder": [
@@ -1010,7 +1010,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+parent}/schemas",
+                      "path": "v1/{+parent}/schemas",
                       "response": {
                         "$ref": "ListSchemasResponse"
                       },
@@ -1020,7 +1020,7 @@
                     },
                     "patch": {
                       "description": "Updates the parameters of a single Schema, and creates a new SchemaRevision with the updated Schema.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas/{schemasId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/schemas/{schemasId}",
                       "httpMethod": "PATCH",
                       "id": "firebasedataconnect.projects.locations.services.schemas.patch",
                       "parameterOrder": [
@@ -1056,7 +1056,7 @@
                           "type": "boolean"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "request": {
                         "$ref": "Schema"
                       },
@@ -1844,6 +1844,6 @@
   },
   "servicePath": "",
   "title": "Firebase Data Connect API",
-  "version": "v1beta",
+  "version": "v1",
   "version_module": true
 }
