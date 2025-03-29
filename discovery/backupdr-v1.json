@@ -1680,7 +1680,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will use 100 as default. Maximum value is 500 and values above 500 will be coerced to 500.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1745,7 +1745,7 @@
       }
     }
   },
-  "revision": "20250305",
+  "revision": "20250317",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
