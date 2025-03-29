@@ -8010,7 +8010,7 @@
       }
     }
   },
-  "revision": "20250313",
+  "revision": "20250320",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -17407,7 +17407,6 @@
             "PARTNER_COST_TYPE_THIRD_PARTY_AD_SERVER",
             "PARTNER_COST_TYPE_TRUST_METRICS",
             "PARTNER_COST_TYPE_VIZU",
-            "PARTNER_COST_TYPE_ADLINGO_FEE",
             "PARTNER_COST_TYPE_CUSTOM_FEE_1",
             "PARTNER_COST_TYPE_CUSTOM_FEE_2",
             "PARTNER_COST_TYPE_CUSTOM_FEE_3",
@@ -17440,7 +17439,6 @@
             "The cost is charged for using a third-party ad server. Billed by the partner.",
             "The cost is charged for using TrustMetrics. Billed by the partner.",
             "The cost is charged for using Vizu. Billed by the partner.",
-            "The cost is charged for using AdLingo. Billed through DV360.",
             "The cost is charged as custom fee 1. Billed by the partner.",
             "The cost is charged as custom fee 2. Billed by the partner.",
             "The cost is charged as custom fee 3. Billed by the partner.",
