@@ -100,7 +100,7 @@ export namespace gamesManagement_v1management {
   }
 
   /**
-   * Google Play Game Management
+   * Google Play Games Services Management API
    *
    * The Google Play Games Management API allows developers to manage resources from the Google Play Game service.
    *
