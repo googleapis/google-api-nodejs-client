@@ -100,7 +100,7 @@ export namespace games_v1 {
   }
 
   /**
-   * Google Play Game Services
+   * Google Play Games Services API
    *
    * The Google Play Games Service allows developers to enhance games with social leaderboards, achievements, game state, sign-in with Google, and more.
    *
