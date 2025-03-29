@@ -1195,7 +1195,7 @@
       }
     }
   },
-  "revision": "20250219",
+  "revision": "20250311",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1605,7 +1605,7 @@
           "type": "integer"
         },
         "sourceSnapshot": {
-          "description": "Optional. Name of the snapshot to use as the source for the disk. If set, size_gb and fs_type must be empty.",
+          "description": "Optional. Name of the snapshot to use as the source for the disk. If set, size_gb and fs_type must be empty. Must be formatted as ext4 file system with no partitions.",
           "type": "string"
         }
       },
@@ -2325,7 +2325,7 @@
           "type": "string"
         },
         "degraded": {
-          "description": "Output only. Whether this workstation cluster is in degraded mode, in which case it may require user action to restore full functionality. Details can be found in conditions.",
+          "description": "Output only. Whether this workstation cluster is in degraded mode, in which case it may require user action to restore full functionality. The conditions field contains detailed information about the status of the cluster.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2379,7 +2379,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
           "type": "object"
         },
         "uid": {
@@ -2415,7 +2415,7 @@
           "type": "object"
         },
         "conditions": {
-          "description": "Output only. Status conditions describing the current resource state.",
+          "description": "Output only. Status conditions describing the workstation configuration's current state.",
           "items": {
             "$ref": "Status"
           },
@@ -2433,7 +2433,7 @@
           "type": "string"
         },
         "degraded": {
-          "description": "Output only. Whether this resource is degraded, in which case it may require user action to restore full functionality. See also the conditions field.",
+          "description": "Output only. Whether this workstation configuration is in degraded mode, in which case it may require user action to restore full functionality. The conditions field contains detailed information about the status of the configuration.",
           "readOnly": true,
           "type": "boolean"
         },
