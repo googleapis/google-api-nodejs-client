@@ -6528,6 +6528,10 @@ export namespace aiplatform_v1beta1 {
      */
     args?: {[key: string]: any} | null;
     /**
+     * Optional. The unique id of the function call. If populated, the client to execute the `function_call` and return the response with the matching `id`.
+     */
+    id?: string | null;
+    /**
      * Required. The name of the function to call. Matches [FunctionDeclaration.name].
      */
     name?: string | null;
@@ -6570,6 +6574,10 @@ export namespace aiplatform_v1beta1 {
    * The result output from a [FunctionCall] that contains a string representing the [FunctionDeclaration.name] and a structured JSON object containing any output from the function is used as context to the model. This should contain the result of a [FunctionCall] made based on model prediction.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FunctionResponse {
+    /**
+     * Optional. The id of the function call this response is for. Populated by the client to match the corresponding function call `id`.
+     */
+    id?: string | null;
     /**
      * Required. The name of the function to call. Matches [FunctionDeclaration.name] and [FunctionCall.name].
      */
@@ -7116,6 +7124,10 @@ export namespace aiplatform_v1beta1 {
    * Chunk from the web.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkWeb {
+    /**
+     * Domain of the (original) URI.
+     */
+    domain?: string | null;
     /**
      * Title of the chunk.
      */
@@ -14138,7 +14150,7 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string | null;
     /**
-     * Required. Configurations of the ReasoningEngine
+     * Optional. Configurations of the ReasoningEngine
      */
     spec?: Schema$GoogleCloudAiplatformV1beta1ReasoningEngineSpec;
     /**
@@ -14163,7 +14175,7 @@ export namespace aiplatform_v1beta1 {
      */
     deploymentSpec?: Schema$GoogleCloudAiplatformV1beta1ReasoningEngineSpecDeploymentSpec;
     /**
-     * Required. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes.
+     * Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes.
      */
     packageSpec?: Schema$GoogleCloudAiplatformV1beta1ReasoningEngineSpecPackageSpec;
   }
@@ -18240,7 +18252,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1SecretRef {
     /**
-     * Required. The name of the secret in Cloud Secret Manager. Format: {secret_name\} if the secret is in the same project. projects/{project\}/secrets/{secret_name\} if the secret is in a different project.
+     * Required. The name of the secret in Cloud Secret Manager. Format: {secret_name\}.
      */
     secret?: string | null;
     /**
@@ -30999,7 +31011,7 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
-     * Lists Annotations belongs to a dataitem This RPC is only available in InternalDatasetService. It is only used for exporting conversation data to CCAI Insights.
+     * Lists Annotations belongs to a dataitem.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
