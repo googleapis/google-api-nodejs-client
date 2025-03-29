@@ -555,6 +555,15 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Contains details about a chokepoint, which is a resource or resource group where high-risk attack paths converge, based on [attack path simulations] (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
+   */
+  export interface Schema$Chokepoint {
+    /**
+     * List of resource names of findings associated with this chokepoint. For example, organizations/123/sources/456/findings/789. This list will have at most 100 findings.
+     */
+    relatedFindings?: string[] | null;
+  }
+  /**
    * Fields related to Google Cloud Armor findings.
    */
   export interface Schema$CloudArmor {
@@ -1141,6 +1150,10 @@ export namespace securitycenter_v1beta1 {
      * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: "XSS_FLASH_INJECTION"
      */
     category?: string | null;
+    /**
+     * Contains details about a chokepoint, which is a resource or resource group where high-risk attack paths converge, based on [attack path simulations] (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations). This field cannot be updated. Its value is ignored in all update requests.
+     */
+    chokepoint?: Schema$Chokepoint;
     /**
      * Fields related to Cloud Armor findings.
      */
@@ -2469,6 +2482,15 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2BulkMuteFindingsResponse {}
   /**
+   * Contains details about a chokepoint, which is a resource or resource group where high-risk attack paths converge, based on [attack path simulations] (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Chokepoint {
+    /**
+     * List of resource names of findings associated with this chokepoint. For example, organizations/123/sources/456/findings/789. This list will have at most 100 findings.
+     */
+    relatedFindings?: string[] | null;
+  }
+  /**
    * Fields related to Google Cloud Armor findings.
    */
   export interface Schema$GoogleCloudSecuritycenterV2CloudArmor {
@@ -3042,6 +3064,10 @@ export namespace securitycenter_v1beta1 {
      * Immutable. The additional taxonomy group within findings from a given source. Example: "XSS_FLASH_INJECTION"
      */
     category?: string | null;
+    /**
+     * Contains details about a chokepoint, which is a resource or resource group where high-risk attack paths converge, based on [attack path simulations] (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations). This field cannot be updated. Its value is ignored in all update requests.
+     */
+    chokepoint?: Schema$GoogleCloudSecuritycenterV2Chokepoint;
     /**
      * Fields related to Cloud Armor findings.
      */
