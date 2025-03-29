@@ -1116,7 +1116,7 @@
       }
     }
   },
-  "revision": "20250219",
+  "revision": "20250318",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1383,6 +1383,13 @@
         "description": {
           "description": "A description of this resource.",
           "type": "string"
+        },
+        "excludeCidrRanges": {
+          "description": "Optional. ExcludeCidrRanges flag. Specifies a set of CIDR blocks that allows exclusion of particular CIDR ranges from the auto-allocation process, without having to reserve these blocks",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "immutable": {
           "description": "Optional. Immutable ranges cannot have their fields modified, except for labels and description.",
