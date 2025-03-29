@@ -2042,6 +2042,18 @@ export namespace dialogflow_v3 {
      */
     requestHeaders?: {[key: string]: string} | null;
     /**
+     * Optional. The SecretManager secret version resource storing the username:password pair for HTTP Basic authentication. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForUsernamePassword?: string | null;
+    /**
+     * Optional. The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both `request_headers` and `secret_versions_for_request_headers`, the value in `secret_versions_for_request_headers` will be used.
+     */
+    secretVersionsForRequestHeaders?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue;
+    } | null;
+    /**
      * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
      */
     serviceAgentAuth?: string | null;
@@ -2075,9 +2087,22 @@ export namespace dialogflow_v3 {
      */
     scopes?: string[] | null;
     /**
+     * Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForClientSecret?: string | null;
+    /**
      * Required. The token endpoint provided by the 3rd party platform to exchange an access token.
      */
     tokenEndpoint?: string | null;
+  }
+  /**
+   * Represents the value of an HTTP header stored in a SecretManager secret version.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue {
+    /**
+     * Required. The SecretManager secret version resource storing the header value. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersion?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -5840,6 +5865,18 @@ export namespace dialogflow_v3 {
      */
     requestHeaders?: {[key: string]: string} | null;
     /**
+     * Optional. The SecretManager secret version resource storing the username:password pair for HTTP Basic authentication. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForUsernamePassword?: string | null;
+    /**
+     * Optional. The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both `request_headers` and `secret_versions_for_request_headers`, the value in `secret_versions_for_request_headers` will be used.
+     */
+    secretVersionsForRequestHeaders?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue;
+    } | null;
+    /**
      * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
      */
     serviceAgentAuth?: string | null;
@@ -5873,9 +5910,22 @@ export namespace dialogflow_v3 {
      */
     scopes?: string[] | null;
     /**
+     * Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForClientSecret?: string | null;
+    /**
      * Required. The token endpoint provided by the 3rd party platform to exchange an access token.
      */
     tokenEndpoint?: string | null;
+  }
+  /**
+   * Represents the value of an HTTP header stored in a SecretManager secret version.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue {
+    /**
+     * Required. The SecretManager secret version resource storing the header value. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersion?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -6453,6 +6503,23 @@ export namespace dialogflow_v3 {
      * Optional. Suggested summary.
      */
     summarySuggestion?: Schema$GoogleCloudDialogflowV2beta1SummarySuggestion;
+    /**
+     * Optional. List of request and response for tool calls executed.
+     */
+    toolCallInfo?: Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo[];
+  }
+  /**
+   * Request and response for a tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo {
+    /**
+     * Required. Request for a tool call.
+     */
+    toolCall?: Schema$GoogleCloudDialogflowV2beta1ToolCall;
+    /**
+     * Required. Response for a tool call.
+     */
+    toolCallResult?: Schema$GoogleCloudDialogflowV2beta1ToolCallResult;
   }
   /**
    * Output only. Represents a notification sent to Pub/Sub subscribers for agent assistant events in a specific conversation.
@@ -8041,6 +8108,65 @@ export namespace dialogflow_v3 {
     dtmfEvents?: string[] | null;
   }
   /**
+   * Represents a call of a specific tool's action with the specified inputs.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ToolCall {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Output only. Create time of the tool call.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The action's input parameters.
+     */
+    inputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * The result of calling a tool's action.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ToolCallResult {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Only populated if the response content is utf-8 encoded.
+     */
+    content?: string | null;
+    /**
+     * Output only. Create time of the tool call result.
+     */
+    createTime?: string | null;
+    /**
+     * The tool call's error.
+     */
+    error?: Schema$GoogleCloudDialogflowV2beta1ToolCallResultError;
+    /**
+     * Only populated if the response content is not utf-8 encoded. (by definition byte fields are base64 encoded).
+     */
+    rawContent?: string | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * An error produced by the tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ToolCallResultError {
+    /**
+     * Optional. The error message of the function.
+     */
+    message?: string | null;
+  }
+  /**
    * The request message for a webhook call.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1WebhookRequest {
@@ -8474,6 +8600,23 @@ export namespace dialogflow_v3 {
      * Optional. Suggested summary.
      */
     summarySuggestion?: Schema$GoogleCloudDialogflowV2SummarySuggestion;
+    /**
+     * Optional. List of request and response for tool calls executed.
+     */
+    toolCallInfo?: Schema$GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo[];
+  }
+  /**
+   * Request and response for a tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo {
+    /**
+     * Required. Request for a tool call.
+     */
+    toolCall?: Schema$GoogleCloudDialogflowV2ToolCall;
+    /**
+     * Required. Response for a tool call.
+     */
+    toolCallResult?: Schema$GoogleCloudDialogflowV2ToolCallResult;
   }
   /**
    * Represents a notification sent to Cloud Pub/Sub subscribers for human agent assistant events in a specific conversation.
@@ -9706,6 +9849,65 @@ export namespace dialogflow_v3 {
     summary?: string | null;
   }
   /**
+   * Represents a call of a specific tool's action with the specified inputs.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ToolCall {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Output only. Create time of the tool call.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The action's input parameters.
+     */
+    inputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * The result of calling a tool's action.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ToolCallResult {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Only populated if the response content is utf-8 encoded.
+     */
+    content?: string | null;
+    /**
+     * Output only. Create time of the tool call result.
+     */
+    createTime?: string | null;
+    /**
+     * The tool call's error.
+     */
+    error?: Schema$GoogleCloudDialogflowV2ToolCallResultError;
+    /**
+     * Only populated if the response content is not utf-8 encoded. (by definition byte fields are base64 encoded).
+     */
+    rawContent?: string | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * An error produced by the tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ToolCallResultError {
+    /**
+     * Optional. The error message of the function.
+     */
+    message?: string | null;
+  }
+  /**
    * Metadata for a ConversationModels.UndeployConversationModel operation.
    */
   export interface Schema$GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata {
@@ -10167,6 +10369,10 @@ export namespace dialogflow_v3 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

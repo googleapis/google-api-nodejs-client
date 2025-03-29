@@ -1027,7 +1027,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250315",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AnalyticsHubSubscriptionInfo": {
@@ -1416,6 +1416,13 @@
         "location": {
           "description": "Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.",
           "type": "string"
+        },
+        "replicaLocations": {
+          "description": "Optional. The geographic locations where the dataset should be replicated. See https://cloud.google.com/bigquery/docs/locations for supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

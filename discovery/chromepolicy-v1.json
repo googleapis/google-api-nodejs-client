@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20241118",
+  "revision": "20250326",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyVersionsV1AdditionalTargetKeyName": {
@@ -1780,6 +1780,13 @@
         "name": {
           "description": "file name, relative to root of source tree",
           "type": "string"
+        },
+        "optionDependency": {
+          "description": "Names of files imported by this file purely for the purpose of providing option extensions. These are excluded from the dependency list above.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "package": {
           "description": "e.g. \"foo\", \"foo.bar\", etc.",

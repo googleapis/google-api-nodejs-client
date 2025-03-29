@@ -922,7 +922,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250319",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "APILayerServer": {
@@ -2830,6 +2830,13 @@
       "description": "Disk mount on the instance.",
       "id": "SapDiscoveryResourceInstancePropertiesDiskMount",
       "properties": {
+        "diskNames": {
+          "description": "Optional. Names of the disks providing this mount point.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "mountPoint": {
           "description": "Optional. Filesystem mount point.",
           "type": "string"

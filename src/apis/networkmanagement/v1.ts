@@ -316,7 +316,7 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$ConnectivityTest {
     /**
-     * Whether the test should skip firewall checking. If not provided, we assume false.
+     * Whether the analysis should skip firewall checking. Default value is false.
      */
     bypassFirewallChecks?: boolean | null;
     /**
@@ -328,7 +328,7 @@ export namespace networkmanagement_v1 {
      */
     description?: string | null;
     /**
-     * Required. Destination specification of the Connectivity Test. You can use a combination of destination IP address, Compute Engine VM instance, or VPC network to uniquely identify the destination location. Even if the destination IP address is not unique, the source IP location is unique. Usually, the analysis can infer the destination endpoint from route information. If the destination you specify is a VM instance and the instance has multiple network interfaces, then you must also specify either a destination IP address or VPC network to identify the destination interface. A reachability analysis proceeds even if the destination location is ambiguous. However, the result can include endpoints that you don't intend to test.
+     * Required. Destination specification of the Connectivity Test. You can use a combination of destination IP address, URI of a supported endpoint, project ID, or VPC network to identify the destination location. Reachability analysis proceeds even if the destination location is ambiguous. However, the test result might include endpoints or use a destination that you don't intend to test.
      */
     destination?: Schema$Endpoint;
     /**
@@ -368,7 +368,7 @@ export namespace networkmanagement_v1 {
      */
     roundTrip?: boolean | null;
     /**
-     * Required. Source specification of the Connectivity Test. You can use a combination of source IP address, virtual machine (VM) instance, or Compute Engine network to uniquely identify the source location. Examples: If the source IP address is an internal IP address within a Google Cloud Virtual Private Cloud (VPC) network, then you must also specify the VPC network. Otherwise, specify the VM instance, which already contains its internal IP address and VPC network information. If the source of the test is within an on-premises network, then you must provide the destination VPC network. If the source endpoint is a Compute Engine VM instance with multiple network interfaces, the instance itself is not sufficient to identify the endpoint. So, you must also specify the source IP address or VPC network. A reachability analysis proceeds even if the source location is ambiguous. However, the test result may include endpoints that you don't intend to test.
+     * Required. Source specification of the Connectivity Test. You can use a combination of source IP address, URI of a supported endpoint, project ID, or VPC network to identify the source location. Reachability analysis might proceed even if the source location is ambiguous. However, the test result might include endpoints or use a source that you don't intend to test.
      */
     source?: Schema$Endpoint;
     /**
@@ -469,15 +469,15 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$Endpoint {
     /**
-     * An [App Engine](https://cloud.google.com/appengine) [service version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     * An [App Engine](https://cloud.google.com/appengine) [service version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions). Applicable only to source endpoint.
      */
     appEngineVersion?: Schema$AppEngineVersionEndpoint;
     /**
-     * A [Cloud Function](https://cloud.google.com/functions).
+     * A [Cloud Function](https://cloud.google.com/functions). Applicable only to source endpoint.
      */
     cloudFunction?: Schema$CloudFunctionEndpoint;
     /**
-     * A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
+     * A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get) Applicable only to source endpoint.
      */
     cloudRunRevision?: Schema$CloudRunRevisionEndpoint;
     /**
@@ -485,7 +485,7 @@ export namespace networkmanagement_v1 {
      */
     cloudSqlInstance?: string | null;
     /**
-     * A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Format: projects/{project\}/global/forwardingRules/{id\} or projects/{project\}/regions/{region\}/forwardingRules/{id\}
+     * A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Applicable only to destination endpoint. Format: projects/{project\}/global/forwardingRules/{id\} or projects/{project\}/regions/{region\}/forwardingRules/{id\}
      */
     forwardingRule?: string | null;
     /**
@@ -517,7 +517,7 @@ export namespace networkmanagement_v1 {
      */
     loadBalancerType?: string | null;
     /**
-     * A Compute Engine network URI.
+     * A VPC network URI.
      */
     network?: string | null;
     /**
@@ -529,15 +529,15 @@ export namespace networkmanagement_v1 {
      */
     port?: number | null;
     /**
-     * Project ID where the endpoint is located. The Project ID can be derived from the URI if you provide a VM instance or network URI. The following are two cases where you must provide the project ID: 1. Only the IP address is specified, and the IP address is within a Google Cloud project. 2. When you are using Shared VPC and the IP address that you provide is from the service project. In this case, the network that the IP address resides in is defined in the host project.
+     * Project ID where the endpoint is located. The project ID can be derived from the URI if you provide a endpoint or network URI. The following are two cases where you may need to provide the project ID: 1. Only the IP address is specified, and the IP address is within a Google Cloud project. 2. When you are using Shared VPC and the IP address that you provide is from the service project. In this case, the network that the IP address resides in is defined in the host project.
      */
     projectId?: string | null;
     /**
-     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster) URI.
+     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster) URI. Applicable only to destination endpoint.
      */
     redisCluster?: string | null;
     /**
-     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis) URI.
+     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis) URI. Applicable only to destination endpoint.
      */
     redisInstance?: string | null;
   }

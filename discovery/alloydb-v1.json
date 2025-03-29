@@ -143,6 +143,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -1616,7 +1622,7 @@
       }
     }
   },
-  "revision": "20250308",
+  "revision": "20250320",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1839,7 +1845,7 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. Update time stamp",
+          "description": "Output only. Update time stamp Users should not infer any meaning from this field. Its value is generally unrelated to the timing of the backup creation operation.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"

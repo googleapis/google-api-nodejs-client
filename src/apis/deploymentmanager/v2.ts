@@ -415,6 +415,10 @@ export namespace deploymentmanager_v2 {
   }
   export interface Schema$InstancesBulkInsertOperationMetadata {
     /**
+     * [Output Only] The machine type of the VMs that were created used internally only by KCP flex bulk insert.
+     */
+    machineType?: string | null;
+    /**
      * Status information per location (location name is key). Example key: zones/us-central1-a
      */
     perLocationStatus?: {

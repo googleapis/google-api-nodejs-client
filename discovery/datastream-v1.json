@@ -179,6 +179,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -598,6 +604,11 @@
                       "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. When supplied with PSC Interface config, will get/create the tenant project required for the customer to allow list and won't actually create the private connection.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/privateConnections",
@@ -1250,7 +1261,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250321",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -1269,6 +1280,10 @@
       "description": "Backfill strategy to automatically backfill the Stream's objects. Specific objects can be excluded.",
       "id": "BackfillAllStrategy",
       "properties": {
+        "mongodbExcludedObjects": {
+          "$ref": "MongodbCluster",
+          "description": "MongoDB data source objects to avoid backfilling"
+        },
         "mysqlExcludedObjects": {
           "$ref": "MysqlRdbms",
           "description": "MySQL data source objects to avoid backfilling."
@@ -1524,6 +1539,10 @@
           "description": "Labels.",
           "type": "object"
         },
+        "mongodbProfile": {
+          "$ref": "MongodbProfile",
+          "description": "MongoDB Connection Profile configuration."
+        },
         "mysqlProfile": {
           "$ref": "MysqlProfile",
           "description": "MySQL ConnectionProfile configuration."
@@ -1635,6 +1654,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "mongodbCluster": {
+          "$ref": "MongodbCluster",
+          "description": "MongoDB cluster to enrich with child data objects and metadata."
+        },
         "mysqlRdbms": {
           "$ref": "MysqlRdbms",
           "description": "MySQL RDBMS to enrich with child data objects and metadata."
@@ -1647,6 +1670,10 @@
           "$ref": "PostgresqlRdbms",
           "description": "PostgreSQL RDBMS to enrich with child data objects and metadata."
         },
+        "salesforceOrg": {
+          "$ref": "SalesforceOrg",
+          "description": "Salesforce organization to enrich with child data objects and metadata."
+        },
         "sqlServerRdbms": {
           "$ref": "SqlServerRdbms",
           "description": "SQLServer RDBMS to enrich with child data objects and metadata."
@@ -1658,6 +1685,10 @@
       "description": "Response from a discover request.",
       "id": "DiscoverConnectionProfileResponse",
       "properties": {
+        "mongodbCluster": {
+          "$ref": "MongodbCluster",
+          "description": "Enriched MongoDB cluster."
+        },
         "mysqlRdbms": {
           "$ref": "MysqlRdbms",
           "description": "Enriched MySQL RDBMS object."
@@ -1669,6 +1700,10 @@
         "postgresqlRdbms": {
           "$ref": "PostgresqlRdbms",
           "description": "Enriched PostgreSQL RDBMS object."
+        },
+        "salesforceOrg": {
+          "$ref": "SalesforceOrg",
+          "description": "Enriched Salesforce organization."
         },
         "sqlServerRdbms": {
           "$ref": "SqlServerRdbms",
@@ -1814,6 +1849,22 @@
       "description": "Use GTID based replication.",
       "id": "Gtid",
       "properties": {},
+      "type": "object"
+    },
+    "HostAddress": {
+      "description": "A HostAddress represents a transport end point, which is the combination of an IP address or hostname and a port number.",
+      "id": "HostAddress",
+      "properties": {
+        "hostname": {
+          "description": "Required. Hostname for the connection.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Optional. Port for the connection.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "JsonFileFormat": {
@@ -2075,6 +2126,135 @@
       "description": "Merge mode defines that all changes to a table will be merged at the destination table.",
       "id": "Merge",
       "properties": {},
+      "type": "object"
+    },
+    "MongodbCluster": {
+      "description": "MongoDB Cluster structure.",
+      "id": "MongodbCluster",
+      "properties": {
+        "databases": {
+          "description": "MongoDB databases in the cluster.",
+          "items": {
+            "$ref": "MongodbDatabase"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MongodbCollection": {
+      "description": "MongoDB Collection.",
+      "id": "MongodbCollection",
+      "properties": {
+        "collection": {
+          "description": "Collection name.",
+          "type": "string"
+        },
+        "fields": {
+          "description": "Fields in the collection.",
+          "items": {
+            "$ref": "MongodbField"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MongodbDatabase": {
+      "description": "MongoDB Database.",
+      "id": "MongodbDatabase",
+      "properties": {
+        "collections": {
+          "description": "Collections in the database.",
+          "items": {
+            "$ref": "MongodbCollection"
+          },
+          "type": "array"
+        },
+        "database": {
+          "description": "Database name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MongodbField": {
+      "description": "MongoDB Field.",
+      "id": "MongodbField",
+      "properties": {
+        "field": {
+          "description": "Field name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MongodbObjectIdentifier": {
+      "description": "MongoDB data source object identifier.",
+      "id": "MongodbObjectIdentifier",
+      "properties": {
+        "collection": {
+          "description": "Required. The collection name.",
+          "type": "string"
+        },
+        "database": {
+          "description": "Required. The database name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MongodbProfile": {
+      "description": "MongoDB profile.",
+      "id": "MongodbProfile",
+      "properties": {
+        "hostAddresses": {
+          "description": "Required. List of host addresses for a MongoDB cluster.",
+          "items": {
+            "$ref": "HostAddress"
+          },
+          "type": "array"
+        },
+        "password": {
+          "description": "Optional. Password for the MongoDB connection. Mutually exclusive with the `secret_manager_stored_password` field.",
+          "type": "string"
+        },
+        "replicaSet": {
+          "description": "Optional. Name of the replica set. Only needed for self hosted replica set type MongoDB cluster.",
+          "type": "string"
+        },
+        "secretManagerStoredPassword": {
+          "description": "Optional. A reference to a Secret Manager resource name storing the SQLServer connection password. Mutually exclusive with the `password` field.",
+          "type": "string"
+        },
+        "srvConnectionFormat": {
+          "$ref": "SrvConnectionFormat",
+          "description": "Srv connection format."
+        },
+        "standardConnectionFormat": {
+          "$ref": "StandardConnectionFormat",
+          "description": "Standard connection format."
+        },
+        "username": {
+          "description": "Required. Username for the MongoDB connection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MongodbSourceConfig": {
+      "description": "MongoDB source configuration.",
+      "id": "MongodbSourceConfig",
+      "properties": {
+        "excludeObjects": {
+          "$ref": "MongodbCluster",
+          "description": "MongoDB collections to exclude from the stream."
+        },
+        "includeObjects": {
+          "$ref": "MongodbCluster",
+          "description": "MongoDB collections to include in the stream."
+        }
+      },
       "type": "object"
     },
     "MostRecentStartPosition": {
@@ -2925,6 +3105,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "pscInterfaceConfig": {
+          "$ref": "PscInterfaceConfig",
+          "description": "PSC Interface Config."
+        },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -2975,6 +3159,17 @@
       "properties": {
         "privateConnection": {
           "description": "Required. A reference to a private connection resource. Format: `projects/{project}/locations/{location}/privateConnections/{name}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscInterfaceConfig": {
+      "description": "The PSC Interface configuration is used to create PSC Interface between Datastream and the consumer's PSC.",
+      "id": "PscInterfaceConfig",
+      "properties": {
+        "networkAttachment": {
+          "description": "Required. Fully qualified name of the Network Attachment that Datastream will connect to. Format: `projects/{{project}}/regions/{{region}}/networkAttachments/{{name}}`",
           "type": "string"
         }
       },
@@ -3185,6 +3380,10 @@
       "description": "The configuration of the stream source.",
       "id": "SourceConfig",
       "properties": {
+        "mongodbSourceConfig": {
+          "$ref": "MongodbSourceConfig",
+          "description": "MongoDB data source configuration."
+        },
         "mysqlSourceConfig": {
           "$ref": "MysqlSourceConfig",
           "description": "MySQL data source configuration."
@@ -3227,6 +3426,10 @@
       "description": "Represents an identifier of an object in the data source.",
       "id": "SourceObjectIdentifier",
       "properties": {
+        "mongodbIdentifier": {
+          "$ref": "MongodbObjectIdentifier",
+          "description": "MongoDB data source object identifier."
+        },
         "mysqlIdentifier": {
           "$ref": "MysqlObjectIdentifier",
           "description": "Mysql data source object identifier."
@@ -3466,6 +3669,18 @@
     "SqlServerTransactionLogs": {
       "description": "Configuration to use Transaction Logs CDC read method.",
       "id": "SqlServerTransactionLogs",
+      "properties": {},
+      "type": "object"
+    },
+    "SrvConnectionFormat": {
+      "description": "Srv connection format.",
+      "id": "SrvConnectionFormat",
+      "properties": {},
+      "type": "object"
+    },
+    "StandardConnectionFormat": {
+      "description": "Standard connection format.",
+      "id": "StandardConnectionFormat",
       "properties": {},
       "type": "object"
     },

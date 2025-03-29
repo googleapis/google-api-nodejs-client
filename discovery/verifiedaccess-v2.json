@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20250225",
+  "revision": "20250318",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Antivirus": {
@@ -468,7 +468,8 @@
           "type": "array"
         },
         "thirdPartyBlockingEnabled": {
-          "description": "Output only. Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled. Available on Windows only.",
+          "deprecated": true,
+          "description": "Output only. Deprecated. The corresponding policy is now deprecated. Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled. Available on Windows only.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -523,7 +524,7 @@
       "type": "object"
     },
     "VerifyChallengeResponseResult": {
-      "description": "Result message for VerifiedAccess.VerifyChallengeResponse.",
+      "description": "Result message for VerifiedAccess.VerifyChallengeResponse. The response returned when successful for Managed profiles on Unmanaged browsers will NOT have devicePermanentId, keyTrustLevel, virtualDeviceId and customerId fields. Managed profiles will INSTEAD have the profileCustomerId, virtualProfileId, profilePermanentId and profileKeyTrustLevel fields.",
       "id": "VerifyChallengeResponseResult",
       "properties": {
         "attestedDeviceId": {

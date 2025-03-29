@@ -1636,7 +1636,7 @@
       }
     }
   },
-  "revision": "20250102",
+  "revision": "20250320",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AsyncOptions": {
@@ -2286,6 +2286,10 @@
     "InstancesBulkInsertOperationMetadata": {
       "id": "InstancesBulkInsertOperationMetadata",
       "properties": {
+        "machineType": {
+          "description": "[Output Only] The machine type of the VMs that were created used internally only by KCP flex bulk insert.",
+          "type": "string"
+        },
         "perLocationStatus": {
           "additionalProperties": {
             "$ref": "BulkInsertOperationStatus"

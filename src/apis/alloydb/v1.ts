@@ -263,7 +263,7 @@ export namespace alloydb_v1 {
      */
     uid?: string | null;
     /**
-     * Output only. Update time stamp
+     * Output only. Update time stamp Users should not infer any meaning from this field. Its value is generally unrelated to the timing of the backup creation operation.
      */
     updateTime?: string | null;
   }
@@ -2554,6 +2554,10 @@ export namespace alloydb_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

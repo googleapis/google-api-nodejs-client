@@ -3067,7 +3067,7 @@
                     "annotations": {
                       "methods": {
                         "list": {
-                          "description": "Lists Annotations belongs to a dataitem This RPC is only available in InternalDatasetService. It is only used for exporting conversation data to CCAI Insights.",
+                          "description": "Lists Annotations belongs to a dataitem.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dataItems/{dataItemsId}/annotations",
                           "httpMethod": "GET",
                           "id": "aiplatform.projects.locations.datasets.dataItems.annotations.list",
@@ -22210,7 +22210,7 @@
       }
     }
   },
-  "revision": "20250307",
+  "revision": "20250319",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -30923,6 +30923,10 @@
           "description": "Optional. Required. The function parameters and values in JSON object format. See [FunctionDeclaration.parameters] for parameter details.",
           "type": "object"
         },
+        "id": {
+          "description": "Optional. The unique id of the function call. If populated, the client to execute the `function_call` and return the response with the matching `id`.",
+          "type": "string"
+        },
         "name": {
           "description": "Required. The name of the function to call. Matches [FunctionDeclaration.name].",
           "type": "string"
@@ -30987,6 +30991,10 @@
       "description": "The result output from a [FunctionCall] that contains a string representing the [FunctionDeclaration.name] and a structured JSON object containing any output from the function is used as context to the model. This should contain the result of a [FunctionCall] made based on model prediction.",
       "id": "GoogleCloudAiplatformV1beta1FunctionResponse",
       "properties": {
+        "id": {
+          "description": "Optional. The id of the function call this response is for. Populated by the client to match the corresponding function call `id`.",
+          "type": "string"
+        },
         "name": {
           "description": "Required. The name of the function to call. Matches [FunctionDeclaration.name] and [FunctionCall.name].",
           "type": "string"
@@ -31771,6 +31779,10 @@
       "description": "Chunk from the web.",
       "id": "GoogleCloudAiplatformV1beta1GroundingChunkWeb",
       "properties": {
+        "domain": {
+          "description": "Domain of the (original) URI.",
+          "type": "string"
+        },
         "title": {
           "description": "Title of the chunk.",
           "type": "string"
@@ -37295,7 +37307,8 @@
             "INVALID_SPARSE_DIMENSIONS",
             "INVALID_TOKEN_VALUE",
             "INVALID_SPARSE_EMBEDDING",
-            "INVALID_EMBEDDING"
+            "INVALID_EMBEDDING",
+            "INVALID_EMBEDDING_METADATA"
           ],
           "enumDescriptions": [
             "Default, shall not be used.",
@@ -37315,7 +37328,8 @@
             "Error parsing sparse dimensions field.",
             "Token restrict value is invalid.",
             "Invalid sparse embedding.",
-            "Invalid dense embedding."
+            "Invalid dense embedding.",
+            "Invalid embedding metadata."
           ],
           "type": "string"
         },
@@ -41473,7 +41487,7 @@
         },
         "spec": {
           "$ref": "GoogleCloudAiplatformV1beta1ReasoningEngineSpec",
-          "description": "Required. Configurations of the ReasoningEngine"
+          "description": "Optional. Configurations of the ReasoningEngine"
         },
         "updateTime": {
           "description": "Output only. Timestamp when this ReasoningEngine was most recently updated.",
@@ -41509,7 +41523,7 @@
         },
         "packageSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1ReasoningEngineSpecPackageSpec",
-          "description": "Required. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes."
+          "description": "Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes."
         }
       },
       "type": "object"
@@ -47359,7 +47373,7 @@
       "id": "GoogleCloudAiplatformV1beta1SecretRef",
       "properties": {
         "secret": {
-          "description": "Required. The name of the secret in Cloud Secret Manager. Format: {secret_name} if the secret is in the same project. projects/{project}/secrets/{secret_name} if the secret is in a different project.",
+          "description": "Required. The name of the secret in Cloud Secret Manager. Format: {secret_name}.",
           "type": "string"
         },
         "version": {

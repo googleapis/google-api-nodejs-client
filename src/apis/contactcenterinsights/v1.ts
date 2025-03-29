@@ -2159,6 +2159,19 @@ export namespace contactcenterinsights_v1 {
     dataPoints?: Schema$GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPoint[];
   }
   /**
+   * The metadata for querying performance overview.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1QueryPerformanceOverviewMetadata {}
+  /**
+   * The response for querying performance overview.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1QueryPerformanceOverviewResponse {
+    /**
+     * The summary text of the performance.
+     */
+    summaryText?: string | null;
+  }
+  /**
    * DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations, redaction should be performed in Dialogflow / Agent Assist.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1RedactionConfig {
@@ -2876,6 +2889,10 @@ export namespace contactcenterinsights_v1 {
      */
     parent?: string | null;
     /**
+     * A sheets document destination.
+     */
+    sheetsDestination?: Schema$GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestSheetsDestination;
+    /**
      * Optional. If set, a template for labeling conversations and scorecard questions will be created from the conversation_filter and the questions under the scorecard(s). The feedback label `filter` will be ignored.
      */
     templateQaScorecardId?: string[] | null;
@@ -2906,6 +2923,19 @@ export namespace contactcenterinsights_v1 {
     recordsPerFileCount?: string | null;
   }
   /**
+   * Google Sheets document details to write the feedback labels to.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestSheetsDestination {
+    /**
+     * Optional. The title of the new sheet to write the feedback labels to.
+     */
+    sheetTitle?: string | null;
+    /**
+     * Required. The Google Sheets document to write the feedback labels to. Retrieved from Google Sheets URI. E.g. `https://docs.google.com/spreadsheets/d/1234567890` The spreadsheet must be shared with the Insights P4SA. The spreadsheet ID written to will be returned as `file_names` in the BulkDownloadFeedbackLabelsMetadata.
+     */
+    spreadsheetUri?: string | null;
+  }
+  /**
    * Response for the BulkDownloadFeedbackLabel endpoint.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsResponse {}
@@ -2917,6 +2947,10 @@ export namespace contactcenterinsights_v1 {
      * A cloud storage bucket source.
      */
     gcsSource?: Schema$GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestGcsSource;
+    /**
+     * A sheets document source.
+     */
+    sheetsSource?: Schema$GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestSheetsSource;
     /**
      * Optional. If set, upload will not happen and the labels will be validated. If not set, then default behavior will be to upload the labels after validation is complete.
      */
@@ -2934,6 +2968,15 @@ export namespace contactcenterinsights_v1 {
      * Required. The Google Cloud Storage URI of the file to import. Format: `gs://bucket_name/object_name`
      */
     objectUri?: string | null;
+  }
+  /**
+   * Google Sheets document details to get the feedback label file from.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestSheetsSource {
+    /**
+     * Required. The Google Sheets document to write the feedback labels to. Retrieved from Google Sheets URI. E.g. `https://docs.google.com/spreadsheets/d/1234567890` The spreadsheet must be shared with the Insights P4SA.
+     */
+    spreadsheetUri?: string | null;
   }
   /**
    * Response of querying an issue model's statistics.
@@ -5063,6 +5106,19 @@ export namespace contactcenterinsights_v1 {
      * The data points that make up the time series .
      */
     dataPoints?: Schema$GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPoint[];
+  }
+  /**
+   * The metadata for querying performance overview.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewMetadata {}
+  /**
+   * The response for querying performance overview.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewResponse {
+    /**
+     * The summary text of the performance.
+     */
+    summaryText?: string | null;
   }
   /**
    * DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations, redaction should be performed in Dialogflow / Agent Assist.

@@ -406,7 +406,7 @@ export namespace container_v1beta1 {
      */
     imageType?: string | null;
     /**
-     * Enable or disable Kubelet read only port.
+     * DEPRECATED. Use NodePoolAutoConfig.NodeKubeletConfig instead.
      */
     insecureKubeletReadonlyPortEnabled?: boolean | null;
     /**
@@ -816,7 +816,7 @@ export namespace container_v1beta1 {
      */
     monitoringConfig?: Schema$MonitoringConfig;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
+     * The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     monitoringService?: string | null;
     /**
@@ -1180,7 +1180,7 @@ export namespace container_v1beta1 {
      */
     desiredMonitoringConfig?: Schema$MonitoringConfig;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
+     * The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     desiredMonitoringService?: string | null;
     /**
@@ -2590,7 +2590,7 @@ export namespace container_v1beta1 {
      */
     containerdConfig?: Schema$ContainerdConfig;
     /**
-     * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.
+     * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. TODO(b/395671893) - Deprecate disk_size_gb and disk_type fields. If unspecified, the default disk size is 100GB.
      */
     diskSizeGb?: number | null;
     /**
@@ -3695,6 +3695,10 @@ export namespace container_v1beta1 {
      */
     manualStepsRequired?: boolean | null;
     /**
+     * The GKE versions where this vulnerability is mitigated.
+     */
+    mitigatedVersions?: string[] | null;
+    /**
      * The GKE versions where this vulnerability is patched.
      */
     patchedVersions?: string[] | null;
@@ -3958,7 +3962,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * Required. The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
+     * Required. The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     monitoringService?: string | null;
     /**
@@ -4474,6 +4478,10 @@ export namespace container_v1beta1 {
      */
     startTime?: string | null;
     /**
+     * The start type of the upgrade.
+     */
+    startType?: string | null;
+    /**
      * Output only. The state of the upgrade.
      */
     state?: string | null;
@@ -4683,11 +4691,11 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
-   * Parameters that can be configured on Windows nodes. Windows Node Config that define the parameters that will be used to configure the Windows node pool settings
+   * Parameters that can be configured on Windows nodes. Windows Node Config that define the parameters that will be used to configure the Windows node pool settings.
    */
   export interface Schema$WindowsNodeConfig {
     /**
-     * OSVersion specifies the Windows node config to be used on the node
+     * OSVersion specifies the Windows node config to be used on the node.
      */
     osVersion?: string | null;
   }

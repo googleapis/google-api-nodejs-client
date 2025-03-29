@@ -457,7 +457,7 @@
             "entries": {
               "methods": {
                 "get": {
-                  "description": "Gets a `TranscriptEntry` resource by entry ID. Note: The transcript entries returned by the Google Meet API might not match the transcription found in the Google Docs transcript file. This can occur when the Google Docs transcript file is modified after generation.",
+                  "description": "Gets a `TranscriptEntry` resource by entry ID. Note: The transcript entries returned by the Google Meet API might not match the transcription found in the Google Docs transcript file. This can occur when 1) we have interleaved speakers within milliseconds, or 2) the Google Docs transcript file is modified after generation.",
                   "flatPath": "v2/conferenceRecords/{conferenceRecordsId}/transcripts/{transcriptsId}/entries/{entriesId}",
                   "httpMethod": "GET",
                   "id": "meet.conferenceRecords.transcripts.entries.get",
@@ -483,7 +483,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists the structured transcript entries per transcript. By default, ordered by start time and in ascending order. Note: The transcript entries returned by the Google Meet API might not match the transcription found in the Google Docs transcript file. This can occur when the Google Docs transcript file is modified after generation.",
+                  "description": "Lists the structured transcript entries per transcript. By default, ordered by start time and in ascending order. Note: The transcript entries returned by the Google Meet API might not match the transcription found in the Google Docs transcript file. This can occur when 1) we have interleaved speakers within milliseconds, or 2) the Google Docs transcript file is modified after generation.",
                   "flatPath": "v2/conferenceRecords/{conferenceRecordsId}/transcripts/{transcriptsId}/entries",
                   "httpMethod": "GET",
                   "id": "meet.conferenceRecords.transcripts.entries.list",
@@ -638,7 +638,7 @@
       }
     }
   },
-  "revision": "20250127",
+  "revision": "20250320",
   "rootUrl": "https://meet.googleapis.com/",
   "schemas": {
     "ActiveConference": {

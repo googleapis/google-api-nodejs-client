@@ -919,6 +919,10 @@ export namespace chromepolicy_v1 {
      */
     name?: string | null;
     /**
+     * Names of files imported by this file purely for the purpose of providing option extensions. These are excluded from the dependency list above.
+     */
+    optionDependency?: string[] | null;
+    /**
      * e.g. "foo", "foo.bar", etc.
      */
     package?: string | null;
