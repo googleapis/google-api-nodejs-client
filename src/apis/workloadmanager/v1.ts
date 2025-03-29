@@ -1322,6 +1322,10 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapDiscoveryResourceInstancePropertiesDiskMount {
     /**
+     * Optional. Names of the disks providing this mount point.
+     */
+    diskNames?: string[] | null;
+    /**
      * Optional. Filesystem mount point.
      */
     mountPoint?: string | null;
