@@ -2637,7 +2637,7 @@
       }
     }
   },
-  "revision": "20250311",
+  "revision": "20250320",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -3279,6 +3279,10 @@
           "description": "Required. The parent resource for new feedback labels.",
           "type": "string"
         },
+        "sheetsDestination": {
+          "$ref": "GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestSheetsDestination",
+          "description": "A sheets document destination."
+        },
         "templateQaScorecardId": {
           "description": "Optional. If set, a template for labeling conversations and scorecard questions will be created from the conversation_filter and the questions under the scorecard(s). The feedback label `filter` will be ignored.",
           "items": {
@@ -3327,6 +3331,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestSheetsDestination": {
+      "description": "Google Sheets document details to write the feedback labels to.",
+      "id": "GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestSheetsDestination",
+      "properties": {
+        "sheetTitle": {
+          "description": "Optional. The title of the new sheet to write the feedback labels to.",
+          "type": "string"
+        },
+        "spreadsheetUri": {
+          "description": "Required. The Google Sheets document to write the feedback labels to. Retrieved from Google Sheets URI. E.g. `https://docs.google.com/spreadsheets/d/1234567890` The spreadsheet must be shared with the Insights P4SA. The spreadsheet ID written to will be returned as `file_names` in the BulkDownloadFeedbackLabelsMetadata.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsResponse": {
       "description": "Response for the BulkDownloadFeedbackLabel endpoint.",
       "id": "GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsResponse",
@@ -3340,6 +3359,10 @@
         "gcsSource": {
           "$ref": "GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestGcsSource",
           "description": "A cloud storage bucket source."
+        },
+        "sheetsSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestSheetsSource",
+          "description": "A sheets document source."
         },
         "validateOnly": {
           "description": "Optional. If set, upload will not happen and the labels will be validated. If not set, then default behavior will be to upload the labels after validation is complete.",
@@ -3368,6 +3391,17 @@
         },
         "objectUri": {
           "description": "Required. The Google Cloud Storage URI of the file to import. Format: `gs://bucket_name/object_name`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestSheetsSource": {
+      "description": "Google Sheets document details to get the feedback label file from.",
+      "id": "GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestSheetsSource",
+      "properties": {
+        "spreadsheetUri": {
+          "description": "Required. The Google Sheets document to write the feedback labels to. Retrieved from Google Sheets URI. E.g. `https://docs.google.com/spreadsheets/d/1234567890` The spreadsheet must be shared with the Insights P4SA.",
           "type": "string"
         }
       },
@@ -6351,6 +6385,23 @@
             "$ref": "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPoint"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewMetadata": {
+      "description": "The metadata for querying performance overview.",
+      "id": "GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewResponse": {
+      "description": "The response for querying performance overview.",
+      "id": "GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewResponse",
+      "properties": {
+        "summaryText": {
+          "description": "The summary text of the performance.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9526,6 +9577,23 @@
             "$ref": "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPoint"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1QueryPerformanceOverviewMetadata": {
+      "description": "The metadata for querying performance overview.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1QueryPerformanceOverviewMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1QueryPerformanceOverviewResponse": {
+      "description": "The response for querying performance overview.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1QueryPerformanceOverviewResponse",
+      "properties": {
+        "summaryText": {
+          "description": "The summary text of the performance.",
+          "type": "string"
         }
       },
       "type": "object"
