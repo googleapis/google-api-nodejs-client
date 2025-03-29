@@ -171,6 +171,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -1021,7 +1027,7 @@
       }
     }
   },
-  "revision": "20250306",
+  "revision": "20250320",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1951,6 +1957,24 @@
           "readOnly": true,
           "type": "string"
         },
+        "provisioningModel": {
+          "description": "Optional. The provisioning model for the resource.",
+          "enum": [
+            "PROVISIONING_MODEL_UNSPECIFIED",
+            "STANDARD",
+            "SPOT",
+            "RESERVATION_BOUND",
+            "FLEX_START"
+          ],
+          "enumDescriptions": [
+            "Provisioning model is unknown.",
+            "Standard provisioning with user controlled runtime.",
+            "Spot provisioning with no guaranteed runtime.",
+            "Reservation provisioning with runtime bound to the lifetime of the consumed reservation.",
+            "Provisioning with DWS Flex Start with max run duration."
+          ],
+          "type": "string"
+        },
         "queueingPolicy": {
           "$ref": "QueueingPolicy",
           "description": "The queueing policy of the QueuedRequest."
@@ -1958,6 +1982,10 @@
         "reservationName": {
           "description": "Name of the reservation in which the resource should be provisioned. Format: projects/{project}/locations/{zone}/reservations/{reservation}",
           "type": "string"
+        },
+        "runDuration": {
+          "$ref": "RunDuration",
+          "description": "Optional. The duration of the requested resource."
         },
         "spot": {
           "$ref": "Spot",
@@ -2130,6 +2158,23 @@
       "description": "Request for ResetQueuedResource.",
       "id": "ResetQueuedResourceRequest",
       "properties": {},
+      "type": "object"
+    },
+    "RunDuration": {
+      "description": "Defines the maximum lifetime of the requested resource.",
+      "id": "RunDuration",
+      "properties": {
+        "maxRunDuration": {
+          "description": "The maximum duration of the requested resource.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "terminationTime": {
+          "description": "The time at which the requested resource will be terminated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RuntimeVersion": {
