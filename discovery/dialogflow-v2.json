@@ -4406,6 +4406,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -8799,7 +8805,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250325",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -10834,6 +10840,17 @@
           "description": "The HTTP request headers to send together with webhook requests.",
           "type": "object"
         },
+        "secretVersionForUsernamePassword": {
+          "description": "Optional. The SecretManager secret version resource storing the username:password pair for HTTP Basic authentication. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        },
+        "secretVersionsForRequestHeaders": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue"
+          },
+          "description": "Optional. The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both `request_headers` and `secret_versions_for_request_headers`, the value in `secret_versions_for_request_headers` will be used.",
+          "type": "object"
+        },
         "serviceAgentAuth": {
           "description": "Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.",
           "enum": [
@@ -10895,8 +10912,23 @@
           },
           "type": "array"
         },
+        "secretVersionForClientSecret": {
+          "description": "Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        },
         "tokenEndpoint": {
           "description": "Required. The token endpoint provided by the 3rd party platform to exchange an access token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue": {
+      "description": "Represents the value of an HTTP header stored in a SecretManager secret version.",
+      "id": "GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue",
+      "properties": {
+        "secretVersion": {
+          "description": "Required. The SecretManager secret version resource storing the header value. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
           "type": "string"
         }
       },
@@ -13209,6 +13241,17 @@
           "description": "The HTTP request headers to send together with webhook requests.",
           "type": "object"
         },
+        "secretVersionForUsernamePassword": {
+          "description": "Optional. The SecretManager secret version resource storing the username:password pair for HTTP Basic authentication. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        },
+        "secretVersionsForRequestHeaders": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue"
+          },
+          "description": "Optional. The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both `request_headers` and `secret_versions_for_request_headers`, the value in `secret_versions_for_request_headers` will be used.",
+          "type": "object"
+        },
         "serviceAgentAuth": {
           "description": "Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.",
           "enum": [
@@ -13270,8 +13313,23 @@
           },
           "type": "array"
         },
+        "secretVersionForClientSecret": {
+          "description": "Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        },
         "tokenEndpoint": {
           "description": "Required. The token endpoint provided by the 3rd party platform to exchange an access token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue": {
+      "description": "Represents the value of an HTTP header stored in a SecretManager secret version.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue",
+      "properties": {
+        "secretVersion": {
+          "description": "Required. The SecretManager secret version resource storing the header value. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
           "type": "string"
         }
       },
@@ -15987,6 +16045,13 @@
           "$ref": "GoogleCloudDialogflowV2SummarizationContext",
           "description": "Input of prebuilt Summarization feature."
         },
+        "tools": {
+          "description": "Optional. Resource names of the tools that the generator can choose from. Format: `projects//locations//tools/`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "triggerEvent": {
           "description": "Optional. The trigger event of the generator. It defines when the generator is triggered in a conversation.",
           "enum": [
@@ -16025,6 +16090,28 @@
         "summarySuggestion": {
           "$ref": "GoogleCloudDialogflowV2SummarySuggestion",
           "description": "Optional. Suggested summary."
+        },
+        "toolCallInfo": {
+          "description": "Optional. List of request and response for tool calls executed.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo": {
+      "description": "Request and response for a tool call.",
+      "id": "GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo",
+      "properties": {
+        "toolCall": {
+          "$ref": "GoogleCloudDialogflowV2ToolCall",
+          "description": "Required. Request for a tool call."
+        },
+        "toolCallResult": {
+          "$ref": "GoogleCloudDialogflowV2ToolCallResult",
+          "description": "Required. Response for a tool call."
         }
       },
       "type": "object"
@@ -19862,6 +19949,80 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2ToolCall": {
+      "description": "Represents a call of a specific tool's action with the specified inputs.",
+      "id": "GoogleCloudDialogflowV2ToolCall",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time of the tool call.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "inputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The action's input parameters.",
+          "type": "object"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ToolCallResult": {
+      "description": "The result of calling a tool's action.",
+      "id": "GoogleCloudDialogflowV2ToolCallResult",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "content": {
+          "description": "Only populated if the response content is utf-8 encoded.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time of the tool call result.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleCloudDialogflowV2ToolCallResultError",
+          "description": "The tool call's error."
+        },
+        "rawContent": {
+          "description": "Only populated if the response content is not utf-8 encoded. (by definition byte fields are base64 encoded).",
+          "format": "byte",
+          "type": "string"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ToolCallResultError": {
+      "description": "An error produced by the tool call.",
+      "id": "GoogleCloudDialogflowV2ToolCallResultError",
+      "properties": {
+        "message": {
+          "description": "Optional. The error message of the function.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2TrainAgentRequest": {
       "description": "The request message for Agents.TrainAgent.",
       "id": "GoogleCloudDialogflowV2TrainAgentRequest",
@@ -20549,6 +20710,28 @@
         "summarySuggestion": {
           "$ref": "GoogleCloudDialogflowV2beta1SummarySuggestion",
           "description": "Optional. Suggested summary."
+        },
+        "toolCallInfo": {
+          "description": "Optional. List of request and response for tool calls executed.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo": {
+      "description": "Request and response for a tool call.",
+      "id": "GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo",
+      "properties": {
+        "toolCall": {
+          "$ref": "GoogleCloudDialogflowV2beta1ToolCall",
+          "description": "Required. Request for a tool call."
+        },
+        "toolCallResult": {
+          "$ref": "GoogleCloudDialogflowV2beta1ToolCallResult",
+          "description": "Required. Response for a tool call."
         }
       },
       "type": "object"
@@ -22809,6 +22992,80 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ToolCall": {
+      "description": "Represents a call of a specific tool's action with the specified inputs.",
+      "id": "GoogleCloudDialogflowV2beta1ToolCall",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time of the tool call.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "inputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The action's input parameters.",
+          "type": "object"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ToolCallResult": {
+      "description": "The result of calling a tool's action.",
+      "id": "GoogleCloudDialogflowV2beta1ToolCallResult",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "content": {
+          "description": "Only populated if the response content is utf-8 encoded.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time of the tool call result.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleCloudDialogflowV2beta1ToolCallResultError",
+          "description": "The tool call's error."
+        },
+        "rawContent": {
+          "description": "Only populated if the response content is not utf-8 encoded. (by definition byte fields are base64 encoded).",
+          "format": "byte",
+          "type": "string"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ToolCallResultError": {
+      "description": "An error produced by the tool call.",
+      "id": "GoogleCloudDialogflowV2beta1ToolCallResultError",
+      "properties": {
+        "message": {
+          "description": "Optional. The error message of the function.",
+          "type": "string"
         }
       },
       "type": "object"
