@@ -1,5 +1,17 @@
 # Changelog
 
+## [35.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v34.0.0...content-v35.0.0) (2025-04-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **content:** This release has breaking changes.
+
+### Features
+
+* **content:** update the API ([1654902](https://github.com/googleapis/google-api-nodejs-client/commit/1654902e7a11628e827f9e08f397d4955b843a07))
+* **content:** update the API ([37207d0](https://github.com/googleapis/google-api-nodejs-client/commit/37207d08964209b0eaf9911ad39d982a6d1e9ebc))
+
 ## [34.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v33.0.0...content-v34.0.0) (2025-03-19)
 
 

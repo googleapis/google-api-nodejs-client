@@ -1,5 +1,19 @@
 # Changelog
 
+## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v25.0.0...networkservices-v26.0.0) (2025-04-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **networkservices:** This release has breaking changes.
+* **networkservices:** This release has breaking changes.
+
+### Features
+
+* **networkservices:** update the API ([0d8b675](https://github.com/googleapis/google-api-nodejs-client/commit/0d8b67539ea6553a642fe98a029b3c7ebb1ff235))
+* **networkservices:** update the API ([61648dc](https://github.com/googleapis/google-api-nodejs-client/commit/61648dca13f50322b749cde320a7a6310aa01a26))
+* **networkservices:** update the API ([35a4402](https://github.com/googleapis/google-api-nodejs-client/commit/35a4402cb3e63a66603e1c2f429e1ddf9b7b67a0))
+
 ## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v24.0.0...networkservices-v25.0.0) (2025-03-19)
 
 
