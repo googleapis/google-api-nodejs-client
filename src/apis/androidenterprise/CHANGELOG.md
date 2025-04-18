@@ -1,5 +1,17 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v8.0.0...androidenterprise-v9.0.0) (2025-04-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **androidenterprise:** This release has breaking changes.
+
+### Features
+
+* **androidenterprise:** update the API ([7fa7551](https://github.com/googleapis/google-api-nodejs-client/commit/7fa755187e50a8082901c22caee1666029e77206))
+* **androidenterprise:** update the API ([775e9ff](https://github.com/googleapis/google-api-nodejs-client/commit/775e9ff465cb3704449ca7ee421bd0270f536696))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v7.0.0...androidenterprise-v8.0.0) (2025-03-19)
 
 

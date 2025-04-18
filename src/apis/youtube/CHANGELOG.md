@@ -1,5 +1,18 @@
 # Changelog
 
+## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v24.0.0...youtube-v25.0.0) (2025-04-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **youtube:** This release has breaking changes.
+
+### Features
+
+* **youtube:** update the API ([66d216b](https://github.com/googleapis/google-api-nodejs-client/commit/66d216b4ea695d59d15e2a71d0bb7370a2ea29c7))
+* **youtube:** update the API ([1440c2b](https://github.com/googleapis/google-api-nodejs-client/commit/1440c2b18d4173f324485d8c8952d7a88eadc332))
+* **youtube:** update the API ([b11ea5d](https://github.com/googleapis/google-api-nodejs-client/commit/b11ea5dbfad9a3ad6b95d5e63ce826881f703204))
+
 ## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v23.0.0...youtube-v24.0.0) (2025-03-19)
 
 
