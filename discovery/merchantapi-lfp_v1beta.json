@@ -139,6 +139,35 @@
             }
           }
         },
+        "lfpMerchantStates": {
+          "methods": {
+            "get": {
+              "description": "Gets the LFP state of a merchant",
+              "flatPath": "lfp/v1beta/accounts/{accountsId}/lfpMerchantStates/{lfpMerchantStatesId}",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.lfpMerchantStates.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the state to retrieve. Format: `accounts/{account}/lfpMerchantStates/{target_merchant}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/lfpMerchantStates/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "lfp/v1beta/{+name}",
+              "response": {
+                "$ref": "LfpMerchantState"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
         "lfpSales": {
           "methods": {
             "insert": {
@@ -298,13 +327,127 @@
       }
     }
   },
-  "revision": "20250311",
+  "revision": "20250401",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
+    "CountrySettings": {
+      "description": "Country-specific settings for the merchant.",
+      "id": "CountrySettings",
+      "properties": {
+        "freeLocalListingsEnabled": {
+          "description": "True if this merchant has enabled free local listings in MC.",
+          "type": "boolean"
+        },
+        "instockServingVerificationState": {
+          "description": "Output only. The verification state of this merchant's instock serving feature.",
+          "enum": [
+            "VERIFICATION_STATE_UNSPECIFIED",
+            "VERIFICATION_STATE_NOT_APPROVED",
+            "VERIFICATION_STATE_IN_PROGRESS",
+            "VERIFICATION_STATE_APPROVED"
+          ],
+          "enumDescriptions": [
+            "Verification state unspecified.",
+            "Verification state not approved.",
+            "Verification state in progress.",
+            "Verification state approved."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "inventoryVerificationState": {
+          "description": "Output only. The verification state of this merchant's inventory check.",
+          "enum": [
+            "VERIFICATION_STATE_UNSPECIFIED",
+            "VERIFICATION_STATE_NOT_APPROVED",
+            "VERIFICATION_STATE_IN_PROGRESS",
+            "VERIFICATION_STATE_APPROVED"
+          ],
+          "enumDescriptions": [
+            "Verification state unspecified.",
+            "Verification state not approved.",
+            "Verification state in progress.",
+            "Verification state approved."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "localInventoryAdsEnabled": {
+          "description": "True if this merchant has enabled local inventory ads in MC.",
+          "type": "boolean"
+        },
+        "pickupServingVerificationState": {
+          "description": "Output only. The verification state of this merchant's pickup serving feature.",
+          "enum": [
+            "VERIFICATION_STATE_UNSPECIFIED",
+            "VERIFICATION_STATE_NOT_APPROVED",
+            "VERIFICATION_STATE_IN_PROGRESS",
+            "VERIFICATION_STATE_APPROVED"
+          ],
+          "enumDescriptions": [
+            "Verification state unspecified.",
+            "Verification state not approved.",
+            "Verification state in progress.",
+            "Verification state approved."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "productPageType": {
+          "description": "Output only. The product page type selected by this merchant.",
+          "enum": [
+            "PRODUCT_PAGE_TYPE_UNSPECIFIED",
+            "GOOGLE_HOSTED",
+            "MERCHANT_HOSTED",
+            "MERCHANT_HOSTED_STORE_SPECIFIC"
+          ],
+          "enumDescriptions": [
+            "Product page type unspecified.",
+            "Google hosted product page.",
+            "Merchant hosted product page.",
+            "Merchant hosted store specific product page."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Required. The [CLDR territory code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml) for the country for which these settings are defined.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "InventoryStats": {
+      "description": "The inventory statistics for a merchant.",
+      "id": "InventoryStats",
+      "properties": {
+        "submittedEntries": {
+          "description": "Number of entries (understanding entry as a pair of product and store) that were built based on provided inventories/sales and submitted to Google.",
+          "format": "int64",
+          "type": "string"
+        },
+        "submittedInStockEntries": {
+          "description": "Number of submitted in stock entries.",
+          "format": "int64",
+          "type": "string"
+        },
+        "submittedProducts": {
+          "description": "Number of products from provided inventories/sales that were created from matches to existing online products provided by the merchant or to the Google catalog.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unsubmittedEntries": {
+          "description": "Number of entries that were built based on provided inventories/sales and couldn't be submitted to Google due to errors like missing product.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "LfpInventory": {
@@ -370,6 +513,41 @@
           "description": "Required. The Merchant Center ID of the merchant to submit the inventory for.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfpMerchantState": {
+      "description": "The LFP state of a merchant.",
+      "id": "LfpMerchantState",
+      "properties": {
+        "countrySettings": {
+          "description": "Country-specific settings for the merchant.",
+          "items": {
+            "$ref": "CountrySettings"
+          },
+          "type": "array"
+        },
+        "inventoryStats": {
+          "$ref": "InventoryStats",
+          "description": "The inventory statistics for the merchant."
+        },
+        "linkedGbps": {
+          "description": "Number of [GBPs](https://www.google.com/business/) this merchant has access to.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the `LfpMerchantState` resource. Format: `accounts/{account}/lfpMerchantStates/{target_merchant}`",
+          "type": "string"
+        },
+        "storeStates": {
+          "description": "Output only. The state per store from the specified merchant.",
+          "items": {
+            "$ref": "LfpStoreState"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -497,6 +675,36 @@
         },
         "websiteUri": {
           "description": "Optional. The website URL for the store or merchant.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfpStoreState": {
+      "description": "The state of a specific merchant's store.",
+      "id": "LfpStoreState",
+      "properties": {
+        "matchingState": {
+          "description": "Output only. The store matching state.",
+          "enum": [
+            "STORE_MATCHING_STATE_UNSPECIFIED",
+            "STORE_MATCHING_STATE_MATCHED",
+            "STORE_MATCHING_STATE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Store matching state unspecified.",
+            "The `LfpStore` is successfully matched with a Google Business Profile store.",
+            "The `LfpStore` is not matched with a Google Business Profile store."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "matchingStateHint": {
+          "description": "The hint of why the matching has failed (only set if matching_state is FAILED).",
+          "type": "string"
+        },
+        "storeCode": {
+          "description": "Required. Immutable. The identifier of this store.",
           "type": "string"
         }
       },
