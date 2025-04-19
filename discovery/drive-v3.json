@@ -40,7 +40,7 @@
   "batchPath": "batch/drive/v3",
   "description": "The Google Drive API allows clients to access resources from Google Drive.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/drive/",
+  "documentationLink": "https://developers.google.com/workspace/drive/",
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -133,7 +133,7 @@
     "about": {
       "methods": {
         "get": {
-          "description": "Gets information about the user, the user's Drive, and system capabilities. For more information, see [Return user info](https://developers.google.com/drive/api/guides/user-info). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).",
+          "description": "Gets information about the user, the user's Drive, and system capabilities. For more information, see [Return user info](https://developers.google.com/workspace/drive/api/guides/user-info). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).",
           "flatPath": "about",
           "httpMethod": "GET",
           "id": "drive.about.get",
@@ -268,7 +268,7 @@
     "apps": {
       "methods": {
         "get": {
-          "description": "Gets a specific app. For more information, see [Return user info](https://developers.google.com/drive/api/guides/user-info).",
+          "description": "Gets a specific app. For more information, see [Return user info](https://developers.google.com/workspace/drive/api/guides/user-info).",
           "flatPath": "apps/{appId}",
           "httpMethod": "GET",
           "id": "drive.apps.get",
@@ -298,7 +298,7 @@
           ]
         },
         "list": {
-          "description": "Lists a user's installed apps. For more information, see [Return user info](https://developers.google.com/drive/api/guides/user-info).",
+          "description": "Lists a user's installed apps. For more information, see [Return user info](https://developers.google.com/workspace/drive/api/guides/user-info).",
           "flatPath": "apps",
           "httpMethod": "GET",
           "id": "drive.apps.list",
@@ -335,7 +335,7 @@
     "changes": {
       "methods": {
         "getStartPageToken": {
-          "description": "Gets the starting pageToken for listing future changes. For more information, see [Retrieve changes](https://developers.google.com/drive/api/guides/manage-changes).",
+          "description": "Gets the starting pageToken for listing future changes. For more information, see [Retrieve changes](https://developers.google.com/workspace/drive/api/guides/manage-changes).",
           "flatPath": "changes/startPageToken",
           "httpMethod": "GET",
           "id": "drive.changes.getStartPageToken",
@@ -382,7 +382,7 @@
           ]
         },
         "list": {
-          "description": "Lists the changes for a user or shared drive. For more information, see [Retrieve changes](https://developers.google.com/drive/api/guides/manage-changes).",
+          "description": "Lists the changes for a user or shared drive. For more information, see [Retrieve changes](https://developers.google.com/workspace/drive/api/guides/manage-changes).",
           "flatPath": "changes",
           "httpMethod": "GET",
           "id": "drive.changes.list",
@@ -494,7 +494,7 @@
           "supportsSubscription": true
         },
         "watch": {
-          "description": "Subscribes to changes for a user. For more information, see [Notifications for resource changes](https://developers.google.com/drive/api/guides/push).",
+          "description": "Subscribes to changes for a user. For more information, see [Notifications for resource changes](https://developers.google.com/workspace/drive/api/guides/push).",
           "flatPath": "changes/watch",
           "httpMethod": "POST",
           "id": "drive.changes.watch",
@@ -614,7 +614,7 @@
     "channels": {
       "methods": {
         "stop": {
-          "description": "Stops watching resources through this channel. For more information, see [Notifications for resource changes](https://developers.google.com/drive/api/guides/push).",
+          "description": "Stops watching resources through this channel. For more information, see [Notifications for resource changes](https://developers.google.com/workspace/drive/api/guides/push).",
           "flatPath": "channels/stop",
           "httpMethod": "POST",
           "id": "drive.channels.stop",
@@ -641,7 +641,7 @@
     "comments": {
       "methods": {
         "create": {
-          "description": "Creates a comment on a file. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).",
+          "description": "Creates a comment on a file. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).",
           "flatPath": "files/{fileId}/comments",
           "httpMethod": "POST",
           "id": "drive.comments.create",
@@ -669,7 +669,7 @@
           ]
         },
         "delete": {
-          "description": "Deletes a comment. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).",
+          "description": "Deletes a comment. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).",
           "flatPath": "files/{fileId}/comments/{commentId}",
           "httpMethod": "DELETE",
           "id": "drive.comments.delete",
@@ -698,7 +698,7 @@
           ]
         },
         "get": {
-          "description": "Gets a comment by ID. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).",
+          "description": "Gets a comment by ID. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).",
           "flatPath": "files/{fileId}/comments/{commentId}",
           "httpMethod": "GET",
           "id": "drive.comments.get",
@@ -738,7 +738,7 @@
           ]
         },
         "list": {
-          "description": "Lists a file's comments. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).",
+          "description": "Lists a file's comments. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).",
           "flatPath": "files/{fileId}/comments",
           "httpMethod": "GET",
           "id": "drive.comments.list",
@@ -790,7 +790,7 @@
           ]
         },
         "update": {
-          "description": "Updates a comment with patch semantics. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).",
+          "description": "Updates a comment with patch semantics. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).",
           "flatPath": "files/{fileId}/comments/{commentId}",
           "httpMethod": "PATCH",
           "id": "drive.comments.update",
@@ -944,7 +944,7 @@
           ]
         },
         "list": {
-          "description": " Lists the user's shared drives. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for shared drives](/drive/api/guides/search-shareddrives) guide.",
+          "description": " Lists the user's shared drives. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for shared drives](/workspace/drive/api/guides/search-shareddrives) guide.",
           "flatPath": "drives",
           "httpMethod": "GET",
           "id": "drive.drives.list",
@@ -1123,7 +1123,7 @@
           ]
         },
         "create": {
-          "description": " Creates a new file. This method supports an */upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`*/*` Note: Specify a valid MIME type, rather than the literal `*/*` value. The literal `*/*` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/drive/api/guides/manage-uploads). Apps creating shortcuts with `files.create` must specify the MIME type `application/vnd.google-apps.shortcut`. Apps should specify a file extension in the `name` property when inserting files with the API. For example, an operation to insert a JPEG file should specify something like `\"name\": \"cat.jpg\"` in the metadata. Subsequent `GET` requests include the read-only `fileExtension` property populated with the extension originally specified in the `title` property. When a Google Drive user requests to download a file, or when the file is downloaded through the sync client, Drive builds a full filename (with extension) based on the title. In cases where the extension is missing, Drive attempts to determine the extension based on the file's MIME type.",
+          "description": " Creates a new file. This method supports an */upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`*/*` Note: Specify a valid MIME type, rather than the literal `*/*` value. The literal `*/*` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads). Apps creating shortcuts with `files.create` must specify the MIME type `application/vnd.google-apps.shortcut`. Apps should specify a file extension in the `name` property when inserting files with the API. For example, an operation to insert a JPEG file should specify something like `\"name\": \"cat.jpg\"` in the metadata. Subsequent `GET` requests include the read-only `fileExtension` property populated with the extension originally specified in the `title` property. When a Google Drive user requests to download a file, or when the file is downloaded through the sync client, Drive builds a full filename (with extension) based on the title. In cases where the extension is missing, Drive attempts to determine the extension based on the file's MIME type.",
           "flatPath": "files",
           "httpMethod": "POST",
           "id": "drive.files.create",
@@ -1389,7 +1389,7 @@
           ]
         },
         "get": {
-          "description": " Gets a file's metadata or content by ID. If you provide the URL parameter `alt=media`, then the response includes the file contents in the response body. Downloading content with `alt=media` only works if the file is stored in Drive. To download Google Docs, Sheets, and Slides use [`files.export`](/drive/api/reference/rest/v3/files/export) instead. For more information, see [Download & export files](/drive/api/guides/manage-downloads).",
+          "description": " Gets a file's metadata or content by ID. If you provide the URL parameter `alt=media`, then the response includes the file contents in the response body. Downloading content with `alt=media` only works if the file is stored in Drive. To download Google Docs, Sheets, and Slides use [`files.export`](/workspace/drive/api/reference/rest/v3/files/export) instead. For more information, see [Download & export files](/workspace/drive/api/guides/manage-downloads).",
           "flatPath": "files/{fileId}",
           "httpMethod": "GET",
           "id": "drive.files.get",
@@ -1452,7 +1452,7 @@
           "useMediaDownloadService": true
         },
         "list": {
-          "description": " Lists the user's files. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for files & folders](/drive/api/guides/search-files) guide. *Note:* This method returns *all* files by default, including trashed files. If you don't want trashed files to appear in the list, use the `trashed=false` query parameter to remove trashed files from the results.",
+          "description": " Lists the user's files. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for files & folders](/workspace/drive/api/guides/search-files) guide. *Note:* This method returns *all* files by default, including trashed files. If you don't want trashed files to appear in the list, use the `trashed=false` query parameter to remove trashed files from the results.",
           "flatPath": "files",
           "httpMethod": "GET",
           "id": "drive.files.list",
@@ -1643,7 +1643,7 @@
           ]
         },
         "update": {
-          "description": " Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as `modifiedDate`. This method supports patch semantics. This method supports an */upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`*/*` Note: Specify a valid MIME type, rather than the literal `*/*` value. The literal `*/*` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/drive/api/guides/manage-uploads).",
+          "description": " Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as `modifiedDate`. This method supports patch semantics. This method supports an */upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`*/*` Note: Specify a valid MIME type, rather than the literal `*/*` value. The literal `*/*` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads).",
           "flatPath": "files/{fileId}",
           "httpMethod": "PATCH",
           "id": "drive.files.update",
@@ -2800,7 +2800,7 @@
       }
     }
   },
-  "revision": "20250220",
+  "revision": "20250329",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3306,7 +3306,7 @@
       "id": "Comment",
       "properties": {
         "anchor": {
-          "description": "A region of the document represented as a JSON string. For details on defining anchor properties, refer to [Manage comments and replies](https://developers.google.com/drive/api/v3/manage-comments).",
+          "description": "A region of the document represented as a JSON string. For details on defining anchor properties, refer to [Manage comments and replies](https://developers.google.com/workspace/drive/api/v3/manage-comments).",
           "type": "string"
         },
         "author": {
@@ -4677,7 +4677,7 @@
       "type": "object"
     },
     "Permission": {
-      "description": "A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy. By default, permissions requests only return a subset of fields. Permission kind, ID, type, and role are always returned. To retrieve specific fields, see https://developers.google.com/drive/api/guides/fields-parameter. Some resource methods (such as `permissions.update`) require a `permissionId`. Use the `permissions.list` method to retrieve the ID for a file, folder, or shared drive.",
+      "description": "A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy. By default, permissions requests only return a subset of fields. Permission kind, ID, type, and role are always returned. To retrieve specific fields, see https://developers.google.com/workspace/drive/api/guides/fields-parameter. Some resource methods (such as `permissions.update`) require a `permissionId`. Use the `permissions.list` method to retrieve the ID for a file, folder, or shared drive.",
       "id": "Permission",
       "properties": {
         "allowFileDiscovery": {
