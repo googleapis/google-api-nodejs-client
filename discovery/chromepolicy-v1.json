@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20241118",
+  "revision": "20250409",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyVersionsV1AdditionalTargetKeyName": {
@@ -893,7 +893,7 @@
       "type": "object"
     },
     "GoogleChromePolicyVersionsV1NetworkSetting": {
-      "description": "A network setting contains network configurations.",
+      "description": "A network setting contains network configurations. It adheres to the PolicyAPI formats defined under the namespace chrome.networks.{wifi/ethernet/cellular/vpn}.Details",
       "id": "GoogleChromePolicyVersionsV1NetworkSetting",
       "properties": {
         "policySchema": {
@@ -1629,6 +1629,20 @@
             "$ref": "Proto2OneofDescriptorProto"
           },
           "type": "array"
+        },
+        "visibility": {
+          "description": "Support for `export` and `local` keywords on enums.",
+          "enum": [
+            "VISIBILITY_UNSET",
+            "VISIBILITY_LOCAL",
+            "VISIBILITY_EXPORT"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1645,6 +1659,20 @@
             "$ref": "Proto2EnumValueDescriptorProto"
           },
           "type": "array"
+        },
+        "visibility": {
+          "description": "Support for `export` and `local` keywords on enums.",
+          "enum": [
+            "VISIBILITY_UNSET",
+            "VISIBILITY_LOCAL",
+            "VISIBILITY_EXPORT"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1780,6 +1808,13 @@
         "name": {
           "description": "file name, relative to root of source tree",
           "type": "string"
+        },
+        "optionDependency": {
+          "description": "Names of files imported by this file purely for the purpose of providing option extensions. These are excluded from the dependency list above.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "package": {
           "description": "e.g. \"foo\", \"foo.bar\", etc.",
