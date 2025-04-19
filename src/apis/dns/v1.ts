@@ -515,6 +515,10 @@ export namespace dns_v1 {
   }
   export interface Schema$ManagedZoneForwardingConfigNameServerTarget {
     /**
+     * Fully qualified domain name for the forwarding target.
+     */
+    domainName?: string | null;
+    /**
      * Forwarding path for this NameServerTarget. If unset or set to DEFAULT, Cloud DNS makes forwarding decisions based on IP address ranges; that is, RFC1918 addresses go to the VPC network, non-RFC1918 addresses go to the internet. When set to PRIVATE, Cloud DNS always sends queries through the VPC network for this target.
      */
     forwardingPath?: string | null;
