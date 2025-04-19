@@ -16,7 +16,9 @@
 
 set -eo pipefail
 
-export NPM_CONFIG_PREFIX=${HOME}/.npm-global
+# Ensure the npm global directory is writable, otherwise rebuild `npm`
+mkdir -p $NPM_CONFIG_PREFIX
+npm config -g ls || npm i -g npm@`npm --version`
 
 # Setup service account credentials.
 export GOOGLE_APPLICATION_CREDENTIALS=${KOKORO_GFILE_DIR}/secret_manager/long-door-651-kokoro-system-test-service-account
@@ -56,7 +58,7 @@ fi
 
 # codecov combines coverage across integration and unit tests. Include
 # the logic below for any environment you wish to collect coverage for:
-COVERAGE_NODE=14
+COVERAGE_NODE=18
 if npx check-node-version@3.3.0 --silent --node $COVERAGE_NODE; then
   NYC_BIN=./node_modules/nyc/bin/nyc.js
   if [ -f "$NYC_BIN" ]; then
