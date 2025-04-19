@@ -1636,7 +1636,7 @@
       }
     }
   },
-  "revision": "20250102",
+  "revision": "20250403",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AsyncOptions": {
@@ -2286,6 +2286,10 @@
     "InstancesBulkInsertOperationMetadata": {
       "id": "InstancesBulkInsertOperationMetadata",
       "properties": {
+        "machineType": {
+          "description": "[Output Only] The machine type of the VMs that were created used internally only by KCP flex bulk insert.",
+          "type": "string"
+        },
         "perLocationStatus": {
           "additionalProperties": {
             "$ref": "BulkInsertOperationStatus"
@@ -2512,6 +2516,10 @@
         "selfLinkWithId": {
           "description": "[Output Only] Server-defined URL for this resource with the resource id.",
           "type": "string"
+        },
+        "setAutoscalerLinkOperationMetadata": {
+          "$ref": "SetAutoscalerLinkOperationMetadata",
+          "description": "This field is used internally by the Autoscaler team and should not be promoted to \"alpha/beta/v1\"."
         },
         "setCommonInstanceMetadataOperationMetadata": {
           "$ref": "SetCommonInstanceMetadataOperationMetadata",
@@ -3394,6 +3402,20 @@
         "email": {
           "description": "The IAM service account email address like test@myproject.iam.gserviceaccount.com",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SetAutoscalerLinkOperationMetadata": {
+      "id": "SetAutoscalerLinkOperationMetadata",
+      "properties": {
+        "zonalIgmIds": {
+          "description": "List of zonal IGM IDs part of the RMIG.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

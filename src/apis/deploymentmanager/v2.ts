@@ -415,6 +415,10 @@ export namespace deploymentmanager_v2 {
   }
   export interface Schema$InstancesBulkInsertOperationMetadata {
     /**
+     * [Output Only] The machine type of the VMs that were created used internally only by KCP flex bulk insert.
+     */
+    machineType?: string | null;
+    /**
      * Status information per location (location name is key). Example key: zones/us-central1-a
      */
     perLocationStatus?: {
@@ -573,6 +577,10 @@ export namespace deploymentmanager_v2 {
      * [Output Only] Server-defined URL for this resource with the resource id.
      */
     selfLinkWithId?: string | null;
+    /**
+     * This field is used internally by the Autoscaler team and should not be promoted to "alpha/beta/v1".
+     */
+    setAutoscalerLinkOperationMetadata?: Schema$SetAutoscalerLinkOperationMetadata;
     /**
      * [Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state.
      */
@@ -801,6 +809,12 @@ export namespace deploymentmanager_v2 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     }> | null;
+  }
+  export interface Schema$SetAutoscalerLinkOperationMetadata {
+    /**
+     * List of zonal IGM IDs part of the RMIG.
+     */
+    zonalIgmIds?: string[] | null;
   }
   export interface Schema$SetCommonInstanceMetadataOperationMetadata {
     /**
