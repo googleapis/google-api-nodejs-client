@@ -542,7 +542,7 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$FindDevicesByDeviceIdentifierRequest {
     /**
-     * Required. Required. The device identifier to search for.
+     * Required. Required. The device identifier to search for. If serial number is provided then case insensitive serial number matches are allowed.
      */
     deviceIdentifier?: Schema$DeviceIdentifier;
     /**
