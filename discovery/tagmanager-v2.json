@@ -3940,7 +3940,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250409",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -4721,16 +4721,6 @@
         },
         "numGtagConfigs": {
           "description": "Number of Google tag configs in the container version.",
-          "type": "string"
-        },
-        "numMacros": {
-          "deprecated": true,
-          "description": "Number of macros in the container version.",
-          "type": "string"
-        },
-        "numRules": {
-          "deprecated": true,
-          "description": "Number of rules in the container version.",
           "type": "string"
         },
         "numTags": {
@@ -5798,14 +5788,6 @@
           "description": "GTM Account ID.",
           "type": "string"
         },
-        "blockingRuleId": {
-          "deprecated": true,
-          "description": "Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "blockingTriggerId": {
           "description": "Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire.",
           "items": {
@@ -5824,14 +5806,6 @@
         "fingerprint": {
           "description": "The fingerprint of the GTM Tag as computed at storage time. This value is recomputed whenever the tag is modified.",
           "type": "string"
-        },
-        "firingRuleId": {
-          "deprecated": true,
-          "description": "Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         },
         "firingTriggerId": {
           "description": "Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its blockingTriggerIds (if any specified) are false.",
