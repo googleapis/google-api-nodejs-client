@@ -1776,7 +1776,7 @@ export namespace admin_directory_v1 {
      */
     makeAndModel?: string | null;
     /**
-     * The resource name of the Printer object, in the format customers/{customer-id\}/printers/{printer-id\} (During printer creation leave empty)
+     * Identifier. The resource name of the Printer object, in the format customers/{customer-id\}/printers/{printer-id\} (During printer creation leave empty)
      */
     name?: string | null;
     /**
@@ -1830,7 +1830,7 @@ export namespace admin_directory_v1 {
      */
     id?: string | null;
     /**
-     * Immutable. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id\}/printServers/{print_server.id\}`
+     * Identifier. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id\}/printServers/{print_server.id\}`
      */
     name?: string | null;
     /**
@@ -5485,7 +5485,7 @@ export namespace admin_directory_v1 {
      */
     clearMask?: string;
     /**
-     * The resource name of the Printer object, in the format customers/{customer-id\}/printers/{printer-id\} (During printer creation leave empty)
+     * Identifier. The resource name of the Printer object, in the format customers/{customer-id\}/printers/{printer-id\} (During printer creation leave empty)
      */
     name?: string;
     /**
@@ -6225,7 +6225,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Customers$Chrome$Printservers$Patch
     extends StandardParameters {
     /**
-     * Immutable. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id\}/printServers/{print_server.id\}`
+     * Identifier. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id\}/printServers/{print_server.id\}`
      */
     name?: string;
     /**
