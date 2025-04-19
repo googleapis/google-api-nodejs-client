@@ -1469,7 +1469,7 @@
       }
     }
   },
-  "revision": "20241209",
+  "revision": "20250320",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -3622,6 +3622,6 @@
     }
   },
   "servicePath": "",
-  "title": "Google Play Game Services",
+  "title": "Google Play Games Services API",
   "version": "v1"
 }
