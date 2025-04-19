@@ -1313,6 +1313,109 @@
             },
             "logicalViews": {
               "methods": {
+                "create": {
+                  "description": "Creates a logical view within an instance.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/logicalViews",
+                  "httpMethod": "POST",
+                  "id": "bigtableadmin.projects.instances.logicalViews.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "logicalViewId": {
+                      "description": "Required. The ID to use for the logical view, which will become the final component of the logical view's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent instance where this logical view will be created. Format: `projects/{project}/instances/{instance}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/logicalViews",
+                  "request": {
+                    "$ref": "LogicalView"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a logical view from an instance.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/logicalViews/{logicalViewsId}",
+                  "httpMethod": "DELETE",
+                  "id": "bigtableadmin.projects.instances.logicalViews.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The current etag of the logical view. If an etag is provided and does not match the current etag of the logical view, deletion will be blocked and an ABORTED error will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The unique name of the logical view to be deleted. Format: `projects/{project}/instances/{instance}/logicalViews/{logical_view}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/logicalViews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets information about a logical view.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/logicalViews/{logicalViewsId}",
+                  "httpMethod": "GET",
+                  "id": "bigtableadmin.projects.instances.logicalViews.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The unique name of the requested logical view. Values are of the form `projects/{project}/instances/{instance}/logicalViews/{logical_view}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/logicalViews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "LogicalView"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for an instance resource. Returns an empty policy if an instance exists but does not have a policy set.",
                   "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/logicalViews/{logicalViewsId}:getIamPolicy",
@@ -1336,6 +1439,86 @@
                   },
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists information about logical views in an instance.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/logicalViews",
+                  "httpMethod": "GET",
+                  "id": "bigtableadmin.projects.instances.logicalViews.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of logical views to return. The service may return fewer than this value",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListLogicalViews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListLogicalViews` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The unique name of the instance for which the list of logical views is requested. Values are of the form `projects/{project}/instances/{instance}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/logicalViews",
+                  "response": {
+                    "$ref": "ListLogicalViewsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a logical view within an instance.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/logicalViews/{logicalViewsId}",
+                  "httpMethod": "PATCH",
+                  "id": "bigtableadmin.projects.instances.logicalViews.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The unique name of the logical view. Format: `projects/{project}/instances/{instance}/logicalViews/{logical_view}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/logicalViews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "LogicalView"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/bigtable.admin",
@@ -1416,6 +1599,109 @@
             },
             "materializedViews": {
               "methods": {
+                "create": {
+                  "description": "Creates a materialized view within an instance.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/materializedViews",
+                  "httpMethod": "POST",
+                  "id": "bigtableadmin.projects.instances.materializedViews.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "materializedViewId": {
+                      "description": "Required. The ID to use for the materialized view, which will become the final component of the materialized view's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent instance where this materialized view will be created. Format: `projects/{project}/instances/{instance}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/materializedViews",
+                  "request": {
+                    "$ref": "MaterializedView"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a materialized view from an instance.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/materializedViews/{materializedViewsId}",
+                  "httpMethod": "DELETE",
+                  "id": "bigtableadmin.projects.instances.materializedViews.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The current etag of the materialized view. If an etag is provided and does not match the current etag of the materialized view, deletion will be blocked and an ABORTED error will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The unique name of the materialized view to be deleted. Format: `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/materializedViews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets information about a materialized view.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/materializedViews/{materializedViewsId}",
+                  "httpMethod": "GET",
+                  "id": "bigtableadmin.projects.instances.materializedViews.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The unique name of the requested materialized view. Values are of the form `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/materializedViews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "MaterializedView"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for an instance resource. Returns an empty policy if an instance exists but does not have a policy set.",
                   "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/materializedViews/{materializedViewsId}:getIamPolicy",
@@ -1439,6 +1725,86 @@
                   },
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists information about materialized views in an instance.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/materializedViews",
+                  "httpMethod": "GET",
+                  "id": "bigtableadmin.projects.instances.materializedViews.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of materialized views to return. The service may return fewer than this value",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListMaterializedViews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMaterializedViews` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The unique name of the instance for which the list of materialized views is requested. Values are of the form `projects/{project}/instances/{instance}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/materializedViews",
+                  "response": {
+                    "$ref": "ListMaterializedViewsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a materialized view within an instance.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/materializedViews/{materializedViewsId}",
+                  "httpMethod": "PATCH",
+                  "id": "bigtableadmin.projects.instances.materializedViews.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The unique name of the materialized view. Format: `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/materializedViews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "MaterializedView"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/bigtable.admin",
@@ -1866,6 +2232,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "ignoreWarnings": {
+                      "description": "Optional. If true, ignore safety checks when updating the table.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "The unique name of the table. Values are of the form `projects/{project}/instances/{instance}/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `STATS_VIEW`, `FULL`",
                       "location": "path",
@@ -2357,6 +2728,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -2400,7 +2777,7 @@
       }
     }
   },
-  "revision": "20250308",
+  "revision": "20250410",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -4054,6 +4431,42 @@
       },
       "type": "object"
     },
+    "ListLogicalViewsResponse": {
+      "description": "Response message for BigtableInstanceAdmin.ListLogicalViews.",
+      "id": "ListLogicalViewsResponse",
+      "properties": {
+        "logicalViews": {
+          "description": "The list of requested logical views.",
+          "items": {
+            "$ref": "LogicalView"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListMaterializedViewsResponse": {
+      "description": "Response message for BigtableInstanceAdmin.ListMaterializedViews.",
+      "id": "ListMaterializedViewsResponse",
+      "properties": {
+        "materializedViews": {
+          "description": "The list of requested materialized views.",
+          "items": {
+            "$ref": "MaterializedView"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListOperationsResponse": {
       "description": "The response message for Operations.ListOperations.",
       "id": "ListOperationsResponse",
@@ -4614,6 +5027,10 @@
           "$ref": "RestoreInfo",
           "description": "Output only. If this table was restored from another data source (e.g. a backup), this field will be populated with information about the restore.",
           "readOnly": true
+        },
+        "rowKeySchema": {
+          "$ref": "GoogleBigtableAdminV2TypeStruct",
+          "description": "The row key schema for this table. The schema is used to decode the raw row key bytes into a structured format. The order of field declarations in this schema is important, as it reflects how the raw row key bytes are structured. Currently, this only affects how the key is read via a GoogleSQL query from the ExecuteQuery API. For a SQL query, the _key column is still read as raw bytes. But queries can reference the key fields by name, which will be decoded from _key using provided type and encoding. Queries that reference key fields will fail if they encounter an invalid row key. For example, if _key = \"some_id#2024-04-30#\\x00\\x13\\x00\\xf3\" with the following schema: { fields { field_name: \"id\" type { string { encoding: utf8_bytes {} } } } fields { field_name: \"date\" type { string { encoding: utf8_bytes {} } } } fields { field_name: \"product_code\" type { int64 { encoding: big_endian_bytes {} } } } encoding { delimited_bytes { delimiter: \"#\" } } } The decoded key parts would be: id = \"some_id\", date = \"2024-04-30\", product_code = 1245427 The query \"SELECT _key, product_code FROM table\" will return two columns: /------------------------------------------------------\\ | _key | product_code | | --------------------------------------|--------------| | \"some_id#2024-04-30#\\x00\\x13\\x00\\xf3\" | 1245427 | \\------------------------------------------------------/ The schema has the following invariants: (1) The decoded field values are order-preserved. For read, the field values will be decoded in sorted mode from the raw bytes. (2) Every field in the schema must specify a non-empty name. (3) Every field must specify a type with an associated encoding. The type is limited to scalar types only: Array, Map, Aggregate, and Struct are not allowed. (4) The field names must not collide with existing column family names and reserved keywords \"_key\" and \"_timestamp\". The following update operations are allowed for row_key_schema: - Update from an empty schema to a new schema. - Remove the existing schema. This operation requires setting the `ignore_warnings` flag to `true`, since it might be a backward incompatible change. Without the flag, the update request will fail with an INVALID_ARGUMENT error. Any other row key schema update operation (e.g. update existing schema columns names or types) is currently unsupported."
         },
         "stats": {
           "$ref": "TableStats",
