@@ -137,6 +137,10 @@ export namespace datastream_v1 {
    */
   export interface Schema$BackfillAllStrategy {
     /**
+     * MongoDB data source objects to avoid backfilling
+     */
+    mongodbExcludedObjects?: Schema$MongodbCluster;
+    /**
      * MySQL data source objects to avoid backfilling.
      */
     mysqlExcludedObjects?: Schema$MysqlRdbms;
@@ -311,6 +315,10 @@ export namespace datastream_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * MongoDB Connection Profile configuration.
+     */
+    mongodbProfile?: Schema$MongodbProfile;
+    /**
      * MySQL ConnectionProfile configuration.
      */
     mysqlProfile?: Schema$MysqlProfile;
@@ -410,6 +418,10 @@ export namespace datastream_v1 {
      */
     hierarchyDepth?: number | null;
     /**
+     * MongoDB cluster to enrich with child data objects and metadata.
+     */
+    mongodbCluster?: Schema$MongodbCluster;
+    /**
      * MySQL RDBMS to enrich with child data objects and metadata.
      */
     mysqlRdbms?: Schema$MysqlRdbms;
@@ -422,6 +434,10 @@ export namespace datastream_v1 {
      */
     postgresqlRdbms?: Schema$PostgresqlRdbms;
     /**
+     * Salesforce organization to enrich with child data objects and metadata.
+     */
+    salesforceOrg?: Schema$SalesforceOrg;
+    /**
      * SQLServer RDBMS to enrich with child data objects and metadata.
      */
     sqlServerRdbms?: Schema$SqlServerRdbms;
@@ -430,6 +446,10 @@ export namespace datastream_v1 {
    * Response from a discover request.
    */
   export interface Schema$DiscoverConnectionProfileResponse {
+    /**
+     * Enriched MongoDB cluster.
+     */
+    mongodbCluster?: Schema$MongodbCluster;
     /**
      * Enriched MySQL RDBMS object.
      */
@@ -442,6 +462,10 @@ export namespace datastream_v1 {
      * Enriched PostgreSQL RDBMS object.
      */
     postgresqlRdbms?: Schema$PostgresqlRdbms;
+    /**
+     * Enriched Salesforce organization.
+     */
+    salesforceOrg?: Schema$SalesforceOrg;
     /**
      * Enriched SQLServer RDBMS object.
      */
@@ -560,6 +584,19 @@ export namespace datastream_v1 {
    * Use GTID based replication.
    */
   export interface Schema$Gtid {}
+  /**
+   * A HostAddress represents a transport end point, which is the combination of an IP address or hostname and a port number.
+   */
+  export interface Schema$HostAddress {
+    /**
+     * Required. Hostname for the connection.
+     */
+    hostname?: string | null;
+    /**
+     * Optional. Port for the connection.
+     */
+    port?: number | null;
+  }
   /**
    * JSON file format configuration.
    */
@@ -735,6 +772,109 @@ export namespace datastream_v1 {
    * Merge mode defines that all changes to a table will be merged at the destination table.
    */
   export interface Schema$Merge {}
+  /**
+   * MongoDB Cluster structure.
+   */
+  export interface Schema$MongodbCluster {
+    /**
+     * MongoDB databases in the cluster.
+     */
+    databases?: Schema$MongodbDatabase[];
+  }
+  /**
+   * MongoDB Collection.
+   */
+  export interface Schema$MongodbCollection {
+    /**
+     * Collection name.
+     */
+    collection?: string | null;
+    /**
+     * Fields in the collection.
+     */
+    fields?: Schema$MongodbField[];
+  }
+  /**
+   * MongoDB Database.
+   */
+  export interface Schema$MongodbDatabase {
+    /**
+     * Collections in the database.
+     */
+    collections?: Schema$MongodbCollection[];
+    /**
+     * Database name.
+     */
+    database?: string | null;
+  }
+  /**
+   * MongoDB Field.
+   */
+  export interface Schema$MongodbField {
+    /**
+     * Field name.
+     */
+    field?: string | null;
+  }
+  /**
+   * MongoDB data source object identifier.
+   */
+  export interface Schema$MongodbObjectIdentifier {
+    /**
+     * Required. The collection name.
+     */
+    collection?: string | null;
+    /**
+     * Required. The database name.
+     */
+    database?: string | null;
+  }
+  /**
+   * MongoDB profile.
+   */
+  export interface Schema$MongodbProfile {
+    /**
+     * Required. List of host addresses for a MongoDB cluster.
+     */
+    hostAddresses?: Schema$HostAddress[];
+    /**
+     * Optional. Password for the MongoDB connection. Mutually exclusive with the `secret_manager_stored_password` field.
+     */
+    password?: string | null;
+    /**
+     * Optional. Name of the replica set. Only needed for self hosted replica set type MongoDB cluster.
+     */
+    replicaSet?: string | null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the SQLServer connection password. Mutually exclusive with the `password` field.
+     */
+    secretManagerStoredPassword?: string | null;
+    /**
+     * Srv connection format.
+     */
+    srvConnectionFormat?: Schema$SrvConnectionFormat;
+    /**
+     * Standard connection format.
+     */
+    standardConnectionFormat?: Schema$StandardConnectionFormat;
+    /**
+     * Required. Username for the MongoDB connection.
+     */
+    username?: string | null;
+  }
+  /**
+   * MongoDB source configuration.
+   */
+  export interface Schema$MongodbSourceConfig {
+    /**
+     * MongoDB collections to exclude from the stream.
+     */
+    excludeObjects?: Schema$MongodbCluster;
+    /**
+     * MongoDB collections to include in the stream.
+     */
+    includeObjects?: Schema$MongodbCluster;
+  }
   /**
    * CDC strategy to start replicating from the most recent position in the source.
    */
@@ -1431,6 +1571,10 @@ export namespace datastream_v1 {
      */
     name?: string | null;
     /**
+     * PSC Interface Config.
+     */
+    pscInterfaceConfig?: Schema$PscInterfaceConfig;
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -1459,6 +1603,15 @@ export namespace datastream_v1 {
      * Required. A reference to a private connection resource. Format: `projects/{project\}/locations/{location\}/privateConnections/{name\}`
      */
     privateConnection?: string | null;
+  }
+  /**
+   * The PSC Interface configuration is used to create PSC Interface between Datastream and the consumer's PSC.
+   */
+  export interface Schema$PscInterfaceConfig {
+    /**
+     * Required. Fully qualified name of the Network Attachment that Datastream will connect to. Format: `projects/{{project\}\}/regions/{{region\}\}/networkAttachments/{{name\}\}`
+     */
+    networkAttachment?: string | null;
   }
   /**
    * The route resource is the child of the private connection resource, used for defining a route for a private connection.
@@ -1628,6 +1781,10 @@ export namespace datastream_v1 {
    */
   export interface Schema$SourceConfig {
     /**
+     * MongoDB data source configuration.
+     */
+    mongodbSourceConfig?: Schema$MongodbSourceConfig;
+    /**
      * MySQL data source configuration.
      */
     mysqlSourceConfig?: Schema$MysqlSourceConfig;
@@ -1665,6 +1822,10 @@ export namespace datastream_v1 {
    * Represents an identifier of an object in the data source.
    */
   export interface Schema$SourceObjectIdentifier {
+    /**
+     * MongoDB data source object identifier.
+     */
+    mongodbIdentifier?: Schema$MongodbObjectIdentifier;
     /**
      * Mysql data source object identifier.
      */
@@ -1867,6 +2028,14 @@ export namespace datastream_v1 {
    * Configuration to use Transaction Logs CDC read method.
    */
   export interface Schema$SqlServerTransactionLogs {}
+  /**
+   * Srv connection format.
+   */
+  export interface Schema$SrvConnectionFormat {}
+  /**
+   * Standard connection format.
+   */
+  export interface Schema$StandardConnectionFormat {}
   /**
    * Request for manually initiating a backfill job for a specific stream object.
    */
@@ -2431,6 +2600,10 @@ export namespace datastream_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
@@ -3903,6 +4076,10 @@ export namespace datastream_v1 {
      * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+    /**
+     * Optional. When supplied with PSC Interface config, will get/create the tenant project required for the customer to allow list and won't actually create the private connection.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
