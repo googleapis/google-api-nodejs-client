@@ -23,7 +23,7 @@
   "canonicalName": "Drive Labels",
   "description": "An API for managing Drive Labels",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/drive/labels",
+  "documentationLink": "https://developers.google.com/workspace/drive/labels",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1032,7 +1032,7 @@
       }
     }
   },
-  "revision": "20231218",
+  "revision": "20250331",
   "rootUrl": "https://drivelabels.googleapis.com/",
   "schemas": {
     "GoogleAppsDriveLabelsV2BadgeColors": {

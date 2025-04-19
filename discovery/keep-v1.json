@@ -17,7 +17,7 @@
   "canonicalName": "Keep",
   "description": "The Google Keep API is used in an enterprise environment to manage Google Keep content and resolve issues identified by cloud security software.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/keep/api",
+  "documentationLink": "https://developers.google.com/workspace/keep/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -314,7 +314,7 @@
       }
     }
   },
-  "revision": "20220322",
+  "revision": "20250318",
   "rootUrl": "https://keep.googleapis.com/",
   "schemas": {
     "Attachment": {
