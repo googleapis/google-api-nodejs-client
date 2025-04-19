@@ -877,6 +877,10 @@ export namespace displayvideo_v4 {
      */
     contentStreamTypeDetails?: Schema$ContentStreamTypeAssignedTargetingOptionDetails;
     /**
+     * Content theme details. This field will be populated when the targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`. Content theme are targeting exclusions. Advertiser level content theme exclusions, if set, are always applied in serving (even though they aren't visible in resource settings). Resource settings can exclude content theme in addition to advertiser exclusions.
+     */
+    contentThemeExclusionDetails?: Schema$ContentThemeAssignedTargetingOptionDetails;
+    /**
      * Day and time details. This field will be populated when the targeting_type is `TARGETING_TYPE_DAY_AND_TIME`.
      */
     dayAndTimeDetails?: Schema$DayAndTimeAssignedTargetingOptionDetails;
@@ -2067,6 +2071,32 @@ export namespace displayvideo_v4 {
      * Output only. The content stream type.
      */
     contentStreamType?: string | null;
+  }
+  /**
+   * Targeting details for content theme. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`.
+   */
+  export interface Schema$ContentThemeAssignedTargetingOptionDetails {
+    /**
+     * Output only. An enum for the DV360 content theme classifier.
+     */
+    contentTheme?: string | null;
+    /**
+     * Required. An enum for the DV360 content theme classified to be EXCLUDED.
+     */
+    excludedContentTheme?: string | null;
+    /**
+     * Required. ID of the content theme to be EXCLUDED.
+     */
+    excludedTargetingOptionId?: string | null;
+  }
+  /**
+   * Represents a targetable content theme. This will be populated in the content_theme_details field of the TargetingOption when targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`.
+   */
+  export interface Schema$ContentThemeTargetingOptionDetails {
+    /**
+     * Output only. An enum for the DV360 content theme content classifier.
+     */
+    contentTheme?: string | null;
   }
   /**
    * Settings that control how conversions are counted. All post-click conversions will be counted. A percentage value can be set for post-view conversions counting.
@@ -5725,6 +5755,10 @@ export namespace displayvideo_v4 {
      * Content stream type resource details.
      */
     contentStreamTypeDetails?: Schema$ContentStreamTypeTargetingOptionDetails;
+    /**
+     * Content theme details.
+     */
+    contentThemeDetails?: Schema$ContentThemeTargetingOptionDetails;
     /**
      * Device make and model resource details.
      */

@@ -125,7 +125,6 @@ export namespace displayvideo_v3 {
     media: Resource$Media;
     partners: Resource$Partners;
     sdfdownloadtasks: Resource$Sdfdownloadtasks;
-    sdfuploadtasks: Resource$Sdfuploadtasks;
     targetingTypes: Resource$Targetingtypes;
     users: Resource$Users;
 
@@ -153,7 +152,6 @@ export namespace displayvideo_v3 {
       this.media = new Resource$Media(this.context);
       this.partners = new Resource$Partners(this.context);
       this.sdfdownloadtasks = new Resource$Sdfdownloadtasks(this.context);
-      this.sdfuploadtasks = new Resource$Sdfuploadtasks(this.context);
       this.targetingTypes = new Resource$Targetingtypes(this.context);
       this.users = new Resource$Users(this.context);
     }
@@ -876,6 +874,10 @@ export namespace displayvideo_v3 {
      * Content duration details. This field will be populated when the TargetingType is `TARGETING_TYPE_CONTENT_STREAM_TYPE`.
      */
     contentStreamTypeDetails?: Schema$ContentStreamTypeAssignedTargetingOptionDetails;
+    /**
+     * Content theme details. This field will be populated when the targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`. Content theme are targeting exclusions. Advertiser level content theme exclusions, if set, are always applied in serving (even though they aren't visible in resource settings). Resource settings can exclude content theme in addition to advertiser exclusions.
+     */
+    contentThemeExclusionDetails?: Schema$ContentThemeAssignedTargetingOptionDetails;
     /**
      * Day and time details. This field will be populated when the targeting_type is `TARGETING_TYPE_DAY_AND_TIME`.
      */
@@ -2087,6 +2089,32 @@ export namespace displayvideo_v3 {
      * Output only. The content stream type.
      */
     contentStreamType?: string | null;
+  }
+  /**
+   * Targeting details for content theme. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`.
+   */
+  export interface Schema$ContentThemeAssignedTargetingOptionDetails {
+    /**
+     * Output only. An enum for the DV360 content theme classifier.
+     */
+    contentTheme?: string | null;
+    /**
+     * Required. An enum for the DV360 content theme classified to be EXCLUDED.
+     */
+    excludedContentTheme?: string | null;
+    /**
+     * Required. ID of the content theme to be EXCLUDED.
+     */
+    excludedTargetingOptionId?: string | null;
+  }
+  /**
+   * Represents a targetable content theme. This will be populated in the content_theme_details field of the TargetingOption when targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`.
+   */
+  export interface Schema$ContentThemeTargetingOptionDetails {
+    /**
+     * Output only. An enum for the DV360 content theme content classifier.
+     */
+    contentTheme?: string | null;
   }
   /**
    * Settings that control how conversions are counted. All post-click conversions will be counted. A percentage value can be set for post-view conversions counting.
@@ -5785,6 +5813,10 @@ export namespace displayvideo_v3 {
      * Content stream type resource details.
      */
     contentStreamTypeDetails?: Schema$ContentStreamTypeTargetingOptionDetails;
+    /**
+     * Content theme details.
+     */
+    contentThemeDetails?: Schema$ContentThemeTargetingOptionDetails;
     /**
      * Device make and model resource details.
      */
@@ -23670,115 +23702,6 @@ export namespace displayvideo_v3 {
   }
 
   export interface Params$Resource$Sdfdownloadtasks$Operations$Get
-    extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-
-  export class Resource$Sdfuploadtasks {
-    context: APIRequestContext;
-    operations: Resource$Sdfuploadtasks$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations = new Resource$Sdfuploadtasks$Operations(this.context);
-    }
-  }
-
-  export class Resource$Sdfuploadtasks$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Sdfuploadtasks$Operations$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Sdfuploadtasks$Operations$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    get(
-      params: Params$Resource$Sdfuploadtasks$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Sdfuploadtasks$Operations$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    get(
-      params: Params$Resource$Sdfuploadtasks$Operations$Get,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Sdfuploadtasks$Operations$Get
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Sdfuploadtasks$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Sdfuploadtasks$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Sdfuploadtasks$Operations$Get
     extends StandardParameters {
     /**
      * The name of the operation resource.
