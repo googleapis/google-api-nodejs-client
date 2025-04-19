@@ -451,7 +451,7 @@ export namespace cloudtrace_v2 {
     }
 
     /**
-     * Batch writes new spans to new or existing traces. You cannot update existing spans.
+     * Batch writes new spans to new or existing traces. You cannot update existing spans. If a span ID already exists, an additional copy of the span will be stored.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -559,7 +559,7 @@ export namespace cloudtrace_v2 {
     }
 
     /**
-     * Creates a new span.
+     * Creates a new span. If a span ID already exists, an additional copy of the span will be stored.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
