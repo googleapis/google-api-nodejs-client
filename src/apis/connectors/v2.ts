@@ -1766,6 +1766,10 @@ export namespace connectors_v2 {
      * Required. Resource name of the Action. Format: projects/{project\}/locations/{location\}/connections/{connection\}/actions/{action\}
      */
     name?: string;
+    /**
+     * Specified view of the action schema.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Connections$Actions$List
     extends StandardParameters {

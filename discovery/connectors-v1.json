@@ -193,6 +193,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -1954,6 +1960,11 @@
                           "pattern": "^projects/[^/]+/locations/global$",
                           "required": true,
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+parent}/managedZones",
@@ -2560,7 +2571,7 @@
       }
     }
   },
-  "revision": "20250304",
+  "revision": "20250327",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3585,6 +3596,10 @@
         },
         "provisionCloudSpanner": {
           "description": "Indicate whether cloud spanner is required for connector job.",
+          "type": "boolean"
+        },
+        "provisionMemstore": {
+          "description": "Indicate whether memstore is required for connector job.",
           "type": "boolean"
         },
         "ratelimitThreshold": {
@@ -6056,6 +6071,13 @@
         "nextPageToken": {
           "description": "Next page token.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
