@@ -113,40 +113,6 @@
               "resources": {
                 "partnerTenants": {
                   "methods": {
-                    "create": {
-                      "deprecated": true,
-                      "description": "Creates a new BeyondCorp Enterprise partnerTenant in a given organization and can only be called by onboarded BeyondCorp Enterprise partner.",
-                      "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants",
-                      "httpMethod": "POST",
-                      "id": "beyondcorp.organizations.locations.global.partnerTenants.create",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The resource name of the parent organization using the form: `organizations/{organization_id}/locations/global`",
-                          "location": "path",
-                          "pattern": "^organizations/[^/]+/locations/global$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+parent}/partnerTenants",
-                      "request": {
-                        "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant"
-                      },
-                      "response": {
-                        "$ref": "GoogleLongrunningOperation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "delete": {
                       "deprecated": true,
                       "description": "Deletes a single PartnerTenant.",
@@ -249,46 +215,6 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
-                    "patch": {
-                      "deprecated": true,
-                      "description": "Updates a single PartnerTenant.",
-                      "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}",
-                      "httpMethod": "PATCH",
-                      "id": "beyondcorp.organizations.locations.global.partnerTenants.patch",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Output only. Unique resource name of the PartnerTenant. The name is ignored when creating PartnerTenant.",
-                          "location": "path",
-                          "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "updateMask": {
-                          "description": "Required. Field mask is used to specify the fields to be overwritten in the PartnerTenant resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Mutable fields: display_name, partner_metadata, group_information.",
-                          "format": "google-fieldmask",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+name}",
-                      "request": {
-                        "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant"
-                      },
-                      "response": {
-                        "$ref": "GoogleLongrunningOperation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "testIamPermissions": {
                       "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
                       "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}:testIamPermissions",
@@ -321,40 +247,8 @@
                   "resources": {
                     "browserDlpRules": {
                       "methods": {
-                        "create": {
-                          "description": "Creates a new BrowserDlpRule in a given organization and PartnerTenant.",
-                          "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/browserDlpRules",
-                          "httpMethod": "POST",
-                          "id": "beyondcorp.organizations.locations.global.partnerTenants.browserDlpRules.create",
-                          "parameterOrder": [
-                            "parent"
-                          ],
-                          "parameters": {
-                            "parent": {
-                              "description": "Required. The resource name of the BrowserDlpRule parent using the form: `organizations/{organization_id}/locations/global/partnerTenants/{partner_tenant_id}`",
-                              "location": "path",
-                              "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            },
-                            "requestId": {
-                              "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                              "location": "query",
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1alpha/{+parent}/browserDlpRules",
-                          "request": {
-                            "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaBrowserDlpRule"
-                          },
-                          "response": {
-                            "$ref": "GoogleLongrunningOperation"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
                         "delete": {
+                          "deprecated": true,
                           "description": "Deletes an existing BrowserDlpRule.",
                           "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/browserDlpRules/{browserDlpRulesId}",
                           "httpMethod": "DELETE",
@@ -385,6 +279,7 @@
                           ]
                         },
                         "get": {
+                          "deprecated": true,
                           "description": "Gets details of a single BrowserDlpRule.",
                           "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/browserDlpRules/{browserDlpRulesId}",
                           "httpMethod": "GET",
@@ -410,6 +305,7 @@
                           ]
                         },
                         "list": {
+                          "deprecated": true,
                           "description": "Lists BrowserDlpRules for PartnerTenant in a given organization.",
                           "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/browserDlpRules",
                           "httpMethod": "GET",
@@ -4128,7 +4024,7 @@
       }
     }
   },
-  "revision": "20250305",
+  "revision": "20250319",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
