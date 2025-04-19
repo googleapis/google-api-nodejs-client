@@ -220,6 +220,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://containeranalysis.europe-west10.rep.googleapis.com/",
       "location": "europe-west10"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://containeranalysis.us.rep.googleapis.com/",
+      "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://containeranalysis.eu.rep.googleapis.com/",
+      "location": "eu"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1675,7 +1685,7 @@
       }
     }
   },
-  "revision": "20250307",
+  "revision": "20250411",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
