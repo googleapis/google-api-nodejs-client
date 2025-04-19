@@ -323,6 +323,36 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "fetchClusterUpgradeInfo": {
+                  "description": "Fetch upgrade information of a specific cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:fetchClusterUpgradeInfo",
+                  "httpMethod": "GET",
+                  "id": "container.projects.locations.clusters.fetchClusterUpgradeInfo",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name (project, location, cluster) of the cluster to get. Specified in the format `projects/*/locations/*/clusters/*` or `projects/*/zones/*/clusters/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "version": {
+                      "description": "API request version that initiates this operation.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:fetchClusterUpgradeInfo",
+                  "response": {
+                    "$ref": "ClusterUpgradeInfo"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets the details of a specific cluster.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}",
@@ -866,6 +896,36 @@
                       "path": "v1/{+name}",
                       "response": {
                         "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "fetchNodePoolUpgradeInfo": {
+                      "description": "Fetch upgrade information of a specific nodepool.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}/nodePools/{nodePoolsId}:fetchNodePoolUpgradeInfo",
+                      "httpMethod": "GET",
+                      "id": "container.projects.locations.clusters.nodePools.fetchNodePoolUpgradeInfo",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name (project, location, cluster, nodepool) of the nodepool to get. Specified in the format `projects/*/locations/*/clusters/*/nodePools/*` or `projects/*/zones/*/clusters/*/nodePools/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+/nodePools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "version": {
+                          "description": "API request version that initiates this operation.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:fetchNodePoolUpgradeInfo",
+                      "response": {
+                        "$ref": "NodePoolUpgradeInfo"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1443,6 +1503,36 @@
                   "path": "v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}",
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "fetchClusterUpgradeInfo": {
+                  "description": "Fetch upgrade information of a specific cluster.",
+                  "flatPath": "v1/projects/{projectsId}/zones/{zonesId}/clusters/{clustersId}:fetchClusterUpgradeInfo",
+                  "httpMethod": "GET",
+                  "id": "container.projects.zones.clusters.fetchClusterUpgradeInfo",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name (project, location, cluster) of the cluster to get. Specified in the format `projects/*/locations/*/clusters/*` or `projects/*/zones/*/clusters/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/zones/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "version": {
+                      "description": "API request version that initiates this operation.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:fetchClusterUpgradeInfo",
+                  "response": {
+                    "$ref": "ClusterUpgradeInfo"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2122,6 +2212,36 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "fetchNodePoolUpgradeInfo": {
+                      "description": "Fetch upgrade information of a specific nodepool.",
+                      "flatPath": "v1/projects/{projectsId}/zones/{zonesId}/clusters/{clustersId}/nodePools/{nodePoolsId}:fetchNodePoolUpgradeInfo",
+                      "httpMethod": "GET",
+                      "id": "container.projects.zones.clusters.nodePools.fetchNodePoolUpgradeInfo",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name (project, location, cluster, nodepool) of the nodepool to get. Specified in the format `projects/*/locations/*/clusters/*/nodePools/*` or `projects/*/zones/*/clusters/*/nodePools/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/zones/[^/]+/clusters/[^/]+/nodePools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "version": {
+                          "description": "API request version that initiates this operation.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:fetchNodePoolUpgradeInfo",
+                      "response": {
+                        "$ref": "NodePoolUpgradeInfo"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Retrieves the requested node pool.",
                       "flatPath": "v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}",
@@ -2540,7 +2660,7 @@
       }
     }
   },
-  "revision": "20250225",
+  "revision": "20250408",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2890,7 +3010,7 @@
           "type": "string"
         },
         "insecureKubeletReadonlyPortEnabled": {
-          "description": "Enable or disable Kubelet read only port.",
+          "description": "DEPRECATED. Use NodePoolAutoConfig.NodeKubeletConfig instead.",
           "type": "boolean"
         },
         "management": {
@@ -3321,6 +3441,7 @@
           "description": "Configuration for the legacy ABAC authorization mode."
         },
         "location": {
+          "description": "Output only. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which the cluster resides.",
           "readOnly": true,
           "type": "string"
         },
@@ -3361,7 +3482,7 @@
           "description": "Monitoring configuration for the cluster."
         },
         "monitoringService": {
-          "description": "The monitoring service the cluster should use to write metrics. Currently available options: * \"monitoring.googleapis.com/kubernetes\" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
+          "description": "The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
           "type": "string"
         },
         "name": {
@@ -3413,6 +3534,10 @@
         "parentProductConfig": {
           "$ref": "ParentProductConfig",
           "description": "The configuration of the parent product of the cluster. This field is used by Google internal products that are built on top of the GKE cluster and take the ownership of the cluster."
+        },
+        "podAutoscaling": {
+          "$ref": "PodAutoscaling",
+          "description": "The config for pod autoscaling."
         },
         "privateClusterConfig": {
           "$ref": "PrivateClusterConfig",
@@ -3769,7 +3894,7 @@
           "description": "The desired monitoring configuration."
         },
         "desiredMonitoringService": {
-          "description": "The monitoring service the cluster should use to write metrics. Currently available options: * \"monitoring.googleapis.com/kubernetes\" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
+          "description": "The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
           "type": "string"
         },
         "desiredNetworkPerformanceConfig": {
@@ -3819,6 +3944,10 @@
         "desiredParentProductConfig": {
           "$ref": "ParentProductConfig",
           "description": "The desired parent product config for the cluster."
+        },
+        "desiredPodAutoscaling": {
+          "$ref": "PodAutoscaling",
+          "description": "The desired config for pod autoscaling."
         },
         "desiredPrivateClusterConfig": {
           "$ref": "PrivateClusterConfig",
@@ -3910,6 +4039,80 @@
       },
       "type": "object"
     },
+    "ClusterUpgradeInfo": {
+      "description": "ClusterUpgradeInfo contains the upgrade information of a cluster.",
+      "id": "ClusterUpgradeInfo",
+      "properties": {
+        "autoUpgradeStatus": {
+          "description": "The auto upgrade status.",
+          "items": {
+            "enum": [
+              "UNKNOWN",
+              "ACTIVE",
+              "MINOR_UPGRADE_PAUSED",
+              "UPGRADE_PAUSED"
+            ],
+            "enumDescriptions": [
+              "UNKNOWN indicates an unknown status.",
+              "ACTIVE indicates an active status.",
+              "MINOR_UPGRADE_PAUSED indicates the minor version upgrade is paused.",
+              "UPGRADE_PAUSED indicates the upgrade is paused."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "endOfExtendedSupportTimestamp": {
+          "description": "The cluster's current minor version's end of extended support timestamp.",
+          "type": "string"
+        },
+        "endOfStandardSupportTimestamp": {
+          "description": "The cluster's current minor version's end of standard support timestamp.",
+          "type": "string"
+        },
+        "minorTargetVersion": {
+          "description": "minor_target_version indicates the target version for minor upgrade.",
+          "type": "string"
+        },
+        "patchTargetVersion": {
+          "description": "patch_target_version indicates the target version for patch upgrade.",
+          "type": "string"
+        },
+        "pausedReason": {
+          "description": "The auto upgrade paused reason.",
+          "items": {
+            "enum": [
+              "AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED",
+              "MAINTENANCE_WINDOW",
+              "MAINTENANCE_EXCLUSION_NO_UPGRADES",
+              "MAINTENANCE_EXCLUSION_NO_MINOR_UPGRADES",
+              "CLUSTER_DISRUPTION_BUDGET",
+              "CLUSTER_DISRUPTION_BUDGET_MINOR_UPGRADE",
+              "SYSTEM_CONFIG"
+            ],
+            "enumDescriptions": [
+              "AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED indicates an unspecified reason.",
+              "MAINTENANCE_WINDOW indicates the cluster is outside customer maintenance window.",
+              "MAINTENANCE_EXCLUSION_NO_UPGRADES indicates the cluster is in a maintenance exclusion with scope NO_UPGRADES.",
+              "MAINTENANCE_EXCLUSION_NO_MINOR_UPGRADES indicates the cluster is in a maintenance exclusion with scope NO_MINOR_UPGRADES.",
+              "CLUSTER_DISRUPTION_BUDGET indicates the cluster is outside the cluster disruption budget.",
+              "CLUSTER_DISRUPTION_BUDGET_MINOR_UPGRADE indicates the cluster is outside the cluster disruption budget for minor version upgrade.",
+              "SYSTEM_CONFIG indicates the cluster upgrade is paused by system config."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "upgradeDetails": {
+          "description": "The list of past auto upgrades.",
+          "items": {
+            "$ref": "UpgradeDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CompleteIPRotationRequest": {
       "description": "CompleteIPRotationRequest moves the cluster master back into single-IP mode.",
       "id": "CompleteIPRotationRequest",
@@ -3985,6 +4188,22 @@
       "description": "ConfidentialNodes is configuration for the confidential nodes feature, which makes nodes run on confidential VMs.",
       "id": "ConfidentialNodes",
       "properties": {
+        "confidentialInstanceType": {
+          "description": "Defines the type of technology used by the confidential node.",
+          "enum": [
+            "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED",
+            "SEV",
+            "SEV_SNP",
+            "TDX"
+          ],
+          "enumDescriptions": [
+            "No type specified. Do not use this value.",
+            "AMD Secure Encrypted Virtualization.",
+            "AMD Secure Encrypted Virtualization - Secure Nested Paging.",
+            "Intel Trust Domain eXtension."
+          ],
+          "type": "string"
+        },
         "enabled": {
           "description": "Whether Confidential Nodes feature is enabled.",
           "type": "boolean"
@@ -4336,6 +4555,11 @@
       "description": "EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral storage using Local SSDs.",
       "id": "EphemeralStorageLocalSsdConfig",
       "properties": {
+        "dataCacheCount": {
+          "description": "Number of local SSDs to use for GKE Data Cache.",
+          "format": "int32",
+          "type": "integer"
+        },
         "localSsdCount": {
           "description": "Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. A zero (or unset) value has different meanings depending on machine type being used: 1. For pre-Gen3 machines, which support flexible numbers of local ssds, zero (or unset) means to disable using local SSDs as ephemeral storage. The limit for this value is dependent upon the maximum number of disk available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information. 2. For Gen3 machines which dictate a specific number of local ssds, zero (or unset) means to use the default number of local ssds that goes with that machine type. For example, for a c3-standard-8-lssd machine, 2 local ssds would be provisioned. For c3-standard-8 (which doesn't support local ssds), 0 will be provisioned. See https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds for more info.",
           "format": "int32",
@@ -5651,6 +5875,10 @@
           "$ref": "FastSocket",
           "description": "Enable or disable NCCL fast socket for the node pool."
         },
+        "flexStart": {
+          "description": "Flex Start flag for enabling Flex Start VM.",
+          "type": "boolean"
+        },
         "gcfsConfig": {
           "$ref": "GcfsConfig",
           "description": "Google Container File System (image streaming) configs."
@@ -5993,7 +6221,7 @@
       "properties": {
         "autopilotConfig": {
           "$ref": "AutopilotConfig",
-          "description": "Specifies the autopilot configuration for this node pool. This field is exclusively reserved for Cluster Autoscaler to implement go/gke-managed-nodes-ccc-api"
+          "description": "Specifies the autopilot configuration for this node pool. This field is exclusively reserved for Cluster Autoscaler."
         },
         "autoscaling": {
           "$ref": "NodePoolAutoscaling",
@@ -6209,6 +6437,76 @@
         "variantConfig": {
           "$ref": "LoggingVariantConfig",
           "description": "Logging variant configuration."
+        }
+      },
+      "type": "object"
+    },
+    "NodePoolUpgradeInfo": {
+      "description": "NodePoolUpgradeInfo contains the upgrade information of a nodepool.",
+      "id": "NodePoolUpgradeInfo",
+      "properties": {
+        "autoUpgradeStatus": {
+          "description": "The auto upgrade status.",
+          "items": {
+            "enum": [
+              "UNKNOWN",
+              "ACTIVE",
+              "MINOR_UPGRADE_PAUSED",
+              "UPGRADE_PAUSED"
+            ],
+            "enumDescriptions": [
+              "UNKNOWN indicates an unknown status.",
+              "ACTIVE indicates an active status.",
+              "MINOR_UPGRADE_PAUSED indicates the minor version upgrade is paused.",
+              "UPGRADE_PAUSED indicates the upgrade is paused."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "endOfExtendedSupportTimestamp": {
+          "description": "The nodepool's current minor version's end of extended support timestamp.",
+          "type": "string"
+        },
+        "endOfStandardSupportTimestamp": {
+          "description": "The nodepool's current minor version's end of standard support timestamp.",
+          "type": "string"
+        },
+        "minorTargetVersion": {
+          "description": "minor_target_version indicates the target version for minor upgrade.",
+          "type": "string"
+        },
+        "patchTargetVersion": {
+          "description": "patch_target_version indicates the target version for patch upgrade.",
+          "type": "string"
+        },
+        "pausedReason": {
+          "description": "The auto upgrade paused reason.",
+          "items": {
+            "enum": [
+              "AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED",
+              "MAINTENANCE_WINDOW",
+              "MAINTENANCE_EXCLUSION_NO_UPGRADES",
+              "MAINTENANCE_EXCLUSION_NO_MINOR_UPGRADES",
+              "SYSTEM_CONFIG"
+            ],
+            "enumDescriptions": [
+              "AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED indicates an unspecified reason.",
+              "MAINTENANCE_WINDOW indicates the cluster is outside customer maintenance window.",
+              "MAINTENANCE_EXCLUSION_NO_UPGRADES indicates the cluster is in a maintenance exclusion with scope NO_UPGRADES.",
+              "MAINTENANCE_EXCLUSION_NO_MINOR_UPGRADES indicates the cluster is in a maintenance exclusion with scope NO_MINOR_UPGRADES.",
+              "SYSTEM_CONFIG indicates the cluster upgrade is paused by system config."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "upgradeDetails": {
+          "description": "The list of past auto upgrades.",
+          "items": {
+            "$ref": "UpgradeDetails"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6548,6 +6846,27 @@
           "enumDescriptions": [
             "TYPE_UNSPECIFIED specifies no requirements on nodes placement.",
             "COMPACT specifies node placement in the same availability domain to ensure low communication latency."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PodAutoscaling": {
+      "description": "PodAutoscaling is used for configuration of parameters for workload autoscaling.",
+      "id": "PodAutoscaling",
+      "properties": {
+        "hpaProfile": {
+          "description": "Selected Horizontal Pod Autoscaling profile.",
+          "enum": [
+            "HPA_PROFILE_UNSPECIFIED",
+            "NONE",
+            "PERFORMANCE"
+          ],
+          "enumDescriptions": [
+            "HPA_PROFILE_UNSPECIFIED is used when no custom HPA profile is set.",
+            "Customers explicitly opt-out of HPA profiles.",
+            "PERFORMANCE is used when customers opt-in to the performance HPA profile. In this profile we support a higher number of HPAs per cluster and faster metrics collection for workload autoscaling."
           ],
           "type": "string"
         }
@@ -7056,6 +7375,13 @@
           "description": "If this field is specified, it means there are manual steps that the user must take to make their clusters safe.",
           "type": "boolean"
         },
+        "mitigatedVersions": {
+          "description": "The GKE versions where this vulnerability is mitigated.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "patchedVersions": {
           "description": "The GKE versions where this vulnerability is patched.",
           "items": {
@@ -7414,7 +7740,7 @@
           "type": "string"
         },
         "monitoringService": {
-          "description": "Required. The monitoring service the cluster should use to write metrics. Currently available options: * \"monitoring.googleapis.com/kubernetes\" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
+          "description": "Required. The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
           "type": "string"
         },
         "name": {
@@ -7911,6 +8237,10 @@
           "$ref": "FastSocket",
           "description": "Enable or disable NCCL fast socket for the node pool."
         },
+        "flexStart": {
+          "description": "Flex Start flag for enabling Flex Start VM.",
+          "type": "boolean"
+        },
         "gcfsConfig": {
           "$ref": "GcfsConfig",
           "description": "GCFS config."
@@ -8057,6 +8387,64 @@
       },
       "type": "object"
     },
+    "UpgradeDetails": {
+      "description": "UpgradeDetails contains detailed information of each individual upgrade operation.",
+      "id": "UpgradeDetails",
+      "properties": {
+        "endTime": {
+          "description": "The end timestamp of the upgrade.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "initialVersion": {
+          "description": "The version before the upgrade.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The start timestamp of the upgrade.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startType": {
+          "description": "The start type of the upgrade.",
+          "enum": [
+            "START_TYPE_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL"
+          ],
+          "enumDescriptions": [
+            "Upgrade start type is unspecified.",
+            "Upgrade started automatically.",
+            "Upgrade started manually."
+          ],
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the upgrade.",
+          "enum": [
+            "UNKNOWN",
+            "FAILED",
+            "SUCCEEDED",
+            "CANCELED",
+            "RUNNING"
+          ],
+          "enumDescriptions": [
+            "Upgrade state is unknown.",
+            "Upgrade has failed with an error.",
+            "Upgrade has succeeded.",
+            "Upgrade has been canceled.",
+            "Upgrade is running."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetVersion": {
+          "description": "The version after the upgrade.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "UpgradeEvent": {
       "description": "UpgradeEvent is a notification sent to customers by the cluster server when a resource is upgrading.",
       "id": "UpgradeEvent",
@@ -8121,12 +8509,14 @@
           "enum": [
             "EVENT_TYPE_UNSPECIFIED",
             "END_OF_SUPPORT",
-            "COS_MILESTONE_VERSION_UPDATE"
+            "COS_MILESTONE_VERSION_UPDATE",
+            "UPGRADE_LIFECYCLE"
           ],
           "enumDescriptions": [
             "EVENT_TYPE_UNSPECIFIED indicates the event type is unspecified.",
             "END_OF_SUPPORT indicates GKE version reaches end of support, check standard_support_end_time and extended_support_end_time for more details.",
-            "COS_MILESTONE_VERSION_UPDATE indicates that the COS node image will update COS milestone version for new patch versions starting with the one in the description."
+            "COS_MILESTONE_VERSION_UPDATE indicates that the COS node image will update COS milestone version for new patch versions starting with the one in the description.",
+            "UPGRADE_LIFECYCLE indicates the event is about the upgrade lifecycle."
           ],
           "type": "string"
         },
@@ -8359,20 +8749,20 @@
       "type": "object"
     },
     "WindowsNodeConfig": {
-      "description": "Parameters that can be configured on Windows nodes. Windows Node Config that define the parameters that will be used to configure the Windows node pool settings",
+      "description": "Parameters that can be configured on Windows nodes. Windows Node Config that define the parameters that will be used to configure the Windows node pool settings.",
       "id": "WindowsNodeConfig",
       "properties": {
         "osVersion": {
-          "description": "OSVersion specifies the Windows node config to be used on the node",
+          "description": "OSVersion specifies the Windows node config to be used on the node.",
           "enum": [
             "OS_VERSION_UNSPECIFIED",
             "OS_VERSION_LTSC2019",
             "OS_VERSION_LTSC2022"
           ],
           "enumDescriptions": [
-            "When OSVersion is not specified",
-            "LTSC2019 specifies to use LTSC2019 as the Windows Servercore Base Image",
-            "LTSC2022 specifies to use LTSC2022 as the Windows Servercore Base Image"
+            "When OSVersion is not specified.",
+            "LTSC2019 specifies to use LTSC2019 as the Windows Servercore Base Image.",
+            "LTSC2022 specifies to use LTSC2022 as the Windows Servercore Base Image."
           ],
           "type": "string"
         }
