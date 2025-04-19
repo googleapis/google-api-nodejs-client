@@ -1261,7 +1261,7 @@ export namespace youtube_v3 {
      */
     canRate?: boolean | null;
     /**
-     * The id of the corresponding YouTube channel. In case of a channel comment this is the channel the comment refers to. In case of a video comment it's the video's channel.
+     * The id of the corresponding YouTube channel. In case of a channel comment this is the channel the comment refers to. In case of a video or post comment it's the video/post's channel.
      */
     channelId?: string | null;
     /**
@@ -1273,9 +1273,13 @@ export namespace youtube_v3 {
      */
     moderationStatus?: string | null;
     /**
-     * The unique id of the parent comment, only set for replies.
+     * The unique id of the top-level comment, only set for replies.
      */
     parentId?: string | null;
+    /**
+     * The ID of the post the comment refers to, if any.
+     */
+    postId?: string | null;
     /**
      * The date and time when the comment was originally published.
      */
@@ -1302,9 +1306,12 @@ export namespace youtube_v3 {
     viewerRating?: string | null;
   }
   /**
-   * The id of the author's YouTube channel, if any.
+   * Contains the id of the author's YouTube channel, if any.
    */
   export interface Schema$CommentSnippetAuthorChannelId {
+    /**
+     * The id of the author's YouTube channel.
+     */
     value?: string | null;
   }
   /**
@@ -1381,13 +1388,17 @@ export namespace youtube_v3 {
      */
     canReply?: boolean | null;
     /**
-     * The YouTube channel the comments in the thread refer to or the channel with the video the comments refer to. If video_id isn't set the comments refer to the channel itself.
+     * The YouTube channel the comments in the thread refer to or the channel with the video the comments refer to. If neither video_id nor post_id is set the comments refer to the channel itself.
      */
     channelId?: string | null;
     /**
      * Whether the thread (and therefore all its comments) is visible to all YouTube users.
      */
     isPublic?: boolean | null;
+    /**
+     * The ID of the post the comments refer to, if any.
+     */
+    postId?: string | null;
     /**
      * The top level comment of this thread.
      */
@@ -1397,7 +1408,7 @@ export namespace youtube_v3 {
      */
     totalReplyCount?: number | null;
     /**
-     * The ID of the video the comments refer to, if any. No video_id implies a channel discussion comment.
+     * The ID of the video the comments refer to, if any.
      */
     videoId?: string | null;
   }
@@ -7212,6 +7223,10 @@ export namespace youtube_v3 {
      * The *part* parameter specifies a comma-separated list of one or more commentThread resource properties that the API response will include.
      */
     part?: string[];
+    /**
+     * Returns the comment threads of the specified post.
+     */
+    postId?: string;
     /**
      * Limits the returned comment threads to those matching the specified key words. Not compatible with the 'id' filter.
      */
