@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20250312",
+  "revision": "20250416",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -577,7 +577,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Optional. Required. The function parameters and values in JSON object format. See [FunctionDeclaration.parameters] for parameter details.",
+          "description": "Optional. The function parameters and values in JSON object format. See [FunctionDeclaration.parameters] for parameter details.",
           "type": "object"
         },
         "id": {
@@ -865,6 +865,21 @@
           "description": "Total token count for prompt, response candidates, and tool-use prompts (if present).",
           "format": "int32",
           "type": "integer"
+        },
+        "trafficType": {
+          "description": "Output only. Traffic type. This shows whether a request consumes Pay-As-You-Go or Provisioned Throughput quota.",
+          "enum": [
+            "TRAFFIC_TYPE_UNSPECIFIED",
+            "ON_DEMAND",
+            "PROVISIONED_THROUGHPUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified request traffic type.",
+            "Type for Pay-As-You-Go traffic.",
+            "Type for Provisioned Throughput traffic."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -912,6 +927,10 @@
             "Media resolution set to high (zoomed reframing with 256 tokens)."
           ],
           "type": "string"
+        },
+        "modelConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenerationConfigModelConfig",
+          "description": "Optional. Config for model selection."
         },
         "presencePenalty": {
           "description": "Optional. Positive penalties.",
@@ -974,6 +993,10 @@
           "format": "float",
           "type": "number"
         },
+        "thinkingConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig",
+          "description": "Optional. Config for thinking features. An error will be returned if this field is set for models that don't support thinking."
+        },
         "topK": {
           "description": "Optional. If specified, top-k sampling will be used.",
           "format": "float",
@@ -983,6 +1006,29 @@
           "description": "Optional. If specified, nucleus sampling will be used.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerationConfigModelConfig": {
+      "description": "Config for model selection.",
+      "id": "GoogleCloudAiplatformV1beta1GenerationConfigModelConfig",
+      "properties": {
+        "featureSelectionPreference": {
+          "description": "Required. Feature selection preference.",
+          "enum": [
+            "FEATURE_SELECTION_PREFERENCE_UNSPECIFIED",
+            "PRIORITIZE_QUALITY",
+            "BALANCED",
+            "PRIORITIZE_COST"
+          ],
+          "enumDescriptions": [
+            "Unspecified feature selection preference.",
+            "Prefer higher quality over lower cost.",
+            "Balanced feature selection preference.",
+            "Prefer lower cost over higher quality."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1030,8 +1076,20 @@
       "id": "GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigManualRoutingMode",
       "properties": {
         "modelName": {
-          "description": "The model name to use. Only the public LLM models are accepted. e.g. 'gemini-1.5-pro-001'.",
+          "description": "The model name to use. Only the public LLM models are accepted. See [Supported models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference#supported-models).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig": {
+      "description": "Config for thinking features.",
+      "id": "GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig",
+      "properties": {
+        "thinkingBudget": {
+          "description": "Optional. Indicates the thinking budget in tokens. This is only applied when enable_thinking is true.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1066,6 +1124,10 @@
       "description": "Chunk from context retrieved by the retrieval tools.",
       "id": "GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext",
       "properties": {
+        "ragChunk": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagChunk",
+          "description": "Additional context for the RAG retrieval result. This is only populated when using the RAG retrieval tool."
+        },
         "text": {
           "description": "Text of the attribution.",
           "type": "string"
@@ -1314,6 +1376,38 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1RagChunk": {
+      "description": "A RagChunk includes the content of a chunk of a RagFile, and associated metadata.",
+      "id": "GoogleCloudAiplatformV1beta1RagChunk",
+      "properties": {
+        "pageSpan": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagChunkPageSpan",
+          "description": "If populated, represents where the chunk starts and ends in the document."
+        },
+        "text": {
+          "description": "The content of the chunk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RagChunkPageSpan": {
+      "description": "Represents where the chunk starts and ends in the document.",
+      "id": "GoogleCloudAiplatformV1beta1RagChunkPageSpan",
+      "properties": {
+        "firstPage": {
+          "description": "Page where chunk starts in the document. Inclusive. 1-indexed.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "lastPage": {
+          "description": "Page where chunk ends in the document. Inclusive. 1-indexed.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1RagRetrievalConfig": {
       "description": "Specifies the context retrieval config.",
       "id": "GoogleCloudAiplatformV1beta1RagRetrievalConfig",
@@ -1391,7 +1485,7 @@
       "id": "GoogleCloudAiplatformV1beta1RagRetrievalConfigRankingLlmRanker",
       "properties": {
         "modelName": {
-          "description": "Optional. The model name used for ranking. Format: `gemini-1.5-pro`",
+          "description": "Optional. The model name used for ranking. See [Supported models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference#supported-models).",
           "type": "string"
         }
       },
@@ -1474,13 +1568,21 @@
             "HARM_CATEGORY_SEXUALLY_EXPLICIT",
             "HARM_CATEGORY_CIVIC_INTEGRITY"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "The harm category is unspecified.",
             "The harm category is hate speech.",
             "The harm category is dangerous content.",
             "The harm category is harassment.",
             "The harm category is sexually explicit content.",
-            "The harm category is civic integrity."
+            "Deprecated: Election filter is not longer supported. The harm category is civic integrity."
           ],
           "readOnly": true,
           "type": "string"
@@ -1552,13 +1654,21 @@
             "HARM_CATEGORY_SEXUALLY_EXPLICIT",
             "HARM_CATEGORY_CIVIC_INTEGRITY"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "The harm category is unspecified.",
             "The harm category is hate speech.",
             "The harm category is dangerous content.",
             "The harm category is harassment.",
             "The harm category is sexually explicit content.",
-            "The harm category is civic integrity."
+            "Deprecated: Election filter is not longer supported. The harm category is civic integrity."
           ],
           "type": "string"
         },
@@ -1785,6 +1895,10 @@
       "description": "The speech generation config.",
       "id": "GoogleCloudAiplatformV1beta1SpeechConfig",
       "properties": {
+        "languageCode": {
+          "description": "Optional. Language code (ISO 639. e.g. en-US) for the speech synthesization.",
+          "type": "string"
+        },
         "voiceConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1VoiceConfig",
           "description": "The configuration for the speaker to use."
