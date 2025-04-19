@@ -475,7 +475,7 @@ export namespace driveactivity_v2 {
      */
     folder?: Schema$Folder;
     /**
-     * The MIME type of the Drive item. See https://developers.google.com/drive/v3/web/mime-types.
+     * The MIME type of the Drive item. See https://developers.google.com/workspace/drive/v3/web/mime-types.
      */
     mimeType?: string | null;
     /**
@@ -604,11 +604,11 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$FileComment {
     /**
-     * The comment in the discussion thread. This identifier is an opaque string compatible with the Drive API; see https://developers.google.com/drive/v3/reference/comments/get
+     * The comment in the discussion thread. This identifier is an opaque string compatible with the Drive API; see https://developers.google.com/workspace/drive/v3/reference/comments/get
      */
     legacyCommentId?: string | null;
     /**
-     * The discussion thread to which the comment was added. This identifier is an opaque string compatible with the Drive API and references the first comment in a discussion; see https://developers.google.com/drive/v3/reference/comments/get
+     * The discussion thread to which the comment was added. This identifier is an opaque string compatible with the Drive API and references the first comment in a discussion; see https://developers.google.com/workspace/drive/v3/reference/comments/get
      */
     legacyDiscussionId?: string | null;
     /**
@@ -740,7 +740,7 @@ export namespace driveactivity_v2 {
      */
     group?: Schema$Group;
     /**
-     * Indicates the [Google Drive permissions role](https://developers.google.com/drive/web/manage-sharing#roles). The role determines a user's ability to read, write, and comment on items.
+     * Indicates the [Google Drive permissions role](https://developers.google.com/workspace/drive/web/manage-sharing#roles). The role determines a user's ability to read, write, and comment on items.
      */
     role?: string | null;
     /**
@@ -906,7 +906,7 @@ export namespace driveactivity_v2 {
     type?: string | null;
   }
   /**
-   * Information about the target of activity. For more information on how activity history is shared with users, see [Activity history visibility](https://developers.google.com/drive/activity/v2#activityhistory).
+   * Information about the target of activity. For more information on how activity history is shared with users, see [Activity history visibility](https://developers.google.com/workspace/drive/activity/v2#activityhistory).
    */
   export interface Schema$Target {
     /**
