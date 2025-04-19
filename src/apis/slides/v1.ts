@@ -1734,7 +1734,7 @@ export namespace slides_v1 {
     type?: string | null;
   }
   /**
-   * A PageElement kind representing a generic shape that doesn't have a more specific classification. For more information, see [Size and position page elements](https://developers.google.com/slides/api/guides/transform).
+   * A PageElement kind representing a generic shape that doesn't have a more specific classification. For more information, see [Size and position page elements](https://developers.google.com/workspace/slides/api/guides/transform).
    */
   export interface Schema$Shape {
     /**
@@ -1916,6 +1916,10 @@ export namespace slides_v1 {
      * Indicates whether the search should respect case: - `True`: the search is case sensitive. - `False`: the search is case insensitive.
      */
     matchCase?: boolean | null;
+    /**
+     * Optional. True if the find value should be treated as a regular expression. Any backslashes in the pattern should be escaped. - `True`: the search text is treated as a regular expressions. - `False`: the search text is treated as a substring for matching.
+     */
+    searchByRegex?: boolean | null;
     /**
      * The text to search for in the shape or table.
      */
@@ -3061,7 +3065,7 @@ export namespace slides_v1 {
     }
 
     /**
-     * Generates a thumbnail of the latest version of the specified page in the presentation and returns a URL to the thumbnail image. This request counts as an [expensive read request](/slides/limits) for quota purposes.
+     * Generates a thumbnail of the latest version of the specified page in the presentation and returns a URL to the thumbnail image. This request counts as an [expensive read request](https://developers.google.com/workspace/slides/limits) for quota purposes.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
