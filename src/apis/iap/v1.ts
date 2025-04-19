@@ -528,7 +528,7 @@ export namespace iap_v1 {
   export interface Schema$ResetIdentityAwareProxyClientSecretRequest {}
   export interface Schema$Resource {
     /**
-     * The proto or JSON formatted expected next state of the resource, wrapped in a google.protobuf.Any proto, against which the policy rules are evaluated. Services not integrated with custom org policy can omit this field. Services integrated with custom org policy must populate this field for all requests where the API call changes the state of the resource. Custom org policy backend uses these attributes to enforce custom org policies. For create operations, GCP service is expected to pass resource from customer request as is. For update/patch operations, GCP service is expected to compute the next state with the patch provided by the user. See go/custom-constraints-org-policy-integration-guide for additional details.
+     * The proto or JSON formatted expected next state of the resource, wrapped in a google.protobuf.Any proto, against which the policy rules are evaluated. Services not integrated with custom org policy can omit this field. Services integrated with custom org policy must populate this field for all requests where the API call changes the state of the resource. Custom org policy backend uses these attributes to enforce custom org policies. For create operations, GCP service is expected to pass resource from customer request as is. For update/patch operations, GCP service is expected to compute the next state with the patch provided by the user. See go/federated-custom-org-policy-integration-guide for additional details.
      */
     expectedNextState?: {[key: string]: any} | null;
     /**

@@ -2,7 +2,7 @@
 
 # areainsights
 
-> Places Insights API.
+> Places Aggregate API.
 
 ## Installation
 

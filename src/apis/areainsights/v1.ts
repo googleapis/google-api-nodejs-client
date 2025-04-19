@@ -100,9 +100,9 @@ export namespace areainsights_v1 {
   }
 
   /**
-   * Places Insights API
+   * Places Aggregate API
    *
-   * Places Insights API.
+   * Places Aggregate API.
    *
    * @example
    * ```js
@@ -300,7 +300,7 @@ export namespace areainsights_v1 {
     }
 
     /**
-     * Compute Insights RPC This method lets you retrieve insights about areas using a variaty of filter such as: area, place type, operating status, price level and ratings. Currently "count" and "places" insights are supported. With "count" insights you can answer questions such as "How many restaurant are located in California that are operational, are inexpensive and have an average rating of at least 4 stars" (see `insight` enum for more details). With "places" insights, you can determine which places match the requested filter. Clients can then use those place resource names to fetch more details about each individual place using the Places API.
+     * This method lets you retrieve insights about areas using a variety of filter such as: area, place type, operating status, price level and ratings. Currently "count" and "places" insights are supported. With "count" insights you can answer questions such as "How many restaurant are located in California that are operational, are inexpensive and have an average rating of at least 4 stars" (see `insight` enum for more details). With "places" insights, you can determine which places match the requested filter. Clients can then use those place resource names to fetch more details about each individual place using the Places API.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

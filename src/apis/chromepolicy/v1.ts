@@ -385,7 +385,7 @@ export namespace chromepolicy_v1 {
     updateMask?: string | null;
   }
   /**
-   * A network setting contains network configurations.
+   * A network setting contains network configurations. It adheres to the PolicyAPI formats defined under the namespace chrome.networks.{wifi/ethernet/cellular/vpn\}.Details
    */
   export interface Schema$GoogleChromePolicyVersionsV1NetworkSetting {
     /**
@@ -854,6 +854,10 @@ export namespace chromepolicy_v1 {
     name?: string | null;
     nestedType?: Schema$Proto2DescriptorProto[];
     oneofDecl?: Schema$Proto2OneofDescriptorProto[];
+    /**
+     * Support for `export` and `local` keywords on enums.
+     */
+    visibility?: string | null;
   }
   /**
    * Describes an enum type.
@@ -861,6 +865,10 @@ export namespace chromepolicy_v1 {
   export interface Schema$Proto2EnumDescriptorProto {
     name?: string | null;
     value?: Schema$Proto2EnumValueDescriptorProto[];
+    /**
+     * Support for `export` and `local` keywords on enums.
+     */
+    visibility?: string | null;
   }
   /**
    * Describes a value within an enum.
@@ -918,6 +926,10 @@ export namespace chromepolicy_v1 {
      * file name, relative to root of source tree
      */
     name?: string | null;
+    /**
+     * Names of files imported by this file purely for the purpose of providing option extensions. These are excluded from the dependency list above.
+     */
+    optionDependency?: string[] | null;
     /**
      * e.g. "foo", "foo.bar", etc.
      */

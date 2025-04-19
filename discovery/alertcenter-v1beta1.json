@@ -14,7 +14,7 @@
   "canonicalName": "AlertCenter",
   "description": "Manages alerts on issues affecting your domain. Note: The current version of this API (v1beta1) is available to all Google Workspace customers. ",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/admin-sdk/alertcenter/",
+  "documentationLink": "https://developers.google.com/workspace/admin/alertcenter/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -243,7 +243,7 @@
               "type": "string"
             },
             "filter": {
-              "description": "Optional. A query string for filtering alert results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.list).",
+              "description": "Optional. A query string for filtering alert results. For more details, see [Query filters](https://developers.google.com/workspace/admin/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/workspace/admin/alertcenter/reference/filter-fields#alerts.list).",
               "location": "query",
               "type": "string"
             },
@@ -356,7 +356,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Optional. A query string for filtering alert feedback results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).",
+                  "description": "Optional. A query string for filtering alert feedback results. For more details, see [Query filters](https://developers.google.com/workspace/admin/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/workspace/admin/alertcenter/reference/filter-fields#alerts.feedback.list).",
                   "location": "query",
                   "type": "string"
                 }
@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20241028",
+  "revision": "20250414",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -730,7 +730,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [Google Workspace Alert types](https://developers.google.com/admin-sdk/alertcenter/reference/alert-types).",
+          "description": "Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [Google Workspace Alert types](https://developers.google.com/workspace/admin/alertcenter/reference/alert-types).",
           "type": "string"
         },
         "updateTime": {
@@ -856,7 +856,7 @@
       "type": "object"
     },
     "AppSettingsChanged": {
-      "description": "* Alerts from AppSettingsChanged bucket Rules configured by Admin which contain the below rules. Calendar settings changed Drive settings changed Email settings changed Mobile settings changed",
+      "description": "Alerts from AppSettingsChanged bucket Rules configured by Admin which contain the following rules: - Calendar settings changed - Drive settings changed - Email settings changed - Mobile settings changed",
       "id": "AppSettingsChanged",
       "properties": {
         "alertDetails": {
@@ -1529,7 +1529,7 @@
       "type": "object"
     },
     "Notification": {
-      "description": "Settings for callback notifications. For more details see [Google Workspace Alert Notification](https://developers.google.com/admin-sdk/alertcenter/guides/notifications).",
+      "description": "Settings for callback notifications. For more details see [Google Workspace Alert Notification](https://developers.google.com/workspace/admin/alertcenter/guides/notifications).",
       "id": "Notification",
       "properties": {
         "cloudPubsubTopic": {
@@ -1540,7 +1540,7 @@
       "type": "object"
     },
     "PhishingSpike": {
-      "description": "Alert for a spike in user reported phishing. *Warning*: This type has been deprecated. Use [MailPhishing](/admin-sdk/alertcenter/reference/rest/v1beta1/MailPhishing) instead.",
+      "description": "Alert for a spike in user reported phishing. *Warning*: This type has been deprecated. Use [MailPhishing](https://developers.google.com/workspace/admin/alertcenter/reference/rest/v1beta1/MailPhishing) instead.",
       "id": "PhishingSpike",
       "properties": {
         "domainId": {
@@ -1577,7 +1577,7 @@
       "type": "object"
     },
     "PrimaryAdminChangedEvent": {
-      "description": "* Event occurred when primary admin changed in customer's account. The event are being received from insight forwarder",
+      "description": "Event occurred when primary admin changed in customer's account. The event are being received from insight forwarder",
       "id": "PrimaryAdminChangedEvent",
       "properties": {
         "domain": {
@@ -1756,6 +1756,7 @@
               "CHROME_WARN_PAGE_PRINT",
               "CHROME_BLOCK_URL_VISITED",
               "CHROME_WARN_URL_VISITED",
+              "CHROME_BLOCK_SCREENSHOT",
               "CHROME_STORE_CONTENT",
               "DELETE_WEBPROTECT_EVIDENCE",
               "CHAT_BLOCK_CONTENT",
@@ -1780,6 +1781,7 @@
               "Warn user about printed page.",
               "Block Chrome URL visit.",
               "Warn user about Chrome URL visited.",
+              "Block screenshot alert.",
               "Store the content that violated the rule.",
               "Delete web protect evidence file",
               "Chat actions. Block Chat content to be sent out.",
@@ -1844,6 +1846,7 @@
               "CHROME_WARN_PAGE_PRINT",
               "CHROME_BLOCK_URL_VISITED",
               "CHROME_WARN_URL_VISITED",
+              "CHROME_BLOCK_SCREENSHOT",
               "CHROME_STORE_CONTENT",
               "DELETE_WEBPROTECT_EVIDENCE",
               "CHAT_BLOCK_CONTENT",
@@ -1868,6 +1871,7 @@
               "Warn user about printed page.",
               "Block Chrome URL visit.",
               "Warn user about Chrome URL visited.",
+              "Block screenshot alert.",
               "Store the content that violated the rule.",
               "Delete web protect evidence file",
               "Chat actions. Block Chat content to be sent out.",
@@ -1888,7 +1892,7 @@
       "type": "object"
     },
     "SSOProfileCreatedEvent": {
-      "description": "* Event occurred when SSO Profile created in customer's account. The event are being received from insight forwarder",
+      "description": "Event occurred when SSO Profile created in customer's account. The event are being received from insight forwarder",
       "id": "SSOProfileCreatedEvent",
       "properties": {
         "inboundSsoProfileName": {
@@ -1899,7 +1903,7 @@
       "type": "object"
     },
     "SSOProfileDeletedEvent": {
-      "description": "* Event occurred when SSO Profile deleted in customer's account. The event are being received from insight forwarder",
+      "description": "Event occurred when SSO Profile deleted in customer's account. The event are being received from insight forwarder",
       "id": "SSOProfileDeletedEvent",
       "properties": {
         "inboundSsoProfileName": {
@@ -1910,7 +1914,7 @@
       "type": "object"
     },
     "SSOProfileUpdatedEvent": {
-      "description": "* Event occurred when SSO Profile updated in customer's account. The event are being received from insight forwarder",
+      "description": "Event occurred when SSO Profile updated in customer's account. The event are being received from insight forwarder",
       "id": "SSOProfileUpdatedEvent",
       "properties": {
         "inboundSsoProfileChanges": {
@@ -2013,7 +2017,7 @@
       "type": "object"
     },
     "SuperAdminPasswordResetEvent": {
-      "description": "* Event occurred when password was reset for super admin in customer's account. The event are being received from insight forwarder",
+      "description": "Event occurred when password was reset for super admin in customer's account. The event are being received from insight forwarder",
       "id": "SuperAdminPasswordResetEvent",
       "properties": {
         "userEmail": {
@@ -2193,7 +2197,7 @@
       "type": "object"
     },
     "UserChanges": {
-      "description": "* Alerts from UserChanges bucket Rules for predefined rules which contain the below rules. Suspended user made active New user Added User suspended (by admin) User granted admin privileges User admin privileges revoked User deleted Users password changed",
+      "description": "Alerts from UserChanges bucket Rules for predefined rules which contain the following rules: - Suspended user made active - New user added - User suspended (by admin) - User granted admin privileges - User admin privileges revoked - User deleted - Users password changed",
       "id": "UserChanges",
       "properties": {
         "name": {
@@ -2213,6 +2217,52 @@
         },
         "resourceName": {
           "description": "Resource name that uniquely identifies the detector.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VaultAcceleratedDeletion": {
+      "description": "Alert that is triggered when a Vault accelerated deletion request is created or canceled.",
+      "id": "VaultAcceleratedDeletion",
+      "properties": {
+        "actionType": {
+          "description": "The action can be one of create and cancel",
+          "enum": [
+            "VAULT_ACCELERATED_DELETION_ACTION_TYPE_UNSPECIFIED",
+            "VAULT_ACCELERATED_DELETION_ACTION_TYPE_CREATE",
+            "VAULT_ACCELERATED_DELETION_ACTION_TYPE_CANCEL"
+          ],
+          "enumDescriptions": [
+            "Unspecified action type",
+            "AD Create action type",
+            "AD Cancel action type"
+          ],
+          "type": "string"
+        },
+        "appType": {
+          "description": "Currentlty only Gmail is supported as app type",
+          "enum": [
+            "VAULT_ACCELERATED_DELETION_APP_TYPE_UNSPECIFIED",
+            "VAULT_ACCELERATED_DELETION_APP_TYPE_GMAIL"
+          ],
+          "enumDescriptions": [
+            "Unspecified app type",
+            "Gmail app type"
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "The UTC timestamp of when the AD request was created",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "deletionRequestId": {
+          "description": "Accelerated deletion request ID intended to be used to construct the Vault UI link to the AD request",
+          "type": "string"
+        },
+        "matterId": {
+          "description": "Matter ID of the accelerated deletion request intended to be used to construct the Vault UI link to the AD request",
           "type": "string"
         }
       },

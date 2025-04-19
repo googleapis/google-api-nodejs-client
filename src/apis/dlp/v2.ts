@@ -2475,7 +2475,7 @@ export namespace dlp_v2 {
      */
     fileStoreInfoTypeSummaries?: Schema$GooglePrivacyDlpV2FileStoreInfoTypeSummary[];
     /**
-     * The file store does not have any files.
+     * The file store does not have any files. If the profiling failed, this will be false.
      */
     fileStoreIsEmpty?: boolean | null;
     /**

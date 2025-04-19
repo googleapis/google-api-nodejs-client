@@ -361,7 +361,7 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FunctionCall {
     /**
-     * Optional. Required. The function parameters and values in JSON object format. See [FunctionDeclaration.parameters] for parameter details.
+     * Optional. The function parameters and values in JSON object format. See [FunctionDeclaration.parameters] for parameter details.
      */
     args?: {[key: string]: any} | null;
     /**
@@ -551,6 +551,10 @@ export namespace firebaseml_v2beta {
      * Total token count for prompt, response candidates, and tool-use prompts (if present).
      */
     totalTokenCount?: number | null;
+    /**
+     * Output only. Traffic type. This shows whether a request consumes Pay-As-You-Go or Provisioned Throughput quota.
+     */
+    trafficType?: string | null;
   }
   /**
    * Generation config.
@@ -580,6 +584,10 @@ export namespace firebaseml_v2beta {
      * Optional. If specified, the media resolution specified will be used.
      */
     mediaResolution?: string | null;
+    /**
+     * Optional. Config for model selection.
+     */
+    modelConfig?: Schema$GoogleCloudAiplatformV1beta1GenerationConfigModelConfig;
     /**
      * Optional. Positive penalties.
      */
@@ -621,6 +629,10 @@ export namespace firebaseml_v2beta {
      */
     temperature?: number | null;
     /**
+     * Optional. Config for thinking features. An error will be returned if this field is set for models that don't support thinking.
+     */
+    thinkingConfig?: Schema$GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig;
+    /**
      * Optional. If specified, top-k sampling will be used.
      */
     topK?: number | null;
@@ -628,6 +640,15 @@ export namespace firebaseml_v2beta {
      * Optional. If specified, nucleus sampling will be used.
      */
     topP?: number | null;
+  }
+  /**
+   * Config for model selection.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfigModelConfig {
+    /**
+     * Required. Feature selection preference.
+     */
+    featureSelectionPreference?: string | null;
   }
   /**
    * The configuration for routing the request to a specific model.
@@ -656,9 +677,18 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigManualRoutingMode {
     /**
-     * The model name to use. Only the public LLM models are accepted. e.g. 'gemini-1.5-pro-001'.
+     * The model name to use. Only the public LLM models are accepted. See [Supported models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference#supported-models).
      */
     modelName?: string | null;
+  }
+  /**
+   * Config for thinking features.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig {
+    /**
+     * Optional. Indicates the thinking budget in tokens. This is only applied when enable_thinking is true.
+     */
+    thinkingBudget?: number | null;
   }
   /**
    * Tool to retrieve public web data for grounding, powered by Google.
@@ -686,6 +716,10 @@ export namespace firebaseml_v2beta {
    * Chunk from context retrieved by the retrieval tools.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext {
+    /**
+     * Additional context for the RAG retrieval result. This is only populated when using the RAG retrieval tool.
+     */
+    ragChunk?: Schema$GoogleCloudAiplatformV1beta1RagChunk;
     /**
      * Text of the attribution.
      */
@@ -865,6 +899,32 @@ export namespace firebaseml_v2beta {
     voiceName?: string | null;
   }
   /**
+   * A RagChunk includes the content of a chunk of a RagFile, and associated metadata.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagChunk {
+    /**
+     * If populated, represents where the chunk starts and ends in the document.
+     */
+    pageSpan?: Schema$GoogleCloudAiplatformV1beta1RagChunkPageSpan;
+    /**
+     * The content of the chunk.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents where the chunk starts and ends in the document.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagChunkPageSpan {
+    /**
+     * Page where chunk starts in the document. Inclusive. 1-indexed.
+     */
+    firstPage?: number | null;
+    /**
+     * Page where chunk ends in the document. Inclusive. 1-indexed.
+     */
+    lastPage?: number | null;
+  }
+  /**
    * Specifies the context retrieval config.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfig {
@@ -929,7 +989,7 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1RagRetrievalConfigRankingLlmRanker {
     /**
-     * Optional. The model name used for ranking. Format: `gemini-1.5-pro`
+     * Optional. The model name used for ranking. See [Supported models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference#supported-models).
      */
     modelName?: string | null;
   }
@@ -1160,6 +1220,10 @@ export namespace firebaseml_v2beta {
    * The speech generation config.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1SpeechConfig {
+    /**
+     * Optional. Language code (ISO 639. e.g. en-US) for the speech synthesization.
+     */
+    languageCode?: string | null;
     /**
      * The configuration for the speaker to use.
      */

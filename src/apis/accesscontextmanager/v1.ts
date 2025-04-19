@@ -4857,7 +4857,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Organizations$Gcpuseraccessbindings$Patch
     extends StandardParameters {
     /**
-     * Optional. This field controls whether or not certain repeated settings in the update request overwrite or append to existing settings on the binding. If true, then append. Otherwise overwrite. So far, only scoped_access_settings with reauth_settings supports appending. Global access_levels, access_levels in scoped_access_settings, dry_run_access_levels, reauth_settings, and session_settings are not compatible with append functionality, and the request will return an error if append=true when these settings are in the update_mask. The request will also return an error if append=true when "scoped_access_settings" is not set in the update_mask.
+     * Optional. This field controls whether or not certain repeated settings in the update request overwrite or append to existing settings on the binding. If true, then append. Otherwise overwrite. So far, only scoped_access_settings with session_settings supports appending. Global access_levels, access_levels in scoped_access_settings, dry_run_access_levels, and session_settings are not compatible with append functionality, and the request will return an error if append=true when these settings are in the update_mask. The request will also return an error if append=true when "scoped_access_settings" is not set in the update_mask.
      */
     append?: boolean;
     /**
@@ -4865,7 +4865,7 @@ export namespace accesscontextmanager_v1 {
      */
     name?: string;
     /**
-     * Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`, `reauth_settings` `session_settings`, `scoped_access_settings`. update_mask { paths: "access_levels" \}
+     * Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`, `session_settings`, `scoped_access_settings`. update_mask { paths: "access_levels" \}
      */
     updateMask?: string;
 

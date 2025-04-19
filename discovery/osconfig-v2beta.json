@@ -274,7 +274,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Optional. The list of fields to update.",
+                          "description": "Optional. The list of fields to merge into the existing policy orchestrator. A special [\"*\"] field mask can be used to simply replace the entire resource. Otherwise, for all paths referenced in the mask, following merge rules are used: * output only fields are ignored, * primitive fields are replaced, * repeated fields are replaced, * map fields are merged key by key, * message fields are cleared if not set in the request, otherwise they are merged recursively (in particular - message fields set to an empty message has no side effects) If field mask is not specified, it is automatically inferred from the request using following rules: * primitive fields are listed, if set to a non-default value (as there is no way to distinguish between default and unset value), * map and repeated fields are listed, * `google.protobuf.Any` fields are listed, * other message fields are traversed recursively. Note: implicit mask does not allow clearing fields.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -591,7 +591,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Optional. The list of fields to update.",
+                          "description": "Optional. The list of fields to merge into the existing policy orchestrator. A special [\"*\"] field mask can be used to simply replace the entire resource. Otherwise, for all paths referenced in the mask, following merge rules are used: * output only fields are ignored, * primitive fields are replaced, * repeated fields are replaced, * map fields are merged key by key, * message fields are cleared if not set in the request, otherwise they are merged recursively (in particular - message fields set to an empty message has no side effects) If field mask is not specified, it is automatically inferred from the request using following rules: * primitive fields are listed, if set to a non-default value (as there is no way to distinguish between default and unset value), * map and repeated fields are listed, * `google.protobuf.Any` fields are listed, * other message fields are traversed recursively. Note: implicit mask does not allow clearing fields.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -908,7 +908,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Optional. The list of fields to update.",
+                          "description": "Optional. The list of fields to merge into the existing policy orchestrator. A special [\"*\"] field mask can be used to simply replace the entire resource. Otherwise, for all paths referenced in the mask, following merge rules are used: * output only fields are ignored, * primitive fields are replaced, * repeated fields are replaced, * map fields are merged key by key, * message fields are cleared if not set in the request, otherwise they are merged recursively (in particular - message fields set to an empty message has no side effects) If field mask is not specified, it is automatically inferred from the request using following rules: * primitive fields are listed, if set to a non-default value (as there is no way to distinguish between default and unset value), * map and repeated fields are listed, * `google.protobuf.Any` fields are listed, * other message fields are traversed recursively. Note: implicit mask does not allow clearing fields.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -1057,7 +1057,7 @@
       }
     }
   },
-  "revision": "20241117",
+  "revision": "20250323",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1144,6 +1144,50 @@
       },
       "type": "object"
     },
+    "GoogleCloudOsconfigV2__OperationMetadata": {
+      "description": "Represents the metadata of the long-running operation.",
+      "id": "GoogleCloudOsconfigV2__OperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "statusMessage": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudOsconfigV2beta_OrchestrationScope_LocationSelector": {
       "description": "Selector containing locations in scope.",
       "id": "GoogleCloudOsconfigV2beta_OrchestrationScope_LocationSelector",
@@ -1215,6 +1259,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "iterationId": {
+          "description": "Output only. Unique identifier of the iteration.",
+          "readOnly": true,
+          "type": "string"
+        },
         "performedActions": {
           "description": "Output only. Overall number of actions done by the orchestrator so far.",
           "format": "int64",
@@ -1226,11 +1275,6 @@
           "format": "float",
           "readOnly": true,
           "type": "number"
-        },
-        "rolloutResource": {
-          "description": "Output only. Handle to the Progressive Rollouts API rollout resource, which contains detailed information about a particular orchestration iteration.",
-          "readOnly": true,
-          "type": "string"
         },
         "startTime": {
           "description": "Output only. Start time of the wave iteration.",

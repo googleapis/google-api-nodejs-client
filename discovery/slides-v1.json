@@ -32,7 +32,7 @@
   "canonicalName": "Slides",
   "description": "Reads and writes Google Slides presentations.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/slides/",
+  "documentationLink": "https://developers.google.com/workspace/slides/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -246,7 +246,7 @@
               ]
             },
             "getThumbnail": {
-              "description": "Generates a thumbnail of the latest version of the specified page in the presentation and returns a URL to the thumbnail image. This request counts as an [expensive read request](/slides/limits) for quota purposes.",
+              "description": "Generates a thumbnail of the latest version of the specified page in the presentation and returns a URL to the thumbnail image. This request counts as an [expensive read request](https://developers.google.com/workspace/slides/limits) for quota purposes.",
               "flatPath": "v1/presentations/{presentationId}/pages/{pageObjectId}/thumbnail",
               "httpMethod": "GET",
               "id": "slides.presentations.pages.getThumbnail",
@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20250218",
+  "revision": "20250401",
   "rootUrl": "https://slides.googleapis.com/",
   "schemas": {
     "AffineTransform": {
@@ -3039,7 +3039,7 @@
       "type": "object"
     },
     "Shape": {
-      "description": "A PageElement kind representing a generic shape that doesn't have a more specific classification. For more information, see [Size and position page elements](https://developers.google.com/slides/api/guides/transform).",
+      "description": "A PageElement kind representing a generic shape that doesn't have a more specific classification. For more information, see [Size and position page elements](https://developers.google.com/workspace/slides/api/guides/transform).",
       "id": "Shape",
       "properties": {
         "placeholder": {
@@ -3557,6 +3557,10 @@
       "properties": {
         "matchCase": {
           "description": "Indicates whether the search should respect case: - `True`: the search is case sensitive. - `False`: the search is case insensitive.",
+          "type": "boolean"
+        },
+        "searchByRegex": {
+          "description": "Optional. True if the find value should be treated as a regular expression. Any backslashes in the pattern should be escaped. - `True`: the search text is treated as a regular expressions. - `False`: the search text is treated as a substring for matching.",
           "type": "boolean"
         },
         "text": {

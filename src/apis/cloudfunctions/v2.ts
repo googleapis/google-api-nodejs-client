@@ -941,7 +941,12 @@ export namespace cloudfunctions_v2 {
   /**
    * Request for the `SetupFunctionUpgradeConfig` method.
    */
-  export interface Schema$SetupFunctionUpgradeConfigRequest {}
+  export interface Schema$SetupFunctionUpgradeConfigRequest {
+    /**
+     * Optional. The trigger's service account. The service account must have permission to invoke Cloud Run services, the permission is `run.routes.invoke`. If empty, defaults to the Compute Engine default service account: `{project_number\}-compute@developer.gserviceaccount.com`.
+     */
+    triggerServiceAccount?: string | null;
+  }
   /**
    * The location of the function source code.
    */
@@ -1174,6 +1179,10 @@ export namespace cloudfunctions_v2 {
 
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

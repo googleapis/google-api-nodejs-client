@@ -260,7 +260,7 @@
       }
     }
   },
-  "revision": "20241108",
+  "revision": "20250407",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AdScheduleInfo": {
@@ -5413,7 +5413,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V0Resources__AssetGroupTopCombinationView": {
-      "description": "A view on the usage of ad group ad asset combination.",
+      "description": "A view on the usage of asset group asset top combinations.",
       "id": "GoogleAdsSearchads360V0Resources__AssetGroupTopCombinationView",
       "properties": {
         "assetGroupTopCombinations": {
@@ -6955,6 +6955,50 @@
             "GOOGLE_ANALYTICS_4_CUSTOM",
             "GOOGLE_ANALYTICS_4_PURCHASE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Not specified.",
             "Used for return value only. Represents value unknown in this version.",
@@ -6986,7 +7030,7 @@
             "Floodlight activity that tracks the number of sales made or the number of items purchased. Can also capture the total value of each sale. Read only.",
             "Conversions that track local actions from Google's products and services after interacting with an ad. Read only.",
             "Conversions reported when a user submits a lead form. Read only.",
-            "Conversions that come from Salesforce. Read only.",
+            "Deprecated: The Salesforce integration will be going away and replaced with an improved way to import your conversions from Salesforce. - see https://support.google.com/google-ads/answer/14728349",
             "Conversions imported from Search Ads 360 Floodlight data. Read only.",
             "Call conversions that occur on Smart campaign Ads without call tracking setup, using Smart campaign custom criteria. Read only.",
             "The user clicks on a call element within Google Maps. Smart campaign only. Read only.",
@@ -7271,6 +7315,35 @@
       "description": "A customer.",
       "id": "GoogleAdsSearchads360V0Resources__Customer",
       "properties": {
+        "accountLevel": {
+          "description": "Output only. The account level of the customer: Manager, Sub-manager, Associate manager, Service account.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "CLIENT_ACCOUNT_FACEBOOK",
+            "CLIENT_ACCOUNT_GOOGLE_ADS",
+            "CLIENT_ACCOUNT_MICROSOFT",
+            "CLIENT_ACCOUNT_YAHOO_JAPAN",
+            "CLIENT_ACCOUNT_ENGINE_TRACK",
+            "MANAGER",
+            "SUB_MANAGER",
+            "ASSOCIATE_MANAGER"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Client account (Facebook)",
+            "Client account (Google Ads)",
+            "Client account (Microsoft)",
+            "Client account (Yahoo Japan)",
+            "Client account (Engine Track)",
+            "Top-level manager.",
+            "Sub manager.",
+            "Associate manager."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "accountStatus": {
           "description": "Output only. Account status, for example, Enabled, Paused, Removed, etc.",
           "enum": [
@@ -7320,6 +7393,17 @@
             "Search Ads 360 manager account.",
             "Yahoo Japan account."
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "associateManagerDescriptiveName": {
+          "description": "Output only. The descriptive name of the associate manager.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "associateManagerId": {
+          "description": "Output only. The customer ID of the associate manager. A 0 value indicates that the customer has no SA360 associate manager.",
+          "format": "int64",
           "readOnly": true,
           "type": "string"
         },
@@ -7375,6 +7459,17 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "managerDescriptiveName": {
+          "description": "Output only. The descriptive name of the manager.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "managerId": {
+          "description": "Output only. The customer ID of the manager. A 0 value indicates that the customer has no SA360 manager.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "resourceName": {
           "description": "Immutable. The resource name of the customer. Customer resource names have the form: `customers/{customer_id}`",
           "type": "string"
@@ -7397,6 +7492,17 @@
             "Indicates a suspended account unable to serve ads. May only be activated by Google support.",
             "Indicates a closed account unable to serve ads. Test account will also have CLOSED status. Status is permanent and may not be reopened."
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "subManagerDescriptiveName": {
+          "description": "Output only. The descriptive name of the sub manager.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subManagerId": {
+          "description": "Output only. The customer ID of the sub manager. A 0 value indicates that the customer has no sub SA360 manager.",
+          "format": "int64",
           "readOnly": true,
           "type": "string"
         },

@@ -143,6 +143,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
                   "location": "query",
@@ -1796,7 +1802,7 @@
       }
     }
   },
-  "revision": "20250227",
+  "revision": "20250410",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -2323,6 +2329,13 @@
         "kmsKey": {
           "description": "Optional. The fully qualified customer provided Cloud KMS key name to use for customer data encryption, in the following format:projects/{project_number}/locations/{location_id}/keyRings/{key_ring_id}/cryptoKeys/{crypto_key_id}.",
           "type": "string"
+        },
+        "kmsKeys": {
+          "description": "Optional. The list of fully qualified customer provided Cloud KMS key names for the multi-regional service. Each key must be in the following format:projects/{project_number}/locations/{location_id}/keyRings/{key_ring_id}/cryptoKeys/{crypto_key_id}.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

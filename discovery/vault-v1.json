@@ -17,7 +17,7 @@
   "canonicalName": "Vault",
   "description": "Retention and eDiscovery for Google Workspace. To work with Vault resources, the account must have the [required Vault privileges](https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege. For example, to download an export, an account needs the **Manage Exports** privilege and the matter shared with them. ",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/vault",
+  "documentationLink": "https://developers.google.com/workspace/vault",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -258,7 +258,7 @@
               "enumDescriptions": [
                 "The amount of detail is unspecified. Same as **BASIC**.",
                 "Returns the matter ID, name, description, and state. Default choice.",
-                "Returns the basic details and a list of matter owners and collaborators (see [MatterPermissions](https://developers.google.com/vault/reference/rest/v1/matters#matterpermission))."
+                "Returns the basic details and a list of matter owners and collaborators (see [MatterPermissions](https://developers.google.com/workspace/vault/reference/rest/v1/matters#matterpermission))."
               ],
               "location": "query",
               "type": "string"
@@ -318,7 +318,7 @@
               "enumDescriptions": [
                 "The amount of detail is unspecified. Same as **BASIC**.",
                 "Returns the matter ID, name, description, and state. Default choice.",
-                "Returns the basic details and a list of matter owners and collaborators (see [MatterPermissions](https://developers.google.com/vault/reference/rest/v1/matters#matterpermission))."
+                "Returns the basic details and a list of matter owners and collaborators (see [MatterPermissions](https://developers.google.com/workspace/vault/reference/rest/v1/matters#matterpermission))."
               ],
               "location": "query",
               "type": "string"
@@ -1203,7 +1203,7 @@
       }
     }
   },
-  "revision": "20250212",
+  "revision": "20250331",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -1634,7 +1634,6 @@
           "type": "string"
         },
         "includeSharedDrives": {
-          "deprecated": true,
           "description": "Set to **true** to include shared drives.",
           "type": "boolean"
         },
@@ -1919,7 +1918,7 @@
       "id": "HangoutsChatInfo",
       "properties": {
         "roomId": {
-          "description": "A list of Chat spaces IDs, as provided by the [Chat API](https://developers.google.com/chat). There is a limit of exporting from 500 Chat spaces per request.",
+          "description": "A list of Chat spaces IDs, as provided by the [Chat API](https://developers.google.com/workspace/chat). There is a limit of exporting from 500 Chat spaces per request.",
           "items": {
             "type": "string"
           },
@@ -2585,13 +2584,13 @@
           ],
           "enumDescriptions": [
             "A search method must be specified or else it is rejected.",
-            "Search the data of the accounts specified in [AccountInfo](https://developers.google.com/vault/reference/rest/v1/Query#accountinfo).",
-            "Search the data of all accounts in the organizational unit specified in [OrgUnitInfo](https://developers.google.com/vault/reference/rest/v1/Query#orgunitinfo).",
+            "Search the data of the accounts specified in [AccountInfo](https://developers.google.com/workspace/vault/reference/rest/v1/Query#accountinfo).",
+            "Search the data of all accounts in the organizational unit specified in [OrgUnitInfo](https://developers.google.com/workspace/vault/reference/rest/v1/Query#orgunitinfo).",
             "Search the data in the Team Drive specified in **team_drive_info**.",
             "Search the data of all accounts in the organization. Supported only for Gmail. When specified, you don't need to specify **AccountInfo** or **OrgUnitInfo**.",
-            "Search messages in the Chat spaces specified in [HangoutsChatInfo](https://developers.google.com/vault/reference/rest/v1/Query#hangoutschatinfo).",
-            "Search for sites by the published site URLs specified in [SitesUrlInfo](https://developers.google.com/vault/reference/rest/v1/Query#sitesurlinfo).",
-            "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/vault/reference/rest/v1/Query#shareddriveinfo).",
+            "Search messages in the Chat spaces specified in [HangoutsChatInfo](https://developers.google.com/workspace/vault/reference/rest/v1/Query#hangoutschatinfo).",
+            "Search for sites by the published site URLs specified in [SitesUrlInfo](https://developers.google.com/workspace/vault/reference/rest/v1/Query#sitesurlinfo).",
+            "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/workspace/vault/reference/rest/v1/Query#shareddriveinfo).",
             "Retrieve the documents specified in DriveDocumentInfo."
           ],
           "type": "string"
@@ -2627,13 +2626,13 @@
           ],
           "enumDescriptions": [
             "A search method must be specified or else it is rejected.",
-            "Search the data of the accounts specified in [AccountInfo](https://developers.google.com/vault/reference/rest/v1/Query#accountinfo).",
-            "Search the data of all accounts in the organizational unit specified in [OrgUnitInfo](https://developers.google.com/vault/reference/rest/v1/Query#orgunitinfo).",
+            "Search the data of the accounts specified in [AccountInfo](https://developers.google.com/workspace/vault/reference/rest/v1/Query#accountinfo).",
+            "Search the data of all accounts in the organizational unit specified in [OrgUnitInfo](https://developers.google.com/workspace/vault/reference/rest/v1/Query#orgunitinfo).",
             "Search the data in the Team Drive specified in **team_drive_info**.",
             "Search the data of all accounts in the organization. Supported only for Gmail. When specified, you don't need to specify **AccountInfo** or **OrgUnitInfo**.",
-            "Search messages in the Chat spaces specified in [HangoutsChatInfo](https://developers.google.com/vault/reference/rest/v1/Query#hangoutschatinfo).",
-            "Search for sites by the published site URLs specified in [SitesUrlInfo](https://developers.google.com/vault/reference/rest/v1/Query#sitesurlinfo).",
-            "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/vault/reference/rest/v1/Query#shareddriveinfo).",
+            "Search messages in the Chat spaces specified in [HangoutsChatInfo](https://developers.google.com/workspace/vault/reference/rest/v1/Query#hangoutschatinfo).",
+            "Search for sites by the published site URLs specified in [SitesUrlInfo](https://developers.google.com/workspace/vault/reference/rest/v1/Query#sitesurlinfo).",
+            "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/workspace/vault/reference/rest/v1/Query#shareddriveinfo).",
             "Retrieve the documents specified in DriveDocumentInfo."
           ],
           "type": "string"

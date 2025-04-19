@@ -245,9 +245,13 @@ export namespace file_v1beta1 {
     time?: Schema$TimeOfDay;
   }
   /**
-   * Directory Services configuration for Kerberos-based authentication.
+   * Directory Services configuration.
    */
   export interface Schema$DirectoryServicesConfig {
+    /**
+     * Configuration for LDAP servers.
+     */
+    ldap?: Schema$LdapConfig;
     /**
      * Configuration for Managed Service for Microsoft Active Directory.
      */
@@ -525,7 +529,7 @@ export namespace file_v1beta1 {
      */
     description?: string | null;
     /**
-     * Optional. Directory Services configuration for Kerberos-based authentication. Should only be set if protocol is "NFS_V4_1".
+     * Optional. Directory Services configuration. Should only be set if protocol is "NFS_V4_1".
      */
     directoryServices?: Schema$DirectoryServicesConfig;
     /**
@@ -617,6 +621,27 @@ export namespace file_v1beta1 {
      * Required. Maximum IOPS per TiB.
      */
     maxIopsPerTb?: string | null;
+  }
+  /**
+   * LdapConfig contains all the parameters for connecting to LDAP servers.
+   */
+  export interface Schema$LdapConfig {
+    /**
+     * Required. The LDAP domain name in the format of `my-domain.com`.
+     */
+    domain?: string | null;
+    /**
+     * Optional. The groups Organizational Unit (OU) is optional. This parameter is a hint to allow faster lookup in the LDAP namespace. In case that this parameter is not provided, Filestore instance will query the whole LDAP namespace.
+     */
+    groupsOu?: string | null;
+    /**
+     * Required. The servers names are used for specifying the LDAP servers names. The LDAP servers names can come with two formats: 1. DNS name, for example: `ldap.example1.com`, `ldap.example2.com`. 2. IP address, for example: `10.0.0.1`, `10.0.0.2`, `10.0.0.3`. All servers names must be in the same format: either all DNS names or all IP addresses.
+     */
+    servers?: string[] | null;
+    /**
+     * Optional. The users Organizational Unit (OU) is optional. This parameter is a hint to allow faster lookup in the LDAP namespace. In case that this parameter is not provided, Filestore instance will query the whole LDAP namespace.
+     */
+    usersOu?: string | null;
   }
   /**
    * ListBackupsResponse is the result of ListBackupsRequest.
@@ -1382,6 +1407,10 @@ export namespace file_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

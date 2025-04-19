@@ -565,7 +565,7 @@ export namespace dataplex_v1 {
      */
     jsonOptions?: Schema$GoogleCloudDataplexV1AssetDiscoverySpecJsonOptions;
     /**
-     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.
+     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes.To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.
      */
     schedule?: string | null;
   }
@@ -945,6 +945,10 @@ export namespace dataplex_v1 {
      * Output only. Configuration for metadata publishing.
      */
     bigqueryPublishing?: Schema$GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing;
+    /**
+     * Output only. Statistics of the DataDiscoveryScan.
+     */
+    scanStatistics?: Schema$GoogleCloudDataplexV1DataDiscoveryResultScanStatistics;
   }
   /**
    * Describes BigQuery publishing configurations.
@@ -954,6 +958,51 @@ export namespace dataplex_v1 {
      * Output only. The BigQuery dataset the discovered tables are published to.
      */
     dataset?: string | null;
+    /**
+     * Output only. The location of the BigQuery publishing dataset.
+     */
+    location?: string | null;
+  }
+  /**
+   * Statistics of the DataDiscoveryScan.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoveryResultScanStatistics {
+    /**
+     * The data processed in bytes.
+     */
+    dataProcessedBytes?: string | null;
+    /**
+     * The number of filesets created.
+     */
+    filesetsCreated?: number | null;
+    /**
+     * The number of filesets deleted.
+     */
+    filesetsDeleted?: number | null;
+    /**
+     * The number of filesets updated.
+     */
+    filesetsUpdated?: number | null;
+    /**
+     * The number of files excluded.
+     */
+    filesExcluded?: number | null;
+    /**
+     * The number of files scanned.
+     */
+    scannedFileCount?: number | null;
+    /**
+     * The number of tables created.
+     */
+    tablesCreated?: number | null;
+    /**
+     * The number of tables deleted.
+     */
+    tablesDeleted?: number | null;
+    /**
+     * The number of tables updated.
+     */
+    tablesUpdated?: number | null;
   }
   /**
    * Spec for a data discovery scan.
@@ -1269,7 +1318,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileSpecPostScanActionsBigQueryExport {
     /**
-     * Optional. The BigQuery table to export DataProfileScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+     * Optional. The BigQuery table to export DataProfileScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID or projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      */
     resultsTable?: string | null;
   }
@@ -1300,7 +1349,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityDimension {
     /**
-     * The dimension name a rule belongs to. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "FRESHNESS", "VOLUME"
+     * Optional. The dimension name a rule belongs to. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.
      */
     name?: string | null;
   }
@@ -1313,7 +1362,7 @@ export namespace dataplex_v1 {
      */
     dimension?: Schema$GoogleCloudDataplexV1DataQualityDimension;
     /**
-     * Whether the dimension passed or failed.
+     * Output only. Whether the dimension passed or failed.
      */
     passed?: boolean | null;
     /**
@@ -1330,11 +1379,11 @@ export namespace dataplex_v1 {
      */
     columns?: Schema$GoogleCloudDataplexV1DataQualityColumnResult[];
     /**
-     * A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.
+     * Output only. A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.
      */
     dimensions?: Schema$GoogleCloudDataplexV1DataQualityDimensionResult[];
     /**
-     * Overall data quality result -- true if all rules passed.
+     * Output only. Overall data quality result -- true if all rules passed.
      */
     passed?: boolean | null;
     /**
@@ -1342,15 +1391,15 @@ export namespace dataplex_v1 {
      */
     postScanActionsResult?: Schema$GoogleCloudDataplexV1DataQualityResultPostScanActionsResult;
     /**
-     * The count of rows processed.
+     * Output only. The count of rows processed.
      */
     rowCount?: string | null;
     /**
-     * A list of all the rules in a job, and their results.
+     * Output only. A list of all the rules in a job, and their results.
      */
     rules?: Schema$GoogleCloudDataplexV1DataQualityRuleResult[];
     /**
-     * The data scanned for this result.
+     * Output only. The data scanned for this result.
      */
     scannedData?: Schema$GoogleCloudDataplexV1ScannedData;
     /**
@@ -1492,31 +1541,31 @@ export namespace dataplex_v1 {
      */
     assertionRowCount?: string | null;
     /**
-     * The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.
+     * Output only. The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.
      */
     evaluatedCount?: string | null;
     /**
-     * The query to find rows that did not pass this rule.This field is only valid for row-level type rules.
+     * Output only. The query to find rows that did not pass this rule.This field is only valid for row-level type rules.
      */
     failingRowsQuery?: string | null;
     /**
-     * The number of rows with null values in the specified column.
+     * Output only. The number of rows with null values in the specified column.
      */
     nullCount?: string | null;
     /**
-     * Whether the rule passed or failed.
+     * Output only. Whether the rule passed or failed.
      */
     passed?: boolean | null;
     /**
-     * This field is not set for rule SqlAssertion.
+     * Output only. The number of rows which passed a rule evaluation.This field is only valid for row-level type rules.This field is not set for rule SqlAssertion.
      */
     passedCount?: string | null;
     /**
-     * The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.
+     * Output only. The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.
      */
     passRatio?: number | null;
     /**
-     * The rule specified in the DataQualitySpec, as is.
+     * Output only. The rule specified in the DataQualitySpec, as is.
      */
     rule?: Schema$GoogleCloudDataplexV1DataQualityRule;
   }
@@ -1681,7 +1730,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport {
     /**
-     * Optional. The BigQuery table to export DataQualityScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+     * Optional. The BigQuery table to export DataQualityScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID or projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      */
     resultsTable?: string | null;
   }
@@ -2419,6 +2468,23 @@ export namespace dataplex_v1 {
      * Output only. The time when the EntryGroup was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Payload associated with Entry related log events.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntryLinkEvent {
+    /**
+     * The type of the event.
+     */
+    eventType?: string | null;
+    /**
+     * The log message.
+     */
+    message?: string | null;
+    /**
+     * Name of the resource.
+     */
+    resource?: string | null;
   }
   /**
    * Information related to the source system of the data resource that is represented by the entry.
@@ -3252,6 +3318,14 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. Export job result.
+     */
+    exportResult?: Schema$GoogleCloudDataplexV1MetadataJobExportJobResult;
+    /**
+     * Export job specification.
+     */
+    exportSpec?: Schema$GoogleCloudDataplexV1MetadataJobExportJobSpec;
+    /**
      * Output only. Import job result.
      */
     importResult?: Schema$GoogleCloudDataplexV1MetadataJobImportJobResult;
@@ -3283,6 +3357,57 @@ export namespace dataplex_v1 {
      * Output only. The time when the metadata job was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Export Job Results. The result is based on the snapshot at the time when the job is created.
+   */
+  export interface Schema$GoogleCloudDataplexV1MetadataJobExportJobResult {
+    /**
+     * Output only. The error message if the export job failed.
+     */
+    errorMessage?: string | null;
+    /**
+     * Output only. The number of entries that have been exported.
+     */
+    exportedEntries?: string | null;
+  }
+  /**
+   * Export job specification.
+   */
+  export interface Schema$GoogleCloudDataplexV1MetadataJobExportJobSpec {
+    /**
+     * Required. The root path of the exported metadata. Must be in the format: "gs://" Or specify a customized prefix after the bucket: "gs://///.../". The length limit of the customized prefix is 128 characters. The bucket must be in the same VPC-SC perimeter with the job.
+     */
+    outputPath?: string | null;
+    /**
+     * Required. Selects the entries to be exported by this job.
+     */
+    scope?: Schema$GoogleCloudDataplexV1MetadataJobExportJobSpecExportJobScope;
+  }
+  /**
+   * Scope of the export job.
+   */
+  export interface Schema$GoogleCloudDataplexV1MetadataJobExportJobSpecExportJobScope {
+    /**
+     * The aspect types that are in scope for the export job. Optional. If specified, only aspects of the specified types will be affected by the job. Must follow the format: "projects//locations//aspectTypes/"
+     */
+    aspectTypes?: string[] | null;
+    /**
+     * The entry groups that are in scope for the export job. Optional. If specified, only entries in the specified entry groups will be exported by the job. Must be in the VPC-SC perimeter of the job. The location of the entry groups must be the same as the job. Either projects or entry_groups can be specified when organization_level_export is set to false. Must follow the format: "projects//locations//entryGroups/"
+     */
+    entryGroups?: string[] | null;
+    /**
+     * If specified, only entries of the specified types will be affected by the job. Must follow the format: "projects//locations//entryTypes/"
+     */
+    entryTypes?: string[] | null;
+    /**
+     * Indicating if it is an organization level export job. - When set to true, exports all entries from entry groups and projects sharing the same organization id of the Metadata Job. Only projects and entry groups in the VPC-SC perimeter will be exported. The projects and entry groups are ignored. - When set to false, one of the projects or entry groups must be specified. - Default to false.
+     */
+    organizationLevel?: boolean | null;
+    /**
+     * The projects that are in the scope of the export job. Can either be project numbers or project IDs. If specified, only the entries from the specified projects will be exported. The projects must be in the same organization and in the VPC-SC perimeter. Either projects or entry_groups can be specified when organization_level_export is set to false. Must follow the format: "projects/"
+     */
+    projects?: string[] | null;
   }
   /**
    * Results from a metadata import job.
@@ -4120,7 +4245,7 @@ export namespace dataplex_v1 {
      */
     jsonOptions?: Schema$GoogleCloudDataplexV1ZoneDiscoverySpecJsonOptions;
     /**
-     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.
+     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes.To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.
      */
     schedule?: string | null;
   }
@@ -5594,6 +5719,10 @@ export namespace dataplex_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      */

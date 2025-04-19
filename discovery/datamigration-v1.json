@@ -2334,7 +2334,7 @@
       }
     }
   },
-  "revision": "20250226",
+  "revision": "20250319",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -4591,6 +4591,10 @@
           "description": "The number of CPU's in the VM instance.",
           "format": "int32",
           "type": "integer"
+        },
+        "machineType": {
+          "description": "Optional. Machine type of the VM instance. E.g. \"n2-highmem-4\", \"n2-highmem-8\", \"c4a-highmem-4-lssd\". cpu_count must match the number of vCPUs in the machine type.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4930,6 +4934,10 @@
         "sqlserverHomogeneousMigrationJobConfig": {
           "$ref": "SqlServerHomogeneousMigrationJobConfig",
           "description": "Optional. Configuration for SQL Server homogeneous migration."
+        },
+        "sqlserverToPostgresConfig": {
+          "$ref": "SqlServerToPostgresConfig",
+          "description": "Configuration for heterogeneous **SQL Server to Cloud SQL for PostgreSQL** migrations."
         },
         "state": {
           "description": "The current migration job state.",
@@ -6368,6 +6376,10 @@
           "description": "If the source is a Cloud SQL database, use this field to provide the Cloud SQL instance ID of the source.",
           "type": "string"
         },
+        "database": {
+          "description": "Required. The name of the specific database within the host.",
+          "type": "string"
+        },
         "forwardSshConnectivity": {
           "$ref": "ForwardSshTunnelConnectivity",
           "description": "Forward SSH tunnel connectivity."
@@ -6469,6 +6481,46 @@
         "useDiffBackup": {
           "description": "Optional. Enable differential backups.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerSourceConfig": {
+      "description": "Configuration for SQL Server as a source in a migration.",
+      "id": "SqlServerSourceConfig",
+      "properties": {
+        "cdcStartPosition": {
+          "description": "Optional. The log sequence number (LSN) to start CDC data migration from.",
+          "type": "string"
+        },
+        "maxConcurrentCdcConnections": {
+          "description": "Optional. Maximum number of connections Database Migration Service will open to the source for CDC phase.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxConcurrentFullDumpConnections": {
+          "description": "Optional. Maximum number of connections Database Migration Service will open to the source for full dump phase.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "skipFullDump": {
+          "description": "Optional. Whether to skip full dump or not.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerToPostgresConfig": {
+      "description": "Configuration for heterogeneous **SQL Server to Cloud SQL for PostgreSQL** migrations.",
+      "id": "SqlServerToPostgresConfig",
+      "properties": {
+        "postgresDestinationConfig": {
+          "$ref": "PostgresDestinationConfig",
+          "description": "Optional. Configuration for Postgres destination."
+        },
+        "sqlserverSourceConfig": {
+          "$ref": "SqlServerSourceConfig",
+          "description": "Optional. Configuration for SQL Server source."
         }
       },
       "type": "object"

@@ -592,7 +592,7 @@ export namespace script_v1 {
      */
     lastModifyUser?: Schema$GoogleAppsScriptTypeUser;
     /**
-     * The parent's Drive ID that the script will be attached to. This is usually the ID of a Google Document or Google Sheet. This filed is optional, and if not set, a stand-alone script will be created.
+     * The parent's Drive ID that the script will be attached to. This is usually the ID of a Google Document or Google Sheet. This field is optional, and if not set, a stand-alone script will be created.
      */
     parentId?: string | null;
     /**

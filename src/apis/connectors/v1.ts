@@ -762,6 +762,10 @@ export namespace connectors_v1 {
      */
     provisionCloudSpanner?: boolean | null;
     /**
+     * Indicate whether memstore is required for connector job.
+     */
+    provisionMemstore?: boolean | null;
+    /**
      * Max QPS supported by the connector version before throttling of requests.
      */
     ratelimitThreshold?: string | null;
@@ -2139,6 +2143,10 @@ export namespace connectors_v1 {
      * Next page token.
      */
     nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -4017,6 +4025,10 @@ export namespace connectors_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
@@ -9360,6 +9372,10 @@ export namespace connectors_v1 {
      * Required. Parent resource of the Managed Zone, of the form: `projects/x/locations/global`
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Global$Managedzones$Patch
     extends StandardParameters {

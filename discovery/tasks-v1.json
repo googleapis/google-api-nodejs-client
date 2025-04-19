@@ -379,7 +379,7 @@
           ]
         },
         "list": {
-          "description": "Returns all tasks in the specified task list. Does not return assigned tasks be default (from Docs, Chat Spaces). A user can have up to 20,000 non-hidden tasks per list and up to 100,000 tasks in total at a time.",
+          "description": "Returns all tasks in the specified task list. Doesn't return assigned tasks by default (from Docs, Chat Spaces). A user can have up to 20,000 non-hidden tasks per list and up to 100,000 tasks in total at a time.",
           "flatPath": "tasks/v1/lists/{tasklist}/tasks",
           "httpMethod": "GET",
           "id": "tasks.tasks.list",
@@ -576,7 +576,7 @@
       }
     }
   },
-  "revision": "20250316",
+  "revision": "20250415",
   "rootUrl": "https://tasks.googleapis.com/",
   "schemas": {
     "AssignmentInfo": {

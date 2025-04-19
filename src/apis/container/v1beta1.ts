@@ -406,7 +406,7 @@ export namespace container_v1beta1 {
      */
     imageType?: string | null;
     /**
-     * Enable or disable Kubelet read only port.
+     * DEPRECATED. Use NodePoolAutoConfig.NodeKubeletConfig instead.
      */
     insecureKubeletReadonlyPortEnabled?: boolean | null;
     /**
@@ -816,7 +816,7 @@ export namespace container_v1beta1 {
      */
     monitoringConfig?: Schema$MonitoringConfig;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
+     * The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     monitoringService?: string | null;
     /**
@@ -1180,7 +1180,7 @@ export namespace container_v1beta1 {
      */
     desiredMonitoringConfig?: Schema$MonitoringConfig;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
+     * The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     desiredMonitoringService?: string | null;
     /**
@@ -1408,6 +1408,10 @@ export namespace container_v1beta1 {
    * ConfidentialNodes is configuration for the confidential nodes feature, which makes nodes run on confidential VMs.
    */
   export interface Schema$ConfidentialNodes {
+    /**
+     * Defines the type of technology used by the confidential node.
+     */
+    confidentialInstanceType?: string | null;
     /**
      * Whether Confidential Nodes feature is enabled.
      */
@@ -1654,6 +1658,10 @@ export namespace container_v1beta1 {
    * EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral storage using Local SSDs.
    */
   export interface Schema$EphemeralStorageLocalSsdConfig {
+    /**
+     * Number of local SSDs to use for GKE Data Cache.
+     */
+    dataCacheCount?: number | null;
     /**
      * Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. A zero (or unset) value has different meanings depending on machine type being used: 1. For pre-Gen3 machines, which support flexible numbers of local ssds, zero (or unset) means to disable using local SSDs as ephemeral storage. The limit for this value is dependent upon the maximum number of disk available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information. 2. For Gen3 machines which dictate a specific number of local ssds, zero (or unset) means to use the default number of local ssds that goes with that machine type. For example, for a c3-standard-8-lssd machine, 2 local ssds would be provisioned. For c3-standard-8 (which doesn't support local ssds), 0 will be provisioned. See https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds for more info.
      */
@@ -2590,7 +2598,7 @@ export namespace container_v1beta1 {
      */
     containerdConfig?: Schema$ContainerdConfig;
     /**
-     * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.
+     * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. TODO(b/395671893) - Deprecate disk_size_gb and disk_type fields. If unspecified, the default disk size is 100GB.
      */
     diskSizeGb?: number | null;
     /**
@@ -2617,6 +2625,10 @@ export namespace container_v1beta1 {
      * Enable or disable NCCL fast socket for the node pool.
      */
     fastSocket?: Schema$FastSocket;
+    /**
+     * Flex Start flag for enabling Flex Start VM.
+     */
+    flexStart?: boolean | null;
     /**
      * GCFS (Google Container File System) configs.
      */
@@ -2900,7 +2912,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$NodePool {
     /**
-     * Specifies the autopilot configuration for this node pool. This field is exclusively reserved for Cluster Autoscaler to implement go/gke-managed-nodes-ccc-api
+     * Specifies the autopilot configuration for this node pool. This field is exclusively reserved for Cluster Autoscaler.
      */
     autopilotConfig?: Schema$AutopilotConfig;
     /**
@@ -3628,6 +3640,19 @@ export namespace container_v1beta1 {
     zone?: string | null;
   }
   /**
+   * RotationConfig is config for secret manager auto rotation.
+   */
+  export interface Schema$RotationConfig {
+    /**
+     * Whether the rotation is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * The interval between two consecutive rotations. Default rotation interval is 2 minutes.
+     */
+    rotationInterval?: string | null;
+  }
+  /**
    * SandboxConfig contains configurations of the sandbox to use for the node.
    */
   export interface Schema$SandboxConfig {
@@ -3665,6 +3690,10 @@ export namespace container_v1beta1 {
      * Enable/Disable Secret Manager Config.
      */
     enabled?: boolean | null;
+    /**
+     * Rotation config for secret manager.
+     */
+    rotationConfig?: Schema$RotationConfig;
   }
   /**
    * SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.
@@ -3694,6 +3723,10 @@ export namespace container_v1beta1 {
      * If this field is specified, it means there are manual steps that the user must take to make their clusters safe.
      */
     manualStepsRequired?: boolean | null;
+    /**
+     * The GKE versions where this vulnerability is mitigated.
+     */
+    mitigatedVersions?: string[] | null;
     /**
      * The GKE versions where this vulnerability is patched.
      */
@@ -3958,7 +3991,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * Required. The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
+     * Required. The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     monitoringService?: string | null;
     /**
@@ -4332,6 +4365,10 @@ export namespace container_v1beta1 {
      */
     fastSocket?: Schema$FastSocket;
     /**
+     * Flex Start flag for enabling Flex Start VM.
+     */
+    flexStart?: boolean | null;
+    /**
      * GCFS config.
      */
     gcfsConfig?: Schema$GcfsConfig;
@@ -4473,6 +4510,10 @@ export namespace container_v1beta1 {
      * The start timestamp of the upgrade.
      */
     startTime?: string | null;
+    /**
+     * The start type of the upgrade.
+     */
+    startType?: string | null;
     /**
      * Output only. The state of the upgrade.
      */
@@ -4683,11 +4724,11 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
-   * Parameters that can be configured on Windows nodes. Windows Node Config that define the parameters that will be used to configure the Windows node pool settings
+   * Parameters that can be configured on Windows nodes. Windows Node Config that define the parameters that will be used to configure the Windows node pool settings.
    */
   export interface Schema$WindowsNodeConfig {
     /**
-     * OSVersion specifies the Windows node config to be used on the node
+     * OSVersion specifies the Windows node config to be used on the node.
      */
     osVersion?: string | null;
   }

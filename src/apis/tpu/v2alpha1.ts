@@ -204,6 +204,10 @@ export namespace tpu_v2alpha1 {
      * Optional. Whether the boot disk will be created with confidential compute mode.
      */
     enableConfidentialCompute?: boolean | null;
+    /**
+     * Optional. Image from which boot disk is to be created. If not specified, the default image for the runtime version will be used. Example: `projects/$PROJECT_ID/global/images/$IMAGE_NAME`.
+     */
+    sourceImage?: string | null;
   }
   /**
    * Further data for the creating state.
@@ -760,6 +764,10 @@ export namespace tpu_v2alpha1 {
      */
     name?: string | null;
     /**
+     * Optional. The provisioning model for the resource.
+     */
+    provisioningModel?: string | null;
+    /**
      * The queueing policy of the QueuedRequest.
      */
     queueingPolicy?: Schema$QueueingPolicy;
@@ -767,6 +775,10 @@ export namespace tpu_v2alpha1 {
      * Name of the reservation in which the resource should be provisioned. Format: projects/{project\}/locations/{zone\}/reservations/{reservation\}
      */
     reservationName?: string | null;
+    /**
+     * Optional. The duration of the requested resource.
+     */
+    runDuration?: Schema$RunDuration;
     /**
      * Optional. The Spot tier.
      */
@@ -872,6 +884,19 @@ export namespace tpu_v2alpha1 {
    */
   export interface Schema$ResetQueuedResourceRequest {}
   /**
+   * Defines the maximum lifetime of the requested resource.
+   */
+  export interface Schema$RunDuration {
+    /**
+     * The maximum duration of the requested resource.
+     */
+    maxRunDuration?: string | null;
+    /**
+     * The time at which the requested resource will be terminated.
+     */
+    terminationTime?: string | null;
+  }
+  /**
    * A runtime version that a Node can be configured with.
    */
   export interface Schema$RuntimeVersion {
@@ -892,6 +917,10 @@ export namespace tpu_v2alpha1 {
      * Defines whether the node is preemptible.
      */
     preemptible?: boolean | null;
+    /**
+     * Optional. Defines the provisioning model for the node.
+     */
+    provisioningModel?: string | null;
     /**
      * Whether the node is created under a reservation.
      */
@@ -1410,6 +1439,10 @@ export namespace tpu_v2alpha1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

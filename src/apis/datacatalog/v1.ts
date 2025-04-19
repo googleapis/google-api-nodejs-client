@@ -994,6 +994,10 @@ export namespace datacatalog_v1 {
      * Opt-in status for the migration of Tag Templates to Dataplex.
      */
     tagTemplateMigration?: string | null;
+    /**
+     * The time when the Tag Template migration was enabled. If the Tag Template migration is not enabled, this field is not set.
+     */
+    templateMigrationEnabledTime?: string | null;
   }
   /**
    * Specification that applies to a model. Valid only for entries with the `MODEL` type.
@@ -2153,7 +2157,7 @@ export namespace datacatalog_v1 {
      */
     project?: string;
     /**
-     * The SQL name of the entry. SQL names are case-sensitive. Examples: * `pubsub.topic.{PROJECT_ID\}.{TOPIC_ID\}` * `pubsub.topic.{PROJECT_ID\}.`\``{TOPIC.ID.SEPARATED.WITH.DOTS\}`\` * `bigquery.table.{PROJECT_ID\}.{DATASET_ID\}.{TABLE_ID\}` * `bigquery.dataset.{PROJECT_ID\}.{DATASET_ID\}` * `datacatalog.entry.{PROJECT_ID\}.{LOCATION_ID\}.{ENTRY_GROUP_ID\}.{ENTRY_ID\}` Identifiers (`*_ID`) should comply with the [Lexical structure in Standard SQL] (https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical).
+     * The SQL name of the entry. SQL names are case-sensitive. Examples: * `pubsub.topic.{PROJECT_ID\}.{TOPIC_ID\}` * `pubsub.topic.{PROJECT_ID\}.`\``{TOPIC.ID.SEPARATED.WITH.DOTS\}`\` * `bigquery.table.{PROJECT_ID\}.{DATASET_ID\}.{TABLE_ID\}` * `bigquery.dataset.{PROJECT_ID\}.{DATASET_ID\}` * `datacatalog.entry.{PROJECT_ID\}.{LOCATION_ID\}.{ENTRY_GROUP_ID\}.{ENTRY_ID\}` Identifiers (`*_ID`) should comply with the [Lexical structure in GoogleSQL] (https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical).
      */
     sqlResource?: string;
   }

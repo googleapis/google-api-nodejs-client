@@ -288,6 +288,21 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/actions/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "view": {
+                          "description": "Specified view of the action schema.",
+                          "enum": [
+                            "ACTION_SCHEMA_VIEW_UNSPECIFIED",
+                            "ACTION_SCHEMA_VIEW_BASIC",
+                            "ACTION_SCHEMA_VIEW_ENRICHED"
+                          ],
+                          "enumDescriptions": [
+                            "VIEW_UNSPECIFIED. The unset value. Defaults to BASIC View.",
+                            "Return basic action schema.",
+                            "Return enriched action schema."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v2/{+name}",
@@ -675,7 +690,7 @@
       }
     }
   },
-  "revision": "20250304",
+  "revision": "20250327",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {

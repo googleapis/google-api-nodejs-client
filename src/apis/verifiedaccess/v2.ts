@@ -276,7 +276,7 @@ export namespace verifiedaccess_v2 {
      */
     systemDnsServers?: string[] | null;
     /**
-     * Output only. Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled. Available on Windows only.
+     * Output only. Deprecated. The corresponding policy is now deprecated. Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled. Available on Windows only.
      */
     thirdPartyBlockingEnabled?: boolean | null;
     /**
@@ -310,7 +310,7 @@ export namespace verifiedaccess_v2 {
     expectedIdentity?: string | null;
   }
   /**
-   * Result message for VerifiedAccess.VerifyChallengeResponse.
+   * Result message for VerifiedAccess.VerifyChallengeResponse. The response returned when successful for Managed profiles on Unmanaged browsers will NOT have devicePermanentId, keyTrustLevel, virtualDeviceId and customerId fields. Managed profiles will INSTEAD have the profileCustomerId, virtualProfileId, profilePermanentId and profileKeyTrustLevel fields.
    */
   export interface Schema$VerifyChallengeResponseResult {
     /**

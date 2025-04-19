@@ -269,6 +269,10 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$ExtensionChainExtension {
     /**
+     * Optional. When set to `TRUE`, the response from an extension service is allowed to set the `com.google.envoy.dynamic_forwarding` namespace in the dynamic metadata. This field is not supported for plugin extensions. Setting it results in a validation error.
+     */
+    allowDynamicForwarding?: boolean | null;
+    /**
      * Optional. The `:authority` header in the gRPC request sent from Envoy to the extension service. Required for Callout extensions. This field is not supported for plugin extensions. Setting it results in a validation error.
      */
     authority?: string | null;
@@ -281,13 +285,21 @@ export namespace networkservices_v1beta1 {
      */
     forwardHeaders?: string[] | null;
     /**
-     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google....`. For example: `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field is not supported for plugin extensions. Setting it results in a validation error.
+     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google....`. For example: `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field is subject to following limitations: * The total size of the metadata must be less than 1KiB. * The total number of keys in the metadata must be less than 20. * The length of each key must be less than 64 characters. * The length of each value must be less than 1024 characters. * All values must be strings. This field is not supported for plugin extensions. Setting it results in a validation error.
      */
     metadata?: {[key: string]: any} | null;
     /**
      * Required. The name for this extension. The name is logged as part of the HTTP request logs. The name must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number.
      */
     name?: string | null;
+    /**
+     * Optional. Configures the send mode for request body processing. The field can only be set if `supported_events` includes `REQUEST_BODY`. If `supported_events` includes `REQUEST_BODY`, but `request_body_send_mode` is unset, the default value `STREAMED` is used. When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events` must include both `REQUEST_BODY` and `REQUEST_TRAILERS`. This field can be set only for `LbTrafficExtension` and `LbRouteExtension` resources, and only when the `service` field of the extension points to a `BackendService`. Only `FULL_DUPLEX_STREAMED` mode is supported for `LbRouteExtension` resources.
+     */
+    requestBodySendMode?: string | null;
+    /**
+     * Optional. Configures the send mode for response processing. If unspecified, the default value `STREAMED` is used. When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events` must include both `RESPONSE_BODY` and `RESPONSE_TRAILERS`. This field can be set only for `LbTrafficExtension` resources, and only when the `service` field of the extension points to a `BackendService`.
+     */
+    responseBodySendMode?: string | null;
     /**
      * Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project\}/locations/{location\}/wasmPlugins/{plugin\}` or `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/wasmPlugins/{wasmPlugin\}`. Plugin extensions are currently supported for the `LbTrafficExtension` and the `LbRouteExtension` resources.
      */
@@ -620,7 +632,7 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$GrpcRouteStatefulSessionAffinityPolicy {
     /**
-     * Required. The cookie TTL value for the Set-Cookie header generated by the data plane. The lifetime of the cookie may be set to a value from 1 to 86400 seconds (24 hours) inclusive.
+     * Required. The cookie TTL value for the Set-Cookie header generated by the data plane. The lifetime of the cookie may be set to a value from 0 to 86400 seconds (24 hours) inclusive. Set this to 0s to use a session cookie and disable cookie expiration.
      */
     cookieTtl?: string | null;
   }
@@ -1038,7 +1050,7 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$HttpRouteStatefulSessionAffinityPolicy {
     /**
-     * Required. The cookie TTL value for the Set-Cookie header generated by the data plane. The lifetime of the cookie may be set to a value from 1 to 86400 seconds (24 hours) inclusive.
+     * Required. The cookie TTL value for the Set-Cookie header generated by the data plane. The lifetime of the cookie may be set to a value from 0 to 86400 seconds (24 hours) inclusive. Set this to 0s to use a session cookie and disable cookie expiration.
      */
     cookieTtl?: string | null;
   }
@@ -1166,6 +1178,10 @@ export namespace networkservices_v1beta1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListGatewayRouteViews method.
@@ -1213,6 +1229,10 @@ export namespace networkservices_v1beta1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListHttpRoutes method.
@@ -1226,6 +1246,10 @@ export namespace networkservices_v1beta1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Message for response to listing `LbRouteExtension` resources.
@@ -1367,6 +1391,10 @@ export namespace networkservices_v1beta1 {
      * List of TcpRoute resources.
      */
     tcpRoutes?: Schema$TcpRoute[];
+    /**
+     * Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListTlsRoutes method.
@@ -1380,6 +1408,10 @@ export namespace networkservices_v1beta1 {
      * List of TlsRoute resources.
      */
     tlsRoutes?: Schema$TlsRoute[];
+    /**
+     * Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the `ListWasmPlugins` method.
@@ -1389,6 +1421,10 @@ export namespace networkservices_v1beta1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
+     */
+    unreachable?: string[] | null;
     /**
      * List of `WasmPlugin` resources.
      */
@@ -1402,6 +1438,10 @@ export namespace networkservices_v1beta1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
+     */
+    unreachable?: string[] | null;
     /**
      * List of `WasmPluginVersion` resources.
      */
@@ -1594,7 +1634,7 @@ export namespace networkservices_v1beta1 {
     cryptoKeyName?: string | null;
   }
   /**
-   * ServiceBinding can be used to: - Bind a Service Directory Service to be used in a BackendService resource. - Bind a Private Service Connect producer service to be used in consumer Cloud Service Mesh or Application Load Balancers.
+   * ServiceBinding can be used to: - Bind a Service Directory Service to be used in a BackendService resource. This feature will be deprecated soon. - Bind a Private Service Connect producer service to be used in consumer Cloud Service Mesh or Application Load Balancers.
    */
   export interface Schema$ServiceBinding {
     /**
@@ -1614,11 +1654,11 @@ export namespace networkservices_v1beta1 {
      */
     name?: string | null;
     /**
-     * Optional. The full Service Directory Service name of the format `projects/x/locations/x/namespaces/x/services/x`. This field must be set.
+     * Optional. The full Service Directory Service name of the format `projects/x/locations/x/namespaces/x/services/x`. This field is for Service Directory integration which will be deprecated soon.
      */
     service?: string | null;
     /**
-     * Output only. The unique identifier of the Service Directory Service against which the ServiceBinding resource is validated. This is populated when the Service Binding resource is used in another resource (like Backend Service). This is of the UUID4 format.
+     * Output only. The unique identifier of the Service Directory Service against which the ServiceBinding resource is validated. This is populated when the Service Binding resource is used in another resource (like Backend Service). This is of the UUID4 format. This field is for Service Directory integration which will be deprecated soon.
      */
     serviceId?: string | null;
     /**
@@ -1858,7 +1898,7 @@ export namespace networkservices_v1beta1 {
      */
     serviceName?: string | null;
     /**
-     * Optional. Specifies the proportion of requests forwareded to the backend referenced by the service_name field. This is computed as: - weight/Sum(weights in destinations) Weights in all destinations does not need to sum up to 100.
+     * Optional. Specifies the proportion of requests forwarded to the backend referenced by the service_name field. This is computed as: - weight/Sum(weights in destinations) Weights in all destinations does not need to sum up to 100.
      */
     weight?: number | null;
   }
@@ -3352,6 +3392,10 @@ export namespace networkservices_v1beta1 {
      * Required. The project and location from which the EndpointPolicies should be listed, specified in the format `projects/x/locations/global`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Endpointpolicies$Patch
     extends StandardParameters {
@@ -4592,6 +4636,10 @@ export namespace networkservices_v1beta1 {
      * Required. The project and location from which the GrpcRoutes should be listed, specified in the format `projects/x/locations/global`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Grpcroutes$Patch
     extends StandardParameters {
@@ -5102,6 +5150,10 @@ export namespace networkservices_v1beta1 {
      * Required. The project and location from which the HttpRoutes should be listed, specified in the format `projects/x/locations/global`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Httproutes$Patch
     extends StandardParameters {
@@ -8759,6 +8811,10 @@ export namespace networkservices_v1beta1 {
      * Required. The project and location from which the TcpRoutes should be listed, specified in the format `projects/x/locations/global`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Tcproutes$Patch
     extends StandardParameters {
@@ -9269,6 +9325,10 @@ export namespace networkservices_v1beta1 {
      * Required. The project and location from which the TlsRoutes should be listed, specified in the format `projects/x/locations/global`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Tlsroutes$Patch
     extends StandardParameters {

@@ -226,6 +226,10 @@ export namespace osconfig_v2beta {
      */
     finishTime?: string | null;
     /**
+     * Output only. Unique identifier of the iteration.
+     */
+    iterationId?: string | null;
+    /**
      * Output only. Overall number of actions done by the orchestrator so far.
      */
     performedActions?: string | null;
@@ -233,10 +237,6 @@ export namespace osconfig_v2beta {
      * Output only. An estimated percentage of the progress. Number between 0 and 100.
      */
     progress?: number | null;
-    /**
-     * Output only. Handle to the Progressive Rollouts API rollout resource, which contains detailed information about a particular orchestration iteration.
-     */
-    rolloutResource?: string | null;
     /**
      * Output only. Start time of the wave iteration.
      */
@@ -383,6 +383,39 @@ export namespace osconfig_v2beta {
      * Output only. Timestamp when the policy orchestrator resource was last modified.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleCloudOsconfigV2__OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -1544,7 +1577,7 @@ export namespace osconfig_v2beta {
      */
     name?: string;
     /**
-     * Optional. The list of fields to update.
+     * Optional. The list of fields to merge into the existing policy orchestrator. A special ["*"] field mask can be used to simply replace the entire resource. Otherwise, for all paths referenced in the mask, following merge rules are used: * output only fields are ignored, * primitive fields are replaced, * repeated fields are replaced, * map fields are merged key by key, * message fields are cleared if not set in the request, otherwise they are merged recursively (in particular - message fields set to an empty message has no side effects) If field mask is not specified, it is automatically inferred from the request using following rules: * primitive fields are listed, if set to a non-default value (as there is no way to distinguish between default and unset value), * map and repeated fields are listed, * `google.protobuf.Any` fields are listed, * other message fields are traversed recursively. Note: implicit mask does not allow clearing fields.
      */
     updateMask?: string;
 
@@ -2525,7 +2558,7 @@ export namespace osconfig_v2beta {
      */
     name?: string;
     /**
-     * Optional. The list of fields to update.
+     * Optional. The list of fields to merge into the existing policy orchestrator. A special ["*"] field mask can be used to simply replace the entire resource. Otherwise, for all paths referenced in the mask, following merge rules are used: * output only fields are ignored, * primitive fields are replaced, * repeated fields are replaced, * map fields are merged key by key, * message fields are cleared if not set in the request, otherwise they are merged recursively (in particular - message fields set to an empty message has no side effects) If field mask is not specified, it is automatically inferred from the request using following rules: * primitive fields are listed, if set to a non-default value (as there is no way to distinguish between default and unset value), * map and repeated fields are listed, * `google.protobuf.Any` fields are listed, * other message fields are traversed recursively. Note: implicit mask does not allow clearing fields.
      */
     updateMask?: string;
 
@@ -3508,7 +3541,7 @@ export namespace osconfig_v2beta {
      */
     name?: string;
     /**
-     * Optional. The list of fields to update.
+     * Optional. The list of fields to merge into the existing policy orchestrator. A special ["*"] field mask can be used to simply replace the entire resource. Otherwise, for all paths referenced in the mask, following merge rules are used: * output only fields are ignored, * primitive fields are replaced, * repeated fields are replaced, * map fields are merged key by key, * message fields are cleared if not set in the request, otherwise they are merged recursively (in particular - message fields set to an empty message has no side effects) If field mask is not specified, it is automatically inferred from the request using following rules: * primitive fields are listed, if set to a non-default value (as there is no way to distinguish between default and unset value), * map and repeated fields are listed, * `google.protobuf.Any` fields are listed, * other message fields are traversed recursively. Note: implicit mask does not allow clearing fields.
      */
     updateMask?: string;
 
