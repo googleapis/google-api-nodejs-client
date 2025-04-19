@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20250206",
+  "revision": "20250411",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -943,6 +943,15 @@
           "description": "Output only. This field is read only (not settable via UpdateAccessApprovalSettings method). If the field is true, that indicates that an ancestor of this Project or Folder has set active_key_version (this field will always be unset for the organization since organizations do not have ancestors).",
           "readOnly": true,
           "type": "boolean"
+        },
+        "approvalPolicy": {
+          "$ref": "CustomerApprovalApprovalPolicy",
+          "description": "Optional. Policy for approval. This contains all policies."
+        },
+        "effectiveApprovalPolicy": {
+          "$ref": "CustomerApprovalApprovalPolicy",
+          "description": "Output only. Policy for approval included inherited settings to understand the exact policy applied to this resource. This is a read-only field.",
+          "readOnly": true
         },
         "enrolledAncestor": {
           "description": "Output only. This field is read only (not settable via UpdateAccessApprovalSettings method). If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Project or Folder (this field will always be unset for the organization since organizations do not have ancestors).",
@@ -1144,6 +1153,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "policyApproved": {
+          "description": "True when the request has been approved by the customer's defined policy.",
+          "type": "boolean"
+        },
         "signatureInfo": {
           "$ref": "SignatureInfo",
           "description": "The signature for the ApprovalRequest and details on how it was signed."
@@ -1157,6 +1170,31 @@
       "properties": {
         "command": {
           "description": "For command-line tools, the full command-line exactly as entered by the actor without adding any additional characters (such as quotation marks).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerApprovalApprovalPolicy": {
+      "description": "Represents all the policies that can be set for Customer Approval.",
+      "id": "CustomerApprovalApprovalPolicy",
+      "properties": {
+        "justificationBasedApprovalPolicy": {
+          "description": "Optional. Policy for approval based on the justification given.",
+          "enum": [
+            "JUSTIFICATION_BASED_APPROVAL_POLICY_UNSPECIFIED",
+            "JUSTIFICATION_BASED_APPROVAL_ENABLED_ALL",
+            "JUSTIFICATION_BASED_APPROVAL_ENABLED_EXTERNAL_JUSTIFICATIONS",
+            "JUSTIFICATION_BASED_APPROVAL_NOT_ENABLED",
+            "JUSTIFICATION_BASED_APPROVAL_INHERITED"
+          ],
+          "enumDescriptions": [
+            "Default value for proto.",
+            "Instant approval is enabled for all accesses.",
+            "Instant approval is enabled for external justifications.",
+            "Instant approval is not enabled for any accesses.",
+            "Instant approval is inherited from the parent."
+          ],
           "type": "string"
         }
       },

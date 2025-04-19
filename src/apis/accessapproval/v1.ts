@@ -154,6 +154,14 @@ export namespace accessapproval_v1 {
      */
     ancestorHasActiveKeyVersion?: boolean | null;
     /**
+     * Optional. Policy for approval. This contains all policies.
+     */
+    approvalPolicy?: Schema$CustomerApprovalApprovalPolicy;
+    /**
+     * Output only. Policy for approval included inherited settings to understand the exact policy applied to this resource. This is a read-only field.
+     */
+    effectiveApprovalPolicy?: Schema$CustomerApprovalApprovalPolicy;
+    /**
      * Output only. This field is read only (not settable via UpdateAccessApprovalSettings method). If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Project or Folder (this field will always be unset for the organization since organizations do not have ancestors).
      */
     enrolledAncestor?: boolean | null;
@@ -296,6 +304,10 @@ export namespace accessapproval_v1 {
      */
     invalidateTime?: string | null;
     /**
+     * True when the request has been approved by the customer's defined policy.
+     */
+    policyApproved?: boolean | null;
+    /**
      * The signature for the ApprovalRequest and details on how it was signed.
      */
     signatureInfo?: Schema$SignatureInfo;
@@ -308,6 +320,15 @@ export namespace accessapproval_v1 {
      * For command-line tools, the full command-line exactly as entered by the actor without adding any additional characters (such as quotation marks).
      */
     command?: string | null;
+  }
+  /**
+   * Represents all the policies that can be set for Customer Approval.
+   */
+  export interface Schema$CustomerApprovalApprovalPolicy {
+    /**
+     * Optional. Policy for approval based on the justification given.
+     */
+    justificationBasedApprovalPolicy?: string | null;
   }
   /**
    * Request to dismiss an approval request.
