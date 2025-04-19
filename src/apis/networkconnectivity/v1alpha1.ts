@@ -301,6 +301,10 @@ export namespace networkconnectivity_v1alpha1 {
      */
     description?: string | null;
     /**
+     * Optional. ExcludeCidrRanges flag. Specifies a set of CIDR blocks that allows exclusion of particular CIDR ranges from the auto-allocation process, without having to reserve these blocks
+     */
+    excludeCidrRanges?: string[] | null;
+    /**
      * Optional. Immutable ranges cannot have their fields modified, except for labels and description.
      */
     immutable?: boolean | null;
