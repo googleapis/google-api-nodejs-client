@@ -161,6 +161,31 @@
       "resources": {
         "locations": {
           "methods": {
+            "getCmekConfig": {
+              "description": "Gets the CmekConfig.",
+              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/cmekConfig",
+              "httpMethod": "GET",
+              "id": "discoveryengine.projects.locations.getCmekConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of CmekConfig, such as `projects/*/locations/*/cmekConfig` or `projects/*/locations/*/cmekConfigs/*`. If the caller does not have permission to access the CmekConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1betaCmekConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "obtainCrawlRate": {
               "description": "Obtains the time series data of organic or dedicated crawl rate for monitoring. When dedicated crawl rate is not set, it will return vertex AI's organic crawl rate time series. Organic crawl means Google automatically crawl the internet at its own convenience. When dedicated crawl rate is set, it will return vertex AI's dedicated crawl rate time series.",
               "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}:obtainCrawlRate",
@@ -244,9 +269,154 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "updateCmekConfig": {
+              "description": "Provisions a CMEK key for use in a location of a customer's project. This method will also conduct location validation on the provided cmekConfig to make sure the key is valid and can be used in the selected location.",
+              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/cmekConfig",
+              "httpMethod": "PATCH",
+              "id": "discoveryengine.projects.locations.updateCmekConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfig$",
+                  "required": true,
+                  "type": "string"
+                },
+                "setDefault": {
+                  "description": "Set the following CmekConfig as the default to be used for child resources if one is not specified.",
+                  "location": "query",
+                  "type": "boolean"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1betaCmekConfig"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           },
           "resources": {
+            "cmekConfigs": {
+              "methods": {
+                "delete": {
+                  "description": "De-provisions a CmekConfig.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/cmekConfigs/{cmekConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "discoveryengine.projects.locations.cmekConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the CmekConfig to delete, such as `projects/{project}/locations/{location}/cmekConfigs/{cmek_config}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the CmekConfig.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/cmekConfigs/{cmekConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.cmekConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of CmekConfig, such as `projects/*/locations/*/cmekConfig` or `projects/*/locations/*/cmekConfigs/*`. If the caller does not have permission to access the CmekConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaCmekConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the CmekConfigs with the project.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/cmekConfigs",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.cmekConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent location resource name, such as `projects/{project}/locations/{location}`. If the caller does not have permission to list CmekConfigs under this location, regardless of whether or not a CmekConfig exists, a PERMISSION_DENIED error is returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/cmekConfigs",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Provisions a CMEK key for use in a location of a customer's project. This method will also conduct location validation on the provided cmekConfig to make sure the key is valid and can be used in the selected location.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/cmekConfigs/{cmekConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "discoveryengine.projects.locations.cmekConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "setDefault": {
+                      "description": "Set the following CmekConfig as the default to be used for child resources if one is not specified.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaCmekConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "collections": {
               "resources": {
                 "dataConnector": {
@@ -7755,7 +7925,7 @@
       }
     }
   },
-  "revision": "20250314",
+  "revision": "20250410",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -8308,7 +8478,7 @@
           "type": "array"
         },
         "queryRegex": {
-          "description": "Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. This is currently supporting promotion use case.",
+          "description": "Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. Only supported for Basic Site Search promotion serving controls.",
           "type": "string"
         },
         "queryTerms": {
@@ -8672,6 +8842,10 @@
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1DataStore",
       "properties": {
+        "aclEnabled": {
+          "description": "Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.",
+          "type": "boolean"
+        },
         "advancedSiteSearchConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1AdvancedSiteSearchConfig",
           "description": "Optional. Configuration for advanced site search."
@@ -9066,7 +9240,16 @@
     "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig": {
       "description": "The layout parsing configurations for documents.",
       "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig",
-      "properties": {},
+      "properties": {
+        "enableImageAnnotation": {
+          "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
+          "type": "boolean"
+        },
+        "enableTableAnnotation": {
+          "description": "Optional. If true, the LLM based annotation is added to the table during parsing.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigOcrParsingConfig": {
@@ -9785,6 +9968,10 @@
           "description": "Optional. The Promotion description. Maximum length: 200 characters.",
           "type": "string"
         },
+        "document": {
+          "description": "Optional. The Document the user wants to promote. For site search, leave unset and only populate uri. Can be set along with uri.",
+          "type": "string"
+        },
         "enabled": {
           "description": "Optional. The enabled promotion will be returned for any serving configs associated with the parent of the control this promotion is attached to. This flag is used for basic site search only.",
           "type": "boolean"
@@ -10237,14 +10424,18 @@
             "PENDING",
             "FAILED",
             "SUCCEEDED",
-            "DELETING"
+            "DELETING",
+            "CANCELLABLE",
+            "CANCELLED"
           ],
           "enumDescriptions": [
             "Defaults to SUCCEEDED.",
             "The target site is in the update queue and will be picked up by indexing pipeline.",
             "The target site fails to be indexed.",
             "The target site has been indexed.",
-            "The previously indexed target site has been marked to be deleted. This is a transitioning state which will resulted in either: 1. target site deleted if unindexing is successful; 2. state reverts to SUCCEEDED if the unindexing fails."
+            "The previously indexed target site has been marked to be deleted. This is a transitioning state which will resulted in either: 1. target site deleted if unindexing is successful; 2. state reverts to SUCCEEDED if the unindexing fails.",
+            "The target site change is pending but cancellable.",
+            "The target site change is cancelled."
           ],
           "readOnly": true,
           "type": "string"
@@ -10492,6 +10683,10 @@
           "description": "Output only. The connector contains the necessary parameters and is configured to support actions.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "serviceName": {
+          "description": "Optional. The Service Directory resource name (projects/*/locations/*/namespaces/*/services/*) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11344,7 +11539,7 @@
           "type": "array"
         },
         "queryRegex": {
-          "description": "Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. This is currently supporting promotion use case.",
+          "description": "Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. Only supported for Basic Site Search promotion serving controls.",
           "type": "string"
         },
         "queryTerms": {
@@ -12122,6 +12317,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "realtimeSyncConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataConnectorRealtimeSyncConfig",
+          "description": "Optional. The configuration for realtime sync."
+        },
         "refreshInterval": {
           "description": "Required. The refresh interval for data sync. If duration is set to 0, the data will be synced in real time. The streaming feature is not supported yet. The minimum is 30 minutes and maximum is 7 days.",
           "format": "google-duration",
@@ -12180,6 +12379,21 @@
           "description": "Output only. Timestamp the DataConnector was last updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDataConnectorRealtimeSyncConfig": {
+      "description": "The configuration for realtime sync to store additional params for realtime sync.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDataConnectorRealtimeSyncConfig",
+      "properties": {
+        "realtimeSyncSecret": {
+          "description": "Optional. The ID of the Secret Manager secret used for webhook secret.",
+          "type": "string"
+        },
+        "webhookUri": {
+          "description": "Optional. Webhook url for the connector to specify additional params for realtime sync.",
           "type": "string"
         }
       },
@@ -12732,7 +12946,16 @@
     "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig": {
       "description": "The layout parsing configurations for documents.",
       "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig",
-      "properties": {},
+      "properties": {
+        "enableImageAnnotation": {
+          "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
+          "type": "boolean"
+        },
+        "enableTableAnnotation": {
+          "description": "Optional. If true, the LLM based annotation is added to the table during parsing.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigOcrParsingConfig": {
@@ -14528,6 +14751,10 @@
           "description": "Optional. The Promotion description. Maximum length: 200 characters.",
           "type": "string"
         },
+        "document": {
+          "description": "Optional. The Document the user wants to promote. For site search, leave unset and only populate uri. Can be set along with uri.",
+          "type": "string"
+        },
         "enabled": {
           "description": "Optional. The enabled promotion will be returned for any serving configs associated with the parent of the control this promotion is attached to. This flag is used for basic site search only.",
           "type": "boolean"
@@ -14572,7 +14799,7 @@
           "description": "Custom fine tuning configs. If set, it has higher priority than the configs set in ServingConfig.custom_fine_tuning_spec."
         },
         "dataStoreSpecs": {
-          "description": "Specifications that define the specific [DataStore]s to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.",
+          "description": "Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec"
           },
@@ -14652,13 +14879,13 @@
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
         },
         "rankingExpression": {
-          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking expression is not provided or set to BYOE, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking expression is set to CLEARBOX, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double > 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result",
+          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking_expression_backend is not provided or set to `BYOE`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking_expression_backend is set to `CLEARBOX`, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double > 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result",
           "type": "string"
         },
         "rankingExpressionBackend": {
           "description": "Optional. The backend to use for the ranking expression evaluation.",
           "enum": [
-            "UNKNOWN",
+            "RANKING_EXPRESSION_BACKEND_UNSPECIFIED",
             "BYOE",
             "CLEARBOX"
           ],
@@ -14742,7 +14969,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpec",
       "properties": {
         "conditionBoostSpecs": {
-          "description": "Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
+          "description": "Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpecConditionBoostSpec"
           },
@@ -15570,14 +15797,18 @@
             "PENDING",
             "FAILED",
             "SUCCEEDED",
-            "DELETING"
+            "DELETING",
+            "CANCELLABLE",
+            "CANCELLED"
           ],
           "enumDescriptions": [
             "Defaults to SUCCEEDED.",
             "The target site is in the update queue and will be picked up by indexing pipeline.",
             "The target site fails to be indexed.",
             "The target site has been indexed.",
-            "The previously indexed target site has been marked to be deleted. This is a transitioning state which will resulted in either: 1. target site deleted if unindexing is successful; 2. state reverts to SUCCEEDED if the unindexing fails."
+            "The previously indexed target site has been marked to be deleted. This is a transitioning state which will resulted in either: 1. target site deleted if unindexing is successful; 2. state reverts to SUCCEEDED if the unindexing fails.",
+            "The target site change is pending but cancellable.",
+            "The target site change is cancelled."
           ],
           "readOnly": true,
           "type": "string"
@@ -15803,6 +16034,10 @@
       "description": "Information of an end user.",
       "id": "GoogleCloudDiscoveryengineV1alphaUserInfo",
       "properties": {
+        "timeZone": {
+          "description": "Optional. IANA time zone, e.g. Europe/Budapest.",
+          "type": "string"
+        },
         "userAgent": {
           "description": "User agent as included in the HTTP header. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if UserEvent.direct_user_request is set.",
           "type": "string"
@@ -15925,7 +16160,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaAdvancedCompleteQueryRequestBoostSpec",
       "properties": {
         "conditionBoostSpecs": {
-          "description": "Condition boost specifications. If a suggestion matches multiple conditions in the specifictions, boost values from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20. Note: Currently only support language condition boost.",
+          "description": "Condition boost specifications. If a suggestion matches multiple conditions in the specifications, boost values from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20. Note: Currently only support language condition boost.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1betaAdvancedCompleteQueryRequestBoostSpecConditionBoostSpec"
           },
@@ -17867,6 +18102,14 @@
       "description": "Chunk captures all raw metadata information of items to be recommended or searched in the chunk mode.",
       "id": "GoogleCloudDiscoveryengineV1betaChunk",
       "properties": {
+        "annotationContents": {
+          "description": "Output only. Annotation contents if the current chunk contains annotations.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "chunkMetadata": {
           "$ref": "GoogleCloudDiscoveryengineV1betaChunkChunkMetadata",
           "description": "Output only. Metadata of the current chunk.",
@@ -17875,6 +18118,14 @@
         "content": {
           "description": "Content is a string from a document (parsed content).",
           "type": "string"
+        },
+        "dataUrls": {
+          "description": "Output only. Image Data URLs if the current chunk contains images. Data URLs are composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "derivedStructData": {
           "additionalProperties": {
@@ -18186,7 +18437,7 @@
           "type": "array"
         },
         "queryRegex": {
-          "description": "Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. This is currently supporting promotion use case.",
+          "description": "Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. Only supported for Basic Site Search promotion serving controls.",
           "type": "string"
         },
         "queryTerms": {
@@ -18829,6 +19080,10 @@
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1betaDataStore",
       "properties": {
+        "aclEnabled": {
+          "description": "Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.",
+          "type": "boolean"
+        },
         "advancedSiteSearchConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig",
           "description": "Optional. Configuration for advanced site search."
@@ -19166,9 +19421,13 @@
       "description": "Document captures all raw metadata information of items to be recommended or searched.",
       "id": "GoogleCloudDiscoveryengineV1betaDocument",
       "properties": {
+        "aclInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentAclInfo",
+          "description": "Access control information for the document."
+        },
         "content": {
           "$ref": "GoogleCloudDiscoveryengineV1betaDocumentContent",
-          "description": "The unstructured data linked to this document. Content must be set if this document is under a `CONTENT_REQUIRED` data store."
+          "description": "The unstructured data linked to this document. Content can only be set and must be set if this document is under a `CONTENT_REQUIRED` data store."
         },
         "derivedStructData": {
           "additionalProperties": {
@@ -19221,12 +19480,44 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaDocumentAclInfo": {
+      "description": "ACL Information of the Document.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentAclInfo",
+      "properties": {
+        "readers": {
+          "description": "Readers of the document.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaDocumentAclInfoAccessRestriction"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDocumentAclInfoAccessRestriction": {
+      "description": "AclRestriction to model complex inheritance restrictions. Example: Modeling a \"Both Permit\" inheritance, where to access a child document, user needs to have access to parent document. Document Hierarchy - Space_S --> Page_P. Readers: Space_S: group_1, user_1 Page_P: group_2, group_3, user_2 Space_S ACL Restriction - { \"acl_info\": { \"readers\": [ { \"principals\": [ { \"group_id\": \"group_1\" }, { \"user_id\": \"user_1\" } ] } ] } } Page_P ACL Restriction. { \"acl_info\": { \"readers\": [ { \"principals\": [ { \"group_id\": \"group_2\" }, { \"group_id\": \"group_3\" }, { \"user_id\": \"user_2\" } ], }, { \"principals\": [ { \"group_id\": \"group_1\" }, { \"user_id\": \"user_1\" } ], } ] } }",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentAclInfoAccessRestriction",
+      "properties": {
+        "idpWide": {
+          "description": "All users within the Identity Provider.",
+          "type": "boolean"
+        },
+        "principals": {
+          "description": "List of principals.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaPrincipal"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaDocumentContent": {
       "description": "Unstructured data linked to this document.",
       "id": "GoogleCloudDiscoveryengineV1betaDocumentContent",
       "properties": {
         "mimeType": {
-          "description": "The MIME type of the content. Supported types: * `application/pdf` (PDF, only native PDFs are supported for now) * `text/html` (HTML) * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX) * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX) * `text/plain` (TXT) See https://www.iana.org/assignments/media-types/media-types.xhtml.",
+          "description": "The MIME type of the content. Supported types: * `application/pdf` (PDF, only native PDFs are supported for now) * `text/html` (HTML) * `text/plain` (TXT) * `text/xml` (XML) * `application/json` (JSON) * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX) * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX) * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` (XLSX) * `application/vnd.ms-excel.sheet.macroenabled.12` (XLSM) The following types are supported only if layout parser is enabled in the data store: * `image/bmp` (BMP) * `image/gif` (GIF) * `image/jpeg` (JPEG) * `image/png` (PNG) * `image/tiff` (TIFF) See https://www.iana.org/assignments/media-types/media-types.xhtml.",
           "type": "string"
         },
         "rawBytes": {
@@ -19386,7 +19677,16 @@
     "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig": {
       "description": "The layout parsing configurations for documents.",
       "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig",
-      "properties": {},
+      "properties": {
+        "enableImageAnnotation": {
+          "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
+          "type": "boolean"
+        },
+        "enableTableAnnotation": {
+          "description": "Optional. If true, the LLM based annotation is added to the table during parsing.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigOcrParsingConfig": {
@@ -20554,6 +20854,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse": {
+      "description": "Response message for CmekConfigService.ListCmekConfigs method.",
+      "id": "GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse",
+      "properties": {
+        "cmekConfigs": {
+          "description": "All the customer's CmekConfigs.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaCmekConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaListControlsResponse": {
       "description": "Response for ListControls method.",
       "id": "GoogleCloudDiscoveryengineV1betaListControlsResponse",
@@ -21017,6 +21331,21 @@
       "description": "Request for pausing training of an engine.",
       "id": "GoogleCloudDiscoveryengineV1betaPauseEngineRequest",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaPrincipal": {
+      "description": "Principal identifier of a user or a group.",
+      "id": "GoogleCloudDiscoveryengineV1betaPrincipal",
+      "properties": {
+        "groupId": {
+          "description": "Group identifier. For Google Workspace user account, group_id should be the google workspace group email. For non-google identity provider user account, group_id is the mapped group identifier configured during the workforcepool config.",
+          "type": "string"
+        },
+        "userId": {
+          "description": "User identifier. For Google Workspace user account, user_id should be the google workspace user email. For non-google identity provider user account, user_id is the mapped user identifier configured during the workforcepool config.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaProject": {
@@ -21930,6 +22259,10 @@
           "description": "Optional. The Promotion description. Maximum length: 200 characters.",
           "type": "string"
         },
+        "document": {
+          "description": "Optional. The Document the user wants to promote. For site search, leave unset and only populate uri. Can be set along with uri.",
+          "type": "string"
+        },
         "enabled": {
           "description": "Optional. The enabled promotion will be returned for any serving configs associated with the parent of the control this promotion is attached to. This flag is used for basic site search only.",
           "type": "boolean"
@@ -21970,7 +22303,7 @@
           "description": "A specification for configuring the behavior of content search."
         },
         "dataStoreSpecs": {
-          "description": "Specifications that define the specific [DataStore]s to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.",
+          "description": "Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec"
           },
@@ -22050,13 +22383,13 @@
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
         },
         "rankingExpression": {
-          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking expression is not provided or set to BYOE, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking expression is set to CLEARBOX, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double > 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result",
+          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking_expression_backend is not provided or set to `BYOE`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking_expression_backend is set to `CLEARBOX`, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double > 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result",
           "type": "string"
         },
         "rankingExpressionBackend": {
           "description": "Optional. The backend to use for the ranking expression evaluation.",
           "enum": [
-            "UNKNOWN",
+            "RANKING_EXPRESSION_BACKEND_UNSPECIFIED",
             "BYOE",
             "CLEARBOX"
           ],
@@ -22140,7 +22473,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec",
       "properties": {
         "conditionBoostSpecs": {
-          "description": "Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
+          "description": "Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpec"
           },
@@ -23948,14 +24281,18 @@
             "PENDING",
             "FAILED",
             "SUCCEEDED",
-            "DELETING"
+            "DELETING",
+            "CANCELLABLE",
+            "CANCELLED"
           ],
           "enumDescriptions": [
             "Defaults to SUCCEEDED.",
             "The target site is in the update queue and will be picked up by indexing pipeline.",
             "The target site fails to be indexed.",
             "The target site has been indexed.",
-            "The previously indexed target site has been marked to be deleted. This is a transitioning state which will resulted in either: 1. target site deleted if unindexing is successful; 2. state reverts to SUCCEEDED if the unindexing fails."
+            "The previously indexed target site has been marked to be deleted. This is a transitioning state which will resulted in either: 1. target site deleted if unindexing is successful; 2. state reverts to SUCCEEDED if the unindexing fails.",
+            "The target site change is pending but cancellable.",
+            "The target site change is cancelled."
           ],
           "readOnly": true,
           "type": "string"
@@ -24344,6 +24681,10 @@
       "description": "Information of an end user.",
       "id": "GoogleCloudDiscoveryengineV1betaUserInfo",
       "properties": {
+        "timeZone": {
+          "description": "Optional. IANA time zone, e.g. Europe/Budapest.",
+          "type": "string"
+        },
         "userAgent": {
           "description": "User agent as included in the HTTP header. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if UserEvent.direct_user_request is set.",
           "type": "string"

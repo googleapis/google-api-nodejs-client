@@ -180,6 +180,10 @@ export namespace discoveryengine_v1alpha {
      */
     dataStorageTransform?: string | null;
     /**
+     * For the first notification of a |diff_encoded| HttpRequestInfo, this is the index of the blob mint that Scotty should use when writing the resulting blob. This field is optional. It's not required ever, even if `original_object_blob_mint_index` is set. In situations like that, we will use the destination blob's mint for the destination blob and regular blob ACL checks for the original object. Note: This field is only for use by Drive API for diff uploads.
+     */
+    destinationBlobMintIndex?: number | null;
+    /**
      * Specifies the Scotty Drop Target to use for uploads. If present in a media response, Scotty does not upload to a standard drop zone. Instead, Scotty saves the upload directly to the location specified in this drop target. Unlike drop zones, the drop target is the final storage location for an upload. So, the agent does not need to clone the blob at the end of the upload. The agent is responsible for garbage collecting any orphaned blobs that may occur due to aborted uploads. For more information, see the drop target design doc here: http://goto/ScottyDropTarget This field will be preferred to dynamicDropzone. If provided, the identified field in the response must be of the type uploader.agent.DropTarget.
      */
     dynamicDropTarget?: string | null;
@@ -191,6 +195,10 @@ export namespace discoveryengine_v1alpha {
      * Diff Updates must respond to a START notification with this Media proto to tell Scotty to decode the diff encoded payload and apply the diff against this field. If the request was diff encoded, but this field is not set, Scotty will treat the encoding as identity. This is corresponding to Apiary's DiffUploadResponse.original_object (//depot/google3/gdata/rosy/proto/data.proto?l=413). See go/esf-scotty-diff-upload for more information.
      */
     mediaForDiff?: Schema$GdataMedia;
+    /**
+     * For the first notification of a |diff_encoded| HttpRequestInfo, this is the index of the blob mint that Scotty should use when reading the original blob. This field is optional. It's not required ever, even if `destination_blob_mint_index` is set. In situations like that, we will use the destination blob's mint for the destination blob and regular blob ACL checks for the original object. Note: This field is only for use by Drive API for diff uploads.
+     */
+    originalObjectBlobMintIndex?: number | null;
     /**
      * Request class to use for all Blobstore operations for this request.
      */
@@ -895,6 +903,10 @@ export namespace discoveryengine_v1alpha {
      * Output only. The connector contains the necessary parameters and is configured to support actions.
      */
     isActionConfigured?: boolean | null;
+    /**
+     * Optional. The Service Directory resource name (projects/x/locations/x/namespaces/x/services/x) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.
+     */
+    serviceName?: string | null;
   }
   /**
    * Request message for CompletionService.AdvancedCompleteQuery method. .
@@ -938,7 +950,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpec {
     /**
-     * Condition boost specifications. If a suggestion matches multiple conditions in the specifictions, boost values from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20. Note: Currently only support language condition boost.
+     * Condition boost specifications. If a suggestion matches multiple conditions in the specifications, boost values from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20. Note: Currently only support language condition boost.
      */
     conditionBoostSpecs?: Schema$GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpecConditionBoostSpec[];
   }
@@ -2368,6 +2380,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaChunk {
     /**
+     * Output only. Annotation contents if the current chunk contains annotations.
+     */
+    annotationContents?: string[] | null;
+    /**
      * Output only. Metadata of the current chunk.
      */
     chunkMetadata?: Schema$GoogleCloudDiscoveryengineV1alphaChunkChunkMetadata;
@@ -2375,6 +2391,10 @@ export namespace discoveryengine_v1alpha {
      * Content is a string from a document (parsed content).
      */
     content?: string | null;
+    /**
+     * Output only. Image Data URLs if the current chunk contains images. Data URLs are composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,
+     */
+    dataUrls?: string[] | null;
     /**
      * Output only. This field is OUTPUT_ONLY. It contains derived data that are not in the original input document.
      */
@@ -2611,7 +2631,7 @@ export namespace discoveryengine_v1alpha {
      */
     activeTimeRange?: Schema$GoogleCloudDiscoveryengineV1alphaConditionTimeRange[];
     /**
-     * Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. This is currently supporting promotion use case.
+     * Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. Only supported for Basic Site Search promotion serving controls.
      */
     queryRegex?: string | null;
     /**
@@ -3264,6 +3284,10 @@ export namespace discoveryengine_v1alpha {
      */
     realtimeState?: string | null;
     /**
+     * Optional. The configuration for realtime sync.
+     */
+    realtimeSyncConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDataConnectorRealtimeSyncConfig;
+    /**
      * Required. The refresh interval for data sync. If duration is set to 0, the data will be synced in real time. The streaming feature is not supported yet. The minimum is 30 minutes and maximum is 7 days.
      */
     refreshInterval?: string | null;
@@ -3287,6 +3311,19 @@ export namespace discoveryengine_v1alpha {
      * Output only. Timestamp the DataConnector was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * The configuration for realtime sync to store additional params for realtime sync.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDataConnectorRealtimeSyncConfig {
+    /**
+     * Optional. The ID of the Secret Manager secret used for webhook secret.
+     */
+    realtimeSyncSecret?: string | null;
+    /**
+     * Optional. Webhook url for the connector to specify additional params for realtime sync.
+     */
+    webhookUri?: string | null;
   }
   /**
    * Represents an entity in the data source. For example, the `Account` object in Salesforce.
@@ -3642,7 +3679,7 @@ export namespace discoveryengine_v1alpha {
      */
     aclInfo?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentAclInfo;
     /**
-     * The unstructured data linked to this document. Content must be set if this document is under a `CONTENT_REQUIRED` data store.
+     * The unstructured data linked to this document. Content can only be set and must be set if this document is under a `CONTENT_REQUIRED` data store.
      */
     content?: Schema$GoogleCloudDiscoveryengineV1alphaDocumentContent;
     /**
@@ -3709,7 +3746,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentContent {
     /**
-     * The MIME type of the content. Supported types: * `application/pdf` (PDF, only native PDFs are supported for now) * `text/html` (HTML) * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX) * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX) * `text/plain` (TXT) See https://www.iana.org/assignments/media-types/media-types.xhtml.
+     * The MIME type of the content. Supported types: * `application/pdf` (PDF, only native PDFs are supported for now) * `text/html` (HTML) * `text/plain` (TXT) * `text/xml` (XML) * `application/json` (JSON) * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX) * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX) * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` (XLSX) * `application/vnd.ms-excel.sheet.macroenabled.12` (XLSM) The following types are supported only if layout parser is enabled in the data store: * `image/bmp` (BMP) * `image/gif` (GIF) * `image/jpeg` (JPEG) * `image/png` (PNG) * `image/tiff` (TIFF) See https://www.iana.org/assignments/media-types/media-types.xhtml.
      */
     mimeType?: string | null;
     /**
@@ -3842,7 +3879,16 @@ export namespace discoveryengine_v1alpha {
   /**
    * The layout parsing configurations for documents.
    */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig {}
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig {
+    /**
+     * Optional. If true, the LLM based annotation is added to the image during parsing.
+     */
+    enableImageAnnotation?: boolean | null;
+    /**
+     * Optional. If true, the LLM based annotation is added to the table during parsing.
+     */
+    enableTableAnnotation?: boolean | null;
+  }
   /**
    * The OCR parsing configurations for documents.
    */
@@ -4384,6 +4430,31 @@ export namespace discoveryengine_v1alpha {
      * Required. Cloud Storage URIs to input files. Each URI can be up to 2000 characters long. URIs can match the full object path (for example, `gs://bucket/directory/object.json`) or a pattern matching one or more files, such as `gs://bucket/directory/x.json`. A request can contain at most 100 files (or 100,000 files if `data_schema` is `content`). Each file can be up to 2 GB (or 100 MB if `data_schema` is `content`).
      */
     inputUris?: string[] | null;
+  }
+  /**
+   * Response message for DataConnectorService.GetConnectorSecret.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse {
+    /**
+     * The app name of the associated Connector.
+     */
+    app?: string | null;
+    /**
+     * The client id of the associated Connector.
+     */
+    clientId?: string | null;
+    /**
+     * The instance name of the associated Connector.
+     */
+    instance?: string | null;
+    /**
+     * The redirect url of the associated Connector.
+     */
+    redirectUri?: string | null;
+    /**
+     * The tenant id of the associated Connector.
+     */
+    tenantId?: string | null;
   }
   /**
    * Request for GetSession method.
@@ -6364,6 +6435,10 @@ export namespace discoveryengine_v1alpha {
      */
     description?: string | null;
     /**
+     * Optional. The Document the user wants to promote. For site search, leave unset and only populate uri. Can be set along with uri.
+     */
+    document?: string | null;
+    /**
      * Optional. The enabled promotion will be returned for any serving configs associated with the parent of the control this promotion is attached to. This flag is used for basic site search only.
      */
     enabled?: boolean | null;
@@ -6405,7 +6480,7 @@ export namespace discoveryengine_v1alpha {
      */
     customFineTuningSpec?: Schema$GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec;
     /**
-     * Specifications that define the specific [DataStore]s to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
+     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec[];
     /**
@@ -6473,7 +6548,7 @@ export namespace discoveryengine_v1alpha {
      */
     queryExpansionSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestQueryExpansionSpec;
     /**
-     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking expression is not provided or set to BYOE, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking expression is set to CLEARBOX, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double \> 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result
+     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking_expression_backend is not provided or set to `BYOE`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking_expression_backend is set to `CLEARBOX`, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double \> 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result
      */
     rankingExpression?: string | null;
     /**
@@ -6534,7 +6609,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpec {
     /**
-     * Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
+     * Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
      */
     conditionBoostSpecs?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpecConditionBoostSpec[];
   }
@@ -8204,6 +8279,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaUserInfo {
     /**
+     * Optional. IANA time zone, e.g. Europe/Budapest.
+     */
+    timeZone?: string | null;
+    /**
      * User agent as included in the HTTP header. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if UserEvent.direct_user_request is set.
      */
     userAgent?: string | null;
@@ -8779,7 +8858,7 @@ export namespace discoveryengine_v1alpha {
      */
     activeTimeRange?: Schema$GoogleCloudDiscoveryengineV1betaConditionTimeRange[];
     /**
-     * Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. This is currently supporting promotion use case.
+     * Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. Only supported for Basic Site Search promotion serving controls.
      */
     queryRegex?: string | null;
     /**
@@ -9047,6 +9126,10 @@ export namespace discoveryengine_v1alpha {
    * DataStore captures global settings and configs at the DataStore level.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDataStore {
+    /**
+     * Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.
+     */
+    aclEnabled?: boolean | null;
     /**
      * Optional. Configuration for advanced site search.
      */
@@ -9353,7 +9436,16 @@ export namespace discoveryengine_v1alpha {
   /**
    * The layout parsing configurations for documents.
    */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig {}
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig {
+    /**
+     * Optional. If true, the LLM based annotation is added to the image during parsing.
+     */
+    enableImageAnnotation?: boolean | null;
+    /**
+     * Optional. If true, the LLM based annotation is added to the table during parsing.
+     */
+    enableTableAnnotation?: boolean | null;
+  }
   /**
    * The OCR parsing configurations for documents.
    */
@@ -10094,6 +10186,10 @@ export namespace discoveryengine_v1alpha {
      */
     description?: string | null;
     /**
+     * Optional. The Document the user wants to promote. For site search, leave unset and only populate uri. Can be set along with uri.
+     */
+    document?: string | null;
+    /**
      * Optional. The enabled promotion will be returned for any serving configs associated with the parent of the control this promotion is attached to. This flag is used for basic site search only.
      */
     enabled?: boolean | null;
@@ -10131,7 +10227,7 @@ export namespace discoveryengine_v1alpha {
      */
     contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec;
     /**
-     * Specifications that define the specific [DataStore]s to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
+     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec[];
     /**
@@ -10199,7 +10295,7 @@ export namespace discoveryengine_v1alpha {
      */
     queryExpansionSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec;
     /**
-     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking expression is not provided or set to BYOE, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking expression is set to CLEARBOX, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double \> 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result
+     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking_expression_backend is not provided or set to `BYOE`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking_expression_backend is set to `CLEARBOX`, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double \> 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result
      */
     rankingExpression?: string | null;
     /**
@@ -10260,7 +10356,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec {
     /**
-     * Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
+     * Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
      */
     conditionBoostSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpec[];
   }
@@ -10867,6 +10963,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaUserInfo {
     /**
+     * Optional. IANA time zone, e.g. Europe/Budapest.
+     */
+    timeZone?: string | null;
+    /**
      * User agent as included in the HTTP header. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if UserEvent.direct_user_request is set.
      */
     userAgent?: string | null;
@@ -10942,7 +11042,7 @@ export namespace discoveryengine_v1alpha {
      */
     activeTimeRange?: Schema$GoogleCloudDiscoveryengineV1ConditionTimeRange[];
     /**
-     * Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. This is currently supporting promotion use case.
+     * Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. Only supported for Basic Site Search promotion serving controls.
      */
     queryRegex?: string | null;
     /**
@@ -11197,6 +11297,10 @@ export namespace discoveryengine_v1alpha {
    * DataStore captures global settings and configs at the DataStore level.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DataStore {
+    /**
+     * Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.
+     */
+    aclEnabled?: boolean | null;
     /**
      * Optional. Configuration for advanced site search.
      */
@@ -11487,7 +11591,16 @@ export namespace discoveryengine_v1alpha {
   /**
    * The layout parsing configurations for documents.
    */
-  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig {}
+  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig {
+    /**
+     * Optional. If true, the LLM based annotation is added to the image during parsing.
+     */
+    enableImageAnnotation?: boolean | null;
+    /**
+     * Optional. If true, the LLM based annotation is added to the table during parsing.
+     */
+    enableTableAnnotation?: boolean | null;
+  }
   /**
    * The OCR parsing configurations for documents.
    */
@@ -11999,6 +12112,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. The Promotion description. Maximum length: 200 characters.
      */
     description?: string | null;
+    /**
+     * Optional. The Document the user wants to promote. For site search, leave unset and only populate uri. Can be set along with uri.
+     */
+    document?: string | null;
     /**
      * Optional. The enabled promotion will be returned for any serving configs associated with the parent of the control this promotion is attached to. This flag is used for basic site search only.
      */
@@ -15315,7 +15432,7 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
     /**
-     * Indicates which fields in the provided DataConnector to update. Supported field paths include: - refresh_interval - params - auto_run_disabled - action_config - destination_configs - blocking_reasons Note: Support for these fields may vary depending on the connector type. For example, not all connectors support `destination_configs`. If an unsupported or unknown field path is provided, the request will return an INVALID_ARGUMENT error.
+     * Indicates which fields in the provided DataConnector to update. Supported field paths include: - refresh_interval - params - auto_run_disabled - action_config - action_config.action_params - action_config.service_name - destination_configs - blocking_reasons - sync_mode Note: Support for these fields may vary depending on the connector type. For example, not all connectors support `destination_configs`. If an unsupported or unknown field path is provided, the request will return an INVALID_ARGUMENT error.
      */
     updateMask?: string;
 
@@ -15339,6 +15456,105 @@ export namespace discoveryengine_v1alpha {
         new Resource$Projects$Locations$Collections$Dataconnector$Operations(
           this.context
         );
+    }
+
+    /**
+     * Get the secret for the associated connector.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getConnectorSecret(
+      params: Params$Resource$Projects$Locations$Collections$Dataconnector$Getconnectorsecret,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConnectorSecret(
+      params?: Params$Resource$Projects$Locations$Collections$Dataconnector$Getconnectorsecret,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse>;
+    getConnectorSecret(
+      params: Params$Resource$Projects$Locations$Collections$Dataconnector$Getconnectorsecret,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getConnectorSecret(
+      params: Params$Resource$Projects$Locations$Collections$Dataconnector$Getconnectorsecret,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse>
+    ): void;
+    getConnectorSecret(
+      params: Params$Resource$Projects$Locations$Collections$Dataconnector$Getconnectorsecret,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse>
+    ): void;
+    getConnectorSecret(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse>
+    ): void;
+    getConnectorSecret(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Dataconnector$Getconnectorsecret
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Dataconnector$Getconnectorsecret;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Dataconnector$Getconnectorsecret;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:getConnectorSecret').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -15441,6 +15657,13 @@ export namespace discoveryengine_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Collections$Dataconnector$Getconnectorsecret
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the associated data connector.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Dataconnector$Startconnectorrun
     extends StandardParameters {
     /**
@@ -17946,6 +18169,10 @@ export namespace discoveryengine_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Getprocesseddocument
     extends StandardParameters {
+    /**
+     * Optional. Specifies config for IMAGE_BYTES.
+     */
+    imageId?: string;
     /**
      * Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.
      */
@@ -32583,6 +32810,10 @@ export namespace discoveryengine_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Getprocesseddocument
     extends StandardParameters {
+    /**
+     * Optional. Specifies config for IMAGE_BYTES.
+     */
+    imageId?: string;
     /**
      * Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.
      */
