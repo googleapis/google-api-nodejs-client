@@ -283,6 +283,10 @@ export namespace chromeuxreport_v1 {
    */
   export interface Schema$QueryHistoryRequest {
     /**
+     * The number of collection periods to return. If not specified, the default is 25. If present, must be in the range [1, 40].
+     */
+    collectionPeriodCount?: number | null;
+    /**
      * The form factor is a query dimension that specifies the device class that the record's data should belong to. Note: If no form factor is specified, then a special record with aggregated data over all form factors will be returned.
      */
     formFactor?: string | null;
