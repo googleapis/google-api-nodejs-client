@@ -341,7 +341,7 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * LINT.IfChange Message describing Evaluation object
+   * Message describing Evaluation object
    */
   export interface Schema$Evaluation {
     /**
@@ -1322,6 +1322,10 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapDiscoveryResourceInstancePropertiesDiskMount {
     /**
+     * Optional. Names of the disks providing this mount point.
+     */
+    diskNames?: string[] | null;
+    /**
      * Optional. Filesystem mount point.
      */
     mountPoint?: string | null;
@@ -1965,6 +1969,10 @@ export namespace workloadmanager_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
