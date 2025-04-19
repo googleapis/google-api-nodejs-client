@@ -143,6 +143,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -1616,7 +1622,7 @@
       }
     }
   },
-  "revision": "20250308",
+  "revision": "20250410",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1690,6 +1696,12 @@
         },
         "clusterUid": {
           "description": "Output only. The system-generated UID of the cluster which was used to create this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createCompletionTime": {
+          "description": "Output only. Timestamp when the resource finished being created.",
+          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
@@ -1839,7 +1851,7 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. Update time stamp",
+          "description": "Output only. Update time stamp Users should not infer any meaning from this field. Its value is generally unrelated to the timing of the backup creation operation.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -3472,7 +3484,7 @@
           "type": "string"
         },
         "consumerNetworkStatus": {
-          "description": "Output only. The status of the service connection policy.",
+          "description": "Output only. The status of the service connection policy. Possible values: \"STATE_UNSPECIFIED\" - Default state, when Connection Map is created initially. \"VALID\" - Set when policy and map configuration is valid, and their matching can lead to allowing creation of PSC Connections subject to other constraints like connections limit. \"CONNECTION_POLICY_MISSING\" - No Service Connection Policy found for this network and Service Class \"POLICY_LIMIT_REACHED\" - Service Connection Policy limit reached for this network and Service Class \"CONSUMER_INSTANCE_PROJECT_NOT_ALLOWLISTED\" - The consumer instance project is not in AllowedGoogleProducersResourceHierarchyLevels of the matching ServiceConnectionPolicy.",
           "readOnly": true,
           "type": "string"
         },
@@ -3486,7 +3498,7 @@
           "type": "string"
         },
         "status": {
-          "description": "Output only. The status of the PSC service automation connection.",
+          "description": "Output only. The status of the PSC service automation connection. Possible values: \"STATE_UNSPECIFIED\" - An invalid state as the default case. \"ACTIVE\" - The connection has been created successfully. \"FAILED\" - The connection is not functional since some resources on the connection fail to be created. \"CREATING\" - The connection is being created. \"DELETING\" - The connection is being deleted. \"CREATE_REPAIRING\" - The connection is being repaired to complete creation. \"DELETE_REPAIRING\" - The connection is being repaired to complete deletion.",
           "readOnly": true,
           "type": "string"
         }
@@ -3660,7 +3672,7 @@
       "type": "object"
     },
     "RestoreClusterRequest": {
-      "description": "Message for restoring a Cluster from a backup or another cluster at a given point in time.",
+      "description": "Message for restoring a Cluster from a backup or another cluster at a given point in time. NEXT_ID: 11",
       "id": "RestoreClusterRequest",
       "properties": {
         "backupSource": {
