@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4](https://github.com/googleapis/google-api-nodejs-client/compare/slides-v1.2.3...slides-v1.2.4) (2025-04-18)
+
+
+### Bug Fixes
+
+* **slides:** update the API ([bc96269](https://github.com/googleapis/google-api-nodejs-client/commit/bc962690f53428aa6c43d5cd80ed597cecf01045))
+
 ## [1.2.3](https://github.com/googleapis/google-api-nodejs-client/compare/slides-v1.2.2...slides-v1.2.3) (2025-03-19)
 
 

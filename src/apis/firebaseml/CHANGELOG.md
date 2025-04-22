@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v13.0.0...firebaseml-v14.0.0) (2025-04-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firebaseml:** This release has breaking changes.
+
+### Features
+
+* **firebaseml:** update the API ([1fcb037](https://github.com/googleapis/google-api-nodejs-client/commit/1fcb03759ac0302be7b18c0a2dfee0bebeeebec9))
+* **firebaseml:** update the API ([91b6958](https://github.com/googleapis/google-api-nodejs-client/commit/91b69586acf4a15109c2d399a26589b938822af4))
+* **firebaseml:** update the API ([8ff1ed2](https://github.com/googleapis/google-api-nodejs-client/commit/8ff1ed23c4e406f51254b3b1c3fb0f6db596e7c9))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v12.0.0...firebaseml-v13.0.0) (2025-03-19)
 
 

@@ -1,5 +1,18 @@
 # Changelog
 
+## [8.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/authorizedbuyersmarketplace-v8.4.0...authorizedbuyersmarketplace-v8.5.0) (2025-04-18)
+
+
+### Features
+
+* **authorizedbuyersmarketplace:** update the API ([6e5048b](https://github.com/googleapis/google-api-nodejs-client/commit/6e5048bd65251d49c1e8c1656f39218ae8a83df0))
+* **authorizedbuyersmarketplace:** update the API ([0068463](https://github.com/googleapis/google-api-nodejs-client/commit/0068463354387013ccf8c8b0471805fb02a16faf))
+
+
+### Bug Fixes
+
+* **authorizedbuyersmarketplace:** update the API ([d34a16e](https://github.com/googleapis/google-api-nodejs-client/commit/d34a16e11f83170d7ada5805d694a356c50e2420))
+
 ## [8.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/authorizedbuyersmarketplace-v8.3.0...authorizedbuyersmarketplace-v8.4.0) (2025-03-19)
 
 
