@@ -253,7 +253,7 @@ export namespace ondemandscanning_v1beta1 {
   }
   export interface Schema$BinarySourceInfo {
     /**
-     * The binary package. This is significant when the source is different than the binary itself. Historically if they've differed, we've stored the name of the source and its version in the package/version fields, but we should also store the binary package info, as that's what's actually installed. See b/175908657#comment15.
+     * The binary package. This is significant when the source is different than the binary itself. Historically if they've differed, we've stored the name of the source and its version in the package/version fields, but we should also store the binary package info, as that's what's actually installed.
      */
     binaryVersion?: Schema$PackageVersion;
     /**
@@ -877,7 +877,7 @@ export namespace ondemandscanning_v1beta1 {
     directive?: string | null;
   }
   /**
-   * Details about the layer a package was found in. This should be the same as the LayerDetails message in google3/third_party/scalibr/binary/proto/scan_result.proto.
+   * Details about the layer a package was found in.
    */
   export interface Schema$LayerDetails {
     /**
@@ -1166,7 +1166,7 @@ export namespace ondemandscanning_v1beta1 {
      */
     packageType?: string | null;
     /**
-     * CVEs that this package is no longer vulnerable to go/drydock-dd-custom-binary-scanning
+     * CVEs that this package is no longer vulnerable to
      */
     patchedCve?: string[] | null;
     /**
