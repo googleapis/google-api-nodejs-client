@@ -506,9 +506,17 @@ export namespace gkehub_v1alpha {
      */
     namespaceactuation?: Schema$NamespaceActuationFeatureSpec;
     /**
+     * RBAC Role Binding Actuation feature spec
+     */
+    rbacrolebindingactuation?: Schema$RBACRoleBindingActuationFeatureSpec;
+    /**
      * Workload Certificate spec.
      */
     workloadcertificate?: Schema$FeatureSpec;
+    /**
+     * Workload Identity feature spec.
+     */
+    workloadidentity?: Schema$WorkloadIdentityFeatureSpec;
   }
   /**
    * CommonFeatureState contains Fleet-wide Feature status information.
@@ -531,6 +539,10 @@ export namespace gkehub_v1alpha {
      */
     namespaceactuation?: Schema$NamespaceActuationFeatureState;
     /**
+     * RBAC Role Binding Actuation feature state
+     */
+    rbacrolebindingactuation?: Schema$RBACRoleBindingActuationFeatureState;
+    /**
      * Service Mesh-specific state.
      */
     servicemesh?: Schema$ServiceMeshFeatureState;
@@ -538,6 +550,10 @@ export namespace gkehub_v1alpha {
      * Output only. The "running state" of the Feature in this Fleet.
      */
     state?: Schema$FeatureState;
+    /**
+     * WorkloadIdentity fleet-level state.
+     */
+    workloadidentity?: Schema$WorkloadIdentityFeatureState;
   }
   /**
    * CommonFleetDefaultMemberConfigSpec contains default configuration information for memberships of a fleet
@@ -2241,7 +2257,7 @@ export namespace gkehub_v1alpha {
      */
     externalId?: string | null;
     /**
-     * Optional. Labels for this membership.
+     * Optional. Labels for this membership. These labels are not leveraged by multi-cluster features, instead, we prefer cluster labels, which can be set on GKE cluster or other cluster types.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -2437,6 +2453,10 @@ export namespace gkehub_v1alpha {
      * The high-level state of this Feature for a single membership.
      */
     state?: Schema$FeatureState;
+    /**
+     * Workload Identity membership specific state.
+     */
+    workloadidentity?: Schema$WorkloadIdentityMembershipState;
   }
   /**
    * **Workload Certificate**: The membership-specific input for WorkloadCertificate feature.
@@ -2978,6 +2998,19 @@ export namespace gkehub_v1alpha {
     user?: string | null;
   }
   /**
+   * **RBAC RoleBinding Actuation**: The Hub-wide input for the RBACRoleBindingActuation feature.
+   */
+  export interface Schema$RBACRoleBindingActuationFeatureSpec {
+    /**
+     * The list of allowed custom roles (ClusterRoles). If a ClusterRole is not part of this list, it cannot be used in a Scope RBACRoleBinding. If a ClusterRole in this list is in use, it cannot be removed from the list.
+     */
+    allowedCustomRoles?: string[] | null;
+  }
+  /**
+   * **RBAC RoleBinding Actuation**: An empty state left as an example Hub-wide Feature state.
+   */
+  export interface Schema$RBACRoleBindingActuationFeatureState {}
+  /**
    * RBACRoleBindingLifecycleState describes the state of a RbacRoleBinding resource.
    */
   export interface Schema$RBACRoleBindingLifecycleState {
@@ -3020,6 +3053,10 @@ export namespace gkehub_v1alpha {
    * Role is the type for Kubernetes roles
    */
   export interface Schema$Role {
+    /**
+     * Optional. custom_role is the name of a custom KubernetesClusterRole to use.
+     */
+    customRole?: string | null;
     /**
      * predefined_role is the Kubernetes default role to use
      */
@@ -3145,7 +3182,7 @@ export namespace gkehub_v1alpha {
     type?: Schema$ServiceMeshType;
   }
   /**
-   * Condition being reported. TODO b/395151419: Remove this message once the membership-level conditions field uses the common Condition message.
+   * Condition being reported.
    */
   export interface Schema$ServiceMeshCondition {
     /**
@@ -3196,7 +3233,7 @@ export namespace gkehub_v1alpha {
     state?: string | null;
   }
   /**
-   * Condition being reported. TODO b/395151419: This message should be used to replace the membership-level Condition message.
+   * Condition being reported.
    */
   export interface Schema$ServiceMeshFeatureCondition {
     /**
@@ -3259,7 +3296,7 @@ export namespace gkehub_v1alpha {
      */
     analysisMessages?: Schema$ServiceMeshAnalysisMessage[];
     /**
-     * Output only. List of conditions reported for this membership. TODO b/395151419: Use the common Condition message.
+     * Output only. List of conditions reported for this membership.
      */
     conditions?: Schema$ServiceMeshCondition[];
     /**
@@ -3405,6 +3442,79 @@ export namespace gkehub_v1alpha {
      * Validator type to validate membership with.
      */
     validator?: string | null;
+  }
+  /**
+   * **WorkloadIdentity**: Global feature specification.
+   */
+  export interface Schema$WorkloadIdentityFeatureSpec {
+    /**
+     * Pool to be used for Workload Identity. This pool in trust-domain mode is used with Fleet Tenancy, so that sameness can be enforced. ex: projects/example/locations/global/workloadidentitypools/custompool
+     */
+    scopeTenancyPool?: string | null;
+  }
+  /**
+   * **WorkloadIdentity**: Global feature state.
+   */
+  export interface Schema$WorkloadIdentityFeatureState {
+    /**
+     * The state of the IAM namespaces for the fleet.
+     */
+    namespaceStateDetails?: {
+      [key: string]: Schema$WorkloadIdentityNamespaceStateDetail;
+    } | null;
+    /**
+     * Deprecated, will erase after code is changed to use the new field.
+     */
+    namespaceStates?: {[key: string]: string} | null;
+    /**
+     * The full name of the scope-tenancy pool for the fleet.
+     */
+    scopeTenancyWorkloadIdentityPool?: string | null;
+    /**
+     * The full name of the svc.id.goog pool for the fleet.
+     */
+    workloadIdentityPool?: string | null;
+    /**
+     * The state of the Workload Identity Pools for the fleet.
+     */
+    workloadIdentityPoolStateDetails?: {
+      [key: string]: Schema$WorkloadIdentityWorkloadIdentityPoolStateDetail;
+    } | null;
+  }
+  /**
+   * **WorkloadIdentity**: The membership-specific state for WorkloadIdentity feature.
+   */
+  export interface Schema$WorkloadIdentityMembershipState {
+    /**
+     * Deprecated, will erase after code is changed to use the new field.
+     */
+    description?: string | null;
+  }
+  /**
+   * NamespaceStateDetail represents the state of a IAM namespace.
+   */
+  export interface Schema$WorkloadIdentityNamespaceStateDetail {
+    /**
+     * The state of the IAM namespace.
+     */
+    code?: string | null;
+    /**
+     * A human-readable description of the current state or returned error.
+     */
+    description?: string | null;
+  }
+  /**
+   * WorkloadIdentityPoolStateDetail represents the state of the Workload Identity Pools for the fleet.
+   */
+  export interface Schema$WorkloadIdentityWorkloadIdentityPoolStateDetail {
+    /**
+     * The state of the Workload Identity Pool.
+     */
+    code?: string | null;
+    /**
+     * A human-readable description of the current state or returned error.
+     */
+    description?: string | null;
   }
 
   export class Resource$Organizations {
@@ -3756,6 +3866,10 @@ export namespace gkehub_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

@@ -437,6 +437,10 @@ export namespace gkehub_v1 {
      * Multicluster Ingress-specific spec.
      */
     multiclusteringress?: Schema$MultiClusterIngressFeatureSpec;
+    /**
+     * RBAC Role Binding Actuation feature spec
+     */
+    rbacrolebindingactuation?: Schema$RBACRoleBindingActuationFeatureSpec;
   }
   /**
    * CommonFeatureState contains Fleet-wide Feature status information.
@@ -454,6 +458,10 @@ export namespace gkehub_v1 {
      * FleetObservability feature state.
      */
     fleetobservability?: Schema$FleetObservabilityFeatureState;
+    /**
+     * RBAC Role Binding Actuation feature state
+     */
+    rbacrolebindingactuation?: Schema$RBACRoleBindingActuationFeatureState;
     /**
      * Output only. The "running state" of the Feature in this Fleet.
      */
@@ -2079,7 +2087,7 @@ export namespace gkehub_v1 {
      */
     externalId?: string | null;
     /**
-     * Optional. Labels for this membership.
+     * Optional. Labels for this membership. These labels are not leveraged by multi-cluster features, instead, we prefer cluster labels, which can be set on GKE cluster or other cluster types.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -2749,6 +2757,19 @@ export namespace gkehub_v1 {
     user?: string | null;
   }
   /**
+   * **RBAC RoleBinding Actuation**: The Hub-wide input for the RBACRoleBindingActuation feature.
+   */
+  export interface Schema$RBACRoleBindingActuationFeatureSpec {
+    /**
+     * The list of allowed custom roles (ClusterRoles). If a ClusterRole is not part of this list, it cannot be used in a Scope RBACRoleBinding. If a ClusterRole in this list is in use, it cannot be removed from the list.
+     */
+    allowedCustomRoles?: string[] | null;
+  }
+  /**
+   * **RBAC RoleBinding Actuation**: An empty state left as an example Hub-wide Feature state.
+   */
+  export interface Schema$RBACRoleBindingActuationFeatureState {}
+  /**
    * RBACRoleBindingLifecycleState describes the state of a RbacRoleBinding resource.
    */
   export interface Schema$RBACRoleBindingLifecycleState {
@@ -2791,6 +2812,10 @@ export namespace gkehub_v1 {
    * Role is the type for Kubernetes roles
    */
   export interface Schema$Role {
+    /**
+     * Optional. custom_role is the name of a custom KubernetesClusterRole to use.
+     */
+    customRole?: string | null;
     /**
      * predefined_role is the Kubernetes default role to use
      */
@@ -2869,7 +2894,7 @@ export namespace gkehub_v1 {
     vulnerabilityMode?: string | null;
   }
   /**
-   * Condition being reported. TODO b/395151419: Remove this message once the membership-level conditions field uses the common Condition message.
+   * Condition being reported.
    */
   export interface Schema$ServiceMeshCondition {
     /**
@@ -2941,7 +2966,7 @@ export namespace gkehub_v1 {
    */
   export interface Schema$ServiceMeshMembershipState {
     /**
-     * Output only. List of conditions reported for this membership. TODO b/395151419: Use the common Condition message.
+     * Output only. List of conditions reported for this membership.
      */
     conditions?: Schema$ServiceMeshCondition[];
     /**
@@ -3373,6 +3398,10 @@ export namespace gkehub_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

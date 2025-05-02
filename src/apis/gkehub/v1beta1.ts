@@ -459,7 +459,7 @@ export namespace gkehub_v1beta1 {
      */
     infrastructureType?: string | null;
     /**
-     * Optional. GCP labels for this membership.
+     * Optional. GCP labels for this membership. These labels are not leveraged by multi-cluster features, instead, we prefer cluster labels, which can be set on GKE cluster or other cluster types.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -970,6 +970,10 @@ export namespace gkehub_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
