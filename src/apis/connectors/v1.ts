@@ -848,10 +848,6 @@ export namespace connectors_v1 {
      */
     eventingConfigTemplate?: Schema$EventingConfigTemplate;
     /**
-     * Output only. Is async operations supported.
-     */
-    isAsyncOperationsSupported?: boolean | null;
-    /**
      * Output only. Is custom actions supported.
      */
     isCustomActionsSupported?: boolean | null;

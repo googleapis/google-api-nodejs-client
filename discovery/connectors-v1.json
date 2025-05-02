@@ -3884,11 +3884,6 @@
           "description": "Output only. Eventing configuration supported by the Connector.",
           "readOnly": true
         },
-        "isAsyncOperationsSupported": {
-          "description": "Output only. Is async operations supported.",
-          "readOnly": true,
-          "type": "boolean"
-        },
         "isCustomActionsSupported": {
           "description": "Output only. Is custom actions supported.",
           "readOnly": true,
