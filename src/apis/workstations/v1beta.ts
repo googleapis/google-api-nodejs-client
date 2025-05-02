@@ -406,7 +406,7 @@ export namespace workstations_v1beta {
      */
     sourceImage?: string | null;
     /**
-     * Optional. Name of the snapshot to use as the source for the disk. Must be empty if source_image is set. Must be empty if read_only is false. Updating source_snapshot will update content in the ephemeral directory after the workstation is restarted. Only file systems supported by Container-Optimized OS (COS) are explicitly supported. For a list of supported file systems, please refer to the [COS documentation](https://cloud.google.com/container-optimized-os/docs/concepts/supported-filesystems). This field is mutable.
+     * Optional. Name of the snapshot to use as the source for the disk. Must be empty if source_image is set. Must be empty if read_only is false. Updating source_snapshot will update content in the ephemeral directory after the workstation is restarted. Only file systems supported by Container-Optimized OS (COS) are explicitly supported. For a list of supported file systems, see [the filesystems available in Container-Optimized OS](https://cloud.google.com/container-optimized-os/docs/concepts/supported-filesystems). This field is mutable.
      */
     sourceSnapshot?: string | null;
   }
@@ -431,7 +431,7 @@ export namespace workstations_v1beta {
      */
     sizeGb?: number | null;
     /**
-     * Optional. Name of the snapshot to use as the source for the disk. If set, size_gb and fs_type must be empty.
+     * Optional. Name of the snapshot to use as the source for the disk. If set, size_gb and fs_type must be empty. Must be formatted as ext4 file system with no partitions.
      */
     sourceSnapshot?: string | null;
   }
@@ -853,7 +853,7 @@ export namespace workstations_v1beta {
      */
     createTime?: string | null;
     /**
-     * Output only. Whether this workstation is in degraded mode, in which case it may require user action to restore full functionality. Details can be found in conditions.
+     * Output only. Whether this workstation is in degraded mode, in which case it may require user action to restore full functionality. The conditions field contains detailed information about the status of the workstation.
      */
     degraded?: boolean | null;
     /**
@@ -955,7 +955,7 @@ export namespace workstations_v1beta {
      */
     createTime?: string | null;
     /**
-     * Output only. Whether this workstation cluster is in degraded mode, in which case it may require user action to restore full functionality. Details can be found in conditions.
+     * Output only. Whether this workstation cluster is in degraded mode, in which case it may require user action to restore full functionality. The conditions field contains detailed information about the status of the cluster.
      */
     degraded?: boolean | null;
     /**
@@ -1007,7 +1007,7 @@ export namespace workstations_v1beta {
      */
     subnetwork?: string | null;
     /**
-     * Optional. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
      */
     tags?: {[key: string]: string} | null;
     /**
@@ -1032,7 +1032,7 @@ export namespace workstations_v1beta {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Output only. Status conditions describing the current resource state.
+     * Output only. Status conditions describing the workstation configuration's current state.
      */
     conditions?: Schema$Status[];
     /**
@@ -1044,7 +1044,7 @@ export namespace workstations_v1beta {
      */
     createTime?: string | null;
     /**
-     * Output only. Whether this resource is degraded, in which case it may require user action to restore full functionality. See also the conditions field.
+     * Output only. Whether this workstation configuration is in degraded mode, in which case it may require user action to restore full functionality. The conditions field contains detailed information about the status of the configuration.
      */
     degraded?: boolean | null;
     /**
@@ -2083,6 +2083,10 @@ export namespace workstations_v1beta {
   export interface Params$Resource$Projects$Locations$Workstationclusters$List
     extends StandardParameters {
     /**
+     * Optional. Filter the WorkstationClusters to be listed. Possible filters are described in https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
      * Optional. Maximum number of items to return.
      */
     pageSize?: number;
@@ -3010,6 +3014,10 @@ export namespace workstations_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$List
     extends StandardParameters {
+    /**
+     * Optional. Filter the WorkstationConfigs to be listed. Possible filters are described in https://google.aip.dev/160.
+     */
+    filter?: string;
     /**
      * Optional. Maximum number of items to return.
      */
@@ -4246,6 +4254,10 @@ export namespace workstations_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$List
     extends StandardParameters {
+    /**
+     * Optional. Filter the Workstations to be listed. Possible filters are described in https://google.aip.dev/160.
+     */
+    filter?: string;
     /**
      * Optional. Maximum number of items to return.
      */
