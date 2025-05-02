@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace firebasedataconnect_v1beta {
+export namespace firebasedataconnect_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace firebasedataconnect_v1beta {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const firebasedataconnect = google.firebasedataconnect('v1beta');
+   * const firebasedataconnect = google.firebasedataconnect('v1');
    * ```
    */
   export class Firebasedataconnect {
@@ -747,7 +747,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -838,7 +838,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -965,10 +965,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1054,7 +1051,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1140,7 +1137,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1231,7 +1228,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1381,7 +1378,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/services').replace(
+            url: (rootUrl + '/v1/{+parent}/services').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1470,7 +1467,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1559,7 +1556,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:executeGraphql').replace(
+            url: (rootUrl + '/v1/{+name}:executeGraphql').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1651,7 +1648,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:executeGraphqlRead').replace(
+            url: (rootUrl + '/v1/{+name}:executeGraphqlRead').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1740,7 +1737,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1831,7 +1828,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/services').replace(
+            url: (rootUrl + '/v1/{+parent}/services').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1920,7 +1917,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2148,7 +2145,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/connectors').replace(
+            url: (rootUrl + '/v1/{+parent}/connectors').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2238,7 +2235,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2332,7 +2329,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:executeMutation').replace(
+            url: (rootUrl + '/v1/{+name}:executeMutation').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2429,7 +2426,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:executeQuery').replace(
+            url: (rootUrl + '/v1/{+name}:executeQuery').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2519,7 +2516,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2611,7 +2608,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/connectors').replace(
+            url: (rootUrl + '/v1/{+parent}/connectors').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2701,7 +2698,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2929,7 +2926,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/schemas').replace(
+            url: (rootUrl + '/v1/{+parent}/schemas').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3019,7 +3016,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3105,7 +3102,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3194,7 +3191,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/schemas').replace(
+            url: (rootUrl + '/v1/{+parent}/schemas').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3284,7 +3281,7 @@ export namespace firebasedataconnect_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },

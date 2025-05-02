@@ -14,12 +14,20 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {firebasedataconnect_v1} from './v1';
 import {firebasedataconnect_v1beta} from './v1beta';
 
 export const VERSIONS = {
+  v1: firebasedataconnect_v1.Firebasedataconnect,
   v1beta: firebasedataconnect_v1beta.Firebasedataconnect,
 };
 
+export function firebasedataconnect(
+  version: 'v1'
+): firebasedataconnect_v1.Firebasedataconnect;
+export function firebasedataconnect(
+  options: firebasedataconnect_v1.Options
+): firebasedataconnect_v1.Firebasedataconnect;
 export function firebasedataconnect(
   version: 'v1beta'
 ): firebasedataconnect_v1beta.Firebasedataconnect;
@@ -27,16 +35,23 @@ export function firebasedataconnect(
   options: firebasedataconnect_v1beta.Options
 ): firebasedataconnect_v1beta.Firebasedataconnect;
 export function firebasedataconnect<
-  T = firebasedataconnect_v1beta.Firebasedataconnect,
+  T =
+    | firebasedataconnect_v1.Firebasedataconnect
+    | firebasedataconnect_v1beta.Firebasedataconnect,
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta' | firebasedataconnect_v1beta.Options
+  versionOrOptions:
+    | 'v1'
+    | firebasedataconnect_v1.Options
+    | 'v1beta'
+    | firebasedataconnect_v1beta.Options
 ) {
   return getAPI<T>('firebasedataconnect', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {firebasedataconnect_v1};
 export {firebasedataconnect_v1beta};
 export {
   AuthPlus,
