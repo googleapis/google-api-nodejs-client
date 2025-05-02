@@ -222,6 +222,10 @@ export namespace netapp_v1beta1 {
    */
   export interface Schema$Backup {
     /**
+     * Output only. Region in which backup is stored. Format: `projects/{project_id\}/locations/{location\}`
+     */
+    backupRegion?: string | null;
+    /**
      * Output only. Type of backup, manually created or created by a backup policy.
      */
     backupType?: string | null;
@@ -265,6 +269,10 @@ export namespace netapp_v1beta1 {
      * Output only. The backup state.
      */
     state?: string | null;
+    /**
+     * Output only. Region of the volume from which the backup was created. Format: `projects/{project_id\}/locations/{location\}`
+     */
+    volumeRegion?: string | null;
     /**
      * Output only. Size of the file system when the backup was created. When creating a new volume from the backup, the volume capacity will have to be at least as big.
      */
@@ -341,6 +349,14 @@ export namespace netapp_v1beta1 {
    */
   export interface Schema$BackupVault {
     /**
+     * Optional. Region where the backups are stored. Format: `projects/{project_id\}/locations/{location\}`
+     */
+    backupRegion?: string | null;
+    /**
+     * Optional. Type of backup vault to be created. Default is IN_REGION.
+     */
+    backupVaultType?: string | null;
+    /**
      * Output only. Create time of the backup vault.
      */
     createTime?: string | null;
@@ -349,6 +365,10 @@ export namespace netapp_v1beta1 {
      */
     description?: string | null;
     /**
+     * Output only. Name of the Backup vault created in backup region. Format: `projects/{project_id\}/locations/{location\}/backupVaults/{backup_vault_id\}`
+     */
+    destinationBackupVault?: string | null;
+    /**
      * Resource labels to represent user provided metadata.
      */
     labels?: {[key: string]: string} | null;
@@ -356,6 +376,14 @@ export namespace netapp_v1beta1 {
      * Identifier. The resource name of the backup vault. Format: `projects/{project_id\}/locations/{location\}/backupVaults/{backup_vault_id\}`.
      */
     name?: string | null;
+    /**
+     * Output only. Name of the Backup vault created in source region. Format: `projects/{project_id\}/locations/{location\}/backupVaults/{backup_vault_id\}`
+     */
+    sourceBackupVault?: string | null;
+    /**
+     * Output only. Region in which the backup vault is created. Format: `projects/{project_id\}/locations/{location\}`
+     */
+    sourceRegion?: string | null;
     /**
      * Output only. The backup vault state.
      */
@@ -1205,6 +1233,10 @@ export namespace netapp_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Optional. True if using Independent Scaling of capacity and performance (Hyperdisk) By default set to false
+     */
+    customPerformanceEnabled?: boolean | null;
+    /**
      * Optional. Description of the storage pool
      */
     description?: string | null;
@@ -1265,6 +1297,14 @@ export namespace netapp_v1beta1 {
      */
     stateDetails?: string | null;
     /**
+     * Optional. Custom Performance Total IOPS of the pool If not provided, it will be calculated based on the total_throughput_mibps
+     */
+    totalIops?: string | null;
+    /**
+     * Optional. Custom Performance Total Throughput of the pool (in MiB/s)
+     */
+    totalThroughputMibps?: string | null;
+    /**
      * Output only. Allocated size of all volumes in GIB in the storage pool
      */
     volumeCapacityGib?: string | null;
@@ -1290,7 +1330,7 @@ export namespace netapp_v1beta1 {
    */
   export interface Schema$TieringPolicy {
     /**
-     * Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 7-183. Default is 31.
+     * Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 2-183. Default is 31.
      */
     coolingThresholdDays?: number | null;
     /**
@@ -1772,6 +1812,10 @@ export namespace netapp_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

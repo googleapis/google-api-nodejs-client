@@ -143,6 +143,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -2264,7 +2270,7 @@
       }
     }
   },
-  "revision": "20250129",
+  "revision": "20250326",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -2402,6 +2408,11 @@
       "description": "A NetApp Backup.",
       "id": "Backup",
       "properties": {
+        "backupRegion": {
+          "description": "Output only. Region in which backup is stored. Format: `projects/{project_id}/locations/{location}`",
+          "readOnly": true,
+          "type": "string"
+        },
         "backupType": {
           "description": "Output only. Type of backup, manually created or created by a backup policy.",
           "enum": [
@@ -2482,6 +2493,11 @@
             "Backup is not valid and cannot be used for creating new volumes or restoring existing volumes.",
             "Backup is being updated."
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "volumeRegion": {
+          "description": "Output only. Region of the volume from which the backup was created. Format: `projects/{project_id}/locations/{location}`",
           "readOnly": true,
           "type": "string"
         },
@@ -2600,6 +2616,24 @@
       "description": "A NetApp BackupVault.",
       "id": "BackupVault",
       "properties": {
+        "backupRegion": {
+          "description": "Optional. Region where the backups are stored. Format: `projects/{project_id}/locations/{location}`",
+          "type": "string"
+        },
+        "backupVaultType": {
+          "description": "Optional. Type of backup vault to be created. Default is IN_REGION.",
+          "enum": [
+            "BACKUP_VAULT_TYPE_UNSPECIFIED",
+            "IN_REGION",
+            "CROSS_REGION"
+          ],
+          "enumDescriptions": [
+            "BackupVault type not set.",
+            "BackupVault type is IN_REGION.",
+            "BackupVault type is CROSS_REGION."
+          ],
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Create time of the backup vault.",
           "format": "google-datetime",
@@ -2608,6 +2642,11 @@
         },
         "description": {
           "description": "Description of the backup vault.",
+          "type": "string"
+        },
+        "destinationBackupVault": {
+          "description": "Output only. Name of the Backup vault created in backup region. Format: `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`",
+          "readOnly": true,
           "type": "string"
         },
         "labels": {
@@ -2619,6 +2658,16 @@
         },
         "name": {
           "description": "Identifier. The resource name of the backup vault. Format: `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`.",
+          "type": "string"
+        },
+        "sourceBackupVault": {
+          "description": "Output only. Name of the Backup vault created in source region. Format: `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceRegion": {
+          "description": "Output only. Region in which the backup vault is created. Format: `projects/{project_id}/locations/{location}`",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -4083,7 +4132,7 @@
       "id": "TieringPolicy",
       "properties": {
         "coolingThresholdDays": {
-          "description": "Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 7-183. Default is 31.",
+          "description": "Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 2-183. Default is 31.",
           "format": "int32",
           "type": "integer"
         },
