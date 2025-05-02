@@ -143,15 +143,16 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
-                },
-                "includeUnrevealedLocations": {
-                  "description": "If true, the returned list will include locations which are not yet revealed.",
-                  "location": "query",
-                  "type": "boolean"
                 },
                 "name": {
                   "description": "The resource that owns the locations collection, if applicable.",
@@ -1074,7 +1075,7 @@
       }
     }
   },
-  "revision": "20250205",
+  "revision": "20250421",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1280,9 +1281,13 @@
       "type": "object"
     },
     "DirectoryServicesConfig": {
-      "description": "Directory Services configuration for Kerberos-based authentication.",
+      "description": "Directory Services configuration.",
       "id": "DirectoryServicesConfig",
       "properties": {
+        "ldap": {
+          "$ref": "LdapConfig",
+          "description": "Configuration for LDAP servers."
+        },
         "managedActiveDirectory": {
           "$ref": "ManagedActiveDirectoryConfig",
           "description": "Configuration for Managed Service for Microsoft Active Directory."
@@ -1341,6 +1346,10 @@
       "properties": {
         "consumerDefinedName": {
           "description": "consumer_defined_name is the name of the instance set by the service consumers. Generally this is different from the `name` field which reperesents the system-assigned id of the instance which the service consumers do not recognize. This is a required field for tenants onboarding to Maintenance Window notifications (go/slm-rollout-maintenance-policies#prerequisites).",
+          "type": "string"
+        },
+        "consumerProjectNumber": {
+          "description": "Optional. The consumer_project_number associated with this Apigee instance. This field is added specifically to support Apigee integration with SLM Rollout and UMM. It represents the numerical project ID of the GCP project that consumes this Apigee instance. It is used for SLM rollout notifications and UMM integration, enabling proper mapping to customer projects and log delivery for Apigee instances. This field complements consumer_project_id and may be used for specific Apigee scenarios where the numerical ID is required.",
           "type": "string"
         },
         "createTime": {
@@ -1662,7 +1671,7 @@
         },
         "directoryServices": {
           "$ref": "DirectoryServicesConfig",
-          "description": "Optional. Directory Services configuration for Kerberos-based authentication. Should only be set if protocol is \"NFS_V4_1\"."
+          "description": "Optional. Directory Services configuration. Should only be set if protocol is \"NFS_V4_1\"."
         },
         "etag": {
           "description": "Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.",
@@ -1835,6 +1844,32 @@
             "ZONAL instances offer expanded capacity and performance scaling capabilities.",
             "REGIONAL instances offer the features and availability needed for mission-critical workloads."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LdapConfig": {
+      "description": "LdapConfig contains all the parameters for connecting to LDAP servers.",
+      "id": "LdapConfig",
+      "properties": {
+        "domain": {
+          "description": "Required. The LDAP domain name in the format of `my-domain.com`.",
+          "type": "string"
+        },
+        "groupsOu": {
+          "description": "Optional. The groups Organizational Unit (OU) is optional. This parameter is a hint to allow faster lookup in the LDAP namespace. In case that this parameter is not provided, Filestore instance will query the whole LDAP namespace.",
+          "type": "string"
+        },
+        "servers": {
+          "description": "Required. The servers names are used for specifying the LDAP servers names. The LDAP servers names can come with two formats: 1. DNS name, for example: `ldap.example1.com`, `ldap.example2.com`. 2. IP address, for example: `10.0.0.1`, `10.0.0.2`, `10.0.0.3`. All servers names must be in the same format: either all DNS names or all IP addresses.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "usersOu": {
+          "description": "Optional. The users Organizational Unit (OU) is optional. This parameter is a hint to allow faster lookup in the LDAP namespace. In case that this parameter is not provided, Filestore instance will query the whole LDAP namespace.",
           "type": "string"
         }
       },
@@ -2099,12 +2134,14 @@
           "enum": [
             "CONNECT_MODE_UNSPECIFIED",
             "DIRECT_PEERING",
-            "PRIVATE_SERVICE_ACCESS"
+            "PRIVATE_SERVICE_ACCESS",
+            "PRIVATE_SERVICE_CONNECT"
           ],
           "enumDescriptions": [
             "ConnectMode not set.",
             "Connect via direct peering to the Filestore service.",
-            "Connect to your Filestore instance using Private Service Access. Private services access provides an IP address range for multiple Google Cloud services, including Filestore."
+            "Connect to your Filestore instance using Private Service Access. Private services access provides an IP address range for multiple Google Cloud services, including Filestore.",
+            "Connect to your Filestore instance using Private Service Connect. A connection policy must exist in the region for the VPC network and the google-cloud-filestore service class."
           ],
           "type": "string"
         },
@@ -2134,6 +2171,10 @@
         "network": {
           "description": "The name of the Google Compute Engine [VPC network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected.",
           "type": "string"
+        },
+        "pscConfig": {
+          "$ref": "PscConfig",
+          "description": "Optional. Private Service Connect configuration. Should only be set when connect_mode is PRIVATE_SERVICE_CONNECT."
         },
         "reservedIpRange": {
           "description": "Optional, reserved_ip_range can have one of the following two types of values. * CIDR range value when using DIRECT_PEERING connect mode. * [Allocated IP address range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address) when using PRIVATE_SERVICE_ACCESS connect mode. When the name of an allocated IP address range is specified, it must be one of the ranges associated with the private service access connection. When specified as a direct CIDR value, it must be a /29 CIDR block for Basic tier, a /24 CIDR block for High Scale tier, or a /26 CIDR block for Enterprise tier in one of the [internal IP address ranges](https://www.arin.net/reference/research/statistics/address_filters/) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29, 192.168.0.0/24, or 192.168.0.0/26, respectively. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Filestore instances in the selected VPC network.",
@@ -2176,6 +2217,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "network": {
+          "description": "Optional. The source VPC network for ip_ranges. Required for instances using Private Service Connect, optional otherwise. If provided, must be the same network specified in the `NetworkConfig.network` field.",
+          "type": "string"
         },
         "securityFlavors": {
           "description": "The security flavors allowed for mount operations. The default is AUTH_SYS.",
@@ -2352,6 +2397,17 @@
       "properties": {
         "peerInstance": {
           "description": "Optional. The resource name of the peer instance to promote, in the format `projects/{project_id}/locations/{location_id}/instances/{instance_id}`. The peer instance is required if the operation is called on an active instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscConfig": {
+      "description": "Private Service Connect configuration.",
+      "id": "PscConfig",
+      "properties": {
+        "endpointProject": {
+          "description": "Consumer service project in which the Private Service Connect endpoint would be set up. This is optional, and only relevant in case the network is a shared VPC. If this is not specified, the endpoint would be setup in the VPC host project.",
           "type": "string"
         }
       },
