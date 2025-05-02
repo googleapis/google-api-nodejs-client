@@ -476,6 +476,10 @@ export namespace discoveryengine_v1beta {
      * Output only. The connector contains the necessary parameters and is configured to support actions.
      */
     isActionConfigured?: boolean | null;
+    /**
+     * Optional. The Service Directory resource name (projects/x/locations/x/namespaces/x/services/x) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.
+     */
+    serviceName?: string | null;
   }
   /**
    * Configuration data for advance site search.
@@ -1020,7 +1024,7 @@ export namespace discoveryengine_v1beta {
      */
     activeTimeRange?: Schema$GoogleCloudDiscoveryengineV1alphaConditionTimeRange[];
     /**
-     * Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. This is currently supporting promotion use case.
+     * Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. Only supported for Basic Site Search promotion serving controls.
      */
     queryRegex?: string | null;
     /**
@@ -1409,6 +1413,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDataConnector {
     /**
+     * Optional. Whether the connector will be created with an ACL config. Currently this field only affects Cloud Storage and BigQuery connectors.
+     */
+    aclEnabled?: boolean | null;
+    /**
      * Optional. Action configurations to make the connector support actions.
      */
     actionConfig?: Schema$GoogleCloudDiscoveryengineV1alphaActionConfig;
@@ -1429,6 +1437,10 @@ export namespace discoveryengine_v1beta {
      */
     blockingReasons?: string[] | null;
     /**
+     * Optional. The modes enabled for this connector. Default state is CONNECTOR_MODE_UNSPECIFIED.
+     */
+    connectorModes?: string[] | null;
+    /**
      * Output only. The type of connector. Each source can only map to one type. For example, salesforce, confluence and jira have THIRD_PARTY connector type. It is notmutable once set by system.
      */
     connectorType?: string | null;
@@ -1444,6 +1456,10 @@ export namespace discoveryengine_v1beta {
      * Optional. Any target destinations used to connect to third-party services.
      */
     destinationConfigs?: Schema$GoogleCloudDiscoveryengineV1alphaDestinationConfig[];
+    /**
+     * Optional. Any params and credentials used specifically for EUA connectors.
+     */
+    endUserConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDataConnectorEndUserConfig;
     /**
      * List of entities from the connected data source to ingest.
      */
@@ -1493,6 +1509,10 @@ export namespace discoveryengine_v1beta {
      */
     realtimeState?: string | null;
     /**
+     * Optional. The configuration for realtime sync.
+     */
+    realtimeSyncConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDataConnectorRealtimeSyncConfig;
+    /**
      * Required. The refresh interval for data sync. If duration is set to 0, the data will be synced in real time. The streaming feature is not supported yet. The minimum is 30 minutes and maximum is 7 days.
      */
     refreshInterval?: string | null;
@@ -1516,6 +1536,32 @@ export namespace discoveryengine_v1beta {
      * Output only. Timestamp the DataConnector was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Any params and credentials used specifically for EUA connectors.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDataConnectorEndUserConfig {
+    /**
+     * Optional. Any additional parameters needed for EUA.
+     */
+    additionalParams?: {[key: string]: any} | null;
+    /**
+     * Optional. Any authentication parameters specific to EUA connectors.
+     */
+    authParams?: {[key: string]: any} | null;
+  }
+  /**
+   * The configuration for realtime sync to store additional params for realtime sync.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDataConnectorRealtimeSyncConfig {
+    /**
+     * Optional. The ID of the Secret Manager secret used for webhook secret.
+     */
+    realtimeSyncSecret?: string | null;
+    /**
+     * Optional. Webhook url for the connector to specify additional params for realtime sync.
+     */
+    webhookUri?: string | null;
   }
   /**
    * Represents an entity in the data source. For example, the `Account` object in Salesforce.
@@ -1929,7 +1975,28 @@ export namespace discoveryengine_v1beta {
   /**
    * The layout parsing configurations for documents.
    */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig {}
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig {
+    /**
+     * Optional. If true, the LLM based annotation is added to the image during parsing.
+     */
+    enableImageAnnotation?: boolean | null;
+    /**
+     * Optional. If true, the LLM based annotation is added to the table during parsing.
+     */
+    enableTableAnnotation?: boolean | null;
+    /**
+     * Optional. List of HTML classes to exclude from the parsed content.
+     */
+    excludeHtmlClasses?: string[] | null;
+    /**
+     * Optional. List of HTML elements to exclude from the parsed content.
+     */
+    excludeHtmlElements?: string[] | null;
+    /**
+     * Optional. List of HTML ids to exclude from the parsed content.
+     */
+    excludeHtmlIds?: string[] | null;
+  }
   /**
    * The OCR parsing configurations for documents.
    */
@@ -2086,6 +2153,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig {
     /**
+     * Optional. Additional engine features config.
+     */
+    engineFeaturesConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfigEngineFeaturesConfig;
+    /**
      * The optimization objective. e.g., `cvr`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `ctr`, `cvr`. If not specified, we choose default based on engine type. Default depends on type of recommendation: `recommended-for-you` =\> `ctr` `others-you-may-like` =\> `ctr`
      */
     optimizationObjective?: string | null;
@@ -2103,6 +2174,28 @@ export namespace discoveryengine_v1beta {
     type?: string | null;
   }
   /**
+   * More feature configs of the selected engine type.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfigEngineFeaturesConfig {
+    /**
+     * Most popular engine feature config.
+     */
+    mostPopularConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfigMostPopularFeatureConfig;
+    /**
+     * Recommended for you engine feature config.
+     */
+    recommendedForYouConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfigRecommendedForYouFeatureConfig;
+  }
+  /**
+   * Feature configurations that are required for creating a Most Popular engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfigMostPopularFeatureConfig {
+    /**
+     * The time window of which the engine is queried at training and prediction time. Positive integers only. The value translates to the last X days of events. Currently required for the `most-popular-items` engine.
+     */
+    timeWindowDays?: string | null;
+  }
+  /**
    * Custom threshold for `cvr` optimization_objective.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfigOptimizationObjectiveConfig {
@@ -2114,6 +2207,15 @@ export namespace discoveryengine_v1beta {
      * Required. The threshold to be applied to the target (e.g., 0.5).
      */
     targetFieldValueFloat?: number | null;
+  }
+  /**
+   * Additional feature configurations for creating a `recommended-for-you` engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfigRecommendedForYouFeatureConfig {
+    /**
+     * The type of event with which the engine is queried at prediction time. If set to `generic`, only `view-item`, `media-play`,and `media-complete` will be used as `context-event` in engine training. If set to `view-home-page`, `view-home-page` will also be used as `context-events` in addition to `view-item`, `media-play`, and `media-complete`. Currently supported for the `recommended-for-you` engine. Currently supported values: `view-home-page`, `generic`.
+     */
+    contextEventType?: string | null;
   }
   /**
    * Additional information of a recommendation engine.
@@ -3107,6 +3209,10 @@ export namespace discoveryengine_v1beta {
      */
     description?: string | null;
     /**
+     * Optional. The Document the user wants to promote. For site search, leave unset and only populate uri. Can be set along with uri.
+     */
+    document?: string | null;
+    /**
      * Optional. The enabled promotion will be returned for any serving configs associated with the parent of the control this promotion is attached to. This flag is used for basic site search only.
      */
     enabled?: boolean | null;
@@ -3148,7 +3254,7 @@ export namespace discoveryengine_v1beta {
      */
     customFineTuningSpec?: Schema$GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec;
     /**
-     * Specifications that define the specific [DataStore]s to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
+     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec[];
     /**
@@ -3216,7 +3322,7 @@ export namespace discoveryengine_v1beta {
      */
     queryExpansionSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestQueryExpansionSpec;
     /**
-     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking expression is not provided or set to BYOE, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking expression is set to CLEARBOX, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double \> 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result
+     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking_expression_backend is not provided or set to `BYOE`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking_expression_backend is set to `CLEARBOX`, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double \> 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result
      */
     rankingExpression?: string | null;
     /**
@@ -3277,7 +3383,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpec {
     /**
-     * Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
+     * Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
      */
     conditionBoostSpecs?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpecConditionBoostSpec[];
   }
@@ -3998,6 +4104,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaUserInfo {
     /**
+     * Optional. IANA time zone, e.g. Europe/Budapest.
+     */
+    timeZone?: string | null;
+    /**
      * User agent as included in the HTTP header. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if UserEvent.direct_user_request is set.
      */
     userAgent?: string | null;
@@ -4026,6 +4136,52 @@ export namespace discoveryengine_v1beta {
      * The Google Workspace data source.
      */
     type?: string | null;
+  }
+  /**
+   * The specification for answer generation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AnswerGenerationSpec {
+    /**
+     * Optional. The specification for user specified classifier spec.
+     */
+    userDefinedClassifierSpec?: Schema$GoogleCloudDiscoveryengineV1AnswerGenerationSpecUserDefinedClassifierSpec;
+  }
+  /**
+   * The specification for user defined classifier.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AnswerGenerationSpecUserDefinedClassifierSpec {
+    /**
+     * Optional. Whether or not to enable and include user defined classifier.
+     */
+    enableUserDefinedClassifier?: boolean | null;
+    /**
+     * Optional. The model id to be used for the user defined classifier.
+     */
+    modelId?: string | null;
+    /**
+     * Optional. The preamble to be used for the user defined classifier.
+     */
+    preamble?: string | null;
+    /**
+     * Optional. The seed value to be used for the user defined classifier.
+     */
+    seed?: number | null;
+    /**
+     * Optional. The task marker to be used for the user defined classifier.
+     */
+    taskMarker?: string | null;
+    /**
+     * Optional. The temperature value to be used for the user defined classifier.
+     */
+    temperature?: number | null;
+    /**
+     * Optional. The top-k value to be used for the user defined classifier.
+     */
+    topK?: string | null;
+    /**
+     * Optional. The top-p value to be used for the user defined classifier.
+     */
+    topP?: number | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -4057,6 +4213,10 @@ export namespace discoveryengine_v1beta {
      * Optional. Specification to boost suggestions matching the condition.
      */
     boostSpec?: Schema$GoogleCloudDiscoveryengineV1betaAdvancedCompleteQueryRequestBoostSpec;
+    /**
+     * Optional. Experiment ids for this request.
+     */
+    experimentIds?: string[] | null;
     /**
      * Indicates if tail suggestions should be returned if there are no suggestions that match the full query. Even if set to true, if there are suggestions that match the full query, those are returned and no tail suggestions are returned.
      */
@@ -4091,7 +4251,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaAdvancedCompleteQueryRequestBoostSpec {
     /**
-     * Condition boost specifications. If a suggestion matches multiple conditions in the specifictions, boost values from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20. Note: Currently only support language condition boost.
+     * Condition boost specifications. If a suggestion matches multiple conditions in the specifications, boost values from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20. Note: Currently only support language condition boost.
      */
     conditionBoostSpecs?: Schema$GoogleCloudDiscoveryengineV1betaAdvancedCompleteQueryRequestBoostSpecConditionBoostSpec[];
   }
@@ -4408,6 +4568,52 @@ export namespace discoveryengine_v1beta {
      * ID of the citation source.
      */
     referenceId?: string | null;
+  }
+  /**
+   * The specification for answer generation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAnswerGenerationSpec {
+    /**
+     * Optional. The specification for user specified classifier spec.
+     */
+    userDefinedClassifierSpec?: Schema$GoogleCloudDiscoveryengineV1betaAnswerGenerationSpecUserDefinedClassifierSpec;
+  }
+  /**
+   * The specification for user defined classifier.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAnswerGenerationSpecUserDefinedClassifierSpec {
+    /**
+     * Optional. Whether or not to enable and include user defined classifier.
+     */
+    enableUserDefinedClassifier?: boolean | null;
+    /**
+     * Optional. The model id to be used for the user defined classifier.
+     */
+    modelId?: string | null;
+    /**
+     * Optional. The preamble to be used for the user defined classifier.
+     */
+    preamble?: string | null;
+    /**
+     * Optional. The seed value to be used for the user defined classifier.
+     */
+    seed?: number | null;
+    /**
+     * Optional. The task marker to be used for the user defined classifier.
+     */
+    taskMarker?: string | null;
+    /**
+     * Optional. The temperature value to be used for the user defined classifier.
+     */
+    temperature?: number | null;
+    /**
+     * Optional. The top-k value to be used for the user defined classifier.
+     */
+    topK?: string | null;
+    /**
+     * Optional. The top-p value to be used for the user defined classifier.
+     */
+    topP?: number | null;
   }
   /**
    * Grounding support for a claim in `answer_text`.
@@ -5401,6 +5607,10 @@ export namespace discoveryengine_v1beta {
      */
     groundingCheckRequired?: boolean | null;
     /**
+     * Confidence score for the claim in the answer candidate, in the range of [0, 1]. This is set only when enable_claim_level_score is true.
+     */
+    score?: number | null;
+    /**
      * Position indicating the start of the claim in the answer candidate, measured in bytes. Note that this is not measured in characters and, therefore, must be rendered in the user interface keeping in mind that some characters may take more than one byte. For example, if the claim text contains non-ASCII characters, the start and end positions vary when measured in characters (programming-language-dependent) and when measured in bytes (programming-language-independent).
      */
     startPos?: number | null;
@@ -5413,11 +5623,19 @@ export namespace discoveryengine_v1beta {
      * The threshold (in [0,1]) used for determining whether a fact must be cited for a claim in the answer candidate. Choosing a higher threshold will lead to fewer but very strong citations, while choosing a lower threshold may lead to more but somewhat weaker citations. If unset, the threshold will default to 0.6.
      */
     citationThreshold?: number | null;
+    /**
+     * The control flag that enables claim-level grounding score in the response.
+     */
+    enableClaimLevelScore?: boolean | null;
   }
   /**
    * Chunk captures all raw metadata information of items to be recommended or searched in the chunk mode.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaChunk {
+    /**
+     * Output only. Annotation contents if the current chunk contains annotations.
+     */
+    annotationContents?: string[] | null;
     /**
      * Output only. Metadata of the current chunk.
      */
@@ -5426,6 +5644,10 @@ export namespace discoveryengine_v1beta {
      * Content is a string from a document (parsed content).
      */
     content?: string | null;
+    /**
+     * Output only. Image Data URLs if the current chunk contains images. Data URLs are composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,
+     */
+    dataUrls?: string[] | null;
     /**
      * Output only. This field is OUTPUT_ONLY. It contains derived data that are not in the original input document.
      */
@@ -5641,7 +5863,7 @@ export namespace discoveryengine_v1beta {
      */
     activeTimeRange?: Schema$GoogleCloudDiscoveryengineV1betaConditionTimeRange[];
     /**
-     * Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. This is currently supporting promotion use case.
+     * Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. Only supported for Basic Site Search promotion serving controls.
      */
     queryRegex?: string | null;
     /**
@@ -6090,6 +6312,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDataStore {
     /**
+     * Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.
+     */
+    aclEnabled?: boolean | null;
+    /**
      * Optional. Configuration for advanced site search.
      */
     advancedSiteSearchConfig?: Schema$GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig;
@@ -6333,7 +6559,11 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDocument {
     /**
-     * The unstructured data linked to this document. Content must be set if this document is under a `CONTENT_REQUIRED` data store.
+     * Access control information for the document.
+     */
+    aclInfo?: Schema$GoogleCloudDiscoveryengineV1betaDocumentAclInfo;
+    /**
+     * The unstructured data linked to this document. Content can only be set and must be set if this document is under a `CONTENT_REQUIRED` data store.
      */
     content?: Schema$GoogleCloudDiscoveryengineV1betaDocumentContent;
     /**
@@ -6374,11 +6604,33 @@ export namespace discoveryengine_v1beta {
     structData?: {[key: string]: any} | null;
   }
   /**
+   * ACL Information of the Document.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentAclInfo {
+    /**
+     * Readers of the document.
+     */
+    readers?: Schema$GoogleCloudDiscoveryengineV1betaDocumentAclInfoAccessRestriction[];
+  }
+  /**
+   * AclRestriction to model complex inheritance restrictions. Example: Modeling a "Both Permit" inheritance, where to access a child document, user needs to have access to parent document. Document Hierarchy - Space_S --\> Page_P. Readers: Space_S: group_1, user_1 Page_P: group_2, group_3, user_2 Space_S ACL Restriction - { "acl_info": { "readers": [ { "principals": [ { "group_id": "group_1" \}, { "user_id": "user_1" \} ] \} ] \} \} Page_P ACL Restriction. { "acl_info": { "readers": [ { "principals": [ { "group_id": "group_2" \}, { "group_id": "group_3" \}, { "user_id": "user_2" \} ], \}, { "principals": [ { "group_id": "group_1" \}, { "user_id": "user_1" \} ], \} ] \} \}
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentAclInfoAccessRestriction {
+    /**
+     * All users within the Identity Provider.
+     */
+    idpWide?: boolean | null;
+    /**
+     * List of principals.
+     */
+    principals?: Schema$GoogleCloudDiscoveryengineV1betaPrincipal[];
+  }
+  /**
    * Unstructured data linked to this document.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentContent {
     /**
-     * The MIME type of the content. Supported types: * `application/pdf` (PDF, only native PDFs are supported for now) * `text/html` (HTML) * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX) * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX) * `text/plain` (TXT) See https://www.iana.org/assignments/media-types/media-types.xhtml.
+     * The MIME type of the content. Supported types: * `application/pdf` (PDF, only native PDFs are supported for now) * `text/html` (HTML) * `text/plain` (TXT) * `application/xml` or `text/xml` (XML) * `application/json` (JSON) * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX) * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX) * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` (XLSX) * `application/vnd.ms-excel.sheet.macroenabled.12` (XLSM) The following types are supported only if layout parser is enabled in the data store: * `image/bmp` (BMP) * `image/gif` (GIF) * `image/jpeg` (JPEG) * `image/png` (PNG) * `image/tiff` (TIFF) See https://www.iana.org/assignments/media-types/media-types.xhtml.
      */
     mimeType?: string | null;
     /**
@@ -6511,7 +6763,28 @@ export namespace discoveryengine_v1beta {
   /**
    * The layout parsing configurations for documents.
    */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig {}
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig {
+    /**
+     * Optional. If true, the LLM based annotation is added to the image during parsing.
+     */
+    enableImageAnnotation?: boolean | null;
+    /**
+     * Optional. If true, the LLM based annotation is added to the table during parsing.
+     */
+    enableTableAnnotation?: boolean | null;
+    /**
+     * Optional. List of HTML classes to exclude from the parsed content.
+     */
+    excludeHtmlClasses?: string[] | null;
+    /**
+     * Optional. List of HTML elements to exclude from the parsed content.
+     */
+    excludeHtmlElements?: string[] | null;
+    /**
+     * Optional. List of HTML ids to exclude from the parsed content.
+     */
+    excludeHtmlIds?: string[] | null;
+  }
   /**
    * The OCR parsing configurations for documents.
    */
@@ -6601,6 +6874,10 @@ export namespace discoveryengine_v1beta {
      */
     industryVertical?: string | null;
     /**
+     * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
+     */
+    mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig;
+    /**
      * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string | null;
@@ -6672,6 +6949,75 @@ export namespace discoveryengine_v1beta {
      * The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
      */
     companyName?: string | null;
+  }
+  /**
+   * Additional config specs for a Media Recommendation engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig {
+    /**
+     * Optional. Additional engine features config.
+     */
+    engineFeaturesConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfigEngineFeaturesConfig;
+    /**
+     * The optimization objective. e.g., `cvr`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `ctr`, `cvr`. If not specified, we choose default based on engine type. Default depends on type of recommendation: `recommended-for-you` =\> `ctr` `others-you-may-like` =\> `ctr`
+     */
+    optimizationObjective?: string | null;
+    /**
+     * Name and value of the custom threshold for cvr optimization_objective. For target_field `watch-time`, target_field_value must be an integer value indicating the media progress time in seconds between (0, 86400] (excludes 0, includes 86400) (e.g., 90). For target_field `watch-percentage`, the target_field_value must be a valid float value between (0, 1.0] (excludes 0, includes 1.0) (e.g., 0.5).
+     */
+    optimizationObjectiveConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfigOptimizationObjectiveConfig;
+    /**
+     * The training state that the engine is in (e.g. `TRAINING` or `PAUSED`). Since part of the cost of running the service is frequency of training - this can be used to determine when to train engine in order to control cost. If not specified: the default value for `CreateEngine` method is `TRAINING`. The default value for `UpdateEngine` method is to keep the state the same as before.
+     */
+    trainingState?: string | null;
+    /**
+     * Required. The type of engine. e.g., `recommended-for-you`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `recommended-for-you`, `others-you-may-like`, `more-like-this`, `most-popular-items`.
+     */
+    type?: string | null;
+  }
+  /**
+   * More feature configs of the selected engine type.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfigEngineFeaturesConfig {
+    /**
+     * Most popular engine feature config.
+     */
+    mostPopularConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfigMostPopularFeatureConfig;
+    /**
+     * Recommended for you engine feature config.
+     */
+    recommendedForYouConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfigRecommendedForYouFeatureConfig;
+  }
+  /**
+   * Feature configurations that are required for creating a Most Popular engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfigMostPopularFeatureConfig {
+    /**
+     * The time window of which the engine is queried at training and prediction time. Positive integers only. The value translates to the last X days of events. Currently required for the `most-popular-items` engine.
+     */
+    timeWindowDays?: string | null;
+  }
+  /**
+   * Custom threshold for `cvr` optimization_objective.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfigOptimizationObjectiveConfig {
+    /**
+     * Required. The name of the field to target. Currently supported values: `watch-percentage`, `watch-time`.
+     */
+    targetField?: string | null;
+    /**
+     * Required. The threshold to be applied to the target (e.g., 0.5).
+     */
+    targetFieldValueFloat?: number | null;
+  }
+  /**
+   * Additional feature configurations for creating a `recommended-for-you` engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfigRecommendedForYouFeatureConfig {
+    /**
+     * The type of event with which the engine is queried at prediction time. If set to `generic`, only `view-item`, `media-play`,and `media-complete` will be used as `context-event` in engine training. If set to `view-home-page`, `view-home-page` will also be used as `context-events` in addition to `view-item`, `media-play`, and `media-complete`. Currently supported for the `recommended-for-you` engine. Currently supported values: `view-home-page`, `generic`.
+     */
+    contextEventType?: string | null;
   }
   /**
    * Configurations for a Search Engine.
@@ -6754,6 +7100,10 @@ export namespace discoveryengine_v1beta {
      */
     chunkText?: string | null;
     /**
+     * The domain of the source.
+     */
+    domain?: string | null;
+    /**
      * The index of this chunk. Currently, only used for the streaming mode.
      */
     index?: number | null;
@@ -6765,6 +7115,14 @@ export namespace discoveryengine_v1beta {
      * More fine-grained information for the source reference.
      */
     sourceMetadata?: {[key: string]: string} | null;
+    /**
+     * The title of the source.
+     */
+    title?: string | null;
+    /**
+     * The URI of the source.
+     */
+    uri?: string | null;
   }
   /**
    * Response message for SiteSearchEngineService.FetchDomainVerificationStatus method.
@@ -7380,6 +7738,15 @@ export namespace discoveryengine_v1beta {
     region?: string | null;
   }
   /**
+   * Response message for CmekConfigService.ListCmekConfigs method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse {
+    /**
+     * All the customer's CmekConfigs.
+     */
+    cmekConfigs?: Schema$GoogleCloudDiscoveryengineV1betaCmekConfig[];
+  }
+  /**
    * Response for ListControls method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaListControlsResponse {
@@ -7715,6 +8082,19 @@ export namespace discoveryengine_v1beta {
    * Request for pausing training of an engine.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaPauseEngineRequest {}
+  /**
+   * Principal identifier of a user or a group.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaPrincipal {
+    /**
+     * Group identifier. For Google Workspace user account, group_id should be the google workspace group email. For non-google identity provider user account, group_id is the mapped group identifier configured during the workforcepool config.
+     */
+    groupId?: string | null;
+    /**
+     * User identifier. For Google Workspace user account, user_id should be the google workspace user email. For non-google identity provider user account, user_id is the mapped user identifier configured during the workforcepool config.
+     */
+    userId?: string | null;
+  }
   /**
    * Metadata and configurations for a Google Cloud project in the service.
    */
@@ -8378,6 +8758,10 @@ export namespace discoveryengine_v1beta {
      */
     description?: string | null;
     /**
+     * Optional. The Document the user wants to promote. For site search, leave unset and only populate uri. Can be set along with uri.
+     */
+    document?: string | null;
+    /**
      * Optional. The enabled promotion will be returned for any serving configs associated with the parent of the control this promotion is attached to. This flag is used for basic site search only.
      */
     enabled?: boolean | null;
@@ -8415,7 +8799,7 @@ export namespace discoveryengine_v1beta {
      */
     contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec;
     /**
-     * Specifications that define the specific [DataStore]s to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
+     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. For engines with a single data store, the specs directly under SearchRequest should be used.
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec[];
     /**
@@ -8483,7 +8867,7 @@ export namespace discoveryengine_v1beta {
      */
     queryExpansionSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec;
     /**
-     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking expression is not provided or set to BYOE, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking expression is set to CLEARBOX, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double \> 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result
+     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking_expression_backend is not provided or set to `BYOE`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking_expression_backend is set to `CLEARBOX`, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double \> 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result
      */
     rankingExpression?: string | null;
     /**
@@ -8544,7 +8928,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec {
     /**
-     * Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
+     * Condition boost specifications. If a document matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
      */
     conditionBoostSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpec[];
   }
@@ -9454,6 +9838,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaServingConfig {
     /**
+     * Optional. The specification for answer generation.
+     */
+    answerGenerationSpec?: Schema$GoogleCloudDiscoveryengineV1betaAnswerGenerationSpec;
+    /**
      * Boost controls to use in serving path. All triggered boost controls will be applied. Boost controls must be in the same data store as the serving config. Maximum of 20 boost controls.
      */
     boostControlIds?: string[] | null;
@@ -10087,6 +10475,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaUserInfo {
     /**
+     * Optional. IANA time zone, e.g. Europe/Budapest.
+     */
+    timeZone?: string | null;
+    /**
      * User agent as included in the HTTP header. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if UserEvent.direct_user_request is set.
      */
     userAgent?: string | null;
@@ -10162,7 +10554,7 @@ export namespace discoveryengine_v1beta {
      */
     activeTimeRange?: Schema$GoogleCloudDiscoveryengineV1ConditionTimeRange[];
     /**
-     * Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. This is currently supporting promotion use case.
+     * Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. Only supported for Basic Site Search promotion serving controls.
      */
     queryRegex?: string | null;
     /**
@@ -10417,6 +10809,10 @@ export namespace discoveryengine_v1beta {
    * DataStore captures global settings and configs at the DataStore level.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DataStore {
+    /**
+     * Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.
+     */
+    aclEnabled?: boolean | null;
     /**
      * Optional. Configuration for advanced site search.
      */
@@ -10707,7 +11103,28 @@ export namespace discoveryengine_v1beta {
   /**
    * The layout parsing configurations for documents.
    */
-  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig {}
+  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig {
+    /**
+     * Optional. If true, the LLM based annotation is added to the image during parsing.
+     */
+    enableImageAnnotation?: boolean | null;
+    /**
+     * Optional. If true, the LLM based annotation is added to the table during parsing.
+     */
+    enableTableAnnotation?: boolean | null;
+    /**
+     * Optional. List of HTML classes to exclude from the parsed content.
+     */
+    excludeHtmlClasses?: string[] | null;
+    /**
+     * Optional. List of HTML elements to exclude from the parsed content.
+     */
+    excludeHtmlElements?: string[] | null;
+    /**
+     * Optional. List of HTML ids to exclude from the parsed content.
+     */
+    excludeHtmlIds?: string[] | null;
+  }
   /**
    * The OCR parsing configurations for documents.
    */
@@ -10774,6 +11191,10 @@ export namespace discoveryengine_v1beta {
      * The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
+    /**
+     * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
+     */
+    mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig;
     /**
      * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -10846,6 +11267,75 @@ export namespace discoveryengine_v1beta {
      * The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
      */
     companyName?: string | null;
+  }
+  /**
+   * Additional config specs for a Media Recommendation engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig {
+    /**
+     * Optional. Additional engine features config.
+     */
+    engineFeaturesConfig?: Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfigEngineFeaturesConfig;
+    /**
+     * The optimization objective. e.g., `cvr`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `ctr`, `cvr`. If not specified, we choose default based on engine type. Default depends on type of recommendation: `recommended-for-you` =\> `ctr` `others-you-may-like` =\> `ctr`
+     */
+    optimizationObjective?: string | null;
+    /**
+     * Name and value of the custom threshold for cvr optimization_objective. For target_field `watch-time`, target_field_value must be an integer value indicating the media progress time in seconds between (0, 86400] (excludes 0, includes 86400) (e.g., 90). For target_field `watch-percentage`, the target_field_value must be a valid float value between (0, 1.0] (excludes 0, includes 1.0) (e.g., 0.5).
+     */
+    optimizationObjectiveConfig?: Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfigOptimizationObjectiveConfig;
+    /**
+     * The training state that the engine is in (e.g. `TRAINING` or `PAUSED`). Since part of the cost of running the service is frequency of training - this can be used to determine when to train engine in order to control cost. If not specified: the default value for `CreateEngine` method is `TRAINING`. The default value for `UpdateEngine` method is to keep the state the same as before.
+     */
+    trainingState?: string | null;
+    /**
+     * Required. The type of engine. e.g., `recommended-for-you`. This field together with optimization_objective describe engine metadata to use to control engine training and serving. Currently supported values: `recommended-for-you`, `others-you-may-like`, `more-like-this`, `most-popular-items`.
+     */
+    type?: string | null;
+  }
+  /**
+   * More feature configs of the selected engine type.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfigEngineFeaturesConfig {
+    /**
+     * Most popular engine feature config.
+     */
+    mostPopularConfig?: Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfigMostPopularFeatureConfig;
+    /**
+     * Recommended for you engine feature config.
+     */
+    recommendedForYouConfig?: Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfigRecommendedForYouFeatureConfig;
+  }
+  /**
+   * Feature configurations that are required for creating a Most Popular engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfigMostPopularFeatureConfig {
+    /**
+     * The time window of which the engine is queried at training and prediction time. Positive integers only. The value translates to the last X days of events. Currently required for the `most-popular-items` engine.
+     */
+    timeWindowDays?: string | null;
+  }
+  /**
+   * Custom threshold for `cvr` optimization_objective.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfigOptimizationObjectiveConfig {
+    /**
+     * Required. The name of the field to target. Currently supported values: `watch-percentage`, `watch-time`.
+     */
+    targetField?: string | null;
+    /**
+     * Required. The threshold to be applied to the target (e.g., 0.5).
+     */
+    targetFieldValueFloat?: number | null;
+  }
+  /**
+   * Additional feature configurations for creating a `recommended-for-you` engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfigRecommendedForYouFeatureConfig {
+    /**
+     * The type of event with which the engine is queried at prediction time. If set to `generic`, only `view-item`, `media-play`,and `media-complete` will be used as `context-event` in engine training. If set to `view-home-page`, `view-home-page` will also be used as `context-events` in addition to `view-item`, `media-play`, and `media-complete`. Currently supported for the `recommended-for-you` engine. Currently supported values: `view-home-page`, `generic`.
+     */
+    contextEventType?: string | null;
   }
   /**
    * Configurations for a Search Engine.
@@ -11220,6 +11710,10 @@ export namespace discoveryengine_v1beta {
      */
     description?: string | null;
     /**
+     * Optional. The Document the user wants to promote. For site search, leave unset and only populate uri. Can be set along with uri.
+     */
+    document?: string | null;
+    /**
      * Optional. The enabled promotion will be returned for any serving configs associated with the parent of the control this promotion is attached to. This flag is used for basic site search only.
      */
     enabled?: boolean | null;
@@ -11383,6 +11877,10 @@ export namespace discoveryengine_v1beta {
    * Configures metadata that is used to generate serving time results (e.g. search results or recommendation predictions). The ServingConfig is passed in the search and predict request and generates results.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1ServingConfig {
+    /**
+     * Optional. The specification for answer generation.
+     */
+    answerGenerationSpec?: Schema$GoogleCloudDiscoveryengineV1AnswerGenerationSpec;
     /**
      * Boost controls to use in serving path. All triggered boost controls will be applied. Boost controls must be in the same data store as the serving config. Maximum of 20 boost controls.
      */
@@ -12039,6 +12537,7 @@ export namespace discoveryengine_v1beta {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    cmekConfigs: Resource$Projects$Locations$Cmekconfigs;
     collections: Resource$Projects$Locations$Collections;
     dataStores: Resource$Projects$Locations$Datastores;
     evaluations: Resource$Projects$Locations$Evaluations;
@@ -12051,6 +12550,9 @@ export namespace discoveryengine_v1beta {
     userEvents: Resource$Projects$Locations$Userevents;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.cmekConfigs = new Resource$Projects$Locations$Cmekconfigs(
+        this.context
+      );
       this.collections = new Resource$Projects$Locations$Collections(
         this.context
       );
@@ -12078,6 +12580,101 @@ export namespace discoveryengine_v1beta {
       this.userEvents = new Resource$Projects$Locations$Userevents(
         this.context
       );
+    }
+
+    /**
+     * Gets the CmekConfig.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getCmekConfig(
+      params?: Params$Resource$Projects$Locations$Getcmekconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>;
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+    ): void;
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+    ): void;
+    getCmekConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+    ): void;
+    getCmekConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getcmekconfig
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getcmekconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getcmekconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -12368,8 +12965,108 @@ export namespace discoveryengine_v1beta {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * Provisions a CMEK key for use in a location of a customer's project. This method will also conduct location validation on the provided cmekConfig to make sure the key is valid and can be used in the selected location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateCmekConfig(
+      params: Params$Resource$Projects$Locations$Updatecmekconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateCmekConfig(
+      params?: Params$Resource$Projects$Locations$Updatecmekconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    updateCmekConfig(
+      params: Params$Resource$Projects$Locations$Updatecmekconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateCmekConfig(
+      params: Params$Resource$Projects$Locations$Updatecmekconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    updateCmekConfig(
+      params: Params$Resource$Projects$Locations$Updatecmekconfig,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    updateCmekConfig(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    updateCmekConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updatecmekconfig
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updatecmekconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Updatecmekconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Getcmekconfig
+    extends StandardParameters {
+    /**
+     * Required. Resource name of CmekConfig, such as `projects/x/locations/x/cmekConfig` or `projects/x/locations/x/cmekConfigs/x`. If the caller does not have permission to access the CmekConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Obtaincrawlrate
     extends StandardParameters {
     /**
@@ -12405,6 +13102,446 @@ export namespace discoveryengine_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Updatecmekconfig
+    extends StandardParameters {
+    /**
+     * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmekConfig\}`.
+     */
+    name?: string;
+    /**
+     * Set the following CmekConfig as the default to be used for child resources if one is not specified.
+     */
+    setDefault?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaCmekConfig;
+  }
+
+  export class Resource$Projects$Locations$Cmekconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * De-provisions a CmekConfig.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Cmekconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cmekconfigs$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cmekconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Cmekconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the CmekConfig.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Cmekconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cmekconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cmekconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Cmekconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all the CmekConfigs with the project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Cmekconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cmekconfigs$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cmekconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Cmekconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/cmekConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListCmekConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Provisions a CMEK key for use in a location of a customer's project. This method will also conduct location validation on the provided cmekConfig to make sure the key is valid and can be used in the selected location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Cmekconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Cmekconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Cmekconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Cmekconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Cmekconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Cmekconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the CmekConfig to delete, such as `projects/{project\}/locations/{location\}/cmekConfigs/{cmek_config\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Cmekconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of CmekConfig, such as `projects/x/locations/x/cmekConfig` or `projects/x/locations/x/cmekConfigs/x`. If the caller does not have permission to access the CmekConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Cmekconfigs$List
+    extends StandardParameters {
+    /**
+     * Required. The parent location resource name, such as `projects/{project\}/locations/{location\}`. If the caller does not have permission to list CmekConfigs under this location, regardless of whether or not a CmekConfig exists, a PERMISSION_DENIED error is returned.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Cmekconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmekConfig\}`.
+     */
+    name?: string;
+    /**
+     * Set the following CmekConfig as the default to be used for child resources if one is not specified.
+     */
+    setDefault?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaCmekConfig;
   }
 
   export class Resource$Projects$Locations$Collections {
