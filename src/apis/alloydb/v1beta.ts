@@ -187,6 +187,10 @@ export namespace alloydb_v1beta {
      */
     clusterUid?: string | null;
     /**
+     * Output only. Timestamp when the resource finished being created.
+     */
+    createCompletionTime?: string | null;
+    /**
      * Output only. Create time stamp
      */
     createTime?: string | null;
@@ -263,7 +267,7 @@ export namespace alloydb_v1beta {
      */
     uid?: string | null;
     /**
-     * Output only. Update time stamp
+     * Output only. Update time stamp Users should not infer any meaning from this field. Its value is generally unrelated to the timing of the backup creation operation.
      */
     updateTime?: string | null;
   }
@@ -384,7 +388,7 @@ export namespace alloydb_v1beta {
      */
     etag?: string | null;
     /**
-     * Optional. Configuration parameters related to the Gemini in Databases add-on.
+     * Optional. Deprecated and unused. This field will be removed in the near future.
      */
     geminiConfig?: Schema$GeminiClusterConfig;
     /**
@@ -522,6 +526,59 @@ export namespace alloydb_v1beta {
      * Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.
      */
     publicIpAddress?: string | null;
+  }
+  /**
+   * Configuration for Managed Connection Pool (MCP).
+   */
+  export interface Schema$ConnectionPoolConfig {
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The default pool size. Defaults to 20.
+     */
+    defaultPoolSize?: string | null;
+    /**
+     * Optional. Deprecated; Prefer 'enabled' as this will be removed soon.
+     */
+    enable?: boolean | null;
+    /**
+     * Optional. Whether to enable Managed Connection Pool (MCP).
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. Connection Pool flags, as a list of "key": "value" pairs.
+     */
+    flags?: {[key: string]: string} | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The list of startup parameters to ignore. Defaults to ["extra_float_digits"]
+     */
+    ignoreStartupParameters?: string[] | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The maximum number of client connections allowed.
+     */
+    maxClientConn?: string | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The maximum number of prepared statements allowed. MCP makes sure that any statement prepared by a client, up to this limit, is available on the backing server connection in transaction and statement pooling mode. Even if the statement was originally prepared on another server connection. Defaults to 0.
+     */
+    maxPreparedStatements?: string | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The minimum pool size. Defaults to 0.
+     */
+    minPoolSize?: string | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The pool mode. Defaults to `POOL_MODE_TRANSACTION`.
+     */
+    poolMode?: string | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The maximum number of seconds queries are allowed to spend waiting for execution. If the query is not assigned to a server during that time, the client is disconnected. 0 disables.
+     */
+    queryWaitTimeout?: string | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The maximum number of seconds a server is allowed to be idle before it is disconnected. 0 disables.
+     */
+    serverIdleTimeout?: string | null;
+    /**
+     * Optional. Deprecated. Use 'flags' instead. The list of users that are allowed to connect to the MCP stats console. The users must exist in the database.
+     */
+    statsUsers?: string[] | null;
   }
   /**
    * ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster.
@@ -716,20 +773,20 @@ export namespace alloydb_v1beta {
     uri?: string | null;
   }
   /**
-   * Cluster level configuration parameters related to the Gemini in Databases add-on.
+   * Deprecated and unused. This field will be removed in the near future.
    */
   export interface Schema$GeminiClusterConfig {
     /**
-     * Output only. Whether the Gemini in Databases add-on is enabled for the cluster. It will be true only if the add-on has been enabled for the billing account corresponding to the cluster. Its status is toggled from the Admin Control Center (ACC) and cannot be toggled using AlloyDB's APIs.
+     * Output only. Deprecated and unused. This field will be removed in the near future.
      */
     entitled?: boolean | null;
   }
   /**
-   * Instance level configuration parameters related to the Gemini in Databases add-on.
+   * Deprecated and unused. This field will be removed in the near future.
    */
   export interface Schema$GeminiInstanceConfig {
     /**
-     * Output only. Whether the Gemini in Databases add-on is enabled for the instance. It will be true only if the add-on has been enabled for the billing account corresponding to the instance. Its status is toggled from the Admin Control Center (ACC) and cannot be toggled using AlloyDB's APIs.
+     * Output only. Deprecated and unused. This field will be removed in the near future.
      */
     entitled?: boolean | null;
   }
@@ -868,6 +925,10 @@ export namespace alloydb_v1beta {
      */
     clientConnectionConfig?: Schema$ClientConnectionConfig;
     /**
+     * Optional. The configuration for Managed Connection Pool (MCP).
+     */
+    connectionPoolConfig?: Schema$ConnectionPoolConfig;
+    /**
      * Output only. Create time stamp
      */
     createTime?: string | null;
@@ -896,7 +957,7 @@ export namespace alloydb_v1beta {
      */
     gceZone?: string | null;
     /**
-     * Optional. Configuration parameters related to the Gemini in Databases add-on.
+     * Optional. Deprecated and unused. This field will be removed in the near future.
      */
     geminiConfig?: Schema$GeminiInstanceConfig;
     /**
@@ -1362,7 +1423,7 @@ export namespace alloydb_v1beta {
      */
     consumerNetwork?: string | null;
     /**
-     * Output only. The status of the service connection policy.
+     * Output only. The status of the service connection policy. Possible values: "STATE_UNSPECIFIED" - Default state, when Connection Map is created initially. "VALID" - Set when policy and map configuration is valid, and their matching can lead to allowing creation of PSC Connections subject to other constraints like connections limit. "CONNECTION_POLICY_MISSING" - No Service Connection Policy found for this network and Service Class "POLICY_LIMIT_REACHED" - Service Connection Policy limit reached for this network and Service Class "CONSUMER_INSTANCE_PROJECT_NOT_ALLOWLISTED" - The consumer instance project is not in AllowedGoogleProducersResourceHierarchyLevels of the matching ServiceConnectionPolicy.
      */
     consumerNetworkStatus?: string | null;
     /**
@@ -1374,7 +1435,7 @@ export namespace alloydb_v1beta {
      */
     ipAddress?: string | null;
     /**
-     * Output only. The status of the PSC service automation connection.
+     * Output only. The status of the PSC service automation connection. Possible values: "STATE_UNSPECIFIED" - An invalid state as the default case. "ACTIVE" - The connection has been created successfully. "FAILED" - The connection is not functional since some resources on the connection fail to be created. "CREATING" - The connection is being created. "DELETING" - The connection is being deleted. "CREATE_REPAIRING" - The connection is being repaired to complete creation. "DELETE_REPAIRING" - The connection is being repaired to complete deletion.
      */
     status?: string | null;
   }
@@ -1501,7 +1562,7 @@ export namespace alloydb_v1beta {
     validateOnly?: boolean | null;
   }
   /**
-   * Message for restoring a Cluster from a backup or another cluster at a given point in time.
+   * Message for restoring a Cluster from a backup or another cluster at a given point in time. NEXT_ID: 11
    */
   export interface Schema$RestoreClusterRequest {
     /**
@@ -2596,6 +2657,10 @@ export namespace alloydb_v1beta {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

@@ -187,6 +187,10 @@ export namespace alloydb_v1 {
      */
     clusterUid?: string | null;
     /**
+     * Output only. Timestamp when the resource finished being created.
+     */
+    createCompletionTime?: string | null;
+    /**
      * Output only. Create time stamp
      */
     createTime?: string | null;
@@ -263,7 +267,7 @@ export namespace alloydb_v1 {
      */
     uid?: string | null;
     /**
-     * Output only. Update time stamp
+     * Output only. Update time stamp Users should not infer any meaning from this field. Its value is generally unrelated to the timing of the backup creation operation.
      */
     updateTime?: string | null;
   }
@@ -1329,7 +1333,7 @@ export namespace alloydb_v1 {
      */
     consumerNetwork?: string | null;
     /**
-     * Output only. The status of the service connection policy.
+     * Output only. The status of the service connection policy. Possible values: "STATE_UNSPECIFIED" - Default state, when Connection Map is created initially. "VALID" - Set when policy and map configuration is valid, and their matching can lead to allowing creation of PSC Connections subject to other constraints like connections limit. "CONNECTION_POLICY_MISSING" - No Service Connection Policy found for this network and Service Class "POLICY_LIMIT_REACHED" - Service Connection Policy limit reached for this network and Service Class "CONSUMER_INSTANCE_PROJECT_NOT_ALLOWLISTED" - The consumer instance project is not in AllowedGoogleProducersResourceHierarchyLevels of the matching ServiceConnectionPolicy.
      */
     consumerNetworkStatus?: string | null;
     /**
@@ -1341,7 +1345,7 @@ export namespace alloydb_v1 {
      */
     ipAddress?: string | null;
     /**
-     * Output only. The status of the PSC service automation connection.
+     * Output only. The status of the PSC service automation connection. Possible values: "STATE_UNSPECIFIED" - An invalid state as the default case. "ACTIVE" - The connection has been created successfully. "FAILED" - The connection is not functional since some resources on the connection fail to be created. "CREATING" - The connection is being created. "DELETING" - The connection is being deleted. "CREATE_REPAIRING" - The connection is being repaired to complete creation. "DELETE_REPAIRING" - The connection is being repaired to complete deletion.
      */
     status?: string | null;
   }
@@ -1468,7 +1472,7 @@ export namespace alloydb_v1 {
     validateOnly?: boolean | null;
   }
   /**
-   * Message for restoring a Cluster from a backup or another cluster at a given point in time.
+   * Message for restoring a Cluster from a backup or another cluster at a given point in time. NEXT_ID: 11
    */
   export interface Schema$RestoreClusterRequest {
     /**
@@ -2554,6 +2558,10 @@ export namespace alloydb_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
