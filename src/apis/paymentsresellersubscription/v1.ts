@@ -563,6 +563,19 @@ export namespace paymentsresellersubscription_v1 {
     regionCode?: string | null;
   }
   /**
+   * Request to resume a suspended subscription.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionRequest {}
+  /**
+   * Response that contains the resumed subscription.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse {
+    /**
+     * The resumed subscription resource.
+     */
+    subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+  }
+  /**
    * A description of what time period or moment in time the product or service is being delivered over.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod {
@@ -786,6 +799,19 @@ export namespace paymentsresellersubscription_v1 {
      * Required. The previous subscription id to be replaced. This is not the full resource name, use the subscription_id segment only.
      */
     previousSubscriptionId?: string | null;
+  }
+  /**
+   * Request to suspend a subscription.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionRequest {}
+  /**
+   * Response that contains the suspended subscription.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse {
+    /**
+     * The suspended subscription resource.
+     */
+    subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
   }
   /**
    * Request to revoke a cancellation request.
@@ -1836,6 +1862,201 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
+     * Resumes a suspended subscription. The new billing cycle will start at the time of the request. It should be called directly by the partner using service accounts.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resume(
+      params: Params$Resource$Partners$Subscriptions$Resume,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resume(
+      params?: Params$Resource$Partners$Subscriptions$Resume,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>;
+    resume(
+      params: Params$Resource$Partners$Subscriptions$Resume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resume(
+      params: Params$Resource$Partners$Subscriptions$Resume,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+    ): void;
+    resume(
+      params: Params$Resource$Partners$Subscriptions$Resume,
+      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+    ): void;
+    resume(
+      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+    ): void;
+    resume(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Subscriptions$Resume
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Subscriptions$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Subscriptions$Resume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://paymentsresellersubscription.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Suspends a subscription. Contract terms may dictate if a prorated refund will be issued upon suspension. It should be called directly by the partner using service accounts.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suspend(
+      params: Params$Resource$Partners$Subscriptions$Suspend,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suspend(
+      params?: Params$Resource$Partners$Subscriptions$Suspend,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>;
+    suspend(
+      params: Params$Resource$Partners$Subscriptions$Suspend,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suspend(
+      params: Params$Resource$Partners$Subscriptions$Suspend,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+    ): void;
+    suspend(
+      params: Params$Resource$Partners$Subscriptions$Suspend,
+      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+    ): void;
+    suspend(
+      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+    ): void;
+    suspend(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Subscriptions$Suspend
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Subscriptions$Suspend;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Subscriptions$Suspend;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://paymentsresellersubscription.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:suspend').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Currently, it is used by **Google One, Play Pass** partners. Revokes the pending cancellation of a subscription, which is currently in `STATE_CANCEL_AT_END_OF_CYCLE` state. If the subscription is already cancelled, the request will fail. It should be called directly by the partner using service accounts.
      *
      * @param params - Parameters for request
@@ -2009,6 +2230,30 @@ export namespace paymentsresellersubscription_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+  }
+  export interface Params$Resource$Partners$Subscriptions$Resume
+    extends StandardParameters {
+    /**
+     * Required. The name of the subscription resource to be resumed. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionRequest;
+  }
+  export interface Params$Resource$Partners$Subscriptions$Suspend
+    extends StandardParameters {
+    /**
+     * Required. The name of the subscription resource to be suspended. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionRequest;
   }
   export interface Params$Resource$Partners$Subscriptions$Undocancel
     extends StandardParameters {
