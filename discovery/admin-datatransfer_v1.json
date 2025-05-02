@@ -17,7 +17,7 @@
   "canonicalName": "DataTransfer",
   "description": "Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/admin-sdk/",
+  "documentationLink": "https://developers.google.com/workspace/admin/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -272,7 +272,7 @@
       }
     }
   },
-  "revision": "20221205",
+  "revision": "20250421",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Application": {
