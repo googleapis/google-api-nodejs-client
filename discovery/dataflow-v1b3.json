@@ -2208,7 +2208,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250421",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -4763,6 +4763,10 @@
       "description": "Describes the state of a metric.",
       "id": "MetricUpdate",
       "properties": {
+        "boundedTrie": {
+          "description": "Worker-computed aggregate value for the \"Trie\" aggregation kind. The only possible value type is a BoundedTrieNode. Introduced this field to avoid breaking older SDKs when Dataflow service starts to populate the `bounded_trie` field.",
+          "type": "any"
+        },
         "cumulative": {
           "description": "True if this metric is reported as the total cumulative aggregate value accumulated since the worker started working on this WorkItem. By default this is false, indicating that this metric is reported as a delta that is not associated with any WorkItem.",
           "type": "boolean"
