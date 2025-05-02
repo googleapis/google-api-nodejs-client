@@ -725,7 +725,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     groupId?: string | null;
     /**
-     * Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.
+     * Optional. Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.
      */
     path?: string | null;
     /**
@@ -3622,7 +3622,7 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$Subject {
     /**
-     * "": "" Algorithms can be e.g. sha256, sha512 See https://github.com/in-toto/attestation/blob/main/spec/field_types.md#DigestSet
+     * "": "" Algorithms can be e.g. sha256, sha512 See https://github.com/in-toto/attestation/blob/main/spec/v1/digest_set.md.
      */
     digest?: {[key: string]: string} | null;
     /**
