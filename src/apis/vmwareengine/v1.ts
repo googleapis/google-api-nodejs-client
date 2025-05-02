@@ -312,6 +312,10 @@ export namespace vmwareengine_v1 {
    */
   export interface Schema$Constraints {
     /**
+     * Output only. Output Only. A list of intervals in which maintenance windows are not allowed. Any time window that overlaps with any of these intervals will be considered invalid.
+     */
+    disallowedIntervals?: Schema$WeeklyTimeInterval[];
+    /**
      * Output only. Minimum number of hours must be allotted for the upgrade activities for each selected day. This is a minimum; the upgrade schedule can allot more hours for the given day.
      */
     minHoursDay?: number | null;
@@ -1929,6 +1933,27 @@ export namespace vmwareengine_v1 {
      */
     type?: string | null;
   }
+  /**
+   * Represents a time interval, spanning across days of the week. Until local timezones are supported, this interval is in UTC.
+   */
+  export interface Schema$WeeklyTimeInterval {
+    /**
+     * Output only. The day on which the interval ends. Can be same as start day.
+     */
+    endDay?: string | null;
+    /**
+     * Output only. The time on the end day at which the interval ends.
+     */
+    endTime?: Schema$TimeOfDay;
+    /**
+     * Output only. The day on which the interval starts.
+     */
+    startDay?: string | null;
+    /**
+     * Output only. The time on the start day at which the interval starts.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -2261,6 +2286,10 @@ export namespace vmwareengine_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
