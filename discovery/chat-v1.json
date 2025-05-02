@@ -3470,6 +3470,9 @@
           "description": "For multiselect menus, a text description or label that's displayed below the item's `text` field.",
           "type": "string"
         },
+        "materialIcon": {
+          "$ref": "GoogleAppsCardV1MaterialIcon"
+        },
         "selected": {
           "description": "Whether the item is selected by default. If the selection input only accepts one value (such as for radio buttons or a dropdown menu), only set this field for one item.",
           "type": "boolean"
