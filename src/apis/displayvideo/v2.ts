@@ -184,11 +184,11 @@ export namespace displayvideo_v2 {
     minimumVolume?: string | null;
   }
   /**
-   * Details of Adloox brand safety settings.
+   * Details of Scope3 (previously known as Adloox) brand safety settings.
    */
   export interface Schema$Adloox {
     /**
-     * Adloox categories to exclude.
+     * Scope3 categories to exclude.
      */
     excludedAdlooxCategories?: string[] | null;
   }
@@ -1675,7 +1675,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$ConversionCountingConfig {
     /**
-     * The Floodlight activity configs used to track conversions. The number of conversions counted is the sum of all of the conversions counted by all of the Floodlight activity IDs specified in this field. *Warning*: Starting **April 1, 2025**, this field will no longer be writable while a custom bidding algorithm is assigned to the line item. If you set this field and assign a custom bidding algorithm in the same request, the floodlight activities must match the ones used by the custom bidding algorithm. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * The Floodlight activity configs used to track conversions. The number of conversions counted is the sum of all of the conversions counted by all of the Floodlight activity IDs specified in this field. This field can't be updated if a custom bidding algorithm is assigned to the line item. If you set this field and assign a custom bidding algorithm in the same request, the floodlight activities must match the ones used by the custom bidding algorithm.
      */
     floodlightActivityConfigs?: Schema$TrackingFloodlightActivityConfig[];
     /**
@@ -3478,7 +3478,7 @@ export namespace displayvideo_v2 {
      */
     campaignId?: string | null;
     /**
-     * The conversion tracking setting of the line item. *Warning*: Starting **April 1, 2025**, the floodlight_activity_configs field will no longer be writable while a custom bidding algorithm is assigned to the line item. If you set this field and assign a custom bidding algorithm in the same request, the floodlight activities must match the ones used by the custom bidding algorithm. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * The conversion tracking setting of the line item.
      */
     conversionCounting?: Schema$ConversionCountingConfig;
     /**
@@ -4086,7 +4086,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$MaximizeSpendBidStrategy {
     /**
-     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. *Warning*: Starting **April 1, 2025**, assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. Assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error.
      */
     customBiddingAlgorithmId?: string | null;
     /**
@@ -4555,7 +4555,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$PerformanceGoalBidStrategy {
     /**
-     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. *Warning*: Starting **April 1, 2025**, assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. Assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error.
      */
     customBiddingAlgorithmId?: string | null;
     /**
@@ -4871,7 +4871,7 @@ export namespace displayvideo_v2 {
     version?: string | null;
   }
   /**
-   * Type for the response returned by [SdfDownloadTaskService.CreateSdfDownloadTask].
+   * Type for the response returned by SdfDownloadTaskService.CreateSdfDownloadTask.
    */
   export interface Schema$SdfDownloadTask {
     /**
@@ -4880,7 +4880,7 @@ export namespace displayvideo_v2 {
     resourceName?: string | null;
   }
   /**
-   * Type for the metadata returned by [SdfDownloadTaskService.CreateSdfDownloadTask].
+   * Type for the metadata returned by SdfDownloadTaskService.CreateSdfDownloadTask.
    */
   export interface Schema$SdfDownloadTaskMetadata {
     /**
@@ -5232,7 +5232,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$ThirdPartyVerifierAssignedTargetingOptionDetails {
     /**
-     * Third party brand verifier -- Adloox.
+     * Third party brand verifier -- Scope3 (previously known as Adloox).
      */
     adloox?: Schema$Adloox;
     /**
@@ -15763,7 +15763,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful. *Warning*: Starting **April 1, 2025**, requests updating custom bidding algorithms that are assigned to line items will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful. Requests updating a custom bidding algorithm assigned to a line item will return an error.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16039,7 +16039,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Creates a new custom bidding script. Returns the newly created script if successful. *Warning*: Starting **April 1, 2025**, requests updating custom bidding algorithms that are assigned to line items will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * Creates a new custom bidding script. Returns the newly created script if successful. Requests creating a custom bidding script under an algorithm assigned to a line item will return an error.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21488,7 +21488,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Creates an SDF Download Task. Returns an Operation. An SDF Download Task is a long-running, asynchronous operation. The metadata type of this operation is SdfDownloadTaskMetadata. If the request is successful, the response type of the operation is SdfDownloadTask. The response will not include the download files, which must be retrieved with media.download. The state of operation can be retrieved with sdfdownloadtask.operations.get. Any errors can be found in the error.message. Note that error.details is expected to be empty.
+     * Creates an SDF Download Task. Returns an Operation. An SDF Download Task is a long-running, asynchronous operation. The metadata type of this operation is SdfDownloadTaskMetadata. If the request is successful, the response type of the operation is SdfDownloadTask. The response will not include the download files, which must be retrieved with media.download. The state of operation can be retrieved with `sdfdownloadtasks.operations.get`. Any errors can be found in the error.message. Note that error.details is expected to be empty.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

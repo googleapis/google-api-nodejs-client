@@ -690,7 +690,8 @@
                             "TARGETING_TYPE_CONTENT_GENRE",
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION"
+                            "TARGETING_TYPE_SESSION_POSITION",
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -741,7 +742,8 @@
                             "Target ads to a specific content genre.",
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                            "Filter website content by content themes (for example, religion)."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -856,7 +858,8 @@
                             "TARGETING_TYPE_CONTENT_GENRE",
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION"
+                            "TARGETING_TYPE_SESSION_POSITION",
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -907,7 +910,8 @@
                             "Target ads to a specific content genre.",
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                            "Filter website content by content themes (for example, religion)."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -1319,7 +1323,8 @@
                             "TARGETING_TYPE_CONTENT_GENRE",
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION"
+                            "TARGETING_TYPE_SESSION_POSITION",
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -1370,7 +1375,8 @@
                             "Target ads to a specific content genre.",
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                            "Filter website content by content themes (for example, religion)."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -1485,7 +1491,8 @@
                             "TARGETING_TYPE_CONTENT_GENRE",
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION"
+                            "TARGETING_TYPE_SESSION_POSITION",
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -1536,7 +1543,8 @@
                             "Target ads to a specific content genre.",
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                            "Filter website content by content themes (for example, religion)."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2499,7 +2507,8 @@
                             "TARGETING_TYPE_CONTENT_GENRE",
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION"
+                            "TARGETING_TYPE_SESSION_POSITION",
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2550,7 +2559,8 @@
                             "Target ads to a specific content genre.",
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                            "Filter website content by content themes (for example, religion)."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2655,7 +2665,8 @@
                             "TARGETING_TYPE_CONTENT_GENRE",
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION"
+                            "TARGETING_TYPE_SESSION_POSITION",
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2706,7 +2717,8 @@
                             "Target ads to a specific content genre.",
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                            "Filter website content by content themes (for example, religion)."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2808,7 +2820,8 @@
                             "TARGETING_TYPE_CONTENT_GENRE",
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION"
+                            "TARGETING_TYPE_SESSION_POSITION",
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2859,7 +2872,8 @@
                             "Target ads to a specific content genre.",
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                            "Filter website content by content themes (for example, religion)."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2974,7 +2988,8 @@
                             "TARGETING_TYPE_CONTENT_GENRE",
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION"
+                            "TARGETING_TYPE_SESSION_POSITION",
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3025,7 +3040,8 @@
                             "Target ads to a specific content genre.",
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                            "Filter website content by content themes (for example, religion)."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3596,7 +3612,8 @@
                             "TARGETING_TYPE_CONTENT_GENRE",
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION"
+                            "TARGETING_TYPE_SESSION_POSITION",
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3647,7 +3664,8 @@
                             "Target ads to a specific content genre.",
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                            "Filter website content by content themes (for example, religion)."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3752,7 +3770,8 @@
                             "TARGETING_TYPE_CONTENT_GENRE",
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION"
+                            "TARGETING_TYPE_SESSION_POSITION",
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3803,7 +3822,8 @@
                             "Target ads to a specific content genre.",
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                            "Filter website content by content themes (for example, religion)."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3905,7 +3925,8 @@
                             "TARGETING_TYPE_CONTENT_GENRE",
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION"
+                            "TARGETING_TYPE_SESSION_POSITION",
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3956,7 +3977,8 @@
                             "Target ads to a specific content genre.",
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                            "Filter website content by content themes (for example, religion)."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -4071,7 +4093,8 @@
                             "TARGETING_TYPE_CONTENT_GENRE",
                             "TARGETING_TYPE_YOUTUBE_VIDEO",
                             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                            "TARGETING_TYPE_SESSION_POSITION"
+                            "TARGETING_TYPE_SESSION_POSITION",
+                            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -4122,7 +4145,8 @@
                             "Target ads to a specific content genre.",
                             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                            "Filter website content by content themes (for example, religion)."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -4948,7 +4972,8 @@
                         "TARGETING_TYPE_CONTENT_GENRE",
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                        "TARGETING_TYPE_SESSION_POSITION"
+                        "TARGETING_TYPE_SESSION_POSITION",
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4999,7 +5024,8 @@
                         "Target ads to a specific content genre.",
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                        "Filter website content by content themes (for example, religion)."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -5095,7 +5121,8 @@
                         "TARGETING_TYPE_CONTENT_GENRE",
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                        "TARGETING_TYPE_SESSION_POSITION"
+                        "TARGETING_TYPE_SESSION_POSITION",
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -5146,7 +5173,8 @@
                         "Target ads to a specific content genre.",
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                        "Filter website content by content themes (for example, religion)."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -5239,7 +5267,8 @@
                         "TARGETING_TYPE_CONTENT_GENRE",
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                        "TARGETING_TYPE_SESSION_POSITION"
+                        "TARGETING_TYPE_SESSION_POSITION",
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -5290,7 +5319,8 @@
                         "Target ads to a specific content genre.",
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                        "Filter website content by content themes (for example, religion)."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -5396,7 +5426,8 @@
                         "TARGETING_TYPE_CONTENT_GENRE",
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                        "TARGETING_TYPE_SESSION_POSITION"
+                        "TARGETING_TYPE_SESSION_POSITION",
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -5447,7 +5478,8 @@
                         "Target ads to a specific content genre.",
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                        "Filter website content by content themes (for example, religion)."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -5668,7 +5700,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful. *Warning*: Starting **April 1, 2025**, requests updating custom bidding algorithms that are assigned to line items will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).",
+          "description": "Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful. Requests updating a custom bidding algorithm assigned to a line item will return an error.",
           "flatPath": "v3/customBiddingAlgorithms/{customBiddingAlgorithmsId}",
           "httpMethod": "PATCH",
           "id": "displayvideo.customBiddingAlgorithms.patch",
@@ -5783,7 +5815,7 @@
         "rules": {
           "methods": {
             "create": {
-              "description": "Creates a new rules resource. Returns the newly created rules resource if successful. *Warning*: Starting **April 1, 2025**, requests updating custom bidding algorithms that are assigned to line items will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).",
+              "description": "Creates a new rules resource. Returns the newly created rules resource if successful. Requests creating a custom bidding rules resource under an algorithm assigned to a line item will return an error.",
               "flatPath": "v3/customBiddingAlgorithms/{customBiddingAlgorithmsId}/rules",
               "httpMethod": "POST",
               "id": "displayvideo.customBiddingAlgorithms.rules.create",
@@ -5929,7 +5961,7 @@
         "scripts": {
           "methods": {
             "create": {
-              "description": "Creates a new custom bidding script. Returns the newly created script if successful. *Warning*: Starting **April 1, 2025**, requests updating custom bidding algorithms that are assigned to line items will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).",
+              "description": "Creates a new custom bidding script. Returns the newly created script if successful. Requests creating a custom bidding script under an algorithm assigned to a line item will return an error.",
               "flatPath": "v3/customBiddingAlgorithms/{customBiddingAlgorithmsId}/scripts",
               "httpMethod": "POST",
               "id": "displayvideo.customBiddingAlgorithms.scripts.create",
@@ -8038,7 +8070,8 @@
                         "TARGETING_TYPE_CONTENT_GENRE",
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                        "TARGETING_TYPE_SESSION_POSITION"
+                        "TARGETING_TYPE_SESSION_POSITION",
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -8089,7 +8122,8 @@
                         "Target ads to a specific content genre.",
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                        "Filter website content by content themes (for example, religion)."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -8185,7 +8219,8 @@
                         "TARGETING_TYPE_CONTENT_GENRE",
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                        "TARGETING_TYPE_SESSION_POSITION"
+                        "TARGETING_TYPE_SESSION_POSITION",
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -8236,7 +8271,8 @@
                         "Target ads to a specific content genre.",
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                        "Filter website content by content themes (for example, religion)."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -8329,7 +8365,8 @@
                         "TARGETING_TYPE_CONTENT_GENRE",
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                        "TARGETING_TYPE_SESSION_POSITION"
+                        "TARGETING_TYPE_SESSION_POSITION",
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -8380,7 +8417,8 @@
                         "Target ads to a specific content genre.",
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                        "Filter website content by content themes (for example, religion)."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -8486,7 +8524,8 @@
                         "TARGETING_TYPE_CONTENT_GENRE",
                         "TARGETING_TYPE_YOUTUBE_VIDEO",
                         "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                        "TARGETING_TYPE_SESSION_POSITION"
+                        "TARGETING_TYPE_SESSION_POSITION",
+                        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -8537,7 +8576,8 @@
                         "Target ads to a specific content genre.",
                         "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                         "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                        "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                        "Filter website content by content themes (for example, religion)."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -8562,7 +8602,7 @@
     "sdfdownloadtasks": {
       "methods": {
         "create": {
-          "description": "Creates an SDF Download Task. Returns an Operation. An SDF Download Task is a long-running, asynchronous operation. The metadata type of this operation is SdfDownloadTaskMetadata. If the request is successful, the response type of the operation is SdfDownloadTask. The response will not include the download files, which must be retrieved with media.download. The state of operation can be retrieved with sdfdownloadtask.operations.get. Any errors can be found in the error.message. Note that error.details is expected to be empty.",
+          "description": "Creates an SDF Download Task. Returns an Operation. An SDF Download Task is a long-running, asynchronous operation. The metadata type of this operation is SdfDownloadTaskMetadata. If the request is successful, the response type of the operation is SdfDownloadTask. The response will not include the download files, which must be retrieved with media.download. The state of operation can be retrieved with `sdfdownloadtasks.operations.get`. Any errors can be found in the error.message. Note that error.details is expected to be empty.",
           "flatPath": "v3/sdfdownloadtasks",
           "httpMethod": "POST",
           "id": "displayvideo.sdfdownloadtasks.create",
@@ -8596,40 +8636,6 @@
                   "description": "The name of the operation resource.",
                   "location": "path",
                   "pattern": "^sdfdownloadtasks/operations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v3/{+name}",
-              "response": {
-                "$ref": "Operation"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/display-video",
-                "https://www.googleapis.com/auth/doubleclickbidmanager"
-              ]
-            }
-          }
-        }
-      }
-    },
-    "sdfuploadtasks": {
-      "resources": {
-        "operations": {
-          "methods": {
-            "get": {
-              "description": "Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.",
-              "flatPath": "v3/sdfuploadtasks/operations/{operationsId}",
-              "httpMethod": "GET",
-              "id": "displayvideo.sdfuploadtasks.operations.get",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "The name of the operation resource.",
-                  "location": "path",
-                  "pattern": "^sdfuploadtasks/operations/[^/]+$",
                   "required": true,
                   "type": "string"
                 }
@@ -8725,7 +8731,8 @@
                     "TARGETING_TYPE_CONTENT_GENRE",
                     "TARGETING_TYPE_YOUTUBE_VIDEO",
                     "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                    "TARGETING_TYPE_SESSION_POSITION"
+                    "TARGETING_TYPE_SESSION_POSITION",
+                    "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -8776,7 +8783,8 @@
                     "Target ads to a specific content genre.",
                     "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                     "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                    "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                    "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                    "Filter website content by content themes (for example, religion)."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -8879,7 +8887,8 @@
                     "TARGETING_TYPE_CONTENT_GENRE",
                     "TARGETING_TYPE_YOUTUBE_VIDEO",
                     "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                    "TARGETING_TYPE_SESSION_POSITION"
+                    "TARGETING_TYPE_SESSION_POSITION",
+                    "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -8930,7 +8939,8 @@
                     "Target ads to a specific content genre.",
                     "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                     "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                    "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                    "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                    "Filter website content by content themes (for example, religion)."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -9006,7 +9016,8 @@
                     "TARGETING_TYPE_CONTENT_GENRE",
                     "TARGETING_TYPE_YOUTUBE_VIDEO",
                     "TARGETING_TYPE_YOUTUBE_CHANNEL",
-                    "TARGETING_TYPE_SESSION_POSITION"
+                    "TARGETING_TYPE_SESSION_POSITION",
+                    "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -9057,7 +9068,8 @@
                     "Target ads to a specific content genre.",
                     "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
                     "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-                    "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+                    "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+                    "Filter website content by content themes (for example, religion)."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -9256,7 +9268,7 @@
       }
     }
   },
-  "revision": "20250313",
+  "revision": "20250424",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -9597,7 +9609,7 @@
       "type": "object"
     },
     "Adloox": {
-      "description": "Details of Adloox brand safety settings.",
+      "description": "Details of Scope3 (previously known as Adloox) brand safety settings.",
       "id": "Adloox",
       "properties": {
         "adultExplicitSexualContent": {
@@ -9711,7 +9723,7 @@
           "type": "string"
         },
         "excludedAdlooxCategories": {
-          "description": "Adloox categories to exclude.",
+          "description": "Scope3 categories to exclude.",
           "items": {
             "enum": [
               "ADLOOX_UNSPECIFIED",
@@ -9725,7 +9737,7 @@
               "FRAUD"
             ],
             "enumDescriptions": [
-              "Default value when a Adloox category is not specified or is unknown in this version.",
+              "Default value when a Scope3 category is not specified or is unknown in this version.",
               "Adult content (hard).",
               "Adult content (soft).",
               "Illegal content.",
@@ -9740,14 +9752,14 @@
           "type": "array"
         },
         "excludedFraudIvtMfaCategories": {
-          "description": "Optional. Adloox's fraud IVT MFA categories to exclude.",
+          "description": "Optional. Scope3's fraud IVT MFA categories to exclude.",
           "items": {
             "enum": [
               "FRAUD_IVT_MFA_CATEGORY_UNSPECIFIED",
               "FRAUD_IVT_MFA"
             ],
             "enumDescriptions": [
-              "Default value when a Adloox Fraud, IVT, MFA category is not specified or is unknown in this version.",
+              "Default value when a Scope3 Fraud, IVT, MFA category is not specified or is unknown in this version.",
               "FRAUD, IVT, MFA."
             ],
             "type": "string"
@@ -10203,9 +10215,18 @@
       "description": "Rule-based algorithm.",
       "id": "AlgorithmRules",
       "properties": {
+        "attributionModelId": {
+          "description": "Attribution model for the algorithm.",
+          "format": "int64",
+          "type": "string"
+        },
         "impressionSignalRuleset": {
           "$ref": "AlgorithmRulesRuleset",
           "description": "Rules for the impression signals."
+        },
+        "postImpressionSignalRuleset": {
+          "$ref": "AlgorithmRulesRuleset",
+          "description": "Rules for the post-impression signals."
         }
       },
       "type": "object"
@@ -10356,6 +10377,8 @@
             "EXCHANGE_TOPON_GBID",
             "EXCHANGE_NETFLIX",
             "EXCHANGE_CORE",
+            "EXCHANGE_COMMERCE_GRID",
+            "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
@@ -10443,6 +10466,8 @@
             "TopOn.",
             "Netflix.",
             "Core.",
+            "Commerce Grid.",
+            "Spotify.",
             "Tubi."
           ],
           "type": "string"
@@ -10470,6 +10495,70 @@
         },
         "stringValue": {
           "description": "String value.",
+          "type": "string"
+        },
+        "videoPlayerSizeValue": {
+          "description": "Video player size value.",
+          "enum": [
+            "VIDEO_PLAYER_SIZE_UNSPECIFIED",
+            "VIDEO_PLAYER_SIZE_SMALL",
+            "VIDEO_PLAYER_SIZE_LARGE",
+            "VIDEO_PLAYER_SIZE_HD",
+            "VIDEO_PLAYER_SIZE_UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "Video player size is not specified in this version. This enum is a place holder for a default value and does not represent a real video player size.",
+            "The dimensions of the video player are less than 400×300 (desktop), or up to 20% of screen covered (mobile).",
+            "The dimensions of the video player are between 400x300 and 1280x720 pixels (desktop), or 20% to 90% of the screen covered (mobile).",
+            "The dimensions of the video player are 1280×720 or greater (desktop), or over 90% of the screen covered (mobile).",
+            "The dimensions of the video player are unknown."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AlgorithmRulesFloodlightActivityConversionSignal": {
+      "description": "The rule to score impressions based on Floodlight conversion events.",
+      "id": "AlgorithmRulesFloodlightActivityConversionSignal",
+      "properties": {
+        "conversionCounting": {
+          "description": "Required. The type of conversions to be used in impression value computation, for example, post-click conversions.",
+          "enum": [
+            "CONVERSION_COUNTING_UNSPECIFIED",
+            "ALL_CONVERSIONS",
+            "POST_CLICK",
+            "POST_VIEW"
+          ],
+          "enumDescriptions": [
+            "The action is not specified.",
+            "All conversions.",
+            "Post-click conversions.",
+            "Post-view conversions."
+          ],
+          "type": "string"
+        },
+        "countingMethod": {
+          "description": "Required. The way to acquire value from the floodlight activity, for example, count of the conversion.",
+          "enum": [
+            "COUNTING_METHOD_UNSPECIFIED",
+            "CONVERSIONS_COUNT",
+            "SALES_QUANTITY",
+            "SALES_VALUE",
+            "UNIQUE_COUNT"
+          ],
+          "enumDescriptions": [
+            "The action is not specified.",
+            "The count of conversions associated with the conversion activity.",
+            "The number of sales items associated with the conversion activity.",
+            "The sales revenue associated with the conversion activity.",
+            "The count of unique conversions associated with the conversion activity. Only one conversion can be counted per impression."
+          ],
+          "type": "string"
+        },
+        "floodlightActivityId": {
+          "description": "Required. Id of the floodlight activity.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -10550,6 +10639,40 @@
       "description": "Signal used to evaluate rules.",
       "id": "AlgorithmRulesSignal",
       "properties": {
+        "activeViewSignal": {
+          "description": "Signal based on active views.",
+          "enum": [
+            "ACTIVE_VIEW_SIGNAL_UNSPECIFIED",
+            "ACTIVE_VIEW_VIEWED",
+            "AUDIBLE",
+            "VIDEO_COMPLETED",
+            "TIME_ON_SCREEN",
+            "VIDEO_PLAYER_SIZE",
+            "COMPLETED_IN_VIEW_AUDIBLE"
+          ],
+          "enumDescriptions": [
+            "Unknown signal.",
+            "Whether Active View detects that your ad has been viewed. Value is stored in the boolValue field of the comparison value.",
+            "Whether Active View detects that your ad was audible. Value is stored in the boolValue field of the comparison value.",
+            "Whether the video was completed. Value is stored in the boolValue field of the comparison value.",
+            "The time the ad was on screen in seconds. Value is stored in the int64Value field of the comparison value.",
+            "The size of the video player displaying the ad. Value is stored in the videoPlayerSizeValue field of the comparison value.",
+            "Whether the ad was completed in view and audible. Value is stored in the boolValue field of the comparison value."
+          ],
+          "type": "string"
+        },
+        "clickSignal": {
+          "description": "Signal based on clicks.",
+          "enum": [
+            "CLICK_SIGNAL_UNSPECIFIED",
+            "CLICK"
+          ],
+          "enumDescriptions": [
+            "Unknown signal.",
+            "Whether the ad was clicked. Value is stored in the boolValue field of the comparison value."
+          ],
+          "type": "string"
+        },
         "impressionSignal": {
           "description": "Signal based on impressions.",
           "enum": [
@@ -10624,6 +10747,32 @@
       "description": "Adjusted value of the signal used for rule evaluation.",
       "id": "AlgorithmRulesSignalValue",
       "properties": {
+        "activeViewSignal": {
+          "description": "Signal based on active views. Only `TIME_ON_SCREEN` is supported.",
+          "enum": [
+            "ACTIVE_VIEW_SIGNAL_UNSPECIFIED",
+            "ACTIVE_VIEW_VIEWED",
+            "AUDIBLE",
+            "VIDEO_COMPLETED",
+            "TIME_ON_SCREEN",
+            "VIDEO_PLAYER_SIZE",
+            "COMPLETED_IN_VIEW_AUDIBLE"
+          ],
+          "enumDescriptions": [
+            "Unknown signal.",
+            "Whether Active View detects that your ad has been viewed. Value is stored in the boolValue field of the comparison value.",
+            "Whether Active View detects that your ad was audible. Value is stored in the boolValue field of the comparison value.",
+            "Whether the video was completed. Value is stored in the boolValue field of the comparison value.",
+            "The time the ad was on screen in seconds. Value is stored in the int64Value field of the comparison value.",
+            "The size of the video player displaying the ad. Value is stored in the videoPlayerSizeValue field of the comparison value.",
+            "Whether the ad was completed in view and audible. Value is stored in the boolValue field of the comparison value."
+          ],
+          "type": "string"
+        },
+        "floodlightActivityConversionSignal": {
+          "$ref": "AlgorithmRulesFloodlightActivityConversionSignal",
+          "description": "Signal based on floodlight conversion events."
+        },
         "number": {
           "description": "Value to use as result.",
           "format": "double",
@@ -10919,6 +11068,10 @@
           "$ref": "ContentStreamTypeAssignedTargetingOptionDetails",
           "description": "Content duration details. This field will be populated when the TargetingType is `TARGETING_TYPE_CONTENT_STREAM_TYPE`."
         },
+        "contentThemeExclusionDetails": {
+          "$ref": "ContentThemeAssignedTargetingOptionDetails",
+          "description": "Content theme details. This field will be populated when the targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`. Content theme are targeting exclusions. Advertiser level content theme exclusions, if set, are always applied in serving (even though they aren't visible in resource settings). Resource settings can exclude content theme in addition to advertiser exclusions."
+        },
         "dayAndTimeDetails": {
           "$ref": "DayAndTimeAssignedTargetingOptionDetails",
           "description": "Day and time details. This field will be populated when the targeting_type is `TARGETING_TYPE_DAY_AND_TIME`."
@@ -11092,7 +11245,8 @@
             "TARGETING_TYPE_CONTENT_GENRE",
             "TARGETING_TYPE_YOUTUBE_VIDEO",
             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-            "TARGETING_TYPE_SESSION_POSITION"
+            "TARGETING_TYPE_SESSION_POSITION",
+            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -11143,7 +11297,8 @@
             "Target ads to a specific content genre.",
             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+            "Filter website content by content themes (for example, religion)."
           ],
           "readOnly": true,
           "type": "string"
@@ -13026,12 +13181,116 @@
       },
       "type": "object"
     },
+    "ContentThemeAssignedTargetingOptionDetails": {
+      "description": "Targeting details for content theme. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`.",
+      "id": "ContentThemeAssignedTargetingOptionDetails",
+      "properties": {
+        "contentTheme": {
+          "description": "Output only. An enum for the DV360 content theme classifier.",
+          "enum": [
+            "CONTENT_THEME_UNSPECIFIED",
+            "CONTENT_THEME_FIGHTING_VIDEO_GAMES",
+            "CONTENT_THEME_MATURE_GAMES",
+            "CONTENT_THEME_NOT_YET_DETERMINED_HEALTH_SOURCES",
+            "CONTENT_THEME_NOT_YET_DETERMINED_NEWS_SOURCES",
+            "CONTENT_THEME_POLITICS",
+            "CONTENT_THEME_RECENT_NEWS",
+            "CONTENT_THEME_RELIGION",
+            "CONTENT_THEME_UNPLEASANT_HEALTH_CONTENT",
+            "CONTENT_THEME_UNPLEASANT_NEWS"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and doesn't specify a DV360 content theme.",
+            "Fighting video games.",
+            "Mature games.",
+            "Not yet determined health sources.",
+            "Not yet determined news sources.",
+            "Politics.",
+            "Recent news.",
+            "Religion.",
+            "Unpleasant health content.",
+            "Unpleasant news."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "excludedContentTheme": {
+          "description": "Required. An enum for the DV360 content theme classified to be EXCLUDED.",
+          "enum": [
+            "CONTENT_THEME_UNSPECIFIED",
+            "CONTENT_THEME_FIGHTING_VIDEO_GAMES",
+            "CONTENT_THEME_MATURE_GAMES",
+            "CONTENT_THEME_NOT_YET_DETERMINED_HEALTH_SOURCES",
+            "CONTENT_THEME_NOT_YET_DETERMINED_NEWS_SOURCES",
+            "CONTENT_THEME_POLITICS",
+            "CONTENT_THEME_RECENT_NEWS",
+            "CONTENT_THEME_RELIGION",
+            "CONTENT_THEME_UNPLEASANT_HEALTH_CONTENT",
+            "CONTENT_THEME_UNPLEASANT_NEWS"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and doesn't specify a DV360 content theme.",
+            "Fighting video games.",
+            "Mature games.",
+            "Not yet determined health sources.",
+            "Not yet determined news sources.",
+            "Politics.",
+            "Recent news.",
+            "Religion.",
+            "Unpleasant health content.",
+            "Unpleasant news."
+          ],
+          "type": "string"
+        },
+        "excludedTargetingOptionId": {
+          "description": "Required. ID of the content theme to be EXCLUDED.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContentThemeTargetingOptionDetails": {
+      "description": "Represents a targetable content theme. This will be populated in the content_theme_details field of the TargetingOption when targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`.",
+      "id": "ContentThemeTargetingOptionDetails",
+      "properties": {
+        "contentTheme": {
+          "description": "Output only. An enum for the DV360 content theme content classifier.",
+          "enum": [
+            "CONTENT_THEME_UNSPECIFIED",
+            "CONTENT_THEME_FIGHTING_VIDEO_GAMES",
+            "CONTENT_THEME_MATURE_GAMES",
+            "CONTENT_THEME_NOT_YET_DETERMINED_HEALTH_SOURCES",
+            "CONTENT_THEME_NOT_YET_DETERMINED_NEWS_SOURCES",
+            "CONTENT_THEME_POLITICS",
+            "CONTENT_THEME_RECENT_NEWS",
+            "CONTENT_THEME_RELIGION",
+            "CONTENT_THEME_UNPLEASANT_HEALTH_CONTENT",
+            "CONTENT_THEME_UNPLEASANT_NEWS"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and doesn't specify a DV360 content theme.",
+            "Fighting video games.",
+            "Mature games.",
+            "Not yet determined health sources.",
+            "Not yet determined news sources.",
+            "Politics.",
+            "Recent news.",
+            "Religion.",
+            "Unpleasant health content.",
+            "Unpleasant news."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConversionCountingConfig": {
       "description": "Settings that control how conversions are counted. All post-click conversions will be counted. A percentage value can be set for post-view conversions counting.",
       "id": "ConversionCountingConfig",
       "properties": {
         "floodlightActivityConfigs": {
-          "description": "The Floodlight activity configs used to track conversions. The number of conversions counted is the sum of all of the conversions counted by all of the Floodlight activity IDs specified in this field. *Warning*: Starting **April 1, 2025**, this field will no longer be writable while a custom bidding algorithm is assigned to the line item. If you set this field and assign a custom bidding algorithm in the same request, the floodlight activities must match the ones used by the custom bidding algorithm. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).",
+          "description": "The Floodlight activity configs used to track conversions. The number of conversions counted is the sum of all of the conversions counted by all of the Floodlight activity IDs specified in this field. This field can't be updated if a custom bidding algorithm is assigned to the line item. If you set this field and assign a custom bidding algorithm in the same request, the floodlight activities must match the ones used by the custom bidding algorithm.",
           "items": {
             "$ref": "TrackingFloodlightActivityConfig"
           },
@@ -13144,7 +13403,8 @@
             "TARGETING_TYPE_CONTENT_GENRE",
             "TARGETING_TYPE_YOUTUBE_VIDEO",
             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-            "TARGETING_TYPE_SESSION_POSITION"
+            "TARGETING_TYPE_SESSION_POSITION",
+            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -13195,7 +13455,8 @@
             "Target ads to a specific content genre.",
             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+            "Filter website content by content themes (for example, religion)."
           ],
           "type": "string"
         }
@@ -13245,7 +13506,8 @@
             "SDF_VERSION_6",
             "SDF_VERSION_7",
             "SDF_VERSION_7_1",
-            "SDF_VERSION_8"
+            "SDF_VERSION_8",
+            "SDF_VERSION_8_1"
           ],
           "enumDeprecated": [
             false,
@@ -13259,6 +13521,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -13279,7 +13542,8 @@
             "SDF version 6",
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
             "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version."
+            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
+            "SDF version 8.1."
           ],
           "type": "string"
         }
@@ -14295,7 +14559,8 @@
             "TARGETING_TYPE_CONTENT_GENRE",
             "TARGETING_TYPE_YOUTUBE_VIDEO",
             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-            "TARGETING_TYPE_SESSION_POSITION"
+            "TARGETING_TYPE_SESSION_POSITION",
+            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -14346,7 +14611,8 @@
             "Target ads to a specific content genre.",
             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+            "Filter website content by content themes (for example, religion)."
           ],
           "type": "string"
         }
@@ -15179,6 +15445,8 @@
             "EXCHANGE_TOPON_GBID",
             "EXCHANGE_NETFLIX",
             "EXCHANGE_CORE",
+            "EXCHANGE_COMMERCE_GRID",
+            "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
@@ -15266,6 +15534,8 @@
             "TopOn.",
             "Netflix.",
             "Core.",
+            "Commerce Grid.",
+            "Spotify.",
             "Tubi."
           ],
           "type": "string"
@@ -15378,6 +15648,8 @@
             "EXCHANGE_TOPON_GBID",
             "EXCHANGE_NETFLIX",
             "EXCHANGE_CORE",
+            "EXCHANGE_COMMERCE_GRID",
+            "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
@@ -15465,6 +15737,8 @@
             "TopOn.",
             "Netflix.",
             "Core.",
+            "Commerce Grid.",
+            "Spotify.",
             "Tubi."
           ],
           "type": "string"
@@ -15578,6 +15852,8 @@
             "EXCHANGE_TOPON_GBID",
             "EXCHANGE_NETFLIX",
             "EXCHANGE_CORE",
+            "EXCHANGE_COMMERCE_GRID",
+            "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
@@ -15665,6 +15941,8 @@
             "TopOn.",
             "Netflix.",
             "Core.",
+            "Commerce Grid.",
+            "Spotify.",
             "Tubi."
           ],
           "type": "string"
@@ -15779,6 +16057,8 @@
             "EXCHANGE_TOPON_GBID",
             "EXCHANGE_NETFLIX",
             "EXCHANGE_CORE",
+            "EXCHANGE_COMMERCE_GRID",
+            "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
@@ -15866,6 +16146,8 @@
             "TopOn.",
             "Netflix.",
             "Core.",
+            "Commerce Grid.",
+            "Spotify.",
             "Tubi."
           ],
           "readOnly": true,
@@ -16044,7 +16326,7 @@
           "type": "string"
         },
         "membershipDurationDays": {
-          "description": "The duration in days that an entry remains in the audience after the qualifying event. If the audience has no expiration, set the value of this field to 10000. Otherwise, the set value must be greater than 0 and less than or equal to 540. Only applicable to first party audiences. This field is required if one of the following audience_type is used: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID` *Warning*: Starting on **April 7, 2025**, audiences will no longer be able to have infinite membership duration. This field will no longer accept the value 10000 and all audiences with membership durations greater than 540 days will be updated to a membership duration of 540 days. [Read more about this announced change](/display-video/api/deprecations#features.audience_duration).",
+          "description": "The duration in days that an entry remains in the audience after the qualifying event. The set value must be greater than 0 and less than or equal to 540. Only applicable to first party audiences. This field is required if one of the following audience_type is used: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`",
           "format": "int64",
           "type": "string"
         },
@@ -16876,6 +17158,8 @@
             "EXCHANGE_TOPON_GBID",
             "EXCHANGE_NETFLIX",
             "EXCHANGE_CORE",
+            "EXCHANGE_COMMERCE_GRID",
+            "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
@@ -16963,6 +17247,8 @@
             "TopOn.",
             "Netflix.",
             "Core.",
+            "Commerce Grid.",
+            "Spotify.",
             "Tubi."
           ],
           "type": "string"
@@ -17815,6 +18101,8 @@
             "EXCHANGE_TOPON_GBID",
             "EXCHANGE_NETFLIX",
             "EXCHANGE_CORE",
+            "EXCHANGE_COMMERCE_GRID",
+            "EXCHANGE_SPOTIFY",
             "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
@@ -17902,6 +18190,8 @@
             "TopOn.",
             "Netflix.",
             "Core.",
+            "Commerce Grid.",
+            "Spotify.",
             "Tubi."
           ],
           "type": "string"
@@ -18465,7 +18755,7 @@
         },
         "conversionCounting": {
           "$ref": "ConversionCountingConfig",
-          "description": "The conversion tracking setting of the line item. *Warning*: Starting **April 1, 2025**, the floodlight_activity_configs field will no longer be writable while a custom bidding algorithm is assigned to the line item. If you set this field and assign a custom bidding algorithm in the same request, the floodlight activities must match the ones used by the custom bidding algorithm. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight)."
+          "description": "The conversion tracking setting of the line item."
         },
         "creativeIds": {
           "description": "The IDs of the creatives associated with the line item.",
@@ -19504,7 +19794,7 @@
       "id": "MaximizeSpendBidStrategy",
       "properties": {
         "customBiddingAlgorithmId": {
-          "description": "The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. *Warning*: Starting **April 1, 2025**, assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).",
+          "description": "The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. Assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error.",
           "format": "int64",
           "type": "string"
         },
@@ -20288,10 +20578,43 @@
             "PARTNER_COST_TYPE_CUSTOM_FEE_5",
             "PARTNER_COST_TYPE_SCIBIDS_FEE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version.",
-            "The cost is charged for using Adloox. Billed by the partner.",
-            "The cost is charged for using Adloox Pre-Bid. Billed through DV360.",
+            "The cost is charged for using Scope3 (previously known as Adloox). Billed by the partner.",
+            "The cost is charged for using Scope3 (previously known as Adloox) Pre-Bid. Billed through DV360.",
             "The cost is charged for using AdSafe. Billed by the partner.",
             "The cost is charged for using AdExpose. Billed by the partner.",
             "The cost is charged for using Aggregate Knowledge. Billed by the partner.",
@@ -20490,7 +20813,7 @@
       "id": "PerformanceGoalBidStrategy",
       "properties": {
         "customBiddingAlgorithmId": {
-          "description": "The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. *Warning*: Starting **April 1, 2025**, assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).",
+          "description": "The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. Assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error.",
           "format": "int64",
           "type": "string"
         },
@@ -21049,7 +21372,8 @@
             "SDF_VERSION_6",
             "SDF_VERSION_7",
             "SDF_VERSION_7_1",
-            "SDF_VERSION_8"
+            "SDF_VERSION_8",
+            "SDF_VERSION_8_1"
           ],
           "enumDeprecated": [
             false,
@@ -21063,6 +21387,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -21083,7 +21408,8 @@
             "SDF version 6",
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
             "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version."
+            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
+            "SDF version 8.1."
           ],
           "type": "string"
         }
@@ -21091,7 +21417,7 @@
       "type": "object"
     },
     "SdfDownloadTask": {
-      "description": "Type for the response returned by [SdfDownloadTaskService.CreateSdfDownloadTask].",
+      "description": "Type for the response returned by SdfDownloadTaskService.CreateSdfDownloadTask.",
       "id": "SdfDownloadTask",
       "properties": {
         "resourceName": {
@@ -21102,7 +21428,7 @@
       "type": "object"
     },
     "SdfDownloadTaskMetadata": {
-      "description": "Type for the metadata returned by [SdfDownloadTaskService.CreateSdfDownloadTask].",
+      "description": "Type for the metadata returned by SdfDownloadTaskService.CreateSdfDownloadTask.",
       "id": "SdfDownloadTaskMetadata",
       "properties": {
         "createTime": {
@@ -21132,7 +21458,8 @@
             "SDF_VERSION_6",
             "SDF_VERSION_7",
             "SDF_VERSION_7_1",
-            "SDF_VERSION_8"
+            "SDF_VERSION_8",
+            "SDF_VERSION_8_1"
           ],
           "enumDeprecated": [
             false,
@@ -21146,6 +21473,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -21166,7 +21494,8 @@
             "SDF version 6",
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
             "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version."
+            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
+            "SDF version 8.1."
           ],
           "type": "string"
         }
@@ -21559,6 +21888,10 @@
           "$ref": "ContentStreamTypeTargetingOptionDetails",
           "description": "Content stream type resource details."
         },
+        "contentThemeDetails": {
+          "$ref": "ContentThemeTargetingOptionDetails",
+          "description": "Content theme details."
+        },
         "deviceMakeModelDetails": {
           "$ref": "DeviceMakeModelTargetingOptionDetails",
           "description": "Device make and model resource details."
@@ -21688,7 +22021,8 @@
             "TARGETING_TYPE_CONTENT_GENRE",
             "TARGETING_TYPE_YOUTUBE_VIDEO",
             "TARGETING_TYPE_YOUTUBE_CHANNEL",
-            "TARGETING_TYPE_SESSION_POSITION"
+            "TARGETING_TYPE_SESSION_POSITION",
+            "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -21739,7 +22073,8 @@
             "Target ads to a specific content genre.",
             "Target ads to a specific YouTube video. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
             "Target ads to a specific YouTube channel. Targeting of this type cannot be created or updated using the API. Although this targeting is inherited by child resources, **inherited targeting of this type will not be retrieveable**.",
-            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API."
+            "Target ads to a serve it in a certain position of a session. Only supported for Ad Group resources under YouTube Programmatic Reservation line items. Targeting of this type cannot be created or updated using the API.",
+            "Filter website content by content themes (for example, religion)."
           ],
           "readOnly": true,
           "type": "string"
@@ -21903,7 +22238,7 @@
       "properties": {
         "adloox": {
           "$ref": "Adloox",
-          "description": "Third party brand verifier -- Adloox."
+          "description": "Third party brand verifier -- Scope3 (previously known as Adloox)."
         },
         "doubleVerify": {
           "$ref": "DoubleVerify",
