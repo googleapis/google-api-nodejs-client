@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20250227",
+  "revision": "20250329",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1448,7 +1448,9 @@
             "UPTIME_CHECK_FAILURE",
             "CLOUD_ALERTING_ALERT",
             "SERVICE_HEALTH_INCIDENT",
-            "SAP_BACKINT"
+            "SAP_BACKINT",
+            "SAP_AVAILABILITY",
+            "SAP_OPERATIONS"
           ],
           "enumDescriptions": [
             "No event type specified.",
@@ -1473,7 +1475,9 @@
             "Failure of a Cloud Monitoring uptime check.",
             "Alerts from Cloud Alerting",
             "Incidents from Service Health",
-            "Agent for SAP Backint related events."
+            "Agent for SAP Backint related events.",
+            "Agent for SAP availability related events.",
+            "Agent for SAP operations related events."
           ],
           "type": "string"
         },

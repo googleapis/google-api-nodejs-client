@@ -1294,6 +1294,10 @@ export namespace monitoring_v3 {
      * The unit in which all time_series point values are reported. unit follows the UCUM format for units as seen in https://unitsofmeasure.org/ucum.html. If different time_series have different units (for example, because they come from different metric types, or a unit is absent), then unit will be "{not_a_unit\}".
      */
     unit?: string | null;
+    /**
+     * Cloud regions that were unreachable which may have caused incomplete data to be returned.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The protocol for the ListUptimeCheckConfigs response.
@@ -2374,6 +2378,10 @@ export namespace monitoring_v3 {
      * The content that is expected to appear in the data returned by the target server against which the check is run. Currently, only the first entry in the content_matchers list is supported, and additional entries will be ignored. This field is optional and should only be specified if a content match is required as part of the/ Uptime check.
      */
     contentMatchers?: Schema$ContentMatcher[];
+    /**
+     * Whether the check is disabled or not.
+     */
+    disabled?: boolean | null;
     /**
      * A human-friendly name for the Uptime check configuration. The display name should be unique within a Cloud Monitoring Workspace in order to make it easier to identify; however, uniqueness is not enforced. Required.
      */
