@@ -381,7 +381,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The resource name of the quota limit. An example name would be: `projects/123/services/serviceusage.googleapis.com/quotas/metrics/serviceusage.googleapis.com%2Fmutate_requests`",
+                  "description": "The resource name of the quota. An example name would be: `projects/123/services/serviceusage.googleapis.com/consumerQuotaMetrics/serviceusage.googleapis.com%2Fmutate_requests`",
                   "location": "path",
                   "pattern": "^[^/]+/[^/]+/services/[^/]+/consumerQuotaMetrics/[^/]+$",
                   "required": true,
@@ -964,7 +964,7 @@
       }
     }
   },
-  "revision": "20250313",
+  "revision": "20250417",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {

@@ -3742,7 +3742,7 @@ export namespace serviceusage_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Get
     extends StandardParameters {
     /**
-     * The resource name of the quota limit. An example name would be: `projects/123/services/serviceusage.googleapis.com/quotas/metrics/serviceusage.googleapis.com%2Fmutate_requests`
+     * The resource name of the quota. An example name would be: `projects/123/services/serviceusage.googleapis.com/consumerQuotaMetrics/serviceusage.googleapis.com%2Fmutate_requests`
      */
     name?: string;
     /**
