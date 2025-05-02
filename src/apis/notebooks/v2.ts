@@ -210,6 +210,19 @@ export namespace notebooks_v2 {
     upgradeVersion?: string | null;
   }
   /**
+   * A set of Confidential Instance options.
+   */
+  export interface Schema$ConfidentialInstanceConfig {
+    /**
+     * Optional. Defines the type of technology used by the confidential instance.
+     */
+    confidentialInstanceType?: string | null;
+    /**
+     * Optional. Defines whether the instance should have confidential compute enabled.
+     */
+    enableConfidentialCompute?: boolean | null;
+  }
+  /**
    * Response for getting WbI configurations in a location
    */
   export interface Schema$Config {
@@ -365,6 +378,10 @@ export namespace notebooks_v2 {
      * Optional. The boot disk for the VM.
      */
     bootDisk?: Schema$BootDisk;
+    /**
+     * Optional. Confidential instance configuration.
+     */
+    confidentialInstanceConfig?: Schema$ConfidentialInstanceConfig;
     /**
      * Optional. Use a container image to start the notebook instance.
      */
