@@ -20,7 +20,7 @@
   "canonicalName": "Meet",
   "description": "Create and manage meetings in Google Meet.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/meet/api",
+  "documentationLink": "https://developers.google.com/workspace/meet/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -457,7 +457,7 @@
             "entries": {
               "methods": {
                 "get": {
-                  "description": "Gets a `TranscriptEntry` resource by entry ID. Note: The transcript entries returned by the Google Meet API might not match the transcription found in the Google Docs transcript file. This can occur when the Google Docs transcript file is modified after generation.",
+                  "description": "Gets a `TranscriptEntry` resource by entry ID. Note: The transcript entries returned by the Google Meet API might not match the transcription found in the Google Docs transcript file. This can occur when 1) we have interleaved speakers within milliseconds, or 2) the Google Docs transcript file is modified after generation.",
                   "flatPath": "v2/conferenceRecords/{conferenceRecordsId}/transcripts/{transcriptsId}/entries/{entriesId}",
                   "httpMethod": "GET",
                   "id": "meet.conferenceRecords.transcripts.entries.get",
@@ -483,7 +483,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists the structured transcript entries per transcript. By default, ordered by start time and in ascending order. Note: The transcript entries returned by the Google Meet API might not match the transcription found in the Google Docs transcript file. This can occur when the Google Docs transcript file is modified after generation.",
+                  "description": "Lists the structured transcript entries per transcript. By default, ordered by start time and in ascending order. Note: The transcript entries returned by the Google Meet API might not match the transcription found in the Google Docs transcript file. This can occur when 1) we have interleaved speakers within milliseconds, or 2) the Google Docs transcript file is modified after generation.",
                   "flatPath": "v2/conferenceRecords/{conferenceRecordsId}/transcripts/{transcriptsId}/entries",
                   "httpMethod": "GET",
                   "id": "meet.conferenceRecords.transcripts.entries.list",
@@ -546,7 +546,7 @@
           ]
         },
         "endActiveConference": {
-          "description": "Ends an active conference (if there's one). For an example, see [End active conference](https://developers.google.com/meet/api/guides/meeting-spaces#end-active-conference).",
+          "description": "Ends an active conference (if there's one). For an example, see [End active conference](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#end-active-conference).",
           "flatPath": "v2/spaces/{spacesId}:endActiveConference",
           "httpMethod": "POST",
           "id": "meet.spaces.endActiveConference",
@@ -555,7 +555,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Resource name of the space. Format: `spaces/{space}`. `{space}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).",
+              "description": "Required. Resource name of the space. Format: `spaces/{space}`. `{space}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).",
               "location": "path",
               "pattern": "^spaces/[^/]+$",
               "required": true,
@@ -574,7 +574,7 @@
           ]
         },
         "get": {
-          "description": "Gets details about a meeting space. For an example, see [Get a meeting space](https://developers.google.com/meet/api/guides/meeting-spaces#get-meeting-space).",
+          "description": "Gets details about a meeting space. For an example, see [Get a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#get-meeting-space).",
           "flatPath": "v2/spaces/{spacesId}",
           "httpMethod": "GET",
           "id": "meet.spaces.get",
@@ -583,7 +583,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Resource name of the space. Format: `spaces/{space}` or `spaces/{meetingCode}`. `{space}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. `{meetingCode}` is an alias for the space. It's a typeable, unique character string and is non-case sensitive. For example, `abc-mnop-xyz`. The maximum length is 128 characters. A `meetingCode` shouldn't be stored long term as it can become dissociated from a meeting space and can be reused for different meeting spaces in the future. Generally, a `meetingCode` expires 365 days after last use. For more information, see [Learn about meeting codes in Google Meet](https://support.google.com/meet/answer/10710509). For more information, see [How Meet identifies a meeting space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).",
+              "description": "Required. Resource name of the space. Format: `spaces/{space}` or `spaces/{meetingCode}`. `{space}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. `{meetingCode}` is an alias for the space. It's a typeable, unique character string and is non-case sensitive. For example, `abc-mnop-xyz`. The maximum length is 128 characters. A `meetingCode` shouldn't be stored long term as it can become dissociated from a meeting space and can be reused for different meeting spaces in the future. Generally, a `meetingCode` expires 365 days after last use. For more information, see [Learn about meeting codes in Google Meet](https://support.google.com/meet/answer/10710509). For more information, see [How Meet identifies a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).",
               "location": "path",
               "pattern": "^spaces/[^/]+$",
               "required": true,
@@ -601,7 +601,7 @@
           ]
         },
         "patch": {
-          "description": "Updates details about a meeting space. For an example, see [Update a meeting space](https://developers.google.com/meet/api/guides/meeting-spaces#update-meeting-space).",
+          "description": "Updates details about a meeting space. For an example, see [Update a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#update-meeting-space).",
           "flatPath": "v2/spaces/{spacesId}",
           "httpMethod": "PATCH",
           "id": "meet.spaces.patch",
@@ -610,7 +610,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Immutable. Resource name of the space. Format: `spaces/{space}`. `{space}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).",
+              "description": "Immutable. Resource name of the space. Format: `spaces/{space}`. `{space}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).",
               "location": "path",
               "pattern": "^spaces/[^/]+$",
               "required": true,
@@ -638,7 +638,7 @@
       }
     }
   },
-  "revision": "20250127",
+  "revision": "20250421",
   "rootUrl": "https://meet.googleapis.com/",
   "schemas": {
     "ActiveConference": {
@@ -661,6 +661,25 @@
           "description": "Output only. User provided name when they join a conference anonymously.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ArtifactConfig": {
+      "description": "Configuration related to meeting artifacts potentially generated by this meeting space.",
+      "id": "ArtifactConfig",
+      "properties": {
+        "recordingConfig": {
+          "$ref": "RecordingConfig",
+          "description": "Configuration for recording."
+        },
+        "smartNotesConfig": {
+          "$ref": "SmartNotesConfig",
+          "description": "Configuration for auto-smart-notes."
+        },
+        "transcriptionConfig": {
+          "$ref": "TranscriptionConfig",
+          "description": "Configuration for auto-transcript."
         }
       },
       "type": "object"
@@ -858,6 +877,69 @@
       },
       "type": "object"
     },
+    "ModerationRestrictions": {
+      "description": "Defines restrictions for features when the meeting is moderated.",
+      "id": "ModerationRestrictions",
+      "properties": {
+        "chatRestriction": {
+          "description": "Defines who has permission to send chat messages in the meeting space.",
+          "enum": [
+            "RESTRICTION_TYPE_UNSPECIFIED",
+            "HOSTS_ONLY",
+            "NO_RESTRICTION"
+          ],
+          "enumDescriptions": [
+            "Default value specified by user policy. This should never be returned.",
+            "Meeting owner and co-host have the permission.",
+            "All Participants have permissions."
+          ],
+          "type": "string"
+        },
+        "defaultJoinAsViewerType": {
+          "description": "Defines whether to restrict the default role assigned to users as viewer.",
+          "enum": [
+            "DEFAULT_JOIN_AS_VIEWER_TYPE_UNSPECIFIED",
+            "ON",
+            "OFF"
+          ],
+          "enumDescriptions": [
+            "Default value specified by user policy. This should never be returned.",
+            "Users will by default join as viewers.",
+            "Users will by default join as contributors."
+          ],
+          "type": "string"
+        },
+        "presentRestriction": {
+          "description": "Defines who has permission to share their screen in the meeting space.",
+          "enum": [
+            "RESTRICTION_TYPE_UNSPECIFIED",
+            "HOSTS_ONLY",
+            "NO_RESTRICTION"
+          ],
+          "enumDescriptions": [
+            "Default value specified by user policy. This should never be returned.",
+            "Meeting owner and co-host have the permission.",
+            "All Participants have permissions."
+          ],
+          "type": "string"
+        },
+        "reactionRestriction": {
+          "description": "Defines who has permission to send reactions in the meeting space.",
+          "enum": [
+            "RESTRICTION_TYPE_UNSPECIFIED",
+            "HOSTS_ONLY",
+            "NO_RESTRICTION"
+          ],
+          "enumDescriptions": [
+            "Default value specified by user policy. This should never be returned.",
+            "Meeting owner and co-host have the permission.",
+            "All Participants have permissions."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Participant": {
       "description": "User who attended or is attending a conference.",
       "id": "Participant",
@@ -975,6 +1057,27 @@
       },
       "type": "object"
     },
+    "RecordingConfig": {
+      "description": "Configuration related to recording in a meeting space.",
+      "id": "RecordingConfig",
+      "properties": {
+        "autoRecordingGeneration": {
+          "description": "Defines whether a meeting space is automatically recorded when someone with the privilege to record joins the meeting.",
+          "enum": [
+            "AUTO_GENERATION_TYPE_UNSPECIFIED",
+            "ON",
+            "OFF"
+          ],
+          "enumDescriptions": [
+            "Default value specified by user policy. This should never be returned.",
+            "The artifact is generated automatically.",
+            "The artifact is not generated automatically."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SignedinUser": {
       "description": "A signed-in user can be: a) An individual joining from a personal computer, mobile device, or through companion mode. b) A robot account used by conference room devices.",
       "id": "SignedinUser",
@@ -987,6 +1090,27 @@
         "user": {
           "description": "Output only. Unique ID for the user. Interoperable with Admin SDK API and People API. Format: `users/{user}`",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SmartNotesConfig": {
+      "description": "Configuration related to smart notes in a meeting space. For more information about smart notes, see [\"Take notes for me\" in Google Meet](https://support.google.com/meet/answer/14754931).",
+      "id": "SmartNotesConfig",
+      "properties": {
+        "autoSmartNotesGeneration": {
+          "description": "Defines whether to automatically generate a summary and recap of the meeting for all invitees in the organization when someone with the privilege to enable smart notes joins the meeting.",
+          "enum": [
+            "AUTO_GENERATION_TYPE_UNSPECIFIED",
+            "ON",
+            "OFF"
+          ],
+          "enumDescriptions": [
+            "Default value specified by user policy. This should never be returned.",
+            "The artifact is generated automatically.",
+            "The artifact is not generated automatically."
+          ],
           "type": "string"
         }
       },
@@ -1015,7 +1139,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Resource name of the space. Format: `spaces/{space}`. `{space}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).",
+          "description": "Immutable. Resource name of the space. Format: `spaces/{space}`. `{space}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).",
           "type": "string"
         }
       },
@@ -1041,6 +1165,24 @@
           ],
           "type": "string"
         },
+        "artifactConfig": {
+          "$ref": "ArtifactConfig",
+          "description": "Configuration pertaining to the auto-generated artifacts that the meeting supports."
+        },
+        "attendanceReportGenerationType": {
+          "description": "Whether attendance report is enabled for the meeting space.",
+          "enum": [
+            "ATTENDANCE_REPORT_GENERATION_TYPE_UNSPECIFIED",
+            "GENERATE_REPORT",
+            "DO_NOT_GENERATE"
+          ],
+          "enumDescriptions": [
+            "Default value specified by user policy. This should never be returned.",
+            "Attendance report will be generated and sent to drive/email.",
+            "Attendance report will not be generated."
+          ],
+          "type": "string"
+        },
         "entryPointAccess": {
           "description": "Defines the entry points that can be used to join meetings hosted in this meeting space. Default: EntryPointAccess.ALL",
           "enum": [
@@ -1054,6 +1196,24 @@
             "Only entry points owned by the Google Cloud project that created the space can be used to join meetings in this space. Apps can use the Meet Embed SDK Web or mobile Meet SDKs to create owned entry points."
           ],
           "type": "string"
+        },
+        "moderation": {
+          "description": "The pre-configured moderation mode for the Meeting. Default: Controlled by the user's policies.",
+          "enum": [
+            "MODERATION_UNSPECIFIED",
+            "OFF",
+            "ON"
+          ],
+          "enumDescriptions": [
+            "Moderation type is not specified. This is used to indicate the user hasn't specified any value as the user does not intend to update the state. Users are not allowed to set the value as unspecified.",
+            "Moderation is off.",
+            "Moderation is on."
+          ],
+          "type": "string"
+        },
+        "moderationRestrictions": {
+          "$ref": "ModerationRestrictions",
+          "description": "When moderation.ON, these restrictions go into effect for the meeting. When moderation.OFF, will be reset to default ModerationRestrictions."
         }
       },
       "type": "object"
@@ -1138,6 +1298,27 @@
         "text": {
           "description": "Output only. The transcribed text of the participant's voice, at maximum 10K words. Note that the limit is subject to change.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TranscriptionConfig": {
+      "description": "Configuration related to transcription in a meeting space.",
+      "id": "TranscriptionConfig",
+      "properties": {
+        "autoTranscriptionGeneration": {
+          "description": "Defines whether the content of a meeting is automatically transcribed when someone with the privilege to transcribe joins the meeting.",
+          "enum": [
+            "AUTO_GENERATION_TYPE_UNSPECIFIED",
+            "ON",
+            "OFF"
+          ],
+          "enumDescriptions": [
+            "Default value specified by user policy. This should never be returned.",
+            "The artifact is generated automatically.",
+            "The artifact is not generated automatically."
+          ],
           "type": "string"
         }
       },
