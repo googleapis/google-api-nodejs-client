@@ -3182,7 +3182,7 @@ export namespace gkehub_v1alpha {
     type?: Schema$ServiceMeshType;
   }
   /**
-   * Condition being reported. TODO b/395151419: Remove this message once the membership-level conditions field uses the common Condition message.
+   * Condition being reported.
    */
   export interface Schema$ServiceMeshCondition {
     /**
@@ -3296,7 +3296,7 @@ export namespace gkehub_v1alpha {
      */
     analysisMessages?: Schema$ServiceMeshAnalysisMessage[];
     /**
-     * Output only. List of conditions reported for this membership. TODO b/395151419: Use the common Condition message.
+     * Output only. List of conditions reported for this membership.
      */
     conditions?: Schema$ServiceMeshCondition[];
     /**
