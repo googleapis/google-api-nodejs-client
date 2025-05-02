@@ -1105,6 +1105,10 @@ export namespace run_v2 {
      */
     generation?: string | null;
     /**
+     * Optional. Output only. True if GPU zonal redundancy is disabled on this revision.
+     */
+    gpuZonalRedundancyDisabled?: boolean | null;
+    /**
      * Output only. Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels.
      */
     labels?: {[key: string]: string} | null;
@@ -1235,6 +1239,10 @@ export namespace run_v2 {
      * Optional. The sandbox environment to host this Revision.
      */
     executionEnvironment?: string | null;
+    /**
+     * Optional. True if GPU zonal redundancy is disabled on this revision.
+     */
+    gpuZonalRedundancyDisabled?: boolean | null;
     /**
      * Optional. Disables health checking containers during deployment.
      */
@@ -1396,11 +1404,15 @@ export namespace run_v2 {
      */
     generation?: string | null;
     /**
+     * Optional. IAP settings on the Service.
+     */
+    iapEnabled?: boolean | null;
+    /**
      * Optional. Provides the ingress settings for this Service. On output, returns the currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
      */
     ingress?: string | null;
     /**
-     * Optional. Disables IAM permission check for run.routes.invoke for callers of this service. This feature is available by invitation only. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
+     * Optional. Disables IAM permission check for run.routes.invoke for callers of this service. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      */
     invokerIamDisabled?: boolean | null;
     /**
@@ -1451,6 +1463,10 @@ export namespace run_v2 {
      * Output only. The Condition of this Service, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
      */
     terminalCondition?: Schema$GoogleCloudRunV2Condition;
+    /**
+     * Output only. True if Cloud Run Threat Detection monitoring is enabled for the parent project of this Service.
+     */
+    threatDetectionEnabled?: boolean | null;
     /**
      * Optional. Specifies how to distribute traffic over a collection of Revisions belonging to the Service. If traffic is empty or not provided, defaults to 100% traffic to the latest `Ready` Revision.
      */
@@ -1625,6 +1641,10 @@ export namespace run_v2 {
      * Output only. A number that monotonically increases every time the user modifies the desired state.
      */
     generation?: string | null;
+    /**
+     * Optional. Output only. True if GPU zonal redundancy is disabled on this task.
+     */
+    gpuZonalRedundancyDisabled?: boolean | null;
     /**
      * Output only. Index of the Task, unique per execution, and beginning at 0.
      */
@@ -2081,14 +2101,6 @@ export namespace run_v2 {
      * Optional. The maximum count of instances distributed among revisions based on the specified instance split percentages.
      */
     maxInstanceCount?: number | null;
-    /**
-     * Optional. A maximum percentage of instances that will be moved in each step of traffic split changes. When set to a positive value, the server will bring up, at most, that percentage of new instances at a time before moving traffic to them. After moving traffic, the server will bring down instances of the old revision. This can reduce a spike of total active instances during changes from one revision to another but specifying how many extra instances can be brought up at a time.
-     */
-    maxSurge?: number | null;
-    /**
-     * Optional. A maximum percentage of instances that may be unavailable during changes from one revision to another. When set to a positive value, the server may bring down instances before bringing up new instances. This can prevent a spike of total active instances during changes from one revision by reducing the pool of instances before bringing up new ones. Some requests may be slow or fail to serve during the transition.
-     */
-    maxUnavailable?: number | null;
     /**
      * Optional. The minimum count of instances distributed among revisions based on the specified instance split percentages.
      */
@@ -2710,7 +2722,7 @@ export namespace run_v2 {
      */
     groupId?: string | null;
     /**
-     * Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.
+     * Optional. Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.
      */
     path?: string | null;
     /**
@@ -3268,7 +3280,7 @@ export namespace run_v2 {
     title?: string | null;
   }
   /**
-   * This is proto2's version of MessageSet.
+   * This is proto2's version of MessageSet. DEPRECATED: DO NOT USE FOR NEW FIELDS. If you are using editions or proto2, please make your own extendable messages for your use case. If you are using proto3, please use `Any` instead. MessageSet was the implementation of extensions for proto1. When proto2 was introduced, extensions were implemented as a first-class feature. This schema for MessageSet was meant to be a "bridge" solution to migrate MessageSet-bearing messages from proto1 to proto2. This schema has been open-sourced only to facilitate the migration of Google products with MessageSet-bearing messages to open-source environments.
    */
   export interface Schema$Proto2BridgeMessageSet {}
   /**
