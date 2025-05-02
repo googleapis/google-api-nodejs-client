@@ -581,7 +581,7 @@ export namespace clouddeploy_v1 {
      */
     predeploy?: Schema$Predeploy;
     /**
-     * Optional. Whether to run verify tests after each percentage deployment.
+     * Optional. Whether to run verify tests after each percentage deployment via `skaffold verify`.
      */
     verify?: boolean | null;
   }
@@ -1059,7 +1059,7 @@ export namespace clouddeploy_v1 {
      */
     description?: string | null;
     /**
-     * The weak etag of the `Automation` resource. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * The weak etag of the `DeployPolicy` resource. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
@@ -1859,7 +1859,7 @@ export namespace clouddeploy_v1 {
      */
     profiles?: string[] | null;
     /**
-     * Optional. Whether to run verify tests after the deployment.
+     * Optional. Whether to run verify tests after the deployment via `skaffold verify`.
      */
     verify?: boolean | null;
   }
@@ -2902,15 +2902,15 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Standard {
     /**
-     * Optional. Configuration for the postdeploy job. If this is not configured, postdeploy job will not be present.
+     * Optional. Configuration for the postdeploy job. If this is not configured, the postdeploy job will not be present.
      */
     postdeploy?: Schema$Postdeploy;
     /**
-     * Optional. Configuration for the predeploy job. If this is not configured, predeploy job will not be present.
+     * Optional. Configuration for the predeploy job. If this is not configured, the predeploy job will not be present.
      */
     predeploy?: Schema$Predeploy;
     /**
-     * Optional. Whether to verify a deployment.
+     * Optional. Whether to verify a deployment via `skaffold verify`.
      */
     verify?: boolean | null;
   }
@@ -3626,6 +3626,10 @@ export namespace clouddeploy_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

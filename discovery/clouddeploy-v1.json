@@ -168,6 +168,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -2348,7 +2354,7 @@
       }
     }
   },
-  "revision": "20250226",
+  "revision": "20250416",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -3040,7 +3046,7 @@
           "description": "Optional. Configuration for the predeploy job of the first phase. If this is not configured, there will be no predeploy job for this phase."
         },
         "verify": {
-          "description": "Optional. Whether to run verify tests after each percentage deployment.",
+          "description": "Optional. Whether to run verify tests after each percentage deployment via `skaffold verify`.",
           "type": "boolean"
         }
       },
@@ -3741,7 +3747,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "The weak etag of the `Automation` resource. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "description": "The weak etag of the `DeployPolicy` resource. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "labels": {
@@ -4959,7 +4965,7 @@
           "type": "array"
         },
         "verify": {
-          "description": "Optional. Whether to run verify tests after the deployment.",
+          "description": "Optional. Whether to run verify tests after the deployment via `skaffold verify`.",
           "type": "boolean"
         }
       },
@@ -6672,14 +6678,14 @@
       "properties": {
         "postdeploy": {
           "$ref": "Postdeploy",
-          "description": "Optional. Configuration for the postdeploy job. If this is not configured, postdeploy job will not be present."
+          "description": "Optional. Configuration for the postdeploy job. If this is not configured, the postdeploy job will not be present."
         },
         "predeploy": {
           "$ref": "Predeploy",
-          "description": "Optional. Configuration for the predeploy job. If this is not configured, predeploy job will not be present."
+          "description": "Optional. Configuration for the predeploy job. If this is not configured, the predeploy job will not be present."
         },
         "verify": {
-          "description": "Optional. Whether to verify a deployment.",
+          "description": "Optional. Whether to verify a deployment via `skaffold verify`.",
           "type": "boolean"
         }
       },
