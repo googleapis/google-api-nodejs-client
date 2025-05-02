@@ -309,6 +309,8 @@
     "src/apis/parallelstore": {},
     "src/apis/securityposture": {},
     "src/apis/areainsights": {},
-    "src/apis/managedkafka": {}
+    "src/apis/managedkafka": {},
+    "src/apis/observability": {},
+    "src/apis/storagebatchoperations": {}
   }
 }
