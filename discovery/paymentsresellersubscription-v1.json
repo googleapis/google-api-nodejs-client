@@ -2,8 +2,8 @@
   "auth": {
     "oauth2": {
       "scopes": {
-        "openid": {
-          "description": "Associate you with your personal info on Google"
+        "https://www.googleapis.com/auth/sdm.service": {
+          "description": "See and/or control the devices that you selected"
         }
       }
     }
@@ -147,7 +147,7 @@
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse"
               },
               "scopes": [
-                "openid"
+                "https://www.googleapis.com/auth/sdm.service"
               ]
             }
           }
@@ -179,7 +179,7 @@
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse"
               },
               "scopes": [
-                "openid"
+                "https://www.googleapis.com/auth/sdm.service"
               ]
             },
             "list": {
@@ -220,7 +220,7 @@
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse"
               },
               "scopes": [
-                "openid"
+                "https://www.googleapis.com/auth/sdm.service"
               ]
             }
           }
@@ -252,7 +252,7 @@
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse"
               },
               "scopes": [
-                "openid"
+                "https://www.googleapis.com/auth/sdm.service"
               ]
             },
             "create": {
@@ -285,7 +285,7 @@
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Subscription"
               },
               "scopes": [
-                "openid"
+                "https://www.googleapis.com/auth/sdm.service"
               ]
             },
             "entitle": {
@@ -313,7 +313,7 @@
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse"
               },
               "scopes": [
-                "openid"
+                "https://www.googleapis.com/auth/sdm.service"
               ]
             },
             "extend": {
@@ -341,7 +341,7 @@
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse"
               },
               "scopes": [
-                "openid"
+                "https://www.googleapis.com/auth/sdm.service"
               ]
             },
             "get": {
@@ -366,7 +366,7 @@
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Subscription"
               },
               "scopes": [
-                "openid"
+                "https://www.googleapis.com/auth/sdm.service"
               ]
             },
             "provision": {
@@ -399,7 +399,63 @@
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Subscription"
               },
               "scopes": [
-                "openid"
+                "https://www.googleapis.com/auth/sdm.service"
+              ]
+            },
+            "resume": {
+              "description": "Resumes a suspended subscription. The new billing cycle will start at the time of the request. It should be called directly by the partner using service accounts.",
+              "flatPath": "v1/partners/{partnersId}/subscriptions/{subscriptionsId}:resume",
+              "httpMethod": "POST",
+              "id": "paymentsresellersubscription.partners.subscriptions.resume",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the subscription resource to be resumed. It will have the format of \"partners/{partner_id}/subscriptions/{subscription_id}\"",
+                  "location": "path",
+                  "pattern": "^partners/[^/]+/subscriptions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:resume",
+              "request": {
+                "$ref": "GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/sdm.service"
+              ]
+            },
+            "suspend": {
+              "description": "Suspends a subscription. Contract terms may dictate if a prorated refund will be issued upon suspension. It should be called directly by the partner using service accounts.",
+              "flatPath": "v1/partners/{partnersId}/subscriptions/{subscriptionsId}:suspend",
+              "httpMethod": "POST",
+              "id": "paymentsresellersubscription.partners.subscriptions.suspend",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the subscription resource to be suspended. It will have the format of \"partners/{partner_id}/subscriptions/{subscription_id}\"",
+                  "location": "path",
+                  "pattern": "^partners/[^/]+/subscriptions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:suspend",
+              "request": {
+                "$ref": "GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/sdm.service"
               ]
             },
             "undoCancel": {
@@ -427,7 +483,7 @@
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse"
               },
               "scopes": [
-                "openid"
+                "https://www.googleapis.com/auth/sdm.service"
               ]
             }
           }
@@ -459,7 +515,7 @@
                 "$ref": "GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse"
               },
               "scopes": [
-                "openid"
+                "https://www.googleapis.com/auth/sdm.service"
               ]
             }
           }
@@ -467,7 +523,7 @@
       }
     }
   },
-  "revision": "20250312",
+  "revision": "20250415",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -1125,6 +1181,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionRequest": {
+      "description": "Request to resume a suspended subscription.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse": {
+      "description": "Response that contains the resumed subscription.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse",
+      "properties": {
+        "subscription": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Subscription",
+          "description": "The resumed subscription resource."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod": {
       "description": "A description of what time period or moment in time the product or service is being delivered over.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod",
@@ -1521,6 +1594,23 @@
         "previousSubscriptionId": {
           "description": "Required. The previous subscription id to be replaced. This is not the full resource name, use the subscription_id segment only.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionRequest": {
+      "description": "Request to suspend a subscription.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse": {
+      "description": "Response that contains the suspended subscription.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse",
+      "properties": {
+        "subscription": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Subscription",
+          "description": "The suspended subscription resource."
         }
       },
       "type": "object"
