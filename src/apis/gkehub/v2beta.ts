@@ -907,6 +907,10 @@ export namespace gkehub_v2beta {
      */
     policycontroller?: Schema$PolicyControllerSpec;
     /**
+     * Rbacrolebindingactuation-specific FeatureSpec.
+     */
+    rbacrolebindingactuation?: Schema$RBACRoleBindingActuationSpec;
+    /**
      * ServiceMesh Feature Spec.
      */
     servicemesh?: Schema$ServiceMeshSpec;
@@ -943,6 +947,10 @@ export namespace gkehub_v2beta {
      * Policy Controller state
      */
     policycontroller?: Schema$PolicyControllerState;
+    /**
+     * RBAC Role Binding Actuation state
+     */
+    rbacrolebindingactuation?: Schema$RBACRoleBindingActuationState;
     /**
      * Service mesh state
      */
@@ -1722,6 +1730,38 @@ export namespace gkehub_v2beta {
     value?: string | null;
   }
   /**
+   * RBACRoleBindingState is the status of an RBACRoleBinding which exists on a membership.
+   */
+  export interface Schema$RBACRoleBindingActuationRBACRoleBindingState {
+    /**
+     * The reason for the failure.
+     */
+    description?: string | null;
+    /**
+     * Output only. The state of the RBACRoleBinding.
+     */
+    state?: string | null;
+    /**
+     * The time the RBACRoleBinding status was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * **RBAC RoleBinding Actuation**: The membership-specific input for RBACRoleBindingActuation feature.
+   */
+  export interface Schema$RBACRoleBindingActuationSpec {}
+  /**
+   * **RBAC RoleBinding Actuation**: A membership-specific Feature state for the RBACRoleBindingActuation fleet feature.
+   */
+  export interface Schema$RBACRoleBindingActuationState {
+    /**
+     * Output only. The state of RBACRoleBindings using custom roles that exist on the cluster, keyed by RBACRoleBinding resource name with format: projects/{project\}/locations/{location\}/scopes/{scope\}/rbacrolebindings/{rbacrolebinding\}.
+     */
+    rbacrolebindingStates?: {
+      [key: string]: Schema$RBACRoleBindingActuationRBACRoleBindingState;
+    } | null;
+  }
+  /**
    * AnalysisMessage is a single message produced by an analyzer, and it used to communicate to the end user about the state of their Service Mesh configuration.
    */
   export interface Schema$ServiceMeshAnalysisMessage {
@@ -2120,6 +2160,10 @@ export namespace gkehub_v2beta {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

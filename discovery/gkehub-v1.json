@@ -191,6 +191,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -2111,7 +2117,7 @@
       }
     }
   },
-  "revision": "20250302",
+  "revision": "20250423",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2552,6 +2558,10 @@
         "multiclusteringress": {
           "$ref": "MultiClusterIngressFeatureSpec",
           "description": "Multicluster Ingress-specific spec."
+        },
+        "rbacrolebindingactuation": {
+          "$ref": "RBACRoleBindingActuationFeatureSpec",
+          "description": "RBAC Role Binding Actuation feature spec"
         }
       },
       "type": "object"
@@ -2571,6 +2581,10 @@
         "fleetobservability": {
           "$ref": "FleetObservabilityFeatureState",
           "description": "FleetObservability feature state."
+        },
+        "rbacrolebindingactuation": {
+          "$ref": "RBACRoleBindingActuationFeatureState",
+          "description": "RBAC Role Binding Actuation feature state"
         },
         "state": {
           "$ref": "FeatureState",
@@ -4991,7 +5005,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels for this membership.",
+          "description": "Optional. Labels for this membership. These labels are not leveraged by multi-cluster features, instead, we prefer cluster labels, which can be set on GKE cluster or other cluster types.",
           "type": "object"
         },
         "lastConnectionTime": {
@@ -5983,6 +5997,26 @@
       },
       "type": "object"
     },
+    "RBACRoleBindingActuationFeatureSpec": {
+      "description": "**RBAC RoleBinding Actuation**: The Hub-wide input for the RBACRoleBindingActuation feature.",
+      "id": "RBACRoleBindingActuationFeatureSpec",
+      "properties": {
+        "allowedCustomRoles": {
+          "description": "The list of allowed custom roles (ClusterRoles). If a ClusterRole is not part of this list, it cannot be used in a Scope RBACRoleBinding. If a ClusterRole in this list is in use, it cannot be removed from the list.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RBACRoleBindingActuationFeatureState": {
+      "description": "**RBAC RoleBinding Actuation**: An empty state left as an example Hub-wide Feature state.",
+      "id": "RBACRoleBindingActuationFeatureState",
+      "properties": {},
+      "type": "object"
+    },
     "RBACRoleBindingLifecycleState": {
       "description": "RBACRoleBindingLifecycleState describes the state of a RbacRoleBinding resource.",
       "id": "RBACRoleBindingLifecycleState",
@@ -6049,6 +6083,10 @@
       "description": "Role is the type for Kubernetes roles",
       "id": "Role",
       "properties": {
+        "customRole": {
+          "description": "Optional. custom_role is the name of a custom KubernetesClusterRole to use.",
+          "type": "string"
+        },
         "predefinedRole": {
           "description": "predefined_role is the Kubernetes default role to use",
           "enum": [
@@ -6207,7 +6245,7 @@
       "type": "object"
     },
     "ServiceMeshCondition": {
-      "description": "Condition being reported. TODO b/395151419: Remove this message once the membership-level conditions field uses the common Condition message.",
+      "description": "Condition being reported.",
       "id": "ServiceMeshCondition",
       "properties": {
         "code": {
@@ -6245,6 +6283,11 @@
             "QUOTA_EXCEEDED_HTTP_FILTERS",
             "QUOTA_EXCEEDED_TCP_FILTERS",
             "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+            "LEGACY_MC_SECRETS",
+            "WORKLOAD_IDENTITY_REQUIRED",
+            "NON_STANDARD_BINARY_USAGE",
+            "UNSUPPORTED_GATEWAY_CLASS",
+            "MANAGED_CNI_NOT_ENABLED",
             "MODERNIZATION_SCHEDULED",
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
@@ -6284,6 +6327,11 @@
             "HTTPFilter quota exceeded error code.",
             "TCPFilter quota exceeded error code.",
             "NetworkEndpointGroup quota exceeded error code.",
+            "Legacy istio secrets found for multicluster error code",
+            "Workload identity required error code",
+            "Non-standard binary usage error code",
+            "Unsupported gateway class error code",
+            "Managed CNI not enabled error code",
             "Modernization is scheduled for a cluster.",
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
@@ -6467,7 +6515,7 @@
       "id": "ServiceMeshMembershipState",
       "properties": {
         "conditions": {
-          "description": "Output only. List of conditions reported for this membership. TODO b/395151419: Use the common Condition message.",
+          "description": "Output only. List of conditions reported for this membership.",
           "items": {
             "$ref": "ServiceMeshCondition"
           },

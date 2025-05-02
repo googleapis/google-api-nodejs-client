@@ -191,6 +191,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -2255,7 +2261,7 @@
       }
     }
   },
-  "revision": "20250302",
+  "revision": "20250423",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2801,9 +2807,17 @@
           "$ref": "NamespaceActuationFeatureSpec",
           "description": "Namespace Actuation feature spec"
         },
+        "rbacrolebindingactuation": {
+          "$ref": "RBACRoleBindingActuationFeatureSpec",
+          "description": "RBAC Role Binding Actuation feature spec"
+        },
         "workloadcertificate": {
           "$ref": "FeatureSpec",
           "description": "Workload Certificate spec."
+        },
+        "workloadidentity": {
+          "$ref": "WorkloadIdentityFeatureSpec",
+          "description": "Workload Identity feature spec."
         }
       },
       "type": "object"
@@ -2828,6 +2842,10 @@
           "$ref": "NamespaceActuationFeatureState",
           "description": "Namespace Actuation feature state."
         },
+        "rbacrolebindingactuation": {
+          "$ref": "RBACRoleBindingActuationFeatureState",
+          "description": "RBAC Role Binding Actuation feature state"
+        },
         "servicemesh": {
           "$ref": "ServiceMeshFeatureState",
           "description": "Service Mesh-specific state."
@@ -2836,6 +2854,10 @@
           "$ref": "FeatureState",
           "description": "Output only. The \"running state\" of the Feature in this Fleet.",
           "readOnly": true
+        },
+        "workloadidentity": {
+          "$ref": "WorkloadIdentityFeatureState",
+          "description": "WorkloadIdentity fleet-level state."
         }
       },
       "type": "object"
@@ -5381,7 +5403,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels for this membership.",
+          "description": "Optional. Labels for this membership. These labels are not leveraged by multi-cluster features, instead, we prefer cluster labels, which can be set on GKE cluster or other cluster types.",
           "type": "object"
         },
         "lastConnectionTime": {
@@ -5621,6 +5643,10 @@
         "state": {
           "$ref": "FeatureState",
           "description": "The high-level state of this Feature for a single membership."
+        },
+        "workloadidentity": {
+          "$ref": "WorkloadIdentityMembershipState",
+          "description": "Workload Identity membership specific state."
         }
       },
       "type": "object"
@@ -6485,6 +6511,26 @@
       },
       "type": "object"
     },
+    "RBACRoleBindingActuationFeatureSpec": {
+      "description": "**RBAC RoleBinding Actuation**: The Hub-wide input for the RBACRoleBindingActuation feature.",
+      "id": "RBACRoleBindingActuationFeatureSpec",
+      "properties": {
+        "allowedCustomRoles": {
+          "description": "The list of allowed custom roles (ClusterRoles). If a ClusterRole is not part of this list, it cannot be used in a Scope RBACRoleBinding. If a ClusterRole in this list is in use, it cannot be removed from the list.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RBACRoleBindingActuationFeatureState": {
+      "description": "**RBAC RoleBinding Actuation**: An empty state left as an example Hub-wide Feature state.",
+      "id": "RBACRoleBindingActuationFeatureState",
+      "properties": {},
+      "type": "object"
+    },
     "RBACRoleBindingLifecycleState": {
       "description": "RBACRoleBindingLifecycleState describes the state of a RbacRoleBinding resource.",
       "id": "RBACRoleBindingLifecycleState",
@@ -6551,6 +6597,10 @@
       "description": "Role is the type for Kubernetes roles",
       "id": "Role",
       "properties": {
+        "customRole": {
+          "description": "Optional. custom_role is the name of a custom KubernetesClusterRole to use.",
+          "type": "string"
+        },
         "predefinedRole": {
           "description": "predefined_role is the Kubernetes default role to use",
           "enum": [
@@ -6779,7 +6829,7 @@
       "type": "object"
     },
     "ServiceMeshCondition": {
-      "description": "Condition being reported. TODO b/395151419: Remove this message once the membership-level conditions field uses the common Condition message.",
+      "description": "Condition being reported.",
       "id": "ServiceMeshCondition",
       "properties": {
         "code": {
@@ -6817,6 +6867,11 @@
             "QUOTA_EXCEEDED_HTTP_FILTERS",
             "QUOTA_EXCEEDED_TCP_FILTERS",
             "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+            "LEGACY_MC_SECRETS",
+            "WORKLOAD_IDENTITY_REQUIRED",
+            "NON_STANDARD_BINARY_USAGE",
+            "UNSUPPORTED_GATEWAY_CLASS",
+            "MANAGED_CNI_NOT_ENABLED",
             "MODERNIZATION_SCHEDULED",
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
@@ -6856,6 +6911,11 @@
             "HTTPFilter quota exceeded error code.",
             "TCPFilter quota exceeded error code.",
             "NetworkEndpointGroup quota exceeded error code.",
+            "Legacy istio secrets found for multicluster error code",
+            "Workload identity required error code",
+            "Non-standard binary usage error code",
+            "Unsupported gateway class error code",
+            "Managed CNI not enabled error code",
             "Modernization is scheduled for a cluster.",
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
@@ -6985,7 +7045,7 @@
       "type": "object"
     },
     "ServiceMeshFeatureCondition": {
-      "description": "Condition being reported. TODO b/395151419: This message should be used to replace the membership-level Condition message.",
+      "description": "Condition being reported.",
       "id": "ServiceMeshFeatureCondition",
       "properties": {
         "code": {
@@ -7023,6 +7083,11 @@
             "QUOTA_EXCEEDED_HTTP_FILTERS",
             "QUOTA_EXCEEDED_TCP_FILTERS",
             "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+            "LEGACY_MC_SECRETS",
+            "WORKLOAD_IDENTITY_REQUIRED",
+            "NON_STANDARD_BINARY_USAGE",
+            "UNSUPPORTED_GATEWAY_CLASS",
+            "MANAGED_CNI_NOT_ENABLED",
             "MODERNIZATION_SCHEDULED",
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
@@ -7062,6 +7127,11 @@
             "HTTPFilter quota exceeded error code.",
             "TCPFilter quota exceeded error code.",
             "NetworkEndpointGroup quota exceeded error code.",
+            "Legacy istio secrets found for multicluster error code.",
+            "Workload identity required error code.",
+            "Non-standard binary usage error code.",
+            "Unsupported gateway class error code.",
+            "Managed CNI not enabled error code.",
             "Modernization is scheduled for a cluster.",
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
@@ -7200,7 +7270,7 @@
           "type": "array"
         },
         "conditions": {
-          "description": "Output only. List of conditions reported for this membership. TODO b/395151419: Use the common Condition message.",
+          "description": "Output only. List of conditions reported for this membership.",
           "items": {
             "$ref": "ServiceMeshCondition"
           },
@@ -7406,6 +7476,124 @@
             "CROSS_PROJECT_PERMISSION validator validates that the cross-project role binding for the service agent is in place.",
             "FLEET_ALLOWED_FOR_PROJECT_GUARDRAIL validator validates that the fleet project is allowed for the project guardrail."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadIdentityFeatureSpec": {
+      "description": "**WorkloadIdentity**: Global feature specification.",
+      "id": "WorkloadIdentityFeatureSpec",
+      "properties": {
+        "scopeTenancyPool": {
+          "description": "Pool to be used for Workload Identity. This pool in trust-domain mode is used with Fleet Tenancy, so that sameness can be enforced. ex: projects/example/locations/global/workloadidentitypools/custompool",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadIdentityFeatureState": {
+      "description": "**WorkloadIdentity**: Global feature state.",
+      "id": "WorkloadIdentityFeatureState",
+      "properties": {
+        "namespaceStateDetails": {
+          "additionalProperties": {
+            "$ref": "WorkloadIdentityNamespaceStateDetail"
+          },
+          "description": "The state of the IAM namespaces for the fleet.",
+          "type": "object"
+        },
+        "namespaceStates": {
+          "additionalProperties": {
+            "enum": [
+              "NAMESPACE_STATE_UNSPECIFIED",
+              "NAMESPACE_STATE_OK",
+              "NAMESPACE_STATE_ERROR"
+            ],
+            "enumDescriptions": [
+              "Unknown state.",
+              "The Namespace was created/updated successfully.",
+              "The Namespace was not created/updated successfully. The error message is in the description field."
+            ],
+            "type": "string"
+          },
+          "description": "Deprecated, will erase after code is changed to use the new field.",
+          "type": "object"
+        },
+        "scopeTenancyWorkloadIdentityPool": {
+          "description": "The full name of the scope-tenancy pool for the fleet.",
+          "type": "string"
+        },
+        "workloadIdentityPool": {
+          "description": "The full name of the svc.id.goog pool for the fleet.",
+          "type": "string"
+        },
+        "workloadIdentityPoolStateDetails": {
+          "additionalProperties": {
+            "$ref": "WorkloadIdentityWorkloadIdentityPoolStateDetail"
+          },
+          "description": "The state of the Workload Identity Pools for the fleet.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadIdentityMembershipState": {
+      "description": "**WorkloadIdentity**: The membership-specific state for WorkloadIdentity feature.",
+      "id": "WorkloadIdentityMembershipState",
+      "properties": {
+        "description": {
+          "description": "Deprecated, will erase after code is changed to use the new field.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadIdentityNamespaceStateDetail": {
+      "description": "NamespaceStateDetail represents the state of a IAM namespace.",
+      "id": "WorkloadIdentityNamespaceStateDetail",
+      "properties": {
+        "code": {
+          "description": "The state of the IAM namespace.",
+          "enum": [
+            "NAMESPACE_STATE_UNSPECIFIED",
+            "NAMESPACE_STATE_OK",
+            "NAMESPACE_STATE_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unknown state.",
+            "The Namespace was created/updated successfully.",
+            "The Namespace was not created/updated successfully. The error message is in the description field."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "A human-readable description of the current state or returned error.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadIdentityWorkloadIdentityPoolStateDetail": {
+      "description": "WorkloadIdentityPoolStateDetail represents the state of the Workload Identity Pools for the fleet.",
+      "id": "WorkloadIdentityWorkloadIdentityPoolStateDetail",
+      "properties": {
+        "code": {
+          "description": "The state of the Workload Identity Pool.",
+          "enum": [
+            "WORKLOAD_IDENTITY_POOL_STATE_UNSPECIFIED",
+            "WORKLOAD_IDENTITY_POOL_STATE_OK",
+            "WORKLOAD_IDENTITY_POOL_STATE_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unknown state.",
+            "The Workload Identity Pool was created/updated successfully.",
+            "The Workload Identity Pool was not created/updated successfully. The error message is in the description field."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "A human-readable description of the current state or returned error.",
           "type": "string"
         }
       },
