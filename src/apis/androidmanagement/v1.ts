@@ -543,6 +543,23 @@ export namespace androidmanagement_v1 {
     versionString?: string | null;
   }
   /**
+   * An admin has enabled or disabled backup service.
+   */
+  export interface Schema$BackupServiceToggledEvent {
+    /**
+     * Package name of the admin app requesting the change.
+     */
+    adminPackageName?: string | null;
+    /**
+     * User ID of the admin app from the which the change was requested.
+     */
+    adminUserId?: number | null;
+    /**
+     * Whether the backup service is enabled
+     */
+    backupServiceState?: string | null;
+  }
+  /**
    * Batched event logs of events from the device.
    */
   export interface Schema$BatchUsageLogEvents {
@@ -1017,6 +1034,10 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$DeviceConnectivityManagement {
     /**
+     * Optional. Controls whether Bluetooth sharing is allowed.
+     */
+    bluetoothSharing?: string | null;
+    /**
      * Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.
      */
     configureWifi?: string | null;
@@ -1292,6 +1313,19 @@ export namespace androidmanagement_v1 {
      * Terms and conditions that must be accepted when provisioning a device for this enterprise. A page of terms is generated for each value in this list.
      */
     termsAndConditions?: Schema$TermsAndConditions[];
+  }
+  /**
+   * An event sent for an enterprise upgrade. An enterprise upgrade is a process that upgrades a managed Google Play Accounts enterprise to a managed Google domain.
+   */
+  export interface Schema$EnterpriseUpgradeEvent {
+    /**
+     * The name of upgraded enterprise in the format "enterprises/{enterprise\}"
+     */
+    enterprise?: string | null;
+    /**
+     * Output only. The upgrade state of the enterprise.
+     */
+    upgradeState?: string | null;
   }
   /**
    * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 11 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command on extension apps if needed for Android 11 and above.
@@ -2228,6 +2262,10 @@ export namespace androidmanagement_v1 {
      */
     accountTypesWithManagementDisabled?: string[] | null;
     /**
+     * Optional. Whether bluetooth sharing is allowed.
+     */
+    bluetoothSharing?: string | null;
+    /**
      * If true, the camera is disabled on the personal profile.
      */
     cameraDisabled?: boolean | null;
@@ -3142,6 +3180,10 @@ export namespace androidmanagement_v1 {
      * An app process was started. Part of SECURITY_LOGS.
      */
     appProcessStartEvent?: Schema$AppProcessStartEvent;
+    /**
+     * An admin has enabled or disabled backup service. Part of SECURITY_LOGS.
+     */
+    backupServiceToggledEvent?: Schema$BackupServiceToggledEvent;
     /**
      * A new root certificate was installed into the system's trusted credential storage. Part of SECURITY_LOGS.
      */
@@ -6573,7 +6615,7 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Webapps$Get
     extends StandardParameters {
     /**
-     * The name of the web app in the form enterprises/{enterpriseId\}/webApp/{packageName\}.
+     * The name of the web app in the form enterprises/{enterpriseId\}/webApps/{packageName\}.
      */
     name?: string;
   }

@@ -1010,7 +1010,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The name of the web app in the form enterprises/{enterpriseId}/webApp/{packageName}.",
+                  "description": "The name of the web app in the form enterprises/{enterpriseId}/webApps/{packageName}.",
                   "location": "path",
                   "pattern": "^enterprises/[^/]+/webApps/[^/]+$",
                   "required": true,
@@ -1202,7 +1202,7 @@
       }
     }
   },
-  "revision": "20250306",
+  "revision": "20250428",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2000,6 +2000,36 @@
       },
       "type": "object"
     },
+    "BackupServiceToggledEvent": {
+      "description": "An admin has enabled or disabled backup service.",
+      "id": "BackupServiceToggledEvent",
+      "properties": {
+        "adminPackageName": {
+          "description": "Package name of the admin app requesting the change.",
+          "type": "string"
+        },
+        "adminUserId": {
+          "description": "User ID of the admin app from the which the change was requested.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "backupServiceState": {
+          "description": "Whether the backup service is enabled",
+          "enum": [
+            "BACKUP_SERVICE_STATE_UNSPECIFIED",
+            "BACKUP_SERVICE_DISABLED",
+            "BACKUP_SERVICE_ENABLED"
+          ],
+          "enumDescriptions": [
+            "No value is set",
+            "Backup service is enabled",
+            "Backup service is disabled"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BatchUsageLogEvents": {
       "description": "Batched event logs of events from the device.",
       "id": "BatchUsageLogEvents",
@@ -2767,6 +2797,20 @@
       "description": "Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more.",
       "id": "DeviceConnectivityManagement",
       "properties": {
+        "bluetoothSharing": {
+          "description": "Optional. Controls whether Bluetooth sharing is allowed.",
+          "enum": [
+            "BLUETOOTH_SHARING_UNSPECIFIED",
+            "BLUETOOTH_SHARING_ALLOWED",
+            "BLUETOOTH_SHARING_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to BLUETOOTH_SHARING_DISALLOWED on work profiles and BLUETOOTH_SHARING_ALLOWED on fully managed devices.",
+            "Bluetooth sharing is allowed.Supported on Android 8 and above. A NonComplianceDetail with API_LEVEL is reported on work profiles if the Android version is less than 8.",
+            "Bluetooth sharing is disallowed.Supported on Android 8 and above. A NonComplianceDetail with API_LEVEL is reported on fully managed devices if the Android version is less than 8."
+          ],
+          "type": "string"
+        },
         "configureWifi": {
           "description": "Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.",
           "enum": [
@@ -3204,7 +3248,7 @@
               "A notification sent when a device issues a status report.",
               "A notification sent when a device command has completed.",
               "A notification sent when device sends BatchUsageLogEvents.",
-              "A notification sent when an enterprise is upgraded.Note: This feature is not generally available."
+              "A notification sent for an enterprise upgrade. An enterprise upgrade is a process that upgrades a managed Google Play Accounts enterprise to a managed Google domain."
             ],
             "type": "string"
           },
@@ -3293,6 +3337,30 @@
             "$ref": "TermsAndConditions"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseUpgradeEvent": {
+      "description": "An event sent for an enterprise upgrade. An enterprise upgrade is a process that upgrades a managed Google Play Accounts enterprise to a managed Google domain.",
+      "id": "EnterpriseUpgradeEvent",
+      "properties": {
+        "enterprise": {
+          "description": "The name of upgraded enterprise in the format \"enterprises/{enterprise}\"",
+          "type": "string"
+        },
+        "upgradeState": {
+          "description": "Output only. The upgrade state of the enterprise.",
+          "enum": [
+            "UPGRADE_STATE_UNSPECIFIED",
+            "UPGRADE_STATE_SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value is not used.",
+            "The upgrade has succeeded."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4888,6 +4956,20 @@
           },
           "type": "array"
         },
+        "bluetoothSharing": {
+          "description": "Optional. Whether bluetooth sharing is allowed.",
+          "enum": [
+            "BLUETOOTH_SHARING_UNSPECIFIED",
+            "BLUETOOTH_SHARING_ALLOWED",
+            "BLUETOOTH_SHARING_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to BLUETOOTH_SHARING_ALLOWED.",
+            "Bluetooth sharing is allowed on personal profile.Supported on Android 8 and above. A NonComplianceDetail with MANAGEMENT_MODE is reported if this is set for a personal device.",
+            "Bluetooth sharing is disallowed on personal profile.Supported on Android 8 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 8. A NonComplianceDetail with MANAGEMENT_MODE is reported if this is set for a personal device."
+          ],
+          "type": "string"
+        },
         "cameraDisabled": {
           "description": "If true, the camera is disabled on the personal profile.",
           "type": "boolean"
@@ -6385,6 +6467,10 @@
           "$ref": "AppProcessStartEvent",
           "description": "An app process was started. Part of SECURITY_LOGS."
         },
+        "backupServiceToggledEvent": {
+          "$ref": "BackupServiceToggledEvent",
+          "description": "An admin has enabled or disabled backup service. Part of SECURITY_LOGS."
+        },
         "certAuthorityInstalledEvent": {
           "$ref": "CertAuthorityInstalledEvent",
           "description": "A new root certificate was installed into the system's trusted credential storage. Part of SECURITY_LOGS."
@@ -6457,7 +6543,8 @@
             "STOP_LOST_MODE_USER_ATTEMPT",
             "LOST_MODE_OUTGOING_PHONE_CALL",
             "LOST_MODE_LOCATION",
-            "ENROLLMENT_COMPLETE"
+            "ENROLLMENT_COMPLETE",
+            "BACKUP_SERVICE_TOGGLED"
           ],
           "enumDescriptions": [
             "This value is not used",
@@ -6491,7 +6578,8 @@
             "Indicates stopLostModeUserAttemptEvent has been set.",
             "Indicates lostModeOutgoingPhoneCallEvent has been set.",
             "Indicates lostModeLocationEvent has been set.",
-            "Indicates enrollment_complete_event has been set."
+            "Indicates enrollment_complete_event has been set.",
+            "Indicates backupServiceToggledEvent has been set."
           ],
           "type": "string"
         },
