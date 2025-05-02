@@ -215,7 +215,7 @@
           ],
           "parameters": {
             "formId": {
-              "description": "Required. The ID of the form. You can get the id from `Form.form_id` field.",
+              "description": "Required. The ID of the form. You can get the id from Form.form_id field.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -458,7 +458,7 @@
       }
     }
   },
-  "revision": "20250304",
+  "revision": "20250422",
   "rootUrl": "https://forms.googleapis.com/",
   "schemas": {
     "Answer": {
@@ -831,22 +831,22 @@
         },
         "publishSettings": {
           "$ref": "PublishSettings",
-          "description": "Output only. The publishing settings for a form. This field isn't set for legacy forms because they don't have the `publish_settings` field. All newly created forms support publish settings. Forms with `publish_settings` value set can call UpdatePublishSettings API to publish or unpublish the form.",
+          "description": "Output only. The publishing settings for a form. This field isn't set for legacy forms because they don't have the publish_settings field. All newly created forms support publish settings. Forms with publish_settings value set can call SetPublishSettings API to publish or unpublish the form.",
           "readOnly": true
         },
         "responderUri": {
-          "description": "Output only. The form URI to share with responders. This opens a page that allows the user to submit responses but not edit the questions.",
+          "description": "Output only. The form URI to share with responders. This opens a page that allows the user to submit responses but not edit the questions. For forms that have publish_settings value set, this is the published form URI.",
           "readOnly": true,
           "type": "string"
         },
         "revisionId": {
-          "description": "Output only. The revision ID of the form. Used in the WriteControl in update requests to identify the revision on which the changes are based. The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the form has not changed. Conversely, a changed ID (for the same form and user) usually means the form has been updated; however, a changed ID can also be due to internal factors such as ID format changes.",
+          "description": "Output only. The revision ID of the form. Used in the WriteControl in update requests to identify the revision on which the changes are based. The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the form *content* has not changed. Conversely, a changed ID (for the same form and user) usually means the form *content* has been updated; however, a changed ID can also be due to internal factors such as ID format changes. Form content excludes form metadata, including: * sharing settings (who has access to the form) * publish_settings (if the form supports publishing and if it is published)",
           "readOnly": true,
           "type": "string"
         },
         "settings": {
           "$ref": "FormSettings",
-          "description": "The form's settings. This must be updated with UpdateSettingsRequest; it is ignored during `forms.create` and UpdateFormInfoRequest."
+          "description": "The form's settings. This must be updated with UpdateSettingsRequest; it is ignored during CreateForm and UpdateFormInfoRequest."
         }
       },
       "type": "object"
@@ -1036,7 +1036,7 @@
           "type": "string"
         },
         "documentTitle": {
-          "description": "Output only. The title of the document which is visible in Drive. If `Info.title` is empty, `document_title` may appear in its place in the Google Forms UI and be visible to responders. `document_title` can be set on create, but cannot be modified by a batchUpdate request. Please use the [Google Drive API](https://developers.google.com/drive/api/v3/reference/files/update) if you need to programmatically update `document_title`.",
+          "description": "Output only. The title of the document which is visible in Drive. If Info.title is empty, `document_title` may appear in its place in the Google Forms UI and be visible to responders. `document_title` can be set on create, but cannot be modified by a batchUpdate request. Please use the [Google Drive API](https://developers.google.com/drive/api/v3/reference/files/update) if you need to programmatically update `document_title`.",
           "readOnly": true,
           "type": "string"
         },
@@ -1476,11 +1476,11 @@
       "type": "object"
     },
     "SetPublishSettingsResponse": {
-      "description": "The response of a `SetPublishSettings` request.",
+      "description": "The response of a SetPublishSettings request.",
       "id": "SetPublishSettingsResponse",
       "properties": {
         "formId": {
-          "description": "Required. The ID of the Form. This is same as the `Form.form_id` field.",
+          "description": "Required. The ID of the Form. This is same as the Form.form_id field.",
           "type": "string"
         },
         "publishSettings": {
