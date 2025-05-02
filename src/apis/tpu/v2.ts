@@ -579,6 +579,10 @@ export namespace tpu_v2 {
      * Tags to apply to the TPU Node. Tags are used to identify valid sources or targets for network firewalls.
      */
     tags?: string[] | null;
+    /**
+     * Output only. Upcoming maintenance on this TPU node.
+     */
+    upcomingMaintenance?: Schema$UpcomingMaintenance;
   }
   /**
    * Details of the TPU node(s) being requested. Users can request either a single node or multiple nodes. NodeSpec provides the specification for node(s) to be created.
@@ -901,6 +905,35 @@ export namespace tpu_v2 {
      * Optional. The TPU node(s) being requested.
      */
     nodeSpec?: Schema$NodeSpec[];
+  }
+  /**
+   * Upcoming Maintenance notification information.
+   */
+  export interface Schema$UpcomingMaintenance {
+    /**
+     * Indicates if the maintenance can be customer triggered.
+     */
+    canReschedule?: boolean | null;
+    /**
+     * The latest time for the planned maintenance window to start. This timestamp value is in RFC3339 text format.
+     */
+    latestWindowStartTime?: string | null;
+    /**
+     * The status of the maintenance.
+     */
+    maintenanceStatus?: string | null;
+    /**
+     * Defines the type of maintenance.
+     */
+    type?: string | null;
+    /**
+     * The time by which the maintenance disruption will be completed. This timestamp value is in RFC3339 text format.
+     */
+    windowEndTime?: string | null;
+    /**
+     * The current start time of the maintenance window. This timestamp value is in RFC3339 text format.
+     */
+    windowStartTime?: string | null;
   }
 
   export class Resource$Projects {
@@ -1234,6 +1267,10 @@ export namespace tpu_v2 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

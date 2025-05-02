@@ -171,6 +171,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -887,7 +893,7 @@
       }
     }
   },
-  "revision": "20250116",
+  "revision": "20250410",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1584,6 +1590,11 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance",
+          "description": "Output only. Upcoming maintenance on this TPU node.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -2043,6 +2054,57 @@
             "$ref": "NodeSpec"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UpcomingMaintenance": {
+      "description": "Upcoming Maintenance notification information.",
+      "id": "UpcomingMaintenance",
+      "properties": {
+        "canReschedule": {
+          "description": "Indicates if the maintenance can be customer triggered.",
+          "type": "boolean"
+        },
+        "latestWindowStartTime": {
+          "description": "The latest time for the planned maintenance window to start. This timestamp value is in RFC3339 text format.",
+          "type": "string"
+        },
+        "maintenanceStatus": {
+          "description": "The status of the maintenance.",
+          "enum": [
+            "UNKNOWN",
+            "PENDING",
+            "ONGOING"
+          ],
+          "enumDescriptions": [
+            "Unknown maintenance status. Do not use this value.",
+            "There is pending maintenance.",
+            "There is ongoing maintenance on this VM."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Defines the type of maintenance.",
+          "enum": [
+            "UNKNOWN_TYPE",
+            "SCHEDULED",
+            "UNSCHEDULED"
+          ],
+          "enumDescriptions": [
+            "No type specified. Do not use this value.",
+            "Scheduled maintenance (e.g. maintenance after uptime guarantee is complete).",
+            "Unscheduled maintenance (e.g. emergency maintenance during uptime guarantee)."
+          ],
+          "type": "string"
+        },
+        "windowEndTime": {
+          "description": "The time by which the maintenance disruption will be completed. This timestamp value is in RFC3339 text format.",
+          "type": "string"
+        },
+        "windowStartTime": {
+          "description": "The current start time of the maintenance window. This timestamp value is in RFC3339 text format.",
+          "type": "string"
         }
       },
       "type": "object"
