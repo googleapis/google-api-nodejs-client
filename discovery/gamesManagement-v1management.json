@@ -471,7 +471,7 @@
       }
     }
   },
-  "revision": "20241209",
+  "revision": "20250320",
   "rootUrl": "https://gamesmanagement.googleapis.com/",
   "schemas": {
     "AchievementResetAllResponse": {
@@ -776,6 +776,6 @@
     }
   },
   "servicePath": "",
-  "title": "Google Play Game Management",
+  "title": "Google Play Games Services Management API",
   "version": "v1management"
 }
