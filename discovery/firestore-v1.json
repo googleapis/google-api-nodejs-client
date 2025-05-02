@@ -1544,6 +1544,209 @@
                   ]
                 }
               }
+            },
+            "userCreds": {
+              "methods": {
+                "create": {
+                  "description": "Create a user creds.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/userCreds",
+                  "httpMethod": "POST",
+                  "id": "firestore.projects.databases.userCreds.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. A parent name of the form `projects/{project_id}/databases/{database_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "userCredsId": {
+                      "description": "Required. The ID to use for the user creds, which will become the final component of the user creds's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/userCreds",
+                  "request": {
+                    "$ref": "GoogleFirestoreAdminV1UserCreds"
+                  },
+                  "response": {
+                    "$ref": "GoogleFirestoreAdminV1UserCreds"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a user creds.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/userCreds/{userCredsId}",
+                  "httpMethod": "DELETE",
+                  "id": "firestore.projects.databases.userCreds.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the form `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+/userCreds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "disable": {
+                  "description": "Disables a user creds. No-op if the user creds are already disabled.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/userCreds/{userCredsId}:disable",
+                  "httpMethod": "POST",
+                  "id": "firestore.projects.databases.userCreds.disable",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the form `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+/userCreds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:disable",
+                  "request": {
+                    "$ref": "GoogleFirestoreAdminV1DisableUserCredsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleFirestoreAdminV1UserCreds"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "enable": {
+                  "description": "Enables a user creds. No-op if the user creds are already enabled.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/userCreds/{userCredsId}:enable",
+                  "httpMethod": "POST",
+                  "id": "firestore.projects.databases.userCreds.enable",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the form `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+/userCreds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:enable",
+                  "request": {
+                    "$ref": "GoogleFirestoreAdminV1EnableUserCredsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleFirestoreAdminV1UserCreds"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a user creds resource. Note that the returned resource does not contain the secret value itself.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/userCreds/{userCredsId}",
+                  "httpMethod": "GET",
+                  "id": "firestore.projects.databases.userCreds.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the form `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+/userCreds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleFirestoreAdminV1UserCreds"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "list": {
+                  "description": "List all user creds in the database. Note that the returned resource does not contain the secret value itself.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/userCreds",
+                  "httpMethod": "GET",
+                  "id": "firestore.projects.databases.userCreds.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. A parent database name of the form `projects/{project_id}/databases/{database_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/userCreds",
+                  "response": {
+                    "$ref": "GoogleFirestoreAdminV1ListUserCredsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "resetPassword": {
+                  "description": "Resets the password of a user creds.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/userCreds/{userCredsId}:resetPassword",
+                  "httpMethod": "POST",
+                  "id": "firestore.projects.databases.userCreds.resetPassword",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the form `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+/userCreds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:resetPassword",
+                  "request": {
+                    "$ref": "GoogleFirestoreAdminV1ResetUserPasswordRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleFirestoreAdminV1UserCreds"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                }
+              }
             }
           }
         },
@@ -1584,6 +1787,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -1711,7 +1920,7 @@
       }
     }
   },
-  "revision": "20250307",
+  "revision": "20250414",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2716,6 +2925,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "databaseEdition": {
+          "description": "Immutable. The edition of the database.",
+          "enum": [
+            "DATABASE_EDITION_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Standard edition. This is the default setting if not specified.",
+            "Enterprise edition."
+          ],
+          "type": "string"
+        },
         "deleteProtectionState": {
           "description": "State of delete protection for the database.",
           "enum": [
@@ -2745,6 +2968,11 @@
         "etag": {
           "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
           "type": "string"
+        },
+        "freeTier": {
+          "description": "Output only. Background: Free tier is the ability of a Firestore database to use a small amount of resources every day without being charged. Once usage exceeds the free tier limit further usage is charged. Whether this database can make use of the free tier. Only one database per project can be eligible for the free tier. The first (or next) database that is created in a project without a free tier database will be marked as eligible for the free tier. Databases that are created while there is a free tier database will not be eligible for the free tier.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "keyPrefix": {
           "description": "Output only. The key_prefix for this database. This key_prefix is used, in combination with the project ID (\"~\") to construct the application ID that is returned from the Cloud Datastore APIs in Google App Engine first generation runtimes. This value may be empty in which case the appid to use for URL-encoded keys is the project_id (eg: foo instead of v~foo).",
@@ -2783,6 +3011,13 @@
           "description": "Output only. Information about the provenance of this database.",
           "readOnly": true
         },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "type": "object"
+        },
         "type": {
           "description": "The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose.",
           "enum": [
@@ -2820,6 +3055,18 @@
     "GoogleFirestoreAdminV1DeleteDatabaseMetadata": {
       "description": "Metadata related to the delete database operation.",
       "id": "GoogleFirestoreAdminV1DeleteDatabaseMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1DisableUserCredsRequest": {
+      "description": "The request for FirestoreAdmin.DisableUserCreds.",
+      "id": "GoogleFirestoreAdminV1DisableUserCredsRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1EnableUserCredsRequest": {
+      "description": "The request for FirestoreAdmin.EnableUserCreds.",
+      "id": "GoogleFirestoreAdminV1EnableUserCredsRequest",
       "properties": {},
       "type": "object"
     },
@@ -3150,11 +3397,29 @@
           "description": "The API scope supported by this index.",
           "enum": [
             "ANY_API",
-            "DATASTORE_MODE_API"
+            "DATASTORE_MODE_API",
+            "MONGODB_COMPATIBLE_API"
           ],
           "enumDescriptions": [
             "The index can only be used by the Firestore Native query API. This is the default.",
-            "The index can only be used by the Firestore in Datastore Mode query API."
+            "The index can only be used by the Firestore in Datastore Mode query API.",
+            "The index can only be used by the MONGODB_COMPATIBLE_API."
+          ],
+          "type": "string"
+        },
+        "density": {
+          "description": "Immutable. The density configuration of the index.",
+          "enum": [
+            "DENSITY_UNSPECIFIED",
+            "SPARSE_ALL",
+            "SPARSE_ANY",
+            "DENSE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. It will use database default setting. This value is input only.",
+            "In order for an index entry to be added, the document must contain all fields specified in the index. This is the only allowed value for indexes having ApiScope `ANY_API` and `DATASTORE_MODE_API`.",
+            "In order for an index entry to be added, the document must contain at least one of the fields specified in the index. Non-existent fields are treated as having a NULL value when generating index entries.",
+            "An index entry will be added regardless of whether the document contains any of the fields specified in the index. Non-existent fields are treated as having a NULL value when generating index entries."
           ],
           "type": "string"
         },
@@ -3164,6 +3429,10 @@
             "$ref": "GoogleFirestoreAdminV1IndexField"
           },
           "type": "array"
+        },
+        "multikey": {
+          "description": "Optional. Whether the index is multikey. By default, the index is not multikey. For non-multikey indexes, none of the paths in the index definition reach or traverse an array, except via an explicit array index. For multikey indexes, at most one of the paths in the index definition reach or traverse an array, except via an explicit array index. Violations will result in errors. Note this field only applies to index with MONGODB_COMPATIBLE_API ApiScope.",
+          "type": "boolean"
         },
         "name": {
           "description": "Output only. A server defined name for this index. The form of this name for composite indexes will be: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{composite_index_id}` For single field indexes, this field will be empty.",
@@ -3184,6 +3453,11 @@
             "Include all the collections's ancestor in the index. Only available for Datastore Mode databases."
           ],
           "type": "string"
+        },
+        "shardCount": {
+          "description": "Optional. The number of shards for the index.",
+          "format": "int32",
+          "type": "integer"
         },
         "state": {
           "description": "Output only. The serving state of the index.",
@@ -3441,6 +3715,20 @@
       },
       "type": "object"
     },
+    "GoogleFirestoreAdminV1ListUserCredsResponse": {
+      "description": "The response for FirestoreAdmin.ListUserCreds.",
+      "id": "GoogleFirestoreAdminV1ListUserCredsResponse",
+      "properties": {
+        "userCreds": {
+          "description": "The user creds for the database.",
+          "items": {
+            "$ref": "GoogleFirestoreAdminV1UserCreds"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirestoreAdminV1LocationMetadata": {
       "description": "The metadata message for google.cloud.location.Location.metadata.",
       "id": "GoogleFirestoreAdminV1LocationMetadata",
@@ -3459,6 +3747,24 @@
         "estimatedWork": {
           "description": "The amount of work estimated.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1ResetUserPasswordRequest": {
+      "description": "The request for FirestoreAdmin.ResetUserPassword.",
+      "id": "GoogleFirestoreAdminV1ResetUserPasswordRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1ResourceIdentity": {
+      "description": "Describes a Resource Identity principal.",
+      "id": "GoogleFirestoreAdminV1ResourceIdentity",
+      "properties": {
+        "principal": {
+          "description": "Output only. Principal identifier string. See: https://cloud.google.com/iam/docs/principal-identifiers",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3532,6 +3838,13 @@
         "encryptionConfig": {
           "$ref": "GoogleFirestoreAdminV1EncryptionConfig",
           "description": "Optional. Encryption configuration for the restored database. If this field is not specified, the restored database will use the same encryption configuration as the backup, namely use_source_encryption."
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Immutable. Tags to be bound to the restored database. The tags should be provided in the format of `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -3631,6 +3944,53 @@
       "description": "Metadata related to the update database operation.",
       "id": "GoogleFirestoreAdminV1UpdateDatabaseMetadata",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1UserCreds": {
+      "description": "A Cloud Firestore User Creds.",
+      "id": "GoogleFirestoreAdminV1UserCreds",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the user creds were created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the UserCreds. Format: `projects/{project}/databases/{database}/userCreds/{user_creds}`",
+          "type": "string"
+        },
+        "resourceIdentity": {
+          "$ref": "GoogleFirestoreAdminV1ResourceIdentity",
+          "description": "Resource Identity descriptor."
+        },
+        "securePassword": {
+          "description": "Output only. The plaintext server-generated password for the user creds. Only populated in responses for CreateUserCreds and ResetUserPassword.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Whether the user creds are enabled or disabled. Defaults to ENABLED on creation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "The default value. Should not be used.",
+            "The user creds are enabled.",
+            "The user creds are disabled."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the user creds were last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleFirestoreAdminV1VectorConfig": {

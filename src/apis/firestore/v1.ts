@@ -806,6 +806,10 @@ export namespace firestore_v1 {
      */
     createTime?: string | null;
     /**
+     * Immutable. The edition of the database.
+     */
+    databaseEdition?: string | null;
+    /**
      * State of delete protection for the database.
      */
     deleteProtectionState?: string | null;
@@ -821,6 +825,10 @@ export namespace firestore_v1 {
      * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
+    /**
+     * Output only. Background: Free tier is the ability of a Firestore database to use a small amount of resources every day without being charged. Once usage exceeds the free tier limit further usage is charged. Whether this database can make use of the free tier. Only one database per project can be eligible for the free tier. The first (or next) database that is created in a project without a free tier database will be marked as eligible for the free tier. Databases that are created while there is a free tier database will not be eligible for the free tier.
+     */
+    freeTier?: boolean | null;
     /**
      * Output only. The key_prefix for this database. This key_prefix is used, in combination with the project ID ("~") to construct the application ID that is returned from the Cloud Datastore APIs in Google App Engine first generation runtimes. This value may be empty in which case the appid to use for URL-encoded keys is the project_id (eg: foo instead of v~foo).
      */
@@ -846,6 +854,10 @@ export namespace firestore_v1 {
      */
     sourceInfo?: Schema$GoogleFirestoreAdminV1SourceInfo;
     /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose.
      */
     type?: string | null;
@@ -866,6 +878,14 @@ export namespace firestore_v1 {
    * Metadata related to the delete database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1DeleteDatabaseMetadata {}
+  /**
+   * The request for FirestoreAdmin.DisableUserCreds.
+   */
+  export interface Schema$GoogleFirestoreAdminV1DisableUserCredsRequest {}
+  /**
+   * The request for FirestoreAdmin.EnableUserCreds.
+   */
+  export interface Schema$GoogleFirestoreAdminV1EnableUserCredsRequest {}
   /**
    * Encryption configuration for a new database being created from another source. The source could be a Backup .
    */
@@ -1079,9 +1099,17 @@ export namespace firestore_v1 {
      */
     apiScope?: string | null;
     /**
+     * Immutable. The density configuration of the index.
+     */
+    density?: string | null;
+    /**
      * The fields supported by this index. For composite indexes, this requires a minimum of 2 and a maximum of 100 fields. The last field entry is always for the field path `__name__`. If, on creation, `__name__` was not specified as the last field, it will be added automatically with the same direction as that of the last field defined. If the final field in a composite index is not directional, the `__name__` will be ordered ASCENDING (unless explicitly specified). For single field indexes, this will always be exactly one entry with a field path equal to the field path of the associated field.
      */
     fields?: Schema$GoogleFirestoreAdminV1IndexField[];
+    /**
+     * Optional. Whether the index is multikey. By default, the index is not multikey. For non-multikey indexes, none of the paths in the index definition reach or traverse an array, except via an explicit array index. For multikey indexes, at most one of the paths in the index definition reach or traverse an array, except via an explicit array index. Violations will result in errors. Note this field only applies to index with MONGODB_COMPATIBLE_API ApiScope.
+     */
+    multikey?: boolean | null;
     /**
      * Output only. A server defined name for this index. The form of this name for composite indexes will be: `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{composite_index_id\}` For single field indexes, this field will be empty.
      */
@@ -1090,6 +1118,10 @@ export namespace firestore_v1 {
      * Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the same collection ID. Indexes with a collection group query scope specified allow queries against all collections descended from a specific document, specified at query time, and that have the same collection ID as this index.
      */
     queryScope?: string | null;
+    /**
+     * Optional. The number of shards for the index.
+     */
+    shardCount?: number | null;
     /**
      * Output only. The serving state of the index.
      */
@@ -1241,6 +1273,15 @@ export namespace firestore_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response for FirestoreAdmin.ListUserCreds.
+   */
+  export interface Schema$GoogleFirestoreAdminV1ListUserCredsResponse {
+    /**
+     * The user creds for the database.
+     */
+    userCreds?: Schema$GoogleFirestoreAdminV1UserCreds[];
+  }
+  /**
    * The metadata message for google.cloud.location.Location.metadata.
    */
   export interface Schema$GoogleFirestoreAdminV1LocationMetadata {}
@@ -1256,6 +1297,19 @@ export namespace firestore_v1 {
      * The amount of work estimated.
      */
     estimatedWork?: string | null;
+  }
+  /**
+   * The request for FirestoreAdmin.ResetUserPassword.
+   */
+  export interface Schema$GoogleFirestoreAdminV1ResetUserPasswordRequest {}
+  /**
+   * Describes a Resource Identity principal.
+   */
+  export interface Schema$GoogleFirestoreAdminV1ResourceIdentity {
+    /**
+     * Output only. Principal identifier string. See: https://cloud.google.com/iam/docs/principal-identifiers
+     */
+    principal?: string | null;
   }
   /**
    * Metadata for the long-running operation from the RestoreDatabase request.
@@ -1302,6 +1356,10 @@ export namespace firestore_v1 {
      * Optional. Encryption configuration for the restored database. If this field is not specified, the restored database will use the same encryption configuration as the backup, namely use_source_encryption.
      */
     encryptionConfig?: Schema$GoogleFirestoreAdminV1EncryptionConfig;
+    /**
+     * Optional. Immutable. Tags to be bound to the restored database. The tags should be provided in the format of `tagKeys/{tag_key_id\} -\> tagValues/{tag_value_id\}`.
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * The configuration options for using the same encryption method as the source.
@@ -1359,6 +1417,35 @@ export namespace firestore_v1 {
    * Metadata related to the update database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {}
+  /**
+   * A Cloud Firestore User Creds.
+   */
+  export interface Schema$GoogleFirestoreAdminV1UserCreds {
+    /**
+     * Output only. The time the user creds were created.
+     */
+    createTime?: string | null;
+    /**
+     * Identifier. The resource name of the UserCreds. Format: `projects/{project\}/databases/{database\}/userCreds/{user_creds\}`
+     */
+    name?: string | null;
+    /**
+     * Resource Identity descriptor.
+     */
+    resourceIdentity?: Schema$GoogleFirestoreAdminV1ResourceIdentity;
+    /**
+     * Output only. The plaintext server-generated password for the user creds. Only populated in responses for CreateUserCreds and ResetUserPassword.
+     */
+    securePassword?: string | null;
+    /**
+     * Output only. Whether the user creds are enabled or disabled. Defaults to ENABLED on creation.
+     */
+    state?: string | null;
+    /**
+     * Output only. The time the user creds were last updated.
+     */
+    updateTime?: string | null;
+  }
   /**
    * The index configuration to support vector search operations
    */
@@ -2105,6 +2192,7 @@ export namespace firestore_v1 {
     collectionGroups: Resource$Projects$Databases$Collectiongroups;
     documents: Resource$Projects$Databases$Documents;
     operations: Resource$Projects$Databases$Operations;
+    userCreds: Resource$Projects$Databases$Usercreds;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.backupSchedules = new Resource$Projects$Databases$Backupschedules(
@@ -2117,6 +2205,7 @@ export namespace firestore_v1 {
       this.operations = new Resource$Projects$Databases$Operations(
         this.context
       );
+      this.userCreds = new Resource$Projects$Databases$Usercreds(this.context);
     }
 
     /**
@@ -6639,6 +6728,749 @@ export namespace firestore_v1 {
     pageToken?: string;
   }
 
+  export class Resource$Projects$Databases$Usercreds {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a user creds.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Databases$Usercreds$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Databases$Usercreds$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>;
+    create(
+      params: Params$Resource$Projects$Databases$Usercreds$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Databases$Usercreds$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Databases$Usercreds$Create,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Usercreds$Create
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Usercreds$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Usercreds$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userCreds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1UserCreds>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1UserCreds>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a user creds.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Databases$Usercreds$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Databases$Usercreds$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Databases$Usercreds$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Databases$Usercreds$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Databases$Usercreds$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Usercreds$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Usercreds$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Usercreds$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Disables a user creds. No-op if the user creds are already disabled.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    disable(
+      params: Params$Resource$Projects$Databases$Usercreds$Disable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    disable(
+      params?: Params$Resource$Projects$Databases$Usercreds$Disable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>;
+    disable(
+      params: Params$Resource$Projects$Databases$Usercreds$Disable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    disable(
+      params: Params$Resource$Projects$Databases$Usercreds$Disable,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    disable(
+      params: Params$Resource$Projects$Databases$Usercreds$Disable,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    disable(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    disable(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Usercreds$Disable
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Usercreds$Disable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Usercreds$Disable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:disable').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1UserCreds>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1UserCreds>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Enables a user creds. No-op if the user creds are already enabled.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enable(
+      params: Params$Resource$Projects$Databases$Usercreds$Enable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enable(
+      params?: Params$Resource$Projects$Databases$Usercreds$Enable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>;
+    enable(
+      params: Params$Resource$Projects$Databases$Usercreds$Enable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enable(
+      params: Params$Resource$Projects$Databases$Usercreds$Enable,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    enable(
+      params: Params$Resource$Projects$Databases$Usercreds$Enable,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    enable(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    enable(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Usercreds$Enable
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Usercreds$Enable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Usercreds$Enable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:enable').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1UserCreds>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1UserCreds>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a user creds resource. Note that the returned resource does not contain the secret value itself.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Databases$Usercreds$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Databases$Usercreds$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>;
+    get(
+      params: Params$Resource$Projects$Databases$Usercreds$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Databases$Usercreds$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Databases$Usercreds$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Usercreds$Get
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Usercreds$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Usercreds$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1UserCreds>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1UserCreds>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * List all user creds in the database. Note that the returned resource does not contain the secret value itself.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Databases$Usercreds$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Databases$Usercreds$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>;
+    list(
+      params: Params$Resource$Projects$Databases$Usercreds$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Databases$Usercreds$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Databases$Usercreds$List,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Usercreds$List
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Usercreds$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Usercreds$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userCreds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Resets the password of a user creds.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resetPassword(
+      params: Params$Resource$Projects$Databases$Usercreds$Resetpassword,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetPassword(
+      params?: Params$Resource$Projects$Databases$Usercreds$Resetpassword,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>;
+    resetPassword(
+      params: Params$Resource$Projects$Databases$Usercreds$Resetpassword,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resetPassword(
+      params: Params$Resource$Projects$Databases$Usercreds$Resetpassword,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    resetPassword(
+      params: Params$Resource$Projects$Databases$Usercreds$Resetpassword,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    resetPassword(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+    ): void;
+    resetPassword(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Usercreds$Resetpassword
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1UserCreds>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Usercreds$Resetpassword;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Databases$Usercreds$Resetpassword;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:resetPassword').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1UserCreds>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1UserCreds>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Databases$Usercreds$Create
+    extends StandardParameters {
+    /**
+     * Required. A parent name of the form `projects/{project_id\}/databases/{database_id\}`
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the user creds, which will become the final component of the user creds's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/.
+     */
+    userCredsId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1UserCreds;
+  }
+  export interface Params$Resource$Projects$Databases$Usercreds$Delete
+    extends StandardParameters {
+    /**
+     * Required. A name of the form `projects/{project_id\}/databases/{database_id\}/userCreds/{user_creds_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Usercreds$Disable
+    extends StandardParameters {
+    /**
+     * Required. A name of the form `projects/{project_id\}/databases/{database_id\}/userCreds/{user_creds_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1DisableUserCredsRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Usercreds$Enable
+    extends StandardParameters {
+    /**
+     * Required. A name of the form `projects/{project_id\}/databases/{database_id\}/userCreds/{user_creds_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1EnableUserCredsRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Usercreds$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the form `projects/{project_id\}/databases/{database_id\}/userCreds/{user_creds_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Usercreds$List
+    extends StandardParameters {
+    /**
+     * Required. A parent database name of the form `projects/{project_id\}/databases/{database_id\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Usercreds$Resetpassword
+    extends StandardParameters {
+    /**
+     * Required. A name of the form `projects/{project_id\}/databases/{database_id\}/userCreds/{user_creds_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1ResetUserPasswordRequest;
+  }
+
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     backups: Resource$Projects$Locations$Backups;
@@ -6835,6 +7667,10 @@ export namespace firestore_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
