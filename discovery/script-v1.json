@@ -891,7 +891,7 @@
       }
     }
   },
-  "revision": "20250130",
+  "revision": "20250406",
   "rootUrl": "https://script.googleapis.com/",
   "schemas": {
     "Content": {
@@ -1614,7 +1614,7 @@
           "description": "User who last modified the script."
         },
         "parentId": {
-          "description": "The parent's Drive ID that the script will be attached to. This is usually the ID of a Google Document or Google Sheet. This filed is optional, and if not set, a stand-alone script will be created.",
+          "description": "The parent's Drive ID that the script will be attached to. This is usually the ID of a Google Document or Google Sheet. This field is optional, and if not set, a stand-alone script will be created.",
           "type": "string"
         },
         "scriptId": {
