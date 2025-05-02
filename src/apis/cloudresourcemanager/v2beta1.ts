@@ -303,6 +303,10 @@ export namespace cloudresourcemanager_v2beta1 {
    */
   export interface Schema$Folder {
     /**
+     * Output only. Optional capabilities configured for this folder (via UpdateCapability API). Example: `folders/123/capabilities/app-management`.
+     */
+    configuredCapabilities?: string[] | null;
+    /**
      * Output only. Timestamp when the Folder was created. Assigned by the server.
      */
     createTime?: string | null;
@@ -314,6 +318,10 @@ export namespace cloudresourcemanager_v2beta1 {
      * Output only. The lifecycle state of the folder. Updates to the lifecycle_state must be performed via DeleteFolder and UndeleteFolder.
      */
     lifecycleState?: string | null;
+    /**
+     * Output only. Management Project associated with this folder (if app-management capability is enabled). Example: `projects/google-mp-123` OUTPUT ONLY.
+     */
+    managementProject?: string | null;
     /**
      * Output only. The resource name of the Folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
      */

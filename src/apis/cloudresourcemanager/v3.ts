@@ -184,6 +184,19 @@ export namespace cloudresourcemanager_v3 {
     role?: string | null;
   }
   /**
+   * Representation of a Capability.
+   */
+  export interface Schema$Capability {
+    /**
+     * Immutable. Identifier. The resource name of the capability. Must be in the following form: * `folders/{folder_id\}/capabilities/{capability_name\}` For example, `folders/123/capabilities/app-management` Following are the allowed {capability_name\} values: * `app-management`
+     */
+    name?: string | null;
+    /**
+     * Required. The configured value of the capability at the given parent resource.
+     */
+    value?: boolean | null;
+  }
+  /**
    * Metadata describing a long running folder operation
    */
   export interface Schema$CloudresourcemanagerGoogleCloudResourcemanagerV2alpha1FolderOperation {
@@ -350,6 +363,10 @@ export namespace cloudresourcemanager_v3 {
    */
   export interface Schema$Folder {
     /**
+     * Output only. Optional capabilities configured for this folder (via UpdateCapability API). Example: `folders/123/capabilities/app-management`.
+     */
+    configuredCapabilities?: string[] | null;
+    /**
      * Output only. Timestamp when the folder was created.
      */
     createTime?: string | null;
@@ -365,6 +382,10 @@ export namespace cloudresourcemanager_v3 {
      * Output only. A checksum computed by the server based on the current value of the folder resource. This may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
+    /**
+     * Output only. Management Project associated with this folder (if app-management capability is enabled). Example: `projects/google-mp-123` OUTPUT ONLY.
+     */
+    managementProject?: string | null;
     /**
      * Output only. The resource name of the folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
      */
@@ -1125,8 +1146,10 @@ export namespace cloudresourcemanager_v3 {
 
   export class Resource$Folders {
     context: APIRequestContext;
+    capabilities: Resource$Folders$Capabilities;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.capabilities = new Resource$Folders$Capabilities(this.context);
     }
 
     /**
@@ -2217,6 +2240,209 @@ export namespace cloudresourcemanager_v3 {
      * Request body metadata
      */
     requestBody?: Schema$UndeleteFolderRequest;
+  }
+
+  export class Resource$Folders$Capabilities {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the Capability identified by the supplied resource name.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Capabilities$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Folders$Capabilities$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Capability>;
+    get(
+      params: Params$Resource$Folders$Capabilities$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Capabilities$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Capability>,
+      callback: BodyResponseCallback<Schema$Capability>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Capabilities$Get,
+      callback: BodyResponseCallback<Schema$Capability>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Capability>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Capabilities$Get
+        | BodyResponseCallback<Schema$Capability>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Capability>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Capability>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Capability> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Capabilities$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Capabilities$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Capability>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Capability>(parameters);
+      }
+    }
+
+    /**
+     * Updates the Capability.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Folders$Capabilities$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Folders$Capabilities$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Folders$Capabilities$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Capabilities$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Capabilities$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Capabilities$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Capabilities$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Capabilities$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Capabilities$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the capability to get. For example, `folders/123/capabilities/app-management`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Capabilities$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. The resource name of the capability. Must be in the following form: * `folders/{folder_id\}/capabilities/{capability_name\}` For example, `folders/123/capabilities/app-management` Following are the allowed {capability_name\} values: * `app-management`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update. Only [Capability.value] can be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Capability;
   }
 
   export class Resource$Liens {
