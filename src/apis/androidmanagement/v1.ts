@@ -543,6 +543,23 @@ export namespace androidmanagement_v1 {
     versionString?: string | null;
   }
   /**
+   * An admin has enabled or disabled backup service.
+   */
+  export interface Schema$BackupServiceToggledEvent {
+    /**
+     * Package name of the admin app requesting the change.
+     */
+    adminPackageName?: string | null;
+    /**
+     * User ID of the admin app from the which the change was requested.
+     */
+    adminUserId?: number | null;
+    /**
+     * Whether the backup service is enabled
+     */
+    backupServiceState?: string | null;
+  }
+  /**
    * Batched event logs of events from the device.
    */
   export interface Schema$BatchUsageLogEvents {
@@ -675,13 +692,21 @@ export namespace androidmanagement_v1 {
      */
     duration?: string | null;
     /**
-     * If the command failed, an error code explaining the failure. This is not set when the command is cancelled by the caller.
+     * If the command failed, an error code explaining the failure. This is not set when the command is cancelled by the caller. For reasoning about command errors, prefer fields in the following order (most preferred first): 1. Command-specific fields like clearAppsDataStatus, startLostModeStatus, or similar, if they exist. 2. This field, if set. 3. The generic error field in the Operation that wraps the command.
      */
     errorCode?: string | null;
     /**
      * For commands of type RESET_PASSWORD, optionally specifies the new password. Note: The new password must be at least 6 characters long if it is numeric in case of Android 14 devices. Else the command will fail with INVALID_VALUE.
      */
     newPassword?: string | null;
+    /**
+     * Optional. Parameters for the REQUEST_DEVICE_INFO command to get device related information. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to REQUEST_DEVICE_INFO . It is also acceptable to explicitly set type to REQUEST_DEVICE_INFO.
+     */
+    requestDeviceInfoParams?: Schema$RequestDeviceInfoParams;
+    /**
+     * Output only. Status of the REQUEST_DEVICE_INFO command.
+     */
+    requestDeviceInfoStatus?: Schema$RequestDeviceInfoStatus;
     /**
      * For commands of type RESET_PASSWORD, optionally specifies flags.
      */
@@ -1017,6 +1042,10 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$DeviceConnectivityManagement {
     /**
+     * Optional. Controls whether Bluetooth sharing is allowed.
+     */
+    bluetoothSharing?: string | null;
+    /**
      * Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.
      */
     configureWifi?: string | null;
@@ -1180,6 +1209,24 @@ export namespace androidmanagement_v1 {
     previousDpc?: string | null;
   }
   /**
+   * EID information for each eUICC chip.
+   */
+  export interface Schema$Eid {
+    /**
+     * Output only. The EID
+     */
+    eid?: string | null;
+  }
+  /**
+   * Information related to the EIDs of the device.
+   */
+  export interface Schema$EidInfo {
+    /**
+     * Output only. EID information for each eUICC chip.
+     */
+    eids?: Schema$Eid[];
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -1292,6 +1339,28 @@ export namespace androidmanagement_v1 {
      * Terms and conditions that must be accepted when provisioning a device for this enterprise. A page of terms is generated for each value in this list.
      */
     termsAndConditions?: Schema$TermsAndConditions[];
+  }
+  /**
+   * An event sent for an enterprise upgrade. An enterprise upgrade is a process that upgrades a managed Google Play Accounts enterprise to a managed Google domain.
+   */
+  export interface Schema$EnterpriseUpgradeEvent {
+    /**
+     * The name of upgraded enterprise in the format "enterprises/{enterprise\}"
+     */
+    enterprise?: string | null;
+    /**
+     * Output only. The upgrade state of the enterprise.
+     */
+    upgradeState?: string | null;
+  }
+  /**
+   * Information related to the eUICC chip.
+   */
+  export interface Schema$EuiccChipInfo {
+    /**
+     * Output only. The Embedded Identity Document (EID) that identifies the eUICC chip for each eUICC chip on the device. This is available on company owned devices running Android 13 and above.
+     */
+    eid?: string | null;
   }
   /**
    * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 11 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command on extension apps if needed for Android 11 and above.
@@ -1413,6 +1482,10 @@ export namespace androidmanagement_v1 {
      * Output only. ID that uniquely identifies a personally-owned device in a particular organization. On the same physical device when enrolled with the same organization, this ID persists across setups and even factory resets. This ID is available on personally-owned devices with a work profile on devices running Android 12 and above.
      */
     enterpriseSpecificId?: string | null;
+    /**
+     * Output only. Information related to the eUICC chip.
+     */
+    euiccChipInfo?: Schema$EuiccChipInfo[];
     /**
      * GPU shutdown temperature thresholds in Celsius for each GPU on the device.
      */
@@ -2228,6 +2301,10 @@ export namespace androidmanagement_v1 {
      */
     accountTypesWithManagementDisabled?: string[] | null;
     /**
+     * Optional. Whether bluetooth sharing is allowed.
+     */
+    bluetoothSharing?: string | null;
+    /**
      * If true, the camera is disabled on the personal profile.
      */
     cameraDisabled?: boolean | null;
@@ -2768,6 +2845,28 @@ export namespace androidmanagement_v1 {
     targetUserId?: number | null;
   }
   /**
+   * Parameters associated with the REQUEST_DEVICE_INFO command to get device related information.
+   */
+  export interface Schema$RequestDeviceInfoParams {
+    /**
+     * Required. Type of device information to be requested.
+     */
+    deviceInfo?: string | null;
+  }
+  /**
+   * Status of the REQUEST_DEVICE_INFO command.
+   */
+  export interface Schema$RequestDeviceInfoStatus {
+    /**
+     * Information related to the EIDs of the device.
+     */
+    eidInfo?: Schema$EidInfo;
+    /**
+     * Output only. Status of a REQUEST_DEVICE_INFO command.
+     */
+    status?: string | null;
+  }
+  /**
    * Controls for the screen brightness settings.
    */
   export interface Schema$ScreenBrightnessSettings {
@@ -3142,6 +3241,10 @@ export namespace androidmanagement_v1 {
      * An app process was started. Part of SECURITY_LOGS.
      */
     appProcessStartEvent?: Schema$AppProcessStartEvent;
+    /**
+     * An admin has enabled or disabled backup service. Part of SECURITY_LOGS.
+     */
+    backupServiceToggledEvent?: Schema$BackupServiceToggledEvent;
     /**
      * A new root certificate was installed into the system's trusted credential storage. Part of SECURITY_LOGS.
      */
@@ -6573,7 +6676,7 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Webapps$Get
     extends StandardParameters {
     /**
-     * The name of the web app in the form enterprises/{enterpriseId\}/webApp/{packageName\}.
+     * The name of the web app in the form enterprises/{enterpriseId\}/webApps/{packageName\}.
      */
     name?: string;
   }
