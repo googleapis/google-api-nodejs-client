@@ -168,6 +168,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -2548,7 +2554,7 @@
       }
     }
   },
-  "revision": "20250312",
+  "revision": "20250422",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -4524,6 +4530,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "recommendedVersions": {
+          "description": "Output only. The recommended versions of the discovery client.",
+          "items": {
+            "$ref": "DiscoveryClientDiscoveryClientRecommendedVersion"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "serviceAccount": {
           "description": "Required. Service account used by the discovery client for various operation.",
           "type": "string"
@@ -4575,6 +4589,23 @@
       },
       "type": "object"
     },
+    "DiscoveryClientDiscoveryClientRecommendedVersion": {
+      "description": "Discovery client recommended version.",
+      "id": "DiscoveryClientDiscoveryClientRecommendedVersion",
+      "properties": {
+        "uri": {
+          "description": "Output only. The URI of the discovery client version.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "Output only. The version of the discovery client.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DiskEntry": {
       "description": "Single disk entry.",
       "id": "DiskEntry",
@@ -4615,6 +4646,7 @@
         },
         "vmwareConfig": {
           "$ref": "VmwareDiskConfig",
+          "deprecated": true,
           "description": "VMware disk details."
         }
       },

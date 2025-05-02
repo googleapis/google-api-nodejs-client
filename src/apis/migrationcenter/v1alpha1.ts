@@ -1387,6 +1387,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     name?: string | null;
     /**
+     * Output only. The recommended versions of the discovery client.
+     */
+    recommendedVersions?: Schema$DiscoveryClientDiscoveryClientRecommendedVersion[];
+    /**
      * Required. Service account used by the discovery client for various operation.
      */
     serviceAccount?: string | null;
@@ -1412,6 +1416,19 @@ export namespace migrationcenter_v1alpha1 {
     updateTime?: string | null;
     /**
      * Output only. Client version, as reported in recent heartbeat.
+     */
+    version?: string | null;
+  }
+  /**
+   * Discovery client recommended version.
+   */
+  export interface Schema$DiscoveryClientDiscoveryClientRecommendedVersion {
+    /**
+     * Output only. The URI of the discovery client version.
+     */
+    uri?: string | null;
+    /**
+     * Output only. The version of the discovery client.
      */
     version?: string | null;
   }
@@ -4907,6 +4924,10 @@ export namespace migrationcenter_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
