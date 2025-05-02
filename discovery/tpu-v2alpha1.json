@@ -171,6 +171,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -1021,7 +1027,7 @@
       }
     }
   },
-  "revision": "20250306",
+  "revision": "20250423",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1149,9 +1155,28 @@
           "$ref": "CustomerEncryptionKey",
           "description": "Optional. Customer encryption key for boot disk."
         },
+        "diskSizeGb": {
+          "description": "Optional. Size of the boot disk in GB. It must be larger than or equal to the size of the image.",
+          "format": "int64",
+          "type": "string"
+        },
         "enableConfidentialCompute": {
           "description": "Optional. Whether the boot disk will be created with confidential compute mode.",
           "type": "boolean"
+        },
+        "provisionedIops": {
+          "description": "Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. To learn more about IOPS, see [Provisioning persistent disk performance](https://cloud.google.com/compute/docs/disks/performance#provisioned-iops).",
+          "format": "int64",
+          "type": "string"
+        },
+        "provisionedThroughput": {
+          "description": "Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput MB per second that the disk can handle.",
+          "format": "int64",
+          "type": "string"
+        },
+        "sourceImage": {
+          "description": "Optional. Image from which boot disk is to be created. If not specified, the default image for the runtime version will be used. Example: `projects/$PROJECT_ID/global/images/$IMAGE_NAME`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1951,6 +1976,24 @@
           "readOnly": true,
           "type": "string"
         },
+        "provisioningModel": {
+          "description": "Optional. The provisioning model for the resource.",
+          "enum": [
+            "PROVISIONING_MODEL_UNSPECIFIED",
+            "STANDARD",
+            "SPOT",
+            "RESERVATION_BOUND",
+            "FLEX_START"
+          ],
+          "enumDescriptions": [
+            "Provisioning model is unknown.",
+            "Standard provisioning with user controlled runtime.",
+            "Spot provisioning with no guaranteed runtime.",
+            "Reservation provisioning with runtime bound to the lifetime of the consumed reservation.",
+            "Provisioning with DWS Flex Start with max run duration."
+          ],
+          "type": "string"
+        },
         "queueingPolicy": {
           "$ref": "QueueingPolicy",
           "description": "The queueing policy of the QueuedRequest."
@@ -1958,6 +2001,10 @@
         "reservationName": {
           "description": "Name of the reservation in which the resource should be provisioned. Format: projects/{project}/locations/{zone}/reservations/{reservation}",
           "type": "string"
+        },
+        "runDuration": {
+          "$ref": "RunDuration",
+          "description": "Optional. The duration of the requested resource."
         },
         "spot": {
           "$ref": "Spot",
@@ -2132,6 +2179,23 @@
       "properties": {},
       "type": "object"
     },
+    "RunDuration": {
+      "description": "Defines the maximum lifetime of the requested resource.",
+      "id": "RunDuration",
+      "properties": {
+        "maxRunDuration": {
+          "description": "The maximum duration of the requested resource.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "terminationTime": {
+          "description": "The time at which the requested resource will be terminated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RuntimeVersion": {
       "description": "A runtime version that a Node can be configured with.",
       "id": "RuntimeVersion",
@@ -2154,6 +2218,22 @@
         "preemptible": {
           "description": "Defines whether the node is preemptible.",
           "type": "boolean"
+        },
+        "provisioningModel": {
+          "description": "Optional. Defines the provisioning model for the node.",
+          "enum": [
+            "PROVISIONING_MODEL_UNSPECIFIED",
+            "STANDARD",
+            "SPOT",
+            "RESERVATION_BOUND"
+          ],
+          "enumDescriptions": [
+            "Provisioning model is unknown.",
+            "Standard provisioning with user controlled runtime.",
+            "Spot provisioning with no guaranteed runtime.",
+            "Reservation provisioning with runtime bound to the lifetime of the consumed reservation."
+          ],
+          "type": "string"
         },
         "reserved": {
           "description": "Whether the node is created under a reservation.",
