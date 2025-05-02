@@ -125,6 +125,19 @@ export namespace networkconnectivity_v1alpha1 {
   }
 
   /**
+   * Range auto-allocation options, to be optionally used when CIDR block is not explicitly set.
+   */
+  export interface Schema$AllocationOptions {
+    /**
+     * Optional. Allocation strategy Not setting this field when the allocation is requested means an implementation defined strategy is used.
+     */
+    allocationStrategy?: string | null;
+    /**
+     * Optional. This field must be set only when allocation_strategy is set to RANDOM_FIRST_N_AVAILABLE. The value should be the maximum expected parallelism of range creation requests issued to the same space of peered netwroks.
+     */
+    firstAvailableRangesLookupSize?: number | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -293,6 +306,10 @@ export namespace networkconnectivity_v1alpha1 {
    */
   export interface Schema$InternalRange {
     /**
+     * Optional. Range auto-allocation options, may be set only when auto-allocation is selected by not setting ip_cidr_range (and setting prefix_length).
+     */
+    allocationOptions?: Schema$AllocationOptions;
+    /**
      * Time when the internal range was created.
      */
     createTime?: string | null;
@@ -300,6 +317,10 @@ export namespace networkconnectivity_v1alpha1 {
      * A description of this resource.
      */
     description?: string | null;
+    /**
+     * Optional. ExcludeCidrRanges flag. Specifies a set of CIDR blocks that allows exclusion of particular CIDR ranges from the auto-allocation process, without having to reserve these blocks
+     */
+    excludeCidrRanges?: string[] | null;
     /**
      * Optional. Immutable ranges cannot have their fields modified, except for labels and description.
      */
@@ -821,6 +842,10 @@ export namespace networkconnectivity_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
