@@ -147,7 +147,7 @@ export namespace bigtableadmin_v2 {
      */
     multiClusterRoutingUseAny?: Schema$MultiClusterRoutingUseAny;
     /**
-     * The unique name of the app profile. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/_a-zA-Z0-9*`.
+     * The unique name of the app profile, up to 50 characters long. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/_a-zA-Z0-9*`.
      */
     name?: string | null;
     /**
@@ -1329,6 +1329,32 @@ export namespace bigtableadmin_v2 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for BigtableInstanceAdmin.ListLogicalViews.
+   */
+  export interface Schema$ListLogicalViewsResponse {
+    /**
+     * The list of requested logical views.
+     */
+    logicalViews?: Schema$LogicalView[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for BigtableInstanceAdmin.ListMaterializedViews.
+   */
+  export interface Schema$ListMaterializedViewsResponse {
+    /**
+     * The list of requested materialized views.
+     */
+    materializedViews?: Schema$MaterializedView[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -1383,6 +1409,10 @@ export namespace bigtableadmin_v2 {
    * A SQL logical view object that can be referenced in SQL queries.
    */
   export interface Schema$LogicalView {
+    /**
+     * Optional. Set to true to make the LogicalView protected against deletion.
+     */
+    deletionProtection?: boolean | null;
     /**
      * Optional. The etag for this logical view. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag.
      */
@@ -1740,6 +1770,10 @@ export namespace bigtableadmin_v2 {
      * Output only. If this table was restored from another data source (e.g. a backup), this field will be populated with information about the restore.
      */
     restoreInfo?: Schema$RestoreInfo;
+    /**
+     * The row key schema for this table. The schema is used to decode the raw row key bytes into a structured format. The order of field declarations in this schema is important, as it reflects how the raw row key bytes are structured. Currently, this only affects how the key is read via a GoogleSQL query from the ExecuteQuery API. For a SQL query, the _key column is still read as raw bytes. But queries can reference the key fields by name, which will be decoded from _key using provided type and encoding. Queries that reference key fields will fail if they encounter an invalid row key. For example, if _key = "some_id#2024-04-30#\x00\x13\x00\xf3" with the following schema: { fields { field_name: "id" type { string { encoding: utf8_bytes {\} \} \} \} fields { field_name: "date" type { string { encoding: utf8_bytes {\} \} \} \} fields { field_name: "product_code" type { int64 { encoding: big_endian_bytes {\} \} \} \} encoding { delimited_bytes { delimiter: "#" \} \} \} The decoded key parts would be: id = "some_id", date = "2024-04-30", product_code = 1245427 The query "SELECT _key, product_code FROM table" will return two columns: /------------------------------------------------------\ | _key | product_code | | --------------------------------------|--------------| | "some_id#2024-04-30#\x00\x13\x00\xf3" | 1245427 | \------------------------------------------------------/ The schema has the following invariants: (1) The decoded field values are order-preserved. For read, the field values will be decoded in sorted mode from the raw bytes. (2) Every field in the schema must specify a non-empty name. (3) Every field must specify a type with an associated encoding. The type is limited to scalar types only: Array, Map, Aggregate, and Struct are not allowed. (4) The field names must not collide with existing column family names and reserved keywords "_key" and "_timestamp". The following update operations are allowed for row_key_schema: - Update from an empty schema to a new schema. - Remove the existing schema. This operation requires setting the `ignore_warnings` flag to `true`, since it might be a backward incompatible change. Without the flag, the update request will fail with an INVALID_ARGUMENT error. Any other row key schema update operation (e.g. update existing schema columns names or types) is currently unsupported.
+     */
+    rowKeySchema?: Schema$GoogleBigtableAdminV2TypeStruct;
     /**
      * Output only. Only available with STATS_VIEW, this includes summary statistics about the entire table contents. For statistics about a specific column family, see ColumnFamilyStats in the mapped ColumnFamily collection above.
      */
@@ -3680,7 +3714,7 @@ export namespace bigtableadmin_v2 {
      */
     ignoreWarnings?: boolean;
     /**
-     * The unique name of the app profile. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/_a-zA-Z0-9*`.
+     * The unique name of the app profile, up to 50 characters long. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/_a-zA-Z0-9*`.
      */
     name?: string;
     /**
@@ -5375,6 +5409,267 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
+     * Creates a logical view within an instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Instances$Logicalviews$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Instances$Logicalviews$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Instances$Logicalviews$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Instances$Logicalviews$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Instances$Logicalviews$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Logicalviews$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Logicalviews$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Logicalviews$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/logicalViews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a logical view from an instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Instances$Logicalviews$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Instances$Logicalviews$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Logicalviews$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instances$Logicalviews$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instances$Logicalviews$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Logicalviews$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Logicalviews$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Logicalviews$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets information about a logical view.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Instances$Logicalviews$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Instances$Logicalviews$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogicalView>;
+    get(
+      params: Params$Resource$Projects$Instances$Logicalviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Logicalviews$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogicalView>,
+      callback: BodyResponseCallback<Schema$LogicalView>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Logicalviews$Get,
+      callback: BodyResponseCallback<Schema$LogicalView>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogicalView>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Logicalviews$Get
+        | BodyResponseCallback<Schema$LogicalView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogicalView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogicalView>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogicalView> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Logicalviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Logicalviews$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogicalView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LogicalView>(parameters);
+      }
+    }
+
+    /**
      * Gets the access control policy for an instance resource. Returns an empty policy if an instance exists but does not have a policy set.
      *
      * @param params - Parameters for request
@@ -5461,6 +5756,186 @@ export namespace bigtableadmin_v2 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists information about logical views in an instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Instances$Logicalviews$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Instances$Logicalviews$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogicalViewsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Logicalviews$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Logicalviews$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogicalViewsResponse>,
+      callback: BodyResponseCallback<Schema$ListLogicalViewsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Logicalviews$List,
+      callback: BodyResponseCallback<Schema$ListLogicalViewsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLogicalViewsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Logicalviews$List
+        | BodyResponseCallback<Schema$ListLogicalViewsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogicalViewsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogicalViewsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLogicalViewsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Logicalviews$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Logicalviews$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/logicalViews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLogicalViewsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLogicalViewsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a logical view within an instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Instances$Logicalviews$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Instances$Logicalviews$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Instances$Logicalviews$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Logicalviews$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Logicalviews$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Logicalviews$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Logicalviews$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Logicalviews$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -5652,6 +6127,40 @@ export namespace bigtableadmin_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Instances$Logicalviews$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the logical view, which will become the final component of the logical view's resource name.
+     */
+    logicalViewId?: string;
+    /**
+     * Required. The parent instance where this logical view will be created. Format: `projects/{project\}/instances/{instance\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogicalView;
+  }
+  export interface Params$Resource$Projects$Instances$Logicalviews$Delete
+    extends StandardParameters {
+    /**
+     * Optional. The current etag of the logical view. If an etag is provided and does not match the current etag of the logical view, deletion will be blocked and an ABORTED error will be returned.
+     */
+    etag?: string;
+    /**
+     * Required. The unique name of the logical view to be deleted. Format: `projects/{project\}/instances/{instance\}/logicalViews/{logical_view\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Logicalviews$Get
+    extends StandardParameters {
+    /**
+     * Required. The unique name of the requested logical view. Values are of the form `projects/{project\}/instances/{instance\}/logicalViews/{logical_view\}`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Instances$Logicalviews$Getiampolicy
     extends StandardParameters {
     /**
@@ -5663,6 +6172,37 @@ export namespace bigtableadmin_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Logicalviews$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of logical views to return. The service may return fewer than this value
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListLogicalViews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListLogicalViews` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The unique name of the instance for which the list of logical views is requested. Values are of the form `projects/{project\}/instances/{instance\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Logicalviews$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The unique name of the logical view. Format: `projects/{project\}/instances/{instance\}/logicalViews/{logical_view\}`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogicalView;
   }
   export interface Params$Resource$Projects$Instances$Logicalviews$Setiampolicy
     extends StandardParameters {
@@ -5693,6 +6233,269 @@ export namespace bigtableadmin_v2 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Creates a materialized view within an instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Instances$Materializedviews$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Instances$Materializedviews$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Instances$Materializedviews$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Instances$Materializedviews$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Instances$Materializedviews$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Materializedviews$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Materializedviews$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Materializedviews$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/materializedViews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a materialized view from an instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Instances$Materializedviews$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Instances$Materializedviews$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Materializedviews$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instances$Materializedviews$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instances$Materializedviews$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Materializedviews$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Materializedviews$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Materializedviews$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets information about a materialized view.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Instances$Materializedviews$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Instances$Materializedviews$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MaterializedView>;
+    get(
+      params: Params$Resource$Projects$Instances$Materializedviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Materializedviews$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MaterializedView>,
+      callback: BodyResponseCallback<Schema$MaterializedView>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Materializedviews$Get,
+      callback: BodyResponseCallback<Schema$MaterializedView>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MaterializedView>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Materializedviews$Get
+        | BodyResponseCallback<Schema$MaterializedView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MaterializedView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MaterializedView>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MaterializedView> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Materializedviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Materializedviews$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MaterializedView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MaterializedView>(parameters);
+      }
     }
 
     /**
@@ -5782,6 +6585,192 @@ export namespace bigtableadmin_v2 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists information about materialized views in an instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Instances$Materializedviews$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Instances$Materializedviews$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMaterializedViewsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Materializedviews$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Materializedviews$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMaterializedViewsResponse>,
+      callback: BodyResponseCallback<Schema$ListMaterializedViewsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Materializedviews$List,
+      callback: BodyResponseCallback<Schema$ListMaterializedViewsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMaterializedViewsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Materializedviews$List
+        | BodyResponseCallback<Schema$ListMaterializedViewsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMaterializedViewsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMaterializedViewsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMaterializedViewsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Materializedviews$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Materializedviews$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/materializedViews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMaterializedViewsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMaterializedViewsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a materialized view within an instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Instances$Materializedviews$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Instances$Materializedviews$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Instances$Materializedviews$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Materializedviews$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Materializedviews$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Materializedviews$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Materializedviews$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Materializedviews$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -5973,6 +6962,40 @@ export namespace bigtableadmin_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Instances$Materializedviews$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the materialized view, which will become the final component of the materialized view's resource name.
+     */
+    materializedViewId?: string;
+    /**
+     * Required. The parent instance where this materialized view will be created. Format: `projects/{project\}/instances/{instance\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MaterializedView;
+  }
+  export interface Params$Resource$Projects$Instances$Materializedviews$Delete
+    extends StandardParameters {
+    /**
+     * Optional. The current etag of the materialized view. If an etag is provided and does not match the current etag of the materialized view, deletion will be blocked and an ABORTED error will be returned.
+     */
+    etag?: string;
+    /**
+     * Required. The unique name of the materialized view to be deleted. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Materializedviews$Get
+    extends StandardParameters {
+    /**
+     * Required. The unique name of the requested materialized view. Values are of the form `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Instances$Materializedviews$Getiampolicy
     extends StandardParameters {
     /**
@@ -5984,6 +7007,37 @@ export namespace bigtableadmin_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Materializedviews$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of materialized views to return. The service may return fewer than this value
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListMaterializedViews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMaterializedViews` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The unique name of the instance for which the list of materialized views is requested. Values are of the form `projects/{project\}/instances/{instance\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Materializedviews$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MaterializedView;
   }
   export interface Params$Resource$Projects$Instances$Materializedviews$Setiampolicy
     extends StandardParameters {
@@ -7399,6 +8453,10 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Patch
     extends StandardParameters {
     /**
+     * Optional. If true, ignore safety checks when updating the table.
+     */
+    ignoreWarnings?: boolean;
+    /**
      * The unique name of the table. Values are of the form `projects/{project\}/instances/{instance\}/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `STATS_VIEW`, `FULL`
      */
     name?: string;
@@ -8410,6 +9468,10 @@ export namespace bigtableadmin_v2 {
 
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
