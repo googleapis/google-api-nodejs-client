@@ -185,6 +185,7 @@
               "type": "integer"
             },
             "mine": {
+              "deprecated": true,
               "location": "query",
               "type": "boolean"
             },
@@ -936,6 +937,11 @@
               "location": "query",
               "repeated": true,
               "required": true,
+              "type": "string"
+            },
+            "postId": {
+              "description": "Returns the comment threads of the specified post.",
+              "location": "query",
               "type": "string"
             },
             "searchTerms": {
@@ -4100,7 +4106,7 @@
       }
     }
   },
-  "revision": "20250224",
+  "revision": "20250422",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -5763,7 +5769,7 @@
           "type": "boolean"
         },
         "channelId": {
-          "description": "The id of the corresponding YouTube channel. In case of a channel comment this is the channel the comment refers to. In case of a video comment it's the video's channel.",
+          "description": "The id of the corresponding YouTube channel. In case of a channel comment this is the channel the comment refers to. In case of a video or post comment it's the video/post's channel.",
           "type": "string"
         },
         "likeCount": {
@@ -5788,7 +5794,11 @@
           "type": "string"
         },
         "parentId": {
-          "description": "The unique id of the parent comment, only set for replies.",
+          "description": "The unique id of the top-level comment, only set for replies.",
+          "type": "string"
+        },
+        "postId": {
+          "description": "The ID of the post the comment refers to, if any.",
           "type": "string"
         },
         "publishedAt": {
@@ -5831,10 +5841,11 @@
       "type": "object"
     },
     "CommentSnippetAuthorChannelId": {
-      "description": "The id of the author's YouTube channel, if any.",
+      "description": "Contains the id of the author's YouTube channel, if any.",
       "id": "CommentSnippetAuthorChannelId",
       "properties": {
         "value": {
+          "description": "The id of the author's YouTube channel.",
           "type": "string"
         }
       },
@@ -5935,12 +5946,16 @@
           "type": "boolean"
         },
         "channelId": {
-          "description": "The YouTube channel the comments in the thread refer to or the channel with the video the comments refer to. If video_id isn't set the comments refer to the channel itself.",
+          "description": "The YouTube channel the comments in the thread refer to or the channel with the video the comments refer to. If neither video_id nor post_id is set the comments refer to the channel itself.",
           "type": "string"
         },
         "isPublic": {
           "description": "Whether the thread (and therefore all its comments) is visible to all YouTube users.",
           "type": "boolean"
+        },
+        "postId": {
+          "description": "The ID of the post the comments refer to, if any.",
+          "type": "string"
         },
         "topLevelComment": {
           "$ref": "Comment",
@@ -5952,7 +5967,7 @@
           "type": "integer"
         },
         "videoId": {
-          "description": "The ID of the video the comments refer to, if any. No video_id implies a channel discussion comment.",
+          "description": "The ID of the video the comments refer to, if any.",
           "type": "string"
         }
       },
