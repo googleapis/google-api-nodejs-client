@@ -520,7 +520,7 @@ export namespace drive_v3 {
    */
   export interface Schema$Comment {
     /**
-     * A region of the document represented as a JSON string. For details on defining anchor properties, refer to [Manage comments and replies](https://developers.google.com/drive/api/v3/manage-comments).
+     * A region of the document represented as a JSON string. For details on defining anchor properties, refer to [Manage comments and replies](https://developers.google.com/workspace/drive/api/v3/manage-comments).
      */
     anchor?: string | null;
     /**
@@ -1322,7 +1322,7 @@ export namespace drive_v3 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy. By default, permissions requests only return a subset of fields. Permission kind, ID, type, and role are always returned. To retrieve specific fields, see https://developers.google.com/drive/api/guides/fields-parameter. Some resource methods (such as `permissions.update`) require a `permissionId`. Use the `permissions.list` method to retrieve the ID for a file, folder, or shared drive.
+   * A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy. By default, permissions requests only return a subset of fields. Permission kind, ID, type, and role are always returned. To retrieve specific fields, see https://developers.google.com/workspace/drive/api/guides/fields-parameter. Some resource methods (such as `permissions.update`) require a `permissionId`. Use the `permissions.list` method to retrieve the ID for a file, folder, or shared drive.
    */
   export interface Schema$Permission {
     /**
@@ -1714,7 +1714,7 @@ export namespace drive_v3 {
      */
     emailAddress?: string | null;
     /**
-     * Output only. Identifies what kind of resource this is. Value: the fixed string `"drive#user"`.
+     * Output only. Identifies what kind of resource this is. Value: the fixed string `drive#user`.
      */
     kind?: string | null;
     /**
@@ -1738,7 +1738,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Gets information about the user, the user's Drive, and system capabilities. For more information, see [Return user info](https://developers.google.com/drive/api/guides/user-info). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).
+     * Gets information about the user, the user's Drive, and system capabilities. For more information, see [Return user info](https://developers.google.com/workspace/drive/api/guides/user-info). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2149,7 +2149,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Gets a specific app. For more information, see [Return user info](https://developers.google.com/drive/api/guides/user-info).
+     * Gets a specific app. For more information, see [Return user info](https://developers.google.com/workspace/drive/api/guides/user-info).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2236,7 +2236,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Lists a user's installed apps. For more information, see [Return user info](https://developers.google.com/drive/api/guides/user-info).
+     * Lists a user's installed apps. For more information, see [Return user info](https://developers.google.com/workspace/drive/api/guides/user-info).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2348,7 +2348,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Gets the starting pageToken for listing future changes. For more information, see [Retrieve changes](https://developers.google.com/drive/api/guides/manage-changes).
+     * Gets the starting pageToken for listing future changes. For more information, see [Retrieve changes](https://developers.google.com/workspace/drive/api/guides/manage-changes).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2438,7 +2438,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Lists the changes for a user or shared drive. For more information, see [Retrieve changes](https://developers.google.com/drive/api/guides/manage-changes).
+     * Lists the changes for a user or shared drive. For more information, see [Retrieve changes](https://developers.google.com/workspace/drive/api/guides/manage-changes).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2522,7 +2522,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Subscribes to changes for a user. For more information, see [Notifications for resource changes](https://developers.google.com/drive/api/guides/push).
+     * Subscribes to changes for a user. For more information, see [Notifications for resource changes](https://developers.google.com/workspace/drive/api/guides/push).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2757,7 +2757,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Stops watching resources through this channel. For more information, see [Notifications for resource changes](https://developers.google.com/drive/api/guides/push).
+     * Stops watching resources through this channel. For more information, see [Notifications for resource changes](https://developers.google.com/workspace/drive/api/guides/push).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2856,7 +2856,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Creates a comment on a file. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).
+     * Creates a comment on a file. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2943,7 +2943,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Deletes a comment. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).
+     * Deletes a comment. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3027,7 +3027,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Gets a comment by ID. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).
+     * Gets a comment by ID. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3113,7 +3113,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Lists a file's comments. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).
+     * Lists a file's comments. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3200,7 +3200,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Updates a comment with patch semantics. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).
+     * Updates a comment with patch semantics. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3709,7 +3709,7 @@ export namespace drive_v3 {
     }
 
     /**
-     *  Lists the user's shared drives. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for shared drives](/drive/api/guides/search-shareddrives) guide.
+     *  Lists the user's shared drives. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for shared drives](/workspace/drive/api/guides/search-shareddrives) guide.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4142,7 +4142,7 @@ export namespace drive_v3 {
     }
 
     /**
-     *  Creates a new file. This method supports an x/upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`x/x` Note: Specify a valid MIME type, rather than the literal `x/x` value. The literal `x/x` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/drive/api/guides/manage-uploads). Apps creating shortcuts with `files.create` must specify the MIME type `application/vnd.google-apps.shortcut`. Apps should specify a file extension in the `name` property when inserting files with the API. For example, an operation to insert a JPEG file should specify something like `"name": "cat.jpg"` in the metadata. Subsequent `GET` requests include the read-only `fileExtension` property populated with the extension originally specified in the `title` property. When a Google Drive user requests to download a file, or when the file is downloaded through the sync client, Drive builds a full filename (with extension) based on the title. In cases where the extension is missing, Drive attempts to determine the extension based on the file's MIME type.
+     *  Creates a new file. This method supports an x/upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`x/x` Note: Specify a valid MIME type, rather than the literal `x/x` value. The literal `x/x` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads). Apps creating shortcuts with `files.create` must specify the MIME type `application/vnd.google-apps.shortcut`. Apps should specify a file extension in the `name` property when inserting files with the API. For example, an operation to insert a JPEG file should specify something like `"name": "cat.jpg"` in the metadata. Subsequent `GET` requests include the read-only `fileExtension` property populated with the extension originally specified in the `title` property. When a Google Drive user requests to download a file, or when the file is downloaded through the sync client, Drive builds a full filename (with extension) based on the title. In cases where the extension is missing, Drive attempts to determine the extension based on the file's MIME type.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4660,7 +4660,7 @@ export namespace drive_v3 {
     }
 
     /**
-     *  Gets a file's metadata or content by ID. If you provide the URL parameter `alt=media`, then the response includes the file contents in the response body. Downloading content with `alt=media` only works if the file is stored in Drive. To download Google Docs, Sheets, and Slides use [`files.export`](/drive/api/reference/rest/v3/files/export) instead. For more information, see [Download & export files](/drive/api/guides/manage-downloads).
+     *  Gets a file's metadata or content by ID. If you provide the URL parameter `alt=media`, then the response includes the file contents in the response body. Downloading content with `alt=media` only works if the file is stored in Drive. To download Google Docs, Sheets, and Slides use [`files.export`](/workspace/drive/api/reference/rest/v3/files/export) instead. For more information, see [Download & export files](/workspace/drive/api/guides/manage-downloads).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4747,7 +4747,7 @@ export namespace drive_v3 {
     }
 
     /**
-     *  Lists the user's files. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for files & folders](/drive/api/guides/search-files) guide. *Note:* This method returns *all* files by default, including trashed files. If you don't want trashed files to appear in the list, use the `trashed=false` query parameter to remove trashed files from the results.
+     *  Lists the user's files. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for files & folders](/workspace/drive/api/guides/search-files) guide. *Note:* This method returns *all* files by default, including trashed files. If you don't want trashed files to appear in the list, use the `trashed=false` query parameter to remove trashed files from the results.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5013,7 +5013,7 @@ export namespace drive_v3 {
     }
 
     /**
-     *  Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as `modifiedDate`. This method supports patch semantics. This method supports an x/upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`x/x` Note: Specify a valid MIME type, rather than the literal `x/x` value. The literal `x/x` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/drive/api/guides/manage-uploads).
+     *  Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as `modifiedDate`. This method supports patch semantics. This method supports an x/upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`x/x` Note: Specify a valid MIME type, rather than the literal `x/x` value. The literal `x/x` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
