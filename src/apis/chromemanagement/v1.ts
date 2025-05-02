@@ -5030,7 +5030,7 @@ export namespace chromemanagement_v1 {
      */
     appId?: string;
     /**
-     * Type of the app.
+     * Type of the app. Optional. If not provided, an app type will be inferred from the format of the app ID.
      */
     appType?: string;
     /**
