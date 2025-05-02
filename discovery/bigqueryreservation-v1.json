@@ -736,7 +736,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the reservation, e.g., `projects/*/locations/*/reservations/team1-prod`. The reservation_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
+                      "description": "Identifier. The resource name of the reservation, e.g., `projects/*/locations/*/reservations/team1-prod`. The reservation_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
                       "required": true,
@@ -935,7 +935,7 @@
       }
     }
   },
-  "revision": "20250316",
+  "revision": "20250421",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -1004,7 +1004,7 @@
           "type": "string"
         },
         "maxSlots": {
-          "description": "Number of slots to be scaled when needed.",
+          "description": "Optional. Number of slots to be scaled when needed.",
           "format": "int64",
           "type": "string"
         }
@@ -1325,10 +1325,10 @@
       "properties": {
         "autoscale": {
           "$ref": "Autoscale",
-          "description": "The configuration parameters for the auto scaling feature."
+          "description": "Optional. The configuration parameters for the auto scaling feature."
         },
         "concurrency": {
-          "description": "Job concurrency target which sets a soft upper bound on the number of jobs that can run concurrently in this reservation. This is a soft target due to asynchronous nature of the system and various optimizations for small queries. Default value is 0 which means that concurrency target will be automatically computed by the system. NOTE: this field is exposed as target job concurrency in the Information Schema, DDL and BigQuery CLI.",
+          "description": "Optional. Job concurrency target which sets a soft upper bound on the number of jobs that can run concurrently in this reservation. This is a soft target due to asynchronous nature of the system and various optimizations for small queries. Default value is 0 which means that concurrency target will be automatically computed by the system. NOTE: this field is exposed as target job concurrency in the Information Schema, DDL and BigQuery CLI.",
           "format": "int64",
           "type": "string"
         },
@@ -1339,7 +1339,7 @@
           "type": "string"
         },
         "edition": {
-          "description": "Edition of the reservation.",
+          "description": "Optional. Edition of the reservation.",
           "enum": [
             "EDITION_UNSPECIFIED",
             "STANDARD",
@@ -1355,7 +1355,7 @@
           "type": "string"
         },
         "ignoreIdleSlots": {
-          "description": "If false, any query or pipeline job using this reservation will use idle slots from other reservations within the same admin project. If true, a query or pipeline job using this reservation will execute with the slot capacity specified in the slot_capacity field at most.",
+          "description": "Optional. If false, any query or pipeline job using this reservation will use idle slots from other reservations within the same admin project. If true, a query or pipeline job using this reservation will execute with the slot capacity specified in the slot_capacity field at most.",
           "type": "boolean"
         },
         "labels": {
@@ -1371,11 +1371,12 @@
           "type": "string"
         },
         "multiRegionAuxiliary": {
+          "deprecated": true,
           "description": "Applicable only for reservations located within one of the BigQuery multi-regions (US or EU). If set to true, this reservation is placed in the organization's secondary region which is designated for disaster recovery purposes. If false, this reservation is placed in the organization's default region. NOTE: this is a preview feature. Project must be allow-listed in order to set this field.",
           "type": "boolean"
         },
         "name": {
-          "description": "The resource name of the reservation, e.g., `projects/*/locations/*/reservations/team1-prod`. The reservation_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
+          "description": "Identifier. The resource name of the reservation, e.g., `projects/*/locations/*/reservations/team1-prod`. The reservation_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
           "type": "string"
         },
         "originalPrimaryLocation": {
@@ -1394,7 +1395,7 @@
           "readOnly": true
         },
         "scalingMode": {
-          "description": "The scaling mode for the reservation. If the field is present but max_slots is not present, requests will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
+          "description": "Optional. The scaling mode for the reservation. If the field is present but max_slots is not present, requests will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
           "enum": [
             "SCALING_MODE_UNSPECIFIED",
             "AUTOSCALE_ONLY",
@@ -1414,7 +1415,7 @@
           "type": "string"
         },
         "slotCapacity": {
-          "description": "Baseline slots available to this reservation. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. Queries using this reservation might use more slots during runtime if ignore_idle_slots is set to false, or autoscaling is enabled. The total slot_capacity of the reservation and its siblings may exceed the total slot_count of capacity commitments. In that case, the exceeding slots will be charged with the autoscale SKU. You can increase the number of baseline slots in a reservation every few minutes. If you want to decrease your baseline slots, you are limited to once an hour if you have recently changed your baseline slot capacity and your baseline slots exceed your committed slots. Otherwise, you can decrease your baseline slots every few minutes.",
+          "description": "Optional. Baseline slots available to this reservation. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. Queries using this reservation might use more slots during runtime if ignore_idle_slots is set to false, or autoscaling is enabled. The total slot_capacity of the reservation and its siblings may exceed the total slot_count of capacity commitments. In that case, the exceeding slots will be charged with the autoscale SKU. You can increase the number of baseline slots in a reservation every few minutes. If you want to decrease your baseline slots, you are limited to once an hour if you have recently changed your baseline slot capacity and your baseline slots exceed your committed slots. Otherwise, you can decrease your baseline slots every few minutes.",
           "format": "int64",
           "type": "string"
         },
