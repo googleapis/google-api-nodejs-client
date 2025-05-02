@@ -295,7 +295,7 @@ export namespace cloudchannel_v1 {
      */
     parameters?: Schema$GoogleCloudChannelV1alpha1Parameter[];
     /**
-     * Optional. Price reference ID for the offer. Optional field only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order. Not yet implemented: if this field is populated in a request, it isn't evaluated in the API.
+     * Optional. Price reference ID for the offer. Only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order.
      */
     priceReferenceId?: string | null;
     /**
@@ -357,6 +357,10 @@ export namespace cloudchannel_v1 {
      * Resource name of the opportunity. Format: opportunities/{opportunity\}
      */
     opportunity?: string | null;
+    /**
+     * Resource name of the partner. Format: partners/{partner\}
+     */
+    partner?: string | null;
   }
   /**
    * Definition for extended entitlement parameters.
@@ -681,7 +685,7 @@ export namespace cloudchannel_v1 {
      */
     parameters?: Schema$GoogleCloudChannelV1Parameter[];
     /**
-     * Optional. Price reference ID for the offer. Optional field only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order. Not yet implemented: if populated in a request, this field isn't evaluated in the API.
+     * Optional. Price reference ID for the offer. Only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order.
      */
     priceReferenceId?: string | null;
     /**
@@ -996,6 +1000,10 @@ export namespace cloudchannel_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Indicate if a customer is attesting about the correctness of provided information. Only required if creating a GCP Entitlement.
+     */
+    customerAttestationState?: string | null;
+    /**
      * Required. The customer's primary domain. Must match the primary contact email's domain.
      */
     domain?: string | null;
@@ -1142,7 +1150,7 @@ export namespace cloudchannel_v1 {
      */
     parameters?: Schema$GoogleCloudChannelV1Parameter[];
     /**
-     * Optional. Price reference ID for the offer. Optional field only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order. Not yet implemented: if this field is populated in a request, it isn't evaluated in the API.
+     * Optional. Price reference ID for the offer. Only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order.
      */
     priceReferenceId?: string | null;
     /**
@@ -1390,7 +1398,7 @@ export namespace cloudchannel_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The list of Offers requested.
+     * The list of Offers requested. The pricing information for each Offer only includes the base price. Effective prices and discounts aren't populated.
      */
     offers?: Schema$GoogleCloudChannelV1Offer[];
   }
@@ -1907,7 +1915,7 @@ export namespace cloudchannel_v1 {
      */
     offer?: Schema$GoogleCloudChannelV1Offer;
     /**
-     * Optional. Price reference ID for the offer. Optional field only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order.
+     * Optional. Price reference ID for the offer. Only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order.
      */
     priceReferenceId?: string | null;
   }
@@ -2272,7 +2280,7 @@ export namespace cloudchannel_v1 {
      */
     offer?: Schema$GoogleCloudChannelV1Offer;
     /**
-     * Optional. Price reference ID for the offer. Optional field only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order.
+     * Optional. Price reference ID for the offer. Only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order.
      */
     priceReferenceId?: string | null;
   }
@@ -2574,15 +2582,15 @@ export namespace cloudchannel_v1 {
     units?: string | null;
   }
   /**
-   * Represents a postal address. For example for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478
+   * Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
    */
   export interface Schema$GoogleTypePostalAddress {
     /**
-     * Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (For example "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country/region of the address. In places where this can vary (For example Japan), address_language is used to make it explicit (For example "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
+     * Unstructured address lines describing the lower levels of an address. Because values in `address_lines` do not have type information and may sometimes contain multiple values in a single field (for example, "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country or region of the address. In places where this can vary (for example, Japan), `address_language` is used to make it explicit (for example, "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). In this way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a `region_code` with all remaining information placed in the `address_lines`. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a `region_code` and `address_lines` and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
      */
     addressLines?: string[] | null;
     /**
-     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (For example "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example in Switzerland this should be left unpopulated.
+     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated.
      */
     administrativeArea?: string | null;
     /**
@@ -2590,7 +2598,7 @@ export namespace cloudchannel_v1 {
      */
     languageCode?: string | null;
     /**
-     * Optional. Generally refers to the city/town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave locality empty and use address_lines.
+     * Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty and use `address_lines`.
      */
     locality?: string | null;
     /**
@@ -2598,7 +2606,7 @@ export namespace cloudchannel_v1 {
      */
     organization?: string | null;
     /**
-     * Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (For example state/zip validation in the U.S.A.).
+     * Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (for example, state or zip code validation in the United States).
      */
     postalCode?: string | null;
     /**
@@ -2614,11 +2622,11 @@ export namespace cloudchannel_v1 {
      */
     revision?: number | null;
     /**
-     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (For example "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (For example Côte d'Ivoire).
+     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (for example, "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (Côte d'Ivoire).
      */
     sortingCode?: string | null;
     /**
-     * Optional. Sublocality of the address. For example, this can be neighborhoods, boroughs, districts.
+     * Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district.
      */
     sublocality?: string | null;
   }
