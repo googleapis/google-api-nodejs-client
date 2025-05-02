@@ -381,7 +381,7 @@ export namespace container_v1 {
      */
     imageType?: string | null;
     /**
-     * Enable or disable Kubelet read only port.
+     * DEPRECATED. Use NodePoolAutoConfig.NodeKubeletConfig instead.
      */
     insecureKubeletReadonlyPortEnabled?: boolean | null;
     /**
@@ -717,6 +717,9 @@ export namespace container_v1 {
      * Configuration for the legacy ABAC authorization mode.
      */
     legacyAbac?: Schema$LegacyAbac;
+    /**
+     * Output only. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which the cluster resides.
+     */
     location?: string | null;
     /**
      * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes should be located. This field provides a default value if [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations) are not specified during node pool creation. Warning: changing cluster locations will update the [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations) of all node pools and will result in nodes being added and/or removed.
@@ -751,7 +754,7 @@ export namespace container_v1 {
      */
     monitoringConfig?: Schema$MonitoringConfig;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
+     * The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     monitoringService?: string | null;
     /**
@@ -798,6 +801,10 @@ export namespace container_v1 {
      * The configuration of the parent product of the cluster. This field is used by Google internal products that are built on top of the GKE cluster and take the ownership of the cluster.
      */
     parentProductConfig?: Schema$ParentProductConfig;
+    /**
+     * The config for pod autoscaling.
+     */
+    podAutoscaling?: Schema$PodAutoscaling;
     /**
      * Configuration for private cluster.
      */
@@ -1066,7 +1073,7 @@ export namespace container_v1 {
      */
     desiredMonitoringConfig?: Schema$MonitoringConfig;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
+     * The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     desiredMonitoringService?: string | null;
     /**
@@ -1117,6 +1124,10 @@ export namespace container_v1 {
      * The desired parent product config for the cluster.
      */
     desiredParentProductConfig?: Schema$ParentProductConfig;
+    /**
+     * The desired config for pod autoscaling.
+     */
+    desiredPodAutoscaling?: Schema$PodAutoscaling;
     /**
      * The desired private cluster configuration. master_global_access_config is the only field that can be changed via this field. See also ClusterUpdate.desired_enable_private_endpoint for modifying other fields within PrivateClusterConfig. Deprecated: Use desired_control_plane_endpoints_config.ip_endpoints_config.global_access instead.
      */
@@ -1183,6 +1194,39 @@ export namespace container_v1 {
     userManagedKeysConfig?: Schema$UserManagedKeysConfig;
   }
   /**
+   * ClusterUpgradeInfo contains the upgrade information of a cluster.
+   */
+  export interface Schema$ClusterUpgradeInfo {
+    /**
+     * The auto upgrade status.
+     */
+    autoUpgradeStatus?: string[] | null;
+    /**
+     * The cluster's current minor version's end of extended support timestamp.
+     */
+    endOfExtendedSupportTimestamp?: string | null;
+    /**
+     * The cluster's current minor version's end of standard support timestamp.
+     */
+    endOfStandardSupportTimestamp?: string | null;
+    /**
+     * minor_target_version indicates the target version for minor upgrade.
+     */
+    minorTargetVersion?: string | null;
+    /**
+     * patch_target_version indicates the target version for patch upgrade.
+     */
+    patchTargetVersion?: string | null;
+    /**
+     * The auto upgrade paused reason.
+     */
+    pausedReason?: string[] | null;
+    /**
+     * The list of past auto upgrades.
+     */
+    upgradeDetails?: Schema$UpgradeDetails[];
+  }
+  /**
    * CompleteIPRotationRequest moves the cluster master back into single-IP mode.
    */
   export interface Schema$CompleteIPRotationRequest {
@@ -1233,6 +1277,10 @@ export namespace container_v1 {
    * ConfidentialNodes is configuration for the confidential nodes feature, which makes nodes run on confidential VMs.
    */
   export interface Schema$ConfidentialNodes {
+    /**
+     * Defines the type of technology used by the confidential node.
+     */
+    confidentialInstanceType?: string | null;
     /**
      * Whether Confidential Nodes feature is enabled.
      */
@@ -1453,6 +1501,10 @@ export namespace container_v1 {
    * EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral storage using Local SSDs.
    */
   export interface Schema$EphemeralStorageLocalSsdConfig {
+    /**
+     * Number of local SSDs to use for GKE Data Cache.
+     */
+    dataCacheCount?: number | null;
     /**
      * Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. A zero (or unset) value has different meanings depending on machine type being used: 1. For pre-Gen3 machines, which support flexible numbers of local ssds, zero (or unset) means to disable using local SSDs as ephemeral storage. The limit for this value is dependent upon the maximum number of disk available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information. 2. For Gen3 machines which dictate a specific number of local ssds, zero (or unset) means to use the default number of local ssds that goes with that machine type. For example, for a c3-standard-8-lssd machine, 2 local ssds would be provisioned. For c3-standard-8 (which doesn't support local ssds), 0 will be provisioned. See https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds for more info.
      */
@@ -2336,6 +2388,10 @@ export namespace container_v1 {
      */
     fastSocket?: Schema$FastSocket;
     /**
+     * Flex Start flag for enabling Flex Start VM.
+     */
+    flexStart?: boolean | null;
+    /**
      * Google Container File System (image streaming) configs.
      */
     gcfsConfig?: Schema$GcfsConfig;
@@ -2610,7 +2666,7 @@ export namespace container_v1 {
    */
   export interface Schema$NodePool {
     /**
-     * Specifies the autopilot configuration for this node pool. This field is exclusively reserved for Cluster Autoscaler to implement go/gke-managed-nodes-ccc-api
+     * Specifies the autopilot configuration for this node pool. This field is exclusively reserved for Cluster Autoscaler.
      */
     autopilotConfig?: Schema$AutopilotConfig;
     /**
@@ -2769,6 +2825,39 @@ export namespace container_v1 {
      * Logging variant configuration.
      */
     variantConfig?: Schema$LoggingVariantConfig;
+  }
+  /**
+   * NodePoolUpgradeInfo contains the upgrade information of a nodepool.
+   */
+  export interface Schema$NodePoolUpgradeInfo {
+    /**
+     * The auto upgrade status.
+     */
+    autoUpgradeStatus?: string[] | null;
+    /**
+     * The nodepool's current minor version's end of extended support timestamp.
+     */
+    endOfExtendedSupportTimestamp?: string | null;
+    /**
+     * The nodepool's current minor version's end of standard support timestamp.
+     */
+    endOfStandardSupportTimestamp?: string | null;
+    /**
+     * minor_target_version indicates the target version for minor upgrade.
+     */
+    minorTargetVersion?: string | null;
+    /**
+     * patch_target_version indicates the target version for patch upgrade.
+     */
+    patchTargetVersion?: string | null;
+    /**
+     * The auto upgrade paused reason.
+     */
+    pausedReason?: string[] | null;
+    /**
+     * The list of past auto upgrades.
+     */
+    upgradeDetails?: Schema$UpgradeDetails[];
   }
   /**
    * Kubernetes taint is composed of three fields: key, value, and effect. Effect can only be one of three types: NoSchedule, PreferNoSchedule or NoExecute. See [here](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration) for more information, including usage and the valid values.
@@ -2946,6 +3035,15 @@ export namespace container_v1 {
      * The type of placement.
      */
     type?: string | null;
+  }
+  /**
+   * PodAutoscaling is used for configuration of parameters for workload autoscaling.
+   */
+  export interface Schema$PodAutoscaling {
+    /**
+     * Selected Horizontal Pod Autoscaling profile.
+     */
+    hpaProfile?: string | null;
   }
   /**
    * [PRIVATE FIELD] Config for pod CIDR size overprovisioning.
@@ -3307,6 +3405,10 @@ export namespace container_v1 {
      */
     manualStepsRequired?: boolean | null;
     /**
+     * The GKE versions where this vulnerability is mitigated.
+     */
+    mitigatedVersions?: string[] | null;
+    /**
      * The GKE versions where this vulnerability is patched.
      */
     patchedVersions?: string[] | null;
@@ -3566,7 +3668,7 @@ export namespace container_v1 {
      */
     clusterId?: string | null;
     /**
-     * Required. The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
+     * Required. The monitoring service the cluster should use to write metrics. Currently available options: * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     monitoringService?: string | null;
     /**
@@ -3923,6 +4025,10 @@ export namespace container_v1 {
      */
     fastSocket?: Schema$FastSocket;
     /**
+     * Flex Start flag for enabling Flex Start VM.
+     */
+    flexStart?: boolean | null;
+    /**
      * GCFS config.
      */
     gcfsConfig?: Schema$GcfsConfig;
@@ -4043,6 +4149,35 @@ export namespace container_v1 {
      * The release version available for upgrade.
      */
     version?: string | null;
+  }
+  /**
+   * UpgradeDetails contains detailed information of each individual upgrade operation.
+   */
+  export interface Schema$UpgradeDetails {
+    /**
+     * The end timestamp of the upgrade.
+     */
+    endTime?: string | null;
+    /**
+     * The version before the upgrade.
+     */
+    initialVersion?: string | null;
+    /**
+     * The start timestamp of the upgrade.
+     */
+    startTime?: string | null;
+    /**
+     * The start type of the upgrade.
+     */
+    startType?: string | null;
+    /**
+     * Output only. The state of the upgrade.
+     */
+    state?: string | null;
+    /**
+     * The version after the upgrade.
+     */
+    targetVersion?: string | null;
   }
   /**
    * UpgradeEvent is a notification sent to customers by the cluster server when a resource is upgrading.
@@ -4245,11 +4380,11 @@ export namespace container_v1 {
     enabled?: boolean | null;
   }
   /**
-   * Parameters that can be configured on Windows nodes. Windows Node Config that define the parameters that will be used to configure the Windows node pool settings
+   * Parameters that can be configured on Windows nodes. Windows Node Config that define the parameters that will be used to configure the Windows node pool settings.
    */
   export interface Schema$WindowsNodeConfig {
     /**
-     * OSVersion specifies the Windows node config to be used on the node
+     * OSVersion specifies the Windows node config to be used on the node.
      */
     osVersion?: string | null;
   }
@@ -4920,6 +5055,100 @@ export namespace container_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Fetch upgrade information of a specific cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchClusterUpgradeInfo(
+      params: Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchClusterUpgradeInfo(
+      params?: Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ClusterUpgradeInfo>;
+    fetchClusterUpgradeInfo(
+      params: Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchClusterUpgradeInfo(
+      params: Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo,
+      options: MethodOptions | BodyResponseCallback<Schema$ClusterUpgradeInfo>,
+      callback: BodyResponseCallback<Schema$ClusterUpgradeInfo>
+    ): void;
+    fetchClusterUpgradeInfo(
+      params: Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo,
+      callback: BodyResponseCallback<Schema$ClusterUpgradeInfo>
+    ): void;
+    fetchClusterUpgradeInfo(
+      callback: BodyResponseCallback<Schema$ClusterUpgradeInfo>
+    ): void;
+    fetchClusterUpgradeInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo
+        | BodyResponseCallback<Schema$ClusterUpgradeInfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ClusterUpgradeInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ClusterUpgradeInfo>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ClusterUpgradeInfo>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchClusterUpgradeInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ClusterUpgradeInfo>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ClusterUpgradeInfo>(parameters);
       }
     }
 
@@ -6306,6 +6535,17 @@ export namespace container_v1 {
      */
     zone?: string;
   }
+  export interface Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo
+    extends StandardParameters {
+    /**
+     * Required. The name (project, location, cluster) of the cluster to get. Specified in the format `projects/x/locations/x/clusters/x` or `projects/x/zones/x/clusters/x`.
+     */
+    name?: string;
+    /**
+     * API request version that initiates this operation.
+     */
+    version?: string;
+  }
   export interface Params$Resource$Projects$Locations$Clusters$Get
     extends StandardParameters {
     /**
@@ -6759,6 +6999,100 @@ export namespace container_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Fetch upgrade information of a specific nodepool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchNodePoolUpgradeInfo(
+      params: Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchNodePoolUpgradeInfo(
+      params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NodePoolUpgradeInfo>;
+    fetchNodePoolUpgradeInfo(
+      params: Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchNodePoolUpgradeInfo(
+      params: Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
+      options: MethodOptions | BodyResponseCallback<Schema$NodePoolUpgradeInfo>,
+      callback: BodyResponseCallback<Schema$NodePoolUpgradeInfo>
+    ): void;
+    fetchNodePoolUpgradeInfo(
+      params: Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
+      callback: BodyResponseCallback<Schema$NodePoolUpgradeInfo>
+    ): void;
+    fetchNodePoolUpgradeInfo(
+      callback: BodyResponseCallback<Schema$NodePoolUpgradeInfo>
+    ): void;
+    fetchNodePoolUpgradeInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo
+        | BodyResponseCallback<Schema$NodePoolUpgradeInfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NodePoolUpgradeInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NodePoolUpgradeInfo>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$NodePoolUpgradeInfo>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchNodePoolUpgradeInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodePoolUpgradeInfo>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NodePoolUpgradeInfo>(parameters);
       }
     }
 
@@ -7431,6 +7765,17 @@ export namespace container_v1 {
      * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo
+    extends StandardParameters {
+    /**
+     * Required. The name (project, location, cluster, nodepool) of the nodepool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x` or `projects/x/zones/x/clusters/x/nodePools/x`.
+     */
+    name?: string;
+    /**
+     * API request version that initiates this operation.
+     */
+    version?: string;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Get
     extends StandardParameters {
@@ -8435,6 +8780,100 @@ export namespace container_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Fetch upgrade information of a specific cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchClusterUpgradeInfo(
+      params: Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchClusterUpgradeInfo(
+      params?: Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ClusterUpgradeInfo>;
+    fetchClusterUpgradeInfo(
+      params: Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchClusterUpgradeInfo(
+      params: Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo,
+      options: MethodOptions | BodyResponseCallback<Schema$ClusterUpgradeInfo>,
+      callback: BodyResponseCallback<Schema$ClusterUpgradeInfo>
+    ): void;
+    fetchClusterUpgradeInfo(
+      params: Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo,
+      callback: BodyResponseCallback<Schema$ClusterUpgradeInfo>
+    ): void;
+    fetchClusterUpgradeInfo(
+      callback: BodyResponseCallback<Schema$ClusterUpgradeInfo>
+    ): void;
+    fetchClusterUpgradeInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo
+        | BodyResponseCallback<Schema$ClusterUpgradeInfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ClusterUpgradeInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ClusterUpgradeInfo>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ClusterUpgradeInfo>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchClusterUpgradeInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ClusterUpgradeInfo>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ClusterUpgradeInfo>(parameters);
       }
     }
 
@@ -9665,6 +10104,17 @@ export namespace container_v1 {
      */
     zone?: string;
   }
+  export interface Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo
+    extends StandardParameters {
+    /**
+     * Required. The name (project, location, cluster) of the cluster to get. Specified in the format `projects/x/locations/x/clusters/x` or `projects/x/zones/x/clusters/x`.
+     */
+    name?: string;
+    /**
+     * API request version that initiates this operation.
+     */
+    version?: string;
+  }
   export interface Params$Resource$Projects$Zones$Clusters$Get
     extends StandardParameters {
     /**
@@ -10188,6 +10638,100 @@ export namespace container_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Fetch upgrade information of a specific nodepool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchNodePoolUpgradeInfo(
+      params: Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchNodePoolUpgradeInfo(
+      params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NodePoolUpgradeInfo>;
+    fetchNodePoolUpgradeInfo(
+      params: Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchNodePoolUpgradeInfo(
+      params: Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
+      options: MethodOptions | BodyResponseCallback<Schema$NodePoolUpgradeInfo>,
+      callback: BodyResponseCallback<Schema$NodePoolUpgradeInfo>
+    ): void;
+    fetchNodePoolUpgradeInfo(
+      params: Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo,
+      callback: BodyResponseCallback<Schema$NodePoolUpgradeInfo>
+    ): void;
+    fetchNodePoolUpgradeInfo(
+      callback: BodyResponseCallback<Schema$NodePoolUpgradeInfo>
+    ): void;
+    fetchNodePoolUpgradeInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo
+        | BodyResponseCallback<Schema$NodePoolUpgradeInfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NodePoolUpgradeInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NodePoolUpgradeInfo>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$NodePoolUpgradeInfo>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchNodePoolUpgradeInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodePoolUpgradeInfo>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NodePoolUpgradeInfo>(parameters);
       }
     }
 
@@ -10794,6 +11338,17 @@ export namespace container_v1 {
      * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo
+    extends StandardParameters {
+    /**
+     * Required. The name (project, location, cluster, nodepool) of the nodepool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x` or `projects/x/zones/x/clusters/x/nodePools/x`.
+     */
+    name?: string;
+    /**
+     * API request version that initiates this operation.
+     */
+    version?: string;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Get
     extends StandardParameters {
