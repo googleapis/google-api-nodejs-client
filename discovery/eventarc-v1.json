@@ -168,6 +168,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -2460,7 +2466,7 @@
       }
     }
   },
-  "revision": "20250307",
+  "revision": "20250411",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2749,7 +2755,7 @@
           "type": "object"
         },
         "messageBus": {
-          "description": "Required. Resource name of the message bus identifying the source of the messages. It matches the form projects/{project}/locations/{location}/messageBuses/{messageBus}.",
+          "description": "Required. Immutable. Resource name of the message bus identifying the source of the messages. It matches the form projects/{project}/locations/{location}/messageBuses/{messageBus}.",
           "type": "string"
         },
         "name": {
