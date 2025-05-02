@@ -216,6 +216,15 @@ export namespace securitycenter_v1beta1 {
     confidence?: number | null;
   }
   /**
+   * Details about resources affected by this finding.
+   */
+  export interface Schema$AffectedResources {
+    /**
+     * The count of resources affected by the finding.
+     */
+    count?: string | null;
+  }
+  /**
    * Allowed IP rule.
    */
   export interface Schema$Allowed {
@@ -555,6 +564,15 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Contains details about a chokepoint, which is a resource or resource group where high-risk attack paths converge, based on [attack path simulations] (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
+   */
+  export interface Schema$Chokepoint {
+    /**
+     * List of resource names of findings associated with this chokepoint. For example, organizations/123/sources/456/findings/789. This list will have at most 100 findings.
+     */
+    relatedFindings?: string[] | null;
+  }
+  /**
    * Fields related to Google Cloud Armor findings.
    */
   export interface Schema$CloudArmor {
@@ -654,43 +672,6 @@ export namespace securitycenter_v1beta1 {
      * Version of the standard or benchmark, for example, 1.1
      */
     version?: string | null;
-  }
-  /**
-   * Result containing the properties and count of a ComplianceSnapshot request.
-   */
-  export interface Schema$ComplianceSnapshot {
-    /**
-     * The category of Findings matching.
-     */
-    category?: string | null;
-    /**
-     * The cloud provider for the compliance snapshot.
-     */
-    cloudProvider?: string | null;
-    /**
-     * The compliance standard (ie CIS).
-     */
-    complianceStandard?: string | null;
-    /**
-     * The compliance version (ie 1.3) in CIS 1.3.
-     */
-    complianceVersion?: string | null;
-    /**
-     * Total count of findings for the given properties.
-     */
-    count?: string | null;
-    /**
-     * The leaf container resource name that is closest to the snapshot.
-     */
-    leafContainerResource?: string | null;
-    /**
-     * The compliance snapshot name. Format: //sources//complianceSnapshots/
-     */
-    name?: string | null;
-    /**
-     * The snapshot time of the snapshot.
-     */
-    snapshotTime?: string | null;
   }
   /**
    * Contains information about the IP connection associated with the finding.
@@ -1122,6 +1103,10 @@ export namespace securitycenter_v1beta1 {
      */
     access?: Schema$Access;
     /**
+     * AffectedResources associated with the finding.
+     */
+    affectedResources?: Schema$AffectedResources;
+    /**
      * Represents an application associated with the finding.
      */
     application?: Schema$Application;
@@ -1141,6 +1126,10 @@ export namespace securitycenter_v1beta1 {
      * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: "XSS_FLASH_INJECTION"
      */
     category?: string | null;
+    /**
+     * Contains details about a chokepoint, which is a resource or resource group where high-risk attack paths converge, based on [attack path simulations] (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations). This field cannot be updated. Its value is ignored in all update requests.
+     */
+    chokepoint?: Schema$Chokepoint;
     /**
      * Fields related to Cloud Armor findings.
      */
@@ -2157,6 +2146,15 @@ export namespace securitycenter_v1beta1 {
     confidence?: number | null;
   }
   /**
+   * Details about resources affected by this finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AffectedResources {
+    /**
+     * The count of resources affected by the finding.
+     */
+    count?: string | null;
+  }
+  /**
    * Allowed IP rule.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Allowed {
@@ -2468,6 +2466,15 @@ export namespace securitycenter_v1beta1 {
    * The response to a BulkMute request. Contains the LRO information.
    */
   export interface Schema$GoogleCloudSecuritycenterV2BulkMuteFindingsResponse {}
+  /**
+   * Contains details about a chokepoint, which is a resource or resource group where high-risk attack paths converge, based on [attack path simulations] (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Chokepoint {
+    /**
+     * List of resource names of findings associated with this chokepoint. For example, organizations/123/sources/456/findings/789. This list will have at most 100 findings.
+     */
+    relatedFindings?: string[] | null;
+  }
   /**
    * Fields related to Google Cloud Armor findings.
    */
@@ -3023,6 +3030,10 @@ export namespace securitycenter_v1beta1 {
      */
     access?: Schema$GoogleCloudSecuritycenterV2Access;
     /**
+     * AffectedResources associated with the finding.
+     */
+    affectedResources?: Schema$GoogleCloudSecuritycenterV2AffectedResources;
+    /**
      * Represents an application associated with the finding.
      */
     application?: Schema$GoogleCloudSecuritycenterV2Application;
@@ -3042,6 +3053,10 @@ export namespace securitycenter_v1beta1 {
      * Immutable. The additional taxonomy group within findings from a given source. Example: "XSS_FLASH_INJECTION"
      */
     category?: string | null;
+    /**
+     * Contains details about a chokepoint, which is a resource or resource group where high-risk attack paths converge, based on [attack path simulations] (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations). This field cannot be updated. Its value is ignored in all update requests.
+     */
+    chokepoint?: Schema$GoogleCloudSecuritycenterV2Chokepoint;
     /**
      * Fields related to Cloud Armor findings.
      */
