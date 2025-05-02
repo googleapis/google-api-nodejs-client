@@ -753,7 +753,11 @@
       }
     }
   },
+<<<<<<< HEAD
   "revision": "20250329",
+=======
+  "revision": "20250424",
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1807,6 +1811,11 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "isTombstoned": {
+          "description": "Output only. Set if the project has been tombstoned by the user.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "name": {
           "description": "Immutable. The resource name of the MonitoredProject. On input, the resource name includes the scoping project ID and monitored project ID. On output, it contains the equivalent project numbers. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER}/projects/{MONITORED_PROJECT_ID_OR_NUMBER}",
@@ -2923,7 +2932,7 @@
       "properties": {
         "templateVariableCondition": {
           "$ref": "TemplateVariableCondition",
-          "description": "A condition whose evaluation is based on the value of a template variable."
+          "description": "A condition whose evaluation is based on the value of a template1 variable."
         }
       },
       "type": "object"

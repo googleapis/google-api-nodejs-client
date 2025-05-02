@@ -196,6 +196,7 @@
           "path": "civicinfo/v2/voterinfo",
           "response": {
             "$ref": "CivicinfoApiprotosV2VoterInfoResponse"
+<<<<<<< HEAD
           }
         }
       }
@@ -374,12 +375,18 @@
           "path": "civicinfo/v2/representatives/{ocdId}",
           "response": {
             "$ref": "CivicinfoApiprotosV2RepresentativeInfoData"
+=======
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
           }
         }
       }
     }
   },
+<<<<<<< HEAD
   "revision": "20250320",
+=======
+  "revision": "20250430",
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
   "rootUrl": "https://civicinfo.googleapis.com/",
   "schemas": {
     "CivicinfoApiprotosV2DivisionByAddressResponse": {
@@ -457,6 +464,7 @@
       },
       "type": "object"
     },
+<<<<<<< HEAD
     "CivicinfoApiprotosV2RepresentativeInfoData": {
       "id": "CivicinfoApiprotosV2RepresentativeInfoData",
       "properties": {
@@ -521,6 +529,8 @@
       },
       "type": "object"
     },
+=======
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
     "CivicinfoApiprotosV2VoterInfoResponse": {
       "description": "The result of a voter info lookup query.",
       "id": "CivicinfoApiprotosV2VoterInfoResponse",
@@ -1069,6 +1079,7 @@
       },
       "type": "object"
     },
+<<<<<<< HEAD
     "CivicinfoSchemaV2Office": {
       "description": "Information about an Office held by one or more Officials.",
       "id": "CivicinfoSchemaV2Office",
@@ -1217,6 +1228,8 @@
       },
       "type": "object"
     },
+=======
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
     "CivicinfoSchemaV2PollingLocation": {
       "description": "A location where a voter can vote. This may be an early vote site, an election day voting location, or a drop off location for a completed ballot.",
       "id": "CivicinfoSchemaV2PollingLocation",

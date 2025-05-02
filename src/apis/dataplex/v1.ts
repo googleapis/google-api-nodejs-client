@@ -371,7 +371,7 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * Autorization for an AspectType.
+   * Authorization for an AspectType.
    */
   export interface Schema$GoogleCloudDataplexV1AspectTypeAuthorization {
     /**
@@ -2516,6 +2516,51 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
+<<<<<<< HEAD
+=======
+   * EntryLink represents a link between two entries.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntryLink {
+    /**
+     * Output only. The time when the Entry Link was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. Immutable. Relative resource name of the Entry Link Type used to create this Entry Link, of the form: projects/{project\}/locations/{location\}/entryLinkTypes/{entry_link_type\}.
+     */
+    entryLinkType?: string | null;
+    /**
+     * Required. Specifies the entries referenced in the entry link. There should be exactly two entry references.
+     */
+    entryReferences?: Schema$GoogleCloudDataplexV1EntryLinkEntryReference[];
+    /**
+     * Output only. Immutable. Identifier. The relative resource name of the Entry Link, of the form: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entryLinks/{entry_link\}.
+     */
+    name?: string | null;
+    /**
+     * Output only. The time when the Entry Link was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Reference to the Entry that is linked through the entry link.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntryLinkEntryReference {
+    /**
+     * Required. Immutable. The relative resource name of the referenced entry, of the form: projects/{project\}/locations/{location\}/entryGroups/{entryGroup\}/entries/{entry\}.
+     */
+    name?: string | null;
+    /**
+     * Immutable. The path in the entry that is referenced in the entry link. Empty path denotes that the entry itself is referenced in the entry link.
+     */
+    path?: string | null;
+    /**
+     * Required. Immutable. The reference type of the entry.
+     */
+    type?: string | null;
+  }
+  /**
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
    * Payload associated with Entry related log events.
    */
   export interface Schema$GoogleCloudDataplexV1EntryLinkEvent {
@@ -2813,6 +2858,125 @@ export namespace dataplex_v1 {
      * The data quality rules that Dataplex generates based on the results of a data profiling scan.
      */
     rule?: Schema$GoogleCloudDataplexV1DataQualityRule[];
+  }
+  /**
+   * A Glossary represents a collection of categories and terms defined by the user. Glossary is a top level resource and is the GCP parent resource of all the categories and terms within it.
+   */
+  export interface Schema$GoogleCloudDataplexV1Glossary {
+    /**
+     * Output only. The number of categories in the glossary.
+     */
+    categoryCount?: number | null;
+    /**
+     * Output only. The time at which the glossary was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The user-mutable description of the glossary.
+     */
+    description?: string | null;
+    /**
+     * Optional. User friendly display name of the glossary. This is user-mutable. This will be same as the glossaryId, if not specified.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Needed for resource freshness validation. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. User-defined labels for the Glossary.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Identifier. The resource name of the Glossary. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The number of terms in the glossary.
+     */
+    termCount?: number | null;
+    /**
+     * Output only. System generated unique id for the Glossary. This ID will be different if the Glossary is deleted and re-created with the same name.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time at which the glossary was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A GlossaryCategory represents a collection of categories and terms within a Glossary that are related to each other.
+   */
+  export interface Schema$GoogleCloudDataplexV1GlossaryCategory {
+    /**
+     * Output only. The time at which the GlossaryCategory was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The user-mutable description of the GlossaryCategory.
+     */
+    description?: string | null;
+    /**
+     * Optional. User friendly display name of the GlossaryCategory. This is user-mutable. This will be same as the categoryId, if not specified.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. User-defined labels for the GlossaryCategory.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/categories/{categoryId\}
+     */
+    name?: string | null;
+    /**
+     * Required. The immediate parent of the GlossaryCategory in the resource-hierarchy. It can either be a Glossary or a Category. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\} OR projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/categories/{categoryId\}
+     */
+    parent?: string | null;
+    /**
+     * Output only. System generated unique id for the GlossaryCategory. This ID will be different if the GlossaryCategory is deleted and re-created with the same name.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time at which the GlossaryCategory was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * GlossaryTerms are the core of glossary. A GlossaryTerm holds a rich text description that can be attached to entries or specific columns to enrich them.
+   */
+  export interface Schema$GoogleCloudDataplexV1GlossaryTerm {
+    /**
+     * Output only. The time at which the GlossaryTerm was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The user-mutable description of the GlossaryTerm.
+     */
+    description?: string | null;
+    /**
+     * Optional. User friendly display name of the GlossaryTerm. This is user-mutable. This will be same as the termId, if not specified.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. User-defined labels for the GlossaryTerm.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/terms/{termId\}
+     */
+    name?: string | null;
+    /**
+     * Required. The immediate parent of the GlossaryTerm in the resource-hierarchy. It can either be a Glossary or a Category. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\} OR projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/categories/{categoryId\}
+     */
+    parent?: string | null;
+    /**
+     * Output only. System generated unique id for the GlossaryTerm. This ID will be different if the GlossaryTerm is deleted and re-created with the same name.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time at which the GlossaryTerm was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Payload associated with Governance related log events.
@@ -3268,6 +3432,57 @@ export namespace dataplex_v1 {
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * List Glossaries Response
+   */
+  export interface Schema$GoogleCloudDataplexV1ListGlossariesResponse {
+    /**
+     * Lists the glossaries in the specified parent.
+     */
+    glossaries?: Schema$GoogleCloudDataplexV1Glossary[];
+    /**
+     * A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that the service couldn't reach.
+     */
+    unreachableLocations?: string[] | null;
+  }
+  /**
+   * List GlossaryCategories Response
+   */
+  export interface Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse {
+    /**
+     * Lists the glossaryCategories in the specified parent.
+     */
+    categories?: Schema$GoogleCloudDataplexV1GlossaryCategory[];
+    /**
+     * A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that the service couldn't reach.
+     */
+    unreachableLocations?: string[] | null;
+  }
+  /**
+   * List GlossaryTerms Response
+   */
+  export interface Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse {
+    /**
+     * A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Lists the terms in the specified parent.
+     */
+    terms?: Schema$GoogleCloudDataplexV1GlossaryTerm[];
+    /**
+     * Locations that the service couldn't reach.
+     */
+    unreachableLocations?: string[] | null;
   }
   /**
    * List jobs response.
@@ -6400,6 +6615,10 @@ export namespace dataplex_v1 {
      * Optional. The scope under which the search should be operating. It must either be organizations/ or projects/. If it is unspecified, it defaults to the organization where the project provided in name is located.
      */
     scope?: string;
+    /**
+     * Optional. Internal only.
+     */
+    semanticSearch?: boolean;
   }
 
   export class Resource$Projects$Locations$Aspecttypes {
@@ -11376,9 +11595,13 @@ export namespace dataplex_v1 {
   export class Resource$Projects$Locations$Entrygroups {
     context: APIRequestContext;
     entries: Resource$Projects$Locations$Entrygroups$Entries;
+    entryLinks: Resource$Projects$Locations$Entrygroups$Entrylinks;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.entries = new Resource$Projects$Locations$Entrygroups$Entries(
+        this.context
+      );
+      this.entryLinks = new Resource$Projects$Locations$Entrygroups$Entrylinks(
         this.context
       );
     }
@@ -12827,6 +13050,332 @@ export namespace dataplex_v1 {
     requestBody?: Schema$GoogleCloudDataplexV1Entry;
   }
 
+  export class Resource$Projects$Locations$Entrygroups$Entrylinks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an Entry Link.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1EntryLink>;
+    create(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1EntryLink>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/entryLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1EntryLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1EntryLink>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an Entry Link.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1EntryLink>;
+    delete(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1EntryLink>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1EntryLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1EntryLink>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets an entry link.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1EntryLink>;
+    get(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1EntryLink>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1EntryLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1EntryLink>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create
+    extends StandardParameters {
+    /**
+     * Required. Entry Link identifier * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the EntryGroup.
+     */
+    entryLinkId?: string;
+    /**
+     * Required. The resource name of the parent Entry Group: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1EntryLink;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Entry Link: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entryLinks/{entry_link\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Entry Link: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entryLinks/{entry_link\}.
+     */
+    name?: string;
+  }
+
   export class Resource$Projects$Locations$Entrylinktypes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -14051,6 +14600,287 @@ export namespace dataplex_v1 {
     }
 
     /**
+     * Creates a new Glossary resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Glossaries$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Glossaries$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/glossaries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a Glossary resource. All the categories and terms within the glossary must be deleted before a glossary can be deleted.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Glossaries$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Glossaries$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a specified Glossary resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Glossaries$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1Glossary>;
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Glossary>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Glossary>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Glossary>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Glossary>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Glossary>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Glossary>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Glossary>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1Glossary>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Glossaries$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1Glossary>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1Glossary>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      *
      * @param params - Parameters for request
@@ -14141,6 +14971,195 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists Glossary resources in a project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Glossaries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListGlossariesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossariesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossariesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossariesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossariesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossariesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossariesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossariesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListGlossariesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Glossaries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/glossaries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListGlossariesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListGlossariesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a Glossary resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Glossaries$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Glossaries$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Glossaries$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Glossaries$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Glossaries$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Glossaries$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -14337,6 +15356,44 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Glossaries$Create
+    extends StandardParameters {
+    /**
+     * Required. Glossary ID: Glossary identifier.
+     */
+    glossaryId?: string;
+    /**
+     * Required. The parent resource where this Glossary will be created. Format: projects/{projectId\}/locations/{locationId\} where locationId refers to a GCP region.
+     */
+    parent?: string;
+    /**
+     * Optional. Validates the request without actually creating the glossary. Default: false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1Glossary;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Delete
+    extends StandardParameters {
+    /**
+     * Optional. The etag of the Glossary. If this is provided, it must match the server's etag. If the etag is provided and does not match the server-computed etag, the request must fail with a ABORTED error code.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the Glossary to delete. Format: projects/{project\}/locations/{location\}/glossary/{glossary\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the Glossary to retrieve. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Glossaries$Getiampolicy
     extends StandardParameters {
     /**
@@ -14347,6 +15404,49 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression that filters glossaries listed in the response. Initially, no filter is supported.
+     */
+    filter?: string;
+    /**
+     * Optional. Order by expression that orders glossaries listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of glossaries to return. The service may return fewer than this value. If unspecified, at most 50 glossaries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous ListGlossaries call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListGlossaries must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which has this collection of glossaries. Format: projects/{project\}/locations/{location\} Location is the GCP region.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Identifier. The resource name of the Glossary. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Optional. Validates the request without actually updating the glossary. Default: false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1Glossary;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Setiampolicy
     extends StandardParameters {
@@ -14377,6 +15477,285 @@ export namespace dataplex_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * GlossaryCategory APIs are CCFE passthrough APIs. Creates a new GlossaryCategory resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Glossaries$Categories$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryCategory>;
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Categories$Create
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryCategory>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Categories$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Glossaries$Categories$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/categories').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1GlossaryCategory>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1GlossaryCategory>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a GlossaryCategory resource. All the categories and terms nested directly under the category will be moved one level up to the parent in the hierarchy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Glossaries$Categories$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Categories$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Categories$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Glossaries$Categories$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a specified GlossaryCategory resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Glossaries$Categories$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryCategory>;
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Categories$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryCategory>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Categories$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Glossaries$Categories$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1GlossaryCategory>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1GlossaryCategory>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -14470,6 +15849,199 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists GlossaryCategory resources in a glossary.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Glossaries$Categories$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Categories$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Categories$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Glossaries$Categories$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/categories').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a GlossaryCategory resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Glossaries$Categories$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryCategory>;
+    patch(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Glossaries$Categories$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Categories$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryCategory>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryCategory>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Categories$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Glossaries$Categories$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1GlossaryCategory>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1GlossaryCategory>(
+          parameters
+        );
       }
     }
 
@@ -14666,6 +16238,36 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Create
+    extends StandardParameters {
+    /**
+     * Required. Category ID: GlossaryCategory identifier.
+     */
+    categoryId?: string;
+    /**
+     * Required. The parent resource where this GlossaryCategory will be created. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\} where locationId refers to a GCP region.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1GlossaryCategory;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the GlossaryCategory to delete. Format: projects/{project\}/locations/{location\}/glossary/{glossary\}/categories/{glossary_category\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the GlossaryCategory to retrieve. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\}/categories/{glossary_category\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Glossaries$Categories$Getiampolicy
     extends StandardParameters {
     /**
@@ -14676,6 +16278,45 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression that filters categories listed in the response. Filters supported: List GlossaryCategories based on immediate parent in the resource hierarchy. This will only return the GlossaryCategories nested directly under the parent and no other subsequent nested categories will be returned.
+     */
+    filter?: string;
+    /**
+     * Optional. Order by expression that orders categories listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of categories to return. The service may return fewer than this value. If unspecified, at most 50 categories will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous ListGlossaryCategories call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListGlossaryCategories must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which has this collection of categories. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\} Location is the GCP region.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Categories$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/categories/{categoryId\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1GlossaryCategory;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Categories$Setiampolicy
     extends StandardParameters {
@@ -14706,6 +16347,284 @@ export namespace dataplex_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * GlossaryTerm APIs are CCFE passthrough APIs. Creates a new GlossaryTerm resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Glossaries$Terms$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryTerm>;
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Terms$Create
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryTerm>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Terms$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Glossaries$Terms$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/terms').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1GlossaryTerm>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1GlossaryTerm>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a GlossaryTerm resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Glossaries$Terms$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Terms$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Terms$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Glossaries$Terms$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a specified GlossaryTerm resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Glossaries$Terms$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryTerm>;
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Terms$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryTerm>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Terms$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Glossaries$Terms$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1GlossaryTerm>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1GlossaryTerm>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -14799,6 +16718,198 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists GlossaryTerm resources in a glossary.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Glossaries$Terms$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Terms$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Terms$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Glossaries$Terms$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/terms').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListGlossaryTermsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a GlossaryTerm resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Glossaries$Terms$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryTerm>;
+    patch(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Glossaries$Terms$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Terms$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1GlossaryTerm>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1GlossaryTerm>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Terms$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Glossaries$Terms$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1GlossaryTerm>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1GlossaryTerm>(
+          parameters
+        );
       }
     }
 
@@ -14995,6 +17106,36 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this GlossaryTerm will be created. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\} where locationId refers to a GCP region.
+     */
+    parent?: string;
+    /**
+     * Required. Term ID: GlossaryTerm identifier.
+     */
+    termId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1GlossaryTerm;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the GlossaryTerm to delete. Format: projects/{project\}/locations/{location\}/glossary/{glossary\}/terms/{glossary_term\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the GlossaryTerm to retrieve. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\}/terms/{glossary_term\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Glossaries$Terms$Getiampolicy
     extends StandardParameters {
     /**
@@ -15005,6 +17146,45 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression that filters terms listed in the response. Filters supported: List GlossaryTerms based on immediate parent in the resource hierarchy. This will only return the terms nested directly under the parent and no other subsequent nested terms will be returned.
+     */
+    filter?: string;
+    /**
+     * Optional. Order by expression that orders terms listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of terms to return. The service may return fewer than this value. If unspecified, at most 50 terms will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous ListGlossaryTerms call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListGlossaryTerms must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which has this collection of terms. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\} Location is the GCP region.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Terms$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/terms/{termId\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1GlossaryTerm;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Terms$Setiampolicy
     extends StandardParameters {

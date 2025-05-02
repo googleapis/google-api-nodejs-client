@@ -2,7 +2,7 @@
 
 # fcm
 
-> FCM send API that provides a cross-platform messaging solution to reliably deliver messages at no cost.
+> FCM send API that provides a cross-platform messaging solution to reliably deliver messages.
 
 ## Installation
 

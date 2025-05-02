@@ -234,7 +234,7 @@
           ]
         },
         "UpdateBackup": {
-          "description": "Updates the retention period and description of the backup. You can use this API to update final backups only.",
+          "description": "This API updates the following: 1- retention period and description of backup in case of final backups only. 2- gcbdr_soft_delete_status of backup in case of GCBDR managed backups only.",
           "flatPath": "v1/projects/{projectsId}/backups/{backupsId}",
           "httpMethod": "PATCH",
           "id": "sql.Backups.UpdateBackup",
@@ -250,7 +250,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "The list of fields that you can update. You can update only the description and retention period of the final backup.",
+              "description": "The list of fields that you can update. 1- You can update only the description and retention period for a final backup. 2- You can update only the gcbdr_soft_delete_status for GCBDR managed backup.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -1372,6 +1372,35 @@
           "path": "v1/projects/{project}/instances/{instance}",
           "request": {
             "$ref": "DatabaseInstance"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "pointInTimeRestore": {
+          "description": "Point in time restore for an instance managed by Google Cloud Backup and Disaster Recovery.",
+          "flatPath": "v1/projects/{projectsId}:pointInTimeRestore",
+          "httpMethod": "POST",
+          "id": "sql.instances.pointInTimeRestore",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. The parent resource where you created this instance. Format: projects/{project}",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+parent}:pointInTimeRestore",
+          "request": {
+            "$ref": "PointInTimeRestoreContext"
           },
           "response": {
             "$ref": "Operation"
@@ -2565,7 +2594,11 @@
       }
     }
   },
+<<<<<<< HEAD
   "revision": "20250412",
+=======
+  "revision": "20250427",
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2681,7 +2714,7 @@
       "type": "object"
     },
     "Backup": {
-      "description": "A backup resource.",
+      "description": "A backup resource. Next ID: 30",
       "id": "Backup",
       "properties": {
         "backupInterval": {
@@ -2989,6 +3022,29 @@
         "backupRetentionSettings": {
           "$ref": "BackupRetentionSettings",
           "description": "Backup retention settings."
+        },
+        "backupTier": {
+          "description": "Output only. Backup tier that manages the backups for the instance.",
+          "enum": [
+            "BACKUP_TIER_UNSPECIFIED",
+            "STANDARD",
+            "ADVANCED",
+            "ENHANCED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Instance is managed by Cloud SQL.",
+            "Deprecated: ADVANCED is deprecated. Please use ENHANCED instead.",
+            "Instance is managed by Google Cloud Backup and DR Service."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "binaryLogEnabled": {
           "description": "(MySQL only) Whether binary log is enabled. If backup configuration is disabled, binarylog must be disabled as well.",
@@ -5521,6 +5577,10 @@
           "description": "The name of the backup that's used to restore a Cloud SQL instance: Format: projects/{project-id}/backups/{backup-uid}. Only one of restore_backup_context, backup, backupdr_backup can be passed to the input.",
           "type": "string"
         },
+        "backupdrBackup": {
+          "description": "The name of the backup that's used to restore a Cloud SQL instance: Format: \"projects/{project-id}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}/backups/{backup-uid}\". Only one of restore_backup_context, backup, backupdr_backup can be passed to the input.",
+          "type": "string"
+        },
         "restoreBackupContext": {
           "$ref": "RestoreBackupContext",
           "description": "Parameters required to perform the restore backup operation."
@@ -6016,7 +6076,8 @@
             "MANAGE_BACKUP",
             "ENHANCED_BACKUP",
             "REPAIR_READ_POOL",
-            "CREATE_READ_POOL"
+            "CREATE_READ_POOL",
+            "PRE_CHECK_MAJOR_VERSION_UPGRADE"
           ],
           "enumDeprecated": [
             false,
@@ -6067,6 +6128,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -6124,7 +6186,12 @@
             "Changes the BackupTier of a Cloud SQL instance.",
             "Creates a backup for an Enhanced BackupTier Cloud SQL instance.",
             "Repairs entire read pool or specified read pool nodes in the read pool.",
+<<<<<<< HEAD
             "Creates a Cloud SQL read pool instance."
+=======
+            "Creates a Cloud SQL read pool instance.",
+            "Pre-checks the major version upgrade operation."
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
           ],
           "type": "string"
         },
@@ -6348,6 +6415,42 @@
         "targetSizeGb": {
           "description": "The target disk shrink size in GigaBytes.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PointInTimeRestoreContext": {
+      "description": "The context to perform a point-in-time recovery of an instance managed by Google Cloud Backup and Disaster Recovery.",
+      "id": "PointInTimeRestoreContext",
+      "properties": {
+        "allocatedIpRange": {
+          "description": "Optional. The name of the allocated IP range for the internal IP Cloud SQL instance. For example: \"google-managed-services-default\". If you set this, then Cloud SQL creates the IP address for the cloned instance in the allocated range. This range must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035) standards. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use. http://go/speckle-subnet-picker-clone",
+          "type": "string"
+        },
+        "datasource": {
+          "description": "The Google Cloud Backup and Disaster Recovery Datasource URI. Format: projects/{project}/locations/{region}/backupVaults/{backupvault}/dataSources/{datasource}.",
+          "type": "string"
+        },
+        "pointInTime": {
+          "description": "Required. The date and time to which you want to restore the instance.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "preferredSecondaryZone": {
+          "description": "Optional. Point-in-time recovery of a regional instance in the specified zones. If not specified, clone to the same secondary zone as the source instance. This value cannot be the same as the preferred_zone field.",
+          "type": "string"
+        },
+        "preferredZone": {
+          "description": "Optional. Point-in-time recovery of an instance to the specified zone. If no zone is specified, then clone to the same primary zone as the source instance.",
+          "type": "string"
+        },
+        "privateNetwork": {
+          "description": "Optional. The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, `/projects/myProject/global/networks/default`.",
+          "type": "string"
+        },
+        "targetInstance": {
+          "description": "Target instance name.",
           "type": "string"
         }
       },

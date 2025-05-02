@@ -114,7 +114,6 @@ export namespace civicinfo_v2 {
     context: APIRequestContext;
     divisions: Resource$Divisions;
     elections: Resource$Elections;
-    representatives: Resource$Representatives;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -124,7 +123,6 @@ export namespace civicinfo_v2 {
 
       this.divisions = new Resource$Divisions(this.context);
       this.elections = new Resource$Elections(this.context);
-      this.representatives = new Resource$Representatives(this.context);
     }
   }
 
@@ -177,6 +175,7 @@ export namespace civicinfo_v2 {
      */
     kind?: string | null;
   }
+<<<<<<< HEAD
   export interface Schema$CivicinfoApiprotosV2RepresentativeInfoData {
     /**
      * A map of political geographic divisions that contain the requested address, keyed by the unique Open Civic Data identifier for this division.
@@ -220,6 +219,8 @@ export namespace civicinfo_v2 {
      */
     officials?: Schema$CivicinfoSchemaV2Official[];
   }
+=======
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
   /**
    * The result of a voter info lookup query.
    */
@@ -589,6 +590,7 @@ export namespace civicinfo_v2 {
     officeIndices?: number[] | null;
   }
   /**
+<<<<<<< HEAD
    * Information about an Office held by one or more Officials.
    */
   export interface Schema$CivicinfoSchemaV2Office {
@@ -655,6 +657,8 @@ export namespace civicinfo_v2 {
     urls?: string[] | null;
   }
   /**
+=======
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
    * A location where a voter can vote. This may be an early vote site, an election day voting location, or a drop off location for a completed ballot.
    */
   export interface Schema$CivicinfoSchemaV2PollingLocation {
@@ -1249,6 +1253,7 @@ export namespace civicinfo_v2 {
      */
     returnAllAvailableData?: boolean;
   }
+<<<<<<< HEAD
 
   export class Resource$Representatives {
     context: APIRequestContext;
@@ -1491,4 +1496,6 @@ export namespace civicinfo_v2 {
      */
     roles?: string[];
   }
+=======
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
 }

@@ -230,7 +230,7 @@ export namespace sqladmin_v1beta4 {
     name?: string | null;
   }
   /**
-   * A backup resource.
+   * A backup resource. Next ID: 30
    */
   export interface Schema$Backup {
     /**
@@ -334,6 +334,10 @@ export namespace sqladmin_v1beta4 {
      * Backup retention settings.
      */
     backupRetentionSettings?: Schema$BackupRetentionSettings;
+    /**
+     * Output only. Backup tier that manages the backups for the instance.
+     */
+    backupTier?: string | null;
     /**
      * (MySQL only) Whether binary log is enabled. If backup configuration is disabled, binarylog must be disabled as well.
      */
@@ -1567,6 +1571,10 @@ export namespace sqladmin_v1beta4 {
      */
     backup?: string | null;
     /**
+     * The name of the backup that's used to restore a Cloud SQL instance: Format: "projects/{project-id\}/locations/{location\}/backupVaults/{backupvault\}/dataSources/{datasource\}/backups/{backup-uid\}". Only one of restore_backup_context, backup, backupdr_backup can be passed to the input.
+     */
+    backupdrBackup?: string | null;
+    /**
      * Parameters required to perform the restore backup operation.
      */
     restoreBackupContext?: Schema$RestoreBackupContext;
@@ -2061,6 +2069,42 @@ export namespace sqladmin_v1beta4 {
     targetSizeGb?: string | null;
   }
   /**
+<<<<<<< HEAD
+=======
+   * Context to perform a point-in-time restore of an instance managed by Google Cloud Backup and Disaster Recovery.
+   */
+  export interface Schema$PointInTimeRestoreContext {
+    /**
+     * Optional. The name of the allocated IP range for the internal IP Cloud SQL instance. For example: "google-managed-services-default". If you set this, then Cloud SQL creates the IP address for the cloned instance in the allocated range. This range must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035) standards. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use. http://go/speckle-subnet-picker-clone
+     */
+    allocatedIpRange?: string | null;
+    /**
+     * The Google Cloud Backup and Disaster Recovery Datasource URI. Format: projects/{project\}/locations/{region\}/backupVaults/{backupvault\}/dataSources/{datasource\}.
+     */
+    datasource?: string | null;
+    /**
+     * Required. The date and time to which you want to restore the instance.
+     */
+    pointInTime?: string | null;
+    /**
+     * Optional. Point-in-time recovery of a regional instance in the specified zones. If not specified, clone to the same secondary zone as the source instance. This value cannot be the same as the preferred_zone field.
+     */
+    preferredSecondaryZone?: string | null;
+    /**
+     * Optional. Point-in-time recovery of an instance to the specified zone. If no zone is specified, then clone to the same primary zone as the source instance.
+     */
+    preferredZone?: string | null;
+    /**
+     * Optional. The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, `/projects/myProject/global/networks/default`.
+     */
+    privateNetwork?: string | null;
+    /**
+     * Target instance name.
+     */
+    targetInstance?: string | null;
+  }
+  /**
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
    * Details of a single read pool node of a read pool.
    */
   export interface Schema$PoolNodeConfig {
@@ -3700,7 +3744,7 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * Updates the retention period and the description of the backup. You can use this API to update final backups only.
+     * This API updates the following: 1- retention period and description of backup in case of final backups only. 2- gcbdr_soft_delete_status of backup in case of GCBDR managed backups only.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3840,7 +3884,7 @@ export namespace sqladmin_v1beta4 {
      */
     name?: string;
     /**
-     * The list of fields that you can update. You can update only the description and retention period of the final backup.
+     * The list of fields that you can update. 1- You can update only the description and retention period for a final backup. 2- You can update only the gcbdr_soft_delete_status for GCBDR managed backup.
      */
     updateMask?: string;
 
@@ -6238,6 +6282,93 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
+     * Point in time restore for an instance managed by Google Cloud Backup and Disaster Recovery.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pointInTimeRestore(
+      params: Params$Resource$Instances$Pointintimerestore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pointInTimeRestore(
+      params?: Params$Resource$Instances$Pointintimerestore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    pointInTimeRestore(
+      params: Params$Resource$Instances$Pointintimerestore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pointInTimeRestore(
+      params: Params$Resource$Instances$Pointintimerestore,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pointInTimeRestore(
+      params: Params$Resource$Instances$Pointintimerestore,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pointInTimeRestore(callback: BodyResponseCallback<Schema$Operation>): void;
+    pointInTimeRestore(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Pointintimerestore
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Pointintimerestore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Pointintimerestore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/{+parent}:pointInTimeRestore'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Promotes the read replica instance to be an independent Cloud SQL primary instance. Using this operation might cause your instance to restart.
      *
      * @param params - Parameters for request
@@ -7622,6 +7753,18 @@ export namespace sqladmin_v1beta4 {
      * Request body metadata
      */
     requestBody?: Schema$DatabaseInstance;
+  }
+  export interface Params$Resource$Instances$Pointintimerestore
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where you created this instance. Format: projects/{project\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PointInTimeRestoreContext;
   }
   export interface Params$Resource$Instances$Promotereplica
     extends StandardParameters {

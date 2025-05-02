@@ -1202,7 +1202,11 @@
       }
     }
   },
+<<<<<<< HEAD
   "revision": "20250428",
+=======
+  "revision": "20250501",
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2208,7 +2212,7 @@
           "type": "string"
         },
         "errorCode": {
-          "description": "If the command failed, an error code explaining the failure. This is not set when the command is cancelled by the caller.",
+          "description": "If the command failed, an error code explaining the failure. This is not set when the command is cancelled by the caller. For reasoning about command errors, prefer fields in the following order (most preferred first): 1. Command-specific fields like clearAppsDataStatus, startLostModeStatus, or similar, if they exist. 2. This field, if set. 3. The generic error field in the Operation that wraps the command.",
           "enum": [
             "COMMAND_ERROR_CODE_UNSPECIFIED",
             "UNKNOWN",
@@ -2230,6 +2234,15 @@
         "newPassword": {
           "description": "For commands of type RESET_PASSWORD, optionally specifies the new password. Note: The new password must be at least 6 characters long if it is numeric in case of Android 14 devices. Else the command will fail with INVALID_VALUE.",
           "type": "string"
+        },
+        "requestDeviceInfoParams": {
+          "$ref": "RequestDeviceInfoParams",
+          "description": "Optional. Parameters for the REQUEST_DEVICE_INFO command to get device related information. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to REQUEST_DEVICE_INFO . It is also acceptable to explicitly set type to REQUEST_DEVICE_INFO."
+        },
+        "requestDeviceInfoStatus": {
+          "$ref": "RequestDeviceInfoStatus",
+          "description": "Output only. Status of the REQUEST_DEVICE_INFO command.",
+          "readOnly": true
         },
         "resetPasswordFlags": {
           "description": "For commands of type RESET_PASSWORD, optionally specifies flags.",
@@ -3133,6 +3146,33 @@
       },
       "type": "object"
     },
+    "Eid": {
+      "description": "EID information for each eUICC chip.",
+      "id": "Eid",
+      "properties": {
+        "eid": {
+          "description": "Output only. The EID",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EidInfo": {
+      "description": "Information related to the EIDs of the device.",
+      "id": "EidInfo",
+      "properties": {
+        "eids": {
+          "description": "Output only. EID information for each eUICC chip.",
+          "items": {
+            "$ref": "Eid"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } ",
       "id": "Empty",
@@ -3365,6 +3405,21 @@
       },
       "type": "object"
     },
+<<<<<<< HEAD
+=======
+    "EuiccChipInfo": {
+      "description": "Information related to the eUICC chip.",
+      "id": "EuiccChipInfo",
+      "properties": {
+        "eid": {
+          "description": "Output only. The Embedded Identity Document (EID) that identifies the eUICC chip for each eUICC chip on the device. This is available on company owned devices running Android 13 and above.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+>>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
     "ExtensionConfig": {
       "description": "Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 11 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command on extension apps if needed for Android 11 and above.",
       "id": "ExtensionConfig",
@@ -3534,6 +3589,14 @@
           "description": "Output only. ID that uniquely identifies a personally-owned device in a particular organization. On the same physical device when enrolled with the same organization, this ID persists across setups and even factory resets. This ID is available on personally-owned devices with a work profile on devices running Android 12 and above.",
           "readOnly": true,
           "type": "string"
+        },
+        "euiccChipInfo": {
+          "description": "Output only. Information related to the eUICC chip.",
+          "items": {
+            "$ref": "EuiccChipInfo"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "gpuShutdownTemperatures": {
           "description": "GPU shutdown temperature thresholds in Celsius for each GPU on the device.",
@@ -5884,6 +5947,55 @@
           "description": "User ID in which the change was requested in.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RequestDeviceInfoParams": {
+      "description": "Parameters associated with the REQUEST_DEVICE_INFO command to get device related information.",
+      "id": "RequestDeviceInfoParams",
+      "properties": {
+        "deviceInfo": {
+          "description": "Required. Type of device information to be requested.",
+          "enum": [
+            "DEVICE_INFO_UNSPECIFIED",
+            "EID"
+          ],
+          "enumDescriptions": [
+            "This value is disallowed.",
+            "Request the identifier for eSIM. The user will be asked to approve the disclosure of the information before the result can be returned. If the user doesn't approve the disclosure, USER_DECLINED will be returned. This is supported only for personally owned devices with work profiles and Android versions 13 and above."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RequestDeviceInfoStatus": {
+      "description": "Status of the REQUEST_DEVICE_INFO command.",
+      "id": "RequestDeviceInfoStatus",
+      "properties": {
+        "eidInfo": {
+          "$ref": "EidInfo",
+          "description": "Information related to the EIDs of the device."
+        },
+        "status": {
+          "description": "Output only. Status of a REQUEST_DEVICE_INFO command.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCEEDED",
+            "PENDING_USER_ACTION",
+            "USER_DECLINED",
+            "UNSUPPORTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value is not used.",
+            "Device information has been successfully delivered.",
+            "The user has not completed the actions required to share device information.",
+            "The user declined sharing device information.",
+            "The requested device info is not supported on this device, e.g. eSIM is not supported on the device."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

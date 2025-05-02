@@ -297,6 +297,19 @@ export namespace recaptchaenterprise_v1 {
     version?: string | null;
   }
   /**
+   * Bot information and metadata.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1Bot {
+    /**
+     * Optional. Enumerated field representing the type of bot.
+     */
+    botType?: string | null;
+    /**
+     * Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case.
+     */
+    name?: string | null;
+  }
+  /**
    * Metrics related to challenges.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1ChallengeMetrics {
@@ -880,6 +893,10 @@ export namespace recaptchaenterprise_v1 {
      * Output only. Legitimate event score from 0.0 to 1.0. (1.0 means very likely legitimate traffic while 0.0 means very likely non-legitimate traffic).
      */
     score?: number | null;
+    /**
+     * Output only. Bots with identities that have been verified by reCAPTCHA and detected in the event.
+     */
+    verifiedBots?: Schema$GoogleCloudRecaptchaenterpriseV1Bot[];
   }
   /**
    * Score distribution.
