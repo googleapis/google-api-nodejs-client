@@ -355,6 +355,10 @@ export namespace analyticshub_v1beta1 {
    */
   export interface Schema$Listing {
     /**
+     * Optional. If true, the listing is only available to get the resource metadata. Listing is non subscribable.
+     */
+    allowOnlyMetadataSharing?: boolean | null;
+    /**
      * Required. Shared dataset i.e. BigQuery dataset source.
      */
     bigqueryDataset?: Schema$BigQueryDatasetSource;
