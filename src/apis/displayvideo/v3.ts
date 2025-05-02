@@ -125,7 +125,6 @@ export namespace displayvideo_v3 {
     media: Resource$Media;
     partners: Resource$Partners;
     sdfdownloadtasks: Resource$Sdfdownloadtasks;
-    sdfuploadtasks: Resource$Sdfuploadtasks;
     targetingTypes: Resource$Targetingtypes;
     users: Resource$Users;
 
@@ -153,7 +152,6 @@ export namespace displayvideo_v3 {
       this.media = new Resource$Media(this.context);
       this.partners = new Resource$Partners(this.context);
       this.sdfdownloadtasks = new Resource$Sdfdownloadtasks(this.context);
-      this.sdfuploadtasks = new Resource$Sdfuploadtasks(this.context);
       this.targetingTypes = new Resource$Targetingtypes(this.context);
       this.users = new Resource$Users(this.context);
     }
@@ -308,7 +306,7 @@ export namespace displayvideo_v3 {
     assignedTargetingOption?: Schema$AssignedTargetingOption;
   }
   /**
-   * Details of Adloox brand safety settings.
+   * Details of Scope3 (previously known as Adloox) brand safety settings.
    */
   export interface Schema$Adloox {
     /**
@@ -338,11 +336,11 @@ export namespace displayvideo_v3 {
      */
     displayIabViewability?: string | null;
     /**
-     * Adloox categories to exclude.
+     * Scope3 categories to exclude.
      */
     excludedAdlooxCategories?: string[] | null;
     /**
-     * Optional. Adloox's fraud IVT MFA categories to exclude.
+     * Optional. Scope3's fraud IVT MFA categories to exclude.
      */
     excludedFraudIvtMfaCategories?: string[] | null;
     /**
@@ -566,9 +564,17 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$AlgorithmRules {
     /**
+     * Attribution model for the algorithm. This field is only supported for allowlisted partners.
+     */
+    attributionModelId?: string | null;
+    /**
      * Rules for the impression signals.
      */
     impressionSignalRuleset?: Schema$AlgorithmRulesRuleset;
+    /**
+     * Rules for the post-impression signals. This field is only supported for allowlisted partners.
+     */
+    postImpressionSignalRuleset?: Schema$AlgorithmRulesRuleset;
   }
   /**
    * A value to compare the signal to.
@@ -614,6 +620,27 @@ export namespace displayvideo_v3 {
      * String value.
      */
     stringValue?: string | null;
+    /**
+     * Video player size value. This field is only supported for allowlisted partners.
+     */
+    videoPlayerSizeValue?: string | null;
+  }
+  /**
+   * The rule to score impressions based on Floodlight conversion events.
+   */
+  export interface Schema$AlgorithmRulesFloodlightActivityConversionSignal {
+    /**
+     * Required. The type of conversions to be used in impression value computation, for example, post-click conversions.
+     */
+    conversionCounting?: string | null;
+    /**
+     * Required. The way to acquire value from the floodlight activity, for example, count of the conversion.
+     */
+    countingMethod?: string | null;
+    /**
+     * Required. Id of the floodlight activity.
+     */
+    floodlightActivityId?: string | null;
   }
   /**
    * Set of conditions. The return value of the rule is either: * The return value for single met condition or * The defined default return value if no conditions are met.
@@ -663,6 +690,14 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$AlgorithmRulesSignal {
     /**
+     * Signal based on active views. This field is only supported for allowlisted partners.
+     */
+    activeViewSignal?: string | null;
+    /**
+     * Signal based on clicks. This field is only supported for allowlisted partners.
+     */
+    clickSignal?: string | null;
+    /**
      * Signal based on impressions.
      */
     impressionSignal?: string | null;
@@ -688,6 +723,14 @@ export namespace displayvideo_v3 {
    * Adjusted value of the signal used for rule evaluation.
    */
   export interface Schema$AlgorithmRulesSignalValue {
+    /**
+     * Signal based on active views. Only `TIME_ON_SCREEN` is supported. This field is only supported for allowlisted partners.
+     */
+    activeViewSignal?: string | null;
+    /**
+     * Signal based on floodlight conversion events. This field is only supported for allowlisted partners.
+     */
+    floodlightActivityConversionSignal?: Schema$AlgorithmRulesFloodlightActivityConversionSignal;
     /**
      * Value to use as result.
      */
@@ -876,6 +919,10 @@ export namespace displayvideo_v3 {
      * Content duration details. This field will be populated when the TargetingType is `TARGETING_TYPE_CONTENT_STREAM_TYPE`.
      */
     contentStreamTypeDetails?: Schema$ContentStreamTypeAssignedTargetingOptionDetails;
+    /**
+     * Content theme details. This field will be populated when the targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`. Content theme are targeting exclusions. Advertiser level content theme exclusions, if set, are always applied in serving (even though they aren't visible in resource settings). Resource settings can exclude content theme in addition to advertiser exclusions.
+     */
+    contentThemeExclusionDetails?: Schema$ContentThemeAssignedTargetingOptionDetails;
     /**
      * Day and time details. This field will be populated when the targeting_type is `TARGETING_TYPE_DAY_AND_TIME`.
      */
@@ -2089,11 +2136,37 @@ export namespace displayvideo_v3 {
     contentStreamType?: string | null;
   }
   /**
+   * Targeting details for content theme. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`.
+   */
+  export interface Schema$ContentThemeAssignedTargetingOptionDetails {
+    /**
+     * Output only. An enum for the DV360 content theme classifier.
+     */
+    contentTheme?: string | null;
+    /**
+     * Required. An enum for the DV360 content theme classified to be EXCLUDED.
+     */
+    excludedContentTheme?: string | null;
+    /**
+     * Required. ID of the content theme to be EXCLUDED.
+     */
+    excludedTargetingOptionId?: string | null;
+  }
+  /**
+   * Represents a targetable content theme. This will be populated in the content_theme_details field of the TargetingOption when targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`.
+   */
+  export interface Schema$ContentThemeTargetingOptionDetails {
+    /**
+     * Output only. An enum for the DV360 content theme content classifier.
+     */
+    contentTheme?: string | null;
+  }
+  /**
    * Settings that control how conversions are counted. All post-click conversions will be counted. A percentage value can be set for post-view conversions counting.
    */
   export interface Schema$ConversionCountingConfig {
     /**
-     * The Floodlight activity configs used to track conversions. The number of conversions counted is the sum of all of the conversions counted by all of the Floodlight activity IDs specified in this field. *Warning*: Starting **April 1, 2025**, this field will no longer be writable while a custom bidding algorithm is assigned to the line item. If you set this field and assign a custom bidding algorithm in the same request, the floodlight activities must match the ones used by the custom bidding algorithm. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * The Floodlight activity configs used to track conversions. The number of conversions counted is the sum of all of the conversions counted by all of the Floodlight activity IDs specified in this field. This field can't be updated if a custom bidding algorithm is assigned to the line item. If you set this field and assign a custom bidding algorithm in the same request, the floodlight activities must match the ones used by the custom bidding algorithm.
      */
     floodlightActivityConfigs?: Schema$TrackingFloodlightActivityConfig[];
     /**
@@ -3141,7 +3214,7 @@ export namespace displayvideo_v3 {
      */
     gmailAudienceSize?: string | null;
     /**
-     * The duration in days that an entry remains in the audience after the qualifying event. If the audience has no expiration, set the value of this field to 10000. Otherwise, the set value must be greater than 0 and less than or equal to 540. Only applicable to first party audiences. This field is required if one of the following audience_type is used: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID` *Warning*: Starting on **April 7, 2025**, audiences will no longer be able to have infinite membership duration. This field will no longer accept the value 10000 and all audiences with membership durations greater than 540 days will be updated to a membership duration of 540 days. [Read more about this announced change](/display-video/api/deprecations#features.audience_duration).
+     * The duration in days that an entry remains in the audience after the qualifying event. The set value must be greater than 0 and less than or equal to 540. Only applicable to first party audiences. This field is required if one of the following audience_type is used: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
      */
     membershipDurationDays?: string | null;
     /**
@@ -4134,7 +4207,7 @@ export namespace displayvideo_v3 {
      */
     campaignId?: string | null;
     /**
-     * The conversion tracking setting of the line item. *Warning*: Starting **April 1, 2025**, the floodlight_activity_configs field will no longer be writable while a custom bidding algorithm is assigned to the line item. If you set this field and assign a custom bidding algorithm in the same request, the floodlight activities must match the ones used by the custom bidding algorithm. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * The conversion tracking setting of the line item.
      */
     conversionCounting?: Schema$ConversionCountingConfig;
     /**
@@ -4742,7 +4815,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$MaximizeSpendBidStrategy {
     /**
-     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. *Warning*: Starting **April 1, 2025**, assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. Assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error.
      */
     customBiddingAlgorithmId?: string | null;
     /**
@@ -5237,7 +5310,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$PerformanceGoalBidStrategy {
     /**
-     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. *Warning*: Starting **April 1, 2025**, assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`. Assigning a custom bidding algorithm that uses floodlight activities not identified in floodlightActivityConfigs will return an error.
      */
     customBiddingAlgorithmId?: string | null;
     /**
@@ -5553,7 +5626,7 @@ export namespace displayvideo_v3 {
     version?: string | null;
   }
   /**
-   * Type for the response returned by [SdfDownloadTaskService.CreateSdfDownloadTask].
+   * Type for the response returned by SdfDownloadTaskService.CreateSdfDownloadTask.
    */
   export interface Schema$SdfDownloadTask {
     /**
@@ -5562,7 +5635,7 @@ export namespace displayvideo_v3 {
     resourceName?: string | null;
   }
   /**
-   * Type for the metadata returned by [SdfDownloadTaskService.CreateSdfDownloadTask].
+   * Type for the metadata returned by SdfDownloadTaskService.CreateSdfDownloadTask.
    */
   export interface Schema$SdfDownloadTaskMetadata {
     /**
@@ -5786,6 +5859,10 @@ export namespace displayvideo_v3 {
      */
     contentStreamTypeDetails?: Schema$ContentStreamTypeTargetingOptionDetails;
     /**
+     * Content theme details.
+     */
+    contentThemeDetails?: Schema$ContentThemeTargetingOptionDetails;
+    /**
      * Device make and model resource details.
      */
     deviceMakeModelDetails?: Schema$DeviceMakeModelTargetingOptionDetails;
@@ -5939,7 +6016,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$ThirdPartyVerifierAssignedTargetingOptionDetails {
     /**
-     * Third party brand verifier -- Adloox.
+     * Third party brand verifier -- Scope3 (previously known as Adloox).
      */
     adloox?: Schema$Adloox;
     /**
@@ -7193,7 +7270,7 @@ export namespace displayvideo_v3 {
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `advertiserId` (default) * `displayName` * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -16139,7 +16216,7 @@ export namespace displayvideo_v3 {
      */
     assignedTargetingOptionId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD`
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`
      */
     targetingType?: string;
   }
@@ -16166,7 +16243,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
     /**
-     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD`
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`
      */
     targetingType?: string;
   }
@@ -16699,7 +16776,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful. *Warning*: Starting **April 1, 2025**, requests updating custom bidding algorithms that are assigned to line items will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful. Requests updating a custom bidding algorithm assigned to a line item will return an error.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17087,7 +17164,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Creates a new rules resource. Returns the newly created rules resource if successful. *Warning*: Starting **April 1, 2025**, requests updating custom bidding algorithms that are assigned to line items will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * Creates a new rules resource. Returns the newly created rules resource if successful. Requests creating a custom bidding rules resource under an algorithm assigned to a line item will return an error.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17454,7 +17531,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Creates a new custom bidding script. Returns the newly created script if successful. *Warning*: Starting **April 1, 2025**, requests updating custom bidding algorithms that are assigned to line items will return an error. [Read more about this announced change](/display-video/api/deprecations#features.custom_bidding_floodlight).
+     * Creates a new custom bidding script. Returns the newly created script if successful. Requests creating a custom bidding script under an algorithm assigned to a line item will return an error.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23481,7 +23558,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Creates an SDF Download Task. Returns an Operation. An SDF Download Task is a long-running, asynchronous operation. The metadata type of this operation is SdfDownloadTaskMetadata. If the request is successful, the response type of the operation is SdfDownloadTask. The response will not include the download files, which must be retrieved with media.download. The state of operation can be retrieved with sdfdownloadtask.operations.get. Any errors can be found in the error.message. Note that error.details is expected to be empty.
+     * Creates an SDF Download Task. Returns an Operation. An SDF Download Task is a long-running, asynchronous operation. The metadata type of this operation is SdfDownloadTaskMetadata. If the request is successful, the response type of the operation is SdfDownloadTask. The response will not include the download files, which must be retrieved with media.download. The state of operation can be retrieved with `sdfdownloadtasks.operations.get`. Any errors can be found in the error.message. Note that error.details is expected to be empty.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23670,115 +23747,6 @@ export namespace displayvideo_v3 {
   }
 
   export interface Params$Resource$Sdfdownloadtasks$Operations$Get
-    extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-
-  export class Resource$Sdfuploadtasks {
-    context: APIRequestContext;
-    operations: Resource$Sdfuploadtasks$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations = new Resource$Sdfuploadtasks$Operations(this.context);
-    }
-  }
-
-  export class Resource$Sdfuploadtasks$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Sdfuploadtasks$Operations$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Sdfuploadtasks$Operations$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    get(
-      params: Params$Resource$Sdfuploadtasks$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Sdfuploadtasks$Operations$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    get(
-      params: Params$Resource$Sdfuploadtasks$Operations$Get,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Sdfuploadtasks$Operations$Get
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Sdfuploadtasks$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Sdfuploadtasks$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Sdfuploadtasks$Operations$Get
     extends StandardParameters {
     /**
      * The name of the operation resource.
