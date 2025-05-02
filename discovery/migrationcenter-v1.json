@@ -168,6 +168,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -439,6 +445,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "showHidden": {
+                      "description": "Optional. When this value is set to 'true,' the response will include all assets, including those that are hidden.",
+                      "location": "query",
+                      "type": "boolean"
                     },
                     "view": {
                       "description": "View of the assets. Defaults to BASIC.",
@@ -2396,7 +2407,7 @@
       }
     }
   },
-  "revision": "20250227",
+  "revision": "20250422",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2432,6 +2443,10 @@
         "filter": {
           "description": "Optional. The aggregation will be performed on assets that match the provided filter.",
           "type": "string"
+        },
+        "showHidden": {
+          "description": "Optional. When this value is set to 'true,' the response will include all assets, including those that are hidden.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2638,6 +2653,20 @@
           "$ref": "DatabaseDetails",
           "description": "Output only. Asset information specific for logical databases.",
           "readOnly": true
+        },
+        "hidden": {
+          "description": "Optional. Indicates if the asset is hidden.",
+          "type": "boolean"
+        },
+        "hideReason": {
+          "description": "Optional. An optional reason for marking this asset as hidden.",
+          "type": "string"
+        },
+        "hideTime": {
+          "description": "Output only. The timestamp when the asset was marked as hidden.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "insightList": {
           "$ref": "InsightList",

@@ -153,6 +153,10 @@ export namespace migrationcenter_v1 {
      * Optional. The aggregation will be performed on assets that match the provided filter.
      */
     filter?: string | null;
+    /**
+     * Optional. When this value is set to 'true,' the response will include all assets, including those that are hidden.
+     */
+    showHidden?: boolean | null;
   }
   /**
    * A response to a request to aggregated assets values.
@@ -287,6 +291,18 @@ export namespace migrationcenter_v1 {
      * Output only. Asset information specific for logical databases.
      */
     databaseDetails?: Schema$DatabaseDetails;
+    /**
+     * Optional. Indicates if the asset is hidden.
+     */
+    hidden?: boolean | null;
+    /**
+     * Optional. An optional reason for marking this asset as hidden.
+     */
+    hideReason?: string | null;
+    /**
+     * Output only. The timestamp when the asset was marked as hidden.
+     */
+    hideTime?: string | null;
     /**
      * Output only. The list of insights associated with the asset.
      */
@@ -3825,6 +3841,10 @@ export namespace migrationcenter_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
+    /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
@@ -4680,6 +4700,10 @@ export namespace migrationcenter_v1 {
      * Required. Parent value for `ListAssetsRequest`.
      */
     parent?: string;
+    /**
+     * Optional. When this value is set to 'true,' the response will include all assets, including those that are hidden.
+     */
+    showHidden?: boolean;
     /**
      * View of the assets. Defaults to BASIC.
      */
