@@ -1568,6 +1568,10 @@ export namespace networkservices_v1 {
      */
     nextPageToken?: string | null;
     /**
+     * Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
+     */
+    unreachable?: string[] | null;
+    /**
      * List of `WasmPlugin` resources.
      */
     wasmPlugins?: Schema$WasmPlugin[];
@@ -1580,6 +1584,10 @@ export namespace networkservices_v1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
+     */
+    unreachable?: string[] | null;
     /**
      * List of `WasmPluginVersion` resources.
      */
