@@ -522,14 +522,6 @@ export namespace tagmanager_v2 {
      */
     numGtagConfigs?: string | null;
     /**
-     * Number of macros in the container version.
-     */
-    numMacros?: string | null;
-    /**
-     * Number of rules in the container version.
-     */
-    numRules?: string | null;
-    /**
      * Number of tags in the container version.
      */
     numTags?: string | null;
@@ -1357,10 +1349,6 @@ export namespace tagmanager_v2 {
      */
     accountId?: string | null;
     /**
-     * Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire.
-     */
-    blockingRuleId?: string[] | null;
-    /**
      * Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire.
      */
     blockingTriggerId?: string[] | null;
@@ -1376,10 +1364,6 @@ export namespace tagmanager_v2 {
      * The fingerprint of the GTM Tag as computed at storage time. This value is recomputed whenever the tag is modified.
      */
     fingerprint?: string | null;
-    /**
-     * Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false.
-     */
-    firingRuleId?: string[] | null;
     /**
      * Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its blockingTriggerIds (if any specified) are false.
      */
