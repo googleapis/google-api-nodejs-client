@@ -61,7 +61,7 @@
   "batchPath": "batch/calendar/v3",
   "description": "Manipulates events and other calendar data.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/google-apps/calendar/firstapp",
+  "documentationLink": "https://developers.google.com/workspace/calendar/firstapp",
   "icons": {
     "x16": "http://fonts.gstatic.com/s/i/productlogos/calendar_2020q4/v8/web-16dp/logo_calendar_2020q4_color_1x_web_16dp.png",
     "x32": "http://fonts.gstatic.com/s/i/productlogos/calendar_2020q4/v8/web-32dp/logo_calendar_2020q4_color_1x_web_32dp.png"
@@ -1890,7 +1890,7 @@
       }
     }
   },
-  "revision": "20250115",
+  "revision": "20250404",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {

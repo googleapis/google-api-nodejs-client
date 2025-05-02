@@ -6176,7 +6176,7 @@
                       ]
                     },
                     "update": {
-                      "description": "Updates the certificate in an alias.",
+                      "description": "Updates the certificate in an alias. The updated certificate must be in PEM- or DER-encoded X.509 format.",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keystores/{keystoresId}/aliases/{aliasesId}",
                       "httpMethod": "PUT",
                       "id": "apigee.organizations.environments.keystores.aliases.update",
@@ -6449,7 +6449,7 @@
                       "type": "string"
                     },
                     "limit": {
-                      "description": "Maximum number of result items to return. The default and maximum value that can be returned is 14400.",
+                      "description": "Maximum number of result items to return.",
                       "location": "query",
                       "type": "string"
                     },
@@ -6486,7 +6486,7 @@
                       "type": "string"
                     },
                     "sortby": {
-                      "description": "Comma-separated list of columns to sort the final result.",
+                      "description": "Comma-separated list of metrics to sort the final result.",
                       "location": "query",
                       "type": "string"
                     },
@@ -7690,7 +7690,7 @@
                       "type": "string"
                     },
                     "limit": {
-                      "description": "Maximum number of result items to return. The default and maximum value that can be returned is 14400.",
+                      "description": "Maximum number of result items to return.",
                       "location": "query",
                       "type": "string"
                     },
@@ -7727,7 +7727,7 @@
                       "type": "string"
                     },
                     "sortby": {
-                      "description": "Comma-separated list of columns to sort the final result.",
+                      "description": "Comma-separated list of metrics to sort the final result.",
                       "location": "query",
                       "type": "string"
                     },
@@ -8407,7 +8407,7 @@
                   "type": "string"
                 },
                 "limit": {
-                  "description": "Maximum number of result items to return. The default and maximum value that can be returned is 14400.",
+                  "description": "Maximum number of result items to return.",
                   "location": "query",
                   "type": "string"
                 },
@@ -8439,7 +8439,7 @@
                   "type": "string"
                 },
                 "sortby": {
-                  "description": "Comma-separated list of columns to sort the final result.",
+                  "description": "Comma-separated list of metrics to sort the final result.",
                   "location": "query",
                   "type": "string"
                 },
@@ -9284,7 +9284,7 @@
                   "type": "string"
                 },
                 "limit": {
-                  "description": "Maximum number of result items to return. The default and maximum value that can be returned is 14400.",
+                  "description": "Maximum number of result items to return.",
                   "location": "query",
                   "type": "string"
                 },
@@ -9316,7 +9316,7 @@
                   "type": "string"
                 },
                 "sortby": {
-                  "description": "Comma-separated list of columns used to sort the final result.",
+                  "description": "Comma-separated list of metrics used to sort the final result.",
                   "location": "query",
                   "type": "string"
                 },
@@ -11063,7 +11063,7 @@
       }
     }
   },
-  "revision": "20250312",
+  "revision": "20250425",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -11942,7 +11942,7 @@
           "type": "boolean"
         },
         "expiresAt": {
-          "description": "Output only. Time at which the API Security add-on expires in in milliseconds since epoch. If unspecified, the add-on will never expire.",
+          "description": "Output only. Time at which the API Security add-on expires in milliseconds since epoch. If unspecified, the add-on will never expire.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -13717,7 +13717,7 @@
           "type": "string"
         },
         "appId": {
-          "description": "ID of the developer app.",
+          "description": "ID of the developer app. This ID is not user specified but is automatically generated on app creation. appId is a UUID.",
           "type": "string"
         },
         "attributes": {
@@ -14018,7 +14018,7 @@
           "type": "string"
         },
         "targetProjectId": {
-          "description": "Required. The ID of the project containing the private DNS zone.",
+          "description": "Required. The ID of the project that contains the producer VPC network.",
           "type": "string"
         }
       },
@@ -14957,7 +14957,7 @@
           "type": "string"
         },
         "diskEncryptionKeyName": {
-          "description": "Customer Managed Encryption Key (CMEK) used for disk and volume encryption. If not specified, a Google-Managed encryption key will be used. Use the following format: `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`",
+          "description": "Optional. Customer Managed Encryption Key (CMEK) used for disk and volume encryption. If not specified, a Google-Managed encryption key will be used. Use the following format: `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`",
           "type": "string"
         },
         "displayName": {
@@ -16306,6 +16306,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1OptimizedStats": {
+      "description": "Encapsulates a response format for JavaScript Optimized Scenario.",
       "id": "GoogleCloudApigeeV1OptimizedStats",
       "properties": {
         "Response": {
@@ -16320,6 +16321,7 @@
       "id": "GoogleCloudApigeeV1OptimizedStatsNode",
       "properties": {
         "data": {
+          "description": "List of data values.",
           "items": {
             "type": "any"
           },
@@ -16360,7 +16362,7 @@
       "properties": {
         "addonsConfig": {
           "$ref": "GoogleCloudApigeeV1AddonsConfig",
-          "description": "Addon configurations of the Apigee organization."
+          "description": "Optional. Addon configurations of the Apigee organization."
         },
         "analyticsRegion": {
           "deprecated": true,
@@ -16368,11 +16370,11 @@
           "type": "string"
         },
         "apiConsumerDataEncryptionKeyName": {
-          "description": "Cloud KMS key name used for encrypting API consumer data. If not specified or [BillingType](#BillingType) is `EVALUATION`, a Google-Managed encryption key will be used. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
+          "description": "Optional. Cloud KMS key name used for encrypting API consumer data. If not specified or [BillingType](#BillingType) is `EVALUATION`, a Google-Managed encryption key will be used. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
           "type": "string"
         },
         "apiConsumerDataLocation": {
-          "description": "This field is needed only for customers using non-default data residency regions. Apigee stores some control plane data only in single region. This field determines which single region Apigee should use. For example: \"us-west1\" when control plane is in US or \"europe-west2\" when control plane is in EU.",
+          "description": "Optional. This field is needed only for customers using non-default data residency regions. Apigee stores some control plane data only in single region. This field determines which single region Apigee should use. For example: \"us-west1\" when control plane is in US or \"europe-west2\" when control plane is in EU.",
           "type": "string"
         },
         "apigeeProjectId": {
@@ -16388,11 +16390,11 @@
           "type": "array"
         },
         "authorizedNetwork": {
-          "description": "Compute Engine network used for Service Networking to be peered with Apigee runtime instances. See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started). Valid only when [RuntimeType](#RuntimeType) is set to `CLOUD`. The value must be set before the creation of a runtime instance and can be updated only when there are no runtime instances. For example: `default`. When changing authorizedNetwork, you must reconfigure VPC peering. After VPC peering with previous network is deleted, [run the following command](https://cloud.google.com/sdk/gcloud/reference/services/vpc-peerings/delete): `gcloud services vpc-peerings delete --network=NETWORK`, where `NETWORK` is the name of the previous network. This will delete the previous Service Networking. Otherwise, you will get the following error: `The resource 'projects/...-tp' is already linked to another shared VPC host 'projects/...-tp`. Apigee also supports shared VPC (that is, the host network project is not the same as the one that is peering with Apigee). See [Shared VPC overview](https://cloud.google.com/vpc/docs/shared-vpc). To use a shared VPC network, use the following format: `projects/{host-project-id}/{region}/networks/{network-name}`. For example: `projects/my-sharedvpc-host/global/networks/mynetwork` **Note:** Not supported for Apigee hybrid.",
+          "description": "Optional. Compute Engine network used for Service Networking to be peered with Apigee runtime instances. See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started). Valid only when [RuntimeType](#RuntimeType) is set to `CLOUD`. The value must be set before the creation of a runtime instance and can be updated only when there are no runtime instances. For example: `default`. When changing authorizedNetwork, you must reconfigure VPC peering. After VPC peering with previous network is deleted, [run the following command](https://cloud.google.com/sdk/gcloud/reference/services/vpc-peerings/delete): `gcloud services vpc-peerings delete --network=NETWORK`, where `NETWORK` is the name of the previous network. This will delete the previous Service Networking. Otherwise, you will get the following error: `The resource 'projects/...-tp' is already linked to another shared VPC host 'projects/...-tp`. Apigee also supports shared VPC (that is, the host network project is not the same as the one that is peering with Apigee). See [Shared VPC overview](https://cloud.google.com/vpc/docs/shared-vpc). To use a shared VPC network, use the following format: `projects/{host-project-id}/{region}/networks/{network-name}`. For example: `projects/my-sharedvpc-host/global/networks/mynetwork` **Note:** Not supported for Apigee hybrid.",
           "type": "string"
         },
         "billingType": {
-          "description": "Billing type of the Apigee organization. See [Apigee pricing](https://cloud.google.com/apigee/pricing).",
+          "description": "Optional. Billing type of the Apigee organization. See [Apigee pricing](https://cloud.google.com/apigee/pricing).",
           "enum": [
             "BILLING_TYPE_UNSPECIFIED",
             "SUBSCRIPTION",
@@ -16414,7 +16416,7 @@
           "type": "string"
         },
         "controlPlaneEncryptionKeyName": {
-          "description": "Cloud KMS key name used for encrypting control plane data that is stored in a multi region. Only used for the data residency region \"US\" or \"EU\". If not specified or [BillingType](#BillingType) is `EVALUATION`, a Google-Managed encryption key will be used. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
+          "description": "Optional. Cloud KMS key name used for encrypting control plane data that is stored in a multi region. Only used for the data residency region \"US\" or \"EU\". If not specified or [BillingType](#BillingType) is `EVALUATION`, a Google-Managed encryption key will be used. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
           "type": "string"
         },
         "createdAt": {
@@ -16428,7 +16430,7 @@
           "type": "string"
         },
         "description": {
-          "description": "Description of the Apigee organization.",
+          "description": "Optional. Description of the Apigee organization.",
           "type": "string"
         },
         "disableVpcPeering": {
@@ -16436,7 +16438,7 @@
           "type": "boolean"
         },
         "displayName": {
-          "description": "Display name for the Apigee organization. Unused, but reserved for future use.",
+          "description": "Optional. Display name for the Apigee organization. Unused, but reserved for future use.",
           "type": "string"
         },
         "environments": {
@@ -16465,7 +16467,7 @@
           "type": "string"
         },
         "portalDisabled": {
-          "description": "Configuration for the Portals settings.",
+          "description": "Optional. Configuration for the Portals settings.",
           "type": "boolean"
         },
         "projectId": {
@@ -16475,10 +16477,10 @@
         },
         "properties": {
           "$ref": "GoogleCloudApigeeV1Properties",
-          "description": "Properties defined in the Apigee organization profile."
+          "description": "Optional. Properties defined in the Apigee organization profile."
         },
         "runtimeDatabaseEncryptionKeyName": {
-          "description": "Cloud KMS key name used for encrypting the data that is stored and replicated across runtime instances. Update is not allowed after the organization is created. If not specified or [RuntimeType](#RuntimeType) is `TRIAL`, a Google-Managed encryption key will be used. For example: \"projects/foo/locations/us/keyRings/bar/cryptoKeys/baz\". **Note:** Not supported for Apigee hybrid.",
+          "description": "Optional. Cloud KMS key name used for encrypting the data that is stored and replicated across runtime instances. Update is not allowed after the organization is created. If not specified or [RuntimeType](#RuntimeType) is `TRIAL`, a Google-Managed encryption key will be used. For example: \"projects/foo/locations/us/keyRings/bar/cryptoKeys/baz\". **Note:** Not supported for Apigee hybrid.",
           "type": "string"
         },
         "runtimeType": {

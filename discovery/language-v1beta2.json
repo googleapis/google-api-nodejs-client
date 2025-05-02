@@ -246,7 +246,7 @@
       }
     }
   },
-  "revision": "20250309",
+  "revision": "20250420",
   "rootUrl": "https://language.googleapis.com/",
   "schemas": {
     "AnalyzeEntitiesRequest": {
@@ -690,6 +690,7 @@
             "UNKNOWN_CPU_TYPE",
             "A2",
             "A3",
+            "A4",
             "C2",
             "C2D",
             "CUSTOM",
@@ -705,6 +706,7 @@
           ],
           "enumDescriptions": [
             "",
+            "GPU-based machine, skip quota reporting.",
             "GPU-based machine, skip quota reporting.",
             "GPU-based machine, skip quota reporting.",
             "COMPUTE_OPTIMIZED",
@@ -763,6 +765,7 @@
             "A3_MEGAGPU_8G",
             "A3_ULTRAGPU_8G",
             "A3_EDGEGPU_8G",
+            "A4_HIGHGPU_8G",
             "E2_STANDARD_2",
             "E2_STANDARD_4",
             "E2_STANDARD_8",
@@ -891,6 +894,7 @@
             "C3_HIGHMEM_176"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -1447,6 +1451,7 @@
             "UNKNOWN_GPU_TYPE",
             "NVIDIA_TESLA_A100",
             "NVIDIA_A100_80GB",
+            "NVIDIA_B200",
             "NVIDIA_TESLA_K80",
             "NVIDIA_L4",
             "NVIDIA_TESLA_P100",
@@ -1454,9 +1459,12 @@
             "NVIDIA_TESLA_T4",
             "NVIDIA_TESLA_V100",
             "NVIDIA_H100_80GB",
+            "NVIDIA_H100_MEGA_80GB",
             "NVIDIA_H200_141GB"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -1512,6 +1520,7 @@
             "A3_MEGAGPU_8G",
             "A3_ULTRAGPU_8G",
             "A3_EDGEGPU_8G",
+            "A4_HIGHGPU_8G",
             "E2_STANDARD_2",
             "E2_STANDARD_4",
             "E2_STANDARD_8",
@@ -1640,6 +1649,7 @@
             "C3_HIGHMEM_176"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -2200,6 +2210,7 @@
             "A3_MEGAGPU_8G",
             "A3_ULTRAGPU_8G",
             "A3_EDGEGPU_8G",
+            "A4_HIGHGPU_8G",
             "E2_STANDARD_2",
             "E2_STANDARD_4",
             "E2_STANDARD_8",
@@ -2491,6 +2502,7 @@
             "",
             "",
             "",
+            "",
             ""
           ],
           "type": "string"
@@ -2506,6 +2518,7 @@
             "UNKNOWN_RAM_TYPE",
             "A2",
             "A3",
+            "A4",
             "C2",
             "C2D",
             "CUSTOM",
@@ -2520,6 +2533,7 @@
             "N2D"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -3673,6 +3687,7 @@
             "NVIDIA_H100_80GB",
             "NVIDIA_H100_MEGA_80GB",
             "NVIDIA_H200_141GB",
+            "NVIDIA_B200",
             "TPU_V2",
             "TPU_V3",
             "TPU_V4_POD",
@@ -3691,6 +3706,7 @@
             "Nvidia H100 80Gb GPU.",
             "Nvidia H100 80Gb GPU.",
             "Nvidia H200 141Gb GPU.",
+            "Nvidia B200 GPU.",
             "TPU v2 (JellyFish).",
             "TPU v3 (DragonFish).",
             "TPU_v4 (PufferFish).",
