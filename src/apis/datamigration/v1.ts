@@ -1509,6 +1509,10 @@ export namespace datamigration_v1 {
      * The number of CPU's in the VM instance.
      */
     cpuCount?: number | null;
+    /**
+     * Optional. Machine type of the VM instance. E.g. "n2-highmem-4", "n2-highmem-8", "c4a-highmem-4-lssd". cpu_count must match the number of vCPUs in the machine type.
+     */
+    machineType?: string | null;
   }
   /**
    * Definition of a transformation that is to be applied to a group of entities in the source schema. Several such transformations can be applied to an entity sequentially to define the corresponding entity in the target schema.
@@ -1737,6 +1741,10 @@ export namespace datamigration_v1 {
      * Optional. Configuration for SQL Server homogeneous migration.
      */
     sqlserverHomogeneousMigrationJobConfig?: Schema$SqlServerHomogeneousMigrationJobConfig;
+    /**
+     * Configuration for heterogeneous **SQL Server to Cloud SQL for PostgreSQL** migrations.
+     */
+    sqlserverToPostgresConfig?: Schema$SqlServerToPostgresConfig;
     /**
      * The current migration job state.
      */
@@ -2602,6 +2610,14 @@ export namespace datamigration_v1 {
      */
     database?: string | null;
     /**
+     * Optional. The schema name. This will be required only if the object uses a schema name as part of its unique identifier.
+     */
+    schema?: string | null;
+    /**
+     * Optional. The table name. This will be required only if the object is a level below database or schema.
+     */
+    table?: string | null;
+    /**
      * Required. The type of the migration job object.
      */
     type?: string | null;
@@ -2713,6 +2729,10 @@ export namespace datamigration_v1 {
      */
     cloudSqlId?: string | null;
     /**
+     * Required. The name of the specific database within the host.
+     */
+    database?: string | null;
+    /**
      * Forward SSH tunnel connectivity.
      */
     forwardSshConnectivity?: Schema$ForwardSshTunnelConnectivity;
@@ -2803,6 +2823,40 @@ export namespace datamigration_v1 {
      * Optional. Enable differential backups.
      */
     useDiffBackup?: boolean | null;
+  }
+  /**
+   * Configuration for SQL Server as a source in a migration.
+   */
+  export interface Schema$SqlServerSourceConfig {
+    /**
+     * Optional. The log sequence number (LSN) to start CDC data migration from.
+     */
+    cdcStartPosition?: string | null;
+    /**
+     * Optional. Maximum number of connections Database Migration Service will open to the source for CDC phase.
+     */
+    maxConcurrentCdcConnections?: number | null;
+    /**
+     * Optional. Maximum number of connections Database Migration Service will open to the source for full dump phase.
+     */
+    maxConcurrentFullDumpConnections?: number | null;
+    /**
+     * Optional. Whether to skip full dump or not.
+     */
+    skipFullDump?: boolean | null;
+  }
+  /**
+   * Configuration for heterogeneous **SQL Server to Cloud SQL for PostgreSQL** migrations.
+   */
+  export interface Schema$SqlServerToPostgresConfig {
+    /**
+     * Optional. Configuration for Postgres destination.
+     */
+    postgresDestinationConfig?: Schema$PostgresDestinationConfig;
+    /**
+     * Optional. Configuration for SQL Server source.
+     */
+    sqlserverSourceConfig?: Schema$SqlServerSourceConfig;
   }
   /**
    * Response message for 'GenerateSshScript' request.
@@ -3491,6 +3545,10 @@ export namespace datamigration_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

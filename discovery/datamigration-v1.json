@@ -179,6 +179,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -2334,7 +2340,7 @@
       }
     }
   },
-  "revision": "20250226",
+  "revision": "20250416",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -4591,6 +4597,10 @@
           "description": "The number of CPU's in the VM instance.",
           "format": "int32",
           "type": "integer"
+        },
+        "machineType": {
+          "description": "Optional. Machine type of the VM instance. E.g. \"n2-highmem-4\", \"n2-highmem-8\", \"c4a-highmem-4-lssd\". cpu_count must match the number of vCPUs in the machine type.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4930,6 +4940,10 @@
         "sqlserverHomogeneousMigrationJobConfig": {
           "$ref": "SqlServerHomogeneousMigrationJobConfig",
           "description": "Optional. Configuration for SQL Server homogeneous migration."
+        },
+        "sqlserverToPostgresConfig": {
+          "$ref": "SqlServerToPostgresConfig",
+          "description": "Configuration for heterogeneous **SQL Server to Cloud SQL for PostgreSQL** migrations."
         },
         "state": {
           "description": "The current migration job state.",
@@ -6215,15 +6229,27 @@
           "description": "Optional. The database name. This will be required only if the object uses a database name as part of its unique identifier.",
           "type": "string"
         },
+        "schema": {
+          "description": "Optional. The schema name. This will be required only if the object uses a schema name as part of its unique identifier.",
+          "type": "string"
+        },
+        "table": {
+          "description": "Optional. The table name. This will be required only if the object is a level below database or schema.",
+          "type": "string"
+        },
         "type": {
           "description": "Required. The type of the migration job object.",
           "enum": [
             "MIGRATION_JOB_OBJECT_TYPE_UNSPECIFIED",
-            "DATABASE"
+            "DATABASE",
+            "SCHEMA",
+            "TABLE"
           ],
           "enumDescriptions": [
             "The type of the migration job object is unknown.",
-            "The migration job object is a database."
+            "The migration job object is a database.",
+            "The migration job object is a schema.",
+            "The migration job object is a table."
           ],
           "type": "string"
         }
@@ -6368,6 +6394,10 @@
           "description": "If the source is a Cloud SQL database, use this field to provide the Cloud SQL instance ID of the source.",
           "type": "string"
         },
+        "database": {
+          "description": "Required. The name of the specific database within the host.",
+          "type": "string"
+        },
         "forwardSshConnectivity": {
           "$ref": "ForwardSshTunnelConnectivity",
           "description": "Forward SSH tunnel connectivity."
@@ -6469,6 +6499,46 @@
         "useDiffBackup": {
           "description": "Optional. Enable differential backups.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerSourceConfig": {
+      "description": "Configuration for SQL Server as a source in a migration.",
+      "id": "SqlServerSourceConfig",
+      "properties": {
+        "cdcStartPosition": {
+          "description": "Optional. The log sequence number (LSN) to start CDC data migration from.",
+          "type": "string"
+        },
+        "maxConcurrentCdcConnections": {
+          "description": "Optional. Maximum number of connections Database Migration Service will open to the source for CDC phase.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxConcurrentFullDumpConnections": {
+          "description": "Optional. Maximum number of connections Database Migration Service will open to the source for full dump phase.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "skipFullDump": {
+          "description": "Optional. Whether to skip full dump or not.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerToPostgresConfig": {
+      "description": "Configuration for heterogeneous **SQL Server to Cloud SQL for PostgreSQL** migrations.",
+      "id": "SqlServerToPostgresConfig",
+      "properties": {
+        "postgresDestinationConfig": {
+          "$ref": "PostgresDestinationConfig",
+          "description": "Optional. Configuration for Postgres destination."
+        },
+        "sqlserverSourceConfig": {
+          "$ref": "SqlServerSourceConfig",
+          "description": "Optional. Configuration for SQL Server source."
         }
       },
       "type": "object"
