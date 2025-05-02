@@ -135,13 +135,22 @@ export namespace merchantapi_accounts_v1beta {
      */
     acceptedBy?: string | null;
     /**
-     * The accepted [termsOfService](google.shopping.merchant.accounts.v1main.TermsOfService).
+     * The accepted termsOfService.
      */
     termsOfService?: string | null;
     /**
-     * When set, it states that the accepted [TermsOfService](google.shopping.merchant.accounts.v1main.TermsOfService) is only valid until the end of this date (in UTC). A new one must be accepted before then. The information of the required [TermsOfService](google.shopping.merchant.accounts.v1main.TermsOfService) is found in the [Required](Required) message.
+     * When set, it states that the accepted `TermsOfService` is only valid until the end of this date (in UTC). A new one must be accepted before then. The information of the required `TermsOfService` is found in the `Required` message.
      */
     validUntil?: Schema$Date;
+  }
+  /**
+   * Response message for the `AcceptTermsOfService` method.
+   */
+  export interface Schema$AcceptTermsOfServiceResponse {
+    /**
+     * The agreement state after accepting the ToS.
+     */
+    termsOfServiceAgreementState?: Schema$TermsOfServiceAgreementState;
   }
   /**
    * The `Account` message represents a merchant's account within Shopping Ads. It's the primary entity for managing product data, settings, and interactions with Google's services and external providers. Accounts can operate as standalone entities or be part of a multi-client account (MCA) structure. In an MCA setup the parent account manages multiple sub-accounts. Establishing an account involves configuring attributes like the account name, time zone, and language preferences. The `Account` message is the parent entity for many other resources, for example, `AccountRelationship`, `Homepage`, `BusinessInfo` and so on.
@@ -172,7 +181,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     testAccount?: boolean | null;
     /**
-     * Required. The time zone of the account. On writes, `time_zone` sets both the `reporting_time_zone` and the `display_time_zone`. For reads, `time_zone` always returns the `display_time_zone`. If `display_time_zone` doesn't exist for your account, `time_zone` is empty.
+     * Required. The time zone of the account. On writes, `time_zone` sets both the `reporting_time_zone` and the `display_time_zone`. For reads, `time_zone` always returns the `display_time_zone`. If `display_time_zone` doesn't exist for your account, `time_zone` is empty. The `version` field is not supported, won't be set in responses and will be silently ignored if specified in requests.
      */
     timeZone?: Schema$TimeZone;
   }
@@ -208,6 +217,76 @@ export namespace merchantapi_accounts_v1beta {
      * The localized title of the issue.
      */
     title?: string | null;
+  }
+  /**
+   * `AccountManagement` payload.
+   */
+  export interface Schema$AccountManagement {}
+  /**
+   * The `AccountRelationship` message defines a formal connection between a merchant's account and a service provider's account. This relationship enables the provider to offer specific services to the merchant, such as product management or campaign management. It specifies the access rights and permissions to the merchant's data relevant to those services. Establishing an account relationship involves linking the merchant's account with a provider's account. The provider could be another Google account (like Google Ads or Google My Business) or a third-party platform (such as Shopify or WooCommerce).
+   */
+  export interface Schema$AccountRelationship {
+    /**
+     * Optional. An optional alias you can assign to this account relationship. This alias acts as a convenient identifier for your own reference and management. It must be unique among all your account relationships with the same provider. For example, you might use `account_id_alias` to assign a friendly name to this relationship for easier identification in your systems.
+     */
+    accountIdAlias?: string | null;
+    /**
+     * Identifier. The resource name of the account relationship.
+     */
+    name?: string | null;
+    /**
+     * Immutable. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).
+     */
+    provider?: string | null;
+    /**
+     * Output only. The human-readable display name of the provider account.
+     */
+    providerDisplayName?: string | null;
+  }
+  /**
+   * The `AccountService` message represents a specific service that a provider account offers to a merchant account. `AccountService` defines the permissions and capabilities granted to the provider, allowing for operations such as product management or campaign management. The lifecycle of an `AccountService` involves a proposal phase, where one party suggests the service, and an approval phase, where the other party accepts or rejects it. This handshake mechanism ensures mutual consent before any access is granted. This mechanism safeguards both parties by ensuring that access rights are granted appropriately and that both the merchant and provider are aware of the services enabled. In scenarios where a user is an admin of both accounts, the approval can happen automatically. The mutability of a service is also managed through `AccountService`. Some services might be immutable, for example, if they were established through other systems or APIs, and you cannot alter them through this API.
+   */
+  export interface Schema$AccountService {
+    /**
+     * Service type for account aggregation. This enables the provider, which is a Multi-Client Account (MCA), to manage multiple sub-accounts (client accounts). Through this service, the MCA provider can perform administrative and operational tasks across all linked sub-accounts. This is useful for agencies, aggregators, or large retailers that need centralized control over many merchant accounts.
+     */
+    accountAggregation?: Schema$AccountAggregation;
+    /**
+     * Service type for account management. Enables the provider to perform administrative actions on the merchant's account, such as configuring account settings, managing users, or updating business information.
+     */
+    accountManagement?: Schema$AccountManagement;
+    /**
+     * Service type for managing advertising campaigns. Grants the provider access to create and manage the merchant's ad campaigns, including setting up campaigns, adjusting bids, and optimizing performance.
+     */
+    campaignsManagement?: Schema$CampaignsManagement;
+    /**
+     * Immutable. An optional, immutable identifier that Google uses to refer to this account when communicating with the provider. This should be the unique account ID within the provider's system (for example, your shop ID in Shopify). If you have multiple accounts with the same provider - for instance, different accounts for various regions — the `external_account_id` differentiates between them, ensuring accurate linking and integration between Google and the provider.
+     */
+    externalAccountId?: string | null;
+    /**
+     * Output only. Information about the state of the service in terms of establishing it (e.g. is it pending approval or approved).
+     */
+    handshake?: Schema$Handshake;
+    /**
+     * Output only. Whether the service is mutable (e.g. through Approve / Reject RPCs). A service that was created through another system or API might be immutable.
+     */
+    mutability?: string | null;
+    /**
+     * Identifier. The resource name of the account service.
+     */
+    name?: string | null;
+    /**
+     * Service type for managing products. This allows the provider to handle product data on behalf of the merchant, including reading and writing product listings. It's commonly used when the provider offers inventory management or catalog synchronization services to keep the merchant's product information up-to-date across platforms.
+     */
+    productsManagement?: Schema$ProductsManagement;
+    /**
+     * Output only. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).
+     */
+    provider?: string | null;
+    /**
+     * Output only. The human-readable display name of the provider account.
+     */
+    providerDisplayName?: string | null;
   }
   /**
    * Additional instructions to add account services during creation of the account.
@@ -260,6 +339,10 @@ export namespace merchantapi_accounts_v1beta {
      */
     userId?: string | null;
   }
+  /**
+   * Request to approve an account service.
+   */
+  export interface Schema$ApproveAccountServiceRequest {}
   /**
    * Collection of information related to the [autofeed](https://support.google.com/merchants/answer/7538732) settings.
    */
@@ -416,6 +499,10 @@ export namespace merchantapi_accounts_v1beta {
      */
     phoneVerificationState?: string | null;
   }
+  /**
+   * `CampaignManagement` payload.
+   */
+  export interface Schema$CampaignsManagement {}
   /**
    * A list of carrier rates that can be referred to by `main_table` or `single_value`. Supported carrier services are defined in https://support.google.com/merchants/answer/12577710?ref_topic=12570808&sjid=10662598224319463032-NC#zippy=%2Cdelivery-cost-rate-type%2Ccarrier-rate-au-de-uk-and-us-only.
    */
@@ -649,6 +736,19 @@ export namespace merchantapi_accounts_v1beta {
     geotargetCriteriaIds?: string[] | null;
   }
   /**
+   * The current status of establishing of the service. (for example, pending approval or approved).
+   */
+  export interface Schema$Handshake {
+    /**
+     * Output only. The most recent account to modify the account service's `approval_status`.
+     */
+    actor?: string | null;
+    /**
+     * Output only. The approval state of this handshake.
+     */
+    approvalState?: string | null;
+  }
+  /**
    * A non-empty list of row or column headers for a table. Exactly one of `prices`, `weights`, `num_items`, `postal_code_group_names`, or `location` must be set.
    */
   export interface Schema$Headers {
@@ -765,6 +865,32 @@ export namespace merchantapi_accounts_v1beta {
     accountIssues?: Schema$AccountIssue[];
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response after trying to list account relationships.
+   */
+  export interface Schema$ListAccountRelationshipsResponse {
+    /**
+     * The account relationships that match your filter.
+     */
+    accountRelationships?: Schema$AccountRelationship[];
+    /**
+     * A page token. You can send the `page_token` to get the next page. Only included in the `list` response if there are more pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response after trying to list account services.
+   */
+  export interface Schema$ListAccountServicesResponse {
+    /**
+     * The account services that match your filter.
+     */
+    accountServices?: Schema$AccountService[];
+    /**
+     * A page token. You can send the `page_token` to get the next page. Only included in the `list` response if there are more pages.
      */
     nextPageToken?: string | null;
   }
@@ -940,6 +1066,10 @@ export namespace merchantapi_accounts_v1beta {
      */
     restockingFee?: Schema$RestockingFee;
     /**
+     * The field specifies the return label source. This field is required when return method is BY_MAIL.
+     */
+    returnLabelSource?: string | null;
+    /**
      * Optional. The return methods of how customers can return an item. This value is required to not be empty unless the type of return policy is noReturns.
      */
     returnMethods?: string[] | null;
@@ -991,15 +1121,15 @@ export namespace merchantapi_accounts_v1beta {
     type?: string | null;
   }
   /**
-   * Represents a postal address. For example for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478
+   * Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
    */
   export interface Schema$PostalAddress {
     /**
-     * Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (For example "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country/region of the address. In places where this can vary (For example Japan), address_language is used to make it explicit (For example "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
+     * Unstructured address lines describing the lower levels of an address. Because values in `address_lines` do not have type information and may sometimes contain multiple values in a single field (for example, "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country or region of the address. In places where this can vary (for example, Japan), `address_language` is used to make it explicit (for example, "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). In this way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a `region_code` with all remaining information placed in the `address_lines`. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a `region_code` and `address_lines` and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
      */
     addressLines?: string[] | null;
     /**
-     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (For example "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example in Switzerland this should be left unpopulated.
+     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated.
      */
     administrativeArea?: string | null;
     /**
@@ -1007,7 +1137,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     languageCode?: string | null;
     /**
-     * Optional. Generally refers to the city/town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave locality empty and use address_lines.
+     * Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty and use `address_lines`.
      */
     locality?: string | null;
     /**
@@ -1015,7 +1145,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     organization?: string | null;
     /**
-     * Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (For example state/zip validation in the U.S.A.).
+     * Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (for example, state or zip code validation in the United States).
      */
     postalCode?: string | null;
     /**
@@ -1031,11 +1161,11 @@ export namespace merchantapi_accounts_v1beta {
      */
     revision?: number | null;
     /**
-     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (For example "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (For example Côte d'Ivoire).
+     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (for example, "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (Côte d'Ivoire).
      */
     sortingCode?: string | null;
     /**
-     * Optional. Sublocality of the address. For example, this can be neighborhoods, boroughs, districts.
+     * Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district.
      */
     sublocality?: string | null;
   }
@@ -1099,6 +1229,10 @@ export namespace merchantapi_accounts_v1beta {
      */
     reportingContext?: string | null;
   }
+  /**
+   * `ProductsManagement` payload.
+   */
+  export interface Schema$ProductsManagement {}
   /**
    * The message that the merchant will receive to notify about product status change event
    */
@@ -1166,6 +1300,19 @@ export namespace merchantapi_accounts_v1beta {
     unmetRequirements?: Schema$Requirement[];
   }
   /**
+   * Request to propose an account service.
+   */
+  export interface Schema$ProposeAccountServiceRequest {
+    /**
+     * Required. The account service to propose.
+     */
+    accountService?: Schema$AccountService;
+    /**
+     * Required. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).
+     */
+    provider?: string | null;
+  }
+  /**
    * Shipping rate group definitions. Only the last one is allowed to have an empty `applicable_shipping_labels`, which means "everything else". The other `applicable_shipping_labels` must not overlap.
    */
   export interface Schema$RateGroup {
@@ -1224,15 +1371,19 @@ export namespace merchantapi_accounts_v1beta {
     shippingEligible?: boolean | null;
   }
   /**
+   * Request to reject an account service.
+   */
+  export interface Schema$RejectAccountServiceRequest {}
+  /**
    * Describes the terms of service which are required to be accepted.
    */
   export interface Schema$Required {
     /**
-     * The [termsOfService](google.shopping.merchant.accounts.v1main.TermsOfService) that need to be accepted.
+     * The `TermsOfService` that need to be accepted.
      */
     termsOfService?: string | null;
     /**
-     * Full URL to the terms of service file. This field is the same as [TermsOfService.file_uri](TermsOfService.file_uri), it is added here for convenience only.
+     * Full URL to the terms of service file. This field is the same as `TermsOfService.file_uri`, it is added here for convenience only.
      */
     tosFileUri?: string | null;
   }
@@ -1319,7 +1470,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     active?: boolean | null;
     /**
-     * The CLDR code of the currency to which this service applies. Must match that of the prices in rate groups.
+     * Required. The CLDR code of the currency to which this service applies. Must match that of the prices in rate groups.
      */
     currencyCode?: string | null;
     /**
@@ -1360,7 +1511,7 @@ export namespace merchantapi_accounts_v1beta {
     storeConfig?: Schema$StoreConfig;
   }
   /**
-   * The merchant account's [shipping setting](https://support.google.com/merchants/answer/6069284).
+   * The merchant account's [shipping settings](https://support.google.com/merchants/answer/6069284).
    */
   export interface Schema$ShippingSettings {
     /**
@@ -1368,7 +1519,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     etag?: string | null;
     /**
-     * Identifier. The resource name of the shipping setting. Format: `accounts/{account\}/shippingSetting`
+     * Identifier. The resource name of the shipping settings. Format: `accounts/{account\}/shippingSettings`
      */
     name?: string | null;
     /**
@@ -1449,7 +1600,7 @@ export namespace merchantapi_accounts_v1beta {
     rows?: Schema$Row[];
   }
   /**
-   * The `TermsOfService` message represents a specific version of the terms of service that merchants must accept to access certain features or services (see https://support.google.com/merchants/answer/160173). This message is important for the onboarding process, ensuring that merchants agree to the necessary legal agreements for using the service. Merchants can retrieve the latest terms of service for a given `kind` and `region` through `RetrieveLatestTermsOfService`, and accept them as required through `AcceptTermsOfService`.
+   * The `TermsOfService` message represents a specific version of the terms of service that merchants must accept to access certain features or services. For more information, see [Terms of Service](https://support.google.com/merchants/answer/160173). This message is important for the onboarding process, ensuring that merchants agree to the necessary legal agreements for using the service. Merchants can retrieve the latest terms of service for a given `kind` and `region` through `RetrieveLatestTermsOfService`, and accept them as required through `AcceptTermsOfService`.
    */
   export interface Schema$TermsOfService {
     /**
@@ -1474,7 +1625,7 @@ export namespace merchantapi_accounts_v1beta {
     regionCode?: string | null;
   }
   /**
-   * This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the merchant has accepted a terms of service: [accepted](TermsOfServiceAggrementState.accepted) will be populated, otherwise it will be empty * If the merchant must sign a terms of service: [required](TermsOfServiceAggrementState.required) will be populated, otherwise it will be empty. Note that both [required](TermsOfServiceAggrementState.required) and [accepted](TermsOfServiceAggrementState.accepted) can be present. In this case the `accepted` terms of services will have an expiration date set in the [valid_until](Accepted.valid_until) field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect 3Ps to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as [tos_file_uri](Accepted.tos_file_uri). The actual acceptance of the terms of service is done by calling accept on the [TermsOfService](TermsOfService) resource.
+   * This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the merchant has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the merchant must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect 3Ps to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource.
    */
   export interface Schema$TermsOfServiceAgreementState {
     /**
@@ -1668,6 +1819,7 @@ export namespace merchantapi_accounts_v1beta {
   export class Resource$Accounts {
     context: APIRequestContext;
     autofeedSettings: Resource$Accounts$Autofeedsettings;
+    automaticImprovements: Resource$Accounts$Automaticimprovements;
     businessIdentity: Resource$Accounts$Businessidentity;
     businessInfo: Resource$Accounts$Businessinfo;
     emailPreferences: Resource$Accounts$Emailpreferences;
@@ -1676,12 +1828,17 @@ export namespace merchantapi_accounts_v1beta {
     onlineReturnPolicies: Resource$Accounts$Onlinereturnpolicies;
     programs: Resource$Accounts$Programs;
     regions: Resource$Accounts$Regions;
+    relationships: Resource$Accounts$Relationships;
+    services: Resource$Accounts$Services;
     shippingSettings: Resource$Accounts$Shippingsettings;
     termsOfServiceAgreementStates: Resource$Accounts$Termsofserviceagreementstates;
     users: Resource$Accounts$Users;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.autofeedSettings = new Resource$Accounts$Autofeedsettings(
+        this.context
+      );
+      this.automaticImprovements = new Resource$Accounts$Automaticimprovements(
         this.context
       );
       this.businessIdentity = new Resource$Accounts$Businessidentity(
@@ -1698,6 +1855,8 @@ export namespace merchantapi_accounts_v1beta {
       );
       this.programs = new Resource$Accounts$Programs(this.context);
       this.regions = new Resource$Accounts$Regions(this.context);
+      this.relationships = new Resource$Accounts$Relationships(this.context);
+      this.services = new Resource$Accounts$Services(this.context);
       this.shippingSettings = new Resource$Accounts$Shippingsettings(
         this.context
       );
@@ -1707,7 +1866,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Creates a standalone Merchant Center account with additional configuration. Adds the user that makes the request as an admin for the new account.
+     * Creates a Merchant Center account with additional configuration. Adds the user that makes the request as an admin for the new account.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1964,101 +2123,6 @@ export namespace merchantapi_accounts_v1beta {
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
-      }
-    }
-
-    /**
-     * Retrieves the automatic improvements of an account.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getAutomaticImprovements(
-      params: Params$Resource$Accounts$Getautomaticimprovements,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getAutomaticImprovements(
-      params?: Params$Resource$Accounts$Getautomaticimprovements,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AutomaticImprovements>;
-    getAutomaticImprovements(
-      params: Params$Resource$Accounts$Getautomaticimprovements,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getAutomaticImprovements(
-      params: Params$Resource$Accounts$Getautomaticimprovements,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AutomaticImprovements>,
-      callback: BodyResponseCallback<Schema$AutomaticImprovements>
-    ): void;
-    getAutomaticImprovements(
-      params: Params$Resource$Accounts$Getautomaticimprovements,
-      callback: BodyResponseCallback<Schema$AutomaticImprovements>
-    ): void;
-    getAutomaticImprovements(
-      callback: BodyResponseCallback<Schema$AutomaticImprovements>
-    ): void;
-    getAutomaticImprovements(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Getautomaticimprovements
-        | BodyResponseCallback<Schema$AutomaticImprovements>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AutomaticImprovements>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$AutomaticImprovements>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$AutomaticImprovements>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Getautomaticimprovements;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Getautomaticimprovements;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AutomaticImprovements>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AutomaticImprovements>(parameters);
       }
     }
 
@@ -2334,101 +2398,6 @@ export namespace merchantapi_accounts_v1beta {
         return createAPIRequest<Schema$Account>(parameters);
       }
     }
-
-    /**
-     * Updates the automatic improvements of an account.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updateAutomaticImprovements(
-      params: Params$Resource$Accounts$Updateautomaticimprovements,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    updateAutomaticImprovements(
-      params?: Params$Resource$Accounts$Updateautomaticimprovements,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AutomaticImprovements>;
-    updateAutomaticImprovements(
-      params: Params$Resource$Accounts$Updateautomaticimprovements,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updateAutomaticImprovements(
-      params: Params$Resource$Accounts$Updateautomaticimprovements,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AutomaticImprovements>,
-      callback: BodyResponseCallback<Schema$AutomaticImprovements>
-    ): void;
-    updateAutomaticImprovements(
-      params: Params$Resource$Accounts$Updateautomaticimprovements,
-      callback: BodyResponseCallback<Schema$AutomaticImprovements>
-    ): void;
-    updateAutomaticImprovements(
-      callback: BodyResponseCallback<Schema$AutomaticImprovements>
-    ): void;
-    updateAutomaticImprovements(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Updateautomaticimprovements
-        | BodyResponseCallback<Schema$AutomaticImprovements>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AutomaticImprovements>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$AutomaticImprovements>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$AutomaticImprovements>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Updateautomaticimprovements;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Updateautomaticimprovements;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AutomaticImprovements>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AutomaticImprovements>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Accounts$Createandconfigure
@@ -2451,13 +2420,6 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Required. The name of the account to retrieve. Format: `accounts/{account\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Accounts$Getautomaticimprovements
-    extends StandardParameters {
-    /**
-     * Required. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`
      */
     name?: string;
   }
@@ -2486,7 +2448,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The aggregation service provider. Format: `providers/{providerId\}`
+     * Required. The aggregation service provider. Format: `accounts/{providerId\}`
      */
     provider?: string;
   }
@@ -2504,22 +2466,6 @@ export namespace merchantapi_accounts_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$Account;
-  }
-  export interface Params$Resource$Accounts$Updateautomaticimprovements
-    extends StandardParameters {
-    /**
-     * Identifier. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`.
-     */
-    name?: string;
-    /**
-     * Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `item_updates` - `item_updates.account_level_settings` - `image_improvements` - `image_improvements.account_level_settings` - `shipping_improvements` - `shipping_improvements.allow_shipping_improvements`
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AutomaticImprovements;
   }
 
   export class Resource$Accounts$Autofeedsettings {
@@ -2733,6 +2679,229 @@ export namespace merchantapi_accounts_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$AutofeedSettings;
+  }
+
+  export class Resource$Accounts$Automaticimprovements {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the automatic improvements of an account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAutomaticImprovements(
+      params: Params$Resource$Accounts$Automaticimprovements$Getautomaticimprovements,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAutomaticImprovements(
+      params?: Params$Resource$Accounts$Automaticimprovements$Getautomaticimprovements,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutomaticImprovements>;
+    getAutomaticImprovements(
+      params: Params$Resource$Accounts$Automaticimprovements$Getautomaticimprovements,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAutomaticImprovements(
+      params: Params$Resource$Accounts$Automaticimprovements$Getautomaticimprovements,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutomaticImprovements>,
+      callback: BodyResponseCallback<Schema$AutomaticImprovements>
+    ): void;
+    getAutomaticImprovements(
+      params: Params$Resource$Accounts$Automaticimprovements$Getautomaticimprovements,
+      callback: BodyResponseCallback<Schema$AutomaticImprovements>
+    ): void;
+    getAutomaticImprovements(
+      callback: BodyResponseCallback<Schema$AutomaticImprovements>
+    ): void;
+    getAutomaticImprovements(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Automaticimprovements$Getautomaticimprovements
+        | BodyResponseCallback<Schema$AutomaticImprovements>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutomaticImprovements>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutomaticImprovements>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AutomaticImprovements>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Automaticimprovements$Getautomaticimprovements;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Automaticimprovements$Getautomaticimprovements;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutomaticImprovements>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutomaticImprovements>(parameters);
+      }
+    }
+
+    /**
+     * Updates the automatic improvements of an account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAutomaticImprovements(
+      params: Params$Resource$Accounts$Automaticimprovements$Updateautomaticimprovements,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAutomaticImprovements(
+      params?: Params$Resource$Accounts$Automaticimprovements$Updateautomaticimprovements,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutomaticImprovements>;
+    updateAutomaticImprovements(
+      params: Params$Resource$Accounts$Automaticimprovements$Updateautomaticimprovements,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAutomaticImprovements(
+      params: Params$Resource$Accounts$Automaticimprovements$Updateautomaticimprovements,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutomaticImprovements>,
+      callback: BodyResponseCallback<Schema$AutomaticImprovements>
+    ): void;
+    updateAutomaticImprovements(
+      params: Params$Resource$Accounts$Automaticimprovements$Updateautomaticimprovements,
+      callback: BodyResponseCallback<Schema$AutomaticImprovements>
+    ): void;
+    updateAutomaticImprovements(
+      callback: BodyResponseCallback<Schema$AutomaticImprovements>
+    ): void;
+    updateAutomaticImprovements(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Automaticimprovements$Updateautomaticimprovements
+        | BodyResponseCallback<Schema$AutomaticImprovements>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutomaticImprovements>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutomaticImprovements>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AutomaticImprovements>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Automaticimprovements$Updateautomaticimprovements;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Automaticimprovements$Updateautomaticimprovements;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutomaticImprovements>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutomaticImprovements>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Automaticimprovements$Getautomaticimprovements
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Automaticimprovements$Updateautomaticimprovements
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`.
+     */
+    name?: string;
+    /**
+     * Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `item_updates` - `item_updates.account_level_settings` - `image_improvements` - `image_improvements.account_level_settings` - `shipping_improvements` - `shipping_improvements.allow_shipping_improvements`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutomaticImprovements;
   }
 
   export class Resource$Accounts$Businessidentity {
@@ -3784,7 +3953,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Lists all account issues of a Merchant Center account.
+     * Lists all account issues of a Merchant Center account. When called on a multi-client account, this method only returns issues belonging to that account, not its sub-accounts. To retrieve issues for sub-accounts, you must first call the accounts.listSubaccounts method to obtain a list of sub-accounts, and then call `accounts.issues.list` for each sub-account individually.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3886,7 +4055,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     languageCode?: string;
     /**
-     * Optional. The maximum number of issues to return. The service may return fewer than this value. If unspecified, at most 50 users will be returned. The maximum value is 100; values above 100 will be coerced to 100
+     * Optional. The maximum number of issues to return. The service may return fewer than this value. If unspecified, at most 50 issues will be returned. The maximum value is 100; values above 100 will be coerced to 100
      */
     pageSize?: number;
     /**
@@ -5043,6 +5212,843 @@ export namespace merchantapi_accounts_v1beta {
     requestBody?: Schema$Region;
   }
 
+  export class Resource$Accounts$Relationships {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieve an account relationship.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Relationships$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accounts$Relationships$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountRelationship>;
+    get(
+      params: Params$Resource$Accounts$Relationships$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Relationships$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountRelationship>,
+      callback: BodyResponseCallback<Schema$AccountRelationship>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Relationships$Get,
+      callback: BodyResponseCallback<Schema$AccountRelationship>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AccountRelationship>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Relationships$Get
+        | BodyResponseCallback<Schema$AccountRelationship>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountRelationship>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountRelationship>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccountRelationship>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Relationships$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Relationships$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountRelationship>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountRelationship>(parameters);
+      }
+    }
+
+    /**
+     * List account relationships for the specified account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Relationships$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Relationships$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAccountRelationshipsResponse>;
+    list(
+      params: Params$Resource$Accounts$Relationships$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Relationships$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAccountRelationshipsResponse>,
+      callback: BodyResponseCallback<Schema$ListAccountRelationshipsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Relationships$List,
+      callback: BodyResponseCallback<Schema$ListAccountRelationshipsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAccountRelationshipsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Relationships$List
+        | BodyResponseCallback<Schema$ListAccountRelationshipsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAccountRelationshipsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAccountRelationshipsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAccountRelationshipsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Relationships$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Relationships$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+parent}/relationships').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAccountRelationshipsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAccountRelationshipsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the account relationship. Executing this method requires admin access.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounts$Relationships$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Accounts$Relationships$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountRelationship>;
+    patch(
+      params: Params$Resource$Accounts$Relationships$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Relationships$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountRelationship>,
+      callback: BodyResponseCallback<Schema$AccountRelationship>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Relationships$Patch,
+      callback: BodyResponseCallback<Schema$AccountRelationship>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AccountRelationship>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Relationships$Patch
+        | BodyResponseCallback<Schema$AccountRelationship>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountRelationship>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountRelationship>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccountRelationship>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Relationships$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Relationships$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountRelationship>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountRelationship>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Relationships$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the account relationship to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Relationships$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of elements to return in the response. Use for paging. If no `page_size` is specified, `100` is used as the default value. The maximum allowed value is `1000`.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The token returned by the previous `list` request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent account of the account relationship to filter by.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Relationships$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the account relationship.
+     */
+    name?: string;
+    /**
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `account_id_alias`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountRelationship;
+  }
+
+  export class Resource$Accounts$Services {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Approve an account service proposal.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    approve(
+      params: Params$Resource$Accounts$Services$Approve,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    approve(
+      params?: Params$Resource$Accounts$Services$Approve,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountService>;
+    approve(
+      params: Params$Resource$Accounts$Services$Approve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    approve(
+      params: Params$Resource$Accounts$Services$Approve,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountService>,
+      callback: BodyResponseCallback<Schema$AccountService>
+    ): void;
+    approve(
+      params: Params$Resource$Accounts$Services$Approve,
+      callback: BodyResponseCallback<Schema$AccountService>
+    ): void;
+    approve(callback: BodyResponseCallback<Schema$AccountService>): void;
+    approve(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Services$Approve
+        | BodyResponseCallback<Schema$AccountService>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountService>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountService>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccountService> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Services$Approve;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Services$Approve;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}:approve').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountService>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountService>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve an account service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Services$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accounts$Services$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountService>;
+    get(
+      params: Params$Resource$Accounts$Services$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Services$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountService>,
+      callback: BodyResponseCallback<Schema$AccountService>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Services$Get,
+      callback: BodyResponseCallback<Schema$AccountService>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AccountService>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Services$Get
+        | BodyResponseCallback<Schema$AccountService>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountService>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountService>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccountService> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Services$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Services$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountService>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountService>(parameters);
+      }
+    }
+
+    /**
+     * List account services for the specified accounts. Supports filtering.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Services$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Services$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAccountServicesResponse>;
+    list(
+      params: Params$Resource$Accounts$Services$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Services$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAccountServicesResponse>,
+      callback: BodyResponseCallback<Schema$ListAccountServicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Services$List,
+      callback: BodyResponseCallback<Schema$ListAccountServicesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAccountServicesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Services$List
+        | BodyResponseCallback<Schema$ListAccountServicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAccountServicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAccountServicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAccountServicesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Services$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Services$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+parent}/services').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAccountServicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAccountServicesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Propose an account service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    propose(
+      params: Params$Resource$Accounts$Services$Propose,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    propose(
+      params?: Params$Resource$Accounts$Services$Propose,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountService>;
+    propose(
+      params: Params$Resource$Accounts$Services$Propose,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    propose(
+      params: Params$Resource$Accounts$Services$Propose,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountService>,
+      callback: BodyResponseCallback<Schema$AccountService>
+    ): void;
+    propose(
+      params: Params$Resource$Accounts$Services$Propose,
+      callback: BodyResponseCallback<Schema$AccountService>
+    ): void;
+    propose(callback: BodyResponseCallback<Schema$AccountService>): void;
+    propose(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Services$Propose
+        | BodyResponseCallback<Schema$AccountService>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountService>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountService>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccountService> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Services$Propose;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Services$Propose;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1beta/{+parent}/services:propose'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountService>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountService>(parameters);
+      }
+    }
+
+    /**
+     * Reject an account service (both proposed and approve services can be rejected).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reject(
+      params: Params$Resource$Accounts$Services$Reject,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reject(
+      params?: Params$Resource$Accounts$Services$Reject,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    reject(
+      params: Params$Resource$Accounts$Services$Reject,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reject(
+      params: Params$Resource$Accounts$Services$Reject,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    reject(
+      params: Params$Resource$Accounts$Services$Reject,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    reject(callback: BodyResponseCallback<Schema$Empty>): void;
+    reject(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Services$Reject
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Services$Reject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Services$Reject;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}:reject').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Services$Approve
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the account service to approve.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ApproveAccountServiceRequest;
+  }
+  export interface Params$Resource$Accounts$Services$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the account service to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Services$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of elements to return in the response. Use for paging. If no `page_size` is specified, `100` is used as the default value. The maximum allowed value is `1000`.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The token returned by the previous `list` request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent account of the account service to filter by.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Services$Propose
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the parent account for the service.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProposeAccountServiceRequest;
+  }
+  export interface Params$Resource$Accounts$Services$Reject
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the account service to reject.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RejectAccountServiceRequest;
+  }
+
   export class Resource$Accounts$Shippingsettings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5231,14 +6237,14 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Shippingsettings$Getshippingsettings
     extends StandardParameters {
     /**
-     * Required. The name of the shipping setting to retrieve. Format: `accounts/{account\}/shippingsetting`
+     * Required. The name of the shipping setting to retrieve. Format: `accounts/{account\}/shippingsettings`
      */
     name?: string;
   }
   export interface Params$Resource$Accounts$Shippingsettings$Insert
     extends StandardParameters {
     /**
-     * Required. The account where this product will be inserted. Format: accounts/{account\}
+     * Required. The account for which this shipping setting will be inserted. If you are using an advanced account, you must specify the unique identifier of the sub-account for which you want to insert the shipping setting. Format: `accounts/{ACCOUNT_ID\}`
      */
     parent?: string;
 
@@ -5454,7 +6460,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Termsofserviceagreementstates$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the terms of service version. Format: `accounts/{account\}/termsOfServiceAgreementState/{identifier\}` The identifier format is: `{TermsOfServiceKind\}-{country\}`
+     * Required. The resource name of the terms of service version. Format: `accounts/{account\}/termsOfServiceAgreementStates/{identifier\}` The identifier format is: `{TermsOfServiceKind\}-{country\}`
      */
     name?: string;
   }
@@ -5999,7 +7005,7 @@ export namespace merchantapi_accounts_v1beta {
     accept(
       params?: Params$Resource$Termsofservice$Accept,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<Schema$AcceptTermsOfServiceResponse>;
     accept(
       params: Params$Resource$Termsofservice$Accept,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6007,28 +7013,35 @@ export namespace merchantapi_accounts_v1beta {
     ): void;
     accept(
       params: Params$Resource$Termsofservice$Accept,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AcceptTermsOfServiceResponse>,
+      callback: BodyResponseCallback<Schema$AcceptTermsOfServiceResponse>
     ): void;
     accept(
       params: Params$Resource$Termsofservice$Accept,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<Schema$AcceptTermsOfServiceResponse>
     ): void;
-    accept(callback: BodyResponseCallback<Schema$Empty>): void;
+    accept(
+      callback: BodyResponseCallback<Schema$AcceptTermsOfServiceResponse>
+    ): void;
     accept(
       paramsOrCallback?:
         | Params$Resource$Termsofservice$Accept
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$AcceptTermsOfServiceResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$AcceptTermsOfServiceResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$AcceptTermsOfServiceResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosPromise<Schema$AcceptTermsOfServiceResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Termsofservice$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6052,7 +7065,7 @@ export namespace merchantapi_accounts_v1beta {
               /([^:]\/)\/+/g,
               '$1'
             ),
-            method: 'GET',
+            method: 'POST',
             apiVersion: '',
           },
           options
@@ -6063,12 +7076,14 @@ export namespace merchantapi_accounts_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<Schema$AcceptTermsOfServiceResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<Schema$AcceptTermsOfServiceResponse>(
+          parameters
+        );
       }
     }
 
@@ -6251,7 +7266,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Termsofservice$Accept
     extends StandardParameters {
     /**
-     * Required. The account for which to accept the ToS.
+     * Required. The account for which to accept the ToS. Format: `accounts/{account\}`
      */
     account?: string;
     /**

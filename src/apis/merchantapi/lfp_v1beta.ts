@@ -125,9 +125,63 @@ export namespace merchantapi_lfp_v1beta {
   }
 
   /**
+   * Country-specific settings for the merchant.
+   */
+  export interface Schema$CountrySettings {
+    /**
+     * True if this merchant has enabled free local listings in MC.
+     */
+    freeLocalListingsEnabled?: boolean | null;
+    /**
+     * Output only. The verification state of this merchant's instock serving feature.
+     */
+    instockServingVerificationState?: string | null;
+    /**
+     * Output only. The verification state of this merchant's inventory check.
+     */
+    inventoryVerificationState?: string | null;
+    /**
+     * True if this merchant has enabled local inventory ads in MC.
+     */
+    localInventoryAdsEnabled?: boolean | null;
+    /**
+     * Output only. The verification state of this merchant's pickup serving feature.
+     */
+    pickupServingVerificationState?: string | null;
+    /**
+     * Output only. The product page type selected by this merchant.
+     */
+    productPageType?: string | null;
+    /**
+     * Required. The [CLDR territory code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml) for the country for which these settings are defined.
+     */
+    regionCode?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * The inventory statistics for a merchant.
+   */
+  export interface Schema$InventoryStats {
+    /**
+     * Number of entries (understanding entry as a pair of product and store) that were built based on provided inventories/sales and submitted to Google.
+     */
+    submittedEntries?: string | null;
+    /**
+     * Number of submitted in stock entries.
+     */
+    submittedInStockEntries?: string | null;
+    /**
+     * Number of products from provided inventories/sales that were created from matches to existing online products provided by the merchant or to the Google catalog.
+     */
+    submittedProducts?: string | null;
+    /**
+     * Number of entries that were built based on provided inventories/sales and couldn't be submitted to Google due to errors like missing product.
+     */
+    unsubmittedEntries?: string | null;
+  }
   /**
    * Local Inventory for the merchant.
    */
@@ -188,6 +242,31 @@ export namespace merchantapi_lfp_v1beta {
      * Required. The Merchant Center ID of the merchant to submit the inventory for.
      */
     targetAccount?: string | null;
+  }
+  /**
+   * The LFP state of a merchant.
+   */
+  export interface Schema$LfpMerchantState {
+    /**
+     * Country-specific settings for the merchant.
+     */
+    countrySettings?: Schema$CountrySettings[];
+    /**
+     * The inventory statistics for the merchant.
+     */
+    inventoryStats?: Schema$InventoryStats;
+    /**
+     * Number of [GBPs](https://www.google.com/business/) this merchant has access to.
+     */
+    linkedGbps?: string | null;
+    /**
+     * Identifier. The name of the `LfpMerchantState` resource. Format: `accounts/{account\}/lfpMerchantStates/{target_merchant\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The state per store from the specified merchant.
+     */
+    storeStates?: Schema$LfpStoreState[];
   }
   /**
    * A sale for the merchant.
@@ -292,6 +371,23 @@ export namespace merchantapi_lfp_v1beta {
     websiteUri?: string | null;
   }
   /**
+   * The state of a specific merchant's store.
+   */
+  export interface Schema$LfpStoreState {
+    /**
+     * Output only. The store matching state.
+     */
+    matchingState?: string | null;
+    /**
+     * The hint of why the matching has failed (only set if matching_state is FAILED).
+     */
+    matchingStateHint?: string | null;
+    /**
+     * Required. Immutable. The identifier of this store.
+     */
+    storeCode?: string | null;
+  }
+  /**
    * Response message for the ListLfpStores method.
    */
   export interface Schema$ListLfpStoresResponse {
@@ -383,11 +479,15 @@ export namespace merchantapi_lfp_v1beta {
   export class Resource$Accounts {
     context: APIRequestContext;
     lfpInventories: Resource$Accounts$Lfpinventories;
+    lfpMerchantStates: Resource$Accounts$Lfpmerchantstates;
     lfpSales: Resource$Accounts$Lfpsales;
     lfpStores: Resource$Accounts$Lfpstores;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.lfpInventories = new Resource$Accounts$Lfpinventories(this.context);
+      this.lfpMerchantStates = new Resource$Accounts$Lfpmerchantstates(
+        this.context
+      );
       this.lfpSales = new Resource$Accounts$Lfpsales(this.context);
       this.lfpStores = new Resource$Accounts$Lfpstores(this.context);
     }
@@ -498,6 +598,109 @@ export namespace merchantapi_lfp_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$LfpInventory;
+  }
+
+  export class Resource$Accounts$Lfpmerchantstates {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the LFP state of a merchant
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Lfpmerchantstates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accounts$Lfpmerchantstates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LfpMerchantState>;
+    get(
+      params: Params$Resource$Accounts$Lfpmerchantstates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Lfpmerchantstates$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LfpMerchantState>,
+      callback: BodyResponseCallback<Schema$LfpMerchantState>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Lfpmerchantstates$Get,
+      callback: BodyResponseCallback<Schema$LfpMerchantState>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LfpMerchantState>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Lfpmerchantstates$Get
+        | BodyResponseCallback<Schema$LfpMerchantState>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LfpMerchantState>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LfpMerchantState>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LfpMerchantState> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Lfpmerchantstates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Lfpmerchantstates$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/lfp/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LfpMerchantState>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LfpMerchantState>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Lfpmerchantstates$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the state to retrieve. Format: `accounts/{account\}/lfpMerchantStates/{target_merchant\}`
+     */
+    name?: string;
   }
 
   export class Resource$Accounts$Lfpsales {

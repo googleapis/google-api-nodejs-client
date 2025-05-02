@@ -261,7 +261,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Identifier. The name of the data source. Format: `{datasource.name=accounts/{account}/dataSources/{datasource}}`",
+                  "description": "Identifier. The name of the data source. Format: `accounts/{account}/dataSources/{datasource}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/dataSources/[^/]+$",
                   "required": true,
@@ -321,11 +321,11 @@
       }
     }
   },
-  "revision": "20250312",
+  "revision": "20250427",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
-      "description": "The [data source](https://support.google.com/merchants/answer/7439058) for the Merchant Center account.",
+      "description": "The [data source](/merchant/api/guides/data-sources/overview) for the Merchant Center account.",
       "id": "DataSource",
       "properties": {
         "dataSourceId": {
@@ -370,7 +370,7 @@
           "description": "The [merchant review](https://support.google.com/merchants/answer/7045996) data source."
         },
         "name": {
-          "description": "Identifier. The name of the data source. Format: `{datasource.name=accounts/{account}/dataSources/{datasource}}`",
+          "description": "Identifier. The name of the data source. Format: `accounts/{account}/dataSources/{datasource}`",
           "type": "string"
         },
         "primaryProductDataSource": {
