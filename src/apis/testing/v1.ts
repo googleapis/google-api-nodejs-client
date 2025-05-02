@@ -255,6 +255,10 @@ export namespace testing_v1 {
    */
   export interface Schema$AndroidModel {
     /**
+     * Reasons for access denial. This model is accessible if this list is empty, otherwise the model is viewable only.
+     */
+    accessDeniedReasons?: string[] | null;
+    /**
      * The company that this device is branded with. Example: "Google", "Samsung".
      */
     brand?: string | null;
@@ -2792,6 +2796,10 @@ export namespace testing_v1 {
      * Required. The type of environment that should be listed.
      */
     environmentType?: string;
+    /**
+     * Optional. Whether to include viewable only models in the response. This is only applicable for Android models.
+     */
+    includeViewableModels?: boolean;
     /**
      * For authorization, the cloud project requesting the TestEnvironmentCatalog.
      */
