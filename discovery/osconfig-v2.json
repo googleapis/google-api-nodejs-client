@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "osconfig:v2beta",
+  "id": "osconfig:v2",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://osconfig.mtls.googleapis.com/",
   "name": "osconfig",
@@ -115,7 +115,7 @@
                   "methods": {
                     "create": {
                       "description": "Creates a new policy orchestrator under the given folder resource. `name` field of the given orchestrator are ignored and instead replaced by a product of `parent` and `policy_orchestrator_id`. Orchestrator state field might be only set to `ACTIVE`, `STOPPED` or omitted (in which case, the created resource will be in `ACTIVE` state anyway).",
-                      "flatPath": "v2beta/folders/{foldersId}/locations/global/policyOrchestrators",
+                      "flatPath": "v2/folders/{foldersId}/locations/global/policyOrchestrators",
                       "httpMethod": "POST",
                       "id": "osconfig.folders.locations.global.policyOrchestrators.create",
                       "parameterOrder": [
@@ -140,9 +140,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+parent}/policyOrchestrators",
+                      "path": "v2/{+parent}/policyOrchestrators",
                       "request": {
-                        "$ref": "GoogleCloudOsconfigV2beta__PolicyOrchestrator"
+                        "$ref": "GoogleCloudOsconfigV2__PolicyOrchestrator"
                       },
                       "response": {
                         "$ref": "Operation"
@@ -153,7 +153,7 @@
                     },
                     "delete": {
                       "description": "Deletes an existing policy orchestrator resource, parented by a folder.",
-                      "flatPath": "v2beta/folders/{foldersId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
+                      "flatPath": "v2/folders/{foldersId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
                       "httpMethod": "DELETE",
                       "id": "osconfig.folders.locations.global.policyOrchestrators.delete",
                       "parameterOrder": [
@@ -178,7 +178,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+name}",
+                      "path": "v2/{+name}",
                       "response": {
                         "$ref": "Operation"
                       },
@@ -188,7 +188,7 @@
                     },
                     "get": {
                       "description": "Retrieves an existing policy orchestrator, parented by a folder.",
-                      "flatPath": "v2beta/folders/{foldersId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
+                      "flatPath": "v2/folders/{foldersId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
                       "httpMethod": "GET",
                       "id": "osconfig.folders.locations.global.policyOrchestrators.get",
                       "parameterOrder": [
@@ -203,9 +203,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+name}",
+                      "path": "v2/{+name}",
                       "response": {
-                        "$ref": "GoogleCloudOsconfigV2beta__PolicyOrchestrator"
+                        "$ref": "GoogleCloudOsconfigV2__PolicyOrchestrator"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -213,7 +213,7 @@
                     },
                     "list": {
                       "description": "Lists the policy orchestrators under the given parent folder resource.",
-                      "flatPath": "v2beta/folders/{foldersId}/locations/global/policyOrchestrators",
+                      "flatPath": "v2/folders/{foldersId}/locations/global/policyOrchestrators",
                       "httpMethod": "GET",
                       "id": "osconfig.folders.locations.global.policyOrchestrators.list",
                       "parameterOrder": [
@@ -249,9 +249,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+parent}/policyOrchestrators",
+                      "path": "v2/{+parent}/policyOrchestrators",
                       "response": {
-                        "$ref": "GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse"
+                        "$ref": "GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -259,7 +259,7 @@
                     },
                     "patch": {
                       "description": "Updates an existing policy orchestrator, parented by a folder.",
-                      "flatPath": "v2beta/folders/{foldersId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
+                      "flatPath": "v2/folders/{foldersId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
                       "httpMethod": "PATCH",
                       "id": "osconfig.folders.locations.global.policyOrchestrators.patch",
                       "parameterOrder": [
@@ -280,9 +280,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+name}",
+                      "path": "v2/{+name}",
                       "request": {
-                        "$ref": "GoogleCloudOsconfigV2beta__PolicyOrchestrator"
+                        "$ref": "GoogleCloudOsconfigV2__PolicyOrchestrator"
                       },
                       "response": {
                         "$ref": "Operation"
@@ -299,7 +299,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
-                  "flatPath": "v2beta/folders/{foldersId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "osconfig.folders.locations.operations.cancel",
                   "parameterOrder": [
@@ -314,7 +314,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/{+name}:cancel",
+                  "path": "v2/{+name}:cancel",
                   "request": {
                     "$ref": "CancelOperationRequest"
                   },
@@ -327,7 +327,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v2beta/folders/{foldersId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "osconfig.folders.locations.operations.delete",
                   "parameterOrder": [
@@ -342,7 +342,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/{+name}",
+                  "path": "v2/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -352,7 +352,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v2beta/folders/{foldersId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "osconfig.folders.locations.operations.get",
                   "parameterOrder": [
@@ -367,7 +367,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/{+name}",
+                  "path": "v2/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -377,7 +377,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-                  "flatPath": "v2beta/folders/{foldersId}/locations/{locationsId}/operations",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "osconfig.folders.locations.operations.list",
                   "parameterOrder": [
@@ -408,7 +408,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/{+name}/operations",
+                  "path": "v2/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -432,7 +432,7 @@
                   "methods": {
                     "create": {
                       "description": "Creates a new policy orchestrator under the given organizations resource. `name` field of the given orchestrator are ignored and instead replaced by a product of `parent` and `policy_orchestrator_id`. Orchestrator state field might be only set to `ACTIVE`, `STOPPED` or omitted (in which case, the created resource will be in `ACTIVE` state anyway).",
-                      "flatPath": "v2beta/organizations/{organizationsId}/locations/global/policyOrchestrators",
+                      "flatPath": "v2/organizations/{organizationsId}/locations/global/policyOrchestrators",
                       "httpMethod": "POST",
                       "id": "osconfig.organizations.locations.global.policyOrchestrators.create",
                       "parameterOrder": [
@@ -457,9 +457,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+parent}/policyOrchestrators",
+                      "path": "v2/{+parent}/policyOrchestrators",
                       "request": {
-                        "$ref": "GoogleCloudOsconfigV2beta__PolicyOrchestrator"
+                        "$ref": "GoogleCloudOsconfigV2__PolicyOrchestrator"
                       },
                       "response": {
                         "$ref": "Operation"
@@ -470,7 +470,7 @@
                     },
                     "delete": {
                       "description": "Deletes an existing policy orchestrator resource, parented by an organization.",
-                      "flatPath": "v2beta/organizations/{organizationsId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
+                      "flatPath": "v2/organizations/{organizationsId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
                       "httpMethod": "DELETE",
                       "id": "osconfig.organizations.locations.global.policyOrchestrators.delete",
                       "parameterOrder": [
@@ -495,7 +495,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+name}",
+                      "path": "v2/{+name}",
                       "response": {
                         "$ref": "Operation"
                       },
@@ -505,7 +505,7 @@
                     },
                     "get": {
                       "description": "Retrieves an existing policy orchestrator, parented by an organization.",
-                      "flatPath": "v2beta/organizations/{organizationsId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
+                      "flatPath": "v2/organizations/{organizationsId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
                       "httpMethod": "GET",
                       "id": "osconfig.organizations.locations.global.policyOrchestrators.get",
                       "parameterOrder": [
@@ -520,9 +520,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+name}",
+                      "path": "v2/{+name}",
                       "response": {
-                        "$ref": "GoogleCloudOsconfigV2beta__PolicyOrchestrator"
+                        "$ref": "GoogleCloudOsconfigV2__PolicyOrchestrator"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -530,7 +530,7 @@
                     },
                     "list": {
                       "description": "Lists the policy orchestrators under the given parent organization resource.",
-                      "flatPath": "v2beta/organizations/{organizationsId}/locations/global/policyOrchestrators",
+                      "flatPath": "v2/organizations/{organizationsId}/locations/global/policyOrchestrators",
                       "httpMethod": "GET",
                       "id": "osconfig.organizations.locations.global.policyOrchestrators.list",
                       "parameterOrder": [
@@ -566,9 +566,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+parent}/policyOrchestrators",
+                      "path": "v2/{+parent}/policyOrchestrators",
                       "response": {
-                        "$ref": "GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse"
+                        "$ref": "GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -576,7 +576,7 @@
                     },
                     "patch": {
                       "description": "Updates an existing policy orchestrator, parented by an organization.",
-                      "flatPath": "v2beta/organizations/{organizationsId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
+                      "flatPath": "v2/organizations/{organizationsId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
                       "httpMethod": "PATCH",
                       "id": "osconfig.organizations.locations.global.policyOrchestrators.patch",
                       "parameterOrder": [
@@ -597,9 +597,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+name}",
+                      "path": "v2/{+name}",
                       "request": {
-                        "$ref": "GoogleCloudOsconfigV2beta__PolicyOrchestrator"
+                        "$ref": "GoogleCloudOsconfigV2__PolicyOrchestrator"
                       },
                       "response": {
                         "$ref": "Operation"
@@ -616,7 +616,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
-                  "flatPath": "v2beta/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "osconfig.organizations.locations.operations.cancel",
                   "parameterOrder": [
@@ -631,7 +631,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/{+name}:cancel",
+                  "path": "v2/{+name}:cancel",
                   "request": {
                     "$ref": "CancelOperationRequest"
                   },
@@ -644,7 +644,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v2beta/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "osconfig.organizations.locations.operations.delete",
                   "parameterOrder": [
@@ -659,7 +659,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/{+name}",
+                  "path": "v2/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -669,7 +669,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v2beta/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "osconfig.organizations.locations.operations.get",
                   "parameterOrder": [
@@ -684,7 +684,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/{+name}",
+                  "path": "v2/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -694,7 +694,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-                  "flatPath": "v2beta/organizations/{organizationsId}/locations/{locationsId}/operations",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "osconfig.organizations.locations.operations.list",
                   "parameterOrder": [
@@ -725,7 +725,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/{+name}/operations",
+                  "path": "v2/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -749,7 +749,7 @@
                   "methods": {
                     "create": {
                       "description": "Creates a new policy orchestrator under the given project resource. `name` field of the given orchestrator are ignored and instead replaced by a product of `parent` and `policy_orchestrator_id`. Orchestrator state field might be only set to `ACTIVE`, `STOPPED` or omitted (in which case, the created resource will be in `ACTIVE` state anyway).",
-                      "flatPath": "v2beta/projects/{projectsId}/locations/global/policyOrchestrators",
+                      "flatPath": "v2/projects/{projectsId}/locations/global/policyOrchestrators",
                       "httpMethod": "POST",
                       "id": "osconfig.projects.locations.global.policyOrchestrators.create",
                       "parameterOrder": [
@@ -774,9 +774,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+parent}/policyOrchestrators",
+                      "path": "v2/{+parent}/policyOrchestrators",
                       "request": {
-                        "$ref": "GoogleCloudOsconfigV2beta__PolicyOrchestrator"
+                        "$ref": "GoogleCloudOsconfigV2__PolicyOrchestrator"
                       },
                       "response": {
                         "$ref": "Operation"
@@ -787,7 +787,7 @@
                     },
                     "delete": {
                       "description": "Deletes an existing policy orchestrator resource, parented by a project.",
-                      "flatPath": "v2beta/projects/{projectsId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
+                      "flatPath": "v2/projects/{projectsId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
                       "httpMethod": "DELETE",
                       "id": "osconfig.projects.locations.global.policyOrchestrators.delete",
                       "parameterOrder": [
@@ -812,7 +812,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+name}",
+                      "path": "v2/{+name}",
                       "response": {
                         "$ref": "Operation"
                       },
@@ -822,7 +822,7 @@
                     },
                     "get": {
                       "description": "Retrieves an existing policy orchestrator, parented by a project.",
-                      "flatPath": "v2beta/projects/{projectsId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
+                      "flatPath": "v2/projects/{projectsId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
                       "httpMethod": "GET",
                       "id": "osconfig.projects.locations.global.policyOrchestrators.get",
                       "parameterOrder": [
@@ -837,9 +837,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+name}",
+                      "path": "v2/{+name}",
                       "response": {
-                        "$ref": "GoogleCloudOsconfigV2beta__PolicyOrchestrator"
+                        "$ref": "GoogleCloudOsconfigV2__PolicyOrchestrator"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -847,7 +847,7 @@
                     },
                     "list": {
                       "description": "Lists the policy orchestrators under the given parent project resource.",
-                      "flatPath": "v2beta/projects/{projectsId}/locations/global/policyOrchestrators",
+                      "flatPath": "v2/projects/{projectsId}/locations/global/policyOrchestrators",
                       "httpMethod": "GET",
                       "id": "osconfig.projects.locations.global.policyOrchestrators.list",
                       "parameterOrder": [
@@ -883,9 +883,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+parent}/policyOrchestrators",
+                      "path": "v2/{+parent}/policyOrchestrators",
                       "response": {
-                        "$ref": "GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse"
+                        "$ref": "GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -893,7 +893,7 @@
                     },
                     "patch": {
                       "description": "Updates an existing policy orchestrator, parented by a project.",
-                      "flatPath": "v2beta/projects/{projectsId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
+                      "flatPath": "v2/projects/{projectsId}/locations/global/policyOrchestrators/{policyOrchestratorsId}",
                       "httpMethod": "PATCH",
                       "id": "osconfig.projects.locations.global.policyOrchestrators.patch",
                       "parameterOrder": [
@@ -914,9 +914,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v2beta/{+name}",
+                      "path": "v2/{+name}",
                       "request": {
-                        "$ref": "GoogleCloudOsconfigV2beta__PolicyOrchestrator"
+                        "$ref": "GoogleCloudOsconfigV2__PolicyOrchestrator"
                       },
                       "response": {
                         "$ref": "Operation"
@@ -933,7 +933,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
-                  "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "osconfig.projects.locations.operations.cancel",
                   "parameterOrder": [
@@ -948,7 +948,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/{+name}:cancel",
+                  "path": "v2/{+name}:cancel",
                   "request": {
                     "$ref": "CancelOperationRequest"
                   },
@@ -961,7 +961,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "osconfig.projects.locations.operations.delete",
                   "parameterOrder": [
@@ -976,7 +976,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/{+name}",
+                  "path": "v2/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -986,7 +986,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "osconfig.projects.locations.operations.get",
                   "parameterOrder": [
@@ -1001,7 +1001,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/{+name}",
+                  "path": "v2/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -1011,7 +1011,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-                  "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "osconfig.projects.locations.operations.list",
                   "parameterOrder": [
@@ -1042,7 +1042,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/{+name}/operations",
+                  "path": "v2/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -1144,53 +1144,9 @@
       },
       "type": "object"
     },
-    "GoogleCloudOsconfigV2__OperationMetadata": {
-      "description": "Represents the metadata of the long-running operation.",
-      "id": "GoogleCloudOsconfigV2__OperationMetadata",
-      "properties": {
-        "apiVersion": {
-          "description": "Output only. API version used to start the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Output only. The time the operation was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Output only. The time the operation finished running.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "statusMessage": {
-          "description": "Output only. Human-readable status of the operation, if any.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "target": {
-          "description": "Output only. Server-defined resource path for the target of the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "verb": {
-          "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudOsconfigV2beta_OrchestrationScope_LocationSelector": {
+    "GoogleCloudOsconfigV2_OrchestrationScope_LocationSelector": {
       "description": "Selector containing locations in scope.",
-      "id": "GoogleCloudOsconfigV2beta_OrchestrationScope_LocationSelector",
+      "id": "GoogleCloudOsconfigV2_OrchestrationScope_LocationSelector",
       "properties": {
         "includedLocations": {
           "description": "Optional. Names of the locations in scope. Format: `us-central1-a`",
@@ -1202,9 +1158,9 @@
       },
       "type": "object"
     },
-    "GoogleCloudOsconfigV2beta_OrchestrationScope_ResourceHierarchySelector": {
+    "GoogleCloudOsconfigV2_OrchestrationScope_ResourceHierarchySelector": {
       "description": "Selector containing Cloud Resource Manager resource hierarchy nodes.",
-      "id": "GoogleCloudOsconfigV2beta_OrchestrationScope_ResourceHierarchySelector",
+      "id": "GoogleCloudOsconfigV2_OrchestrationScope_ResourceHierarchySelector",
       "properties": {
         "includedFolders": {
           "description": "Optional. Names of the folders in scope. Format: `folders/{folder_id}`",
@@ -1223,24 +1179,24 @@
       },
       "type": "object"
     },
-    "GoogleCloudOsconfigV2beta_OrchestrationScope_Selector": {
+    "GoogleCloudOsconfigV2_OrchestrationScope_Selector": {
       "description": "Selector for the resources in scope of orchestration.",
-      "id": "GoogleCloudOsconfigV2beta_OrchestrationScope_Selector",
+      "id": "GoogleCloudOsconfigV2_OrchestrationScope_Selector",
       "properties": {
         "locationSelector": {
-          "$ref": "GoogleCloudOsconfigV2beta_OrchestrationScope_LocationSelector",
+          "$ref": "GoogleCloudOsconfigV2_OrchestrationScope_LocationSelector",
           "description": "Selector for selecting locations."
         },
         "resourceHierarchySelector": {
-          "$ref": "GoogleCloudOsconfigV2beta_OrchestrationScope_ResourceHierarchySelector",
+          "$ref": "GoogleCloudOsconfigV2_OrchestrationScope_ResourceHierarchySelector",
           "description": "Selector for selecting resource hierarchy."
         }
       },
       "type": "object"
     },
-    "GoogleCloudOsconfigV2beta_PolicyOrchestrator_IterationState": {
+    "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState": {
       "description": "Describes the state of a single iteration of the orchestrator.",
-      "id": "GoogleCloudOsconfigV2beta_PolicyOrchestrator_IterationState",
+      "id": "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState",
       "properties": {
         "error": {
           "$ref": "Status",
@@ -1306,26 +1262,26 @@
       },
       "type": "object"
     },
-    "GoogleCloudOsconfigV2beta_PolicyOrchestrator_OrchestrationState": {
+    "GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState": {
       "description": "Describes the state of the orchestration process.",
-      "id": "GoogleCloudOsconfigV2beta_PolicyOrchestrator_OrchestrationState",
+      "id": "GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState",
       "properties": {
         "currentIterationState": {
-          "$ref": "GoogleCloudOsconfigV2beta_PolicyOrchestrator_IterationState",
+          "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState",
           "description": "Output only. Current Wave iteration state.",
           "readOnly": true
         },
         "previousIterationState": {
-          "$ref": "GoogleCloudOsconfigV2beta_PolicyOrchestrator_IterationState",
+          "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState",
           "description": "Output only. Previous Wave iteration state.",
           "readOnly": true
         }
       },
       "type": "object"
     },
-    "GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse": {
+    "GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse": {
       "description": "Response for the list policy orchestrator resources.",
-      "id": "GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse",
+      "id": "GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse",
       "properties": {
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
@@ -1334,7 +1290,7 @@
         "policyOrchestrators": {
           "description": "The policy orchestrators for the specified parent resource.",
           "items": {
-            "$ref": "GoogleCloudOsconfigV2beta__PolicyOrchestrator"
+            "$ref": "GoogleCloudOsconfigV2__PolicyOrchestrator"
           },
           "type": "array"
         },
@@ -1344,6 +1300,144 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOsconfigV2__OperationMetadata": {
+      "description": "Represents the metadata of the long-running operation.",
+      "id": "GoogleCloudOsconfigV2__OperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "statusMessage": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOsconfigV2__OrchestratedResource": {
+      "description": "Represents a resource that is being orchestrated by the policy orchestrator.",
+      "id": "GoogleCloudOsconfigV2__OrchestratedResource",
+      "properties": {
+        "id": {
+          "description": "Optional. ID of the resource to be used while generating set of affected resources. For UPSERT action the value is auto-generated during PolicyOrchestrator creation when not set. When the value is set it should following next restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project. For DELETE action, ID must be specified explicitly during PolicyOrchestrator creation.",
+          "type": "string"
+        },
+        "osPolicyAssignmentV1Payload": {
+          "$ref": "OSPolicyAssignment",
+          "description": "Optional. OSPolicyAssignment resource to be created, updated or deleted. Name field is ignored and replace with a generated value. With this field set, orchestrator will perform actions on `project/{project}/locations/{zone}/osPolicyAssignments/{resource_id}` resources, where `project` and `zone` pairs come from the expanded scope, and `resource_id` comes from the `resource_id` field of orchestrator resource."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOsconfigV2__OrchestrationScope": {
+      "description": "Defines a set of selectors which drive which resources are in scope of policy orchestration.",
+      "id": "GoogleCloudOsconfigV2__OrchestrationScope",
+      "properties": {
+        "selectors": {
+          "description": "Optional. Selectors of the orchestration scope. There is a logical AND between each selector defined. When there is no explicit `ResourceHierarchySelector` selector specified, the scope is by default bounded to the parent of the policy orchestrator resource.",
+          "items": {
+            "$ref": "GoogleCloudOsconfigV2_OrchestrationScope_Selector"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOsconfigV2__PolicyOrchestrator": {
+      "description": "PolicyOrchestrator helps managing project+zone level policy resources (e.g. OS Policy Assignments), by providing tools to create, update and delete them across projects and locations, at scale. Policy orchestrator functions as an endless loop. Each iteration orchestrator computes a set of resources that should be affected, then progressively applies changes to them. If for some reason this set of resources changes over time (e.g. new projects are added), the future loop iterations will address that. Orchestrator can either upsert or delete policy resources. For more details, see the description of the `action`, and `orchestrated_resource` fields. Note that policy orchestrator do not \"manage\" the resources it creates. Every iteration is independent and only minimal history of past actions is retained (apart from Cloud Logging). If orchestrator gets deleted, it does not affect the resources it created in the past. Those will remain where they were. Same applies if projects are removed from the orchestrator's scope.",
+      "id": "GoogleCloudOsconfigV2__PolicyOrchestrator",
+      "properties": {
+        "action": {
+          "description": "Required. Action to be done by the orchestrator in `projects/{project_id}/zones/{zone_id}` locations defined by the `orchestration_scope`. Allowed values: - `UPSERT` - Orchestrator will create or update target resources. - `DELETE` - Orchestrator will delete target resources, if they exist",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when the policy orchestrator resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Freeform text describing the purpose of the resource.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. In form of * `organizations/{organization_id}/locations/global/policyOrchestrators/{orchestrator_id}` * `folders/{folder_id}/locations/global/policyOrchestrators/{orchestrator_id}` * `projects/{project_id_or_number}/locations/global/policyOrchestrators/{orchestrator_id}`",
+          "type": "string"
+        },
+        "orchestratedResource": {
+          "$ref": "GoogleCloudOsconfigV2__OrchestratedResource",
+          "description": "Required. Resource to be orchestrated by the policy orchestrator."
+        },
+        "orchestrationScope": {
+          "$ref": "GoogleCloudOsconfigV2__OrchestrationScope",
+          "description": "Optional. Defines scope for the orchestration, in context of the enclosing PolicyOrchestrator resource. Scope is expanded into a list of pairs, in which the rollout action will take place. Expansion starts with a Folder resource parenting the PolicyOrchestrator resource: - All the descendant projects are listed. - List of project is cross joined with a list of all available zones. - Resulting list of pairs is filtered according to the selectors."
+        },
+        "orchestrationState": {
+          "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState",
+          "description": "Output only. State of the orchestration.",
+          "readOnly": true
+        },
+        "reconciling": {
+          "description": "Output only. Set to true, if the there are ongoing changes being applied by the orchestrator.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Optional. State of the orchestrator. Can be updated to change orchestrator behaviour. Allowed values: - `ACTIVE` - orchestrator is actively looking for actions to be taken. - `STOPPED` - orchestrator won't make any changes. Note: There might be more states added in the future. We use string here instead of an enum, to avoid the need of propagating new states to all the client code.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the policy orchestrator resource was last modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1386,100 +1480,6 @@
         },
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudOsconfigV2beta__OrchestratedResource": {
-      "description": "Represents a resource that is being orchestrated by the policy orchestrator.",
-      "id": "GoogleCloudOsconfigV2beta__OrchestratedResource",
-      "properties": {
-        "id": {
-          "description": "Optional. ID of the resource to be used while generating set of affected resources. For UPSERT action the value is auto-generated during PolicyOrchestrator creation when not set. When the value is set it should following next restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project. For DELETE action, ID must be specified explicitly during PolicyOrchestrator creation.",
-          "type": "string"
-        },
-        "osPolicyAssignmentV1Payload": {
-          "$ref": "OSPolicyAssignment",
-          "description": "Optional. OSPolicyAssignment resource to be created, updated or deleted. Name field is ignored and replace with a generated value. With this field set, orchestrator will perform actions on `project/{project}/locations/{zone}/osPolicyAssignments/{resource_id}` resources, where `project` and `zone` pairs come from the expanded scope, and `resource_id` comes from the `resource_id` field of orchestrator resource."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudOsconfigV2beta__OrchestrationScope": {
-      "description": "Defines a set of selectors which drive which resources are in scope of policy orchestration.",
-      "id": "GoogleCloudOsconfigV2beta__OrchestrationScope",
-      "properties": {
-        "selectors": {
-          "description": "Optional. Selectors of the orchestration scope. There is a logical AND between each selector defined. When there is no explicit `ResourceHierarchySelector` selector specified, the scope is by default bounded to the parent of the policy orchestrator resource.",
-          "items": {
-            "$ref": "GoogleCloudOsconfigV2beta_OrchestrationScope_Selector"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudOsconfigV2beta__PolicyOrchestrator": {
-      "description": "PolicyOrchestrator helps managing project+zone level policy resources (e.g. OS Policy Assignments), by providing tools to create, update and delete them across projects and locations, at scale. Policy orchestrator functions as an endless loop. Each iteration orchestrator computes a set of resources that should be affected, then progressively applies changes to them. If for some reason this set of resources changes over time (e.g. new projects are added), the future loop iterations will address that. Orchestrator can either upsert or delete policy resources. For more details, see the description of the `action`, and `orchestrated_resource` fields. Note that policy orchestrator do not \"manage\" the resources it creates. Every iteration is independent and only minimal history of past actions is retained (apart from Cloud Logging). If orchestrator gets deleted, it does not affect the resources it created in the past. Those will remain where they were. Same applies if projects are removed from the orchestrator's scope.",
-      "id": "GoogleCloudOsconfigV2beta__PolicyOrchestrator",
-      "properties": {
-        "action": {
-          "description": "Required. Action to be done by the orchestrator in `projects/{project_id}/zones/{zone_id}` locations defined by the `orchestration_scope`. Allowed values: - `UPSERT` - Orchestrator will create or update target resources. - `DELETE` - Orchestrator will delete target resources, if they exist",
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Output only. Timestamp when the policy orchestrator resource was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "description": {
-          "description": "Optional. Freeform text describing the purpose of the resource.",
-          "type": "string"
-        },
-        "etag": {
-          "description": "Output only. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "labels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Optional. Labels as key value pairs",
-          "type": "object"
-        },
-        "name": {
-          "description": "Immutable. Identifier. In form of * `organizations/{organization_id}/locations/global/policyOrchestrators/{orchestrator_id}` * `folders/{folder_id}/locations/global/policyOrchestrators/{orchestrator_id}` * `projects/{project_id_or_number}/locations/global/policyOrchestrators/{orchestrator_id}`",
-          "type": "string"
-        },
-        "orchestratedResource": {
-          "$ref": "GoogleCloudOsconfigV2beta__OrchestratedResource",
-          "description": "Required. Resource to be orchestrated by the policy orchestrator."
-        },
-        "orchestrationScope": {
-          "$ref": "GoogleCloudOsconfigV2beta__OrchestrationScope",
-          "description": "Optional. Defines scope for the orchestration, in context of the enclosing PolicyOrchestrator resource. Scope is expanded into a list of pairs, in which the rollout action will take place. Expansion starts with a Folder resource parenting the PolicyOrchestrator resource: - All the descendant projects are listed. - List of project is cross joined with a list of all available zones. - Resulting list of pairs is filtered according to the selectors."
-        },
-        "orchestrationState": {
-          "$ref": "GoogleCloudOsconfigV2beta_PolicyOrchestrator_OrchestrationState",
-          "description": "Output only. State of the orchestration.",
-          "readOnly": true
-        },
-        "reconciling": {
-          "description": "Output only. Set to true, if the there are ongoing changes being applied by the orchestrator.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "state": {
-          "description": "Optional. State of the orchestrator. Can be updated to change orchestrator behaviour. Allowed values: - `ACTIVE` - orchestrator is actively looking for actions to be taken. - `STOPPED` - orchestrator won't make any changes. Note: There might be more states added in the future. We use string here instead of an enum, to avoid the need of propagating new states to all the client code.",
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "Output only. Timestamp when the policy orchestrator resource was last modified.",
-          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         }
@@ -2313,6 +2313,6 @@
   },
   "servicePath": "",
   "title": "OS Config API",
-  "version": "v2beta",
+  "version": "v2",
   "version_module": true
 }

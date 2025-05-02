@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace osconfig_v2beta {
+export namespace osconfig_v2 {
   export interface Options extends GlobalOptions {
-    version: 'v2beta';
+    version: 'v2';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace osconfig_v2beta {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const osconfig = google.osconfig('v2beta');
+   * const osconfig = google.osconfig('v2');
    * ```
    */
   export class Osconfig {
@@ -175,9 +175,42 @@ export namespace osconfig_v2beta {
     rolloutUpdateTime?: string | null;
   }
   /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleCloudOsconfigV2beta__OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
    * Selector containing locations in scope.
    */
-  export interface Schema$GoogleCloudOsconfigV2beta_OrchestrationScope_LocationSelector {
+  export interface Schema$GoogleCloudOsconfigV2_OrchestrationScope_LocationSelector {
     /**
      * Optional. Names of the locations in scope. Format: `us-central1-a`
      */
@@ -186,7 +219,7 @@ export namespace osconfig_v2beta {
   /**
    * Selector containing Cloud Resource Manager resource hierarchy nodes.
    */
-  export interface Schema$GoogleCloudOsconfigV2beta_OrchestrationScope_ResourceHierarchySelector {
+  export interface Schema$GoogleCloudOsconfigV2_OrchestrationScope_ResourceHierarchySelector {
     /**
      * Optional. Names of the folders in scope. Format: `folders/{folder_id\}`
      */
@@ -199,20 +232,20 @@ export namespace osconfig_v2beta {
   /**
    * Selector for the resources in scope of orchestration.
    */
-  export interface Schema$GoogleCloudOsconfigV2beta_OrchestrationScope_Selector {
+  export interface Schema$GoogleCloudOsconfigV2_OrchestrationScope_Selector {
     /**
      * Selector for selecting locations.
      */
-    locationSelector?: Schema$GoogleCloudOsconfigV2beta_OrchestrationScope_LocationSelector;
+    locationSelector?: Schema$GoogleCloudOsconfigV2_OrchestrationScope_LocationSelector;
     /**
      * Selector for selecting resource hierarchy.
      */
-    resourceHierarchySelector?: Schema$GoogleCloudOsconfigV2beta_OrchestrationScope_ResourceHierarchySelector;
+    resourceHierarchySelector?: Schema$GoogleCloudOsconfigV2_OrchestrationScope_ResourceHierarchySelector;
   }
   /**
    * Describes the state of a single iteration of the orchestrator.
    */
-  export interface Schema$GoogleCloudOsconfigV2beta_PolicyOrchestrator_IterationState {
+  export interface Schema$GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState {
     /**
      * Output only. Error thrown in the wave iteration.
      */
@@ -249,20 +282,20 @@ export namespace osconfig_v2beta {
   /**
    * Describes the state of the orchestration process.
    */
-  export interface Schema$GoogleCloudOsconfigV2beta_PolicyOrchestrator_OrchestrationState {
+  export interface Schema$GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState {
     /**
      * Output only. Current Wave iteration state.
      */
-    currentIterationState?: Schema$GoogleCloudOsconfigV2beta_PolicyOrchestrator_IterationState;
+    currentIterationState?: Schema$GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState;
     /**
      * Output only. Previous Wave iteration state.
      */
-    previousIterationState?: Schema$GoogleCloudOsconfigV2beta_PolicyOrchestrator_IterationState;
+    previousIterationState?: Schema$GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState;
   }
   /**
    * Response for the list policy orchestrator resources.
    */
-  export interface Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse {
+  export interface Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse {
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -270,119 +303,11 @@ export namespace osconfig_v2beta {
     /**
      * The policy orchestrators for the specified parent resource.
      */
-    policyOrchestrators?: Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator[];
+    policyOrchestrators?: Schema$GoogleCloudOsconfigV2__PolicyOrchestrator[];
     /**
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
-  }
-  /**
-   * Represents the metadata of the long-running operation.
-   */
-  export interface Schema$GoogleCloudOsconfigV2beta__OperationMetadata {
-    /**
-     * Output only. API version used to start the operation.
-     */
-    apiVersion?: string | null;
-    /**
-     * Output only. The time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * Output only. The time the operation finished running.
-     */
-    endTime?: string | null;
-    /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     */
-    requestedCancellation?: boolean | null;
-    /**
-     * Output only. Human-readable status of the operation, if any.
-     */
-    statusMessage?: string | null;
-    /**
-     * Output only. Server-defined resource path for the target of the operation.
-     */
-    target?: string | null;
-    /**
-     * Output only. Name of the verb executed by the operation.
-     */
-    verb?: string | null;
-  }
-  /**
-   * Represents a resource that is being orchestrated by the policy orchestrator.
-   */
-  export interface Schema$GoogleCloudOsconfigV2beta__OrchestratedResource {
-    /**
-     * Optional. ID of the resource to be used while generating set of affected resources. For UPSERT action the value is auto-generated during PolicyOrchestrator creation when not set. When the value is set it should following next restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project. For DELETE action, ID must be specified explicitly during PolicyOrchestrator creation.
-     */
-    id?: string | null;
-    /**
-     * Optional. OSPolicyAssignment resource to be created, updated or deleted. Name field is ignored and replace with a generated value. With this field set, orchestrator will perform actions on `project/{project\}/locations/{zone\}/osPolicyAssignments/{resource_id\}` resources, where `project` and `zone` pairs come from the expanded scope, and `resource_id` comes from the `resource_id` field of orchestrator resource.
-     */
-    osPolicyAssignmentV1Payload?: Schema$OSPolicyAssignment;
-  }
-  /**
-   * Defines a set of selectors which drive which resources are in scope of policy orchestration.
-   */
-  export interface Schema$GoogleCloudOsconfigV2beta__OrchestrationScope {
-    /**
-     * Optional. Selectors of the orchestration scope. There is a logical AND between each selector defined. When there is no explicit `ResourceHierarchySelector` selector specified, the scope is by default bounded to the parent of the policy orchestrator resource.
-     */
-    selectors?: Schema$GoogleCloudOsconfigV2beta_OrchestrationScope_Selector[];
-  }
-  /**
-   * PolicyOrchestrator helps managing project+zone level policy resources (e.g. OS Policy Assignments), by providing tools to create, update and delete them across projects and locations, at scale. Policy orchestrator functions as an endless loop. Each iteration orchestrator computes a set of resources that should be affected, then progressively applies changes to them. If for some reason this set of resources changes over time (e.g. new projects are added), the future loop iterations will address that. Orchestrator can either upsert or delete policy resources. For more details, see the description of the `action`, and `orchestrated_resource` fields. Note that policy orchestrator do not "manage" the resources it creates. Every iteration is independent and only minimal history of past actions is retained (apart from Cloud Logging). If orchestrator gets deleted, it does not affect the resources it created in the past. Those will remain where they were. Same applies if projects are removed from the orchestrator's scope.
-   */
-  export interface Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator {
-    /**
-     * Required. Action to be done by the orchestrator in `projects/{project_id\}/zones/{zone_id\}` locations defined by the `orchestration_scope`. Allowed values: - `UPSERT` - Orchestrator will create or update target resources. - `DELETE` - Orchestrator will delete target resources, if they exist
-     */
-    action?: string | null;
-    /**
-     * Output only. Timestamp when the policy orchestrator resource was created.
-     */
-    createTime?: string | null;
-    /**
-     * Optional. Freeform text describing the purpose of the resource.
-     */
-    description?: string | null;
-    /**
-     * Output only. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
-     */
-    etag?: string | null;
-    /**
-     * Optional. Labels as key value pairs
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * Immutable. Identifier. In form of * `organizations/{organization_id\}/locations/global/policyOrchestrators/{orchestrator_id\}` * `folders/{folder_id\}/locations/global/policyOrchestrators/{orchestrator_id\}` * `projects/{project_id_or_number\}/locations/global/policyOrchestrators/{orchestrator_id\}`
-     */
-    name?: string | null;
-    /**
-     * Required. Resource to be orchestrated by the policy orchestrator.
-     */
-    orchestratedResource?: Schema$GoogleCloudOsconfigV2beta__OrchestratedResource;
-    /**
-     * Optional. Defines scope for the orchestration, in context of the enclosing PolicyOrchestrator resource. Scope is expanded into a list of pairs, in which the rollout action will take place. Expansion starts with a Folder resource parenting the PolicyOrchestrator resource: - All the descendant projects are listed. - List of project is cross joined with a list of all available zones. - Resulting list of pairs is filtered according to the selectors.
-     */
-    orchestrationScope?: Schema$GoogleCloudOsconfigV2beta__OrchestrationScope;
-    /**
-     * Output only. State of the orchestration.
-     */
-    orchestrationState?: Schema$GoogleCloudOsconfigV2beta_PolicyOrchestrator_OrchestrationState;
-    /**
-     * Output only. Set to true, if the there are ongoing changes being applied by the orchestrator.
-     */
-    reconciling?: boolean | null;
-    /**
-     * Optional. State of the orchestrator. Can be updated to change orchestrator behaviour. Allowed values: - `ACTIVE` - orchestrator is actively looking for actions to be taken. - `STOPPED` - orchestrator won't make any changes. Note: There might be more states added in the future. We use string here instead of an enum, to avoid the need of propagating new states to all the client code.
-     */
-    state?: string | null;
-    /**
-     * Output only. Timestamp when the policy orchestrator resource was last modified.
-     */
-    updateTime?: string | null;
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -416,6 +341,81 @@ export namespace osconfig_v2beta {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Represents a resource that is being orchestrated by the policy orchestrator.
+   */
+  export interface Schema$GoogleCloudOsconfigV2__OrchestratedResource {
+    /**
+     * Optional. ID of the resource to be used while generating set of affected resources. For UPSERT action the value is auto-generated during PolicyOrchestrator creation when not set. When the value is set it should following next restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project. For DELETE action, ID must be specified explicitly during PolicyOrchestrator creation.
+     */
+    id?: string | null;
+    /**
+     * Optional. OSPolicyAssignment resource to be created, updated or deleted. Name field is ignored and replace with a generated value. With this field set, orchestrator will perform actions on `project/{project\}/locations/{zone\}/osPolicyAssignments/{resource_id\}` resources, where `project` and `zone` pairs come from the expanded scope, and `resource_id` comes from the `resource_id` field of orchestrator resource.
+     */
+    osPolicyAssignmentV1Payload?: Schema$OSPolicyAssignment;
+  }
+  /**
+   * Defines a set of selectors which drive which resources are in scope of policy orchestration.
+   */
+  export interface Schema$GoogleCloudOsconfigV2__OrchestrationScope {
+    /**
+     * Optional. Selectors of the orchestration scope. There is a logical AND between each selector defined. When there is no explicit `ResourceHierarchySelector` selector specified, the scope is by default bounded to the parent of the policy orchestrator resource.
+     */
+    selectors?: Schema$GoogleCloudOsconfigV2_OrchestrationScope_Selector[];
+  }
+  /**
+   * PolicyOrchestrator helps managing project+zone level policy resources (e.g. OS Policy Assignments), by providing tools to create, update and delete them across projects and locations, at scale. Policy orchestrator functions as an endless loop. Each iteration orchestrator computes a set of resources that should be affected, then progressively applies changes to them. If for some reason this set of resources changes over time (e.g. new projects are added), the future loop iterations will address that. Orchestrator can either upsert or delete policy resources. For more details, see the description of the `action`, and `orchestrated_resource` fields. Note that policy orchestrator do not "manage" the resources it creates. Every iteration is independent and only minimal history of past actions is retained (apart from Cloud Logging). If orchestrator gets deleted, it does not affect the resources it created in the past. Those will remain where they were. Same applies if projects are removed from the orchestrator's scope.
+   */
+  export interface Schema$GoogleCloudOsconfigV2__PolicyOrchestrator {
+    /**
+     * Required. Action to be done by the orchestrator in `projects/{project_id\}/zones/{zone_id\}` locations defined by the `orchestration_scope`. Allowed values: - `UPSERT` - Orchestrator will create or update target resources. - `DELETE` - Orchestrator will delete target resources, if they exist
+     */
+    action?: string | null;
+    /**
+     * Output only. Timestamp when the policy orchestrator resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Freeform text describing the purpose of the resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. Labels as key value pairs
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. Identifier. In form of * `organizations/{organization_id\}/locations/global/policyOrchestrators/{orchestrator_id\}` * `folders/{folder_id\}/locations/global/policyOrchestrators/{orchestrator_id\}` * `projects/{project_id_or_number\}/locations/global/policyOrchestrators/{orchestrator_id\}`
+     */
+    name?: string | null;
+    /**
+     * Required. Resource to be orchestrated by the policy orchestrator.
+     */
+    orchestratedResource?: Schema$GoogleCloudOsconfigV2__OrchestratedResource;
+    /**
+     * Optional. Defines scope for the orchestration, in context of the enclosing PolicyOrchestrator resource. Scope is expanded into a list of pairs, in which the rollout action will take place. Expansion starts with a Folder resource parenting the PolicyOrchestrator resource: - All the descendant projects are listed. - List of project is cross joined with a list of all available zones. - Resulting list of pairs is filtered according to the selectors.
+     */
+    orchestrationScope?: Schema$GoogleCloudOsconfigV2__OrchestrationScope;
+    /**
+     * Output only. State of the orchestration.
+     */
+    orchestrationState?: Schema$GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState;
+    /**
+     * Output only. Set to true, if the there are ongoing changes being applied by the orchestrator.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Optional. State of the orchestrator. Can be updated to change orchestrator behaviour. Allowed values: - `ACTIVE` - orchestrator is actively looking for actions to be taken. - `STOPPED` - orchestrator won't make any changes. Note: There might be more states added in the future. We use string here instead of an enum, to avoid the need of propagating new states to all the client code.
+     */
+    state?: string | null;
+    /**
+     * Output only. Timestamp when the policy orchestrator resource was last modified.
+     */
+    updateTime?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -1115,7 +1115,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+parent}/policyOrchestrators').replace(
+            url: (rootUrl + '/v2/{+parent}/policyOrchestrators').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1204,7 +1204,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1240,7 +1240,7 @@ export namespace osconfig_v2beta {
     get(
       params?: Params$Resource$Folders$Locations$Global$Policyorchestrators$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>;
+    ): GaxiosPromise<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>;
     get(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1250,32 +1250,32 @@ export namespace osconfig_v2beta {
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>,
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>,
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
     ): void;
     get(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Folders$Locations$Global$Policyorchestrators$Get
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+      | GaxiosPromise<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Global$Policyorchestrators$Get;
@@ -1297,7 +1297,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1309,12 +1309,12 @@ export namespace osconfig_v2beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>(
+        createAPIRequest<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>(
+        return createAPIRequest<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>(
           parameters
         );
       }
@@ -1335,7 +1335,7 @@ export namespace osconfig_v2beta {
     list(
       params?: Params$Resource$Folders$Locations$Global$Policyorchestrators$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>;
+    ): GaxiosPromise<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>;
     list(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1345,32 +1345,32 @@ export namespace osconfig_v2beta {
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
     ): void;
     list(
       params: Params$Resource$Folders$Locations$Global$Policyorchestrators$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Folders$Locations$Global$Policyorchestrators$List
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+      | GaxiosPromise<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Global$Policyorchestrators$List;
@@ -1392,7 +1392,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+parent}/policyOrchestrators').replace(
+            url: (rootUrl + '/v2/{+parent}/policyOrchestrators').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1407,12 +1407,12 @@ export namespace osconfig_v2beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>(
+        createAPIRequest<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>(
+        return createAPIRequest<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>(
           parameters
         );
       }
@@ -1483,7 +1483,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -1523,7 +1523,7 @@ export namespace osconfig_v2beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator;
+    requestBody?: Schema$GoogleCloudOsconfigV2__PolicyOrchestrator;
   }
   export interface Params$Resource$Folders$Locations$Global$Policyorchestrators$Delete
     extends StandardParameters {
@@ -1584,7 +1584,7 @@ export namespace osconfig_v2beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator;
+    requestBody?: Schema$GoogleCloudOsconfigV2__PolicyOrchestrator;
   }
 
   export class Resource$Folders$Locations$Operations {
@@ -1657,10 +1657,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
           },
@@ -1745,7 +1742,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1830,7 +1827,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1920,7 +1917,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}/operations').replace(
+            url: (rootUrl + '/v2/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2096,7 +2093,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+parent}/policyOrchestrators').replace(
+            url: (rootUrl + '/v2/{+parent}/policyOrchestrators').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2185,7 +2182,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2221,7 +2218,7 @@ export namespace osconfig_v2beta {
     get(
       params?: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>;
+    ): GaxiosPromise<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>;
     get(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2231,32 +2228,32 @@ export namespace osconfig_v2beta {
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>,
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>,
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
     ): void;
     get(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Global$Policyorchestrators$Get
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+      | GaxiosPromise<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Global$Policyorchestrators$Get;
@@ -2278,7 +2275,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2290,12 +2287,12 @@ export namespace osconfig_v2beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>(
+        createAPIRequest<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>(
+        return createAPIRequest<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>(
           parameters
         );
       }
@@ -2316,7 +2313,7 @@ export namespace osconfig_v2beta {
     list(
       params?: Params$Resource$Organizations$Locations$Global$Policyorchestrators$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>;
+    ): GaxiosPromise<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>;
     list(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2326,32 +2323,32 @@ export namespace osconfig_v2beta {
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
     ): void;
     list(
       params: Params$Resource$Organizations$Locations$Global$Policyorchestrators$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Global$Policyorchestrators$List
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+      | GaxiosPromise<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Global$Policyorchestrators$List;
@@ -2373,7 +2370,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+parent}/policyOrchestrators').replace(
+            url: (rootUrl + '/v2/{+parent}/policyOrchestrators').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2388,12 +2385,12 @@ export namespace osconfig_v2beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>(
+        createAPIRequest<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>(
+        return createAPIRequest<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>(
           parameters
         );
       }
@@ -2464,7 +2461,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2504,7 +2501,7 @@ export namespace osconfig_v2beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator;
+    requestBody?: Schema$GoogleCloudOsconfigV2__PolicyOrchestrator;
   }
   export interface Params$Resource$Organizations$Locations$Global$Policyorchestrators$Delete
     extends StandardParameters {
@@ -2565,7 +2562,7 @@ export namespace osconfig_v2beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator;
+    requestBody?: Schema$GoogleCloudOsconfigV2__PolicyOrchestrator;
   }
 
   export class Resource$Organizations$Locations$Operations {
@@ -2639,10 +2636,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
           },
@@ -2728,7 +2722,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2813,7 +2807,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2903,7 +2897,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}/operations').replace(
+            url: (rootUrl + '/v2/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3079,7 +3073,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+parent}/policyOrchestrators').replace(
+            url: (rootUrl + '/v2/{+parent}/policyOrchestrators').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3168,7 +3162,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3204,7 +3198,7 @@ export namespace osconfig_v2beta {
     get(
       params?: Params$Resource$Projects$Locations$Global$Policyorchestrators$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>;
+    ): GaxiosPromise<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>;
     get(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3214,32 +3208,32 @@ export namespace osconfig_v2beta {
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>,
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>,
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Global$Policyorchestrators$Get
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>
+      | GaxiosPromise<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policyorchestrators$Get;
@@ -3261,7 +3255,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3273,12 +3267,12 @@ export namespace osconfig_v2beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>(
+        createAPIRequest<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator>(
+        return createAPIRequest<Schema$GoogleCloudOsconfigV2__PolicyOrchestrator>(
           parameters
         );
       }
@@ -3299,7 +3293,7 @@ export namespace osconfig_v2beta {
     list(
       params?: Params$Resource$Projects$Locations$Global$Policyorchestrators$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>;
+    ): GaxiosPromise<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3309,32 +3303,32 @@ export namespace osconfig_v2beta {
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Global$Policyorchestrators$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Global$Policyorchestrators$List
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>
+      | GaxiosPromise<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policyorchestrators$List;
@@ -3356,7 +3350,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+parent}/policyOrchestrators').replace(
+            url: (rootUrl + '/v2/{+parent}/policyOrchestrators').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3371,12 +3365,12 @@ export namespace osconfig_v2beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>(
+        createAPIRequest<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudOsconfigV2beta__ListPolicyOrchestratorsResponse>(
+        return createAPIRequest<Schema$GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse>(
           parameters
         );
       }
@@ -3447,7 +3441,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -3487,7 +3481,7 @@ export namespace osconfig_v2beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator;
+    requestBody?: Schema$GoogleCloudOsconfigV2__PolicyOrchestrator;
   }
   export interface Params$Resource$Projects$Locations$Global$Policyorchestrators$Delete
     extends StandardParameters {
@@ -3548,7 +3542,7 @@ export namespace osconfig_v2beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudOsconfigV2beta__PolicyOrchestrator;
+    requestBody?: Schema$GoogleCloudOsconfigV2__PolicyOrchestrator;
   }
 
   export class Resource$Projects$Locations$Operations {
@@ -3621,10 +3615,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3709,7 +3700,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3794,7 +3785,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3884,7 +3875,7 @@ export namespace osconfig_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}/operations').replace(
+            url: (rootUrl + '/v2/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
