@@ -197,7 +197,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Page size. If a value is not specified, the default value of 10 is used.",
+                      "description": "Optional. Page size. If a value is not specified, the default value of 10 is used. The maximum value is 50.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -286,6 +286,31 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "enableComplianceUpdates": {
+                  "description": "This endpoint enables Assured Workloads service to offer compliance updates for the folder based assured workload. It sets up an Assured Workloads Service Agent, having permissions to read compliance controls (for example: Org Policies) applied on the workload. The caller must have `resourcemanager.folders.getIamPolicy` and `resourcemanager.folders.setIamPolicy` permissions on the assured workload folder.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}:enableComplianceUpdates",
+                  "httpMethod": "PUT",
+                  "id": "assuredworkloads.organizations.locations.workloads.enableComplianceUpdates",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the workload. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:enableComplianceUpdates",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1EnableComplianceUpdatesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -474,6 +499,74 @@
                 }
               },
               "resources": {
+                "updates": {
+                  "methods": {
+                    "apply": {
+                      "description": "This endpoint creates a new operation to apply the given update.",
+                      "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}/updates/{updatesId}:apply",
+                      "httpMethod": "POST",
+                      "id": "assuredworkloads.organizations.locations.workloads.updates.apply",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the update. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}/updates/{update_id}",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+/updates/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:apply",
+                      "request": {
+                        "$ref": "GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "This endpoint lists all updates for the given workload.",
+                      "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}/updates",
+                      "httpMethod": "GET",
+                      "id": "assuredworkloads.organizations.locations.workloads.updates.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Page size. The default value is 20 and the max allowed value is 100.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Page token returned from previous request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. organizations/{org_id}/locations/{location_id}/workloads/{workload_id}",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/updates",
+                      "response": {
+                        "$ref": "GoogleCloudAssuredworkloadsV1ListWorkloadUpdatesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "violations": {
                   "methods": {
                     "acknowledge": {
@@ -591,7 +684,7 @@
       }
     }
   },
-  "revision": "20250213",
+  "revision": "20250410",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest": {
@@ -644,6 +737,65 @@
         "nextPageToken": {
           "description": "The next page token. Is empty if the last page is reached.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateOperationMetadata": {
+      "description": "Operation metadata to give request details of ApplyWorkloadUpdate.",
+      "id": "GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateOperationMetadata",
+      "properties": {
+        "action": {
+          "description": "Optional. The time the operation was created.",
+          "enum": [
+            "WORKLOAD_UPDATE_ACTION_UNSPECIFIED",
+            "APPLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified value.",
+            "The update is applied."
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Optional. Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateName": {
+          "description": "Required. The resource name of the update",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateRequest": {
+      "description": "Request to apply update to a workload.",
+      "id": "GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateRequest",
+      "properties": {
+        "action": {
+          "description": "The action to be performed on the update.",
+          "enum": [
+            "WORKLOAD_UPDATE_ACTION_UNSPECIFIED",
+            "APPLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified value.",
+            "The update is applied."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateResponse": {
+      "description": "Response for ApplyWorkloadUpdate endpoint.",
+      "id": "GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateResponse",
+      "properties": {
+        "appliedUpdate": {
+          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadUpdate",
+          "description": "The update that was applied."
         }
       },
       "type": "object"
@@ -775,6 +927,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1EnableComplianceUpdatesResponse": {
+      "description": "Response for EnableComplianceUpdates endpoint.",
+      "id": "GoogleCloudAssuredworkloadsV1EnableComplianceUpdatesResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse": {
       "description": "Response for EnableResourceMonitoring endpoint.",
       "id": "GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse",
@@ -793,6 +951,24 @@
           "description": "List of Violations under a Workload.",
           "items": {
             "$ref": "GoogleCloudAssuredworkloadsV1Violation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1ListWorkloadUpdatesResponse": {
+      "description": "Response of listing the compliance updates per workload with pagination.",
+      "id": "GoogleCloudAssuredworkloadsV1ListWorkloadUpdatesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The next page token. Return empty if reached the last page.",
+          "type": "string"
+        },
+        "workloadUpdates": {
+          "description": "The list of workload updates for a given workload.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1WorkloadUpdate"
           },
           "type": "array"
         }
@@ -888,6 +1064,92 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1OrgPolicy": {
+      "description": "This assured workload service object is used to represent the org policy attached to a resource. It servces the same purpose as the orgpolicy.v2.Policy object but with functionality that is limited to what is supported by Assured Workloads(e.g. only one rule under one OrgPolicy object, no conditions, etc).",
+      "id": "GoogleCloudAssuredworkloadsV1OrgPolicy",
+      "properties": {
+        "constraint": {
+          "description": "The constraint name of the OrgPolicy. e.g. \"constraints/gcp.resourceLocations\".",
+          "type": "string"
+        },
+        "inherit": {
+          "description": "If `inherit` is true, policy rules of the lowest ancestor in the resource hierarchy chain are inherited. If it is false, policy rules are not inherited.",
+          "type": "boolean"
+        },
+        "reset": {
+          "description": "Ignores policies set above this resource and restores to the `constraint_default` value. `reset` can only be true when `rules` is empty and `inherit` is false.",
+          "type": "boolean"
+        },
+        "resource": {
+          "description": "Resource that the OrgPolicy attaches to. Format: folders/123\" projects/123\".",
+          "type": "string"
+        },
+        "rule": {
+          "$ref": "GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRule",
+          "description": "The rule of the OrgPolicy."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRule": {
+      "description": "A rule used to express this policy.",
+      "id": "GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRule",
+      "properties": {
+        "allowAll": {
+          "description": "ListPolicy only when all values are allowed.",
+          "type": "boolean"
+        },
+        "denyAll": {
+          "description": "ListPolicy only when all values are denied.",
+          "type": "boolean"
+        },
+        "enforce": {
+          "description": "BooleanPolicy only.",
+          "type": "boolean"
+        },
+        "values": {
+          "$ref": "GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRuleStringValues",
+          "description": "ListPolicy only when custom values are specified."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRuleStringValues": {
+      "description": "The values allowed for a ListPolicy.",
+      "id": "GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRuleStringValues",
+      "properties": {
+        "allowedValues": {
+          "description": "List of values allowed at this resource.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deniedValues": {
+          "description": "List of values denied at this resource.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1OrgPolicyUpdate": {
+      "description": "Represents an update for an org policy control applied on an Assured Workload resource. The inherited org policy is not considered.",
+      "id": "GoogleCloudAssuredworkloadsV1OrgPolicyUpdate",
+      "properties": {
+        "appliedPolicy": {
+          "$ref": "GoogleCloudAssuredworkloadsV1OrgPolicy",
+          "description": "The org policy currently applied on the assured workload resource."
+        },
+        "suggestedPolicy": {
+          "$ref": "GoogleCloudAssuredworkloadsV1OrgPolicy",
+          "description": "The suggested org policy that replaces the applied policy."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest": {
       "description": "Request for restricting list of available resources in Workload environment.",
       "id": "GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest",
@@ -915,6 +1177,17 @@
       "description": "Response for restricting the list of allowed resources.",
       "id": "GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1UpdateDetails": {
+      "description": "The details of the update.",
+      "id": "GoogleCloudAssuredworkloadsV1UpdateDetails",
+      "properties": {
+        "orgPolicyUpdate": {
+          "$ref": "GoogleCloudAssuredworkloadsV1OrgPolicyUpdate",
+          "description": "Update to one org policy, e.g. gcp.resourceLocation."
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1Violation": {
@@ -1658,6 +1931,49 @@
             "SAA enrollment comopleted."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1WorkloadUpdate": {
+      "description": "A workload update is a change to the workload's compliance configuration.",
+      "id": "GoogleCloudAssuredworkloadsV1WorkloadUpdate",
+      "properties": {
+        "createTime": {
+          "description": "The time the update was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "details": {
+          "$ref": "GoogleCloudAssuredworkloadsV1UpdateDetails",
+          "description": "The details of the update."
+        },
+        "name": {
+          "description": "Output only. Immutable. Identifier. Resource name of the WorkloadUpdate. Format: organizations/{organization}/locations/{location}/workloads/{workload}/updates/{update}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the update.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "AVAILABLE",
+            "APPLIED",
+            "WITHDRAWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "The update is available to be applied.",
+            "The update has been applied.",
+            "The update has been withdrawn by the service."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The time the update was last updated.",
+          "format": "google-datetime",
           "type": "string"
         }
       },

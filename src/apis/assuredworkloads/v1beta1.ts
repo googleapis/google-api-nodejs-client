@@ -2084,7 +2084,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     assetTypes?: string[];
     /**
-     * Optional. Page size. If a value is not specified, the default value of 10 is used.
+     * Optional. Page size. If a value is not specified, the default value of 10 is used. The maximum value is 50.
      */
     pageSize?: number;
     /**
