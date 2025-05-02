@@ -400,7 +400,7 @@
       }
     }
   },
-  "revision": "20250122",
+  "revision": "20250409",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "AmpInspectionResult": {
@@ -1130,12 +1130,14 @@
           "enum": [
             "DATA_STATE_UNSPECIFIED",
             "FINAL",
-            "ALL"
+            "ALL",
+            "HOURLY_ALL"
           ],
           "enumDescriptions": [
             "Default value, should not be used.",
             "Include full final data only, without partial.",
-            "Include all data, full and partial."
+            "Include all data, full and partial.",
+            "Include hourly data, full and partial. Required when grouping by HOUR."
           ],
           "type": "string"
         },
@@ -1155,15 +1157,17 @@
               "PAGE",
               "COUNTRY",
               "DEVICE",
-              "SEARCH_APPEARANCE"
+              "SEARCH_APPEARANCE",
+              "HOUR"
             ],
             "enumDescriptions": [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
+              "Group by date, which is returned in YYYY-MM-DD format, in PT time (UTC - 7:00/8:00).",
+              "Group by query string.",
+              "Group by page, a URI string.",
+              "Group by country, specified by 3-letter country code ([ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)).",
+              "Group by device type (DESKTOP, MOBILE and TABLET).",
+              "Group by search result feature.",
+              "Group by hour, which is returned in YYYY-MM-DDThh:mm:ss[+|-]hh:mm format (ISO-8601 extended offset date-time format) in PT time (UTC - 7:00/8:00). Data is available up to 10 days. Requires setting the dataState to HOURLY_ALL."
             ],
             "type": "string"
           },

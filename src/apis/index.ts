@@ -494,6 +494,10 @@ import {
 import {VERSIONS as notebooksVersions, notebooks} from './notebooks';
 import {VERSIONS as oauth2Versions, oauth2} from './oauth2';
 import {
+  VERSIONS as observabilityVersions,
+  observability,
+} from './observability';
+import {
   VERSIONS as ondemandscanningVersions,
   ondemandscanning,
 } from './ondemandscanning';
@@ -653,6 +657,10 @@ import {VERSIONS as speechVersions, speech} from './speech';
 import {VERSIONS as sqlVersions, sql} from './sql';
 import {VERSIONS as sqladminVersions, sqladmin} from './sqladmin';
 import {VERSIONS as storageVersions, storage} from './storage';
+import {
+  VERSIONS as storagebatchoperationsVersions,
+  storagebatchoperations,
+} from './storagebatchoperations';
 import {
   VERSIONS as storagetransferVersions,
   storagetransfer,
@@ -945,6 +953,7 @@ export const APIS: APIList = {
   networkservices: networkservicesVersions,
   notebooks: notebooksVersions,
   oauth2: oauth2Versions,
+  observability: observabilityVersions,
   ondemandscanning: ondemandscanningVersions,
   oracledatabase: oracledatabaseVersions,
   orgpolicy: orgpolicyVersions,
@@ -1009,6 +1018,7 @@ export const APIS: APIList = {
   sql: sqlVersions,
   sqladmin: sqladminVersions,
   storage: storageVersions,
+  storagebatchoperations: storagebatchoperationsVersions,
   storagetransfer: storagetransferVersions,
   streetviewpublish: streetviewpublishVersions,
   sts: stsVersions,
@@ -1255,6 +1265,7 @@ export class GeneratedAPIs {
   networkservices = networkservices;
   notebooks = notebooks;
   oauth2 = oauth2;
+  observability = observability;
   ondemandscanning = ondemandscanning;
   oracledatabase = oracledatabase;
   orgpolicy = orgpolicy;
@@ -1319,6 +1330,7 @@ export class GeneratedAPIs {
   sql = sql;
   sqladmin = sqladmin;
   storage = storage;
+  storagebatchoperations = storagebatchoperations;
   storagetransfer = storagetransfer;
   streetviewpublish = streetviewpublish;
   sts = sts;

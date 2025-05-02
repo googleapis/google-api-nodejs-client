@@ -632,7 +632,7 @@
       }
     }
   },
-  "revision": "20250301",
+  "revision": "20250426",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -1056,12 +1056,14 @@
             "enum": [
               "LOGGABLE_ACTION_STATE_UNSPECIFIED",
               "SUCCEEDED",
-              "FAILED"
+              "FAILED",
+              "SKIPPED"
             ],
             "enumDescriptions": [
               "Default value. This value is unused.",
               "`LoggableAction` completed successfully. `SUCCEEDED` actions are logged as INFO.",
-              "`LoggableAction` terminated in an error state. `FAILED` actions are logged as ERROR."
+              "`LoggableAction` terminated in an error state. `FAILED` actions are logged as ERROR.",
+              "The `COPY` action was skipped for this file. Only supported for agent-based transfers. `SKIPPED` actions are logged as INFO."
             ],
             "type": "string"
           },

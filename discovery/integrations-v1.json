@@ -824,6 +824,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "toggleHttp": {
+                  "description": "Enable/Disable http call for provisioned client",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clients:toggleHttp",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.clients.toggleHttp",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Required: The ID of the GCP Project to be provisioned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/clients:toggleHttp",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaToggleHttpRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -1090,11 +1118,6 @@
                     "name"
                   ],
                   "parameters": {
-                    "GCPCloudEventsMode": {
-                      "description": "Optional. LINT: LEGACY_NAMES The query parameter value for __GCP_CloudEventsMode, set by the Eventarc service when configuring triggers.",
-                      "location": "query",
-                      "type": "string"
-                    },
                     "name": {
                       "description": "Required. The integration resource name. Format: projects/{gcp_project_id}/locations/{location}/integrations/{integration_id}",
                       "location": "path",
@@ -1206,6 +1229,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "enableNaturalLanguageQueryUnderstanding": {
+                      "description": "Optional. Whether to enable natural language query understanding.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "filter": {
                       "description": "Optional. The pre-filter to be applied to the search. This should follow the expressions defined in https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata. For example, \"status:ANY(\"ACTIVE\")\" will return all the resources whose status contains the \"ACTIVE\".",
                       "location": "query",
@@ -4546,7 +4574,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250423",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -9883,7 +9911,7 @@
       "type": "object"
     },
     "GoogleCloudConnectorsV1EventingConfig": {
-      "description": "Eventing Configuration of a connection",
+      "description": "Eventing Configuration of a connection next: 18",
       "id": "GoogleCloudConnectorsV1EventingConfig",
       "properties": {
         "additionalVariables": {
@@ -9928,6 +9956,10 @@
         "registrationDestinationConfig": {
           "$ref": "GoogleCloudConnectorsV1DestinationConfig",
           "description": "Optional. Registration endpoint for auto registration."
+        },
+        "sslConfig": {
+          "$ref": "GoogleCloudConnectorsV1SslConfig",
+          "description": "Optional. Ssl config of a connection"
         }
       },
       "type": "object"
@@ -10526,11 +10558,12 @@
           "type": "string"
         },
         "reason": {
-          "description": "The reason / details of the current status.",
+          "description": "Output only. The reason / details of the current status.",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "The status of the auth config.",
+          "description": "Output only. The status of the auth config.",
           "enum": [
             "STATE_UNSPECIFIED",
             "VALID",
@@ -10549,6 +10582,7 @@
             "Auth config unauthorized.",
             "Auth config not supported."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {
@@ -10754,6 +10788,10 @@
           "description": "Description of what the client is used for",
           "type": "string"
         },
+        "enableHttpCall": {
+          "description": "Optional. Indicates the client enables making HTTP call.",
+          "type": "boolean"
+        },
         "enableInternalIp": {
           "description": "Optional. Indicates the client enables internal IP feature, this is applicable for internal clients only.",
           "type": "boolean"
@@ -10958,6 +10996,20 @@
         },
         "functionRegion": {
           "description": "The function region of CF to be created",
+          "type": "string"
+        },
+        "gcfApiVersion": {
+          "description": "Optional. The api version of CF to be created",
+          "enum": [
+            "GCF_API_VERSION_UNSPECIFIED",
+            "API_VERSION_V1",
+            "API_VERSION_V2"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "V1 API version.",
+            "V2 API version."
+          ],
           "type": "string"
         },
         "projectId": {
@@ -13111,6 +13163,10 @@
           "description": "Optional. Indicates if sample workflow should be created along with provisioning",
           "type": "boolean"
         },
+        "enableHttpCall": {
+          "description": "Optional. Indicates if the client should be allowed to make HTTP calls.",
+          "type": "boolean"
+        },
         "provisionGmek": {
           "deprecated": true,
           "description": "Optional. Deprecated. Indicates provision with GMEK or CMEK. This field is deprecated and the provision would always be GMEK if cloud_kms_config is not present in the request.",
@@ -13493,11 +13549,13 @@
           "type": "string"
         },
         "isActive": {
-          "description": "Indicated if a channel has any active integrations referencing it. Set to false when the channel is created, and set to true if there is any integration published with the channel configured in it.",
+          "description": "Output only. Indicated if a channel has any active integrations referencing it. Set to false when the channel is created, and set to true if there is any integration published with the channel configured in it.",
+          "readOnly": true,
           "type": "boolean"
         },
         "lastReplayId": {
-          "description": "Last sfdc messsage replay id for channel",
+          "description": "Output only. Last sfdc messsage replay id for channel",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -13549,7 +13607,7 @@
           "type": "string"
         },
         "serviceAuthority": {
-          "description": "URL used for API calls after authentication (the login authority is configured within the referenced AuthConfig).",
+          "description": "Optional. URL used for API calls after authentication (the login authority is configured within the referenced AuthConfig).",
           "type": "string"
         },
         "sfdcOrgId": {
@@ -14333,6 +14391,17 @@
         "taskNumber": {
           "description": "Required. This defines in the test case, the task in integration which will be mocked by this test task config",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaToggleHttpRequest": {
+      "description": "Request to enable/disable http call for a provisioned client",
+      "id": "GoogleCloudIntegrationsV1alphaToggleHttpRequest",
+      "properties": {
+        "enableHttpCall": {
+          "description": "Required. REQUIRED: True if http call feature should be turned on for this region",
+          "type": "boolean"
         }
       },
       "type": "object"

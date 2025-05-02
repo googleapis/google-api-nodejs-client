@@ -109,7 +109,7 @@
     {
       "description": "Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.",
       "discoveryRestUrl": "https://admin.googleapis.com/$discovery/rest?version=datatransfer_v1",
-      "documentationLink": "https://developers.google.com/admin-sdk/",
+      "documentationLink": "https://developers.google.com/workspace/admin/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -124,7 +124,7 @@
     {
       "description": "Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.",
       "discoveryRestUrl": "https://admin.googleapis.com/$discovery/rest?version=directory_v1",
-      "documentationLink": "https://developers.google.com/admin-sdk/",
+      "documentationLink": "https://developers.google.com/workspace/admin/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -139,7 +139,7 @@
     {
       "description": "Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.",
       "discoveryRestUrl": "https://admin.googleapis.com/$discovery/rest?version=reports_v1",
-      "documentationLink": "https://developers.google.com/admin-sdk/",
+      "documentationLink": "https://developers.google.com/workspace/admin/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -289,7 +289,7 @@
     {
       "description": "Manages alerts on issues affecting your domain. Note: The current version of this API (v1beta1) is available to all Google Workspace customers.",
       "discoveryRestUrl": "https://alertcenter.googleapis.com/$discovery/rest?version=v1beta1",
-      "documentationLink": "https://developers.google.com/admin-sdk/alertcenter/",
+      "documentationLink": "https://developers.google.com/workspace/admin/alertcenter/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -691,7 +691,7 @@
       "version": "v1alpha1"
     },
     {
-      "description": "Places Insights API.",
+      "description": "Places Aggregate API.",
       "discoveryRestUrl": "https://areainsights.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://g3doc.corp.google.com/geo/platform/area_insights/README.md?cl=head",
       "icons": {
@@ -702,7 +702,7 @@
       "kind": "discovery#directoryItem",
       "name": "areainsights",
       "preferred": true,
-      "title": "Places Insights API",
+      "title": "Places Aggregate API",
       "version": "v1"
     },
     {
@@ -1263,7 +1263,7 @@
     {
       "description": "Manages classes, rosters, and invitations in Google Classroom.",
       "discoveryRestUrl": "https://classroom.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://developers.google.com/classroom",
+      "documentationLink": "https://developers.google.com/workspace/classroom",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -1713,7 +1713,7 @@
     {
       "description": "Cloud Search provides cloud-based search capabilities over Google Workspace data. The Cloud Search API allows indexing of non-Google Workspace data into Cloud Search.",
       "discoveryRestUrl": "https://cloudsearch.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://developers.google.com/cloud-search/docs/guides/",
+      "documentationLink": "https://developers.google.com/workspace/cloud-search/docs/guides/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2766,7 +2766,7 @@
     {
       "description": "Reads and writes Google Docs documents.",
       "discoveryRestUrl": "https://docs.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://developers.google.com/docs/",
+      "documentationLink": "https://developers.google.com/workspace/docs/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2918,7 +2918,7 @@
     {
       "description": "Provides a historical view of activity in Google Drive.",
       "discoveryRestUrl": "https://driveactivity.googleapis.com/$discovery/rest?version=v2",
-      "documentationLink": "https://developers.google.com/drive/activity/",
+      "documentationLink": "https://developers.google.com/workspace/drive/activity/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2933,7 +2933,7 @@
     {
       "description": "An API for managing Drive Labels",
       "discoveryRestUrl": "https://drivelabels.googleapis.com/$discovery/rest?version=v2beta",
-      "documentationLink": "https://developers.google.com/drive/labels",
+      "documentationLink": "https://developers.google.com/workspace/drive/labels",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2948,7 +2948,7 @@
     {
       "description": "An API for managing Drive Labels",
       "discoveryRestUrl": "https://drivelabels.googleapis.com/$discovery/rest?version=v2",
-      "documentationLink": "https://developers.google.com/drive/labels",
+      "documentationLink": "https://developers.google.com/workspace/drive/labels",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3166,9 +3166,24 @@
       "id": "firebasedataconnect:v1beta",
       "kind": "discovery#directoryItem",
       "name": "firebasedataconnect",
-      "preferred": true,
+      "preferred": false,
       "title": "Firebase Data Connect API",
       "version": "v1beta"
+    },
+    {
+      "description": "Firebase Data Connect is a relational database service for mobile and web apps that lets you build and scale using a fully-managed PostgreSQL database powered by Cloud SQL. The REST API lets developers manage the connections to their database, change the schema of their database, and query the database.",
+      "discoveryRestUrl": "https://firebasedataconnect.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://firebase.google.com/docs/data-connect",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "firebasedataconnect:v1",
+      "kind": "discovery#directoryItem",
+      "name": "firebasedataconnect",
+      "preferred": true,
+      "title": "Firebase Data Connect API",
+      "version": "v1"
     },
     {
       "description": "Programmatically creates and manages Firebase Dynamic Links.",
@@ -3377,7 +3392,7 @@
       "kind": "discovery#directoryItem",
       "name": "games",
       "preferred": true,
-      "title": "Google Play Game Services",
+      "title": "Google Play Games Services API",
       "version": "v1"
     },
     {
@@ -3392,7 +3407,7 @@
       "kind": "discovery#directoryItem",
       "name": "gamesConfiguration",
       "preferred": true,
-      "title": "Google Play Game Services Publishing API",
+      "title": "Google Play Games Services Publishing API",
       "version": "v1configuration"
     },
     {
@@ -3407,7 +3422,7 @@
       "kind": "discovery#directoryItem",
       "name": "gamesManagement",
       "preferred": true,
-      "title": "Google Play Game Management",
+      "title": "Google Play Games Services Management API",
       "version": "v1management"
     },
     {
@@ -3548,7 +3563,7 @@
     {
       "description": "The Gmail API lets you view and manage Gmail mailbox data like threads, messages, and labels.",
       "discoveryRestUrl": "https://gmail.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://developers.google.com/gmail/api/",
+      "documentationLink": "https://developers.google.com/workspace/gmail/api/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3563,7 +3578,7 @@
     {
       "description": "The Postmaster Tools API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.",
       "discoveryRestUrl": "https://gmailpostmastertools.googleapis.com/$discovery/rest?version=v1beta1",
-      "documentationLink": "https://developers.google.com/gmail/postmaster",
+      "documentationLink": "https://developers.google.com/workspace/gmail/postmaster",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3578,7 +3593,7 @@
     {
       "description": "The Postmaster Tools API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.",
       "discoveryRestUrl": "https://gmailpostmastertools.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://developers.google.com/gmail/postmaster",
+      "documentationLink": "https://developers.google.com/workspace/gmail/postmaster",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3893,7 +3908,7 @@
     {
       "description": "The Google Keep API is used in an enterprise environment to manage Google Keep content and resolve issues identified by cloud security software.",
       "discoveryRestUrl": "https://keep.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://developers.google.com/keep/api",
+      "documentationLink": "https://developers.google.com/workspace/keep/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3998,7 +4013,7 @@
     {
       "description": "The Google Enterprise License Manager API lets you manage Google Workspace and related licenses for all users of a customer that you manage.",
       "discoveryRestUrl": "https://licensing.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://developers.google.com/admin-sdk/licensing/",
+      "documentationLink": "https://developers.google.com/workspace/admin/licensing/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4163,7 +4178,7 @@
     {
       "description": "Create and manage meetings in Google Meet.",
       "discoveryRestUrl": "https://meet.googleapis.com/$discovery/rest?version=v2",
-      "documentationLink": "https://developers.google.com/meet/api",
+      "documentationLink": "https://developers.google.com/workspace/meet/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4837,6 +4852,21 @@
       "version": "v2"
     },
     {
+      "description": "",
+      "discoveryRestUrl": "https://observability.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/stackdriver/docs/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "observability:v1",
+      "kind": "discovery#directoryItem",
+      "name": "observability",
+      "preferred": true,
+      "title": "Observability API",
+      "version": "v1"
+    },
+    {
       "description": "A service to scan container images for vulnerabilities.",
       "discoveryRestUrl": "https://ondemandscanning.googleapis.com/$discovery/rest?version=v1beta1",
       "documentationLink": "https://cloud.google.com/container-analysis/docs/on-demand-scanning/",
@@ -4952,9 +4982,24 @@
       "id": "osconfig:v1",
       "kind": "discovery#directoryItem",
       "name": "osconfig",
-      "preferred": true,
+      "preferred": false,
       "title": "OS Config API",
       "version": "v1"
+    },
+    {
+      "description": "OS management tools that can be used for patch management, patch compliance, and configuration management on VM instances.",
+      "discoveryRestUrl": "https://osconfig.googleapis.com/$discovery/rest?version=v2",
+      "documentationLink": "https://cloud.google.com/compute/docs/osconfig/rest",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "osconfig:v2",
+      "kind": "discovery#directoryItem",
+      "name": "osconfig",
+      "preferred": true,
+      "title": "OS Config API",
+      "version": "v2"
     },
     {
       "description": "You can use OS Login to manage access to your VM instances using IAM roles.",
@@ -6069,7 +6114,7 @@
     {
       "description": "Reads and writes Google Sheets.",
       "discoveryRestUrl": "https://sheets.googleapis.com/$discovery/rest?version=v4",
-      "documentationLink": "https://developers.google.com/sheets/",
+      "documentationLink": "https://developers.google.com/workspace/sheets/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -6099,7 +6144,7 @@
     {
       "description": "Reads and writes Google Slides presentations.",
       "discoveryRestUrl": "https://slides.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://developers.google.com/slides/",
+      "documentationLink": "https://developers.google.com/workspace/slides/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -6229,6 +6274,21 @@
       "name": "storage",
       "preferred": true,
       "title": "Cloud Storage API",
+      "version": "v1"
+    },
+    {
+      "description": "",
+      "discoveryRestUrl": "https://storagebatchoperations.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/storage/docs/batch-operations/overview",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "storagebatchoperations:v1",
+      "kind": "discovery#directoryItem",
+      "name": "storagebatchoperations",
+      "preferred": true,
+      "title": "Storage Batch Operations API",
       "version": "v1"
     },
     {
