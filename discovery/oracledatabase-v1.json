@@ -143,6 +143,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -540,6 +546,34 @@
                   "path": "v1/{+name}:stop",
                   "request": {
                     "$ref": "StopAutonomousDatabaseRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "switchover": {
+                  "description": "Initiates a switchover of specified autonomous deatabase to the associated peer database.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autonomousDatabases/{autonomousDatabasesId}:switchover",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.autonomousDatabases.switchover",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Autonomous Database in the following format: projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autonomousDatabases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:switchover",
+                  "request": {
+                    "$ref": "SwitchoverAutonomousDatabaseRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -1203,7 +1237,7 @@
       }
     }
   },
-  "revision": "20250312",
+  "revision": "20250416",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -1250,6 +1284,14 @@
           "description": "Optional. The name of the Autonomous Database. The database name must be unique in the project. The name must begin with a letter and can contain a maximum of 30 alphanumeric characters.",
           "type": "string"
         },
+        "disasterRecoverySupportedLocations": {
+          "description": "Output only. List of supported GCP region to clone the Autonomous Database for disaster recovery. Format: `project/{project}/locations/{location}`.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "displayName": {
           "description": "Optional. The display name for the Autonomous Database. The name does not have to be unique within your project.",
           "type": "string"
@@ -1274,9 +1316,21 @@
           "description": "Optional. The name of the VPC network used by the Autonomous Database in the following format: projects/{project}/global/networks/{network}",
           "type": "string"
         },
+        "peerAutonomousDatabases": {
+          "description": "Output only. The peer Autonomous Database names of the given Autonomous Database.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "properties": {
           "$ref": "AutonomousDatabaseProperties",
           "description": "Optional. The properties of the Autonomous Database."
+        },
+        "sourceConfig": {
+          "$ref": "SourceConfig",
+          "description": "Optional. The source Autonomous Database configuration for the standby Autonomous Database. The source Autonomous Database is configured while creating the Peer Autonomous Database and can't be updated after creation."
         }
       },
       "type": "object"
@@ -1599,6 +1653,13 @@
           "readOnly": true,
           "type": "number"
         },
+        "allowlistedIps": {
+          "description": "Optional. The list of allowlisted IP addresses for the Autonomous Database.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "apexDetails": {
           "$ref": "AutonomousDatabaseApex",
           "description": "Output only. The details for the Oracle APEX Application Development.",
@@ -1657,6 +1718,12 @@
             "$ref": "CustomerContact"
           },
           "type": "array"
+        },
+        "dataGuardRoleChangedTime": {
+          "description": "Output only. The date and time the Autonomous Data Guard role was changed for the standby Autonomous Database.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "dataSafeState": {
           "description": "Output only. The current state of the Data Safe registration for the Autonomous Database.",
@@ -1746,6 +1813,12 @@
             "Autonomous JSON Database.",
             "Autonomous Database with the Oracle APEX Application Development workload type."
           ],
+          "type": "string"
+        },
+        "disasterRecoveryRoleChangedTime": {
+          "description": "Output only. The date and time the Disaster Recovery role was changed for the standby Autonomous Database.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "failedDataRecoveryDuration": {
@@ -2320,6 +2393,21 @@
           "format": "int32",
           "type": "integer"
         },
+        "computeModel": {
+          "description": "Output only. The compute model of the Exadata Infrastructure.",
+          "enum": [
+            "COMPUTE_MODEL_UNSPECIFIED",
+            "COMPUTE_MODEL_ECPU",
+            "COMPUTE_MODEL_OCPU"
+          ],
+          "enumDescriptions": [
+            "Unspecified compute model.",
+            "Abstract measure of compute resources. ECPUs are based on the number of cores elastically allocated from a pool of compute and storage servers.",
+            "Physical measure of compute resources. OCPUs are based on the physical core of a processor."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "cpuCount": {
           "description": "Output only. The number of enabled CPU cores.",
           "format": "int32",
@@ -2338,6 +2426,11 @@
           "format": "double",
           "readOnly": true,
           "type": "number"
+        },
+        "databaseServerType": {
+          "description": "Output only. The database server type of the Exadata Infrastructure.",
+          "readOnly": true,
+          "type": "string"
         },
         "dbNodeStorageSizeGb": {
           "description": "Output only. The local node storage allocated in GBs.",
@@ -2455,6 +2548,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "storageServerType": {
+          "description": "Output only. The storage server type of the Exadata Infrastructure.",
+          "readOnly": true,
+          "type": "string"
+        },
         "storageServerVersion": {
           "description": "Output only. The software version of the storage servers (cells) in the Exadata Infrastructure.",
           "readOnly": true,
@@ -2473,11 +2571,11 @@
       "id": "CloudVmCluster",
       "properties": {
         "backupSubnetCidr": {
-          "description": "Required. CIDR range of the backup subnet.",
+          "description": "Optional. CIDR range of the backup subnet.",
           "type": "string"
         },
         "cidr": {
-          "description": "Required. Network settings. CIDR to use for cluster IP allocation.",
+          "description": "Optional. Network settings. CIDR to use for cluster IP allocation.",
           "type": "string"
         },
         "createTime": {
@@ -2511,7 +2609,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Required. The name of the VPC network. Format: projects/{project}/global/networks/{network}",
+          "description": "Optional. The name of the VPC network. Format: projects/{project}/global/networks/{network}",
           "type": "string"
         },
         "properties": {
@@ -2531,6 +2629,21 @@
         },
         "compartmentId": {
           "description": "Output only. Compartment ID of cluster.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "computeModel": {
+          "description": "Output only. The compute model of the VM Cluster.",
+          "enum": [
+            "COMPUTE_MODEL_UNSPECIFIED",
+            "COMPUTE_MODEL_ECPU",
+            "COMPUTE_MODEL_OCPU"
+          ],
+          "enumDescriptions": [
+            "Unspecified compute model.",
+            "Abstract measure of compute resources. ECPUs are based on the number of cores elastically allocated from a pool of compute and storage servers.",
+            "Physical measure of compute resources. OCPUs are based on the physical core of a processor."
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -3783,6 +3896,21 @@
       },
       "type": "object"
     },
+    "SourceConfig": {
+      "description": "The source configuration for the standby Autonomnous Database.",
+      "id": "SourceConfig",
+      "properties": {
+        "automaticBackupsReplicationEnabled": {
+          "description": "Optional. This field specifies if the replication of automatic backups is enabled when creating a Data Guard.",
+          "type": "boolean"
+        },
+        "autonomousDatabase": {
+          "description": "Optional. The name of the primary Autonomous Database that is used to create a Peer Autonomous Database from a source.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StartAutonomousDatabaseRequest": {
       "description": "The request for `AutonomousDatabase.Start`.",
       "id": "StartAutonomousDatabaseRequest",
@@ -3820,6 +3948,17 @@
       "description": "The request for `AutonomousDatabase.Stop`.",
       "id": "StopAutonomousDatabaseRequest",
       "properties": {},
+      "type": "object"
+    },
+    "SwitchoverAutonomousDatabaseRequest": {
+      "description": "The request for `AutonomousDatabase.Switchover`.",
+      "id": "SwitchoverAutonomousDatabaseRequest",
+      "properties": {
+        "peerAutonomousDatabase": {
+          "description": "Required. The peer database name to switch over to.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "TimeOfDay": {

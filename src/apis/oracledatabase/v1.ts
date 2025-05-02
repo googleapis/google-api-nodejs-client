@@ -162,6 +162,10 @@ export namespace oracledatabase_v1 {
      */
     database?: string | null;
     /**
+     * Output only. List of supported GCP region to clone the Autonomous Database for disaster recovery. Format: `project/{project\}/locations/{location\}`.
+     */
+    disasterRecoverySupportedLocations?: string[] | null;
+    /**
      * Optional. The display name for the Autonomous Database. The name does not have to be unique within your project.
      */
     displayName?: string | null;
@@ -182,9 +186,17 @@ export namespace oracledatabase_v1 {
      */
     network?: string | null;
     /**
+     * Output only. The peer Autonomous Database names of the given Autonomous Database.
+     */
+    peerAutonomousDatabases?: string[] | null;
+    /**
      * Optional. The properties of the Autonomous Database.
      */
     properties?: Schema$AutonomousDatabaseProperties;
+    /**
+     * Optional. The source Autonomous Database configuration for the standby Autonomous Database. The source Autonomous Database is configured while creating the Peer Autonomous Database and can't be updated after creation.
+     */
+    sourceConfig?: Schema$SourceConfig;
   }
   /**
    * Oracle APEX Application Development. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/AutonomousDatabaseApex
@@ -405,6 +417,10 @@ export namespace oracledatabase_v1 {
      */
     allocatedStorageSizeTb?: number | null;
     /**
+     * Optional. The list of allowlisted IP addresses for the Autonomous Database.
+     */
+    allowlistedIps?: string[] | null;
+    /**
      * Output only. The details for the Oracle APEX Application Development.
      */
     apexDetails?: Schema$AutonomousDatabaseApex;
@@ -453,6 +469,10 @@ export namespace oracledatabase_v1 {
      */
     databaseManagementState?: string | null;
     /**
+     * Output only. The date and time the Autonomous Data Guard role was changed for the standby Autonomous Database.
+     */
+    dataGuardRoleChangedTime?: string | null;
+    /**
      * Output only. The current state of the Data Safe registration for the Autonomous Database.
      */
     dataSafeState?: string | null;
@@ -476,6 +496,10 @@ export namespace oracledatabase_v1 {
      * Required. The workload type of the Autonomous Database.
      */
     dbWorkload?: string | null;
+    /**
+     * Output only. The date and time the Disaster Recovery role was changed for the standby Autonomous Database.
+     */
+    disasterRecoveryRoleChangedTime?: string | null;
     /**
      * Output only. This field indicates the number of seconds of data loss during a Data Guard failover.
      */
@@ -750,6 +774,10 @@ export namespace oracledatabase_v1 {
      */
     computeCount?: number | null;
     /**
+     * Output only. The compute model of the Exadata Infrastructure.
+     */
+    computeModel?: string | null;
+    /**
      * Output only. The number of enabled CPU cores.
      */
     cpuCount?: number | null;
@@ -757,6 +785,10 @@ export namespace oracledatabase_v1 {
      * Optional. The list of customer contacts.
      */
     customerContacts?: Schema$CustomerContact[];
+    /**
+     * Output only. The database server type of the Exadata Infrastructure.
+     */
+    databaseServerType?: string | null;
     /**
      * Output only. Size, in terabytes, of the DATA disk group.
      */
@@ -834,6 +866,10 @@ export namespace oracledatabase_v1 {
      */
     storageCount?: number | null;
     /**
+     * Output only. The storage server type of the Exadata Infrastructure.
+     */
+    storageServerType?: string | null;
+    /**
      * Output only. The software version of the storage servers (cells) in the Exadata Infrastructure.
      */
     storageServerVersion?: string | null;
@@ -847,11 +883,11 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$CloudVmCluster {
     /**
-     * Required. CIDR range of the backup subnet.
+     * Optional. CIDR range of the backup subnet.
      */
     backupSubnetCidr?: string | null;
     /**
-     * Required. Network settings. CIDR to use for cluster IP allocation.
+     * Optional. Network settings. CIDR to use for cluster IP allocation.
      */
     cidr?: string | null;
     /**
@@ -879,7 +915,7 @@ export namespace oracledatabase_v1 {
      */
     name?: string | null;
     /**
-     * Required. The name of the VPC network. Format: projects/{project\}/global/networks/{network\}
+     * Optional. The name of the VPC network. Format: projects/{project\}/global/networks/{network\}
      */
     network?: string | null;
     /**
@@ -899,6 +935,10 @@ export namespace oracledatabase_v1 {
      * Output only. Compartment ID of cluster.
      */
     compartmentId?: string | null;
+    /**
+     * Output only. The compute model of the VM Cluster.
+     */
+    computeModel?: string | null;
     /**
      * Required. Number of enabled CPU cores.
      */
@@ -1653,6 +1693,19 @@ export namespace oracledatabase_v1 {
     stopTime?: Schema$TimeOfDay;
   }
   /**
+   * The source configuration for the standby Autonomnous Database.
+   */
+  export interface Schema$SourceConfig {
+    /**
+     * Optional. This field specifies if the replication of automatic backups is enabled when creating a Data Guard.
+     */
+    automaticBackupsReplicationEnabled?: boolean | null;
+    /**
+     * Optional. The name of the primary Autonomous Database that is used to create a Peer Autonomous Database from a source.
+     */
+    autonomousDatabase?: string | null;
+  }
+  /**
    * The request for `AutonomousDatabase.Start`.
    */
   export interface Schema$StartAutonomousDatabaseRequest {}
@@ -1677,6 +1730,15 @@ export namespace oracledatabase_v1 {
    * The request for `AutonomousDatabase.Stop`.
    */
   export interface Schema$StopAutonomousDatabaseRequest {}
+  /**
+   * The request for `AutonomousDatabase.Switchover`.
+   */
+  export interface Schema$SwitchoverAutonomousDatabaseRequest {
+    /**
+     * Required. The peer database name to switch over to.
+     */
+    peerAutonomousDatabase?: string | null;
+  }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
    */
@@ -1956,6 +2018,10 @@ export namespace oracledatabase_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
@@ -3049,6 +3115,96 @@ export namespace oracledatabase_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Initiates a switchover of specified autonomous deatabase to the associated peer database.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    switchover(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Switchover,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    switchover(
+      params?: Params$Resource$Projects$Locations$Autonomousdatabases$Switchover,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    switchover(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Switchover,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    switchover(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Switchover,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    switchover(
+      params: Params$Resource$Projects$Locations$Autonomousdatabases$Switchover,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    switchover(callback: BodyResponseCallback<Schema$Operation>): void;
+    switchover(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autonomousdatabases$Switchover
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autonomousdatabases$Switchover;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Autonomousdatabases$Switchover;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:switchover').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Autonomousdatabases$Create
@@ -3171,6 +3327,18 @@ export namespace oracledatabase_v1 {
      * Request body metadata
      */
     requestBody?: Schema$StopAutonomousDatabaseRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Autonomousdatabases$Switchover
+    extends StandardParameters {
+    /**
+     * Required. The name of the Autonomous Database in the following format: projects/{project\}/locations/{location\}/autonomousDatabases/{autonomous_database\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SwitchoverAutonomousDatabaseRequest;
   }
 
   export class Resource$Projects$Locations$Autonomousdbversions {
