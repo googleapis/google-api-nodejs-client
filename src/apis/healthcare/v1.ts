@@ -673,11 +673,11 @@ export namespace healthcare_v1 {
      */
     name?: string | null;
     /**
-     * Output only. For future use.
+     * Output only. Whether the dataset satisfies zone isolation.
      */
     satisfiesPzi?: boolean | null;
     /**
-     * Output only. For future use.
+     * Output only. Whether the dataset satisfies zone separation.
      */
     satisfiesPzs?: boolean | null;
     /**
@@ -2968,6 +2968,10 @@ export namespace healthcare_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
