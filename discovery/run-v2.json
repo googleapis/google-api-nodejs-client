@@ -1863,7 +1863,7 @@
       }
     }
   },
-  "revision": "20250309",
+  "revision": "20250425",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2068,7 +2068,8 @@
             "WAITING_FOR_OPERATION",
             "IMMEDIATE_RETRY",
             "POSTPONED_RETRY",
-            "INTERNAL"
+            "INTERNAL",
+            "VPC_NETWORK_NOT_FOUND"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -2085,7 +2086,8 @@
             "Waiting for operation to complete.",
             "System will retry immediately.",
             "System will retry later; current attempt failed.",
-            "An internal error occurred. Further information may be in the message."
+            "An internal error occurred. Further information may be in the message.",
+            "User-provided VPC network was not found."
           ],
           "readOnly": true,
           "type": "string"
@@ -3365,6 +3367,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "gpuZonalRedundancyDisabled": {
+          "description": "Optional. Output only. True if GPU zonal redundancy is disabled on this revision.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -3572,6 +3579,10 @@
           ],
           "type": "string"
         },
+        "gpuZonalRedundancyDisabled": {
+          "description": "Optional. True if GPU zonal redundancy is disabled on this revision.",
+          "type": "boolean"
+        },
         "healthCheckDisabled": {
           "description": "Optional. Disables health checking containers during deployment.",
           "type": "boolean"
@@ -3772,6 +3783,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "iapEnabled": {
+          "description": "Optional. IAP settings on the Service.",
+          "type": "boolean"
+        },
         "ingress": {
           "description": "Optional. Provides the ingress settings for this Service. On output, returns the currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.",
           "enum": [
@@ -3791,7 +3806,7 @@
           "type": "string"
         },
         "invokerIamDisabled": {
-          "description": "Optional. Disables IAM permission check for run.routes.invoke for callers of this service. This feature is available by invitation only. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.",
+          "description": "Optional. Disables IAM permission check for run.routes.invoke for callers of this service. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.",
           "type": "boolean"
         },
         "labels": {
@@ -3872,6 +3887,11 @@
           "$ref": "GoogleCloudRunV2Condition",
           "description": "Output only. The Condition of this Service, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
           "readOnly": true
+        },
+        "threatDetectionEnabled": {
+          "description": "Output only. True if Cloud Run Threat Detection monitoring is enabled for the parent project of this Service.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "traffic": {
           "description": "Optional. Specifies how to distribute traffic over a collection of Revisions belonging to the Service. If traffic is empty or not provided, defaults to 100% traffic to the latest `Ready` Revision.",
@@ -4136,6 +4156,11 @@
           "format": "int64",
           "readOnly": true,
           "type": "string"
+        },
+        "gpuZonalRedundancyDisabled": {
+          "description": "Optional. Output only. True if GPU zonal redundancy is disabled on this task.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "index": {
           "description": "Output only. Index of the Task, unique per execution, and beginning at 0.",
@@ -4776,16 +4801,6 @@
         },
         "maxInstanceCount": {
           "description": "Optional. The maximum count of instances distributed among revisions based on the specified instance split percentages.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "maxSurge": {
-          "description": "Optional. A maximum percentage of instances that will be moved in each step of traffic split changes. When set to a positive value, the server will bring up, at most, that percentage of new instances at a time before moving traffic to them. After moving traffic, the server will bring down instances of the old revision. This can reduce a spike of total active instances during changes from one revision to another but specifying how many extra instances can be brought up at a time.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "maxUnavailable": {
-          "description": "Optional. A maximum percentage of instances that may be unavailable during changes from one revision to another. When set to a positive value, the server may bring down instances before bringing up new instances. This can prevent a spike of total active instances during changes from one revision by reducing the pool of instances before bringing up new ones. Some requests may be slow or fail to serve during the transition.",
           "format": "int32",
           "type": "integer"
         },
@@ -5790,7 +5805,7 @@
           "type": "string"
         },
         "path": {
-          "description": "Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.",
+          "description": "Optional. Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.",
           "type": "string"
         },
         "repository": {
@@ -6543,7 +6558,8 @@
       "type": "object"
     },
     "Proto2BridgeMessageSet": {
-      "description": "This is proto2's version of MessageSet.",
+      "deprecated": true,
+      "description": "This is proto2's version of MessageSet. DEPRECATED: DO NOT USE FOR NEW FIELDS. If you are using editions or proto2, please make your own extendable messages for your use case. If you are using proto3, please use `Any` instead. MessageSet was the implementation of extensions for proto1. When proto2 was introduced, extensions were implemented as a first-class feature. This schema for MessageSet was meant to be a \"bridge\" solution to migrate MessageSet-bearing messages from proto1 to proto2. This schema has been open-sourced only to facilitate the migration of Google products with MessageSet-bearing messages to open-source environments.",
       "id": "Proto2BridgeMessageSet",
       "properties": {},
       "type": "object"

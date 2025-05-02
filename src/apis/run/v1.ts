@@ -1361,7 +1361,7 @@ export namespace run_v1 {
      */
     groupId?: string | null;
     /**
-     * Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.
+     * Optional. Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.
      */
     path?: string | null;
     /**
@@ -1850,6 +1850,23 @@ export namespace run_v1 {
     value?: string | null;
   }
   /**
+   * Holds a single instance split entry for the Worker. Allocations can be done to a specific Revision name, or pointing to the latest Ready Revision.
+   */
+  export interface Schema$InstanceSplit {
+    /**
+     * Uses the "status.latestReadyRevisionName" to determine the traffic target. When it changes, traffic will automatically migrate from the prior "latest ready" revision to the new one.
+     */
+    latestRevision?: boolean | null;
+    /**
+     * Specifies percent of the instance split to this Revision. This defaults to zero if unspecified.
+     */
+    percent?: number | null;
+    /**
+     * Revision to which to assign this portion of instances.
+     */
+    revisionName?: string | null;
+  }
+  /**
    * Job represents the configuration of a single job, which references a container image which is run to completion.
    */
   export interface Schema$Job {
@@ -2173,6 +2190,31 @@ export namespace run_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * A list of WorkerPool resources.
+   */
+  export interface Schema$ListWorkerPoolsResponse {
+    /**
+     * The API version for this call; returns "run.googleapis.com/v1".
+     */
+    apiVersion?: string | null;
+    /**
+     * List of WorkerPools.
+     */
+    items?: Schema$WorkerPool[];
+    /**
+     * The kind of this resource; returns "WorkerPoolList".
+     */
+    kind?: string | null;
+    /**
+     * Metadata associated with this WorkerPool list.
+     */
+    metadata?: Schema$ListMeta;
+    /**
+     * For calls against the global endpoint, returns the list of Cloud locations that could not be reached. For regional calls, this field is not used.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Not supported by Cloud Run. LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.
    */
   export interface Schema$LocalObjectReference {
@@ -2228,7 +2270,7 @@ export namespace run_v1 {
    */
   export interface Schema$ObjectMeta {
     /**
-     * Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-enable-automatic-updates`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-function-target`: Service. * `run.googleapis.com/build-id`: Service. * `run.googleapis.com/build-image-uri`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-source-location`: Service. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/health-check-disabled`: Revision. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.
+     * Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-enable-automatic-updates`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-function-target`: Service. * `run.googleapis.com/build-id`: Service. * `run.googleapis.com/build-image-uri`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-source-location`: Service. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/gpu-zonal-redundancy-disabled`: Revision. * `run.googleapis.com/health-check-disabled`: Revision. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -2484,7 +2526,7 @@ export namespace run_v1 {
      */
     serviceAccountName?: string | null;
     /**
-     * TimeoutSeconds holds the max duration the instance is allowed for responding to a request. Cloud Run: defaults to 300 seconds (5 minutes). Maximum allowed value is 3600 seconds (1 hour).
+     * Optional. TimeoutSeconds holds the max duration the instance is allowed for responding to a request. Cloud Run: defaults to 300 seconds (5 minutes). Maximum allowed value is 3600 seconds (1 hour).
      */
     timeoutSeconds?: number | null;
     volumes?: Schema$Volume[];
@@ -3046,6 +3088,69 @@ export namespace run_v1 {
      */
     subPath?: string | null;
   }
+  /**
+   * WorkerPool acts as a top-level container that manages a set instance splits among a set of Revisions and a template for creating new Revisions.
+   */
+  export interface Schema$WorkerPool {
+    /**
+     * The API version for this call. It must be "run.googleapis.com/v1".
+     */
+    apiVersion?: string | null;
+    /**
+     * The kind of resource. It must be "WorkerPool".
+     */
+    kind?: string | null;
+    /**
+     * Metadata associated with this WorkerPool, including name, namespace, labels, and annotations. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. The following Cloud Run-specific annotations are accepted in WorkerPool.metadata.annotations. * `run.googleapis.com/binary-authorization-breakglass` * `run.googleapis.com/binary-authorization` * `run.googleapis.com/client-name` * `run.googleapis.com/description`
+     */
+    metadata?: Schema$ObjectMeta;
+    /**
+     * Holds the desired state of the WorkerPool (from the client).
+     */
+    spec?: Schema$WorkerPoolSpec;
+    /**
+     * Communicates the system-controlled state of the WorkerPool.
+     */
+    status?: Schema$WorkerPoolStatus;
+  }
+  /**
+   * WorkerPoolSpec holds the desired state of the WorkerPool's template and instance splits.
+   */
+  export interface Schema$WorkerPoolSpec {
+    /**
+     * Specifies how to distribute instances over a collection of Revisions.
+     */
+    instanceSplits?: Schema$InstanceSplit[];
+    /**
+     * Holds the latest specification for the Revision to be stamped out.
+     */
+    template?: Schema$RevisionTemplate;
+  }
+  /**
+   * The current state of the WorkerPool. Output only.
+   */
+  export interface Schema$WorkerPoolStatus {
+    /**
+     * Conditions communicate information about ongoing/complete reconciliation processes that bring the `spec` inline with the observed state of the world. * `Ready`: `True` when all underlying resources are ready.
+     */
+    conditions?: Schema$GoogleCloudRunV1Condition[];
+    /**
+     * Holds the configured traffic distribution. These entries will always contain RevisionName references. When ConfigurationName appears in the spec, this will hold the LatestReadyRevisionName that we last observed.
+     */
+    instanceSplits?: Schema$InstanceSplit[];
+    /**
+     * Name of the last revision that was created from this WorkerPool's template. It might not be ready yet, for that use LatestReadyRevisionName.
+     */
+    latestCreatedRevisionName?: string | null;
+    /**
+     * Name of the latest Revision from this WorkerPool's template that has had its `Ready` condition become `True`.
+     */
+    latestReadyRevisionName?: string | null;
+    /**
+     * Returns the generation last seen by the system. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition's status is True or False.
+     */
+    observedGeneration?: number | null;
+  }
 
   export class Resource$Namespaces {
     context: APIRequestContext;
@@ -3058,6 +3163,7 @@ export namespace run_v1 {
     routes: Resource$Namespaces$Routes;
     services: Resource$Namespaces$Services;
     tasks: Resource$Namespaces$Tasks;
+    workerpools: Resource$Namespaces$Workerpools;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.authorizeddomains = new Resource$Namespaces$Authorizeddomains(
@@ -3075,6 +3181,7 @@ export namespace run_v1 {
       this.routes = new Resource$Namespaces$Routes(this.context);
       this.services = new Resource$Namespaces$Services(this.context);
       this.tasks = new Resource$Namespaces$Tasks(this.context);
+      this.workerpools = new Resource$Namespaces$Workerpools(this.context);
     }
   }
 
@@ -6288,6 +6395,526 @@ export namespace run_v1 {
     watch?: boolean;
   }
 
+  export class Resource$Namespaces$Workerpools {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new WorkerPool. WorkerPool creation will trigger a new deployment. Use GetWorkerPool, and check worker_pool.status to determine if the WorkerPool is ready.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Namespaces$Workerpools$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Namespaces$Workerpools$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkerPool>;
+    create(
+      params: Params$Resource$Namespaces$Workerpools$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Namespaces$Workerpools$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkerPool>,
+      callback: BodyResponseCallback<Schema$WorkerPool>
+    ): void;
+    create(
+      params: Params$Resource$Namespaces$Workerpools$Create,
+      callback: BodyResponseCallback<Schema$WorkerPool>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$WorkerPool>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Workerpools$Create
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Workerpools$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$Workerpools$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/apis/run.googleapis.com/v1/{+parent}/workerpools'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkerPool>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkerPool>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the provided worker pool. This will cause the WorkerPool to stop all instances and will delete all associated WorkerPoolRevisions.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Namespaces$Workerpools$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Namespaces$Workerpools$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Status>;
+    delete(
+      params: Params$Resource$Namespaces$Workerpools$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Namespaces$Workerpools$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Status>,
+      callback: BodyResponseCallback<Schema$Status>
+    ): void;
+    delete(
+      params: Params$Resource$Namespaces$Workerpools$Delete,
+      callback: BodyResponseCallback<Schema$Status>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Status>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Workerpools$Delete
+        | BodyResponseCallback<Schema$Status>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Status>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Status>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Status> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Workerpools$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$Workerpools$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/apis/run.googleapis.com/v1/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Status>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Status>(parameters);
+      }
+    }
+
+    /**
+     * Gets information about a worker pool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Namespaces$Workerpools$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Namespaces$Workerpools$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkerPool>;
+    get(
+      params: Params$Resource$Namespaces$Workerpools$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Namespaces$Workerpools$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkerPool>,
+      callback: BodyResponseCallback<Schema$WorkerPool>
+    ): void;
+    get(
+      params: Params$Resource$Namespaces$Workerpools$Get,
+      callback: BodyResponseCallback<Schema$WorkerPool>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$WorkerPool>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Workerpools$Get
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Workerpools$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$Workerpools$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/apis/run.googleapis.com/v1/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkerPool>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkerPool>(parameters);
+      }
+    }
+
+    /**
+     * Lists worker pools for the given project and region. Results are sorted by creation time, descending.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Namespaces$Workerpools$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Namespaces$Workerpools$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWorkerPoolsResponse>;
+    list(
+      params: Params$Resource$Namespaces$Workerpools$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Namespaces$Workerpools$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Namespaces$Workerpools$List,
+      callback: BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListWorkerPoolsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Workerpools$List
+        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkerPoolsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Workerpools$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$Workerpools$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/apis/run.googleapis.com/v1/{+parent}/workerpools'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkerPoolsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWorkerPoolsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Replaces a worker pool. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    replaceWorkerPool(
+      params: Params$Resource$Namespaces$Workerpools$Replaceworkerpool,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    replaceWorkerPool(
+      params?: Params$Resource$Namespaces$Workerpools$Replaceworkerpool,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkerPool>;
+    replaceWorkerPool(
+      params: Params$Resource$Namespaces$Workerpools$Replaceworkerpool,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    replaceWorkerPool(
+      params: Params$Resource$Namespaces$Workerpools$Replaceworkerpool,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkerPool>,
+      callback: BodyResponseCallback<Schema$WorkerPool>
+    ): void;
+    replaceWorkerPool(
+      params: Params$Resource$Namespaces$Workerpools$Replaceworkerpool,
+      callback: BodyResponseCallback<Schema$WorkerPool>
+    ): void;
+    replaceWorkerPool(callback: BodyResponseCallback<Schema$WorkerPool>): void;
+    replaceWorkerPool(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Workerpools$Replaceworkerpool
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Workerpools$Replaceworkerpool;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$Workerpools$Replaceworkerpool;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/apis/run.googleapis.com/v1/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkerPool>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkerPool>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Namespaces$Workerpools$Create
+    extends StandardParameters {
+    /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
+    /**
+     * Required. The resource's parent. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/workerpools` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkerPool;
+  }
+  export interface Params$Resource$Namespaces$Workerpools$Delete
+    extends StandardParameters {
+    /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
+    /**
+     * Required. The fully qualified name of the worker pool to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/workerpools/{worker_pool_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/workerpools/{worker_pool_name\}` * `projects/{project_id_or_number\}/regions/{region\}/workerpools/{worker_pool_name\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Namespaces$Workerpools$Get
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the worker pool to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/workerpools/{worker_pool_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/workerpools/{worker_pool_name\}` * `projects/{project_id_or_number\}/regions/{region\}/workerpools/{worker_pool_name\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Namespaces$Workerpools$List
+    extends StandardParameters {
+    /**
+     * Encoded string to continue paging.
+     */
+    continue?: string;
+    /**
+     * =, !=, exists, in, and notIn.
+     */
+    labelSelector?: string;
+    /**
+     * The maximum number of records that should be returned.
+     */
+    limit?: number;
+    /**
+     * Required. The parent from where the resources should be listed. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/workerpools` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Namespaces$Workerpools$Replaceworkerpool
+    extends StandardParameters {
+    /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
+    /**
+     * Required. The fully qualified name of the worker pool to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/workerpools/{worker_pool_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/workerpools/{worker_pool_name\}` * `projects/{project_id_or_number\}/regions/{region\}/workerpools/{worker_pool_name\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkerPool;
+  }
+
   export class Resource$Projects {
     context: APIRequestContext;
     authorizeddomains: Resource$Projects$Authorizeddomains;
@@ -6546,6 +7173,10 @@ export namespace run_v1 {
 
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
