@@ -2256,7 +2256,7 @@
       }
     }
   },
-  "revision": "20250313",
+  "revision": "20250404",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2853,7 +2853,7 @@
       "type": "object"
     },
     "BigLakeConfiguration": {
-      "description": "Configuration for BigLake managed tables.",
+      "description": "Configuration for BigQuery tables for Apache Iceberg (formerly BigLake managed tables.)",
       "id": "BigLakeConfiguration",
       "properties": {
         "connectionId": {
@@ -8897,7 +8897,7 @@
       "properties": {
         "biglakeConfiguration": {
           "$ref": "BigLakeConfiguration",
-          "description": "Optional. Specifies the configuration of a BigLake managed table."
+          "description": "Optional. Specifies the configuration of a BigQuery table for Apache Iceberg."
         },
         "cloneDefinition": {
           "$ref": "CloneDefinition",
