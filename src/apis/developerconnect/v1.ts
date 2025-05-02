@@ -125,6 +125,43 @@ export namespace developerconnect_v1 {
   }
 
   /**
+   * AccountConnector encapsulates what a platform administrator needs to configure for users to connect to the service providers, which includes, among other fields, the OAuth client ID, client secret, and authorization and token endpoints.
+   */
+  export interface Schema$AccountConnector {
+    /**
+     * Optional. Allows users to store small amounts of arbitrary data.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. The timestamp when the accountConnector was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. Labels as key value pairs
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The resource name of the accountConnector, in the format `projects/{project\}/locations/{location\}/accountConnectors/{account_connector_id\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Start OAuth flow by clicking on this URL.
+     */
+    oauthStartUri?: string | null;
+    /**
+     * Provider OAuth config.
+     */
+    providerOauthConfig?: Schema$ProviderOAuthConfig;
+    /**
+     * Output only. The timestamp when the accountConnector was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Configuration for connections to an instance of Bitbucket Cloud.
    */
   export interface Schema$BitbucketCloudConfig {
@@ -276,6 +313,44 @@ export namespace developerconnect_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Message for representing an error from exchanging OAuth tokens.
+   */
+  export interface Schema$ExchangeError {
+    /**
+     * https://datatracker.ietf.org/doc/html/rfc6749#section-5.2 - error
+     */
+    code?: string | null;
+    /**
+     * https://datatracker.ietf.org/doc/html/rfc6749#section-5.2 - error_description
+     */
+    description?: string | null;
+  }
+  /**
+   * Message for fetching an OAuth access token.
+   */
+  export interface Schema$FetchAccessTokenRequest {}
+  /**
+   * Message for responding to getting an OAuth access token.
+   */
+  export interface Schema$FetchAccessTokenResponse {
+    /**
+     * The error resulted from exchanging OAuth tokens from the service provider.
+     */
+    exchangeError?: Schema$ExchangeError;
+    /**
+     * Expiration timestamp. Can be empty if unknown or non-expiring.
+     */
+    expirationTime?: string | null;
+    /**
+     * The scopes of the access token.
+     */
+    scopes?: string[] | null;
+    /**
+     * The token content.
+     */
+    token?: string | null;
+  }
   /**
    * Response of fetching github installations.
    */
@@ -592,6 +667,23 @@ export namespace developerconnect_v1 {
     cloneUri?: string | null;
   }
   /**
+   * Message for response to listing AccountConnectors
+   */
+  export interface Schema$ListAccountConnectorsResponse {
+    /**
+     * The list of AccountConnectors
+     */
+    accountConnectors?: Schema$AccountConnector[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Message for response to listing Connections
    */
   export interface Schema$ListConnectionsResponse {
@@ -650,6 +742,23 @@ export namespace developerconnect_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * Message for response to listing Users
+   */
+  export interface Schema$ListUsersResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+    /**
+     * The list of Users
+     */
+    users?: Schema$User[];
   }
   /**
    * A resource that represents a Google Cloud location.
@@ -793,6 +902,19 @@ export namespace developerconnect_v1 {
     body?: Schema$HttpBody;
   }
   /**
+   * ProviderOAuthConfig is the OAuth config for a provider.
+   */
+  export interface Schema$ProviderOAuthConfig {
+    /**
+     * Required. User selected scopes to apply to the Oauth config In the event of changing scopes, user records under AccountConnector will be deleted and users will re-auth again.
+     */
+    scopes?: string[] | null;
+    /**
+     * Immutable. Developer Connect provided OAuth.
+     */
+    systemProviderId?: string | null;
+  }
+  /**
    * ServiceDirectoryConfig represents Service Directory configuration for a connection.
    */
   export interface Schema$ServiceDirectoryConfig {
@@ -819,6 +941,27 @@ export namespace developerconnect_v1 {
     message?: string | null;
   }
   /**
+   * User represents a user connected to the service providers through a AccountConnector.
+   */
+  export interface Schema$User {
+    /**
+     * Output only. The timestamp when the user was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Developer Connect automatically converts user identity to some human readable description, e.g., email address.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The timestamp when the token was last requested.
+     */
+    lastTokenRequestTime?: string | null;
+    /**
+     * Identifier. Resource name of the user, in the format `projects/x/locations/x/accountConnectors/x/users/x`.
+     */
+    name?: string | null;
+  }
+  /**
    * Represents a personal access token that authorized the Connection, and associated metadata.
    */
   export interface Schema$UserCredential {
@@ -843,10 +986,13 @@ export namespace developerconnect_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    accountConnectors: Resource$Projects$Locations$Accountconnectors;
     connections: Resource$Projects$Locations$Connections;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.accountConnectors =
+        new Resource$Projects$Locations$Accountconnectors(this.context);
       this.connections = new Resource$Projects$Locations$Connections(
         this.context
       );
@@ -1046,6 +1192,10 @@ export namespace developerconnect_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
+    /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
@@ -1061,6 +1211,1104 @@ export namespace developerconnect_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Accountconnectors {
+    context: APIRequestContext;
+    users: Resource$Projects$Locations$Accountconnectors$Users;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.users = new Resource$Projects$Locations$Accountconnectors$Users(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a new AccountConnector in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Accountconnectors$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/accountConnectors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single AccountConnector.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Accountconnectors$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single AccountConnector.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountConnector>;
+    get(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountConnector>,
+      callback: BodyResponseCallback<Schema$AccountConnector>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Get,
+      callback: BodyResponseCallback<Schema$AccountConnector>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AccountConnector>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$Get
+        | BodyResponseCallback<Schema$AccountConnector>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountConnector>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountConnector>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccountConnector> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Accountconnectors$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountConnector>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountConnector>(parameters);
+      }
+    }
+
+    /**
+     * Lists AccountConnectors in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Accountconnectors$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAccountConnectorsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Accountconnectors$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Accountconnectors$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAccountConnectorsResponse>,
+      callback: BodyResponseCallback<Schema$ListAccountConnectorsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Accountconnectors$List,
+      callback: BodyResponseCallback<Schema$ListAccountConnectorsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAccountConnectorsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$List
+        | BodyResponseCallback<Schema$ListAccountConnectorsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAccountConnectorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAccountConnectorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAccountConnectorsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Accountconnectors$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/accountConnectors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAccountConnectorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAccountConnectorsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single AccountConnector.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Accountconnectors$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the AccountConnector, which will become the final component of the AccountConnector's resource name. Its format should adhere to https://google.aip.dev/122#resource-id-segments Names must be unique per-project per-location.
+     */
+    accountConnectorId?: string;
+    /**
+     * Required. Location resource name as the account_connector’s parent.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If set, validate the request, but do not actually post it.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountConnector;
+  }
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Delete
+    extends StandardParameters {
+    /**
+     * Optional. The current etag of the AccountConnectorn. If an etag is provided and does not match the current etag of the AccountConnector, deletion will be blocked and an ABORTED error will be returned.
+     */
+    etag?: string;
+    /**
+     * Optional. If set to true, any Users from this AccountConnector will also be deleted. (Otherwise, the request will only work if the AccountConnector has no Users.)
+     */
+    force?: boolean;
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If set, validate the request, but do not actually post it.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Accountconnectors$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListAccountConnectorsRequest
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Patch
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, and the accountConnector is not found a new accountConnector will be created. In this situation `update_mask` is ignored. The creation will succeed only if the input accountConnector has all the necessary
+     */
+    allowMissing?: boolean;
+    /**
+     * Identifier. The resource name of the accountConnector, in the format `projects/{project\}/locations/{location\}/accountConnectors/{account_connector_id\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. The list of fields to be updated.
+     */
+    updateMask?: string;
+    /**
+     * Optional. If set, validate the request, but do not actually post it.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountConnector;
+  }
+
+  export class Resource$Projects$Locations$Accountconnectors$Users {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes a single User.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$Users$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$Users$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$Users$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Accountconnectors$Users$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Delete the User based on the user credentials.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteSelf(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteSelf(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    deleteSelf(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteSelf(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    deleteSelf(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    deleteSelf(callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteSelf(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/users:deleteSelf').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Fetches OAuth access token based on end user credentials.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchAccessToken(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchAccessToken(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FetchAccessTokenResponse>;
+    fetchAccessToken(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchAccessToken(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchAccessTokenResponse>,
+      callback: BodyResponseCallback<Schema$FetchAccessTokenResponse>
+    ): void;
+    fetchAccessToken(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken,
+      callback: BodyResponseCallback<Schema$FetchAccessTokenResponse>
+    ): void;
+    fetchAccessToken(
+      callback: BodyResponseCallback<Schema$FetchAccessTokenResponse>
+    ): void;
+    fetchAccessToken(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken
+        | BodyResponseCallback<Schema$FetchAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchAccessTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchAccessTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+accountConnector}/users:fetchAccessToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountConnector'],
+        pathParams: ['accountConnector'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchAccessTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchAccessTokenResponse>(parameters);
+      }
+    }
+
+    /**
+     * Fetch the User based on the user credentials.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchSelf(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchSelf(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$User>;
+    fetchSelf(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchSelf(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    fetchSelf(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    fetchSelf(callback: BodyResponseCallback<Schema$User>): void;
+    fetchSelf(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/users:fetchSelf').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$User>(parameters);
+      }
+    }
+
+    /**
+     * Lists Users in a given project, location, and account_connector.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$Users$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUsersResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListUsersResponse>,
+      callback: BodyResponseCallback<Schema$ListUsersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$List,
+      callback: BodyResponseCallback<Schema$ListUsersResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListUsersResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$Users$List
+        | BodyResponseCallback<Schema$ListUsersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUsersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUsersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUsersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$Users$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Accountconnectors$Users$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/users').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUsersResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Delete
+    extends StandardParameters {
+    /**
+     * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string;
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If set, validate the request, but do not actually post it.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Deleteself
+    extends StandardParameters {
+    /**
+     * Required. Name of the AccountConnector resource
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the AccountConnector in the format `projects/x/locations/x/accountConnectors/x`.
+     */
+    accountConnector?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FetchAccessTokenRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchself
+    extends StandardParameters {
+    /**
+     * Required. Name of the AccountConnector resource
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListUsersRequest
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Connections {
