@@ -26,7 +26,7 @@
   "canonicalName": "Sheets",
   "description": "Reads and writes Google Sheets.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/sheets/",
+  "documentationLink": "https://developers.google.com/workspace/sheets/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -169,7 +169,7 @@
           ]
         },
         "get": {
-          "description": "Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. By default, data within grids is not returned. You can include grid data in one of 2 ways: * Specify a [field mask](https://developers.google.com/sheets/api/guides/field-masks) listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData URL parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want. To retrieve only subsets of spreadsheet data, use the ranges URL parameter. Ranges are specified using [A1 notation](/sheets/api/guides/concepts#cell). You can define a single cell (for example, `A1`) or multiple cells (for example, `A1:D5`). You can also get cells from other sheets within the same spreadsheet (for example, `Sheet2!A1:C4`) or retrieve multiple ranges at once (for example, `?ranges=A1:D5&ranges=Sheet2!A1:C4`). Limiting the range returns only the portions of the spreadsheet that intersect the requested ranges.",
+          "description": "Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. By default, data within grids is not returned. You can include grid data in one of 2 ways: * Specify a [field mask](https://developers.google.com/workspace/sheets/api/guides/field-masks) listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData URL parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want. To retrieve only subsets of spreadsheet data, use the ranges URL parameter. Ranges are specified using [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell). You can define a single cell (for example, `A1`) or multiple cells (for example, `A1:D5`). You can also get cells from other sheets within the same spreadsheet (for example, `Sheet2!A1:C4`) or retrieve multiple ranges at once (for example, `?ranges=A1:D5&ranges=Sheet2!A1:C4`). Limiting the range returns only the portions of the spreadsheet that intersect the requested ranges.",
           "flatPath": "v4/spreadsheets/{spreadsheetId}",
           "httpMethod": "GET",
           "id": "sheets.spreadsheets.get",
@@ -177,6 +177,11 @@
             "spreadsheetId"
           ],
           "parameters": {
+            "excludeTablesInBandedRanges": {
+              "description": "True if tables should be excluded in the banded ranges. False if not set.",
+              "location": "query",
+              "type": "boolean"
+            },
             "includeGridData": {
               "description": "True if grid data should be returned. This parameter is ignored if a field mask was set in the request.",
               "location": "query",
@@ -208,7 +213,7 @@
           ]
         },
         "getByDataFilter": {
-          "description": "Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified. Specifying one or more data filters returns the portions of the spreadsheet that intersect ranges matched by any of the filters. By default, data within grids is not returned. You can include grid data one of 2 ways: * Specify a [field mask](https://developers.google.com/sheets/api/guides/field-masks) listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want.",
+          "description": "Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified. Specifying one or more data filters returns the portions of the spreadsheet that intersect ranges matched by any of the filters. By default, data within grids is not returned. You can include grid data one of 2 ways: * Specify a [field mask](https://developers.google.com/workspace/sheets/api/guides/field-masks) listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want.",
           "flatPath": "v4/spreadsheets/{spreadsheetId}:getByDataFilter",
           "httpMethod": "POST",
           "id": "sheets.spreadsheets.getByDataFilter",
@@ -349,7 +354,7 @@
         "values": {
           "methods": {
             "append": {
-              "description": "Appends values to a spreadsheet. The input range is used to search for existing data and find a \"table\" within that range. Values will be appended to the next row of the table, starting with the first column of the table. See the [guide](/sheets/api/guides/values#appending_values) and [sample code](/sheets/api/samples/writing#append_values) for specific details of how tables are detected and data is appended. The caller must specify the spreadsheet ID, range, and a valueInputOption. The `valueInputOption` only controls how the input data will be added to the sheet (column-wise or row-wise), it does not influence what cell the data starts being written to.",
+              "description": "Appends values to a spreadsheet. The input range is used to search for existing data and find a \"table\" within that range. Values will be appended to the next row of the table, starting with the first column of the table. See the [guide](https://developers.google.com/workspace/sheets/api/guides/values#appending_values) and [sample code](https://developers.google.com/workspace/sheets/api/samples/writing#append_values) for specific details of how tables are detected and data is appended. The caller must specify the spreadsheet ID, range, and a valueInputOption. The `valueInputOption` only controls how the input data will be added to the sheet (column-wise or row-wise), it does not influence what cell the data starts being written to.",
               "flatPath": "v4/spreadsheets/{spreadsheetId}/values/{range}:append",
               "httpMethod": "POST",
               "id": "sheets.spreadsheets.values.append",
@@ -377,7 +382,7 @@
                   "type": "string"
                 },
                 "range": {
-                  "description": "The [A1 notation](/sheets/api/guides/concepts#cell) of a range to search for a logical table of data. Values are appended after the last row of the table.",
+                  "description": "The [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell) of a range to search for a logical table of data. Values are appended after the last row of the table.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -405,7 +410,7 @@
                   "enumDescriptions": [
                     "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
                     "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
+                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/workspace/sheets/api/guides/formats#about_date_time_values)."
                   ],
                   "location": "query",
                   "type": "string"
@@ -541,7 +546,7 @@
                   "type": "string"
                 },
                 "ranges": {
-                  "description": "The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the range to retrieve values from.",
+                  "description": "The [A1 notation or R1C1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell) of the range to retrieve values from.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -562,7 +567,7 @@
                   "enumDescriptions": [
                     "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
                     "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
+                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/workspace/sheets/api/guides/formats#about_date_time_values)."
                   ],
                   "location": "query",
                   "type": "string"
@@ -678,7 +683,7 @@
               ],
               "parameters": {
                 "range": {
-                  "description": "The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the values to clear.",
+                  "description": "The [A1 notation or R1C1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell) of the values to clear.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -742,7 +747,7 @@
                   "type": "string"
                 },
                 "range": {
-                  "description": "The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the range to retrieve values from.",
+                  "description": "The [A1 notation or R1C1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell) of the range to retrieve values from.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -763,7 +768,7 @@
                   "enumDescriptions": [
                     "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
                     "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
+                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/workspace/sheets/api/guides/formats#about_date_time_values)."
                   ],
                   "location": "query",
                   "type": "string"
@@ -797,7 +802,7 @@
                   "type": "boolean"
                 },
                 "range": {
-                  "description": "The [A1 notation](/sheets/api/guides/concepts#cell) of the values to update.",
+                  "description": "The [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell) of the values to update.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -825,7 +830,7 @@
                   "enumDescriptions": [
                     "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
                     "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
+                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/workspace/sheets/api/guides/formats#about_date_time_values)."
                   ],
                   "location": "query",
                   "type": "string"
@@ -870,7 +875,7 @@
       }
     }
   },
-  "revision": "20250211",
+  "revision": "20250415",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -1094,6 +1099,17 @@
       },
       "type": "object"
     },
+    "AddTableRequest": {
+      "description": "Adds a new table to the spreadsheet.",
+      "id": "AddTableRequest",
+      "properties": {
+        "table": {
+          "$ref": "Table",
+          "description": "Required. The table to add."
+        }
+      },
+      "type": "object"
+    },
     "AppendCellsRequest": {
       "description": "Adds new cells after the last row with data in a sheet, inserting new rows into the sheet if necessary.",
       "id": "AppendCellsRequest",
@@ -1114,6 +1130,10 @@
           "description": "The sheet ID to append the data to.",
           "format": "int32",
           "type": "integer"
+        },
+        "tableId": {
+          "description": "The ID of the table to append data to. The data will be only appended to the table body. This field also takes precedence over the `sheet_id` field.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1605,6 +1625,10 @@
             "$ref": "SortSpec"
           },
           "type": "array"
+        },
+        "tableId": {
+          "description": "The table this filter is backed by, if any. When writing, only one of range or table_id may be set.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1653,7 +1677,7 @@
       "id": "BatchClearValuesByDataFilterResponse",
       "properties": {
         "clearedRanges": {
-          "description": "The ranges that were cleared, in [A1 notation](/sheets/api/guides/concepts#cell). If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet's limits.",
+          "description": "The ranges that were cleared, in [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell). If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet's limits.",
           "items": {
             "type": "string"
           },
@@ -1671,7 +1695,7 @@
       "id": "BatchClearValuesRequest",
       "properties": {
         "ranges": {
-          "description": "The ranges to clear, in [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell).",
+          "description": "The ranges to clear, in [A1 notation or R1C1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell).",
           "items": {
             "type": "string"
           },
@@ -1745,7 +1769,7 @@
           "enumDescriptions": [
             "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
             "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-            "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
+            "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/workspace/sheets/api/guides/formats#about_date_time_values)."
           ],
           "type": "string"
         }
@@ -1876,7 +1900,7 @@
           "enumDescriptions": [
             "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
             "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-            "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
+            "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/workspace/sheets/api/guides/formats#about_date_time_values)."
           ],
           "type": "string"
         },
@@ -1972,7 +1996,7 @@
           "enumDescriptions": [
             "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
             "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-            "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
+            "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/workspace/sheets/api/guides/formats#about_date_time_values)."
           ],
           "type": "string"
         },
@@ -2994,7 +3018,7 @@
       "properties": {
         "rgbColor": {
           "$ref": "Color",
-          "description": "RGB color. The [`alpha`](/sheets/api/reference/rest/v4/spreadsheets/other#Color.FIELDS.alpha) value in the [`Color`](/sheets/api/reference/rest/v4/spreadsheets/other#color) object isn't generally supported."
+          "description": "RGB color. The [`alpha`](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets/other#Color.FIELDS.alpha) value in the [`Color`](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets/other#color) object isn't generally supported."
         },
         "themeColor": {
           "description": "Theme color.",
@@ -4065,6 +4089,17 @@
       },
       "type": "object"
     },
+    "DeleteTableRequest": {
+      "description": "Removes the table with the given ID from the spreadsheet.",
+      "id": "DeleteTableRequest",
+      "properties": {
+        "tableId": {
+          "description": "The ID of the table to delete.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeveloperMetadata": {
       "description": "Developer metadata associated with a location or object in a spreadsheet. Developer metadata may be used to associate arbitrary data with various parts of a spreadsheet and will remain associated at those locations as they move around and the spreadsheet is edited. For example, if developer metadata is associated with row 5 and another row is then subsequently inserted above row 5, that original metadata will still be associated with the row it was first associated with (what is now row 6). If the associated object is deleted its metadata is deleted too.",
       "id": "DeveloperMetadata",
@@ -4592,12 +4627,12 @@
           "type": "integer"
         },
         "namedRangeId": {
-          "description": "The named range this filter view is backed by, if any. When writing, only one of range or named_range_id may be set.",
+          "description": "The named range this filter view is backed by, if any. When writing, only one of range or named_range_id or table_id may be set.",
           "type": "string"
         },
         "range": {
           "$ref": "GridRange",
-          "description": "The range this filter view covers. When writing, only one of range or named_range_id may be set."
+          "description": "The range this filter view covers. When writing, only one of range or named_range_id or table_id may be set."
         },
         "sortSpecs": {
           "description": "The sort order per column. Later specifications are used when values are equal in the earlier specifications.",
@@ -4605,6 +4640,10 @@
             "$ref": "SortSpec"
           },
           "type": "array"
+        },
+        "tableId": {
+          "description": "The table this filter view is backed by, if any. When writing, only one of range or named_range_id or table_id may be set.",
+          "type": "string"
         },
         "title": {
           "description": "The name of the filter view.",
@@ -4699,6 +4738,10 @@
             "$ref": "DataFilter"
           },
           "type": "array"
+        },
+        "excludeTablesInBandedRanges": {
+          "description": "True if tables should be excluded in the banded ranges. False if not set.",
+          "type": "boolean"
         },
         "includeGridData": {
           "description": "True if grid data should be returned. This parameter is ignored if a field mask was set in the request.",
@@ -5279,7 +5322,7 @@
       "id": "NumberFormat",
       "properties": {
         "pattern": {
-          "description": "Pattern string used for formatting. If not set, a default pattern based on the user's locale will be used if necessary for the given type. See the [Date and Number Formats guide](/sheets/api/guides/formats) for more information about the supported patterns.",
+          "description": "Pattern string used for formatting. If not set, a default pattern based on the user's locale will be used if necessary for the given type. See the [Date and Number Formats guide](https://developers.google.com/workspace/sheets/api/guides/formats) for more information about the supported patterns.",
           "type": "string"
         },
         "type": {
@@ -5885,7 +5928,7 @@
           "description": "The users and groups with edit access to the protected range. This field is only visible to users with edit access to the protected range and the document. Editors are not supported with warning_only protection."
         },
         "namedRangeId": {
-          "description": "The named range this protected range is backed by, if any. When writing, only one of range or named_range_id may be set.",
+          "description": "The named range this protected range is backed by, if any. When writing, only one of range or named_range_id or table_id may be set.",
           "type": "string"
         },
         "protectedRangeId": {
@@ -5895,11 +5938,15 @@
         },
         "range": {
           "$ref": "GridRange",
-          "description": "The range that is being protected. The range may be fully unbounded, in which case this is considered a protected sheet. When writing, only one of range or named_range_id may be set."
+          "description": "The range that is being protected. The range may be fully unbounded, in which case this is considered a protected sheet. When writing, only one of range or named_range_id or table_id may be set."
         },
         "requestingUserCanEdit": {
           "description": "True if the user who requested this protected range can edit the protected area. This field is read-only.",
           "type": "boolean"
+        },
+        "tableId": {
+          "description": "The table this protected range is backed by, if any. When writing, only one of range or named_range_id or table_id may be set.",
+          "type": "string"
         },
         "unprotectedRanges": {
           "description": "The list of unprotected ranges within a protected sheet. Unprotected ranges are only supported on protected sheets.",
@@ -6083,6 +6130,10 @@
           "$ref": "AddSlicerRequest",
           "description": "Adds a slicer."
         },
+        "addTable": {
+          "$ref": "AddTableRequest",
+          "description": "Adds a table."
+        },
         "appendCells": {
           "$ref": "AppendCellsRequest",
           "description": "Appends cells after the last row with data in a sheet."
@@ -6170,6 +6221,10 @@
         "deleteSheet": {
           "$ref": "DeleteSheetRequest",
           "description": "Deletes a sheet."
+        },
+        "deleteTable": {
+          "$ref": "DeleteTableRequest",
+          "description": "A request for deleting a table."
         },
         "duplicateFilterView": {
           "$ref": "DuplicateFilterViewRequest",
@@ -6306,6 +6361,10 @@
         "updateSpreadsheetProperties": {
           "$ref": "UpdateSpreadsheetPropertiesRequest",
           "description": "Updates the spreadsheet's properties."
+        },
+        "updateTable": {
+          "$ref": "UpdateTableRequest",
+          "description": "Updates a table."
         }
       },
       "type": "object"
@@ -6639,6 +6698,13 @@
           "description": "The slicers on this sheet.",
           "items": {
             "$ref": "Slicer"
+          },
+          "type": "array"
+        },
+        "tables": {
+          "description": "The tables on this sheet.",
+          "items": {
+            "$ref": "Table"
           },
           "type": "array"
         }
@@ -7001,6 +7067,128 @@
             "$ref": "ThemeColorPair"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Table": {
+      "description": "A table.",
+      "id": "Table",
+      "properties": {
+        "columnProperties": {
+          "description": "The table column properties.",
+          "items": {
+            "$ref": "TableColumnProperties"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The table name. This is unique to all tables in the same spreadsheet.",
+          "type": "string"
+        },
+        "range": {
+          "$ref": "GridRange",
+          "description": "The table range."
+        },
+        "rowsProperties": {
+          "$ref": "TableRowsProperties",
+          "description": "The table rows properties."
+        },
+        "tableId": {
+          "description": "The id of the table.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TableColumnDataValidationRule": {
+      "description": "A data validation rule for a column in a table.",
+      "id": "TableColumnDataValidationRule",
+      "properties": {
+        "condition": {
+          "$ref": "BooleanCondition",
+          "description": "The condition that data in the cell must match. Valid only if the [BooleanCondition.type] is ONE_OF_LIST."
+        }
+      },
+      "type": "object"
+    },
+    "TableColumnProperties": {
+      "description": "The table column.",
+      "id": "TableColumnProperties",
+      "properties": {
+        "columnIndex": {
+          "description": "The 0-based column index. This index is relative to its position in the table and is not necessarily the same as the column index in the sheet.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "columnName": {
+          "description": "The column name.",
+          "type": "string"
+        },
+        "columnType": {
+          "description": "The column type.",
+          "enum": [
+            "COLUMN_TYPE_UNSPECIFIED",
+            "DOUBLE",
+            "CURRENCY",
+            "PERCENT",
+            "DATE",
+            "TIME",
+            "DATE_TIME",
+            "TEXT",
+            "BOOLEAN",
+            "DROPDOWN",
+            "FILES_CHIP",
+            "PEOPLE_CHIP",
+            "FINANCE_CHIP",
+            "PLACE_CHIP",
+            "RATINGS_CHIP"
+          ],
+          "enumDescriptions": [
+            "An unspecified column type.",
+            "The number column type.",
+            "The currency column type.",
+            "The percent column type.",
+            "The date column type.",
+            "The time column type.",
+            "The date and time column type.",
+            "The text column type.",
+            "The boolean column type.",
+            "The dropdown column type.",
+            "The files chip column type",
+            "The people chip column type",
+            "The finance chip column type",
+            "The place chip column type",
+            "The ratings chip column type"
+          ],
+          "type": "string"
+        },
+        "dataValidationRule": {
+          "$ref": "TableColumnDataValidationRule",
+          "description": "The column data validation rule. Only set for dropdown column type."
+        }
+      },
+      "type": "object"
+    },
+    "TableRowsProperties": {
+      "description": "The table row properties.",
+      "id": "TableRowsProperties",
+      "properties": {
+        "firstBandColorStyle": {
+          "$ref": "ColorStyle",
+          "description": "The first color that is alternating. If this field is set, the first banded row is filled with the specified color. Otherwise, the first banded row is filled with a default color."
+        },
+        "footerColorStyle": {
+          "$ref": "ColorStyle",
+          "description": "The color of the last row. If this field is not set a footer is not added, the last row is filled with either first_band_color_style or second_band_color_style, depending on the color of the previous row. If updating an existing table without a footer to have a footer, the range will be expanded by 1 row. If updating an existing table with a footer and removing a footer, the range will be shrunk by 1 row."
+        },
+        "headerColorStyle": {
+          "$ref": "ColorStyle",
+          "description": "The color of the header row. If this field is set, the header row is filled with the specified color. Otherwise, the header row is filled with a default color."
+        },
+        "secondBandColorStyle": {
+          "$ref": "ColorStyle",
+          "description": "The second color that is alternating. If this field is set, the second banded row is filled with the specified color. Otherwise, the second banded row is filled with a default color."
         }
       },
       "type": "object"
@@ -7756,6 +7944,22 @@
       },
       "type": "object"
     },
+    "UpdateTableRequest": {
+      "description": "Updates a table in the spreadsheet.",
+      "id": "UpdateTableRequest",
+      "properties": {
+        "fields": {
+          "description": "Required. The fields that should be updated. At least one field must be specified. The root `table` is implied and should not be specified. A single `\"*\"` can be used as short-hand for listing every field.",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "table": {
+          "$ref": "Table",
+          "description": "Required. The table to update."
+        }
+      },
+      "type": "object"
+    },
     "UpdateValuesByDataFilterResponse": {
       "description": "The response when updating a range of values by a data filter in a spreadsheet.",
       "id": "UpdateValuesByDataFilterResponse",
@@ -7779,7 +7983,7 @@
           "description": "The values of the cells in the range matched by the dataFilter after all updates were applied. This is only included if the request's `includeValuesInResponse` field was `true`."
         },
         "updatedRange": {
-          "description": "The range (in [A1 notation](/sheets/api/guides/concepts#cell)) that updates were applied to.",
+          "description": "The range (in [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell)) that updates were applied to.",
           "type": "string"
         },
         "updatedRows": {
@@ -7843,7 +8047,7 @@
           "type": "string"
         },
         "range": {
-          "description": "The range the values cover, in [A1 notation](/sheets/api/guides/concepts#cell). For output, this range indicates the entire requested range, even though the values will exclude trailing rows and columns. When appending values, this field represents the range to search for a table, after which values will be appended.",
+          "description": "The range the values cover, in [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell). For output, this range indicates the entire requested range, even though the values will exclude trailing rows and columns. When appending values, this field represents the range to search for a table, after which values will be appended.",
           "type": "string"
         },
         "values": {
