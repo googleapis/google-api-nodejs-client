@@ -195,6 +195,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -229,6 +235,388 @@
             }
           },
           "resources": {
+            "accountConnectors": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new AccountConnector in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors",
+                  "httpMethod": "POST",
+                  "id": "developerconnect.projects.locations.accountConnectors.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "accountConnectorId": {
+                      "description": "Required. The ID to use for the AccountConnector, which will become the final component of the AccountConnector's resource name. Its format should adhere to https://google.aip.dev/122#resource-id-segments Names must be unique per-project per-location.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Location resource name as the account_connector’s parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set, validate the request, but do not actually post it.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/accountConnectors",
+                  "request": {
+                    "$ref": "AccountConnector"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single AccountConnector.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors/{accountConnectorsId}",
+                  "httpMethod": "DELETE",
+                  "id": "developerconnect.projects.locations.accountConnectors.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The current etag of the AccountConnectorn. If an etag is provided and does not match the current etag of the AccountConnector, deletion will be blocked and an ABORTED error will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "force": {
+                      "description": "Optional. If set to true, any Users from this AccountConnector will also be deleted. (Otherwise, the request will only work if the AccountConnector has no Users.)",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/accountConnectors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set, validate the request, but do not actually post it.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single AccountConnector.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors/{accountConnectorsId}",
+                  "httpMethod": "GET",
+                  "id": "developerconnect.projects.locations.accountConnectors.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/accountConnectors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "AccountConnector"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists AccountConnectors in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors",
+                  "httpMethod": "GET",
+                  "id": "developerconnect.projects.locations.accountConnectors.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListAccountConnectorsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/accountConnectors",
+                  "response": {
+                    "$ref": "ListAccountConnectorsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single AccountConnector.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors/{accountConnectorsId}",
+                  "httpMethod": "PATCH",
+                  "id": "developerconnect.projects.locations.accountConnectors.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "allowMissing": {
+                      "description": "Optional. If set to true, and the accountConnector is not found a new accountConnector will be created. In this situation `update_mask` is ignored. The creation will succeed only if the input accountConnector has all the necessary",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Identifier. The resource name of the accountConnector, in the format `projects/{project}/locations/{location}/accountConnectors/{account_connector_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/accountConnectors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set, validate the request, but do not actually post it.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "AccountConnector"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "users": {
+                  "methods": {
+                    "delete": {
+                      "description": "Deletes a single User.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors/{accountConnectorsId}/users/{usersId}",
+                      "httpMethod": "DELETE",
+                      "id": "developerconnect.projects.locations.accountConnectors.users.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "etag": {
+                          "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. Name of the resource",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/accountConnectors/[^/]+/users/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Optional. If set, validate the request, but do not actually post it.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "deleteSelf": {
+                      "description": "Delete the User based on the user credentials.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors/{accountConnectorsId}/users:deleteSelf",
+                      "httpMethod": "DELETE",
+                      "id": "developerconnect.projects.locations.accountConnectors.users.deleteSelf",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the AccountConnector resource",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/accountConnectors/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}/users:deleteSelf",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "fetchAccessToken": {
+                      "description": "Fetches OAuth access token based on end user credentials.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors/{accountConnectorsId}/users:fetchAccessToken",
+                      "httpMethod": "POST",
+                      "id": "developerconnect.projects.locations.accountConnectors.users.fetchAccessToken",
+                      "parameterOrder": [
+                        "accountConnector"
+                      ],
+                      "parameters": {
+                        "accountConnector": {
+                          "description": "Required. The resource name of the AccountConnector in the format `projects/*/locations/*/accountConnectors/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/accountConnectors/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+accountConnector}/users:fetchAccessToken",
+                      "request": {
+                        "$ref": "FetchAccessTokenRequest"
+                      },
+                      "response": {
+                        "$ref": "FetchAccessTokenResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "fetchSelf": {
+                      "description": "Fetch the User based on the user credentials.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors/{accountConnectorsId}/users:fetchSelf",
+                      "httpMethod": "GET",
+                      "id": "developerconnect.projects.locations.accountConnectors.users.fetchSelf",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the AccountConnector resource",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/accountConnectors/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}/users:fetchSelf",
+                      "response": {
+                        "$ref": "User"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Users in a given project, location, and account_connector.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors/{accountConnectorsId}/users",
+                      "httpMethod": "GET",
+                      "id": "developerconnect.projects.locations.accountConnectors.users.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filtering results",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Hint for how to order the results",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent value for ListUsersRequest",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/accountConnectors/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/users",
+                      "response": {
+                        "$ref": "ListUsersResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "connections": {
               "methods": {
                 "create": {
@@ -1017,9 +1405,59 @@
       }
     }
   },
-  "revision": "20250129",
+  "revision": "20250414",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
+    "AccountConnector": {
+      "description": "AccountConnector encapsulates what a platform administrator needs to configure for users to connect to the service providers, which includes, among other fields, the OAuth client ID, client secret, and authorization and token endpoints.",
+      "id": "AccountConnector",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Allows users to store small amounts of arbitrary data.",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the accountConnector was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the accountConnector, in the format `projects/{project}/locations/{location}/accountConnectors/{account_connector_id}`.",
+          "type": "string"
+        },
+        "oauthStartUri": {
+          "description": "Output only. Start OAuth flow by clicking on this URL.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "providerOauthConfig": {
+          "$ref": "ProviderOAuthConfig",
+          "description": "Provider OAuth config."
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the accountConnector was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BitbucketCloudConfig": {
       "description": "Configuration for connections to an instance of Bitbucket Cloud.",
       "id": "BitbucketCloudConfig",
@@ -1198,6 +1636,54 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "ExchangeError": {
+      "description": "Message for representing an error from exchanging OAuth tokens.",
+      "id": "ExchangeError",
+      "properties": {
+        "code": {
+          "description": "https://datatracker.ietf.org/doc/html/rfc6749#section-5.2 - error",
+          "type": "string"
+        },
+        "description": {
+          "description": "https://datatracker.ietf.org/doc/html/rfc6749#section-5.2 - error_description",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FetchAccessTokenRequest": {
+      "description": "Message for fetching an OAuth access token.",
+      "id": "FetchAccessTokenRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "FetchAccessTokenResponse": {
+      "description": "Message for responding to getting an OAuth access token.",
+      "id": "FetchAccessTokenResponse",
+      "properties": {
+        "exchangeError": {
+          "$ref": "ExchangeError",
+          "description": "The error resulted from exchanging OAuth tokens from the service provider."
+        },
+        "expirationTime": {
+          "description": "Expiration timestamp. Can be empty if unknown or non-expiring.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "The scopes of the access token.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "token": {
+          "description": "The token content.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "FetchGitHubInstallationsResponse": {
@@ -1620,6 +2106,31 @@
       },
       "type": "object"
     },
+    "ListAccountConnectorsResponse": {
+      "description": "Message for response to listing AccountConnectors",
+      "id": "ListAccountConnectorsResponse",
+      "properties": {
+        "accountConnectors": {
+          "description": "The list of AccountConnectors",
+          "items": {
+            "$ref": "AccountConnector"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListConnectionsResponse": {
       "description": "Message for response to listing Connections",
       "id": "ListConnectionsResponse",
@@ -1700,6 +2211,31 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListUsersResponse": {
+      "description": "Message for response to listing Users",
+      "id": "ListUsersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "users": {
+          "description": "The list of Users",
+          "items": {
+            "$ref": "User"
           },
           "type": "array"
         }
@@ -1890,6 +2426,44 @@
       },
       "type": "object"
     },
+    "ProviderOAuthConfig": {
+      "description": "ProviderOAuthConfig is the OAuth config for a provider.",
+      "id": "ProviderOAuthConfig",
+      "properties": {
+        "scopes": {
+          "description": "Required. User selected scopes to apply to the Oauth config In the event of changing scopes, user records under AccountConnector will be deleted and users will re-auth again.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "systemProviderId": {
+          "description": "Immutable. Developer Connect provided OAuth.",
+          "enum": [
+            "SYSTEM_PROVIDER_UNSPECIFIED",
+            "GITHUB",
+            "GITLAB",
+            "GOOGLE",
+            "SENTRY",
+            "ROVO",
+            "NEW_RELIC",
+            "DATASTAX"
+          ],
+          "enumDescriptions": [
+            "No system provider specified.",
+            "GitHub provider. Scopes can be found at https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#available-scopes",
+            "GitLab provider. Scopes can be found at https://docs.gitlab.com/user/profile/personal_access_tokens/#personal-access-token-scopes",
+            "Google provider. Recommended scopes: \"https://www.googleapis.com/auth/drive.readonly\", \"https://www.googleapis.com/auth/documents.readonly\"",
+            "Sentry provider. Scopes can be found at https://docs.sentry.io/api/permissions/",
+            "Rovo provider. Must select the \"rovo\" scope.",
+            "New Relic provider. No scopes are allowed.",
+            "Datastax provider. No scopes are allowed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServiceDirectoryConfig": {
       "description": "ServiceDirectoryConfig represents Service Directory configuration for a connection.",
       "id": "ServiceDirectoryConfig",
@@ -1923,6 +2497,34 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "User": {
+      "description": "User represents a user connected to the service providers through a AccountConnector.",
+      "id": "User",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the user was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Developer Connect automatically converts user identity to some human readable description, e.g., email address.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastTokenRequestTime": {
+          "description": "Output only. The timestamp when the token was last requested.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the user, in the format `projects/*/locations/*/accountConnectors/*/users/*`.",
           "type": "string"
         }
       },
