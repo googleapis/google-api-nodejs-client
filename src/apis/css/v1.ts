@@ -186,7 +186,7 @@ export namespace css_v1 {
      */
     labelType?: string | null;
     /**
-     * The resource name of the label. Format: accounts/{account\}/labels/{label\}
+     * Identifier. The resource name of the label. Format: accounts/{account\}/labels/{label\}
      */
     name?: string | null;
   }
@@ -474,7 +474,7 @@ export namespace css_v1 {
      */
     freshnessTime?: string | null;
     /**
-     * The name of the CSS Product input. Format: `accounts/{account\}/cssProductInputs/{css_product_input\}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123
+     * Identifier. The name of the CSS Product input. Format: `accounts/{account\}/cssProductInputs/{css_product_input\}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123
      */
     name?: string | null;
     /**
@@ -664,6 +664,40 @@ export namespace css_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for the ListMethodGroups method.
+   */
+  export interface Schema$ListQuotaGroupsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The methods, current quota usage and limits per each group. The quota is shared between all methods in the group. The groups are sorted in descending order based on quota_usage.
+     */
+    quotaGroups?: Schema$QuotaGroup[];
+  }
+  /**
+   * The method details per method in the CSS API.
+   */
+  export interface Schema$MethodDetails {
+    /**
+     * Output only. The name of the method for example `cssproductsservice.listcssproducts`.
+     */
+    method?: string | null;
+    /**
+     * Output only. The path for the method such as `v1/cssproductsservice.listcssproducts`.
+     */
+    path?: string | null;
+    /**
+     * Output only. The sub-API that the method belongs to. In the CSS API, this is always `css`.
+     */
+    subapi?: string | null;
+    /**
+     * Output only. The API version that the method belongs to.
+     */
+    version?: string | null;
+  }
+  /**
    * The price represented as a number and currency.
    */
   export interface Schema$Price {
@@ -720,6 +754,31 @@ export namespace css_v1 {
     value?: number | null;
   }
   /**
+   * The group information for methods in the CSS API. The quota is shared between all methods in the group. Even if none of the methods within the group have usage the information for the group is returned.
+   */
+  export interface Schema$QuotaGroup {
+    /**
+     * Output only. List of all methods group quota applies to.
+     */
+    methodDetails?: Schema$MethodDetails[];
+    /**
+     * Identifier. The resource name of the quota group. Format: accounts/{account\}/quotas/{group\} Example: `accounts/12345678/quotas/css-products-insert` Note: The {group\} part is not guaranteed to follow a specific pattern.
+     */
+    name?: string | null;
+    /**
+     * Output only. The maximum number of calls allowed per day for the group.
+     */
+    quotaLimit?: string | null;
+    /**
+     * Output only. The maximum number of calls allowed per minute for the group.
+     */
+    quotaMinuteLimit?: string | null;
+    /**
+     * Output only. The current quota usage, meaning the number of calls already made on a given day to the methods in the group. The daily quota limits reset at at 12:00 PM midday UTC.
+     */
+    quotaUsage?: string | null;
+  }
+  /**
    * The request message for the `UpdateLabels` method.
    */
   export interface Schema$UpdateAccountLabelsRequest {
@@ -738,6 +797,7 @@ export namespace css_v1 {
     cssProductInputs: Resource$Accounts$Cssproductinputs;
     cssProducts: Resource$Accounts$Cssproducts;
     labels: Resource$Accounts$Labels;
+    quotas: Resource$Accounts$Quotas;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.cssProductInputs = new Resource$Accounts$Cssproductinputs(
@@ -745,6 +805,7 @@ export namespace css_v1 {
       );
       this.cssProducts = new Resource$Accounts$Cssproducts(this.context);
       this.labels = new Resource$Accounts$Labels(this.context);
+      this.quotas = new Resource$Accounts$Quotas(this.context);
     }
 
     /**
@@ -1356,7 +1417,7 @@ export namespace css_v1 {
   export interface Params$Resource$Accounts$Cssproductinputs$Patch
     extends StandardParameters {
     /**
-     * The name of the CSS Product input. Format: `accounts/{account\}/cssProductInputs/{css_product_input\}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123
+     * Identifier. The name of the CSS Product input. Format: `accounts/{account\}/cssProductInputs/{css_product_input\}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123
      */
     name?: string;
     /**
@@ -1975,7 +2036,7 @@ export namespace css_v1 {
   export interface Params$Resource$Accounts$Labels$Patch
     extends StandardParameters {
     /**
-     * The resource name of the label. Format: accounts/{account\}/labels/{label\}
+     * Identifier. The resource name of the label. Format: accounts/{account\}/labels/{label\}
      */
     name?: string;
 
@@ -1983,5 +2044,121 @@ export namespace css_v1 {
      * Request body metadata
      */
     requestBody?: Schema$AccountLabel;
+  }
+
+  export class Resource$Accounts$Quotas {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the daily call quota and usage per group for your CSS Center account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Quotas$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Quotas$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListQuotaGroupsResponse>;
+    list(
+      params: Params$Resource$Accounts$Quotas$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Quotas$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListQuotaGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListQuotaGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Quotas$List,
+      callback: BodyResponseCallback<Schema$ListQuotaGroupsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListQuotaGroupsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Quotas$List
+        | BodyResponseCallback<Schema$ListQuotaGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListQuotaGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListQuotaGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListQuotaGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Quotas$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Quotas$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://css.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/quotas').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListQuotaGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListQuotaGroupsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Quotas$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of quotas to return in the response, used for paging. Defaults to 500; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The CSS account that owns the collection of method quotas and resources. In most cases, this is the CSS domain. Format: accounts/{account\}
+     */
+    parent?: string;
   }
 }

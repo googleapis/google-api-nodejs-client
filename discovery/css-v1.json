@@ -292,7 +292,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The name of the CSS Product input. Format: `accounts/{account}/cssProductInputs/{css_product_input}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123",
+                  "description": "Identifier. The name of the CSS Product input. Format: `accounts/{account}/cssProductInputs/{css_product_input}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/cssProductInputs/[^/]+$",
                   "required": true,
@@ -484,7 +484,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The resource name of the label. Format: accounts/{account}/labels/{label}",
+                  "description": "Identifier. The resource name of the label. Format: accounts/{account}/labels/{label}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/labels/[^/]+$",
                   "required": true,
@@ -503,11 +503,51 @@
               ]
             }
           }
+        },
+        "quotas": {
+          "methods": {
+            "list": {
+              "description": "Lists the daily call quota and usage per group for your CSS Center account.",
+              "flatPath": "v1/accounts/{accountsId}/quotas",
+              "httpMethod": "GET",
+              "id": "css.accounts.quotas.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of quotas to return in the response, used for paging. Defaults to 500; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The CSS account that owns the collection of method quotas and resources. In most cases, this is the CSS domain. Format: accounts/{account}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/quotas",
+              "response": {
+                "$ref": "ListQuotaGroupsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
         }
       }
     }
   },
-  "revision": "20250219",
+  "revision": "20250421",
   "rootUrl": "https://css.googleapis.com/",
   "schemas": {
     "Account": {
@@ -622,7 +662,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the label. Format: accounts/{account}/labels/{label}",
+          "description": "Identifier. The resource name of the label. Format: accounts/{account}/labels/{label}",
           "type": "string"
         }
       },
@@ -960,7 +1000,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the CSS Product input. Format: `accounts/{account}/cssProductInputs/{css_product_input}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123",
+          "description": "Identifier. The name of the CSS Product input. Format: `accounts/{account}/cssProductInputs/{css_product_input}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123",
           "type": "string"
         },
         "rawProvidedId": {
@@ -1216,6 +1256,51 @@
       },
       "type": "object"
     },
+    "ListQuotaGroupsResponse": {
+      "description": "Response message for the ListMethodGroups method.",
+      "id": "ListQuotaGroupsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "quotaGroups": {
+          "description": "The methods, current quota usage and limits per each group. The quota is shared between all methods in the group. The groups are sorted in descending order based on quota_usage.",
+          "items": {
+            "$ref": "QuotaGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MethodDetails": {
+      "description": "The method details per method in the CSS API.",
+      "id": "MethodDetails",
+      "properties": {
+        "method": {
+          "description": "Output only. The name of the method for example `cssproductsservice.listcssproducts`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "path": {
+          "description": "Output only. The path for the method such as `v1/cssproductsservice.listcssproducts`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subapi": {
+          "description": "Output only. The sub-API that the method belongs to. In the CSS API, this is always `css`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "Output only. The API version that the method belongs to.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Price": {
       "description": "The price represented as a number and currency.",
       "id": "Price",
@@ -1279,6 +1364,43 @@
           "description": "Required. The weight represented as a number. The weight can have a maximum precision of four decimal places.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "QuotaGroup": {
+      "description": "The group information for methods in the CSS API. The quota is shared between all methods in the group. Even if none of the methods within the group have usage the information for the group is returned.",
+      "id": "QuotaGroup",
+      "properties": {
+        "methodDetails": {
+          "description": "Output only. List of all methods group quota applies to.",
+          "items": {
+            "$ref": "MethodDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the quota group. Format: accounts/{account}/quotas/{group} Example: `accounts/12345678/quotas/css-products-insert` Note: The {group} part is not guaranteed to follow a specific pattern.",
+          "type": "string"
+        },
+        "quotaLimit": {
+          "description": "Output only. The maximum number of calls allowed per day for the group.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "quotaMinuteLimit": {
+          "description": "Output only. The maximum number of calls allowed per minute for the group.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "quotaUsage": {
+          "description": "Output only. The current quota usage, meaning the number of calls already made on a given day to the methods in the group. The daily quota limits reset at at 12:00 PM midday UTC.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
