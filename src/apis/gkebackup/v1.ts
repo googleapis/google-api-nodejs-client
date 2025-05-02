@@ -276,6 +276,47 @@ export namespace gkebackup_v1 {
     volumeCount?: number | null;
   }
   /**
+   * A BackupChannel imposes constraints on where clusters can be backed up. The BackupChannel should be in the same project and region as the cluster being backed up. The backup can be created only in destination_project.
+   */
+  export interface Schema$BackupChannel {
+    /**
+     * Output only. The timestamp when this BackupChannel resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User specified descriptive string for this BackupChannel.
+     */
+    description?: string | null;
+    /**
+     * Required. Immutable. The project where Backups are allowed to be stored. The format is `projects/{project\}`. Currently, {project\} can only be the project number. Support for project IDs will be added in the future.
+     */
+    destinationProject?: string | null;
+    /**
+     * Output only. The project_id where Backups are allowed to be stored. Example Project ID: "my-project-id". This will be an OUTPUT_ONLY field to return the project_id of the destination project.
+     */
+    destinationProjectId?: string | null;
+    /**
+     * Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a BackupChannel from overwriting each other. It is strongly suggested that systems make use of the 'etag' in the read-modify-write cycle to perform BackupChannel updates in order to avoid race conditions: An `etag` is returned in the response to `GetBackupChannel`, and systems are expected to put that etag in the request to `UpdateBackupChannel` or `DeleteBackupChannel` to ensure that their change will be applied to the same version of the resource.
+     */
+    etag?: string | null;
+    /**
+     * Optional. A set of custom labels supplied by user.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The fully qualified name of the BackupChannel. `projects/x/locations/x/backupChannels/x`
+     */
+    name?: string | null;
+    /**
+     * Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The timestamp when this BackupChannel resource was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * BackupConfig defines the configuration of Backups created via this BackupPlan.
    */
   export interface Schema$BackupConfig {
@@ -384,6 +425,72 @@ export namespace gkebackup_v1 {
      * Output only. The timestamp when this BackupPlan resource was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * A BackupPlanBinding binds a BackupPlan with a BackupChannel. This resource is created automatically when a BackupPlan is created using a BackupChannel. This also serves as a holder for cross-project fields that need to be displayed in the current project.
+   */
+  export interface Schema$BackupPlanBinding {
+    /**
+     * Output only. Immutable. The fully qualified name of the BackupPlan bound with the parent BackupChannel. `projects/x/locations/x/backupPlans/{backup_plan\}`
+     */
+    backupPlan?: string | null;
+    /**
+     * Output only. Contains details about the backup plan/backup.
+     */
+    backupPlanDetails?: Schema$BackupPlanDetails;
+    /**
+     * Output only. Immutable. The fully qualified name of the cluster that is being backed up Valid formats: - `projects/x/locations/x/clusters/x` - `projects/x/zones/x/clusters/x`
+     */
+    cluster?: string | null;
+    /**
+     * Output only. The timestamp when this binding was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a BackupPlanBinding from overwriting each other. It is strongly suggested that systems make use of the 'etag' in the read-modify-write cycle to perform BackupPlanBinding updates in order to avoid race conditions: An `etag` is returned in the response to `GetBackupPlanBinding`, and systems are expected to put that etag in the request to `UpdateBackupPlanBinding` or `DeleteBackupPlanBinding` to ensure that their change will be applied to the same version of the resource.
+     */
+    etag?: string | null;
+    /**
+     * Identifier. The fully qualified name of the BackupPlanBinding. `projects/x/locations/x/backupChannels/x/backupPlanBindings/x`
+     */
+    name?: string | null;
+    /**
+     * Output only. Server generated global unique identifier of [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier)
+     */
+    uid?: string | null;
+    /**
+     * Output only. The timestamp when this binding was created.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Contains metadata about the backup plan/backup.
+   */
+  export interface Schema$BackupPlanDetails {
+    /**
+     * Output only. The fully qualified name of the last successful Backup created under this BackupPlan. `projects/x/locations/x/backupPlans/x/backups/x`
+     */
+    lastSuccessfulBackup?: string | null;
+    /**
+     * Output only. Completion time of the last successful Backup. This is sourced from a successful Backup's complete_time field.
+     */
+    lastSuccessfulBackupTime?: string | null;
+    /**
+     * Output only. Start time of next scheduled backup under this BackupPlan by either cron_schedule or rpo config. This is sourced from BackupPlan.
+     */
+    nextScheduledBackupTime?: string | null;
+    /**
+     * Output only. The number of Kubernetes Pods backed up in the last successful Backup created via this BackupPlan.
+     */
+    protectedPodCount?: number | null;
+    /**
+     * Output only. A number that represents the current risk level of this BackupPlan from RPO perspective with 1 being no risk and 5 being highest risk.
+     */
+    rpoRiskLevel?: number | null;
+    /**
+     * Output only. State of the BackupPlan.
+     */
+    state?: string | null;
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -550,6 +657,9 @@ export namespace gkebackup_v1 {
    * Response message for GetBackupIndexDownloadUrl.
    */
   export interface Schema$GetBackupIndexDownloadUrlResponse {
+    /**
+     * Required. The signed URL for downloading the backup index.
+     */
     signedUrl?: string | null;
   }
   /**
@@ -638,6 +748,40 @@ export namespace gkebackup_v1 {
     satisfying?: Schema$GroupKind;
   }
   /**
+   * Response message for ListBackupChannels.
+   */
+  export interface Schema$ListBackupChannelsResponse {
+    /**
+     * The list of BackupChannels matching the given criteria.
+     */
+    backupChannels?: Schema$BackupChannel[];
+    /**
+     * A token which may be sent as page_token in a subsequent `ListBackupChannels` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for ListBackupPlanBindings.
+   */
+  export interface Schema$ListBackupPlanBindingsResponse {
+    /**
+     * The list of BackupPlanBindings matching the given criteria.
+     */
+    backupPlanBindings?: Schema$BackupPlanBinding[];
+    /**
+     * A token which may be sent as page_token in a subsequent `ListBackupPlanBindingss` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response message for ListBackupPlans.
    */
   export interface Schema$ListBackupPlansResponse {
@@ -683,6 +827,40 @@ export namespace gkebackup_v1 {
      * The standard List next-page token.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListRestoreChannels.
+   */
+  export interface Schema$ListRestoreChannelsResponse {
+    /**
+     * A token which may be sent as page_token in a subsequent `ListRestoreChannels` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of RestoreChannels matching the given criteria.
+     */
+    restoreChannels?: Schema$RestoreChannel[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for ListRestorePlanBindings.
+   */
+  export interface Schema$ListRestorePlanBindingsResponse {
+    /**
+     * A token which may be sent as page_token in a subsequent `ListRestorePlanBindings` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of RestorePlanBindings matching the given criteria.
+     */
+    restorePlanBindings?: Schema$RestorePlanBinding[];
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response message for ListRestorePlans.
@@ -913,7 +1091,7 @@ export namespace gkebackup_v1 {
      */
     createTime?: string | null;
     /**
-     * User specified descriptive string for this Restore.
+     * Optional. User specified descriptive string for this Restore.
      */
     description?: string | null;
     /**
@@ -972,6 +1150,47 @@ export namespace gkebackup_v1 {
      * Output only. Number of volumes restored during the restore execution.
      */
     volumesRestoredCount?: number | null;
+  }
+  /**
+   * A RestoreChannel imposes constraints on where backups can be restored. The RestoreChannel should be in the same project and region as the backups. The backups can only be restored in the `destination_project`.
+   */
+  export interface Schema$RestoreChannel {
+    /**
+     * Output only. The timestamp when this RestoreChannel was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User specified descriptive string for this RestoreChannel.
+     */
+    description?: string | null;
+    /**
+     * Required. Immutable. The project into which the backups will be restored. The format is `projects/{project\}`. Currently, {project\} can only be the project number. Support for project IDs will be added in the future.
+     */
+    destinationProject?: string | null;
+    /**
+     * Output only. The project_id where backups will be restored. Example Project ID: "my-project-id". This will be an OUTPUT_ONLY field to return the project_id of the destination project.
+     */
+    destinationProjectId?: string | null;
+    /**
+     * Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a RestoreChannel from overwriting each other. It is strongly suggested that systems make use of the 'etag' in the read-modify-write cycle to perform RestoreChannel updates in order to avoid race conditions: An `etag` is returned in the response to `GetRestoreChannel`, and systems are expected to put that etag in the request to `UpdateRestoreChannel` or `DeleteRestoreChannel` to ensure that their change will be applied to the same version of the resource.
+     */
+    etag?: string | null;
+    /**
+     * Optional. A set of custom labels supplied by user.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The fully qualified name of the RestoreChannel. `projects/x/locations/x/restoreChannels/x`
+     */
+    name?: string | null;
+    /**
+     * Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The timestamp when this RestoreChannel was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Configuration of a restore.
@@ -1089,6 +1308,39 @@ export namespace gkebackup_v1 {
     uid?: string | null;
     /**
      * Output only. The timestamp when this RestorePlan resource was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A RestorePlanBinding binds a RestorePlan with a RestoreChannel. This resource is created automatically when a RestorePlan is created using a RestoreChannel. This also serves as a holder for cross-project fields that need to be displayed in the current project.
+   */
+  export interface Schema$RestorePlanBinding {
+    /**
+     * Output only. The fully qualified name of the BackupPlan bound to the specified RestorePlan. `projects/x/locations/x/backukpPlans/{backup_plan\}`
+     */
+    backupPlan?: string | null;
+    /**
+     * Output only. The timestamp when this binding was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a RestorePlanBinding from overwriting each other. It is strongly suggested that systems make use of the 'etag' in the read-modify-write cycle to perform RestorePlanBinding updates in order to avoid race conditions: An `etag` is returned in the response to `GetRestorePlanBinding`, and systems are expected to put that etag in the request to `UpdateRestorePlanBinding` or `DeleteRestorePlanBinding` to ensure that their change will be applied to the same version of the resource.
+     */
+    etag?: string | null;
+    /**
+     * Identifier. The fully qualified name of the RestorePlanBinding. `projects/x/locations/x/restoreChannels/x/restorePlanBindings/x`
+     */
+    name?: string | null;
+    /**
+     * Output only. The fully qualified name of the RestorePlan bound to this RestoreChannel. `projects/x/locations/x/restorePlans/{restore_plan\}`
+     */
+    restorePlan?: string | null;
+    /**
+     * Output only. Server generated global unique identifier of [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier)
+     */
+    uid?: string | null;
+    /**
+     * Output only. The timestamp when this binding was created.
      */
     updateTime?: string | null;
   }
@@ -1414,15 +1666,23 @@ export namespace gkebackup_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    backupChannels: Resource$Projects$Locations$Backupchannels;
     backupPlans: Resource$Projects$Locations$Backupplans;
     operations: Resource$Projects$Locations$Operations;
+    restoreChannels: Resource$Projects$Locations$Restorechannels;
     restorePlans: Resource$Projects$Locations$Restoreplans;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.backupChannels = new Resource$Projects$Locations$Backupchannels(
+        this.context
+      );
       this.backupPlans = new Resource$Projects$Locations$Backupplans(
         this.context
       );
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.restoreChannels = new Resource$Projects$Locations$Restorechannels(
         this.context
       );
       this.restorePlans = new Resource$Projects$Locations$Restoreplans(
@@ -1619,6 +1879,10 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
+    /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
@@ -1634,6 +1898,780 @@ export namespace gkebackup_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Backupchannels {
+    context: APIRequestContext;
+    backupPlanBindings: Resource$Projects$Locations$Backupchannels$Backupplanbindings;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.backupPlanBindings =
+        new Resource$Projects$Locations$Backupchannels$Backupplanbindings(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a new BackupChannel in a given location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Backupchannels$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Backupchannels$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Backupchannels$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Backupchannels$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Backupchannels$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupchannels$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupchannels$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backupchannels$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backupChannels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an existing BackupChannel.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Backupchannels$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Backupchannels$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Backupchannels$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Backupchannels$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Backupchannels$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupchannels$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupchannels$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backupchannels$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve the details of a single BackupChannel.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Backupchannels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Backupchannels$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BackupChannel>;
+    get(
+      params: Params$Resource$Projects$Locations$Backupchannels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Backupchannels$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$BackupChannel>,
+      callback: BodyResponseCallback<Schema$BackupChannel>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Backupchannels$Get,
+      callback: BodyResponseCallback<Schema$BackupChannel>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$BackupChannel>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupchannels$Get
+        | BodyResponseCallback<Schema$BackupChannel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BackupChannel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BackupChannel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BackupChannel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupchannels$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backupchannels$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BackupChannel>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BackupChannel>(parameters);
+      }
+    }
+
+    /**
+     * Lists BackupChannels in a given location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Backupchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Backupchannels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBackupChannelsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Backupchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Backupchannels$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBackupChannelsResponse>,
+      callback: BodyResponseCallback<Schema$ListBackupChannelsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Backupchannels$List,
+      callback: BodyResponseCallback<Schema$ListBackupChannelsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBackupChannelsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupchannels$List
+        | BodyResponseCallback<Schema$ListBackupChannelsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBackupChannelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBackupChannelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBackupChannelsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupchannels$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backupchannels$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backupChannels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBackupChannelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBackupChannelsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Update a BackupChannel.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Backupchannels$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Backupchannels$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Backupchannels$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Backupchannels$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Backupchannels$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupchannels$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupchannels$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backupchannels$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Backupchannels$Create
+    extends StandardParameters {
+    /**
+     * Optional. The client-provided short name for the BackupChannel resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of BackupChannels in this location If the user does not provide a name, a uuid will be used as the name.
+     */
+    backupChannelId?: string;
+    /**
+     * Required. The location within which to create the BackupChannel. Format: `projects/x/locations/x`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BackupChannel;
+  }
+  export interface Params$Resource$Projects$Locations$Backupchannels$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If provided, this value must match the current value of the target BackupChannel's etag field or the request is rejected.
+     */
+    etag?: string;
+    /**
+     * Optional. If set to true, any BackupPlanAssociations below this BackupChannel will also be deleted. Otherwise, the request will only succeed if the BackupChannel has no BackupPlanAssociations.
+     */
+    force?: boolean;
+    /**
+     * Required. Fully qualified BackupChannel name. Format: `projects/x/locations/x/backupChannels/x`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backupchannels$Get
+    extends StandardParameters {
+    /**
+     * Required. Fully qualified BackupChannel name. Format: `projects/x/locations/x/backupChannels/x`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backupchannels$List
+    extends StandardParameters {
+    /**
+     * Optional. Field match expression used to filter the results.
+     */
+    filter?: string;
+    /**
+     * Optional. Field by which to sort the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value of next_page_token received from a previous `ListBackupChannels` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackupChannels` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The location that contains the BackupChannels to list. Format: `projects/x/locations/x`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backupchannels$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The fully qualified name of the BackupChannel. `projects/x/locations/x/backupChannels/x`
+     */
+    name?: string;
+    /**
+     * Optional. This is used to specify the fields to be overwritten in the BackupChannel targeted for update. The values for each of these updated fields will be taken from the `backup_channel` provided with this request. Field names are relative to the root of the resource (e.g., `description`, `labels`, etc.) If no `update_mask` is provided, all fields in `backup_channel` will be written to the target BackupChannel resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup_channel` are ignored and are not used to update the target BackupChannel.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BackupChannel;
+  }
+
+  export class Resource$Projects$Locations$Backupchannels$Backupplanbindings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieve the details of a single BackupPlanBinding.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BackupPlanBinding>;
+    get(
+      params: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$BackupPlanBinding>,
+      callback: BodyResponseCallback<Schema$BackupPlanBinding>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get,
+      callback: BodyResponseCallback<Schema$BackupPlanBinding>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$BackupPlanBinding>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get
+        | BodyResponseCallback<Schema$BackupPlanBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BackupPlanBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BackupPlanBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BackupPlanBinding>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BackupPlanBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BackupPlanBinding>(parameters);
+      }
+    }
+
+    /**
+     * Lists BackupPlanBindings in a given location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBackupPlanBindingsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBackupPlanBindingsResponse>,
+      callback: BodyResponseCallback<Schema$ListBackupPlanBindingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List,
+      callback: BodyResponseCallback<Schema$ListBackupPlanBindingsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBackupPlanBindingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List
+        | BodyResponseCallback<Schema$ListBackupPlanBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBackupPlanBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBackupPlanBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBackupPlanBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backupPlanBindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBackupPlanBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBackupPlanBindingsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$Get
+    extends StandardParameters {
+    /**
+     * Required. Fully qualified BackupPlanBinding name. Format: `projects/x/locations/x/backupChannels/x/backupPlanBindings/x`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backupchannels$Backupplanbindings$List
+    extends StandardParameters {
+    /**
+     * Optional. Field match expression used to filter the results.
+     */
+    filter?: string;
+    /**
+     * Optional. Field by which to sort the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value of next_page_token received from a previous `ListBackupPlanBindings` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackupPlanBindings` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The BackupChannel that contains the BackupPlanBindings to list. Format: `projects/x/locations/x/backupChannels/x`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Backupplans {
@@ -4394,6 +5432,778 @@ export namespace gkebackup_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Restorechannels {
+    context: APIRequestContext;
+    restorePlanBindings: Resource$Projects$Locations$Restorechannels$Restoreplanbindings;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.restorePlanBindings =
+        new Resource$Projects$Locations$Restorechannels$Restoreplanbindings(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a new RestoreChannel in a given location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Restorechannels$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Restorechannels$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Restorechannels$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Restorechannels$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Restorechannels$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Restorechannels$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Restorechannels$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Restorechannels$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/restoreChannels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an existing RestoreChannel.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Restorechannels$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Restorechannels$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Restorechannels$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Restorechannels$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Restorechannels$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Restorechannels$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Restorechannels$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Restorechannels$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve the details of a single RestoreChannel.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Restorechannels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Restorechannels$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RestoreChannel>;
+    get(
+      params: Params$Resource$Projects$Locations$Restorechannels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Restorechannels$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RestoreChannel>,
+      callback: BodyResponseCallback<Schema$RestoreChannel>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Restorechannels$Get,
+      callback: BodyResponseCallback<Schema$RestoreChannel>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RestoreChannel>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Restorechannels$Get
+        | BodyResponseCallback<Schema$RestoreChannel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RestoreChannel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RestoreChannel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RestoreChannel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Restorechannels$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Restorechannels$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RestoreChannel>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RestoreChannel>(parameters);
+      }
+    }
+
+    /**
+     * Lists RestoreChannels in a given location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Restorechannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Restorechannels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRestoreChannelsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Restorechannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Restorechannels$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRestoreChannelsResponse>,
+      callback: BodyResponseCallback<Schema$ListRestoreChannelsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Restorechannels$List,
+      callback: BodyResponseCallback<Schema$ListRestoreChannelsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRestoreChannelsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Restorechannels$List
+        | BodyResponseCallback<Schema$ListRestoreChannelsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRestoreChannelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRestoreChannelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRestoreChannelsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Restorechannels$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Restorechannels$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/restoreChannels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRestoreChannelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRestoreChannelsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Update a RestoreChannel.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Restorechannels$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Restorechannels$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Restorechannels$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Restorechannels$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Restorechannels$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Restorechannels$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Restorechannels$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Restorechannels$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Restorechannels$Create
+    extends StandardParameters {
+    /**
+     * Required. The location within which to create the RestoreChannel. Format: `projects/x/locations/x`
+     */
+    parent?: string;
+    /**
+     * Optional. The client-provided short name for the RestoreChannel resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of RestoreChannels in this location If the user does not provide a name, a uuid will be used as the name.
+     */
+    restoreChannelId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestoreChannel;
+  }
+  export interface Params$Resource$Projects$Locations$Restorechannels$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If provided, this value must match the current value of the target RestoreChannel's etag field or the request is rejected.
+     */
+    etag?: string;
+    /**
+     * Required. Fully qualified RestoreChannel name. Format: `projects/x/locations/x/restoreChannels/x`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Restorechannels$Get
+    extends StandardParameters {
+    /**
+     * Required. Fully qualified RestoreChannel name. Format: `projects/x/locations/x/restoreChannels/x`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Restorechannels$List
+    extends StandardParameters {
+    /**
+     * Optional. Field match expression used to filter the results.
+     */
+    filter?: string;
+    /**
+     * Optional. Field by which to sort the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value of next_page_token received from a previous `ListRestoreChannels` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestoreChannels` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The location that contains the RestoreChannels to list. Format: `projects/x/locations/x`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Restorechannels$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The fully qualified name of the RestoreChannel. `projects/x/locations/x/restoreChannels/x`
+     */
+    name?: string;
+    /**
+     * Optional. This is used to specify the fields to be overwritten in the RestoreChannel targeted for update. The values for each of these updated fields will be taken from the `restore_channel` provided with this request. Field names are relative to the root of the resource (e.g., `description`, `destination_project_id`, etc.) If no `update_mask` is provided, all fields in `restore_channel` will be written to the target RestoreChannel resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore_channel` are ignored and are not used to update the target RestoreChannel.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestoreChannel;
+  }
+
+  export class Resource$Projects$Locations$Restorechannels$Restoreplanbindings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieve the details of a single RestorePlanBinding.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RestorePlanBinding>;
+    get(
+      params: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RestorePlanBinding>,
+      callback: BodyResponseCallback<Schema$RestorePlanBinding>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get,
+      callback: BodyResponseCallback<Schema$RestorePlanBinding>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RestorePlanBinding>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get
+        | BodyResponseCallback<Schema$RestorePlanBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RestorePlanBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RestorePlanBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RestorePlanBinding>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RestorePlanBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RestorePlanBinding>(parameters);
+      }
+    }
+
+    /**
+     * Lists RestorePlanBindings in a given location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRestorePlanBindingsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRestorePlanBindingsResponse>,
+      callback: BodyResponseCallback<Schema$ListRestorePlanBindingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List,
+      callback: BodyResponseCallback<Schema$ListRestorePlanBindingsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRestorePlanBindingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List
+        | BodyResponseCallback<Schema$ListRestorePlanBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRestorePlanBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRestorePlanBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRestorePlanBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/restorePlanBindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRestorePlanBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRestorePlanBindingsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$Get
+    extends StandardParameters {
+    /**
+     * Required. Fully qualified RestorePlanBinding name. Format: `projects/x/locations/x/restoreChannels/x/restorePlanBindings/x`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Restorechannels$Restoreplanbindings$List
+    extends StandardParameters {
+    /**
+     * Optional. Field match expression used to filter the results.
+     */
+    filter?: string;
+    /**
+     * Optional. Field by which to sort the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value of next_page_token received from a previous `ListRestorePlanBindings` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestorePlanBindings` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The RestoreChannel that contains the ListRestorePlanBindings to list. Format: `projects/x/locations/x/restoreChannels/x`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Restoreplans {
