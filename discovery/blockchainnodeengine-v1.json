@@ -143,6 +143,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -487,7 +493,7 @@
       }
     }
   },
-  "revision": "20241204",
+  "revision": "20250416",
   "rootUrl": "https://blockchainnodeengine.googleapis.com/",
   "schemas": {
     "BlockchainNode": {
@@ -534,7 +540,8 @@
           "type": "string"
         },
         "privateServiceConnectEnabled": {
-          "description": "Optional. When true, the node is only accessible via Private Service Connect; no public endpoints are exposed. Otherwise, the node is only accessible via public endpoints. Warning: Private Service Connect enabled nodes may require a manual migration effort to remain compatible with future versions of the product. If this feature is enabled, you will be notified of these changes along with any required action to avoid disruption. See https://cloud.google.com/vpc/docs/private-service-connect.",
+          "deprecated": true,
+          "description": "Optional. When true, the node is only accessible via Private Service Connect; no public endpoints are exposed. Otherwise, the node is only accessible via public endpoints. Warning: These nodes are deprecated, please use public endpoints instead.",
           "type": "boolean"
         },
         "state": {
@@ -974,6 +981,7 @@
           "type": "string"
         },
         "managedValidatorClient": {
+          "deprecated": true,
           "description": "Immutable. When true, deploys a GCP-managed validator client alongside the beacon client.",
           "type": "boolean"
         },
