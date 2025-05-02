@@ -459,6 +459,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
                   "location": "query",
@@ -777,7 +783,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
+                          "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
                           "location": "path",
                           "pattern": "^billingAccounts/[^/]+/locations/[^/]+/buckets/[^/]+$",
                           "required": true,
@@ -2285,6 +2291,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
                   "location": "query",
@@ -2603,7 +2615,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
+                          "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
                           "location": "path",
                           "pattern": "^folders/[^/]+/locations/[^/]+/buckets/[^/]+$",
                           "required": true,
@@ -3866,6 +3878,12 @@
             "name"
           ],
           "parameters": {
+            "extraLocationTypes": {
+              "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
             "filter": {
               "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
               "location": "query",
@@ -4184,7 +4202,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
+                      "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
                       "location": "path",
                       "pattern": "^[^/]+/[^/]+/locations/[^/]+/buckets/[^/]+$",
                       "required": true,
@@ -5103,6 +5121,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
                   "location": "query",
@@ -5421,7 +5445,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
+                          "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/locations/[^/]+/buckets/[^/]+$",
                           "required": true,
@@ -6905,6 +6929,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
                   "location": "query",
@@ -7223,7 +7253,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
+                          "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/buckets/[^/]+$",
                           "required": true,
@@ -8922,7 +8952,7 @@
       }
     }
   },
-  "revision": "20250307",
+  "revision": "20250411",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "AppHub": {
@@ -9287,7 +9317,7 @@
           "type": "string"
         },
         "parent": {
-          "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
+          "description": "Required. The full resource name of the bucket to create a link for. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" ",
           "type": "string"
         }
       },
