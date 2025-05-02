@@ -4214,6 +4214,80 @@
       },
       "type": "object"
     },
+    "ClusterUpgradeInfo": {
+      "description": "ClusterUpgradeInfo contains the upgrade information of a cluster.",
+      "id": "ClusterUpgradeInfo",
+      "properties": {
+        "autoUpgradeStatus": {
+          "description": "The auto upgrade status.",
+          "items": {
+            "enum": [
+              "UNKNOWN",
+              "ACTIVE",
+              "MINOR_UPGRADE_PAUSED",
+              "UPGRADE_PAUSED"
+            ],
+            "enumDescriptions": [
+              "UNKNOWN indicates an unknown status.",
+              "ACTIVE indicates an active status.",
+              "MINOR_UPGRADE_PAUSED indicates the minor version upgrade is paused.",
+              "UPGRADE_PAUSED indicates the upgrade is paused."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "endOfExtendedSupportTimestamp": {
+          "description": "The cluster's current minor version's end of extended support timestamp.",
+          "type": "string"
+        },
+        "endOfStandardSupportTimestamp": {
+          "description": "The cluster's current minor version's end of standard support timestamp.",
+          "type": "string"
+        },
+        "minorTargetVersion": {
+          "description": "minor_target_version indicates the target version for minor upgrade.",
+          "type": "string"
+        },
+        "patchTargetVersion": {
+          "description": "patch_target_version indicates the target version for patch upgrade.",
+          "type": "string"
+        },
+        "pausedReason": {
+          "description": "The auto upgrade paused reason.",
+          "items": {
+            "enum": [
+              "AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED",
+              "MAINTENANCE_WINDOW",
+              "MAINTENANCE_EXCLUSION_NO_UPGRADES",
+              "MAINTENANCE_EXCLUSION_NO_MINOR_UPGRADES",
+              "CLUSTER_DISRUPTION_BUDGET",
+              "CLUSTER_DISRUPTION_BUDGET_MINOR_UPGRADE",
+              "SYSTEM_CONFIG"
+            ],
+            "enumDescriptions": [
+              "AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED indicates an unspecified reason.",
+              "MAINTENANCE_WINDOW indicates the cluster is outside customer maintenance window.",
+              "MAINTENANCE_EXCLUSION_NO_UPGRADES indicates the cluster is in a maintenance exclusion with scope NO_UPGRADES.",
+              "MAINTENANCE_EXCLUSION_NO_MINOR_UPGRADES indicates the cluster is in a maintenance exclusion with scope NO_MINOR_UPGRADES.",
+              "CLUSTER_DISRUPTION_BUDGET indicates the cluster is outside the cluster disruption budget.",
+              "CLUSTER_DISRUPTION_BUDGET_MINOR_UPGRADE indicates the cluster is outside the cluster disruption budget for minor version upgrade.",
+              "SYSTEM_CONFIG indicates the cluster upgrade is paused by system config."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "upgradeDetails": {
+          "description": "The list of past auto upgrades.",
+          "items": {
+            "$ref": "UpgradeDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CompleteIPRotationRequest": {
       "description": "CompleteIPRotationRequest moves the cluster master back into single-IP mode.",
       "id": "CompleteIPRotationRequest",

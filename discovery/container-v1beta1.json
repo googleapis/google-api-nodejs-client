@@ -8038,6 +8038,22 @@
       },
       "type": "object"
     },
+    "RotationConfig": {
+      "description": "RotationConfig is config for secret manager auto rotation.",
+      "id": "RotationConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether the rotation is enabled.",
+          "type": "boolean"
+        },
+        "rotationInterval": {
+          "description": "The interval between two consecutive rotations. Default rotation interval is 2 minutes.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SandboxConfig": {
       "description": "SandboxConfig contains configurations of the sandbox to use for the node.",
       "id": "SandboxConfig",
