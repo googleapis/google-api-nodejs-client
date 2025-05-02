@@ -125,6 +125,70 @@ export namespace dataform_v1beta1 {
   }
 
   /**
+   * Error table information, used to write error data into a BigQuery table.
+   */
+  export interface Schema$ActionErrorTable {
+    /**
+     * Error table partition expiration in days. Only positive values are allowed.
+     */
+    retentionDays?: number | null;
+    /**
+     * Error Table target.
+     */
+    target?: Schema$Target;
+  }
+  /**
+   * Load definition for incremental load modes
+   */
+  export interface Schema$ActionIncrementalLoadMode {
+    /**
+     * Column name for incremental load modes
+     */
+    column?: string | null;
+  }
+  /**
+   * Simplified load configuration for actions
+   */
+  export interface Schema$ActionLoadConfig {
+    /**
+     * Append into destination table
+     */
+    append?: Schema$ActionSimpleLoadMode;
+    /**
+     * Insert records where the value exceeds the previous maximum value for a column in the destination table
+     */
+    maximum?: Schema$ActionIncrementalLoadMode;
+    /**
+     * Replace destination table
+     */
+    replace?: Schema$ActionSimpleLoadMode;
+    /**
+     * Insert records where the value of a column is not already present in the destination table
+     */
+    unique?: Schema$ActionIncrementalLoadMode;
+  }
+  /**
+   * Simple load definition
+   */
+  export interface Schema$ActionSimpleLoadMode {}
+  /**
+   * Definition of a SQL Data Preparation
+   */
+  export interface Schema$ActionSqlDefinition {
+    /**
+     * Error table configuration,
+     */
+    errorTable?: Schema$ActionErrorTable;
+    /**
+     * Load configuration.
+     */
+    loadConfig?: Schema$ActionLoadConfig;
+    /**
+     * The SQL query representing the data preparation steps. Formatted as a Pipe SQL query statement.
+     */
+    query?: string | null;
+  }
+  /**
    * Represents an assertion upon a SQL query which is required return zero rows.
    */
   export interface Schema$Assertion {
@@ -199,6 +263,10 @@ export namespace dataform_v1beta1 {
      * Optional. The default schema (BigQuery dataset ID) for assertions.
      */
     assertionSchema?: string | null;
+    /**
+     * Optional. The prefix to prepend to built-in assertion names.
+     */
+    builtinAssertionNamePrefix?: string | null;
     /**
      * Optional. The suffix that should be appended to all database (Google Cloud project ID) names.
      */
@@ -426,6 +494,10 @@ export namespace dataform_v1beta1 {
      */
     canonicalTarget?: Schema$Target;
     /**
+     * The data preparation executed by this action.
+     */
+    dataPreparation?: Schema$DataPreparation;
+    /**
      * The declaration declared by this action.
      */
     declaration?: Schema$Declaration;
@@ -486,6 +558,52 @@ export namespace dataform_v1beta1 {
     kmsKeyVersionName?: string | null;
   }
   /**
+   * Defines a compiled Data Preparation entity
+   */
+  export interface Schema$DataPreparation {
+    /**
+     * SQL definition for a Data Preparation. Contains a SQL query and additional context information.
+     */
+    contentsSql?: Schema$SqlDefinition;
+    /**
+     * The data preparation definition, stored as a YAML string.
+     */
+    contentsYaml?: string | null;
+    /**
+     * A list of actions that this action depends on.
+     */
+    dependencyTargets?: Schema$Target[];
+    /**
+     * Whether this action is disabled (i.e. should not be run).
+     */
+    disabled?: boolean | null;
+    /**
+     * Arbitrary, user-defined tags on this action.
+     */
+    tags?: string[] | null;
+  }
+  /**
+   * Represents a workflow action that will run a Data Preparation.
+   */
+  export interface Schema$DataPreparationAction {
+    /**
+     * SQL definition for a Data Preparation. Contains a SQL query and additional context information.
+     */
+    contentsSql?: Schema$ActionSqlDefinition;
+    /**
+     * Output only. YAML representing the contents of the data preparation. Can be used to show the customer what the input was to their workflow.
+     */
+    contentsYaml?: string | null;
+    /**
+     * Output only. The generated BigQuery SQL script that will be executed. For reference only.
+     */
+    generatedSql?: string | null;
+    /**
+     * Output only. The ID of the BigQuery job that executed the SQL in sql_script. Only set once the job has started to run.
+     */
+    jobId?: string | null;
+  }
+  /**
    * Represents a relation which is not managed by Dataform but which may be referenced by Dataform actions.
    */
   export interface Schema$Declaration {
@@ -524,6 +642,19 @@ export namespace dataform_v1beta1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Error table information, used to write error data into a BigQuery table.
+   */
+  export interface Schema$ErrorTable {
+    /**
+     * Error table partition expiration in days. Only positive values are allowed.
+     */
+    retentionDays?: number | null;
+    /**
+     * Error Table target.
+     */
+    target?: Schema$Target;
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -644,6 +775,15 @@ export namespace dataform_v1beta1 {
      * Required. The Git remote's URL.
      */
     url?: string | null;
+  }
+  /**
+   * Load definition for incremental load modes
+   */
+  export interface Schema$IncrementalLoadMode {
+    /**
+     * Column name for incremental load modes
+     */
+    column?: string | null;
   }
   /**
    * Contains settings for relations of type `INCREMENTAL_TABLE`.
@@ -838,6 +978,27 @@ export namespace dataform_v1beta1 {
      * List of workspaces.
      */
     workspaces?: Schema$Workspace[];
+  }
+  /**
+   * Simplified load configuration for actions
+   */
+  export interface Schema$LoadConfig {
+    /**
+     * Append into destination table
+     */
+    append?: Schema$SimpleLoadMode;
+    /**
+     * Insert records where the value exceeds the previous maximum value for a column in the destination table
+     */
+    maximum?: Schema$IncrementalLoadMode;
+    /**
+     * Replace destination table
+     */
+    replace?: Schema$SimpleLoadMode;
+    /**
+     * Insert records where the value of a column is not already present in the destination table
+     */
+    unique?: Schema$IncrementalLoadMode;
   }
   /**
    * A resource that represents a Google Cloud location.
@@ -1418,6 +1579,27 @@ export namespace dataform_v1beta1 {
     policy?: Schema$Policy;
   }
   /**
+   * Simple load definition
+   */
+  export interface Schema$SimpleLoadMode {}
+  /**
+   * Definition of a SQL Data Preparation
+   */
+  export interface Schema$SqlDefinition {
+    /**
+     * Error table configuration,
+     */
+    errorTable?: Schema$ErrorTable;
+    /**
+     * Load configuration.
+     */
+    load?: Schema$LoadConfig;
+    /**
+     * The SQL query representing the data preparation steps. Formatted as a Pipe SQL query statement.
+     */
+    query?: string | null;
+  }
+  /**
    * Configures fields for performing SSH authentication.
    */
   export interface Schema$SshAuthenticationConfig {
@@ -1508,6 +1690,10 @@ export namespace dataform_v1beta1 {
      */
     cronSchedule?: string | null;
     /**
+     * Optional. Disables automatic creation of workflow invocations.
+     */
+    disabled?: boolean | null;
+    /**
      * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
      */
     internalMetadata?: string | null;
@@ -1589,6 +1775,10 @@ export namespace dataform_v1beta1 {
      * Output only. The action's identifier if the project had been compiled without any overrides configured. Unique within the compilation result.
      */
     canonicalTarget?: Schema$Target;
+    /**
+     * Output only. The workflow action's data preparation action details.
+     */
+    dataPreparationAction?: Schema$DataPreparationAction;
     /**
      * Output only. If and only if action's state is FAILED a failure reason is set.
      */
@@ -1962,7 +2152,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Update default config for a given project and location. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields
+     * Update default config for a given project and location. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2063,6 +2253,10 @@ export namespace dataform_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
@@ -2863,7 +3057,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Lists Repositories in a given project and location.
+     * Lists Repositories in a given project and location. **Note:** *This method can return repositories not shown in the [Dataform UI](https://console.cloud.google.com/bigquery/dataform)*.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2956,7 +3150,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Updates a single Repository. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields
+     * Updates a single Repository. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4417,7 +4611,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Updates a single ReleaseConfig. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields
+     * Updates a single ReleaseConfig. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4929,7 +5123,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Updates a single WorkflowConfig. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields
+     * Updates a single WorkflowConfig. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

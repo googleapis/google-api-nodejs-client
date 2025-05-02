@@ -172,6 +172,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -206,7 +212,7 @@
               ]
             },
             "updateConfig": {
-              "description": "Update default config for a given project and location. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields",
+              "description": "Update default config for a given project and location. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*",
               "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/config",
               "httpMethod": "PATCH",
               "id": "dataform.projects.locations.updateConfig",
@@ -486,7 +492,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists Repositories in a given project and location.",
+                  "description": "Lists Repositories in a given project and location. **Note:** *This method can return repositories not shown in the [Dataform UI](https://console.cloud.google.com/bigquery/dataform)*.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories",
                   "httpMethod": "GET",
                   "id": "dataform.projects.locations.repositories.list",
@@ -533,7 +539,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a single Repository. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields",
+                  "description": "Updates a single Repository. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}",
                   "httpMethod": "PATCH",
                   "id": "dataform.projects.locations.repositories.patch",
@@ -984,7 +990,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates a single ReleaseConfig. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields",
+                      "description": "Updates a single ReleaseConfig. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/releaseConfigs/{releaseConfigsId}",
                       "httpMethod": "PATCH",
                       "id": "dataform.projects.locations.repositories.releaseConfigs.patch",
@@ -1146,7 +1152,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates a single WorkflowConfig. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields",
+                      "description": "Updates a single WorkflowConfig. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/workflowConfigs/{workflowConfigsId}",
                       "httpMethod": "PATCH",
                       "id": "dataform.projects.locations.repositories.workflowConfigs.patch",
@@ -2141,9 +2147,84 @@
       }
     }
   },
-  "revision": "20250306",
+  "revision": "20250420",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
+    "ActionErrorTable": {
+      "description": "Error table information, used to write error data into a BigQuery table.",
+      "id": "ActionErrorTable",
+      "properties": {
+        "retentionDays": {
+          "description": "Error table partition expiration in days. Only positive values are allowed.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "target": {
+          "$ref": "Target",
+          "description": "Error Table target."
+        }
+      },
+      "type": "object"
+    },
+    "ActionIncrementalLoadMode": {
+      "description": "Load definition for incremental load modes",
+      "id": "ActionIncrementalLoadMode",
+      "properties": {
+        "column": {
+          "description": "Column name for incremental load modes",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ActionLoadConfig": {
+      "description": "Simplified load configuration for actions",
+      "id": "ActionLoadConfig",
+      "properties": {
+        "append": {
+          "$ref": "ActionSimpleLoadMode",
+          "description": "Append into destination table"
+        },
+        "maximum": {
+          "$ref": "ActionIncrementalLoadMode",
+          "description": "Insert records where the value exceeds the previous maximum value for a column in the destination table"
+        },
+        "replace": {
+          "$ref": "ActionSimpleLoadMode",
+          "description": "Replace destination table"
+        },
+        "unique": {
+          "$ref": "ActionIncrementalLoadMode",
+          "description": "Insert records where the value of a column is not already present in the destination table"
+        }
+      },
+      "type": "object"
+    },
+    "ActionSimpleLoadMode": {
+      "description": "Simple load definition",
+      "id": "ActionSimpleLoadMode",
+      "properties": {},
+      "type": "object"
+    },
+    "ActionSqlDefinition": {
+      "description": "Definition of a SQL Data Preparation",
+      "id": "ActionSqlDefinition",
+      "properties": {
+        "errorTable": {
+          "$ref": "ActionErrorTable",
+          "description": "Error table configuration,"
+        },
+        "loadConfig": {
+          "$ref": "ActionLoadConfig",
+          "description": "Load configuration."
+        },
+        "query": {
+          "description": "The SQL query representing the data preparation steps. Formatted as a Pipe SQL query statement.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Assertion": {
       "description": "Represents an assertion upon a SQL query which is required return zero rows.",
       "id": "Assertion",
@@ -2238,6 +2319,10 @@
       "properties": {
         "assertionSchema": {
           "description": "Optional. The default schema (BigQuery dataset ID) for assertions.",
+          "type": "string"
+        },
+        "builtinAssertionNamePrefix": {
+          "description": "Optional. The prefix to prepend to built-in assertion names.",
           "type": "string"
         },
         "databaseSuffix": {
@@ -2519,6 +2604,10 @@
           "$ref": "Target",
           "description": "The action's identifier if the project had been compiled without any overrides configured. Unique within the compilation result."
         },
+        "dataPreparation": {
+          "$ref": "DataPreparation",
+          "description": "The data preparation executed by this action."
+        },
         "declaration": {
           "$ref": "Declaration",
           "description": "The declaration declared by this action."
@@ -2600,6 +2689,65 @@
       },
       "type": "object"
     },
+    "DataPreparation": {
+      "description": "Defines a compiled Data Preparation entity",
+      "id": "DataPreparation",
+      "properties": {
+        "contentsSql": {
+          "$ref": "SqlDefinition",
+          "description": "SQL definition for a Data Preparation. Contains a SQL query and additional context information."
+        },
+        "contentsYaml": {
+          "description": "The data preparation definition, stored as a YAML string.",
+          "type": "string"
+        },
+        "dependencyTargets": {
+          "description": "A list of actions that this action depends on.",
+          "items": {
+            "$ref": "Target"
+          },
+          "type": "array"
+        },
+        "disabled": {
+          "description": "Whether this action is disabled (i.e. should not be run).",
+          "type": "boolean"
+        },
+        "tags": {
+          "description": "Arbitrary, user-defined tags on this action.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DataPreparationAction": {
+      "description": "Represents a workflow action that will run a Data Preparation.",
+      "id": "DataPreparationAction",
+      "properties": {
+        "contentsSql": {
+          "$ref": "ActionSqlDefinition",
+          "description": "SQL definition for a Data Preparation. Contains a SQL query and additional context information."
+        },
+        "contentsYaml": {
+          "description": "Output only. YAML representing the contents of the data preparation. Can be used to show the customer what the input was to their workflow.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "generatedSql": {
+          "description": "Output only. The generated BigQuery SQL script that will be executed. For reference only.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "jobId": {
+          "description": "Output only. The ID of the BigQuery job that executed the SQL in sql_script. Only set once the job has started to run.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Declaration": {
       "description": "Represents a relation which is not managed by Dataform but which may be referenced by Dataform actions.",
       "id": "Declaration",
@@ -2647,6 +2795,22 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "ErrorTable": {
+      "description": "Error table information, used to write error data into a BigQuery table.",
+      "id": "ErrorTable",
+      "properties": {
+        "retentionDays": {
+          "description": "Error table partition expiration in days. Only positive values are allowed.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "target": {
+          "$ref": "Target",
+          "description": "Error Table target."
+        }
+      },
       "type": "object"
     },
     "Expr": {
@@ -2808,6 +2972,17 @@
         },
         "url": {
           "description": "Required. The Git remote's URL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IncrementalLoadMode": {
+      "description": "Load definition for incremental load modes",
+      "id": "IncrementalLoadMode",
+      "properties": {
+        "column": {
+          "description": "Column name for incremental load modes",
           "type": "string"
         }
       },
@@ -3083,6 +3258,29 @@
             "$ref": "Workspace"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LoadConfig": {
+      "description": "Simplified load configuration for actions",
+      "id": "LoadConfig",
+      "properties": {
+        "append": {
+          "$ref": "SimpleLoadMode",
+          "description": "Append into destination table"
+        },
+        "maximum": {
+          "$ref": "IncrementalLoadMode",
+          "description": "Insert records where the value exceeds the previous maximum value for a column in the destination table"
+        },
+        "replace": {
+          "$ref": "SimpleLoadMode",
+          "description": "Replace destination table"
+        },
+        "unique": {
+          "$ref": "IncrementalLoadMode",
+          "description": "Insert records where the value of a column is not already present in the destination table"
         }
       },
       "type": "object"
@@ -3854,6 +4052,31 @@
       },
       "type": "object"
     },
+    "SimpleLoadMode": {
+      "description": "Simple load definition",
+      "id": "SimpleLoadMode",
+      "properties": {},
+      "type": "object"
+    },
+    "SqlDefinition": {
+      "description": "Definition of a SQL Data Preparation",
+      "id": "SqlDefinition",
+      "properties": {
+        "errorTable": {
+          "$ref": "ErrorTable",
+          "description": "Error table configuration,"
+        },
+        "load": {
+          "$ref": "LoadConfig",
+          "description": "Load configuration."
+        },
+        "query": {
+          "description": "The SQL query representing the data preparation steps. Formatted as a Pipe SQL query statement.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SshAuthenticationConfig": {
       "description": "Configures fields for performing SSH authentication.",
       "id": "SshAuthenticationConfig",
@@ -3987,6 +4210,10 @@
           "description": "Optional. Optional schedule (in cron format) for automatic execution of this workflow config.",
           "type": "string"
         },
+        "disabled": {
+          "description": "Optional. Disables automatic creation of workflow invocations.",
+          "type": "boolean"
+        },
         "internalMetadata": {
           "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
           "readOnly": true,
@@ -4102,6 +4329,11 @@
         "canonicalTarget": {
           "$ref": "Target",
           "description": "Output only. The action's identifier if the project had been compiled without any overrides configured. Unique within the compilation result.",
+          "readOnly": true
+        },
+        "dataPreparationAction": {
+          "$ref": "DataPreparationAction",
+          "description": "Output only. The workflow action's data preparation action details.",
           "readOnly": true
         },
         "failureReason": {
