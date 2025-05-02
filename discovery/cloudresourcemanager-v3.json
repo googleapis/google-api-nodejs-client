@@ -462,6 +462,71 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
+      },
+      "resources": {
+        "capabilities": {
+          "methods": {
+            "get": {
+              "description": "Retrieves the Capability identified by the supplied resource name.",
+              "flatPath": "v3/folders/{foldersId}/capabilities/{capabilitiesId}",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.folders.capabilities.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the capability to get. For example, `folders/123/capabilities/app-management`",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/capabilities/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "Capability"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates the Capability.",
+              "flatPath": "v3/folders/{foldersId}/capabilities/{capabilitiesId}",
+              "httpMethod": "PATCH",
+              "id": "cloudresourcemanager.folders.capabilities.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Immutable. Identifier. The resource name of the capability. Must be in the following form: * `folders/{folder_id}/capabilities/{capability_name}` For example, `folders/123/capabilities/app-management` Following are the allowed {capability_name} values: * `app-management`",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/capabilities/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to update. Only [Capability.value] can be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "request": {
+                "$ref": "Capability"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
       }
     },
     "liens": {
@@ -1805,7 +1870,7 @@
       }
     }
   },
-  "revision": "20250206",
+  "revision": "20250417",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1874,6 +1939,21 @@
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Capability": {
+      "description": "Representation of a Capability.",
+      "id": "Capability",
+      "properties": {
+        "name": {
+          "description": "Immutable. Identifier. The resource name of the capability. Must be in the following form: * `folders/{folder_id}/capabilities/{capability_name}` For example, `folders/123/capabilities/app-management` Following are the allowed {capability_name} values: * `app-management`",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The configured value of the capability at the given parent resource.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2097,6 +2177,14 @@
       "description": "A folder in an organization's resource hierarchy, used to organize that organization's resources.",
       "id": "Folder",
       "properties": {
+        "configuredCapabilities": {
+          "description": "Output only. Optional capabilities configured for this folder (via UpdateCapability API). Example: `folders/123/capabilities/app-management`.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. Timestamp when the folder was created.",
           "format": "google-datetime",
@@ -2115,6 +2203,11 @@
         },
         "etag": {
           "description": "Output only. A checksum computed by the server based on the current value of the folder resource. This may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "managementProject": {
+          "description": "Output only. Management Project associated with this folder (if app-management capability is enabled). Example: `projects/google-mp-123` OUTPUT ONLY.",
           "readOnly": true,
           "type": "string"
         },
