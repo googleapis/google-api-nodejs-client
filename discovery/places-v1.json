@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20250312",
+  "revision": "20250429",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -676,13 +676,12 @@
           "$ref": "GoogleTypeLocalizedText",
           "description": "Content related to the topic."
         },
-        "references": {
-          "$ref": "GoogleMapsPlacesV1References",
-          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. References that are related to this block of content."
-        },
-        "topic": {
-          "description": "The topic of the content, for example \"overview\" or \"restaurant\".",
-          "type": "string"
+        "referencedPlaces": {
+          "description": "The list of resource names of the referenced places. This name can be used in other APIs that accept Place resource names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1034,10 +1033,6 @@
           "description": "Place allows dogs.",
           "type": "boolean"
         },
-        "areaSummary": {
-          "$ref": "GoogleMapsPlacesV1PlaceAreaSummary",
-          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the area that the place is in."
-        },
         "attributions": {
           "description": "A set of data provider that must be shown with this result.",
           "items": {
@@ -1099,6 +1094,10 @@
           "$ref": "GoogleTypeLocalizedText",
           "description": "Contains a summary of the place. A summary is comprised of a textual overview, and also includes the language code for these if applicable. Summary text must be presented as-is and can not be modified or altered."
         },
+        "evChargeAmenitySummary": {
+          "$ref": "GoogleMapsPlacesV1PlaceEvChargeAmenitySummary",
+          "description": "The summary of amenities near the EV charging station."
+        },
         "evChargeOptions": {
           "$ref": "GoogleMapsPlacesV1EVChargeOptions",
           "description": "Information of ev charging options."
@@ -1113,7 +1112,7 @@
         },
         "generativeSummary": {
           "$ref": "GoogleMapsPlacesV1PlaceGenerativeSummary",
-          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the place."
+          "description": "AI-generated summary of the place."
         },
         "goodForChildren": {
           "description": "Place is good for children.",
@@ -1170,6 +1169,10 @@
         "nationalPhoneNumber": {
           "description": "A human-readable phone number for the place, in national format.",
           "type": "string"
+        },
+        "neighborhoodSummary": {
+          "$ref": "GoogleMapsPlacesV1PlaceNeighborhoodSummary",
+          "description": "A summary of points of interest near the place."
         },
         "outdoorSeating": {
           "description": "Place provides outdoor seating.",
@@ -1241,7 +1244,7 @@
         },
         "regularOpeningHours": {
           "$ref": "GoogleMapsPlacesV1PlaceOpeningHours",
-          "description": "The regular hours of operation. Note that if a place is always open (24 hours), the `close` field will not be set. Clients can rely on always open (24 hours) being represented as an `open` period containing `day` with value `0`, `hour` with value `0`, and `minute` with value `0`."
+          "description": "The regular hours of operation. Note that if a place is always open (24 hours), the `close` field will not be set. Clients can rely on always open (24 hours) being represented as an [`open`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Period) period containing [`day`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`, [`hour`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`, and [`minute`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`."
         },
         "regularSecondaryOpeningHours": {
           "description": "Contains an array of entries for information about regular secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.",
@@ -1257,6 +1260,10 @@
         "restroom": {
           "description": "Place has restroom.",
           "type": "boolean"
+        },
+        "reviewSummary": {
+          "$ref": "GoogleMapsPlacesV1PlaceReviewSummary",
+          "description": "AI-generated summary of the place using user reviews."
         },
         "reviews": {
           "description": "List of reviews about this place, sorted by relevance. A maximum of 5 reviews can be returned.",
@@ -1310,7 +1317,7 @@
           "type": "string"
         },
         "subDestinations": {
-          "description": "A list of sub destinations related to the place.",
+          "description": "A list of sub-destinations related to the place.",
           "items": {
             "$ref": "GoogleMapsPlacesV1PlaceSubDestination"
           },
@@ -1401,24 +1408,6 @@
       },
       "type": "object"
     },
-    "GoogleMapsPlacesV1PlaceAreaSummary": {
-      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the area that the place is in.",
-      "id": "GoogleMapsPlacesV1PlaceAreaSummary",
-      "properties": {
-        "contentBlocks": {
-          "description": "Content blocks that compose the area summary. Each block has a separate topic about the area.",
-          "items": {
-            "$ref": "GoogleMapsPlacesV1ContentBlock"
-          },
-          "type": "array"
-        },
-        "flagContentUri": {
-          "description": "A link where users can flag a problem with the summary.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleMapsPlacesV1PlaceAttribution": {
       "description": "Information about data providers of this place.",
       "id": "GoogleMapsPlacesV1PlaceAttribution",
@@ -1449,17 +1438,44 @@
       },
       "type": "object"
     },
+    "GoogleMapsPlacesV1PlaceEvChargeAmenitySummary": {
+      "description": "The summary of amenities near the EV charging station. This only applies to places with type `electric_vehicle_charging_station`. The `overview` field is guaranteed to be provided while the other fields are optional.",
+      "id": "GoogleMapsPlacesV1PlaceEvChargeAmenitySummary",
+      "properties": {
+        "coffee": {
+          "$ref": "GoogleMapsPlacesV1ContentBlock",
+          "description": "A summary of the nearby coffee options."
+        },
+        "disclosureText": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The AI disclosure message \"Summarized with Gemini\" (and its localized variants). This will be in the language specified in the request if available."
+        },
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the summary.",
+          "type": "string"
+        },
+        "overview": {
+          "$ref": "GoogleMapsPlacesV1ContentBlock",
+          "description": "An overview of the available amenities. This is guaranteed to be provided."
+        },
+        "restaurant": {
+          "$ref": "GoogleMapsPlacesV1ContentBlock",
+          "description": "A summary of the nearby restaurants."
+        },
+        "store": {
+          "$ref": "GoogleMapsPlacesV1ContentBlock",
+          "description": "A summary of the nearby gas stations."
+        }
+      },
+      "type": "object"
+    },
     "GoogleMapsPlacesV1PlaceGenerativeSummary": {
-      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the place.",
+      "description": "AI-generated summary of the place.",
       "id": "GoogleMapsPlacesV1PlaceGenerativeSummary",
       "properties": {
-        "description": {
+        "disclosureText": {
           "$ref": "GoogleTypeLocalizedText",
-          "description": "The detailed description of the place."
-        },
-        "descriptionFlagContentUri": {
-          "description": "A link where users can flag a problem with the description summary.",
-          "type": "string"
+          "description": "The AI disclosure message \"Summarized with Gemini\" (and its localized variants). This will be in the language specified in the request if available."
         },
         "overview": {
           "$ref": "GoogleTypeLocalizedText",
@@ -1468,10 +1484,6 @@
         "overviewFlagContentUri": {
           "description": "A link where users can flag a problem with the overview summary.",
           "type": "string"
-        },
-        "references": {
-          "$ref": "GoogleMapsPlacesV1References",
-          "description": "References that are used to generate the summary description."
         }
       },
       "type": "object"
@@ -1499,6 +1511,29 @@
         "writeAReviewUri": {
           "description": "A link to write a review for this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1PlaceNeighborhoodSummary": {
+      "description": "A summary of points of interest near the place.",
+      "id": "GoogleMapsPlacesV1PlaceNeighborhoodSummary",
+      "properties": {
+        "description": {
+          "$ref": "GoogleMapsPlacesV1ContentBlock",
+          "description": "A detailed description of the neighborhood."
+        },
+        "disclosureText": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The AI disclosure message \"Summarized with Gemini\" (and its localized variants). This will be in the language specified in the request if available."
+        },
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the summary.",
+          "type": "string"
+        },
+        "overview": {
+          "$ref": "GoogleMapsPlacesV1ContentBlock",
+          "description": "An overview summary of the neighborhood."
         }
       },
       "type": "object"
@@ -1710,16 +1745,35 @@
       },
       "type": "object"
     },
+    "GoogleMapsPlacesV1PlaceReviewSummary": {
+      "description": "AI-generated summary of the place using user reviews.",
+      "id": "GoogleMapsPlacesV1PlaceReviewSummary",
+      "properties": {
+        "disclosureText": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The AI disclosure message \"Summarized with Gemini\" (and its localized variants). This will be in the language specified in the request if available."
+        },
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the summary.",
+          "type": "string"
+        },
+        "text": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The summary of user reviews."
+        }
+      },
+      "type": "object"
+    },
     "GoogleMapsPlacesV1PlaceSubDestination": {
-      "description": "Sub-destinations are specific places associated with a main place. These provide more specific destinations for users who are searching inside a large or complex place, like an airport, national park, university, or stadium. For example, sub-destinations at an airport might include associated terminals and parking lots. Sub-destinations return the place ID and place resource name, which can be used in subsequent Place Details (new) requests to fetch richer details, including the sub-destination's display name and location.",
+      "description": "Sub-destinations are specific places associated with a main place. These provide more specific destinations for users who are searching within a large or complex place, like an airport, national park, university, or stadium. For example, sub-destinations at an airport might include associated terminals and parking lots. Sub-destinations return the place ID and place resource name, which can be used in subsequent Place Details (New) requests to fetch richer details, including the sub-destination's display name and location.",
       "id": "GoogleMapsPlacesV1PlaceSubDestination",
       "properties": {
         "id": {
-          "description": "The place id of the sub destination.",
+          "description": "The place id of the sub-destination.",
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the sub destination.",
+          "description": "The resource name of the sub-destination.",
           "type": "string"
         }
       },
@@ -1747,27 +1801,6 @@
         "startPrice": {
           "$ref": "GoogleTypeMoney",
           "description": "The low end of the price range (inclusive). Price should be at or above this amount."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleMapsPlacesV1References": {
-      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Reference that the generative content is related to.",
-      "id": "GoogleMapsPlacesV1References",
-      "properties": {
-        "places": {
-          "description": "The list of resource names of the referenced places. This name can be used in other APIs that accept Place resource names.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "reviews": {
-          "description": "Reviews that serve as references.",
-          "items": {
-            "$ref": "GoogleMapsPlacesV1Review"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1813,6 +1846,27 @@
         "text": {
           "$ref": "GoogleTypeLocalizedText",
           "description": "The localized text of the review."
+        },
+        "visitDate": {
+          "$ref": "GoogleMapsPlacesV1ReviewVisitDate",
+          "description": "The date when the author visited the place. This is trucated to month."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1ReviewVisitDate": {
+      "description": "The date when the author visited the place. This is trucated to month.",
+      "id": "GoogleMapsPlacesV1ReviewVisitDate",
+      "properties": {
+        "month": {
+          "description": "The month the author visited the place, e.g. 4. The value is between 1 and 12.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "The year the author visited the place, e.g. 2025.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2332,18 +2386,18 @@
       "type": "object"
     },
     "GoogleTypePostalAddress": {
-      "description": "Represents a postal address. For example for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478",
+      "description": "Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.",
       "id": "GoogleTypePostalAddress",
       "properties": {
         "addressLines": {
-          "description": "Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (For example \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country/region of the address. In places where this can vary (For example Japan), address_language is used to make it explicit (For example \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).",
+          "description": "Unstructured address lines describing the lower levels of an address. Because values in `address_lines` do not have type information and may sometimes contain multiple values in a single field (for example, \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country or region of the address. In places where this can vary (for example, Japan), `address_language` is used to make it explicit (for example, \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). In this way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a `region_code` with all remaining information placed in the `address_lines`. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a `region_code` and `address_lines` and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "administrativeArea": {
-          "description": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (For example \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. For example in Switzerland this should be left unpopulated.",
+          "description": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated.",
           "type": "string"
         },
         "languageCode": {
@@ -2351,7 +2405,7 @@
           "type": "string"
         },
         "locality": {
-          "description": "Optional. Generally refers to the city/town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave locality empty and use address_lines.",
+          "description": "Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty and use `address_lines`.",
           "type": "string"
         },
         "organization": {
@@ -2359,7 +2413,7 @@
           "type": "string"
         },
         "postalCode": {
-          "description": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (For example state/zip validation in the U.S.A.).",
+          "description": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (for example, state or zip code validation in the United States).",
           "type": "string"
         },
         "recipients": {
@@ -2379,11 +2433,11 @@
           "type": "integer"
         },
         "sortingCode": {
-          "description": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (For example \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (For example Côte d'Ivoire).",
+          "description": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (for example, \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (Côte d'Ivoire).",
           "type": "string"
         },
         "sublocality": {
-          "description": "Optional. Sublocality of the address. For example, this can be neighborhoods, boroughs, districts.",
+          "description": "Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district.",
           "type": "string"
         }
       },
