@@ -4486,6 +4486,10 @@ export namespace appengine_v1beta {
      */
     appsId?: string;
     /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
+    /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      */
     filter?: string;
@@ -6370,6 +6374,10 @@ export namespace appengine_v1beta {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
+    /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      */
     filter?: string;
@@ -6882,6 +6890,107 @@ export namespace appengine_v1beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Updates the specified Version resource. You can specify the following fields depending on the App Engine environment and type of scaling that the version resource uses:Standard environment instance_class (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.instance_class)automatic scaling in the standard environment: automatic_scaling.min_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automaticScaling.standard_scheduler_settings.max_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.min_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_cpu_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_throughput_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings)basic scaling or manual scaling in the standard environment: serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.serving_status) manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#manualscaling)Flexible environment serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.serving_status)automatic scaling in the flexible environment: automatic_scaling.min_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cool_down_period_sec (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cpu_utilization.target_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling)manual scaling in the flexible environment: manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#manualscaling)
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Applications$Services$Versions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Services$Versions$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Services$Versions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Services$Versions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'projectsId',
+          'locationsId',
+          'applicationsId',
+          'servicesId',
+          'versionsId',
+        ],
+        pathParams: [
+          'applicationsId',
+          'locationsId',
+          'projectsId',
+          'servicesId',
+          'versionsId',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Applications$Services$Versions$Delete
@@ -6906,6 +7015,38 @@ export namespace appengine_v1beta {
      * Part of `name`. See documentation of `projectsId`.
      */
     versionsId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Services$Versions$Patch
+    extends StandardParameters {
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    applicationsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    locationsId?: string;
+    /**
+     * Part of `name`. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
+     */
+    projectsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    servicesId?: string;
+    /**
+     * Standard field mask for the set of fields to be updated.
+     */
+    updateMask?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    versionsId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Version;
   }
 
   export class Resource$Projects$Locations$Operations {
