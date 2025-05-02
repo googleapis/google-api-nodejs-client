@@ -304,6 +304,15 @@ export namespace sheets_v4 {
     slicer?: Schema$Slicer;
   }
   /**
+   * Adds a new table to the spreadsheet.
+   */
+  export interface Schema$AddTableRequest {
+    /**
+     * Required. The table to add.
+     */
+    table?: Schema$Table;
+  }
+  /**
    * Adds new cells after the last row with data in a sheet, inserting new rows into the sheet if necessary.
    */
   export interface Schema$AppendCellsRequest {
@@ -319,6 +328,10 @@ export namespace sheets_v4 {
      * The sheet ID to append the data to.
      */
     sheetId?: number | null;
+    /**
+     * The ID of the table to append data to. The data will be only appended to the table body. This field also takes precedence over the `sheet_id` field.
+     */
+    tableId?: string | null;
   }
   /**
    * Appends rows or columns to the end of a sheet.
@@ -631,6 +644,10 @@ export namespace sheets_v4 {
      * The sort order per column. Later specifications are used when values are equal in the earlier specifications.
      */
     sortSpecs?: Schema$SortSpec[];
+    /**
+     * The table this filter is backed by, if any. When writing, only one of range or table_id may be set.
+     */
+    tableId?: string | null;
   }
   /**
    * Style override settings for a single series data point.
@@ -667,7 +684,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesByDataFilterResponse {
     /**
-     * The ranges that were cleared, in [A1 notation](/sheets/api/guides/concepts#cell). If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet's limits.
+     * The ranges that were cleared, in [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell). If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet's limits.
      */
     clearedRanges?: string[] | null;
     /**
@@ -680,7 +697,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesRequest {
     /**
-     * The ranges to clear, in [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell).
+     * The ranges to clear, in [A1 notation or R1C1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell).
      */
     ranges?: string[] | null;
   }
@@ -1507,7 +1524,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ColorStyle {
     /**
-     * RGB color. The [`alpha`](/sheets/api/reference/rest/v4/spreadsheets/other#Color.FIELDS.alpha) value in the [`Color`](/sheets/api/reference/rest/v4/spreadsheets/other#color) object isn't generally supported.
+     * RGB color. The [`alpha`](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets/other#Color.FIELDS.alpha) value in the [`Color`](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets/other#color) object isn't generally supported.
      */
     rgbColor?: Schema$Color;
     /**
@@ -2146,6 +2163,15 @@ export namespace sheets_v4 {
     sheetId?: number | null;
   }
   /**
+   * Removes the table with the given ID from the spreadsheet.
+   */
+  export interface Schema$DeleteTableRequest {
+    /**
+     * The ID of the table to delete.
+     */
+    tableId?: string | null;
+  }
+  /**
    * Developer metadata associated with a location or object in a spreadsheet. Developer metadata may be used to associate arbitrary data with various parts of a spreadsheet and will remain associated at those locations as they move around and the spreadsheet is edited. For example, if developer metadata is associated with row 5 and another row is then subsequently inserted above row 5, that original metadata will still be associated with the row it was first associated with (what is now row 6). If the associated object is deleted its metadata is deleted too.
    */
   export interface Schema$DeveloperMetadata {
@@ -2504,17 +2530,21 @@ export namespace sheets_v4 {
      */
     filterViewId?: number | null;
     /**
-     * The named range this filter view is backed by, if any. When writing, only one of range or named_range_id may be set.
+     * The named range this filter view is backed by, if any. When writing, only one of range or named_range_id or table_id may be set.
      */
     namedRangeId?: string | null;
     /**
-     * The range this filter view covers. When writing, only one of range or named_range_id may be set.
+     * The range this filter view covers. When writing, only one of range or named_range_id or table_id may be set.
      */
     range?: Schema$GridRange;
     /**
      * The sort order per column. Later specifications are used when values are equal in the earlier specifications.
      */
     sortSpecs?: Schema$SortSpec[];
+    /**
+     * The table this filter view is backed by, if any. When writing, only one of range or named_range_id or table_id may be set.
+     */
+    tableId?: string | null;
     /**
      * The name of the filter view.
      */
@@ -2594,6 +2624,10 @@ export namespace sheets_v4 {
      * The DataFilters used to select which ranges to retrieve from the spreadsheet.
      */
     dataFilters?: Schema$DataFilter[];
+    /**
+     * True if tables should be excluded in the banded ranges. False if not set.
+     */
+    excludeTablesInBandedRanges?: boolean | null;
     /**
      * True if grid data should be returned. This parameter is ignored if a field mask was set in the request.
      */
@@ -2996,7 +3030,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$NumberFormat {
     /**
-     * Pattern string used for formatting. If not set, a default pattern based on the user's locale will be used if necessary for the given type. See the [Date and Number Formats guide](/sheets/api/guides/formats) for more information about the supported patterns.
+     * Pattern string used for formatting. If not set, a default pattern based on the user's locale will be used if necessary for the given type. See the [Date and Number Formats guide](https://developers.google.com/workspace/sheets/api/guides/formats) for more information about the supported patterns.
      */
     pattern?: string | null;
     /**
@@ -3368,7 +3402,7 @@ export namespace sheets_v4 {
      */
     editors?: Schema$Editors;
     /**
-     * The named range this protected range is backed by, if any. When writing, only one of range or named_range_id may be set.
+     * The named range this protected range is backed by, if any. When writing, only one of range or named_range_id or table_id may be set.
      */
     namedRangeId?: string | null;
     /**
@@ -3376,13 +3410,17 @@ export namespace sheets_v4 {
      */
     protectedRangeId?: number | null;
     /**
-     * The range that is being protected. The range may be fully unbounded, in which case this is considered a protected sheet. When writing, only one of range or named_range_id may be set.
+     * The range that is being protected. The range may be fully unbounded, in which case this is considered a protected sheet. When writing, only one of range or named_range_id or table_id may be set.
      */
     range?: Schema$GridRange;
     /**
      * True if the user who requested this protected range can edit the protected area. This field is read-only.
      */
     requestingUserCanEdit?: boolean | null;
+    /**
+     * The table this protected range is backed by, if any. When writing, only one of range or named_range_id or table_id may be set.
+     */
+    tableId?: string | null;
     /**
      * The list of unprotected ranges within a protected sheet. Unprotected ranges are only supported on protected sheets.
      */
@@ -3519,6 +3557,10 @@ export namespace sheets_v4 {
      */
     addSlicer?: Schema$AddSlicerRequest;
     /**
+     * Adds a table.
+     */
+    addTable?: Schema$AddTableRequest;
+    /**
      * Appends cells after the last row with data in a sheet.
      */
     appendCells?: Schema$AppendCellsRequest;
@@ -3606,6 +3648,10 @@ export namespace sheets_v4 {
      * Deletes a sheet.
      */
     deleteSheet?: Schema$DeleteSheetRequest;
+    /**
+     * A request for deleting a table.
+     */
+    deleteTable?: Schema$DeleteTableRequest;
     /**
      * Duplicates a filter view.
      */
@@ -3742,6 +3788,10 @@ export namespace sheets_v4 {
      * Updates the spreadsheet's properties.
      */
     updateSpreadsheetProperties?: Schema$UpdateSpreadsheetPropertiesRequest;
+    /**
+     * Updates a table.
+     */
+    updateTable?: Schema$UpdateTableRequest;
   }
   /**
    * A single response from an update.
@@ -3990,6 +4040,10 @@ export namespace sheets_v4 {
      * The slicers on this sheet.
      */
     slicers?: Schema$Slicer[];
+    /**
+     * The tables on this sheet.
+     */
+    tables?: Schema$Table[];
   }
   /**
    * Properties of a sheet.
@@ -4243,6 +4297,82 @@ export namespace sheets_v4 {
      * The spreadsheet theme color pairs. To update you must provide all theme color pairs.
      */
     themeColors?: Schema$ThemeColorPair[];
+  }
+  /**
+   * A table.
+   */
+  export interface Schema$Table {
+    /**
+     * The table column properties.
+     */
+    columnProperties?: Schema$TableColumnProperties[];
+    /**
+     * The table name. This is unique to all tables in the same spreadsheet.
+     */
+    name?: string | null;
+    /**
+     * The table range.
+     */
+    range?: Schema$GridRange;
+    /**
+     * The table rows properties.
+     */
+    rowsProperties?: Schema$TableRowsProperties;
+    /**
+     * The id of the table.
+     */
+    tableId?: string | null;
+  }
+  /**
+   * A data validation rule for a column in a table.
+   */
+  export interface Schema$TableColumnDataValidationRule {
+    /**
+     * The condition that data in the cell must match. Valid only if the [BooleanCondition.type] is ONE_OF_LIST.
+     */
+    condition?: Schema$BooleanCondition;
+  }
+  /**
+   * The table column.
+   */
+  export interface Schema$TableColumnProperties {
+    /**
+     * The 0-based column index. This index is relative to its position in the table and is not necessarily the same as the column index in the sheet.
+     */
+    columnIndex?: number | null;
+    /**
+     * The column name.
+     */
+    columnName?: string | null;
+    /**
+     * The column type.
+     */
+    columnType?: string | null;
+    /**
+     * The column data validation rule. Only set for dropdown column type.
+     */
+    dataValidationRule?: Schema$TableColumnDataValidationRule;
+  }
+  /**
+   * The table row properties.
+   */
+  export interface Schema$TableRowsProperties {
+    /**
+     * The first color that is alternating. If this field is set, the first banded row is filled with the specified color. Otherwise, the first banded row is filled with a default color.
+     */
+    firstBandColorStyle?: Schema$ColorStyle;
+    /**
+     * The color of the last row. If this field is not set a footer is not added, the last row is filled with either first_band_color_style or second_band_color_style, depending on the color of the previous row. If updating an existing table without a footer to have a footer, the range will be expanded by 1 row. If updating an existing table with a footer and removing a footer, the range will be shrunk by 1 row.
+     */
+    footerColorStyle?: Schema$ColorStyle;
+    /**
+     * The color of the header row. If this field is set, the header row is filled with the specified color. Otherwise, the header row is filled with a default color.
+     */
+    headerColorStyle?: Schema$ColorStyle;
+    /**
+     * The second color that is alternating. If this field is set, the second banded row is filled with the specified color. Otherwise, the second banded row is filled with a default color.
+     */
+    secondBandColorStyle?: Schema$ColorStyle;
   }
   /**
    * The format of a run of text in a cell. Absent values indicate that the field isn't specified.
@@ -4826,6 +4956,19 @@ export namespace sheets_v4 {
     properties?: Schema$SpreadsheetProperties;
   }
   /**
+   * Updates a table in the spreadsheet.
+   */
+  export interface Schema$UpdateTableRequest {
+    /**
+     * Required. The fields that should be updated. At least one field must be specified. The root `table` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field.
+     */
+    fields?: string | null;
+    /**
+     * Required. The table to update.
+     */
+    table?: Schema$Table;
+  }
+  /**
    * The response when updating a range of values by a data filter in a spreadsheet.
    */
   export interface Schema$UpdateValuesByDataFilterResponse {
@@ -4846,7 +4989,7 @@ export namespace sheets_v4 {
      */
     updatedData?: Schema$ValueRange;
     /**
-     * The range (in [A1 notation](/sheets/api/guides/concepts#cell)) that updates were applied to.
+     * The range (in [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell)) that updates were applied to.
      */
     updatedRange?: string | null;
     /**
@@ -4892,7 +5035,7 @@ export namespace sheets_v4 {
      */
     majorDimension?: string | null;
     /**
-     * The range the values cover, in [A1 notation](/sheets/api/guides/concepts#cell). For output, this range indicates the entire requested range, even though the values will exclude trailing rows and columns. When appending values, this field represents the range to search for a table, after which values will be appended.
+     * The range the values cover, in [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell). For output, this range indicates the entire requested range, even though the values will exclude trailing rows and columns. When appending values, this field represents the range to search for a table, after which values will be appended.
      */
     range?: string | null;
     /**
@@ -5210,7 +5353,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. By default, data within grids is not returned. You can include grid data in one of 2 ways: * Specify a [field mask](https://developers.google.com/sheets/api/guides/field-masks) listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData URL parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want. To retrieve only subsets of spreadsheet data, use the ranges URL parameter. Ranges are specified using [A1 notation](/sheets/api/guides/concepts#cell). You can define a single cell (for example, `A1`) or multiple cells (for example, `A1:D5`). You can also get cells from other sheets within the same spreadsheet (for example, `Sheet2!A1:C4`) or retrieve multiple ranges at once (for example, `?ranges=A1:D5&ranges=Sheet2!A1:C4`). Limiting the range returns only the portions of the spreadsheet that intersect the requested ranges.
+     * Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. By default, data within grids is not returned. You can include grid data in one of 2 ways: * Specify a [field mask](https://developers.google.com/workspace/sheets/api/guides/field-masks) listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData URL parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want. To retrieve only subsets of spreadsheet data, use the ranges URL parameter. Ranges are specified using [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell). You can define a single cell (for example, `A1`) or multiple cells (for example, `A1:D5`). You can also get cells from other sheets within the same spreadsheet (for example, `Sheet2!A1:C4`) or retrieve multiple ranges at once (for example, `?ranges=A1:D5&ranges=Sheet2!A1:C4`). Limiting the range returns only the portions of the spreadsheet that intersect the requested ranges.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5297,7 +5440,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified. Specifying one or more data filters returns the portions of the spreadsheet that intersect ranges matched by any of the filters. By default, data within grids is not returned. You can include grid data one of 2 ways: * Specify a [field mask](https://developers.google.com/sheets/api/guides/field-masks) listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want.
+     * Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified. Specifying one or more data filters returns the portions of the spreadsheet that intersect ranges matched by any of the filters. By default, data within grids is not returned. You can include grid data one of 2 ways: * Specify a [field mask](https://developers.google.com/workspace/sheets/api/guides/field-masks) listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5404,6 +5547,10 @@ export namespace sheets_v4 {
     requestBody?: Schema$Spreadsheet;
   }
   export interface Params$Resource$Spreadsheets$Get extends StandardParameters {
+    /**
+     * True if tables should be excluded in the banded ranges. False if not set.
+     */
+    excludeTablesInBandedRanges?: boolean;
     /**
      * True if grid data should be returned. This parameter is ignored if a field mask was set in the request.
      */
@@ -5768,7 +5915,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Appends values to a spreadsheet. The input range is used to search for existing data and find a "table" within that range. Values will be appended to the next row of the table, starting with the first column of the table. See the [guide](/sheets/api/guides/values#appending_values) and [sample code](/sheets/api/samples/writing#append_values) for specific details of how tables are detected and data is appended. The caller must specify the spreadsheet ID, range, and a valueInputOption. The `valueInputOption` only controls how the input data will be added to the sheet (column-wise or row-wise), it does not influence what cell the data starts being written to.
+     * Appends values to a spreadsheet. The input range is used to search for existing data and find a "table" within that range. Values will be appended to the next row of the table, starting with the first column of the table. See the [guide](https://developers.google.com/workspace/sheets/api/guides/values#appending_values) and [sample code](https://developers.google.com/workspace/sheets/api/samples/writing#append_values) for specific details of how tables are detected and data is appended. The caller must specify the spreadsheet ID, range, and a valueInputOption. The `valueInputOption` only controls how the input data will be added to the sheet (column-wise or row-wise), it does not influence what cell the data starts being written to.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6715,7 +6862,7 @@ export namespace sheets_v4 {
      */
     insertDataOption?: string;
     /**
-     * The [A1 notation](/sheets/api/guides/concepts#cell) of a range to search for a logical table of data. Values are appended after the last row of the table.
+     * The [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell) of a range to search for a logical table of data. Values are appended after the last row of the table.
      */
     range?: string;
     /**
@@ -6775,7 +6922,7 @@ export namespace sheets_v4 {
      */
     majorDimension?: string;
     /**
-     * The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the range to retrieve values from.
+     * The [A1 notation or R1C1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell) of the range to retrieve values from.
      */
     ranges?: string[];
     /**
@@ -6826,7 +6973,7 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Clear
     extends StandardParameters {
     /**
-     * The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the values to clear.
+     * The [A1 notation or R1C1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell) of the values to clear.
      */
     range?: string;
     /**
@@ -6850,7 +6997,7 @@ export namespace sheets_v4 {
      */
     majorDimension?: string;
     /**
-     * The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the range to retrieve values from.
+     * The [A1 notation or R1C1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell) of the range to retrieve values from.
      */
     range?: string;
     /**
@@ -6869,7 +7016,7 @@ export namespace sheets_v4 {
      */
     includeValuesInResponse?: boolean;
     /**
-     * The [A1 notation](/sheets/api/guides/concepts#cell) of the values to update.
+     * The [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell) of the values to update.
      */
     range?: string;
     /**
