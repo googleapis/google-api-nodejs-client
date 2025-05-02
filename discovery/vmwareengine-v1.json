@@ -168,6 +168,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -3362,7 +3368,7 @@
       }
     }
   },
-  "revision": "20250218",
+  "revision": "20250410",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "Announcement": {
@@ -3647,6 +3653,14 @@
       "description": "Constraints to be applied while editing a schedule. These constraints ensure that `Upgrade` specific requirements are met.",
       "id": "Constraints",
       "properties": {
+        "disallowedIntervals": {
+          "description": "Output only. Output Only. A list of intervals in which maintenance windows are not allowed. Any time window that overlaps with any of these intervals will be considered invalid.",
+          "items": {
+            "$ref": "WeeklyTimeInterval"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "minHoursDay": {
           "description": "Output only. Minimum number of hours must be allotted for the upgrade activities for each selected day. This is a minimum; the upgrade schedule can allot more hours for the given day.",
           "format": "int32",
@@ -6276,6 +6290,73 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WeeklyTimeInterval": {
+      "description": "Represents a time interval, spanning across days of the week. Until local timezones are supported, this interval is in UTC.",
+      "id": "WeeklyTimeInterval",
+      "properties": {
+        "endDay": {
+          "description": "Output only. The day on which the interval ends. Can be same as start day.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "$ref": "TimeOfDay",
+          "description": "Output only. The time on the end day at which the interval ends.",
+          "readOnly": true
+        },
+        "startDay": {
+          "description": "Output only. The day on which the interval starts.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "$ref": "TimeOfDay",
+          "description": "Output only. The time on the start day at which the interval starts.",
+          "readOnly": true
         }
       },
       "type": "object"
