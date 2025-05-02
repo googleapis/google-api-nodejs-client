@@ -143,6 +143,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -922,34 +928,9 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250416",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
-    "APILayerServer": {
-      "description": "The API layer server",
-      "id": "APILayerServer",
-      "properties": {
-        "name": {
-          "description": "Output only. The api layer name",
-          "readOnly": true,
-          "type": "string"
-        },
-        "osVersion": {
-          "description": "Output only. OS information",
-          "readOnly": true,
-          "type": "string"
-        },
-        "resources": {
-          "description": "Output only. resources in the component",
-          "items": {
-            "$ref": "CloudResource"
-          },
-          "readOnly": true,
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "AgentCommand": {
       "description": "* An AgentCommand specifies a one-time executable program for the agent to run.",
       "id": "AgentCommand",
@@ -964,74 +945,6 @@
           },
           "description": "parameters is a map of key/value pairs that can be used to specify additional one-time executable settings.",
           "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "AvailabilityGroup": {
-      "description": "The availability groups for sqlserver",
-      "id": "AvailabilityGroup",
-      "properties": {
-        "databases": {
-          "description": "Output only. The databases",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "name": {
-          "description": "Output only. The availability group name",
-          "readOnly": true,
-          "type": "string"
-        },
-        "primaryServer": {
-          "description": "Output only. The primary server",
-          "readOnly": true,
-          "type": "string"
-        },
-        "secondaryServers": {
-          "description": "Output only. The secondary servers",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "BackendServer": {
-      "description": "The backend server",
-      "id": "BackendServer",
-      "properties": {
-        "backupFile": {
-          "description": "Output only. The backup file",
-          "readOnly": true,
-          "type": "string"
-        },
-        "backupSchedule": {
-          "description": "Output only. The backup schedule",
-          "readOnly": true,
-          "type": "string"
-        },
-        "name": {
-          "description": "Output only. The backend name",
-          "readOnly": true,
-          "type": "string"
-        },
-        "osVersion": {
-          "description": "Output only. OS information",
-          "readOnly": true,
-          "type": "string"
-        },
-        "resources": {
-          "description": "Output only. resources in the component",
-          "items": {
-            "$ref": "CloudResource"
-          },
-          "readOnly": true,
-          "type": "array"
         }
       },
       "type": "object"
@@ -1134,26 +1047,6 @@
       },
       "type": "object"
     },
-    "Cluster": {
-      "description": "The cluster for sqlserver",
-      "id": "Cluster",
-      "properties": {
-        "nodes": {
-          "description": "Output only. The nodes",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "witnessServer": {
-          "description": "Output only. The witness server",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "Command": {
       "description": "* Command specifies the type of command to execute.",
       "id": "Command",
@@ -1235,33 +1128,6 @@
       },
       "type": "object"
     },
-    "Database": {
-      "description": "The database for sqlserver",
-      "id": "Database",
-      "properties": {
-        "backupFile": {
-          "description": "Output only. The backup file",
-          "readOnly": true,
-          "type": "string"
-        },
-        "backupSchedule": {
-          "description": "Output only. The backup schedule",
-          "readOnly": true,
-          "type": "string"
-        },
-        "hostVm": {
-          "description": "Output only. The host VM",
-          "readOnly": true,
-          "type": "string"
-        },
-        "name": {
-          "description": "Output only. The database name",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "DatabaseProperties": {
       "description": "Database Properties.",
       "id": "DatabaseProperties",
@@ -1304,7 +1170,7 @@
       "type": "object"
     },
     "Evaluation": {
-      "description": "LINT.IfChange Message describing Evaluation object",
+      "description": "Message describing Evaluation object",
       "id": "Evaluation",
       "properties": {
         "bigQueryDestination": {
@@ -1570,31 +1436,6 @@
         "uri": {
           "description": "Required. URI of external data source. example of bq table {project_ID}.{dataset_ID}.{table_ID}",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "FrontEndServer": {
-      "description": "The front end server",
-      "id": "FrontEndServer",
-      "properties": {
-        "name": {
-          "description": "Output only. The frontend name",
-          "readOnly": true,
-          "type": "string"
-        },
-        "osVersion": {
-          "description": "Output only. OS information",
-          "readOnly": true,
-          "type": "string"
-        },
-        "resources": {
-          "description": "Output only. resources in the component",
-          "items": {
-            "$ref": "CloudResource"
-          },
-          "readOnly": true,
-          "type": "array"
         }
       },
       "type": "object"
@@ -2003,23 +1844,6 @@
             "$ref": "ScannedResource"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "LoadBalancerServer": {
-      "description": "The load balancer for sqlserver",
-      "id": "LoadBalancerServer",
-      "properties": {
-        "ip": {
-          "description": "Output only. The IP address",
-          "readOnly": true,
-          "type": "string"
-        },
-        "vm": {
-          "description": "Output only. The VM name",
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"
@@ -2830,6 +2654,13 @@
       "description": "Disk mount on the instance.",
       "id": "SapDiscoveryResourceInstancePropertiesDiskMount",
       "properties": {
+        "diskNames": {
+          "description": "Optional. Names of the disks providing this mount point.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "mountPoint": {
           "description": "Optional. Filesystem mount point.",
           "type": "string"
@@ -3157,39 +2988,6 @@
       },
       "type": "object"
     },
-    "SqlserverWorkload": {
-      "description": "The body of sqlserver workload",
-      "id": "SqlserverWorkload",
-      "properties": {
-        "ags": {
-          "description": "Output only. The availability groups for sqlserver",
-          "items": {
-            "$ref": "AvailabilityGroup"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "cluster": {
-          "$ref": "Cluster",
-          "description": "Output only. The cluster for sqlserver",
-          "readOnly": true
-        },
-        "databases": {
-          "description": "Output only. The databases for sqlserver",
-          "items": {
-            "$ref": "Database"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "loadBalancerServer": {
-          "$ref": "LoadBalancerServer",
-          "description": "Output only. The load balancer for sqlserver",
-          "readOnly": true
-        }
-      },
-      "type": "object"
-    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -3238,33 +3036,6 @@
           "format": "int64",
           "readOnly": true,
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ThreeTierWorkload": {
-      "description": "The body of three tier workload",
-      "id": "ThreeTierWorkload",
-      "properties": {
-        "apiLayer": {
-          "$ref": "APILayerServer",
-          "description": "Output only. The API layer for three tier workload",
-          "readOnly": true
-        },
-        "backend": {
-          "$ref": "BackendServer",
-          "description": "Output only. The backend for three tier workload",
-          "readOnly": true
-        },
-        "endpoint": {
-          "description": "Output only. the workload endpoint",
-          "readOnly": true,
-          "type": "string"
-        },
-        "frontend": {
-          "$ref": "FrontEndServer",
-          "description": "Output only. The frontend for three tier workload",
-          "readOnly": true
         }
       },
       "type": "object"
@@ -3322,6 +3093,10 @@
         },
         "maintenanceStatus": {
           "description": "Optional. Maintenance status",
+          "type": "string"
+        },
+        "onHostMaintenance": {
+          "description": "Optional. Instance maintenance behavior. Could be \"MIGRATE\" or \"TERMINATE\".",
           "type": "string"
         },
         "startTime": {
@@ -3397,10 +3172,6 @@
           "$ref": "SapWorkload",
           "description": "The sap workload content"
         },
-        "sqlserverWorkload": {
-          "$ref": "SqlserverWorkload",
-          "description": "The sqlserver workload content"
-        },
         "state": {
           "deprecated": true,
           "description": "Output only. [output only] the current state if a a workload",
@@ -3420,10 +3191,6 @@
           ],
           "readOnly": true,
           "type": "string"
-        },
-        "threeTierWorkload": {
-          "$ref": "ThreeTierWorkload",
-          "description": "The 3 tier web app workload content"
         },
         "workloadType": {
           "description": "Required. The type of the workload",
