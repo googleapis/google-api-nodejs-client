@@ -341,7 +341,7 @@
               ]
             },
             "create": {
-              "description": "Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.",
+              "description": "A Job is a multi-stage computation graph run by the Cloud Dataflow service. Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.",
               "flatPath": "v1b3/projects/{projectId}/jobs",
               "httpMethod": "POST",
               "id": "dataflow.projects.jobs.create",
@@ -972,7 +972,7 @@
             "jobs": {
               "methods": {
                 "create": {
-                  "description": "Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.",
+                  "description": "A Job is a multi-stage computation graph run by the Cloud Dataflow service. Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs",
                   "httpMethod": "POST",
                   "id": "dataflow.projects.locations.jobs.create",
@@ -2208,7 +2208,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250428",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -4763,6 +4763,10 @@
       "description": "Describes the state of a metric.",
       "id": "MetricUpdate",
       "properties": {
+        "boundedTrie": {
+          "description": "Worker-computed aggregate value for the \"Trie\" aggregation kind. The only possible value type is a BoundedTrieNode. Introduced this field to avoid breaking older SDKs when Dataflow service starts to populate the `bounded_trie` field.",
+          "type": "any"
+        },
         "cumulative": {
           "description": "True if this metric is reported as the total cumulative aggregate value accumulated since the worker started working on this WorkItem. By default this is false, indicating that this metric is reported as a delta that is not associated with any WorkItem.",
           "type": "boolean"
