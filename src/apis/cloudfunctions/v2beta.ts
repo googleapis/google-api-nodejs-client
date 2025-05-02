@@ -185,7 +185,7 @@ export namespace cloudfunctions_v2beta {
      */
     build?: string | null;
     /**
-     * Docker Registry to use for this deployment. This configuration is only applicable to 1st Gen functions, 2nd Gen functions can only use Artifact Registry. Deprecated: Container Registry option will no longer be available after March 2025: https://cloud.google.com/artifact-registry/docs/transition/transition-from-gcr Please use Artifact Registry instead, which is the default choice. If unspecified, it defaults to `ARTIFACT_REGISTRY`. If `docker_repository` field is specified, this field should either be left unspecified or set to `ARTIFACT_REGISTRY`.
+     * Docker Registry to use for this deployment. This configuration is only applicable to 1st Gen functions, 2nd Gen functions can only use Artifact Registry. Deprecated: as of March 2025, `CONTAINER_REGISTRY` option is no longer available in response to Container Registry's deprecation: https://cloud.google.com/artifact-registry/docs/transition/transition-from-gcr Please use Artifact Registry instead, which is the default choice. If unspecified, it defaults to `ARTIFACT_REGISTRY`. If `docker_repository` field is specified, this field should either be left unspecified or set to `ARTIFACT_REGISTRY`.
      */
     dockerRegistry?: string | null;
     /**
@@ -941,7 +941,12 @@ export namespace cloudfunctions_v2beta {
   /**
    * Request for the `SetupFunctionUpgradeConfig` method.
    */
-  export interface Schema$SetupFunctionUpgradeConfigRequest {}
+  export interface Schema$SetupFunctionUpgradeConfigRequest {
+    /**
+     * Optional. The trigger's service account. The service account must have permission to invoke Cloud Run services, the permission is `run.routes.invoke`. If empty, defaults to the Compute Engine default service account: `{project_number\}-compute@developer.gserviceaccount.com`.
+     */
+    triggerServiceAccount?: string | null;
+  }
   /**
    * The location of the function source code.
    */
@@ -1174,6 +1179,10 @@ export namespace cloudfunctions_v2beta {
 
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
