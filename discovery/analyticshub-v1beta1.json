@@ -695,7 +695,7 @@
       }
     }
   },
-  "revision": "20250217",
+  "revision": "20250418",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1032,6 +1032,10 @@
       "description": "A listing is what gets published into a data exchange that a subscriber can subscribe to. It contains a reference to the data source along with descriptive information that will help subscribers find and subscribe the data.",
       "id": "Listing",
       "properties": {
+        "allowOnlyMetadataSharing": {
+          "description": "Optional. If true, the listing is only available to get the resource metadata. Listing is non subscribable.",
+          "type": "boolean"
+        },
         "bigqueryDataset": {
           "$ref": "BigQueryDatasetSource",
           "description": "Required. Shared dataset i.e. BigQuery dataset source."

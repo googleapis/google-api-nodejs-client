@@ -127,19 +127,6 @@ export namespace analyticshub_v1 {
   }
 
   /**
-   * Information about an associated [Analytics Hub subscription](https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).
-   */
-  export interface Schema$AnalyticsHubSubscriptionInfo {
-    /**
-     * Optional. The name of the associated Analytics Hub listing resource. Pattern: "projects/{project\}/locations/{location\}/dataExchanges/{data_exchange\}/listings/{listing\}"
-     */
-    listing?: string | null;
-    /**
-     * Optional. The name of the associated Analytics Hub subscription resource. Pattern: "projects/{project\}/locations/{location\}/subscriptions/{subscription\}"
-     */
-    subscription?: string | null;
-  }
-  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -190,10 +177,6 @@ export namespace analyticshub_v1 {
      * Optional. The service account to use to write to BigQuery. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      */
     serviceAccountEmail?: string | null;
-    /**
-     * Output only. An output-only field that indicates whether or not the subscription can receive messages.
-     */
-    state?: string | null;
     /**
      * Optional. The name of the table to which to write data, of the form {projectId\}.{datasetId\}.{tableId\}
      */
@@ -274,7 +257,7 @@ export namespace analyticshub_v1 {
      */
     maxBytes?: string | null;
     /**
-     * Optional. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgment deadline.
+     * Optional. File batching settings. If no max_duration setting is specified, a max_duration of 5 minutes will be set by default. max_duration is required regardless of whether other file batching settings are specified. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.
      */
     maxDuration?: string | null;
     /**
@@ -285,10 +268,6 @@ export namespace analyticshub_v1 {
      * Optional. The service account to use to write to Cloud Storage. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      */
     serviceAccountEmail?: string | null;
-    /**
-     * Output only. An output-only field that indicates whether or not the subscription can receive messages.
-     */
-    state?: string | null;
     /**
      * Optional. If set, message data will be written to Cloud Storage in text format.
      */
@@ -374,7 +353,7 @@ export namespace analyticshub_v1 {
      */
     deadLetterTopic?: string | null;
     /**
-     * Optional. The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgment deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.
+     * Optional. The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgement deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.
      */
     maxDeliveryAttempts?: number | null;
   }
@@ -406,6 +385,10 @@ export namespace analyticshub_v1 {
      * Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
      */
     location?: string | null;
+    /**
+     * Optional. The geographic locations where the dataset should be replicated. See https://cloud.google.com/bigquery/docs/locations for supported locations.
+     */
+    replicaLocations?: string[] | null;
   }
   export interface Schema$DestinationDatasetReference {
     /**
@@ -519,17 +502,13 @@ export namespace analyticshub_v1 {
     order?: string | null;
   }
   /**
-   * A subscription resource. If none of `push_config`, `bigquery_config`, or `cloud_storage_config` is set, then the subscriber will pull and ack messages using API methods. At most one of these fields may be set.
+   * Defines the destination Pub/Sub subscription. If none of `push_config`, `bigquery_config`, `cloud_storage_config`, `pubsub_export_config`, or `pubsublite_export_config` is set, then the subscriber will pull and ack messages using API methods. At most one of these fields may be set.
    */
   export interface Schema$GooglePubsubV1Subscription {
     /**
      * Optional. The approximate amount of time (on a best-effort basis) Pub/Sub waits for the subscriber to acknowledge receipt before resending the message. In the interval after the message is delivered and before it is acknowledged, it is considered to be _outstanding_. During that time period, the message will not be redelivered (on a best-effort basis). For pull subscriptions, this value is used as the initial value for the ack deadline. To override this value for a given message, call `ModifyAckDeadline` with the corresponding `ack_id` if using non-streaming pull or send the `ack_id` in a `StreamingModifyAckDeadlineRequest` if using streaming pull. The minimum custom deadline you can specify is 10 seconds. The maximum custom deadline you can specify is 600 seconds (10 minutes). If this parameter is 0, a default value of 10 seconds is used. For push delivery, this value is also used to set the request timeout for the call to the push endpoint. If the subscriber never acknowledges the message, the Pub/Sub system will eventually redeliver the message.
      */
     ackDeadlineSeconds?: number | null;
-    /**
-     * Output only. Information about the associated Analytics Hub subscription. Only set if the subscritpion is created by Analytics Hub.
-     */
-    analyticsHubSubscriptionInfo?: Schema$AnalyticsHubSubscriptionInfo;
     /**
      * Optional. If delivery to BigQuery is used with this subscription, this field is used to configure it.
      */
@@ -547,7 +526,7 @@ export namespace analyticshub_v1 {
      */
     detached?: boolean | null;
     /**
-     * Optional. If true, Pub/Sub provides the following guarantees for the delivery of a message with a given value of `message_id` on this subscription: * The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgment deadline expires. * An acknowledged message will not be resent to a subscriber. Note that subscribers may still receive multiple copies of a message when `enable_exactly_once_delivery` is true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct `message_id` values.
+     * Optional. If true, Pub/Sub provides the following guarantees for the delivery of a message with a given value of `message_id` on this subscription: * The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires. * An acknowledged message will not be resent to a subscriber. Note that subscribers may still receive multiple copies of a message when `enable_exactly_once_delivery` is true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct `message_id` values.
      */
     enableExactlyOnceDelivery?: boolean | null;
     /**
@@ -587,17 +566,9 @@ export namespace analyticshub_v1 {
      */
     retainAckedMessages?: boolean | null;
     /**
-     * Optional. A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded events for a given message.
+     * Optional. A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.
      */
     retryPolicy?: Schema$RetryPolicy;
-    /**
-     * Output only. An output-only field indicating whether or not the subscription can receive messages.
-     */
-    state?: string | null;
-    /**
-     * Output only. Indicates the minimum duration for which a message is retained after it is published to the subscription's topic. If this field is set, messages published to the subscription's topic in the last `topic_message_retention_duration` are always available to subscribers. See the `message_retention_duration` field in `Topic`. This field is set only in responses from the server; it is ignored if it is set in any requests.
-     */
-    topicMessageRetentionDuration?: string | null;
   }
   /**
    * User-defined JavaScript function that can transform or filter a Pub/Sub message.
@@ -646,6 +617,10 @@ export namespace analyticshub_v1 {
    * A listing is what gets published into a data exchange that a subscriber can subscribe to. It contains a reference to the data source along with descriptive information that will help subscribers find and subscribe the data.
    */
   export interface Schema$Listing {
+    /**
+     * Optional. If true, the listing is only available to get the resource metadata. Listing is non subscribable.
+     */
+    allowOnlyMetadataSharing?: boolean | null;
     /**
      * Shared dataset i.e. BigQuery dataset source.
      */
@@ -907,7 +882,7 @@ export namespace analyticshub_v1 {
    */
   export interface Schema$PubSubTopicSource {
     /**
-     * Optional. Region hint on where the data might be published. Data affinity regions are modifiable. See go/regions for full listing of possible Cloud regions.
+     * Optional. Region hint on where the data might be published. Data affinity regions are modifiable. See https://cloud.google.com/about/locations for full listing of possible Cloud regions.
      */
     dataAffinityRegions?: string[] | null;
     /**
@@ -992,7 +967,7 @@ export namespace analyticshub_v1 {
     restrictQueryResult?: boolean | null;
   }
   /**
-   * A policy that specifies how Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.
+   * A policy that specifies how Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.
    */
   export interface Schema$RetryPolicy {
     /**
@@ -2287,7 +2262,7 @@ export namespace analyticshub_v1 {
   export interface Params$Resource$Projects$Locations$Dataexchanges$Create
     extends StandardParameters {
     /**
-     * Required. The ID of the data exchange. Must contain only Unicode letters, numbers (0-9), underscores (_). Should not use characters that require URL-escaping, or characters outside of ASCII, spaces. Max length: 100 bytes.
+     * Required. The ID of the data exchange. Must contain only Unicode letters, numbers (0-9), underscores (_). Max length: 100 bytes.
      */
     dataExchangeId?: string;
     /**
@@ -3332,7 +3307,7 @@ export namespace analyticshub_v1 {
   export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Create
     extends StandardParameters {
     /**
-     * Required. The ID of the listing to create. Must contain only Unicode letters, numbers (0-9), underscores (_). Should not use characters that require URL-escaping, or characters outside of ASCII, spaces. Max length: 100 bytes.
+     * Required. The ID of the listing to create. Must contain only Unicode letters, numbers (0-9), underscores (_). Max length: 100 bytes.
      */
     listingId?: string;
     /**
