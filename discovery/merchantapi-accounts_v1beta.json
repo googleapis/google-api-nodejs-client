@@ -108,7 +108,7 @@
     "accounts": {
       "methods": {
         "createAndConfigure": {
-          "description": "Creates a standalone Merchant Center account with additional configuration. Adds the user that makes the request as an admin for the new account.",
+          "description": "Creates a Merchant Center account with additional configuration. Adds the user that makes the request as an admin for the new account.",
           "flatPath": "accounts/v1beta/accounts:createAndConfigure",
           "httpMethod": "POST",
           "id": "merchantapi.accounts.createAndConfigure",
@@ -180,31 +180,6 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
-        "getAutomaticImprovements": {
-          "description": "Retrieves the automatic improvements of an account.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}/automaticImprovements",
-          "httpMethod": "GET",
-          "id": "merchantapi.accounts.getAutomaticImprovements",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The resource name of the automatic improvements. Format: `accounts/{account}/automaticImprovements`",
-              "location": "path",
-              "pattern": "^accounts/[^/]+/automaticImprovements$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "accounts/v1beta/{+name}",
-          "response": {
-            "$ref": "AutomaticImprovements"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        },
         "list": {
           "description": "Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns all the accounts the user has access to. This method is eventually consistent, meaning changes such as creating, updating an account or a change of relationships between accounts may not show up in the results immediately. Instead, these changes propagate over a short period, after which the updated information can match the associated predicates. That means, that searching by account name might not return a recently changed account even though it satisfies the predicate.",
           "flatPath": "accounts/v1beta/accounts",
@@ -258,7 +233,7 @@
               "type": "string"
             },
             "provider": {
-              "description": "Required. The aggregation service provider. Format: `providers/{providerId}`",
+              "description": "Required. The aggregation service provider. Format: `accounts/{accountId}`",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -302,40 +277,6 @@
           },
           "response": {
             "$ref": "Account"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        },
-        "updateAutomaticImprovements": {
-          "description": "Updates the automatic improvements of an account.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}/automaticImprovements",
-          "httpMethod": "PATCH",
-          "id": "merchantapi.accounts.updateAutomaticImprovements",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Identifier. The resource name of the automatic improvements. Format: `accounts/{account}/automaticImprovements`.",
-              "location": "path",
-              "pattern": "^accounts/[^/]+/automaticImprovements$",
-              "required": true,
-              "type": "string"
-            },
-            "updateMask": {
-              "description": "Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `item_updates` - `item_updates.account_level_settings` - `image_improvements` - `image_improvements.account_level_settings` - `shipping_improvements` - `shipping_improvements.allow_shipping_improvements`",
-              "format": "google-fieldmask",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "accounts/v1beta/{+name}",
-          "request": {
-            "$ref": "AutomaticImprovements"
-          },
-          "response": {
-            "$ref": "AutomaticImprovements"
           },
           "scopes": [
             "https://www.googleapis.com/auth/content"
@@ -399,6 +340,69 @@
               },
               "response": {
                 "$ref": "AutofeedSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
+        "automaticImprovements": {
+          "methods": {
+            "getAutomaticImprovements": {
+              "description": "Retrieves the automatic improvements of an account.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/automaticImprovements",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.automaticImprovements.getAutomaticImprovements",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the automatic improvements. Format: `accounts/{account}/automaticImprovements`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/automaticImprovements$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "AutomaticImprovements"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "updateAutomaticImprovements": {
+              "description": "Updates the automatic improvements of an account.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/automaticImprovements",
+              "httpMethod": "PATCH",
+              "id": "merchantapi.accounts.automaticImprovements.updateAutomaticImprovements",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The resource name of the automatic improvements. Format: `accounts/{account}/automaticImprovements`.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/automaticImprovements$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `item_updates` - `item_updates.account_level_settings` - `image_improvements` - `image_improvements.account_level_settings` - `shipping_improvements` - `shipping_improvements.allow_shipping_improvements`",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "request": {
+                "$ref": "AutomaticImprovements"
+              },
+              "response": {
+                "$ref": "AutomaticImprovements"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/content"
@@ -717,7 +721,7 @@
         "issues": {
           "methods": {
             "list": {
-              "description": "Lists all account issues of a Merchant Center account.",
+              "description": "Lists all account issues of a Merchant Center account. When called on a multi-client account, this method only returns issues belonging to that account, not its sub-accounts. To retrieve issues for sub-accounts, you must first call the accounts.listSubaccounts method to obtain a list of sub-accounts, and then call `accounts.issues.list` for each sub-account individually.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/issues",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.issues.list",
@@ -731,7 +735,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Optional. The maximum number of issues to return. The service may return fewer than this value. If unspecified, at most 50 users will be returned. The maximum value is 100; values above 100 will be coerced to 100",
+                  "description": "Optional. The maximum number of issues to return. The service may return fewer than this value. If unspecified, at most 50 issues will be returned. The maximum value is 100; values above 100 will be coerced to 100",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1107,6 +1111,254 @@
             }
           }
         },
+        "relationships": {
+          "methods": {
+            "get": {
+              "description": "Retrieve an account relationship.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/relationships/{relationshipsId}",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.relationships.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the account relationship to get.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/relationships/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "AccountRelationship"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "list": {
+              "description": "List account relationships for the specified account.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/relationships",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.relationships.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of elements to return in the response. Use for paging. If no `page_size` is specified, `100` is used as the default value. The maximum allowed value is `1000`.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. The token returned by the previous `list` request.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent account of the account relationship to filter by.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+parent}/relationships",
+              "response": {
+                "$ref": "ListAccountRelationshipsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "patch": {
+              "description": "Updates the account relationship. Executing this method requires admin access.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/relationships/{relationshipsId}",
+              "httpMethod": "PATCH",
+              "id": "merchantapi.accounts.relationships.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The resource name of the account relationship.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/relationships/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `account_id_alias`",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "request": {
+                "$ref": "AccountRelationship"
+              },
+              "response": {
+                "$ref": "AccountRelationship"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
+        "services": {
+          "methods": {
+            "approve": {
+              "description": "Approve an account service proposal.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/services/{servicesId}:approve",
+              "httpMethod": "POST",
+              "id": "merchantapi.accounts.services.approve",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the account service to approve.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/services/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}:approve",
+              "request": {
+                "$ref": "ApproveAccountServiceRequest"
+              },
+              "response": {
+                "$ref": "AccountService"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "get": {
+              "description": "Retrieve an account service.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/services/{servicesId}",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.services.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the account service to get.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/services/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "AccountService"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "list": {
+              "description": "List account services for the specified accounts. Supports filtering.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/services",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.services.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of elements to return in the response. Use for paging. If no `page_size` is specified, `100` is used as the default value. The maximum allowed value is `1000`.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. The token returned by the previous `list` request.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent account of the account service to filter by.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+parent}/services",
+              "response": {
+                "$ref": "ListAccountServicesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "propose": {
+              "description": "Propose an account service.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/services:propose",
+              "httpMethod": "POST",
+              "id": "merchantapi.accounts.services.propose",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The resource name of the parent account for the service.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+parent}/services:propose",
+              "request": {
+                "$ref": "ProposeAccountServiceRequest"
+              },
+              "response": {
+                "$ref": "AccountService"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "reject": {
+              "description": "Reject an account service (both proposed and approve services can be rejected).",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/services/{servicesId}:reject",
+              "httpMethod": "POST",
+              "id": "merchantapi.accounts.services.reject",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the account service to reject.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/services/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}:reject",
+              "request": {
+                "$ref": "RejectAccountServiceRequest"
+              },
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
         "shippingSettings": {
           "methods": {
             "getShippingSettings": {
@@ -1119,7 +1371,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the shipping setting to retrieve. Format: `accounts/{account}/shippingsetting`",
+                  "description": "Required. The name of the shipping setting to retrieve. Format: `accounts/{account}/shippingsettings`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/shippingSettings$",
                   "required": true,
@@ -1144,7 +1396,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The account where this product will be inserted. Format: accounts/{account}",
+                  "description": "Required. The account for which this shipping setting will be inserted. If you are using an advanced account, you must specify the unique identifier of the sub-account for which you want to insert the shipping setting. Format: `accounts/{ACCOUNT_ID}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -1176,7 +1428,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The resource name of the terms of service version. Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}` The identifier format is: `{TermsOfServiceKind}-{country}`",
+                  "description": "Required. The resource name of the terms of service version. Format: `accounts/{account}/termsOfServiceAgreementStates/{identifier}` The identifier format is: `{TermsOfServiceKind}-{country}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/termsOfServiceAgreementStates/[^/]+$",
                   "required": true,
@@ -1382,14 +1634,14 @@
         "accept": {
           "description": "Accepts a `TermsOfService`. Executing this method requires admin access.",
           "flatPath": "accounts/v1beta/termsOfService/{termsOfServiceId}:accept",
-          "httpMethod": "GET",
+          "httpMethod": "POST",
           "id": "merchantapi.termsOfService.accept",
           "parameterOrder": [
             "name"
           ],
           "parameters": {
             "account": {
-              "description": "Required. The account for which to accept the ToS.",
+              "description": "Required. The account for which to accept the ToS. Format: `accounts/{account}`",
               "location": "query",
               "type": "string"
             },
@@ -1408,7 +1660,7 @@
           },
           "path": "accounts/v1beta/{+name}:accept",
           "response": {
-            "$ref": "Empty"
+            "$ref": "AcceptTermsOfServiceResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/content"
@@ -1476,9 +1728,20 @@
       }
     }
   },
-  "revision": "20250317",
+  "revision": "20250430",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
+    "AcceptTermsOfServiceResponse": {
+      "description": "Response message for the `AcceptTermsOfService` method.",
+      "id": "AcceptTermsOfServiceResponse",
+      "properties": {
+        "termsOfServiceAgreementState": {
+          "$ref": "TermsOfServiceAgreementState",
+          "description": "The agreement state after accepting the ToS."
+        }
+      },
+      "type": "object"
+    },
     "Accepted": {
       "description": "Describes the accepted terms of service.",
       "id": "Accepted",
@@ -1488,12 +1751,12 @@
           "type": "string"
         },
         "termsOfService": {
-          "description": "The accepted [termsOfService](google.shopping.merchant.accounts.v1main.TermsOfService).",
+          "description": "The accepted termsOfService.",
           "type": "string"
         },
         "validUntil": {
           "$ref": "Date",
-          "description": "When set, it states that the accepted [TermsOfService](google.shopping.merchant.accounts.v1main.TermsOfService) is only valid until the end of this date (in UTC). A new one must be accepted before then. The information of the required [TermsOfService](google.shopping.merchant.accounts.v1main.TermsOfService) is found in the [Required](Required) message."
+          "description": "When set, it states that the accepted `TermsOfService` is only valid until the end of this date (in UTC). A new one must be accepted before then. The information of the required `TermsOfService` is found in the `Required` message."
         }
       },
       "type": "object"
@@ -1531,7 +1794,7 @@
         },
         "timeZone": {
           "$ref": "TimeZone",
-          "description": "Required. The time zone of the account. On writes, `time_zone` sets both the `reporting_time_zone` and the `display_time_zone`. For reads, `time_zone` always returns the `display_time_zone`. If `display_time_zone` doesn't exist for your account, `time_zone` is empty."
+          "description": "Required. The time zone of the account. On writes, `time_zone` sets both the `reporting_time_zone` and the `display_time_zone`. For reads, `time_zone` always returns the `display_time_zone`. If `display_time_zone` doesn't exist for your account, `time_zone` is empty. The `version` field is not supported, won't be set in responses and will be silently ignored if specified in requests."
         }
       },
       "type": "object"
@@ -1583,6 +1846,97 @@
         },
         "title": {
           "description": "The localized title of the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountManagement": {
+      "description": "`AccountManagement` payload.",
+      "id": "AccountManagement",
+      "properties": {},
+      "type": "object"
+    },
+    "AccountRelationship": {
+      "description": "The `AccountRelationship` message defines a formal connection between a merchant's account and a service provider's account. This relationship enables the provider to offer specific services to the merchant, such as product management or campaign management. It specifies the access rights and permissions to the merchant's data relevant to those services. Establishing an account relationship involves linking the merchant's account with a provider's account. The provider could be another Google account (like Google Ads or Google My Business) or a third-party platform (such as Shopify or WooCommerce).",
+      "id": "AccountRelationship",
+      "properties": {
+        "accountIdAlias": {
+          "description": "Optional. An optional alias you can assign to this account relationship. This alias acts as a convenient identifier for your own reference and management. It must be unique among all your account relationships with the same provider. For example, you might use `account_id_alias` to assign a friendly name to this relationship for easier identification in your systems.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the account relationship.",
+          "type": "string"
+        },
+        "provider": {
+          "description": "Immutable. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).",
+          "type": "string"
+        },
+        "providerDisplayName": {
+          "description": "Output only. The human-readable display name of the provider account.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountService": {
+      "description": "The `AccountService` message represents a specific service that a provider account offers to a merchant account. `AccountService` defines the permissions and capabilities granted to the provider, allowing for operations such as product management or campaign management. The lifecycle of an `AccountService` involves a proposal phase, where one party suggests the service, and an approval phase, where the other party accepts or rejects it. This handshake mechanism ensures mutual consent before any access is granted. This mechanism safeguards both parties by ensuring that access rights are granted appropriately and that both the merchant and provider are aware of the services enabled. In scenarios where a user is an admin of both accounts, the approval can happen automatically. The mutability of a service is also managed through `AccountService`. Some services might be immutable, for example, if they were established through other systems or APIs, and you cannot alter them through this API.",
+      "id": "AccountService",
+      "properties": {
+        "accountAggregation": {
+          "$ref": "AccountAggregation",
+          "description": "Service type for account aggregation. This enables the provider, which is a Multi-Client Account (MCA), to manage multiple sub-accounts (client accounts). Through this service, the MCA provider can perform administrative and operational tasks across all linked sub-accounts. This is useful for agencies, aggregators, or large retailers that need centralized control over many merchant accounts."
+        },
+        "accountManagement": {
+          "$ref": "AccountManagement",
+          "description": "Service type for account management. Enables the provider to perform administrative actions on the merchant's account, such as configuring account settings, managing users, or updating business information."
+        },
+        "campaignsManagement": {
+          "$ref": "CampaignsManagement",
+          "description": "Service type for managing advertising campaigns. Grants the provider access to create and manage the merchant's ad campaigns, including setting up campaigns, adjusting bids, and optimizing performance."
+        },
+        "externalAccountId": {
+          "description": "Immutable. An optional, immutable identifier that Google uses to refer to this account when communicating with the provider. This should be the unique account ID within the provider's system (for example, your shop ID in Shopify). If you have multiple accounts with the same provider - for instance, different accounts for various regions — the `external_account_id` differentiates between them, ensuring accurate linking and integration between Google and the provider.",
+          "type": "string"
+        },
+        "handshake": {
+          "$ref": "Handshake",
+          "description": "Output only. Information about the state of the service in terms of establishing it (e.g. is it pending approval or approved).",
+          "readOnly": true
+        },
+        "mutability": {
+          "description": "Output only. Whether the service is mutable (e.g. through Approve / Reject RPCs). A service that was created through another system or API might be immutable.",
+          "enum": [
+            "MUTABILITY_UNSPECIFIED",
+            "MUTABLE",
+            "IMMUTABLE"
+          ],
+          "enumDescriptions": [
+            "Unused default value",
+            "The service can be mutated without restrictions.",
+            "The service is read-only and must not be mutated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the account service.",
+          "type": "string"
+        },
+        "productsManagement": {
+          "$ref": "ProductsManagement",
+          "description": "Service type for managing products. This allows the provider to handle product data on behalf of the merchant, including reading and writing product listings. It's commonly used when the provider offers inventory management or catalog synchronization services to keep the merchant's product information up-to-date across platforms."
+        },
+        "provider": {
+          "description": "Output only. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "providerDisplayName": {
+          "description": "Output only. The human-readable display name of the provider account.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1643,6 +1997,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ApproveAccountServiceRequest": {
+      "description": "Request to approve an account service.",
+      "id": "ApproveAccountServiceRequest",
+      "properties": {},
       "type": "object"
     },
     "AutofeedSettings": {
@@ -1866,6 +2226,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "CampaignsManagement": {
+      "description": "`CampaignManagement` payload.",
+      "id": "CampaignsManagement",
+      "properties": {},
       "type": "object"
     },
     "CarrierRate": {
@@ -2180,6 +2546,45 @@
       },
       "type": "object"
     },
+    "Handshake": {
+      "description": "The current status of establishing of the service. (for example, pending approval or approved).",
+      "id": "Handshake",
+      "properties": {
+        "actor": {
+          "description": "Output only. The most recent account to modify the account service's `approval_status`.",
+          "enum": [
+            "ACTOR_UNSPECIFIED",
+            "ACCOUNT",
+            "OTHER_PARTY"
+          ],
+          "enumDescriptions": [
+            "Unspecified actor.",
+            "The last change was done by the account who has this service.",
+            "The last change was done by the other party who this service points to."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "approvalState": {
+          "description": "Output only. The approval state of this handshake.",
+          "enum": [
+            "APPROVAL_STATE_UNSPECIFIED",
+            "PENDING",
+            "ESTABLISHED",
+            "REJECTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified approval status.",
+            "The service was proposed and is waiting to be confirmed.",
+            "Both parties have confirmed the service.",
+            "The service proposal was rejected."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Headers": {
       "description": "A non-empty list of row or column headers for a table. Exactly one of `prices`, `weights`, `num_items`, `postal_code_group_names`, or `location` must be set.",
       "id": "Headers",
@@ -2423,6 +2828,42 @@
       },
       "type": "object"
     },
+    "ListAccountRelationshipsResponse": {
+      "description": "Response after trying to list account relationships.",
+      "id": "ListAccountRelationshipsResponse",
+      "properties": {
+        "accountRelationships": {
+          "description": "The account relationships that match your filter.",
+          "items": {
+            "$ref": "AccountRelationship"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A page token. You can send the `page_token` to get the next page. Only included in the `list` response if there are more pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAccountServicesResponse": {
+      "description": "Response after trying to list account services.",
+      "id": "ListAccountServicesResponse",
+      "properties": {
+        "accountServices": {
+          "description": "The account services that match your filter.",
+          "items": {
+            "$ref": "AccountService"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A page token. You can send the `page_token` to get the next page. Only included in the `list` response if there are more pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAccountsResponse": {
       "description": "Response message for the `ListAccounts` method.",
       "id": "ListAccountsResponse",
@@ -2610,11 +3051,11 @@
       "id": "OnlineReturnPolicy",
       "properties": {
         "acceptDefectiveOnly": {
-          "description": "This field specifies if merchant only accepts defective products for returns, and this field is required.",
+          "description": "Optional. This field specifies if merchant only accepts defective products for returns.",
           "type": "boolean"
         },
         "acceptExchange": {
-          "description": "This field specifies if merchant allows customers to exchange products, this field is required.",
+          "description": "Optional. This field specifies if merchant allows customers to exchange products.",
           "type": "boolean"
         },
         "countries": {
@@ -2654,13 +3095,29 @@
           "description": "Optional. The return policy."
         },
         "processRefundDays": {
-          "description": "The field specifies the number of days it takes for merchants to process refunds, field is optional.",
+          "description": "Optional. The field specifies the number of days it takes for merchants to process refunds.",
           "format": "int32",
           "type": "integer"
         },
         "restockingFee": {
           "$ref": "RestockingFee",
           "description": "Optional. The restocking fee that applies to all return reason categories. This would be treated as a free restocking fee if the value is not set."
+        },
+        "returnLabelSource": {
+          "description": "Optional. The field specifies the return label source.",
+          "enum": [
+            "RETURN_LABEL_SOURCE_UNSPECIFIED",
+            "DOWNLOAD_AND_PRINT",
+            "IN_THE_PACKAGE",
+            "CUSTOMER_RESPONSIBILITY"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Download and print.",
+            "Label include in the package.",
+            "Customer to provide."
+          ],
+          "type": "string"
         },
         "returnMethods": {
           "description": "Optional. The return methods of how customers can return an item. This value is required to not be empty unless the type of return policy is noReturns.",
@@ -2752,18 +3209,18 @@
       "type": "object"
     },
     "PostalAddress": {
-      "description": "Represents a postal address. For example for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478",
+      "description": "Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.",
       "id": "PostalAddress",
       "properties": {
         "addressLines": {
-          "description": "Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (For example \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country/region of the address. In places where this can vary (For example Japan), address_language is used to make it explicit (For example \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).",
+          "description": "Unstructured address lines describing the lower levels of an address. Because values in `address_lines` do not have type information and may sometimes contain multiple values in a single field (for example, \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country or region of the address. In places where this can vary (for example, Japan), `address_language` is used to make it explicit (for example, \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). In this way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a `region_code` with all remaining information placed in the `address_lines`. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a `region_code` and `address_lines` and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "administrativeArea": {
-          "description": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (For example \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. For example in Switzerland this should be left unpopulated.",
+          "description": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated.",
           "type": "string"
         },
         "languageCode": {
@@ -2771,7 +3228,7 @@
           "type": "string"
         },
         "locality": {
-          "description": "Optional. Generally refers to the city/town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave locality empty and use address_lines.",
+          "description": "Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty and use `address_lines`.",
           "type": "string"
         },
         "organization": {
@@ -2779,7 +3236,7 @@
           "type": "string"
         },
         "postalCode": {
-          "description": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (For example state/zip validation in the U.S.A.).",
+          "description": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (for example, state or zip code validation in the United States).",
           "type": "string"
         },
         "recipients": {
@@ -2799,11 +3256,11 @@
           "type": "integer"
         },
         "sortingCode": {
-          "description": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (For example \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (For example Côte d'Ivoire).",
+          "description": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (for example, \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (Côte d'Ivoire).",
           "type": "string"
         },
         "sublocality": {
-          "description": "Optional. Sublocality of the address. For example, this can be neighborhoods, boroughs, districts.",
+          "description": "Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district.",
           "type": "string"
         }
       },
@@ -3008,6 +3465,12 @@
       },
       "type": "object"
     },
+    "ProductsManagement": {
+      "description": "`ProductsManagement` payload.",
+      "id": "ProductsManagement",
+      "properties": {},
+      "type": "object"
+    },
     "Program": {
       "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/topic/9240261?ref_topic=7257954,7259405,&sjid=796648681813264022-EU) program, which enables products from a merchant's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`",
       "id": "Program",
@@ -3053,6 +3516,21 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ProposeAccountServiceRequest": {
+      "description": "Request to propose an account service.",
+      "id": "ProposeAccountServiceRequest",
+      "properties": {
+        "accountService": {
+          "$ref": "AccountService",
+          "description": "Required. The account service to propose."
+        },
+        "provider": {
+          "description": "Required. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3130,16 +3608,22 @@
       },
       "type": "object"
     },
+    "RejectAccountServiceRequest": {
+      "description": "Request to reject an account service.",
+      "id": "RejectAccountServiceRequest",
+      "properties": {},
+      "type": "object"
+    },
     "Required": {
       "description": "Describes the terms of service which are required to be accepted.",
       "id": "Required",
       "properties": {
         "termsOfService": {
-          "description": "The [termsOfService](google.shopping.merchant.accounts.v1main.TermsOfService) that need to be accepted.",
+          "description": "The `TermsOfService` that need to be accepted.",
           "type": "string"
         },
         "tosFileUri": {
-          "description": "Full URL to the terms of service file. This field is the same as [TermsOfService.file_uri](TermsOfService.file_uri), it is added here for convenience only.",
+          "description": "Full URL to the terms of service file. This field is the same as `TermsOfService.file_uri`, it is added here for convenience only.",
           "type": "string"
         }
       },
@@ -3261,7 +3745,7 @@
           "type": "boolean"
         },
         "currencyCode": {
-          "description": "The CLDR code of the currency to which this service applies. Must match that of the prices in rate groups.",
+          "description": "Required. The CLDR code of the currency to which this service applies. Must match that of the prices in rate groups.",
           "type": "string"
         },
         "deliveryCountries": {
@@ -3325,7 +3809,7 @@
       "type": "object"
     },
     "ShippingSettings": {
-      "description": "The merchant account's [shipping setting](https://support.google.com/merchants/answer/6069284).",
+      "description": "The merchant account's [shipping settings](https://support.google.com/merchants/answer/6069284).",
       "id": "ShippingSettings",
       "properties": {
         "etag": {
@@ -3333,7 +3817,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the shipping setting. Format: `accounts/{account}/shippingSetting`",
+          "description": "Identifier. The resource name of the shipping settings. Format: `accounts/{account}/shippingSettings`",
           "type": "string"
         },
         "services": {
@@ -3449,7 +3933,7 @@
       "type": "object"
     },
     "TermsOfService": {
-      "description": "The `TermsOfService` message represents a specific version of the terms of service that merchants must accept to access certain features or services (see https://support.google.com/merchants/answer/160173). This message is important for the onboarding process, ensuring that merchants agree to the necessary legal agreements for using the service. Merchants can retrieve the latest terms of service for a given `kind` and `region` through `RetrieveLatestTermsOfService`, and accept them as required through `AcceptTermsOfService`.",
+      "description": "The `TermsOfService` message represents a specific version of the terms of service that merchants must accept to access certain features or services. For more information, see [Terms of Service](https://support.google.com/merchants/answer/160173). This message is important for the onboarding process, ensuring that merchants agree to the necessary legal agreements for using the service. Merchants can retrieve the latest terms of service for a given `kind` and `region` through `RetrieveLatestTermsOfService`, and accept them as required through `AcceptTermsOfService`.",
       "id": "TermsOfService",
       "properties": {
         "external": {
@@ -3484,7 +3968,7 @@
       "type": "object"
     },
     "TermsOfServiceAgreementState": {
-      "description": "This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the merchant has accepted a terms of service: [accepted](TermsOfServiceAggrementState.accepted) will be populated, otherwise it will be empty * If the merchant must sign a terms of service: [required](TermsOfServiceAggrementState.required) will be populated, otherwise it will be empty. Note that both [required](TermsOfServiceAggrementState.required) and [accepted](TermsOfServiceAggrementState.accepted) can be present. In this case the `accepted` terms of services will have an expiration date set in the [valid_until](Accepted.valid_until) field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect 3Ps to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as [tos_file_uri](Accepted.tos_file_uri). The actual acceptance of the terms of service is done by calling accept on the [TermsOfService](TermsOfService) resource.",
+      "description": "This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the merchant has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the merchant must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect 3Ps to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource.",
       "id": "TermsOfServiceAgreementState",
       "properties": {
         "accepted": {

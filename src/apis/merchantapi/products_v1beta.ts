@@ -502,6 +502,23 @@ export namespace merchantapi_products_v1beta {
     virtualModelLink?: string | null;
   }
   /**
+   * Information regarding Automated Discounts.
+   */
+  export interface Schema$AutomatedDiscounts {
+    /**
+     * The current sale price for products with a price optimized using Google Automated Discounts (GAD). Absent if the information about the GAD_price of the product is not available.
+     */
+    gadPrice?: Schema$Price;
+    /**
+     * The price prior to the application of the first price reduction. Absent if the information about the prior price of the product is not available.
+     */
+    priorPrice?: Schema$Price;
+    /**
+     * The price prior to the application of consecutive price reductions. Absent if the information about the prior price of the product is not available.
+     */
+    priorPriceProgressive?: Schema$Price;
+  }
+  /**
    * Product [certification](https://support.google.com/merchants/answer/13528839), initially introduced for EU energy efficiency labeling compliance using the EU EPREL database.
    */
   export interface Schema$Certification {
@@ -766,13 +783,17 @@ export namespace merchantapi_products_v1beta {
     currencyCode?: string | null;
   }
   /**
-   * The processed product, built from multiple product inputs after applying rules and supplemental data sources. This processed product matches what is shown in your Merchant Center account and in Shopping ads and other surfaces across Google. Each product is built from exactly one primary data source product input, and multiple supplemental data source inputs. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. All fields in the processed product and its sub-messages match the name of their corresponding attribute in the [Product data specification](https://support.google.com/merchants/answer/7052112) with some exceptions.
+   * The processed product, built from multiple product inputs after applying rules and supplemental data sources. This processed product matches what is shown in your Merchant Center account. Each product is built from exactly one primary data source product input, and multiple supplemental data source inputs. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. All fields in the processed product and its sub-messages match the name of their corresponding attribute in the [Product data specification](https://support.google.com/merchants/answer/7052112) with some exceptions.
    */
   export interface Schema$Product {
     /**
      * Output only. A list of product attributes.
      */
     attributes?: Schema$Attributes;
+    /**
+     * Output only. The automated discounts information for the product.
+     */
+    automatedDiscounts?: Schema$AutomatedDiscounts;
     /**
      * Output only. The [channel](https://support.google.com/merchants/answer/7361332) of the product.
      */
@@ -794,7 +815,7 @@ export namespace merchantapi_products_v1beta {
      */
     feedLabel?: string | null;
     /**
-     * The name of the product. Format: `"{product.name=accounts/{account\}/products/{product\}\}"` where the last section `product` consists of 4 parts: channel~content_language~feed_label~offer_id example for product name is "accounts/123/products/online~en~US~sku123"
+     * The name of the product. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/products/online~en~US~sku123`
      */
     name?: string | null;
     /**
@@ -862,7 +883,7 @@ export namespace merchantapi_products_v1beta {
     value?: number | null;
   }
   /**
-   * This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the vertical spec with [some exceptions](https://support.google.com/merchants/answer/7052112).
+   * This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style.
    */
   export interface Schema$ProductInput {
     /**
@@ -878,7 +899,7 @@ export namespace merchantapi_products_v1beta {
      */
     contentLanguage?: string | null;
     /**
-     * Optional. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ "name": "size type", "value": "regular" \}`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Buy on Google. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set per product, with total size of 102.4kB. Underscores in custom attribute names are replaced by spaces upon insertion.
+     * Optional. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ "name": "size type", "value": "regular" \}`). This is useful for submitting attributes not explicitly exposed by the API. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set per product, with total size of 102.4kB. Underscores in custom attribute names are replaced by spaces upon insertion.
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
@@ -886,7 +907,7 @@ export namespace merchantapi_products_v1beta {
      */
     feedLabel?: string | null;
     /**
-     * Identifier. The name of the product input. Format: `"{productinput.name=accounts/{account\}/productInputs/{productinput\}\}"` where the last section `productinput` consists of 4 parts: channel~content_language~feed_label~offer_id example for product input name is "accounts/123/productInputs/online~en~US~sku123"
+     * Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/online~en~US~sku123`
      */
     name?: string | null;
     /**
@@ -894,11 +915,11 @@ export namespace merchantapi_products_v1beta {
      */
     offerId?: string | null;
     /**
-     * Output only. The name of the processed product. Format: `"{product.name=accounts/{account\}/products/{product\}\}"`
+     * Output only. The name of the processed product. Format: `accounts/{account\}/products/{product\}`
      */
     product?: string | null;
     /**
-     * Optional. Represents the existing version (freshness) of the product, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing product. Re-insertion (for example, product refresh after 30 days) can be performed with the current `version_number`. Only supported for insertions into primary data sources. If the operation is prevented, the aborted exception will be thrown.
+     * Optional. Immutable. Represents the existing version (freshness) of the product, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing product. Re-insertion (for example, product refresh after 30 days) can be performed with the current `version_number`. Only supported for insertions into primary data sources. Do not set this field for updates. Do not set this field for insertions into supplemental data sources. If the operation is prevented, the aborted exception will be thrown.
      */
     versionNumber?: string | null;
   }
@@ -1460,7 +1481,7 @@ export namespace merchantapi_products_v1beta {
      */
     dataSource?: string;
     /**
-     * Required. The name of the product input resource to delete. Format: accounts/{account\}/productInputs/{product\} where the last section `product` consists of 4 parts: channel~content_language~feed_label~offer_id example for product name is "accounts/123/productInputs/online~en~US~sku123"
+     * Required. The name of the product input resource to delete. Format: `accounts/{account\}/productInputs/{product\}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/productInputs/online~en~US~sku123`.
      */
     name?: string;
   }
@@ -1471,7 +1492,7 @@ export namespace merchantapi_products_v1beta {
      */
     dataSource?: string;
     /**
-     * Required. The account where this product will be inserted. Format: accounts/{account\}
+     * Required. The account where this product will be inserted. Format: `accounts/{account\}`
      */
     parent?: string;
 
@@ -1487,7 +1508,7 @@ export namespace merchantapi_products_v1beta {
      */
     dataSource?: string;
     /**
-     * Identifier. The name of the product input. Format: `"{productinput.name=accounts/{account\}/productInputs/{productinput\}\}"` where the last section `productinput` consists of 4 parts: channel~content_language~feed_label~offer_id example for product input name is "accounts/123/productInputs/online~en~US~sku123"
+     * Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/online~en~US~sku123`
      */
     name?: string;
     /**
@@ -1596,7 +1617,7 @@ export namespace merchantapi_products_v1beta {
     }
 
     /**
-     * Lists the processed products in your Merchant Center account. The response might contain fewer items than specified by pageSize. Rely on pageToken to determine if there are more items to be requested. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved.
+     * Lists the processed products in your Merchant Center account. The response might contain fewer items than specified by `pageSize`. Rely on `pageToken` to determine if there are more items to be requested. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1692,7 +1713,7 @@ export namespace merchantapi_products_v1beta {
   export interface Params$Resource$Accounts$Products$Get
     extends StandardParameters {
     /**
-     * Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of 4 parts: channel~content_language~feed_label~offer_id example for product name is "accounts/123/products/online~en~US~sku123"
+     * Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/products/online~en~US~sku123`
      */
     name?: string;
   }
@@ -1707,7 +1728,7 @@ export namespace merchantapi_products_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The account to list processed products for. Format: accounts/{account\}
+     * Required. The account to list processed products for. Format: `accounts/{account\}`
      */
     parent?: string;
   }

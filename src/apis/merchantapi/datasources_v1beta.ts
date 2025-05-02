@@ -125,7 +125,7 @@ export namespace merchantapi_datasources_v1beta {
   }
 
   /**
-   * The [data source](https://support.google.com/merchants/answer/7439058) for the Merchant Center account.
+   * The [data source](/merchant/api/guides/data-sources/overview) for the Merchant Center account.
    */
   export interface Schema$DataSource {
     /**
@@ -153,7 +153,7 @@ export namespace merchantapi_datasources_v1beta {
      */
     merchantReviewDataSource?: Schema$MerchantReviewDataSource;
     /**
-     * Identifier. The name of the data source. Format: `{datasource.name=accounts/{account\}/dataSources/{datasource\}\}`
+     * Required. Identifier. The name of the data source. Format: `accounts/{account\}/dataSources/{datasource\}`
      */
     name?: string | null;
     /**
@@ -1145,7 +1145,7 @@ export namespace merchantapi_datasources_v1beta {
   export interface Params$Resource$Accounts$Datasources$Patch
     extends StandardParameters {
     /**
-     * Identifier. The name of the data source. Format: `{datasource.name=accounts/{account\}/dataSources/{datasource\}\}`
+     * Required. Identifier. The name of the data source. Format: `accounts/{account\}/dataSources/{datasource\}`
      */
     name?: string;
     /**
