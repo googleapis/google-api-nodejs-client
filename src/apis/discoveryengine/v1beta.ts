@@ -13342,6 +13342,101 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
+     * Gets the CmekConfig.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getCmekConfig(
+      params?: Params$Resource$Projects$Locations$Getcmekconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>;
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+    ): void;
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+    ): void;
+    getCmekConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+    ): void;
+    getCmekConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getcmekconfig
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getcmekconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getcmekconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaCmekConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Obtains the time series data of organic or dedicated crawl rate for monitoring. When dedicated crawl rate is not set, it will return vertex AI's organic crawl rate time series. Organic crawl means Google automatically crawl the internet at its own convenience. When dedicated crawl rate is set, it will return vertex AI's dedicated crawl rate time series.
      * @example
      * ```js
