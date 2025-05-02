@@ -381,7 +381,7 @@
       }
     }
   },
-  "revision": "20221213",
+  "revision": "20250320",
   "rootUrl": "https://gamesconfiguration.googleapis.com/",
   "schemas": {
     "AchievementConfiguration": {
@@ -705,6 +705,6 @@
     }
   },
   "servicePath": "",
-  "title": "Google Play Game Services Publishing API",
+  "title": "Google Play Games Services Publishing API",
   "version": "v1configuration"
 }
