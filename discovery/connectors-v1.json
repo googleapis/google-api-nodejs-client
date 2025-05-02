@@ -193,6 +193,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -1954,6 +1960,11 @@
                           "pattern": "^projects/[^/]+/locations/global$",
                           "required": true,
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+parent}/managedZones",
@@ -2560,7 +2571,7 @@
       }
     }
   },
-  "revision": "20250304",
+  "revision": "20250423",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3587,6 +3598,10 @@
           "description": "Indicate whether cloud spanner is required for connector job.",
           "type": "boolean"
         },
+        "provisionMemstore": {
+          "description": "Indicate whether memstore is required for connector job.",
+          "type": "boolean"
+        },
         "ratelimitThreshold": {
           "description": "Max QPS supported by the connector version before throttling of requests.",
           "format": "int64",
@@ -3665,11 +3680,6 @@
           "$ref": "EventingConfigTemplate",
           "description": "Output only. Eventing configuration supported by the Connector.",
           "readOnly": true
-        },
-        "isAsyncOperationsSupported": {
-          "description": "Output only. Is async operations supported.",
-          "readOnly": true,
-          "type": "boolean"
         },
         "isCustomActionsSupported": {
           "description": "Output only. Is custom actions supported.",
@@ -3958,12 +3968,14 @@
           "enum": [
             "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED",
             "OPEN_API",
-            "PROTO"
+            "PROTO",
+            "SDK"
           ],
           "enumDescriptions": [
             "Connector type is not specified.",
             "OpenAPI connector.",
-            "Proto connector."
+            "Proto connector.",
+            "SDK connector."
           ],
           "type": "string"
         },
@@ -4011,12 +4023,27 @@
       "description": "CustomConnectorVersion indicates a specific version of a connector.",
       "id": "CustomConnectorVersion",
       "properties": {
+        "asyncOperationsSupport": {
+          "description": "Optional. Indicates if Async Operations/Connector Job is supported. This is only available for SDK based custom connectors.",
+          "type": "boolean"
+        },
         "authConfig": {
           "$ref": "AuthConfig",
-          "description": "Optional. Authentication config for accessing connector facade/ proxy. This is used only when enable_backend_destination_config is true."
+          "description": "Optional. Authentication config for accessing connector service (facade). This is used only when enable_backend_destination_config is true."
+        },
+        "authConfigTemplates": {
+          "description": "Optional. Auth Config Templates is only used when connector backend is enabled. This is used to specify the auth configs supported by the connector backend service to talk to the actual application backend.",
+          "items": {
+            "$ref": "AuthConfigTemplate"
+          },
+          "type": "array"
+        },
+        "authOverrideSupport": {
+          "description": "Optional. Auth override support.",
+          "type": "boolean"
         },
         "backendVariableTemplates": {
-          "description": "Optional. Backend variables config templates. This translates to additional variable templates in connection.",
+          "description": "Optional. Backend variable templates is only used when connector backend is enabled. This is used to specify the variables required by the connector backend service to talk to the actual application backend. This translates to additional variable templates in the connection config.",
           "items": {
             "$ref": "ConfigVariableTemplate"
           },
@@ -4029,14 +4056,14 @@
           "type": "string"
         },
         "destinationConfigs": {
-          "description": "Optional. Destination config(s) for accessing connector facade/ proxy. This is used only when enable_backend_destination_config is true.",
+          "description": "Optional. Destination config(s) for accessing connector service (facade). This is used only when enable_backend_destination_config is true.",
           "items": {
             "$ref": "DestinationConfig"
           },
           "type": "array"
         },
         "enableBackendDestinationConfig": {
-          "description": "Optional. When enabled, the connector will be a facade/ proxy, and connects to the destination provided during connection creation.",
+          "description": "Optional. Indicates if an intermediatory connectorservice is used as backend. When this is enabled, the connector destination and connector auth config are required. For SDK based connectors, this is always enabled.",
           "type": "boolean"
         },
         "labels": {
@@ -4065,11 +4092,11 @@
           "type": "string"
         },
         "specLocation": {
-          "description": "Optional. Location of the custom connector spec. The location can be either a public url like `https://public-url.com/spec` Or a Google Cloud Storage location like `gs:///`",
+          "description": "Optional. Location of the custom connector spec. This is only used for Open API based custom connectors. The location can be either a public url like `https://public-url.com/spec` Or a Google Cloud Storage location like `gs:///`.",
           "type": "string"
         },
         "specServerUrls": {
-          "description": "Output only. Server URLs parsed from the spec.",
+          "description": "Output only. Server URLs parsed from the Open API spec. This is only used for Open API based custom connectors.",
           "items": {
             "type": "string"
           },
@@ -4641,7 +4668,7 @@
       "type": "object"
     },
     "EventingConfig": {
-      "description": "Eventing Configuration of a connection",
+      "description": "Eventing Configuration of a connection next: 18",
       "id": "EventingConfig",
       "properties": {
         "additionalVariables": {
@@ -4686,12 +4713,16 @@
         "registrationDestinationConfig": {
           "$ref": "DestinationConfig",
           "description": "Optional. Registration endpoint for auto registration."
+        },
+        "sslConfig": {
+          "$ref": "SslConfig",
+          "description": "Optional. Ssl config of a connection"
         }
       },
       "type": "object"
     },
     "EventingConfigTemplate": {
-      "description": "Eventing Config details of a connector version.",
+      "description": "Eventing Config details of a connector version. next: 14",
       "id": "EventingConfigTemplate",
       "properties": {
         "additionalVariables": {
@@ -4756,6 +4787,10 @@
         "registrationDestinationConfig": {
           "$ref": "DestinationConfigTemplate",
           "description": "Registration host destination config template."
+        },
+        "sslConfigTemplate": {
+          "$ref": "SslConfigTemplate",
+          "description": "SSL Config template for the connector version."
         },
         "triggerConfigVariables": {
           "description": "Trigger Config fields that needs to be rendered",
@@ -5414,6 +5449,10 @@
           "description": "consumer_defined_name is the name of the instance set by the service consumers. Generally this is different from the `name` field which reperesents the system-assigned id of the instance which the service consumers do not recognize. This is a required field for tenants onboarding to Maintenance Window notifications (go/slm-rollout-maintenance-policies#prerequisites).",
           "type": "string"
         },
+        "consumerProjectNumber": {
+          "description": "Optional. The consumer_project_number associated with this Apigee instance. This field is added specifically to support Apigee integration with SLM Rollout and UMM. It represents the numerical project ID of the GCP project that consumes this Apigee instance. It is used for SLM rollout notifications and UMM integration, enabling proper mapping to customer projects and log delivery for Apigee instances. This field complements consumer_project_id and may be used for specific Apigee scenarios where the numerical ID is required.",
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Timestamp when the resource was created.",
           "format": "google-datetime",
@@ -6056,6 +6095,13 @@
         "nextPageToken": {
           "description": "Next page token.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7971,6 +8017,10 @@
           "description": "Specifies if the connector supports action apis like 'executeAction'.",
           "type": "boolean"
         },
+        "asyncOperations": {
+          "description": "Specifies if the connector supports async long running operations.",
+          "type": "boolean"
+        },
         "entityApis": {
           "description": "Specifies if the connector supports entity apis like 'createEntity'.",
           "type": "boolean"
@@ -8124,12 +8174,14 @@
           "enum": [
             "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED",
             "OPEN_API",
-            "PROTO"
+            "PROTO",
+            "SDK"
           ],
           "enumDescriptions": [
             "Connector type is not specified.",
             "OpenAPI connector.",
-            "Proto connector."
+            "Proto connector.",
+            "SDK connector."
           ],
           "type": "string"
         }

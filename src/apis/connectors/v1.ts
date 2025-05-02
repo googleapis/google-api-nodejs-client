@@ -762,6 +762,10 @@ export namespace connectors_v1 {
      */
     provisionCloudSpanner?: boolean | null;
     /**
+     * Indicate whether memstore is required for connector job.
+     */
+    provisionMemstore?: boolean | null;
+    /**
      * Max QPS supported by the connector version before throttling of requests.
      */
     ratelimitThreshold?: string | null;
@@ -831,10 +835,6 @@ export namespace connectors_v1 {
      * Output only. Eventing configuration supported by the Connector.
      */
     eventingConfigTemplate?: Schema$EventingConfigTemplate;
-    /**
-     * Output only. Is async operations supported.
-     */
-    isAsyncOperationsSupported?: boolean | null;
     /**
      * Output only. Is custom actions supported.
      */
@@ -1003,11 +1003,23 @@ export namespace connectors_v1 {
    */
   export interface Schema$CustomConnectorVersion {
     /**
-     * Optional. Authentication config for accessing connector facade/ proxy. This is used only when enable_backend_destination_config is true.
+     * Optional. Indicates if Async Operations/Connector Job is supported. This is only available for SDK based custom connectors.
+     */
+    asyncOperationsSupport?: boolean | null;
+    /**
+     * Optional. Authentication config for accessing connector service (facade). This is used only when enable_backend_destination_config is true.
      */
     authConfig?: Schema$AuthConfig;
     /**
-     * Optional. Backend variables config templates. This translates to additional variable templates in connection.
+     * Optional. Auth Config Templates is only used when connector backend is enabled. This is used to specify the auth configs supported by the connector backend service to talk to the actual application backend.
+     */
+    authConfigTemplates?: Schema$AuthConfigTemplate[];
+    /**
+     * Optional. Auth override support.
+     */
+    authOverrideSupport?: boolean | null;
+    /**
+     * Optional. Backend variable templates is only used when connector backend is enabled. This is used to specify the variables required by the connector backend service to talk to the actual application backend. This translates to additional variable templates in the connection config.
      */
     backendVariableTemplates?: Schema$ConfigVariableTemplate[];
     /**
@@ -1015,11 +1027,11 @@ export namespace connectors_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. Destination config(s) for accessing connector facade/ proxy. This is used only when enable_backend_destination_config is true.
+     * Optional. Destination config(s) for accessing connector service (facade). This is used only when enable_backend_destination_config is true.
      */
     destinationConfigs?: Schema$DestinationConfig[];
     /**
-     * Optional. When enabled, the connector will be a facade/ proxy, and connects to the destination provided during connection creation.
+     * Optional. Indicates if an intermediatory connectorservice is used as backend. When this is enabled, the connector destination and connector auth config are required. For SDK based connectors, this is always enabled.
      */
     enableBackendDestinationConfig?: boolean | null;
     /**
@@ -1043,11 +1055,11 @@ export namespace connectors_v1 {
      */
     serviceAccount?: string | null;
     /**
-     * Optional. Location of the custom connector spec. The location can be either a public url like `https://public-url.com/spec` Or a Google Cloud Storage location like `gs:///`
+     * Optional. Location of the custom connector spec. This is only used for Open API based custom connectors. The location can be either a public url like `https://public-url.com/spec` Or a Google Cloud Storage location like `gs:///`.
      */
     specLocation?: string | null;
     /**
-     * Output only. Server URLs parsed from the spec.
+     * Output only. Server URLs parsed from the Open API spec. This is only used for Open API based custom connectors.
      */
     specServerUrls?: string[] | null;
     /**
@@ -1315,7 +1327,7 @@ export namespace connectors_v1 {
     id?: string | null;
   }
   /**
-   * Eventing Configuration of a connection
+   * Eventing Configuration of a connection next: 18
    */
   export interface Schema$EventingConfig {
     /**
@@ -1358,9 +1370,13 @@ export namespace connectors_v1 {
      * Optional. Registration endpoint for auto registration.
      */
     registrationDestinationConfig?: Schema$DestinationConfig;
+    /**
+     * Optional. Ssl config of a connection
+     */
+    sslConfig?: Schema$SslConfig;
   }
   /**
-   * Eventing Config details of a connector version.
+   * Eventing Config details of a connector version. next: 14
    */
   export interface Schema$EventingConfigTemplate {
     /**
@@ -1407,6 +1423,10 @@ export namespace connectors_v1 {
      * Registration host destination config template.
      */
     registrationDestinationConfig?: Schema$DestinationConfigTemplate;
+    /**
+     * SSL Config template for the connector version.
+     */
+    sslConfigTemplate?: Schema$SslConfigTemplate;
     /**
      * Trigger Config fields that needs to be rendered
      */
@@ -1789,6 +1809,10 @@ export namespace connectors_v1 {
      */
     consumerDefinedName?: string | null;
     /**
+     * Optional. The consumer_project_number associated with this Apigee instance. This field is added specifically to support Apigee integration with SLM Rollout and UMM. It represents the numerical project ID of the GCP project that consumes this Apigee instance. It is used for SLM rollout notifications and UMM integration, enabling proper mapping to customer projects and log delivery for Apigee instances. This field complements consumer_project_id and may be used for specific Apigee scenarios where the numerical ID is required.
+     */
+    consumerProjectNumber?: string | null;
+    /**
      * Output only. Timestamp when the resource was created.
      */
     createTime?: string | null;
@@ -2139,6 +2163,10 @@ export namespace connectors_v1 {
      * Next page token.
      */
     nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -3351,6 +3379,10 @@ export namespace connectors_v1 {
      */
     actionApis?: boolean | null;
     /**
+     * Specifies if the connector supports async long running operations.
+     */
+    asyncOperations?: boolean | null;
+    /**
      * Specifies if the connector supports entity apis like 'createEntity'.
      */
     entityApis?: boolean | null;
@@ -4017,6 +4049,10 @@ export namespace connectors_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
@@ -9360,6 +9396,10 @@ export namespace connectors_v1 {
      * Required. Parent resource of the Managed Zone, of the form: `projects/x/locations/global`
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Global$Managedzones$Patch
     extends StandardParameters {
