@@ -17,7 +17,7 @@
   "canonicalName": "Drive Activity",
   "description": "Provides a historical view of activity in Google Drive.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/drive/activity/",
+  "documentationLink": "https://developers.google.com/workspace/drive/activity/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -132,7 +132,7 @@
       }
     }
   },
-  "revision": "20230704",
+  "revision": "20250329",
   "rootUrl": "https://driveactivity.googleapis.com/",
   "schemas": {
     "Action": {
@@ -634,7 +634,7 @@
           "description": "This field is deprecated; please use the `driveFolder` field instead."
         },
         "mimeType": {
-          "description": "The MIME type of the Drive item. See https://developers.google.com/drive/v3/web/mime-types.",
+          "description": "The MIME type of the Drive item. See https://developers.google.com/workspace/drive/v3/web/mime-types.",
           "type": "string"
         },
         "name": {
@@ -780,11 +780,11 @@
       "id": "FileComment",
       "properties": {
         "legacyCommentId": {
-          "description": "The comment in the discussion thread. This identifier is an opaque string compatible with the Drive API; see https://developers.google.com/drive/v3/reference/comments/get",
+          "description": "The comment in the discussion thread. This identifier is an opaque string compatible with the Drive API; see https://developers.google.com/workspace/drive/v3/reference/comments/get",
           "type": "string"
         },
         "legacyDiscussionId": {
-          "description": "The discussion thread to which the comment was added. This identifier is an opaque string compatible with the Drive API and references the first comment in a discussion; see https://developers.google.com/drive/v3/reference/comments/get",
+          "description": "The discussion thread to which the comment was added. This identifier is an opaque string compatible with the Drive API and references the first comment in a discussion; see https://developers.google.com/workspace/drive/v3/reference/comments/get",
           "type": "string"
         },
         "linkToDiscussion": {
@@ -959,7 +959,7 @@
           "description": "The group to whom this permission applies."
         },
         "role": {
-          "description": "Indicates the [Google Drive permissions role](https://developers.google.com/drive/web/manage-sharing#roles). The role determines a user's ability to read, write, and comment on items.",
+          "description": "Indicates the [Google Drive permissions role](https://developers.google.com/workspace/drive/web/manage-sharing#roles). The role determines a user's ability to read, write, and comment on items.",
           "enum": [
             "ROLE_UNSPECIFIED",
             "OWNER",
@@ -1273,7 +1273,7 @@
       "type": "object"
     },
     "Target": {
-      "description": "Information about the target of activity. For more information on how activity history is shared with users, see [Activity history visibility](https://developers.google.com/drive/activity/v2#activityhistory).",
+      "description": "Information about the target of activity. For more information on how activity history is shared with users, see [Activity history visibility](https://developers.google.com/workspace/drive/activity/v2#activityhistory).",
       "id": "Target",
       "properties": {
         "drive": {
