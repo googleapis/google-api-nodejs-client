@@ -162,6 +162,10 @@ export namespace orgpolicy_v2 {
      */
     displayName?: string | null;
     /**
+     * Managed constraint and canned constraint sometimes can have equivalents. This field is used to store the equivalent constraint name.
+     */
+    equivalentConstraint?: string | null;
+    /**
      * Defines this constraint as being a list constraint.
      */
     listConstraint?: Schema$GoogleCloudOrgpolicyV2ConstraintListConstraint;

@@ -930,7 +930,7 @@
       }
     }
   },
-  "revision": "20250117",
+  "revision": "20250418",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -976,6 +976,10 @@
         },
         "displayName": {
           "description": "The human readable name. Mutable.",
+          "type": "string"
+        },
+        "equivalentConstraint": {
+          "description": "Managed constraint and canned constraint sometimes can have equivalents. This field is used to store the equivalent constraint name.",
           "type": "string"
         },
         "listConstraint": {
