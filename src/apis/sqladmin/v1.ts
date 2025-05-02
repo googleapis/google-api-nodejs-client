@@ -246,7 +246,7 @@ export namespace sqladmin_v1 {
      */
     backupRun?: string | null;
     /**
-     * Output only. The database version of the instance of when this backup was made.
+     * Output only. The database version of the instance of at the time this backup was made.
      */
     databaseVersion?: string | null;
     /**
@@ -423,7 +423,7 @@ export namespace sqladmin_v1 {
      */
     backupKind?: string | null;
     /**
-     * Output only. The instance database version when this backup was made.
+     * Output only. The instance database version at the time this backup was made.
      */
     databaseVersion?: string | null;
     /**
@@ -575,37 +575,13 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$ConnectionPoolConfig {
     /**
-     * Client idle timeout.
-     */
-    clientConnectionIdleTimeout?: string | null;
-    /**
      * Whether managed connection pooling is enabled.
      */
     connectionPoolingEnabled?: boolean | null;
     /**
-     * Managed connection pool size.
-     */
-    connPoolSize?: number | null;
-    /**
      * Optional. List of connection pool configuration flags
      */
     flags?: Schema$ConnectionPoolFlags[];
-    /**
-     * Maximum number of client connections in connection pool.
-     */
-    maxClientConnections?: number | null;
-    /**
-     * The managed connection pool mode for the instance.
-     */
-    poolMode?: string | null;
-    /**
-     * Query wait timeout.
-     */
-    queryWaitTimeout?: string | null;
-    /**
-     * Server idle timeout.
-     */
-    serverConnectionIdleTimeout?: string | null;
   }
   /**
    * Connection pool flags for Cloud SQL instances managed connection pool configuration.
@@ -621,23 +597,23 @@ export namespace sqladmin_v1 {
     value?: string | null;
   }
   /**
-   * Details of a single node of a read pool.
+   * Details of a single read pool node of a read pool.
    */
   export interface Schema$ConnectPoolNodeConfig {
     /**
-     * Output only. The DNS name of the node.
+     * Output only. The DNS name of the read pool node.
      */
     dnsName?: string | null;
     /**
-     * Output only. The list of DNS names used by this node.
+     * Output only. The list of DNS names used by this read pool node.
      */
     dnsNames?: Schema$DnsNameMapping[];
     /**
-     * Output only. Mappings containing IP addresses that can be used to connect to the node.
+     * Output only. Mappings containing IP addresses that can be used to connect to the read pool node.
      */
     ipAddresses?: Schema$IpMapping[];
     /**
-     * Output only. The name of the node. Doesn't include the project ID.
+     * Output only. The name of the read pool node. Doesn't include the project ID.
      */
     name?: string | null;
   }
@@ -674,11 +650,11 @@ export namespace sqladmin_v1 {
      */
     kind?: string | null;
     /**
-     * The number of nodes in a read pool.
+     * The number of read pool nodes in a read pool.
      */
     nodeCount?: number | null;
     /**
-     * Output only. Entries containing information about each node of the read pool.
+     * Output only. Entries containing information about each read pool node of the read pool.
      */
     nodes?: Schema$ConnectPoolNodeConfig[];
     /**
@@ -850,11 +826,11 @@ export namespace sqladmin_v1 {
      */
     name?: string | null;
     /**
-     * The number of nodes in a read pool.
+     * The number of read pool nodes in a read pool.
      */
     nodeCount?: number | null;
     /**
-     * Output only. Entries containing information about each node of the read pool.
+     * Output only. Entries containing information about each read pool node of the read pool.
      */
     nodes?: Schema$PoolNodeConfig[];
     /**
@@ -1160,7 +1136,7 @@ export namespace sqladmin_v1 {
      */
     kind?: string | null;
     /**
-     * Option for export offload.
+     * Whether to perform a serverless export.
      */
     offload?: boolean | null;
     /**
@@ -2082,31 +2058,31 @@ export namespace sqladmin_v1 {
     targetSizeGb?: string | null;
   }
   /**
-   * Details of a single node of a read pool.
+   * Details of a single read pool node of a read pool.
    */
   export interface Schema$PoolNodeConfig {
     /**
-     * Output only. The DNS name of the node.
+     * Output only. The DNS name of the read pool node.
      */
     dnsName?: string | null;
     /**
-     * Output only. The list of DNS names used by this node.
+     * Output only. The list of DNS names used by this read pool node.
      */
     dnsNames?: Schema$DnsNameMapping[];
     /**
-     * Output only. The serving zone of the node.
+     * Output only. The zone of the read pool node.
      */
     gceZone?: string | null;
     /**
-     * Output only. Mappings containing IP addresses that can be used to connect to the node.
+     * Output only. Mappings containing IP addresses that can be used to connect to the read pool node.
      */
     ipAddresses?: Schema$IpMapping[];
     /**
-     * Output only. The name of the node, to be used for retrieving metrics and logs for the node.
+     * Output only. The name of the read pool node, to be used for retrieving metrics and logs.
      */
     name?: string | null;
     /**
-     * Output only. The current state of the node.
+     * Output only. The current state of the read pool node.
      */
     state?: string | null;
   }
@@ -2345,7 +2321,7 @@ export namespace sqladmin_v1 {
      */
     enableDataplexIntegration?: boolean | null;
     /**
-     * Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for PostgreSQL instances.
+     * Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for MySQL and Cloud SQL for PostgreSQL instances.
      */
     enableGoogleMlIntegration?: boolean | null;
     /**
@@ -2860,6 +2836,10 @@ export namespace sqladmin_v1 {
      * Optional. The host from which the user can connect. For `insert` operations, host defaults to an empty string. For `update` operations, host is specified as part of the request URL. The host name cannot be updated after insertion. For a MySQL instance, it's required; for a PostgreSQL or SQL Server instance, it's optional.
      */
     host?: string | null;
+    /**
+     * Indicates if user is active for IAM Authentication.
+     */
+    iamStatus?: string | null;
     /**
      * The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for `update` because it is already specified on the URL.
      */
