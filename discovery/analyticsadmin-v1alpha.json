@@ -4455,6 +4455,165 @@
             }
           }
         },
+        "reportingDataAnnotations": {
+          "methods": {
+            "create": {
+              "description": "Creates a Reporting Data Annotation.",
+              "flatPath": "v1alpha/properties/{propertiesId}/reportingDataAnnotations",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.reportingDataAnnotations.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The property for which to create a Reporting Data Annotation. Format: properties/property_id Example: properties/123",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/reportingDataAnnotations",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaReportingDataAnnotation"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaReportingDataAnnotation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a Reporting Data Annotation.",
+              "flatPath": "v1alpha/properties/{propertiesId}/reportingDataAnnotations/{reportingDataAnnotationsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.reportingDataAnnotations.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of the Reporting Data Annotation to delete. Format: properties/property_id/reportingDataAnnotations/reporting_data_annotation Example: properties/123/reportingDataAnnotations/456",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/reportingDataAnnotations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Lookup a single Reporting Data Annotation.",
+              "flatPath": "v1alpha/properties/{propertiesId}/reportingDataAnnotations/{reportingDataAnnotationsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.reportingDataAnnotations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of the Reporting Data Annotation to lookup. Format: properties/property_id/reportingDataAnnotations/reportingDataAnnotation Example: properties/123/reportingDataAnnotations/456",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/reportingDataAnnotations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaReportingDataAnnotation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "List all Reporting Data Annotations on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/reportingDataAnnotations",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.reportingDataAnnotations.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. Filter that restricts which reporting data annotations under the parent property are listed. Supported fields are: * 'name' * `title` * `description` * `annotation_date` * `annotation_date_range` * `color` Additionally, this API provides the following helper functions: * annotation_duration() : the duration that this annotation marks, [durations](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/duration.proto). expect a numeric representation of seconds followed by an `s` suffix. * is_annotation_in_range(start_date, end_date) : if the annotation is in the range specified by the `start_date` and `end_date`. The dates are in ISO-8601 format, for example `2031-06-28`. Supported operations: * `=` : equals * `!=` : not equals * `<` : less than * `>` : greater than * `<=` : less than or equals * `>=` : greater than or equals * `:` : has operator * `=~` : [regular expression](https://github.com/google/re2/wiki/Syntax) match * `!~` : [regular expression](https://github.com/google/re2/wiki/Syntax) does not match * `NOT` : Logical not * `AND` : Logical and * `OR` : Logical or Examples: 1. `title=\"Holiday Sale\"` 2. `description=~\"[Bb]ig [Gg]ame.*[Ss]ale\"` 3. `is_annotation_in_range(\"2025-12-25\", \"2026-01-16\") = true` 4. `annotation_duration() >= 172800s AND title:BOGO`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListReportingDataAnnotations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReportingDataAnnotations` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the property. Format: properties/property_id Example: properties/123",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/reportingDataAnnotations",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a Reporting Data Annotation.",
+              "flatPath": "v1alpha/properties/{propertiesId}/reportingDataAnnotations/{reportingDataAnnotationsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.reportingDataAnnotations.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Identifier. Resource name of this Reporting Data Annotation. Format: 'properties/{property_id}/reportingDataAnnotations/{reporting_data_annotation}' Format: 'properties/123/reportingDataAnnotations/456'",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/reportingDataAnnotations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to update. Field names must be in snake case (for example, \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaReportingDataAnnotation"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaReportingDataAnnotation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
         "rollupPropertySourceLinks": {
           "methods": {
             "create": {
@@ -4886,7 +5045,7 @@
       }
     }
   },
-  "revision": "20250307",
+  "revision": "20250329",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -6269,6 +6428,10 @@
         "property": {
           "$ref": "GoogleAnalyticsAdminV1alphaProperty",
           "description": "A snapshot of a Property resource in change history."
+        },
+        "reportingDataAnnotation": {
+          "$ref": "GoogleAnalyticsAdminV1alphaReportingDataAnnotation",
+          "description": "A snapshot of a ReportingDataAnnotation resource in change history."
         },
         "searchAds360Link": {
           "$ref": "GoogleAnalyticsAdminV1alphaSearchAds360Link",
@@ -8117,6 +8280,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponse": {
+      "description": "Response message for ListReportingDataAnnotation RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "reportingDataAnnotations": {
+          "description": "List of Reporting Data Annotations.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaReportingDataAnnotation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse": {
       "description": "Response message for ListRollupPropertySourceLinks RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse",
@@ -8571,6 +8752,77 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaReportingDataAnnotation": {
+      "description": "A Reporting Data Annotation is a comment connected to certain dates for reporting data.",
+      "id": "GoogleAnalyticsAdminV1alphaReportingDataAnnotation",
+      "properties": {
+        "annotationDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "If set, the Reporting Data Annotation is for a specific date represented by this field. The date must be a valid date with year, month and day set. The date may be in the past, present, or future."
+        },
+        "annotationDateRange": {
+          "$ref": "GoogleAnalyticsAdminV1alphaReportingDataAnnotationDateRange",
+          "description": "If set, the Reporting Data Annotation is for a range of dates represented by this field."
+        },
+        "color": {
+          "description": "Required. The color used for display of this Reporting Data Annotation.",
+          "enum": [
+            "COLOR_UNSPECIFIED",
+            "PURPLE",
+            "BROWN",
+            "BLUE",
+            "GREEN",
+            "RED",
+            "CYAN",
+            "ORANGE"
+          ],
+          "enumDescriptions": [
+            "Color unknown or not specified.",
+            "Purple color.",
+            "Brown color.",
+            "Blue color.",
+            "Green color.",
+            "Red color.",
+            "Cyan color.",
+            "Orange color. (Only used for system-generated annotations)"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description for this Reporting Data Annotation.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Identifier. Resource name of this Reporting Data Annotation. Format: 'properties/{property_id}/reportingDataAnnotations/{reporting_data_annotation}' Format: 'properties/123/reportingDataAnnotations/456'",
+          "type": "string"
+        },
+        "systemGenerated": {
+          "description": "Output only. If true, this annotation was generated by the Google Analytics system. System-generated annotations cannot be updated or deleted.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "title": {
+          "description": "Required. Human-readable title for this Reporting Data Annotation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaReportingDataAnnotationDateRange": {
+      "description": "Represents a Reporting Data Annotation's date range, both start and end dates are inclusive. Time zones are based on the parent property.",
+      "id": "GoogleAnalyticsAdminV1alphaReportingDataAnnotationDateRange",
+      "properties": {
+        "endDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Required. The end date for this range. Must be a valid date with year, month, and day set. This date must be greater than or equal to the start date."
+        },
+        "startDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Required. The start date for this range. Must be a valid date with year, month, and day set. The date may be in the past, present, or future."
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaRollupPropertySourceLink": {
       "description": "A link that references a source property under the parent rollup property.",
       "id": "GoogleAnalyticsAdminV1alphaRollupPropertySourceLink",
@@ -8841,7 +9093,8 @@
               "AUDIENCE",
               "EVENT_CREATE_RULE",
               "KEY_EVENT",
-              "CALCULATED_METRIC"
+              "CALCULATED_METRIC",
+              "REPORTING_DATA_ANNOTATION"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -8870,7 +9123,8 @@
               "Audience resource",
               "EventCreateRule resource",
               "KeyEvent resource",
-              "CalculatedMetric resource"
+              "CalculatedMetric resource",
+              "ReportingDataAnnotation resource"
             ],
             "type": "string"
           },
@@ -9070,6 +9324,28 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleTypeDate": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "id": "GoogleTypeDate",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     }
   },
