@@ -138,69 +138,6 @@ export namespace workloadmanager_v1 {
     parameters?: {[key: string]: string} | null;
   }
   /**
-   * The API layer server
-   */
-  export interface Schema$APILayerServer {
-    /**
-     * Output only. The api layer name
-     */
-    name?: string | null;
-    /**
-     * Output only. OS information
-     */
-    osVersion?: string | null;
-    /**
-     * Output only. resources in the component
-     */
-    resources?: Schema$CloudResource[];
-  }
-  /**
-   * The availability groups for sqlserver
-   */
-  export interface Schema$AvailabilityGroup {
-    /**
-     * Output only. The databases
-     */
-    databases?: string[] | null;
-    /**
-     * Output only. The availability group name
-     */
-    name?: string | null;
-    /**
-     * Output only. The primary server
-     */
-    primaryServer?: string | null;
-    /**
-     * Output only. The secondary servers
-     */
-    secondaryServers?: string[] | null;
-  }
-  /**
-   * The backend server
-   */
-  export interface Schema$BackendServer {
-    /**
-     * Output only. The backup file
-     */
-    backupFile?: string | null;
-    /**
-     * Output only. The backup schedule
-     */
-    backupSchedule?: string | null;
-    /**
-     * Output only. The backend name
-     */
-    name?: string | null;
-    /**
-     * Output only. OS information
-     */
-    osVersion?: string | null;
-    /**
-     * Output only. resources in the component
-     */
-    resources?: Schema$CloudResource[];
-  }
-  /**
    * Backup properties.
    */
   export interface Schema$BackupProperties {
@@ -248,19 +185,6 @@ export namespace workloadmanager_v1 {
     name?: string | null;
   }
   /**
-   * The cluster for sqlserver
-   */
-  export interface Schema$Cluster {
-    /**
-     * Output only. The nodes
-     */
-    nodes?: string[] | null;
-    /**
-     * Output only. The witness server
-     */
-    witnessServer?: string | null;
-  }
-  /**
    * * Command specifies the type of command to execute.
    */
   export interface Schema$Command {
@@ -303,27 +227,6 @@ export namespace workloadmanager_v1 {
     subComponentHealthes?: Schema$ComponentHealth[];
   }
   /**
-   * The database for sqlserver
-   */
-  export interface Schema$Database {
-    /**
-     * Output only. The backup file
-     */
-    backupFile?: string | null;
-    /**
-     * Output only. The backup schedule
-     */
-    backupSchedule?: string | null;
-    /**
-     * Output only. The host VM
-     */
-    hostVm?: string | null;
-    /**
-     * Output only. The database name
-     */
-    name?: string | null;
-  }
-  /**
    * Database Properties.
    */
   export interface Schema$DatabaseProperties {
@@ -341,7 +244,7 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * LINT.IfChange Message describing Evaluation object
+   * Message describing Evaluation object
    */
   export interface Schema$Evaluation {
     /**
@@ -507,23 +410,6 @@ export namespace workloadmanager_v1 {
      * Required. URI of external data source. example of bq table {project_ID\}.{dataset_ID\}.{table_ID\}
      */
     uri?: string | null;
-  }
-  /**
-   * The front end server
-   */
-  export interface Schema$FrontEndServer {
-    /**
-     * Output only. The frontend name
-     */
-    name?: string | null;
-    /**
-     * Output only. OS information
-     */
-    osVersion?: string | null;
-    /**
-     * Output only. resources in the component
-     */
-    resources?: Schema$CloudResource[];
   }
   /**
    * Message describing compute engine instance filter
@@ -774,19 +660,6 @@ export namespace workloadmanager_v1 {
      * All scanned resources in response
      */
     scannedResources?: Schema$ScannedResource[];
-  }
-  /**
-   * The load balancer for sqlserver
-   */
-  export interface Schema$LoadBalancerServer {
-    /**
-     * Output only. The IP address
-     */
-    ip?: string | null;
-    /**
-     * Output only. The VM name
-     */
-    vm?: string | null;
   }
   /**
    * A resource that represents a Google Cloud location.
@@ -1322,6 +1195,10 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapDiscoveryResourceInstancePropertiesDiskMount {
     /**
+     * Optional. Names of the disks providing this mount point.
+     */
+    diskNames?: string[] | null;
+    /**
      * Optional. Filesystem mount point.
      */
     mountPoint?: string | null;
@@ -1519,27 +1396,6 @@ export namespace workloadmanager_v1 {
     type?: string | null;
   }
   /**
-   * The body of sqlserver workload
-   */
-  export interface Schema$SqlserverWorkload {
-    /**
-     * Output only. The availability groups for sqlserver
-     */
-    ags?: Schema$AvailabilityGroup[];
-    /**
-     * Output only. The cluster for sqlserver
-     */
-    cluster?: Schema$Cluster;
-    /**
-     * Output only. The databases for sqlserver
-     */
-    databases?: Schema$Database[];
-    /**
-     * Output only. The load balancer for sqlserver
-     */
-    loadBalancerServer?: Schema$LoadBalancerServer;
-  }
-  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1572,27 +1428,6 @@ export namespace workloadmanager_v1 {
      * Output only. Number of new fixes compared to the previous execution
      */
     newFixes?: string | null;
-  }
-  /**
-   * The body of three tier workload
-   */
-  export interface Schema$ThreeTierWorkload {
-    /**
-     * Output only. The API layer for three tier workload
-     */
-    apiLayer?: Schema$APILayerServer;
-    /**
-     * Output only. The backend for three tier workload
-     */
-    backend?: Schema$BackendServer;
-    /**
-     * Output only. the workload endpoint
-     */
-    endpoint?: string | null;
-    /**
-     * Output only. The frontend for three tier workload
-     */
-    frontend?: Schema$FrontEndServer;
   }
   /**
    * The schema of torso workload validation data.
@@ -1631,6 +1466,10 @@ export namespace workloadmanager_v1 {
      * Optional. Maintenance status
      */
     maintenanceStatus?: string | null;
+    /**
+     * Optional. Instance maintenance behavior. Could be "MIGRATE" or "TERMINATE".
+     */
+    onHostMaintenance?: string | null;
     /**
      * Optional. Start time
      */
@@ -1690,17 +1529,9 @@ export namespace workloadmanager_v1 {
      */
     sapWorkload?: Schema$SapWorkload;
     /**
-     * The sqlserver workload content
-     */
-    sqlserverWorkload?: Schema$SqlserverWorkload;
-    /**
      * Output only. [output only] the current state if a a workload
      */
     state?: string | null;
-    /**
-     * The 3 tier web app workload content
-     */
-    threeTierWorkload?: Schema$ThreeTierWorkload;
     /**
      * Required. The type of the workload
      */
@@ -1965,6 +1796,10 @@ export namespace workloadmanager_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
