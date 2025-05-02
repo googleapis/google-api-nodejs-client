@@ -143,6 +143,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -512,7 +518,7 @@
       }
     }
   },
-  "revision": "20250205",
+  "revision": "20250414",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -561,6 +567,10 @@
         "adminUser": {
           "$ref": "AdminUser",
           "description": "Optional. Info about the first admin user, such as given name and family name."
+        },
+        "advancedReportingEnabled": {
+          "description": "Optional. Whether the advanced reporting feature is enabled.",
+          "type": "boolean"
         },
         "ccaipManagedUsers": {
           "description": "Optional. Whether to enable users to be created in the CCAIP-instance concurrently to having users in Cloud identity",
