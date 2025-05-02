@@ -169,30 +169,6 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
           ]
-        },
-        "provisionApp": {
-          "description": "Provision app distribution for an existing Firebase app, enabling it to subsequently be used by appdistro.",
-          "flatPath": "v1alpha/apps/{mobilesdkAppId}",
-          "httpMethod": "POST",
-          "id": "firebaseappdistribution.apps.provisionApp",
-          "parameterOrder": [
-            "mobilesdkAppId"
-          ],
-          "parameters": {
-            "mobilesdkAppId": {
-              "description": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1alpha/apps/{mobilesdkAppId}",
-          "response": {
-            "$ref": "GoogleFirebaseAppdistroV1alphaProvisionAppResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
         }
       },
       "resources": {
@@ -436,7 +412,7 @@
               ]
             },
             "updateTestConfig": {
-              "description": "Updates a release.",
+              "description": "Updates automated test configuration.",
               "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/testConfig",
               "httpMethod": "PATCH",
               "id": "firebaseappdistribution.projects.apps.updateTestConfig",
@@ -831,7 +807,7 @@
       }
     }
   },
-  "revision": "20250314",
+  "revision": "20250416",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -959,7 +935,6 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaAiInstructions": {
-      "description": "Instructions for AI driven test",
       "id": "GoogleFirebaseAppdistroV1alphaAiInstructions",
       "properties": {
         "steps": {
@@ -1667,12 +1642,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "GoogleFirebaseAppdistroV1alphaProvisionAppResponse": {
-      "description": "The response message for `ProvisionApp`.",
-      "id": "GoogleFirebaseAppdistroV1alphaProvisionAppResponse",
-      "properties": {},
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaRelease": {

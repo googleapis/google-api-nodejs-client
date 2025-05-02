@@ -150,9 +150,6 @@ export namespace firebaseappdistribution_v1alpha {
      */
     certificateHashSha256?: string | null;
   }
-  /**
-   * Instructions for AI driven test
-   */
   export interface Schema$GoogleFirebaseAppdistroV1alphaAiInstructions {
     /**
      * Required. Steps to be accomplished by the AI
@@ -579,10 +576,6 @@ export namespace firebaseappdistribution_v1alpha {
      */
     usernameResourceName?: string | null;
   }
-  /**
-   * The response message for `ProvisionApp`.
-   */
-  export interface Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse {}
   /**
    * Proto defining a release object
    */
@@ -1114,104 +1107,6 @@ export namespace firebaseappdistribution_v1alpha {
         );
       }
     }
-
-    /**
-     * Provision app distribution for an existing Firebase app, enabling it to subsequently be used by appdistro.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    provisionApp(
-      params: Params$Resource$Apps$Provisionapp,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    provisionApp(
-      params?: Params$Resource$Apps$Provisionapp,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse>;
-    provisionApp(
-      params: Params$Resource$Apps$Provisionapp,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    provisionApp(
-      params: Params$Resource$Apps$Provisionapp,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse>
-    ): void;
-    provisionApp(
-      params: Params$Resource$Apps$Provisionapp,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse>
-    ): void;
-    provisionApp(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse>
-    ): void;
-    provisionApp(
-      paramsOrCallback?:
-        | Params$Resource$Apps$Provisionapp
-        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Apps$Provisionapp;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Apps$Provisionapp;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/apps/{mobilesdkAppId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['mobilesdkAppId'],
-        pathParams: ['mobilesdkAppId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaProvisionAppResponse>(
-          parameters
-        );
-      }
-    }
   }
 
   export interface Params$Resource$Apps$Get extends StandardParameters {
@@ -1225,13 +1120,6 @@ export namespace firebaseappdistribution_v1alpha {
     mobilesdkAppId?: string;
   }
   export interface Params$Resource$Apps$Getjwt extends StandardParameters {
-    /**
-     * Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
-     */
-    mobilesdkAppId?: string;
-  }
-  export interface Params$Resource$Apps$Provisionapp
-    extends StandardParameters {
     /**
      * Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      */
@@ -2054,7 +1942,7 @@ export namespace firebaseappdistribution_v1alpha {
     }
 
     /**
-     * Updates a release.
+     * Updates automated test configuration.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
