@@ -9143,6 +9143,10 @@ export namespace storage_v1 {
      */
     ifSourceMetagenerationNotMatch?: string;
     /**
+     * Set of properties to return. Defaults to noAcl.
+     */
+    projection?: string;
+    /**
      * Name of the source object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     sourceObject?: string;
