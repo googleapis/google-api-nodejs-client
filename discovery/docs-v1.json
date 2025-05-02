@@ -26,7 +26,7 @@
   "canonicalName": "Docs",
   "description": "Reads and writes Google Docs documents.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/docs/",
+  "documentationLink": "https://developers.google.com/workspace/docs/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -221,7 +221,7 @@
       }
     }
   },
-  "revision": "20250218",
+  "revision": "20250325",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {
@@ -3552,6 +3552,10 @@
       "properties": {
         "matchCase": {
           "description": "Indicates whether the search should respect case: - `True`: the search is case sensitive. - `False`: the search is case insensitive.",
+          "type": "boolean"
+        },
+        "searchByRegex": {
+          "description": "Optional. True if the find value should be treated as a regular expression. Any backslashes in the pattern should be escaped. - `True`: the search text is treated as a regular expressions. - `False`: the search text is treated as a substring for matching.",
           "type": "boolean"
         },
         "text": {
