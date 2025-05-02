@@ -287,6 +287,10 @@ export namespace file_v1 {
      */
     consumerDefinedName?: string | null;
     /**
+     * Optional. The consumer_project_number associated with this Apigee instance. This field is added specifically to support Apigee integration with SLM Rollout and UMM. It represents the numerical project ID of the GCP project that consumes this Apigee instance. It is used for SLM rollout notifications and UMM integration, enabling proper mapping to customer projects and log delivery for Apigee instances. This field complements consumer_project_id and may be used for specific Apigee scenarios where the numerical ID is required.
+     */
+    consumerProjectNumber?: string | null;
+    /**
      * Output only. Timestamp when the resource was created.
      */
     createTime?: string | null;
@@ -1271,13 +1275,13 @@ export namespace file_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
+    /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
-    /**
-     * If true, the returned list will include locations which are not yet revealed.
-     */
-    includeUnrevealedLocations?: boolean;
     /**
      * The resource that owns the locations collection, if applicable.
      */
