@@ -143,6 +143,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -189,7 +195,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis backupCollection resource name using the form: `projects/{project_id}/locations/{location_id}/backupCollections/{backup_collection_id}` where `location_id` refers to a GCP region.",
+                      "description": "Required. Redis backupCollection resource name using the form: `projects/{project_id}/locations/{location_id}/backupCollections/{backup_collection_id}` where `location_id` refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/backupCollections/[^/]+$",
                       "required": true,
@@ -225,7 +231,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the backupCollection location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.",
+                      "description": "Required. The resource name of the backupCollection location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -379,7 +385,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis cluster resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}` where `location_id` refers to a GCP region.",
+                      "description": "Required. Redis cluster resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}` where `location_id` refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
                       "required": true,
@@ -412,7 +418,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the cluster location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.",
+                      "description": "Required. The resource name of the cluster location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -445,7 +451,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis cluster resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}` where `location_id` refers to a GCP region.",
+                      "description": "Required. Redis cluster resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}` where `location_id` refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
                       "required": true,
@@ -475,7 +481,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis cluster resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}` where `location_id` refers to a GCP region.",
+                      "description": "Required. Redis cluster resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}` where `location_id` refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
                       "required": true,
@@ -500,7 +506,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis cluster certificate authority resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}/certificateAuthority` where `location_id` refers to a GCP region.",
+                      "description": "Required. Redis cluster certificate authority resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}/certificateAuthority` where `location_id` refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+/certificateAuthority$",
                       "required": true,
@@ -536,7 +542,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the cluster location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.",
+                      "description": "Required. The resource name of the cluster location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -600,7 +606,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis Cluster instance resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}` where `location_id` refers to a GCP region.",
+                      "description": "Required. Redis Cluster instance resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}` where `location_id` refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
                       "required": true,
@@ -1067,7 +1073,7 @@
       }
     }
   },
-  "revision": "20250311",
+  "revision": "20250418",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -2126,7 +2132,13 @@
             "SIGNAL_TYPE_NO_DELETION_PROTECTION",
             "SIGNAL_TYPE_INEFFICIENT_QUERY",
             "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
-            "SIGNAL_TYPE_MEMORY_LIMIT"
+            "SIGNAL_TYPE_MEMORY_LIMIT",
+            "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+            "SIGNAL_TYPE_LARGE_ROWS",
+            "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+            "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+            "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED"
           ],
           "enumDeprecated": [
             false,
@@ -2134,6 +2146,12 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -2310,7 +2328,13 @@
             "Deletion Protection Disabled for the resource",
             "Indicates that the instance has inefficient queries detected.",
             "Indicates that the instance has read intensive workload.",
-            "Indicates that the instance is nearing memory limit."
+            "Indicates that the instance is nearing memory limit.",
+            "Indicates that the instance's max server memory is configured higher than the recommended value.",
+            "Indicates that the database has large rows beyond the recommended limit.",
+            "Heavy write pressure on the database rows.",
+            "Heavy read pressure on the database rows.",
+            "Encryption org policy not satisfied.",
+            "Location org policy not satisfied."
           ],
           "type": "string"
         },
@@ -2721,7 +2745,13 @@
             "SIGNAL_TYPE_NO_DELETION_PROTECTION",
             "SIGNAL_TYPE_INEFFICIENT_QUERY",
             "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
-            "SIGNAL_TYPE_MEMORY_LIMIT"
+            "SIGNAL_TYPE_MEMORY_LIMIT",
+            "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+            "SIGNAL_TYPE_LARGE_ROWS",
+            "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+            "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+            "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED"
           ],
           "enumDeprecated": [
             false,
@@ -2729,6 +2759,12 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -2905,7 +2941,13 @@
             "Deletion Protection Disabled for the resource",
             "Indicates that the instance has inefficient queries detected.",
             "Indicates that the instance has read intensive workload.",
-            "Indicates that the instance is nearing memory limit."
+            "Indicates that the instance is nearing memory limit.",
+            "Indicates that the instance's max server memory is configured higher than the recommended value.",
+            "Indicates that the database has large rows beyond the recommended limit.",
+            "Heavy write pressure on the database rows.",
+            "Heavy read pressure on the database rows.",
+            "Encryption org policy not satisfied.",
+            "Location org policy not satisfied."
           ],
           "type": "string"
         }
@@ -4170,8 +4212,9 @@
             "ON_PREM",
             "PRODUCT_TYPE_MEMORYSTORE",
             "PRODUCT_TYPE_BIGTABLE",
-            "PRODUCT_TYPE_OTHER",
-            "PRODUCT_TYPE_FIRESTORE"
+            "PRODUCT_TYPE_FIRESTORE",
+            "PRODUCT_TYPE_COMPUTE_ENGINE",
+            "PRODUCT_TYPE_OTHER"
           ],
           "enumDeprecated": [
             false,
@@ -4182,6 +4225,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -4198,8 +4242,9 @@
             "On premises database product.",
             "Memorystore product area in GCP",
             "Bigtable product area in GCP",
-            "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum.",
-            "Firestore product area in GCP."
+            "Firestore product area in GCP.",
+            "Compute Engine self managed databases",
+            "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],
           "type": "string"
         },
