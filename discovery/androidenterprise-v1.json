@@ -560,7 +560,7 @@
           ]
         },
         "getServiceAccount": {
-          "description": "Returns a service account and credentials. The service account can be bound to the enterprise by calling setAccount. The service account is unique to this enterprise and EMM, and will be deleted if the enterprise is unbound. The credentials contain private key data and are not stored server-side. This method can only be called after calling Enterprises.Enroll or Enterprises.CompleteSignup, and before Enterprises.SetAccount; at other times it will return an error. Subsequent calls after the first will generate a new, unique set of credentials, and invalidate the previously generated credentials. Once the service account is bound to the enterprise, it can be managed using the serviceAccountKeys resource.",
+          "description": "Returns a service account and credentials. The service account can be bound to the enterprise by calling setAccount. The service account is unique to this enterprise and EMM, and will be deleted if the enterprise is unbound. The credentials contain private key data and are not stored server-side. This method can only be called after calling Enterprises.Enroll or Enterprises.CompleteSignup, and before Enterprises.SetAccount; at other times it will return an error. Subsequent calls after the first will generate a new, unique set of credentials, and invalidate the previously generated credentials. Once the service account is bound to the enterprise, it can be managed using the serviceAccountKeys resource. *Note:* After you create a key, you might need to wait for 60 seconds or more before you perform another operation with the key. If you try to perform an operation with the key immediately after you create the key, and you receive an error, you can retry the request with exponential backoff .",
           "flatPath": "androidenterprise/v1/enterprises/{enterpriseId}/serviceAccount",
           "httpMethod": "GET",
           "id": "androidenterprise.enterprises.getServiceAccount",
@@ -2691,7 +2691,7 @@
       }
     }
   },
-  "revision": "20250302",
+  "revision": "20250330",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3431,7 +3431,7 @@
       "type": "object"
     },
     "EnterpriseUpgradeEvent": {
-      "description": "An event generated when an enterprise is upgraded. **Note:** This feature is not generally available.",
+      "description": "An event generated when an enterprise is upgraded.",
       "id": "EnterpriseUpgradeEvent",
       "properties": {
         "upgradeState": {
@@ -4010,7 +4010,7 @@
         },
         "enterpriseUpgradeEvent": {
           "$ref": "EnterpriseUpgradeEvent",
-          "description": "Notifications about enterprise upgrade. **Note:** This feature is not generally available."
+          "description": "Notifications about enterprise upgrade."
         },
         "installFailureEvent": {
           "$ref": "InstallFailureEvent",
@@ -4050,7 +4050,7 @@
             "Notification about product availability change.",
             "Notification about a new device.",
             "Notification about an updated device report.",
-            "Notification about an enterprise upgrade. **Note:** This feature is not generally available."
+            "Notification about an enterprise upgrade."
           ],
           "type": "string"
         },
