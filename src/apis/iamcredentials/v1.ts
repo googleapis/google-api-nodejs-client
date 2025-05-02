@@ -112,6 +112,7 @@ export namespace iamcredentials_v1 {
    */
   export class Iamcredentials {
     context: APIRequestContext;
+    locations: Resource$Locations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace iamcredentials_v1 {
         google,
       };
 
+      this.locations = new Resource$Locations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -161,10 +163,14 @@ export namespace iamcredentials_v1 {
      * Include the service account email in the token. If set to `true`, the token will contain `email` and `email_verified` claims.
      */
     includeEmail?: boolean | null;
+    /**
+     * Include the organization number of the service account in the token. If set to `true`, the token will contain a `google.organization_number` claim. The value of the claim will be `null` if the service account isn't associated with an organization.
+     */
+    organizationNumberIncluded?: boolean | null;
   }
   export interface Schema$GenerateIdTokenResponse {
     /**
-     * The OpenId Connect ID token.
+     * The OpenId Connect ID token. The token is a JSON Web Token (JWT) that contains a payload with claims. See the [JSON Web Token spec](https://tools.ietf.org/html/rfc7519) for more information. Here is an example of a decoded JWT payload: ``` { "iss": "https://accounts.google.com", "iat": 1496953245, "exp": 1496953245, "aud": "https://www.example.com", "sub": "107517467455664443765", "azp": "107517467455664443765", "email": "my-iam-account@my-project.iam.gserviceaccount.com", "email_verified": true, "google": { "organization_number": 123456 \} \} ```
      */
     token?: string | null;
   }
@@ -221,16 +227,291 @@ export namespace iamcredentials_v1 {
      */
     signedJwt?: string | null;
   }
+  /**
+   * Represents a list of allowed locations for given workforce pool.
+   */
+  export interface Schema$WorkforcePoolAllowedLocations {
+    /**
+     * Output only. The hex encoded bitmap of the trust boundary locations
+     */
+    encodedLocations?: string | null;
+    /**
+     * Output only. The human readable trust boundary locations. For example, ["us-central1", "europe-west1"]
+     */
+    locations?: string[] | null;
+  }
+  /**
+   * Represents a list of allowed locations for given workload identity pool.
+   */
+  export interface Schema$WorkloadIdentityPoolAllowedLocations {
+    /**
+     * Output only. The hex encoded bitmap of the trust boundary locations
+     */
+    encodedLocations?: string | null;
+    /**
+     * Output only. The human readable trust boundary locations. For example, ["us-central1", "europe-west1"]
+     */
+    locations?: string[] | null;
+  }
+
+  export class Resource$Locations {
+    context: APIRequestContext;
+    workforcePools: Resource$Locations$Workforcepools;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.workforcePools = new Resource$Locations$Workforcepools(this.context);
+    }
+  }
+
+  export class Resource$Locations$Workforcepools {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns the trust boundary info for a given workforce pool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAllowedLocations(
+      params: Params$Resource$Locations$Workforcepools$Getallowedlocations,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAllowedLocations(
+      params?: Params$Resource$Locations$Workforcepools$Getallowedlocations,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkforcePoolAllowedLocations>;
+    getAllowedLocations(
+      params: Params$Resource$Locations$Workforcepools$Getallowedlocations,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAllowedLocations(
+      params: Params$Resource$Locations$Workforcepools$Getallowedlocations,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolAllowedLocations>,
+      callback: BodyResponseCallback<Schema$WorkforcePoolAllowedLocations>
+    ): void;
+    getAllowedLocations(
+      params: Params$Resource$Locations$Workforcepools$Getallowedlocations,
+      callback: BodyResponseCallback<Schema$WorkforcePoolAllowedLocations>
+    ): void;
+    getAllowedLocations(
+      callback: BodyResponseCallback<Schema$WorkforcePoolAllowedLocations>
+    ): void;
+    getAllowedLocations(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Getallowedlocations
+        | BodyResponseCallback<Schema$WorkforcePoolAllowedLocations>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolAllowedLocations>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkforcePoolAllowedLocations>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$WorkforcePoolAllowedLocations>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Getallowedlocations;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Getallowedlocations;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://iamcredentials.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/allowedLocations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkforcePoolAllowedLocations>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkforcePoolAllowedLocations>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Workforcepools$Getallowedlocations
+    extends StandardParameters {
+    /**
+     * Required. Resource name of workforce pool.
+     */
+    name?: string;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
+    locations: Resource$Projects$Locations;
     serviceAccounts: Resource$Projects$Serviceaccounts;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
       this.serviceAccounts = new Resource$Projects$Serviceaccounts(
         this.context
       );
     }
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    workloadIdentityPools: Resource$Projects$Locations$Workloadidentitypools;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.workloadIdentityPools =
+        new Resource$Projects$Locations$Workloadidentitypools(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations$Workloadidentitypools {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns the trust boundary info for a given workload identity pool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAllowedLocations(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAllowedLocations(
+      params?: Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkloadIdentityPoolAllowedLocations>;
+    getAllowedLocations(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAllowedLocations(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkloadIdentityPoolAllowedLocations>,
+      callback: BodyResponseCallback<Schema$WorkloadIdentityPoolAllowedLocations>
+    ): void;
+    getAllowedLocations(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations,
+      callback: BodyResponseCallback<Schema$WorkloadIdentityPoolAllowedLocations>
+    ): void;
+    getAllowedLocations(
+      callback: BodyResponseCallback<Schema$WorkloadIdentityPoolAllowedLocations>
+    ): void;
+    getAllowedLocations(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations
+        | BodyResponseCallback<Schema$WorkloadIdentityPoolAllowedLocations>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkloadIdentityPoolAllowedLocations>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkloadIdentityPoolAllowedLocations>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$WorkloadIdentityPoolAllowedLocations>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://iamcredentials.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/allowedLocations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkloadIdentityPoolAllowedLocations>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkloadIdentityPoolAllowedLocations>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations
+    extends StandardParameters {
+    /**
+     * Required. Resource name of workload identity pool.
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Serviceaccounts {
