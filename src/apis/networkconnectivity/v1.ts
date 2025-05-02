@@ -580,6 +580,14 @@ export namespace networkconnectivity_v1 {
      */
     description?: string | null;
     /**
+     * Optional. ExcludeCidrRanges flag. Specifies a set of CIDR blocks that allows exclusion of particular CIDR ranges from the auto-allocation process, without having to reserve these blocks
+     */
+    excludeCidrRanges?: string[] | null;
+    /**
+     * Optional. Immutable ranges cannot have their fields modified, except for labels and description.
+     */
+    immutable?: boolean | null;
+    /**
      * The IP range that this internal range defines. NOTE: IPv6 ranges are limited to usage=EXTERNAL_TO_VPC and peering=FOR_SELF. NOTE: For IPv6 Ranges this field is compulsory, i.e. the address range must be specified explicitly.
      */
     ipCidrRange?: string | null;
@@ -671,6 +679,10 @@ export namespace networkconnectivity_v1 {
      */
     producerNetwork?: string | null;
     /**
+     * Output only. The proposed exclude export IP ranges waiting for hub administration's approval.
+     */
+    proposedExcludeExportRanges?: string[] | null;
+    /**
      * Optional. The proposed include export IP ranges waiting for hub administration's approval.
      */
     proposedIncludeExportRanges?: string[] | null;
@@ -713,9 +725,13 @@ export namespace networkconnectivity_v1 {
      */
     includeExportRanges?: string[] | null;
     /**
-     * Output only. The list of Producer VPC spokes that this VPC spoke is a service consumer VPC spoke for. These producer VPCs are connected through VPC peering to this spoke's backing VPC network. Because they are directly connected throuh VPC peering, NCC export filters do not apply between the service consumer VPC spoke and any of its producer VPC spokes. This VPC spoke cannot be deleted as long as any of these producer VPC spokes are connected to the NCC Hub.
+     * Output only. The list of Producer VPC spokes that this VPC spoke is a service consumer VPC spoke for. These producer VPCs are connected through VPC peering to this spoke's backing VPC network. Because they are directly connected through VPC peering, NCC export filters do not apply between the service consumer VPC spoke and any of its producer VPC spokes. This VPC spoke cannot be deleted as long as any of these producer VPC spokes are connected to the NCC Hub.
      */
     producerVpcSpokes?: string[] | null;
+    /**
+     * Output only. The proposed exclude export IP ranges waiting for hub administration's approval.
+     */
+    proposedExcludeExportRanges?: string[] | null;
     /**
      * Optional. The proposed include export IP ranges waiting for hub administration's approval.
      */
@@ -2186,6 +2202,10 @@ export namespace networkconnectivity_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
