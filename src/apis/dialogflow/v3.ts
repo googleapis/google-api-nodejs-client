@@ -125,6 +125,31 @@ export namespace dialogflow_v3 {
   }
 
   /**
+   * Action performed by end user or Dialogflow agent in the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3Action {
+    /**
+     * Optional. Action performed by the agent as a message.
+     */
+    agentUtterance?: Schema$GoogleCloudDialogflowCxV3AgentUtterance;
+    /**
+     * Optional. Action performed on behalf of the agent by invoking a CX flow.
+     */
+    flowInvocation?: Schema$GoogleCloudDialogflowCxV3FlowInvocation;
+    /**
+     * Optional. Action performed on behalf of the agent by invoking a child playbook.
+     */
+    playbookInvocation?: Schema$GoogleCloudDialogflowCxV3PlaybookInvocation;
+    /**
+     * Optional. Action performed on behalf of the agent by calling a plugin tool.
+     */
+    toolUse?: Schema$GoogleCloudDialogflowCxV3ToolUse;
+    /**
+     * Optional. Agent obtained a message from the customer.
+     */
+    userUtterance?: Schema$GoogleCloudDialogflowCxV3UserUtterance;
+  }
+  /**
    * Hierarchical advanced settings for agent/flow/page/fulfillment/parameter. Settings exposed at lower level overrides the settings exposed at higher level. Overriding occurs at the sub-setting level. For example, the playback_interruption_settings at fulfillment level only overrides the playback_interruption_settings at the agent level, leaving other settings at the agent level unchanged. DTMF settings does not override each other. DTMF settings set at different levels define DTMF detections running in parallel. Hierarchy: Agent-\>Flow-\>Page-\>Fulfillment/Parameter.
    */
   export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettings {
@@ -289,9 +314,13 @@ export namespace dialogflow_v3 {
      */
     speechToTextSettings?: Schema$GoogleCloudDialogflowCxV3SpeechToTextSettings;
     /**
-     * Immutable. Name of the start flow in this agent. A start flow will be automatically created when the agent is created, and can only be deleted by deleting the agent. Format: `projects//locations//agents//flows/`.
+     * Name of the start flow in this agent. A start flow will be automatically created when the agent is created, and can only be deleted by deleting the agent. Format: `projects//locations//agents//flows/`. Currently only the default start flow with id "00000000-0000-0000-0000-000000000000" is allowed.
      */
     startFlow?: string | null;
+    /**
+     * Name of the start playbook in this agent. A start playbook will be automatically created when the agent is created, and can only be deleted by deleting the agent. Format: `projects//locations//agents//playbooks/`. Currently only the default playbook with id "00000000-0000-0000-0000-000000000000" is allowed.
+     */
+    startPlaybook?: string | null;
     /**
      * The list of all languages supported by the agent (except for the `default_language_code`).
      */
@@ -382,6 +411,15 @@ export namespace dialogflow_v3 {
      * Optional. Default end user metadata, used when processing DetectIntent requests. Recommended to be filled as a template instead of hard-coded value, for example { "age": "$session.params.age" \}. The data will be merged with the QueryParameters.end_user_metadata in DetectIntentRequest.query_params during query processing.
      */
     defaultEndUserMetadata?: {[key: string]: any} | null;
+  }
+  /**
+   * AgentUtterance represents one message sent by the agent.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3AgentUtterance {
+    /**
+     * Required. Message content in text.
+     */
+    text?: string | null;
   }
   /**
    * The response message for Agents.GetAgentValidationResult.
@@ -2042,6 +2080,18 @@ export namespace dialogflow_v3 {
      */
     requestHeaders?: {[key: string]: string} | null;
     /**
+     * Optional. The SecretManager secret version resource storing the username:password pair for HTTP Basic authentication. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForUsernamePassword?: string | null;
+    /**
+     * Optional. The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both `request_headers` and `secret_versions_for_request_headers`, the value in `secret_versions_for_request_headers` will be used.
+     */
+    secretVersionsForRequestHeaders?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue;
+    } | null;
+    /**
      * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
      */
     serviceAgentAuth?: string | null;
@@ -2075,9 +2125,22 @@ export namespace dialogflow_v3 {
      */
     scopes?: string[] | null;
     /**
+     * Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForClientSecret?: string | null;
+    /**
      * Required. The token endpoint provided by the 3rd party platform to exchange an access token.
      */
     tokenEndpoint?: string | null;
+  }
+  /**
+   * Represents the value of an HTTP header stored in a SecretManager secret version.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue {
+    /**
+     * Required. The SecretManager secret version resource storing the header value. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersion?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -2989,6 +3052,55 @@ export namespace dialogflow_v3 {
     event?: string | null;
   }
   /**
+   * Example represents a sample execution of the playbook in the conversation. An example consists of a list of ordered actions performed by end user or Dialogflow agent according the playbook instructions to fulfill the task.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3Example {
+    /**
+     * Required. The ordered list of actions performed by the end user and the Dialogflow agent.
+     */
+    actions?: Schema$GoogleCloudDialogflowCxV3Action[];
+    /**
+     * Required. Example's output state.
+     */
+    conversationState?: string | null;
+    /**
+     * Output only. The timestamp of initial example creation.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The high level concise description of the example. The max number of characters is 200.
+     */
+    description?: string | null;
+    /**
+     * Required. The display name of the example.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. The language code of the example. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. Note: example's language code is not currently used in dialogflow agents.
+     */
+    languageCode?: string | null;
+    /**
+     * The unique identifier of the playbook example. Format: `projects//locations//agents//playbooks//examples/`.
+     */
+    name?: string | null;
+    /**
+     * Optional. The input to the playbook in the example.
+     */
+    playbookInput?: Schema$GoogleCloudDialogflowCxV3PlaybookInput;
+    /**
+     * Optional. The output of the playbook in the example.
+     */
+    playbookOutput?: Schema$GoogleCloudDialogflowCxV3PlaybookOutput;
+    /**
+     * Output only. Estimated number of tokes current example takes when sent to the LLM.
+     */
+    tokenCount?: string | null;
+    /**
+     * Output only. Last time the example was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Represents an experiment in an environment.
    */
   export interface Schema$GoogleCloudDialogflowCxV3Experiment {
@@ -3304,6 +3416,19 @@ export namespace dialogflow_v3 {
     intentsUri?: string | null;
   }
   /**
+   * The request message for Playbooks.ExportPlaybook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportPlaybookRequest {
+    /**
+     * Optional. The data format of the exported agent. If not specified, `BLOB` is assumed.
+     */
+    dataFormat?: string | null;
+    /**
+     * Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the playbook to. The format of this URI must be `gs:///`. If left unspecified, the serialized playbook is returned inline. Dialogflow performs a write operation for the Cloud Storage object on the caller's behalf, so your request authentication must have write permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
+     */
+    playbookUri?: string | null;
+  }
+  /**
    * Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ExportTestCasesMetadata {}
@@ -3407,6 +3532,23 @@ export namespace dialogflow_v3 {
      * Optional. Import strategy for resource conflict resolution, applied globally throughout the flow. It will be applied for all display name conflicts in the imported content. If not specified, 'CREATE_NEW' is assumed.
      */
     globalImportStrategy?: string | null;
+  }
+  /**
+   * Stores metadata of the invocation of a CX flow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3FlowInvocation {
+    /**
+     * Output only. The display name of the flow.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The unique identifier of the flow. Format: `projects//locations//agents//flows/`.
+     */
+    flow?: string | null;
+    /**
+     * Required. Flow invocation's output state.
+     */
+    flowState?: string | null;
   }
   /**
    * Settings for multi-lingual agents.
@@ -3650,6 +3792,10 @@ export namespace dialogflow_v3 {
      */
     languageCode?: string | null;
     /**
+     * LLM model settings.
+     */
+    llmModelSettings?: Schema$GoogleCloudDialogflowCxV3LlmModelSettings;
+    /**
      * Format: `projects//locations//agents//generativeSettings`.
      */
     name?: string | null;
@@ -3721,6 +3867,10 @@ export namespace dialogflow_v3 {
      * Required. The human-readable name of the generator, unique within the agent. The prompt contains pre-defined parameters such as $conversation, $last-user-utterance, etc. populated by Dialogflow. It can also contain custom placeholders which will be resolved during fulfillment.
      */
     displayName?: string | null;
+    /**
+     * The LLM model settings.
+     */
+    llmModelSettings?: Schema$GoogleCloudDialogflowCxV3LlmModelSettings;
     /**
      * Parameters passed to the LLM to configure its behavior.
      */
@@ -3899,6 +4049,23 @@ export namespace dialogflow_v3 {
      * Display names of conflicting intents.
      */
     intentDisplayNames?: string[] | null;
+  }
+  /**
+   * The request message for Playbooks.ImportPlaybook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportPlaybookRequest {
+    /**
+     * Optional. Specifies the import strategy used when resolving resource conflicts.
+     */
+    importStrategy?: Schema$GoogleCloudDialogflowCxV3PlaybookImportStrategy;
+    /**
+     * Uncompressed raw byte content for playbook.
+     */
+    playbookContent?: string | null;
+    /**
+     * [Dialogflow access control] (https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
+     */
+    playbookUri?: string | null;
   }
   /**
    * Metadata returned for the TestCases.ImportTestCases long running operation.
@@ -4234,6 +4401,19 @@ export namespace dialogflow_v3 {
     nextPageToken?: string | null;
   }
   /**
+   * The response message for Examples.ListExamples.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ListExamplesResponse {
+    /**
+     * The list of examples. There will be a maximum number of items returned based on the page_size field in the request.
+     */
+    examples?: Schema$GoogleCloudDialogflowCxV3Example[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Experiments.ListExperiments.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ListExperimentsResponse {
@@ -4299,6 +4479,32 @@ export namespace dialogflow_v3 {
     pages?: Schema$GoogleCloudDialogflowCxV3Page[];
   }
   /**
+   * The response message for Playbooks.ListPlaybooks.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ListPlaybooksResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of playbooks. There will be a maximum number of items returned based on the page_size field in the request.
+     */
+    playbooks?: Schema$GoogleCloudDialogflowCxV3Playbook[];
+  }
+  /**
+   * The response message for Playbooks.ListPlaybookVersions.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of playbook version. There will be a maximum number of items returned based on the page_size field in the request.
+     */
+    playbookVersions?: Schema$GoogleCloudDialogflowCxV3PlaybookVersion[];
+  }
+  /**
    * The response message for SecuritySettings.ListSecuritySettings.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ListSecuritySettingsResponse {
@@ -4351,6 +4557,19 @@ export namespace dialogflow_v3 {
     testCases?: Schema$GoogleCloudDialogflowCxV3TestCase[];
   }
   /**
+   * The response message for Tools.ListTools.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ListToolsResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of Tools. There will be a maximum number of items returned based on the page_size field in the request.
+     */
+    tools?: Schema$GoogleCloudDialogflowCxV3Tool[];
+  }
+  /**
    * The response message for TransitionRouteGroups.ListTransitionRouteGroups.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ListTransitionRouteGroupsResponse {
@@ -4388,6 +4607,19 @@ export namespace dialogflow_v3 {
      * The list of webhooks. There will be a maximum number of items returned based on the page_size field in the request.
      */
     webhooks?: Schema$GoogleCloudDialogflowCxV3Webhook[];
+  }
+  /**
+   * Settings for LLM models.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3LlmModelSettings {
+    /**
+     * The selected LLM model.
+     */
+    model?: string | null;
+    /**
+     * The custom prompt to use.
+     */
+    promptText?: string | null;
   }
   /**
    * The request message for Versions.LoadVersion.
@@ -4626,6 +4858,166 @@ export namespace dialogflow_v3 {
     text?: string | null;
   }
   /**
+   * Playbook is the basic building block to instruct the LLM how to execute a certain task. A playbook consists of a goal to accomplish, an optional list of step by step instructions (the step instruction may refers to name of the custom or default plugin tools to use) to perform the task, a list of contextual input data to be passed in at the beginning of the invoked, and a list of output parameters to store the playbook result.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3Playbook {
+    /**
+     * Output only. The timestamp of initial playbook creation.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The human-readable name of the playbook, unique within an agent.
+     */
+    displayName?: string | null;
+    /**
+     * Required. High level description of the goal the playbook intend to accomplish. A goal should be concise since it's visible to other playbooks that may reference this playbook.
+     */
+    goal?: string | null;
+    /**
+     * Instruction to accomplish target goal.
+     */
+    instruction?: Schema$GoogleCloudDialogflowCxV3PlaybookInstruction;
+    /**
+     * Optional. Llm model settings for the playbook.
+     */
+    llmModelSettings?: Schema$GoogleCloudDialogflowCxV3LlmModelSettings;
+    /**
+     * The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The resource name of flows referenced by the current playbook in the instructions.
+     */
+    referencedFlows?: string[] | null;
+    /**
+     * Output only. The resource name of other playbooks referenced by the current playbook in the instructions.
+     */
+    referencedPlaybooks?: string[] | null;
+    /**
+     * Optional. The resource name of tools referenced by the current playbook in the instructions. If not provided explicitly, they are will be implied using the tool being referenced in goal and steps.
+     */
+    referencedTools?: string[] | null;
+    /**
+     * Output only. Estimated number of tokes current playbook takes when sent to the LLM.
+     */
+    tokenCount?: string | null;
+    /**
+     * Output only. Last time the playbook version was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The playbook import strategy used for resource conflict resolution associated with an ImportPlaybookRequest.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3PlaybookImportStrategy {
+    /**
+     * Optional. Specifies the import strategy used when resolving conflicts with the main playbook. If not specified, 'CREATE_NEW' is assumed.
+     */
+    mainPlaybookImportStrategy?: string | null;
+    /**
+     * Optional. Specifies the import strategy used when resolving referenced playbook/flow conflicts. If not specified, 'CREATE_NEW' is assumed.
+     */
+    nestedResourceImportStrategy?: string | null;
+    /**
+     * Optional. Specifies the import strategy used when resolving tool conflicts. If not specified, 'CREATE_NEW' is assumed. This will be applied after the main playbook and nested resource import strategies, meaning if the playbook that references the tool is skipped, the tool will also be skipped.
+     */
+    toolImportStrategy?: string | null;
+  }
+  /**
+   * Input of the playbook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3PlaybookInput {
+    /**
+     * Optional. Summary string of the preceding conversation for the child playbook invocation.
+     */
+    precedingConversationSummary?: string | null;
+  }
+  /**
+   * Message of the Instruction of the playbook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3PlaybookInstruction {
+    /**
+     * General guidelines for the playbook. These are unstructured instructions that are not directly part of the goal, e.g. "Always be polite". It's valid for this text to be long and used instead of steps altogether.
+     */
+    guidelines?: string | null;
+    /**
+     * Ordered list of step by step execution instructions to accomplish target goal.
+     */
+    steps?: Schema$GoogleCloudDialogflowCxV3PlaybookStep[];
+  }
+  /**
+   * Stores metadata of the invocation of a child playbook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3PlaybookInvocation {
+    /**
+     * Output only. The display name of the playbook.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.
+     */
+    playbook?: string | null;
+    /**
+     * Optional. Input of the child playbook invocation.
+     */
+    playbookInput?: Schema$GoogleCloudDialogflowCxV3PlaybookInput;
+    /**
+     * Optional. Output of the child playbook invocation.
+     */
+    playbookOutput?: Schema$GoogleCloudDialogflowCxV3PlaybookOutput;
+    /**
+     * Required. Playbook invocation's output state.
+     */
+    playbookState?: string | null;
+  }
+  /**
+   * Output of the playbook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3PlaybookOutput {
+    /**
+     * Optional. Summary string of the execution result of the child playbook.
+     */
+    executionSummary?: string | null;
+  }
+  /**
+   * Message of single step execution.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3PlaybookStep {
+    /**
+     * Sub-processing needed to execute the current step.
+     */
+    steps?: Schema$GoogleCloudDialogflowCxV3PlaybookStep[];
+    /**
+     * Step instruction in text format.
+     */
+    text?: string | null;
+  }
+  /**
+   * Playbook version is a snapshot of the playbook at certain timestamp.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3PlaybookVersion {
+    /**
+     * Optional. The description of the playbook version.
+     */
+    description?: string | null;
+    /**
+     * Output only. Snapshot of the examples belonging to the playbook when the playbook version is created.
+     */
+    examples?: Schema$GoogleCloudDialogflowCxV3Example[];
+    /**
+     * The unique identifier of the playbook version. Format: `projects//locations//agents//playbooks//versions/`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Snapshot of the playbook when the playbook version is created.
+     */
+    playbook?: Schema$GoogleCloudDialogflowCxV3Playbook;
+    /**
+     * Output only. Last time the playbook version was created or modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value. 6. The results of a tool executed by the client.
    */
   export interface Schema$GoogleCloudDialogflowCxV3QueryInput {
@@ -4653,6 +5045,10 @@ export namespace dialogflow_v3 {
      * The natural language text to be processed.
      */
     text?: Schema$GoogleCloudDialogflowCxV3TextInput;
+    /**
+     * The results of a tool executed by the client.
+     */
+    toolCallResult?: Schema$GoogleCloudDialogflowCxV3ToolCallResult;
   }
   /**
    * Represents the parameters of a conversational query.
@@ -4671,6 +5067,10 @@ export namespace dialogflow_v3 {
      */
     currentPage?: string | null;
     /**
+     * Optional. The unique identifier of the playbook to start or continue the session with. If `current_playbook` is specified, the previous state of the session will be ignored by Dialogflow. Format: `projects//locations//agents//playbooks/`.
+     */
+    currentPlaybook?: string | null;
+    /**
      * Whether to disable webhook calls for this request.
      */
     disableWebhook?: boolean | null;
@@ -4686,6 +5086,10 @@ export namespace dialogflow_v3 {
      * The geo location of this conversational query.
      */
     geoLocation?: Schema$GoogleTypeLatLng;
+    /**
+     * Optional. Use the specified LLM model settings for processing the request.
+     */
+    llmModelSettings?: Schema$GoogleCloudDialogflowCxV3LlmModelSettings;
     /**
      * Additional parameters to be put into session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. You can reference the session parameters in the agent with the following format: $session.params.parameter-id. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: * MapKey type: string * MapKey value: parameter name * MapValue type: If parameter's entity type is a composite entity then use map, otherwise, depending on the parameter value type, it could be one of string, number, boolean, null, list or map. * MapValue value: If parameter's entity type is a composite entity then use map from composite entity property names to property values, otherwise, use parameter value.
      */
@@ -4865,6 +5269,10 @@ export namespace dialogflow_v3 {
      * Returns a text response.
      */
     text?: Schema$GoogleCloudDialogflowCxV3ResponseMessageText;
+    /**
+     * Returns the definition of a tool call that should be executed by the client.
+     */
+    toolCall?: Schema$GoogleCloudDialogflowCxV3ToolCall;
   }
   /**
    * Indicates that the conversation succeeded, i.e., the bot handled the issue that the customer talked to it about. Dialogflow only uses this to determine which conversations should be counted as successful and doesn't process the metadata in this message in any way. Note that Dialogflow also considers conversations that get to the conversation end page as successful even if they don't return ConversationSuccess. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates that the conversation succeeded. * In a webhook response when you determine that you handled the customer issue.
@@ -5001,6 +5409,19 @@ export namespace dialogflow_v3 {
     trackingBranch?: string | null;
   }
   /**
+   * The request message for Playbooks.RestorePlaybookVersion.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionRequest {}
+  /**
+   * The response message for Playbooks.RestorePlaybookVersion.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse {
+    /**
+     * The updated playbook.
+     */
+    playbook?: Schema$GoogleCloudDialogflowCxV3Playbook;
+  }
+  /**
    * The configuration for auto rollout.
    */
   export interface Schema$GoogleCloudDialogflowCxV3RolloutConfig {
@@ -5103,6 +5524,10 @@ export namespace dialogflow_v3 {
      * Banned phrases for generated text.
      */
     bannedPhrases?: Schema$GoogleCloudDialogflowCxV3SafetySettingsPhrase[];
+    /**
+     * Optional. Default phrase match strategy for banned phrases.
+     */
+    defaultBannedPhraseMatchStrategy?: string | null;
   }
   /**
    * Text input which can be used for prompt or banned phrases.
@@ -5458,6 +5883,286 @@ export namespace dialogflow_v3 {
     } | null;
   }
   /**
+   * A tool provides a list of actions which are available to the Playbook to attain its goal. A Tool consists of a description of the tool's usage and a specification of the tool which contains the schema and authentication information.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3Tool {
+    /**
+     * Data store search tool specification.
+     */
+    dataStoreSpec?: Schema$GoogleCloudDialogflowCxV3ToolDataStoreTool;
+    /**
+     * Required. High level description of the Tool and its usage.
+     */
+    description?: string | null;
+    /**
+     * Required. The human-readable name of the Tool, unique within an agent.
+     */
+    displayName?: string | null;
+    /**
+     * Client side executed function specification.
+     */
+    functionSpec?: Schema$GoogleCloudDialogflowCxV3ToolFunctionTool;
+    /**
+     * The unique identifier of the Tool. Format: `projects//locations//agents//tools/`.
+     */
+    name?: string | null;
+    /**
+     * OpenAPI specification of the Tool.
+     */
+    openApiSpec?: Schema$GoogleCloudDialogflowCxV3ToolOpenApiTool;
+    /**
+     * Output only. The tool type.
+     */
+    toolType?: string | null;
+  }
+  /**
+   * Authentication information required for API calls
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolAuthentication {
+    /**
+     * Config for API key auth.
+     */
+    apiKeyConfig?: Schema$GoogleCloudDialogflowCxV3ToolAuthenticationApiKeyConfig;
+    /**
+     * Config for bearer token auth.
+     */
+    bearerTokenConfig?: Schema$GoogleCloudDialogflowCxV3ToolAuthenticationBearerTokenConfig;
+    /**
+     * Config for OAuth.
+     */
+    oauthConfig?: Schema$GoogleCloudDialogflowCxV3ToolAuthenticationOAuthConfig;
+    /**
+     * Config for [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent) auth.
+     */
+    serviceAgentAuthConfig?: Schema$GoogleCloudDialogflowCxV3ToolAuthenticationServiceAgentAuthConfig;
+  }
+  /**
+   * Config for authentication with API key.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolAuthenticationApiKeyConfig {
+    /**
+     * Optional. The API key. If the `secret_version_for_api_key` field is set, this field will be ignored.
+     */
+    apiKey?: string | null;
+    /**
+     * Required. The parameter name or the header name of the API key. E.g., If the API request is "https://example.com/act?X-Api-Key=", "X-Api-Key" would be the parameter name.
+     */
+    keyName?: string | null;
+    /**
+     * Required. Key location in the request.
+     */
+    requestLocation?: string | null;
+    /**
+     * Optional. The name of the SecretManager secret version resource storing the API key. If this field is set, the `api_key` field will be ignored. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForApiKey?: string | null;
+  }
+  /**
+   * Config for authentication using bearer token.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolAuthenticationBearerTokenConfig {
+    /**
+     * Optional. The name of the SecretManager secret version resource storing the Bearer token. If this field is set, the `token` field will be ignored. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForToken?: string | null;
+    /**
+     * Optional. The text token appended to the text `Bearer` to the request Authorization header. [Session parameters reference](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#session-ref) can be used to pass the token dynamically, e.g. `$session.params.parameter-id`.
+     */
+    token?: string | null;
+  }
+  /**
+   * Config for authentication with OAuth.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolAuthenticationOAuthConfig {
+    /**
+     * Required. The client ID from the OAuth provider.
+     */
+    clientId?: string | null;
+    /**
+     * Optional. The client secret from the OAuth provider. If the `secret_version_for_client_secret` field is set, this field will be ignored.
+     */
+    clientSecret?: string | null;
+    /**
+     * Required. OAuth grant types.
+     */
+    oauthGrantType?: string | null;
+    /**
+     * Optional. The OAuth scopes to grant.
+     */
+    scopes?: string[] | null;
+    /**
+     * Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForClientSecret?: string | null;
+    /**
+     * Required. The token endpoint in the OAuth provider to exchange for an access token.
+     */
+    tokenEndpoint?: string | null;
+  }
+  /**
+   * Config for auth using [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolAuthenticationServiceAgentAuthConfig {
+    /**
+     * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
+     */
+    serviceAgentAuth?: string | null;
+  }
+  /**
+   * Represents a call of a specific tool's action with the specified inputs.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolCall {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Optional. The action's input parameters.
+     */
+    inputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * The result of calling a tool's action that has been executed by the client.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolCallResult {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * The tool call's error.
+     */
+    error?: Schema$GoogleCloudDialogflowCxV3ToolCallResultError;
+    /**
+     * The tool call's output parameters.
+     */
+    outputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * An error produced by the tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolCallResultError {
+    /**
+     * Optional. The error message of the function.
+     */
+    message?: string | null;
+  }
+  /**
+   * A DataStoreTool is a way to provide specifications needed to search a list of data stores.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolDataStoreTool {
+    /**
+     * Required. List of data stores to search.
+     */
+    dataStoreConnections?: Schema$GoogleCloudDialogflowCxV3DataStoreConnection[];
+    /**
+     * Required. Fallback prompt configurations to use.
+     */
+    fallbackPrompt?: Schema$GoogleCloudDialogflowCxV3ToolDataStoreToolFallbackPrompt;
+  }
+  /**
+   * A FallbackPrompt is a way to provide specifications for the Data Store fallback prompt when generating responses.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolDataStoreToolFallbackPrompt {}
+  /**
+   * A Function tool describes the functions to be invoked on the client side.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolFunctionTool {
+    /**
+     * Optional. The JSON schema is encapsulated in a google.protobuf.Struct to describe the input of the function. This input is a JSON object that contains the function's parameters as properties of the object.
+     */
+    inputSchema?: {[key: string]: any} | null;
+    /**
+     * Optional. The JSON schema is encapsulated in a google.protobuf.Struct to describe the output of the function. This output is a JSON object that contains the function's parameters as properties of the object.
+     */
+    outputSchema?: {[key: string]: any} | null;
+  }
+  /**
+   * An OpenAPI tool is a way to provide the Tool specifications in the Open API schema format.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolOpenApiTool {
+    /**
+     * Optional. Authentication information required by the API.
+     */
+    authentication?: Schema$GoogleCloudDialogflowCxV3ToolAuthentication;
+    /**
+     * Optional. Service Directory configuration.
+     */
+    serviceDirectoryConfig?: Schema$GoogleCloudDialogflowCxV3ToolServiceDirectoryConfig;
+    /**
+     * Required. The OpenAPI schema specified as a text.
+     */
+    textSchema?: string | null;
+    /**
+     * Optional. TLS configuration for the HTTPS verification.
+     */
+    tlsConfig?: Schema$GoogleCloudDialogflowCxV3ToolTLSConfig;
+  }
+  /**
+   * Configuration for tools using Service Directory.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolServiceDirectoryConfig {
+    /**
+     * Required. The name of [Service Directory](https://cloud.google.com/service-directory) service. Format: `projects//locations//namespaces//services/`. `LocationID` of the service directory must be the same as the location of the agent.
+     */
+    service?: string | null;
+  }
+  /**
+   * The TLS configuration.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolTLSConfig {
+    /**
+     * Required. Specifies a list of allowed custom CA certificates for HTTPS verification.
+     */
+    caCerts?: Schema$GoogleCloudDialogflowCxV3ToolTLSConfigCACert[];
+  }
+  /**
+   * The CA certificate.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolTLSConfigCACert {
+    /**
+     * Required. The allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with "subject alt name". For instance a certificate can be self-signed using the following command: ``` openssl x509 -req -days 200 -in example.com.csr \ -signkey example.com.key \ -out example.com.crt \ -extfile <(printf "\nsubjectAltName='DNS:www.example.com'") ```
+     */
+    cert?: string | null;
+    /**
+     * Required. The name of the allowed custom CA certificates. This can be used to disambiguate the custom CA certificates.
+     */
+    displayName?: string | null;
+  }
+  /**
+   * Stores metadata of the invocation of an action supported by a tool.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolUse {
+    /**
+     * Optional. Name of the action to be called during the tool use.
+     */
+    action?: string | null;
+    /**
+     * Output only. The display name of the tool.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. A list of input parameters for the action.
+     */
+    inputActionParameters?: {[key: string]: any} | null;
+    /**
+     * Optional. A list of output parameters generated by the action.
+     */
+    outputActionParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool that should be used. Format: `projects//locations//agents//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
    * The request message for Flows.TrainFlow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3TrainFlowRequest {}
@@ -5655,6 +6360,15 @@ export namespace dialogflow_v3 {
     webhookStatuses?: string[] | null;
   }
   /**
+   * UserUtterance represents one message sent by the customer.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3UserUtterance {
+    /**
+     * Required. Message content in text.
+     */
+    text?: string | null;
+  }
+  /**
    * The request message for Agents.ValidateAgent.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ValidateAgentRequest {
@@ -5840,6 +6554,18 @@ export namespace dialogflow_v3 {
      */
     requestHeaders?: {[key: string]: string} | null;
     /**
+     * Optional. The SecretManager secret version resource storing the username:password pair for HTTP Basic authentication. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForUsernamePassword?: string | null;
+    /**
+     * Optional. The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both `request_headers` and `secret_versions_for_request_headers`, the value in `secret_versions_for_request_headers` will be used.
+     */
+    secretVersionsForRequestHeaders?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue;
+    } | null;
+    /**
      * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
      */
     serviceAgentAuth?: string | null;
@@ -5873,9 +6599,22 @@ export namespace dialogflow_v3 {
      */
     scopes?: string[] | null;
     /**
+     * Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForClientSecret?: string | null;
+    /**
      * Required. The token endpoint provided by the 3rd party platform to exchange an access token.
      */
     tokenEndpoint?: string | null;
+  }
+  /**
+   * Represents the value of an HTTP header stored in a SecretManager secret version.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue {
+    /**
+     * Required. The SecretManager secret version resource storing the header value. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersion?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -6453,6 +7192,23 @@ export namespace dialogflow_v3 {
      * Optional. Suggested summary.
      */
     summarySuggestion?: Schema$GoogleCloudDialogflowV2beta1SummarySuggestion;
+    /**
+     * Optional. List of request and response for tool calls executed.
+     */
+    toolCallInfo?: Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo[];
+  }
+  /**
+   * Request and response for a tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo {
+    /**
+     * Required. Request for a tool call.
+     */
+    toolCall?: Schema$GoogleCloudDialogflowV2beta1ToolCall;
+    /**
+     * Required. Response for a tool call.
+     */
+    toolCallResult?: Schema$GoogleCloudDialogflowV2beta1ToolCallResult;
   }
   /**
    * Output only. Represents a notification sent to Pub/Sub subscribers for agent assistant events in a specific conversation.
@@ -8041,6 +8797,65 @@ export namespace dialogflow_v3 {
     dtmfEvents?: string[] | null;
   }
   /**
+   * Represents a call of a specific tool's action with the specified inputs.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ToolCall {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Output only. Create time of the tool call.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The action's input parameters.
+     */
+    inputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * The result of calling a tool's action.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ToolCallResult {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Only populated if the response content is utf-8 encoded.
+     */
+    content?: string | null;
+    /**
+     * Output only. Create time of the tool call result.
+     */
+    createTime?: string | null;
+    /**
+     * The tool call's error.
+     */
+    error?: Schema$GoogleCloudDialogflowV2beta1ToolCallResultError;
+    /**
+     * Only populated if the response content is not utf-8 encoded. (by definition byte fields are base64 encoded).
+     */
+    rawContent?: string | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * An error produced by the tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ToolCallResultError {
+    /**
+     * Optional. The error message of the function.
+     */
+    message?: string | null;
+  }
+  /**
    * The request message for a webhook call.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1WebhookRequest {
@@ -8474,6 +9289,23 @@ export namespace dialogflow_v3 {
      * Optional. Suggested summary.
      */
     summarySuggestion?: Schema$GoogleCloudDialogflowV2SummarySuggestion;
+    /**
+     * Optional. List of request and response for tool calls executed.
+     */
+    toolCallInfo?: Schema$GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo[];
+  }
+  /**
+   * Request and response for a tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo {
+    /**
+     * Required. Request for a tool call.
+     */
+    toolCall?: Schema$GoogleCloudDialogflowV2ToolCall;
+    /**
+     * Required. Response for a tool call.
+     */
+    toolCallResult?: Schema$GoogleCloudDialogflowV2ToolCallResult;
   }
   /**
    * Represents a notification sent to Cloud Pub/Sub subscribers for human agent assistant events in a specific conversation.
@@ -9706,6 +10538,65 @@ export namespace dialogflow_v3 {
     summary?: string | null;
   }
   /**
+   * Represents a call of a specific tool's action with the specified inputs.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ToolCall {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Output only. Create time of the tool call.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The action's input parameters.
+     */
+    inputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * The result of calling a tool's action.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ToolCallResult {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Only populated if the response content is utf-8 encoded.
+     */
+    content?: string | null;
+    /**
+     * Output only. Create time of the tool call result.
+     */
+    createTime?: string | null;
+    /**
+     * The tool call's error.
+     */
+    error?: Schema$GoogleCloudDialogflowV2ToolCallResultError;
+    /**
+     * Only populated if the response content is not utf-8 encoded. (by definition byte fields are base64 encoded).
+     */
+    rawContent?: string | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * An error produced by the tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ToolCallResultError {
+    /**
+     * Optional. The error message of the function.
+     */
+    message?: string | null;
+  }
+  /**
    * Metadata for a ConversationModels.UndeployConversationModel operation.
    */
   export interface Schema$GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata {
@@ -10168,6 +11059,10 @@ export namespace dialogflow_v3 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
+    /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
@@ -10193,8 +11088,10 @@ export namespace dialogflow_v3 {
     flows: Resource$Projects$Locations$Agents$Flows;
     generators: Resource$Projects$Locations$Agents$Generators;
     intents: Resource$Projects$Locations$Agents$Intents;
+    playbooks: Resource$Projects$Locations$Agents$Playbooks;
     sessions: Resource$Projects$Locations$Agents$Sessions;
     testCases: Resource$Projects$Locations$Agents$Testcases;
+    tools: Resource$Projects$Locations$Agents$Tools;
     transitionRouteGroups: Resource$Projects$Locations$Agents$Transitionroutegroups;
     webhooks: Resource$Projects$Locations$Agents$Webhooks;
     constructor(context: APIRequestContext) {
@@ -10215,12 +11112,16 @@ export namespace dialogflow_v3 {
       this.intents = new Resource$Projects$Locations$Agents$Intents(
         this.context
       );
+      this.playbooks = new Resource$Projects$Locations$Agents$Playbooks(
+        this.context
+      );
       this.sessions = new Resource$Projects$Locations$Agents$Sessions(
         this.context
       );
       this.testCases = new Resource$Projects$Locations$Agents$Testcases(
         this.context
       );
+      this.tools = new Resource$Projects$Locations$Agents$Tools(this.context);
       this.transitionRouteGroups =
         new Resource$Projects$Locations$Agents$Transitionroutegroups(
           this.context
@@ -19678,6 +20579,1848 @@ export namespace dialogflow_v3 {
     requestBody?: Schema$GoogleCloudDialogflowCxV3Intent;
   }
 
+  export class Resource$Projects$Locations$Agents$Playbooks {
+    context: APIRequestContext;
+    examples: Resource$Projects$Locations$Agents$Playbooks$Examples;
+    versions: Resource$Projects$Locations$Agents$Playbooks$Versions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.examples = new Resource$Projects$Locations$Agents$Playbooks$Examples(
+        this.context
+      );
+      this.versions = new Resource$Projects$Locations$Agents$Playbooks$Versions(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a playbook in a specified agent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Playbook>;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Playbook>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/playbooks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3Playbook>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3Playbook>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a specified playbook.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Exports the specified playbook to a binary file. Note that resources (e.g. examples, tools) that the playbook references will also be exported.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Export,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Export,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Export
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the specified Playbook.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Playbook>;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Playbook>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agents$Playbooks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3Playbook>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3Playbook>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Imports the specified playbook to the specified agent from a binary file.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/playbooks:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Returns a list of playbooks in the specified agent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3ListPlaybooksResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybooksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybooksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybooksResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybooksResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybooksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybooksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybooksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3ListPlaybooksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agents$Playbooks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/playbooks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3ListPlaybooksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3ListPlaybooksResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified Playbook.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Playbook>;
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Playbook>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Playbook>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3Playbook>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3Playbook>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Create
+    extends StandardParameters {
+    /**
+     * Required. The agent to create a playbook for. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3Playbook;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the playbook to delete. Format: `projects//locations//agents//playbooks/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Export
+    extends StandardParameters {
+    /**
+     * Required. The name of the playbook to export. Format: `projects//locations//agents//playbooks/`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3ExportPlaybookRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the playbook. Format: `projects//locations//agents//playbooks/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Import
+    extends StandardParameters {
+    /**
+     * Required. The agent to import the playbook into. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3ImportPlaybookRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$List
+    extends StandardParameters {
+    /**
+     * The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The agent to list playbooks from. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Patch
+    extends StandardParameters {
+    /**
+     * The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.
+     */
+    name?: string;
+    /**
+     * The mask to control which fields get updated. If the mask is not present, all fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3Playbook;
+  }
+
+  export class Resource$Projects$Locations$Agents$Playbooks$Examples {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an example in the specified playbook.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Example>;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Example>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/examples').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3Example>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3Example>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified example.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the specified example.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Example>;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Example>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3Example>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3Example>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns a list of examples in the specified playbook.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3ListExamplesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListExamplesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListExamplesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListExamplesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListExamplesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListExamplesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListExamplesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListExamplesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3ListExamplesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/examples').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3ListExamplesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3ListExamplesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update the specified example.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Example>;
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Example>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Example>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3Example>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3Example>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Create
+    extends StandardParameters {
+    /**
+     * Required. The playbook to create an example for. Format: `projects//locations//agents//playbooks/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3Example;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the example to delete. Format: `projects//locations//agents//playbooks//examples/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the example. Format: `projects//locations//agents//playbooks//examples/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List
+    extends StandardParameters {
+    /**
+     * Optional. The language to list examples for. If not specified, list all examples under the playbook. Note: languages must be enabled in the agent before they can be used.
+     */
+    languageCode?: string;
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The playbook to list the examples from. Format: `projects//locations//agents//playbooks/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Patch
+    extends StandardParameters {
+    /**
+     * The unique identifier of the playbook example. Format: `projects//locations//agents//playbooks//examples/`.
+     */
+    name?: string;
+    /**
+     * Optional. The mask to control which fields get updated. If the mask is not present, all fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3Example;
+  }
+
+  export class Resource$Projects$Locations$Agents$Playbooks$Versions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a version for the specified Playbook.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified version of the Playbook.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the specified version of the Playbook.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3PlaybookVersion>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists versions for the specified Playbook.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Versions$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Retrieves the specified version of the Playbook and stores it as the current playbook draft, returning the playbook with resources updated.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restore(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse>;
+    restore(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse>
+    ): void;
+    restore(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse>
+    ): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}:restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create
+    extends StandardParameters {
+    /**
+     * Required. The playbook to create a version for. Format: `projects//locations//agents//playbooks/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3PlaybookVersion;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the playbook version to delete. Format: `projects//locations//agents//playbooks//versions/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the playbook version. Format: `projects//locations//agents//playbooks//versions/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The playbook to list versions for. Format: `projects//locations//agents//playbooks/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore
+    extends StandardParameters {
+    /**
+     * Required. The name of the playbook version. Format: `projects//locations//agents//playbooks//versions/`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3RestorePlaybookVersionRequest;
+  }
+
   export class Resource$Projects$Locations$Agents$Sessions {
     context: APIRequestContext;
     entityTypes: Resource$Projects$Locations$Agents$Sessions$Entitytypes;
@@ -22098,6 +24841,545 @@ export namespace dialogflow_v3 {
      * Required. The test case to list results for. Format: `projects//locations//agents//testCases/`. Specify a `-` as a wildcard for TestCase ID to list results across multiple test cases.
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Agents$Tools {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a Tool in the specified agent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Agents$Tools$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Tool>;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Tools$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Tool>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Tools$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agents$Tools$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/tools').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3Tool>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3Tool>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a specified Tool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Agents$Tools$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Tools$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Tools$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agents$Tools$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the specified Tool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Agents$Tools$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Tool>;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Tools$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Tool>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Tools$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agents$Tools$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3Tool>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3Tool>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns a list of Tools in the specified agent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Tools$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Agents$Tools$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3ListToolsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Tools$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Tools$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListToolsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListToolsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Tools$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListToolsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListToolsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Tools$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListToolsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListToolsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListToolsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3ListToolsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Tools$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agents$Tools$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/tools').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3ListToolsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3ListToolsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update the specified Tool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Agents$Tools$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Tool>;
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Agents$Tools$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Tools$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3Tool>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3Tool>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Tools$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agents$Tools$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3Tool>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3Tool>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Create
+    extends StandardParameters {
+    /**
+     * Required. The agent to create a Tool for. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3Tool;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Delete
+    extends StandardParameters {
+    /**
+     * This field has no effect for Tools not being used. For Tools that are used: * If `force` is set to false, an error will be returned with message indicating the referenced resources. * If `force` is set to true, Dialogflow will remove the tool, as well as any references to the tool.
+     */
+    force?: boolean;
+    /**
+     * Required. The name of the Tool to be deleted. Format: `projects//locations//agents//tools/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the Tool. Format: `projects//locations//agents//tools/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Tools$List
+    extends StandardParameters {
+    /**
+     * The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The agent to list the Tools from. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Tools$Patch
+    extends StandardParameters {
+    /**
+     * The unique identifier of the Tool. Format: `projects//locations//agents//tools/`.
+     */
+    name?: string;
+    /**
+     * The mask to control which fields get updated. If the mask is not present, all fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3Tool;
   }
 
   export class Resource$Projects$Locations$Agents$Transitionroutegroups {

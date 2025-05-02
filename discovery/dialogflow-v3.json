@@ -147,6 +147,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -3033,6 +3039,536 @@
                     }
                   }
                 },
+                "playbooks": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a playbook in a specified agent.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.playbooks.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The agent to create a playbook for. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+parent}/playbooks",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3Playbook"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3Playbook"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a specified playbook.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}",
+                      "httpMethod": "DELETE",
+                      "id": "dialogflow.projects.locations.agents.playbooks.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the playbook to delete. Format: `projects//locations//agents//playbooks/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "export": {
+                      "description": "Exports the specified playbook to a binary file. Note that resources (e.g. examples, tools) that the playbook references will also be exported.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}:export",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.playbooks.export",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the playbook to export. Format: `projects//locations//agents//playbooks/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+name}:export",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3ExportPlaybookRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "get": {
+                      "description": "Retrieves the specified Playbook.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.agents.playbooks.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the playbook. Format: `projects//locations//agents//playbooks/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3Playbook"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "import": {
+                      "description": "Imports the specified playbook to the specified agent from a binary file.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks:import",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.playbooks.import",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The agent to import the playbook into. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+parent}/playbooks:import",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3ImportPlaybookRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "list": {
+                      "description": "Returns a list of playbooks in the specified agent.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.agents.playbooks.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The next_page_token value returned from a previous list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The agent to list playbooks from. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+parent}/playbooks",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3ListPlaybooksResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the specified Playbook.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}",
+                      "httpMethod": "PATCH",
+                      "id": "dialogflow.projects.locations.agents.playbooks.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "The mask to control which fields get updated. If the mask is not present, all fields will be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3Playbook"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3Playbook"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "examples": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates an example in the specified playbook.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}/examples",
+                          "httpMethod": "POST",
+                          "id": "dialogflow.projects.locations.agents.playbooks.examples.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The playbook to create an example for. Format: `projects//locations//agents//playbooks/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+parent}/examples",
+                          "request": {
+                            "$ref": "GoogleCloudDialogflowCxV3Example"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3Example"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes the specified example.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}/examples/{examplesId}",
+                          "httpMethod": "DELETE",
+                          "id": "dialogflow.projects.locations.agents.playbooks.examples.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the example to delete. Format: `projects//locations//agents//playbooks//examples/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+/examples/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "get": {
+                          "description": "Retrieves the specified example.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}/examples/{examplesId}",
+                          "httpMethod": "GET",
+                          "id": "dialogflow.projects.locations.agents.playbooks.examples.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the example. Format: `projects//locations//agents//playbooks//examples/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+/examples/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3Example"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "list": {
+                          "description": "Returns a list of examples in the specified playbook.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}/examples",
+                          "httpMethod": "GET",
+                          "id": "dialogflow.projects.locations.agents.playbooks.examples.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "languageCode": {
+                              "description": "Optional. The language to list examples for. If not specified, list all examples under the playbook. Note: languages must be enabled in the agent before they can be used.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The next_page_token value returned from a previous list request.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The playbook to list the examples from. Format: `projects//locations//agents//playbooks/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+parent}/examples",
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3ListExamplesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Update the specified example.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}/examples/{examplesId}",
+                          "httpMethod": "PATCH",
+                          "id": "dialogflow.projects.locations.agents.playbooks.examples.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The unique identifier of the playbook example. Format: `projects//locations//agents//playbooks//examples/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+/examples/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Optional. The mask to control which fields get updated. If the mask is not present, all fields will be updated.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDialogflowCxV3Example"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3Example"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        }
+                      }
+                    },
+                    "versions": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a version for the specified Playbook.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}/versions",
+                          "httpMethod": "POST",
+                          "id": "dialogflow.projects.locations.agents.playbooks.versions.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The playbook to create a version for. Format: `projects//locations//agents//playbooks/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+parent}/versions",
+                          "request": {
+                            "$ref": "GoogleCloudDialogflowCxV3PlaybookVersion"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3PlaybookVersion"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes the specified version of the Playbook.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}/versions/{versionsId}",
+                          "httpMethod": "DELETE",
+                          "id": "dialogflow.projects.locations.agents.playbooks.versions.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the playbook version to delete. Format: `projects//locations//agents//playbooks//versions/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "get": {
+                          "description": "Retrieves the specified version of the Playbook.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}/versions/{versionsId}",
+                          "httpMethod": "GET",
+                          "id": "dialogflow.projects.locations.agents.playbooks.versions.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the playbook version. Format: `projects//locations//agents//playbooks//versions/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3PlaybookVersion"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists versions for the specified Playbook.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}/versions",
+                          "httpMethod": "GET",
+                          "id": "dialogflow.projects.locations.agents.playbooks.versions.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The next_page_token value returned from a previous list request.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The playbook to list versions for. Format: `projects//locations//agents//playbooks/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+parent}/versions",
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "restore": {
+                          "description": "Retrieves the specified version of the Playbook and stores it as the current playbook draft, returning the playbook with resources updated.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/playbooks/{playbooksId}/versions/{versionsId}:restore",
+                          "httpMethod": "POST",
+                          "id": "dialogflow.projects.locations.agents.playbooks.versions.restore",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the playbook version. Format: `projects//locations//agents//playbooks//versions/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/playbooks/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+name}:restore",
+                          "request": {
+                            "$ref": "GoogleCloudDialogflowCxV3RestorePlaybookVersionRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
                 "sessions": {
                   "methods": {
                     "detectIntent": {
@@ -3749,6 +4285,168 @@
                     }
                   }
                 },
+                "tools": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a Tool in the specified agent.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.tools.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The agent to create a Tool for. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+parent}/tools",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3Tool"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3Tool"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a specified Tool.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}",
+                      "httpMethod": "DELETE",
+                      "id": "dialogflow.projects.locations.agents.tools.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "force": {
+                          "description": "This field has no effect for Tools not being used. For Tools that are used: * If `force` is set to false, an error will be returned with message indicating the referenced resources. * If `force` is set to true, Dialogflow will remove the tool, as well as any references to the tool.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "description": "Required. The name of the Tool to be deleted. Format: `projects//locations//agents//tools/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "get": {
+                      "description": "Retrieves the specified Tool.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.agents.tools.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the Tool. Format: `projects//locations//agents//tools/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3Tool"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "list": {
+                      "description": "Returns a list of Tools in the specified agent.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.agents.tools.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The next_page_token value returned from a previous list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The agent to list the Tools from. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+parent}/tools",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3ListToolsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Update the specified Tool.",
+                      "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}",
+                      "httpMethod": "PATCH",
+                      "id": "dialogflow.projects.locations.agents.tools.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The unique identifier of the Tool. Format: `projects//locations//agents//tools/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "The mask to control which fields get updated. If the mask is not present, all fields will be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3Tool"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3Tool"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    }
+                  }
+                },
                 "transitionRouteGroups": {
                   "methods": {
                     "create": {
@@ -4453,9 +5151,36 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250422",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
+    "GoogleCloudDialogflowCxV3Action": {
+      "description": "Action performed by end user or Dialogflow agent in the conversation.",
+      "id": "GoogleCloudDialogflowCxV3Action",
+      "properties": {
+        "agentUtterance": {
+          "$ref": "GoogleCloudDialogflowCxV3AgentUtterance",
+          "description": "Optional. Action performed by the agent as a message."
+        },
+        "flowInvocation": {
+          "$ref": "GoogleCloudDialogflowCxV3FlowInvocation",
+          "description": "Optional. Action performed on behalf of the agent by invoking a CX flow."
+        },
+        "playbookInvocation": {
+          "$ref": "GoogleCloudDialogflowCxV3PlaybookInvocation",
+          "description": "Optional. Action performed on behalf of the agent by invoking a child playbook."
+        },
+        "toolUse": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolUse",
+          "description": "Optional. Action performed on behalf of the agent by calling a plugin tool."
+        },
+        "userUtterance": {
+          "$ref": "GoogleCloudDialogflowCxV3UserUtterance",
+          "description": "Optional. Agent obtained a message from the customer."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
       "description": "Hierarchical advanced settings for agent/flow/page/fulfillment/parameter. Settings exposed at lower level overrides the settings exposed at higher level. Overriding occurs at the sub-setting level. For example, the playback_interruption_settings at fulfillment level only overrides the playback_interruption_settings at the agent level, leaving other settings at the agent level unchanged. DTMF settings does not override each other. DTMF settings set at different levels define DTMF detections running in parallel. Hierarchy: Agent->Flow->Page->Fulfillment/Parameter.",
       "id": "GoogleCloudDialogflowCxV3AdvancedSettings",
@@ -4640,7 +5365,11 @@
           "description": "Speech recognition related settings."
         },
         "startFlow": {
-          "description": "Immutable. Name of the start flow in this agent. A start flow will be automatically created when the agent is created, and can only be deleted by deleting the agent. Format: `projects//locations//agents//flows/`.",
+          "description": "Name of the start flow in this agent. A start flow will be automatically created when the agent is created, and can only be deleted by deleting the agent. Format: `projects//locations//agents//flows/`. Currently only the default start flow with id \"00000000-0000-0000-0000-000000000000\" is allowed.",
+          "type": "string"
+        },
+        "startPlaybook": {
+          "description": "Name of the start playbook in this agent. A start playbook will be automatically created when the agent is created, and can only be deleted by deleting the agent. Format: `projects//locations//agents//playbooks/`. Currently only the default playbook with id \"00000000-0000-0000-0000-000000000000\" is allowed.",
           "type": "string"
         },
         "supportedLanguageCodes": {
@@ -4754,6 +5483,17 @@
           },
           "description": "Optional. Default end user metadata, used when processing DetectIntent requests. Recommended to be filled as a template instead of hard-coded value, for example { \"age\": \"$session.params.age\" }. The data will be merged with the QueryParameters.end_user_metadata in DetectIntentRequest.query_params during query processing.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3AgentUtterance": {
+      "description": "AgentUtterance represents one message sent by the agent.",
+      "id": "GoogleCloudDialogflowCxV3AgentUtterance",
+      "properties": {
+        "text": {
+          "description": "Required. Message content in text.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5950,6 +6690,82 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3Example": {
+      "description": "Example represents a sample execution of the playbook in the conversation. An example consists of a list of ordered actions performed by end user or Dialogflow agent according the playbook instructions to fulfill the task.",
+      "id": "GoogleCloudDialogflowCxV3Example",
+      "properties": {
+        "actions": {
+          "description": "Required. The ordered list of actions performed by the end user and the Dialogflow agent.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3Action"
+          },
+          "type": "array"
+        },
+        "conversationState": {
+          "description": "Required. Example's output state.",
+          "enum": [
+            "OUTPUT_STATE_UNSPECIFIED",
+            "OUTPUT_STATE_OK",
+            "OUTPUT_STATE_CANCELLED",
+            "OUTPUT_STATE_FAILED",
+            "OUTPUT_STATE_ESCALATED",
+            "OUTPUT_STATE_PENDING"
+          ],
+          "enumDescriptions": [
+            "Unspecified output.",
+            "Succeeded.",
+            "Cancelled.",
+            "Failed.",
+            "Escalated.",
+            "Pending."
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp of initial example creation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The high level concise description of the example. The max number of characters is 200.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the example.",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Optional. The language code of the example. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. Note: example's language code is not currently used in dialogflow agents.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The unique identifier of the playbook example. Format: `projects//locations//agents//playbooks//examples/`.",
+          "type": "string"
+        },
+        "playbookInput": {
+          "$ref": "GoogleCloudDialogflowCxV3PlaybookInput",
+          "description": "Optional. The input to the playbook in the example."
+        },
+        "playbookOutput": {
+          "$ref": "GoogleCloudDialogflowCxV3PlaybookOutput",
+          "description": "Optional. The output of the playbook in the example."
+        },
+        "tokenCount": {
+          "description": "Output only. Estimated number of tokes current example takes when sent to the LLM.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last time the example was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3Experiment": {
       "description": "Represents an experiment in an environment.",
       "id": "GoogleCloudDialogflowCxV3Experiment",
@@ -6403,6 +7219,31 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3ExportPlaybookRequest": {
+      "description": "The request message for Playbooks.ExportPlaybook.",
+      "id": "GoogleCloudDialogflowCxV3ExportPlaybookRequest",
+      "properties": {
+        "dataFormat": {
+          "description": "Optional. The data format of the exported agent. If not specified, `BLOB` is assumed.",
+          "enum": [
+            "DATA_FORMAT_UNSPECIFIED",
+            "BLOB",
+            "JSON"
+          ],
+          "enumDescriptions": [
+            "Unspecified format.",
+            "Flow content will be exported as raw bytes.",
+            "Flow content will be exported in JSON format."
+          ],
+          "type": "string"
+        },
+        "playbookUri": {
+          "description": "Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the playbook to. The format of this URI must be `gs:///`. If left unspecified, the serialized playbook is returned inline. Dialogflow performs a write operation for the Cloud Storage object on the caller's behalf, so your request authentication must have write permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3ExportTestCasesMetadata": {
       "description": "Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.",
       "id": "GoogleCloudDialogflowCxV3ExportTestCasesMetadata",
@@ -6553,6 +7394,42 @@
             "Keep existing resource and discard incoming resource in the content to be imported.",
             "Combine existing and incoming resources when a conflict is encountered.",
             "Throw error if a conflict is encountered."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3FlowInvocation": {
+      "description": "Stores metadata of the invocation of a CX flow.",
+      "id": "GoogleCloudDialogflowCxV3FlowInvocation",
+      "properties": {
+        "displayName": {
+          "description": "Output only. The display name of the flow.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "flow": {
+          "description": "Required. The unique identifier of the flow. Format: `projects//locations//agents//flows/`.",
+          "type": "string"
+        },
+        "flowState": {
+          "description": "Required. Flow invocation's output state.",
+          "enum": [
+            "OUTPUT_STATE_UNSPECIFIED",
+            "OUTPUT_STATE_OK",
+            "OUTPUT_STATE_CANCELLED",
+            "OUTPUT_STATE_FAILED",
+            "OUTPUT_STATE_ESCALATED",
+            "OUTPUT_STATE_PENDING"
+          ],
+          "enumDescriptions": [
+            "Unspecified output.",
+            "Succeeded.",
+            "Cancelled.",
+            "Failed.",
+            "Escalated.",
+            "Pending."
           ],
           "type": "string"
         }
@@ -6855,6 +7732,10 @@
           "description": "Language for this settings.",
           "type": "string"
         },
+        "llmModelSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3LlmModelSettings",
+          "description": "LLM model settings."
+        },
         "name": {
           "description": "Format: `projects//locations//agents//generativeSettings`.",
           "type": "string"
@@ -6937,6 +7818,10 @@
         "displayName": {
           "description": "Required. The human-readable name of the generator, unique within the agent. The prompt contains pre-defined parameters such as $conversation, $last-user-utterance, etc. populated by Dialogflow. It can also contain custom placeholders which will be resolved during fulfillment.",
           "type": "string"
+        },
+        "llmModelSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3LlmModelSettings",
+          "description": "The LLM model settings."
         },
         "modelParameter": {
           "$ref": "GoogleCloudDialogflowCxV3GeneratorModelParameter",
@@ -7218,6 +8103,26 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ImportPlaybookRequest": {
+      "description": "The request message for Playbooks.ImportPlaybook.",
+      "id": "GoogleCloudDialogflowCxV3ImportPlaybookRequest",
+      "properties": {
+        "importStrategy": {
+          "$ref": "GoogleCloudDialogflowCxV3PlaybookImportStrategy",
+          "description": "Optional. Specifies the import strategy used when resolving resource conflicts."
+        },
+        "playbookContent": {
+          "description": "Uncompressed raw byte content for playbook.",
+          "format": "byte",
+          "type": "string"
+        },
+        "playbookUri": {
+          "description": "[Dialogflow access control] (https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7686,6 +8591,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3ListExamplesResponse": {
+      "description": "The response message for Examples.ListExamples.",
+      "id": "GoogleCloudDialogflowCxV3ListExamplesResponse",
+      "properties": {
+        "examples": {
+          "description": "The list of examples. There will be a maximum number of items returned based on the page_size field in the request.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3Example"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3ListExperimentsResponse": {
       "description": "The response message for Experiments.ListExperiments.",
       "id": "GoogleCloudDialogflowCxV3ListExperimentsResponse",
@@ -7776,6 +8699,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse": {
+      "description": "The response message for Playbooks.ListPlaybookVersions.",
+      "id": "GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "playbookVersions": {
+          "description": "The list of playbook version. There will be a maximum number of items returned based on the page_size field in the request.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3PlaybookVersion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ListPlaybooksResponse": {
+      "description": "The response message for Playbooks.ListPlaybooks.",
+      "id": "GoogleCloudDialogflowCxV3ListPlaybooksResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "playbooks": {
+          "description": "The list of playbooks. There will be a maximum number of items returned based on the page_size field in the request.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3Playbook"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3ListSecuritySettingsResponse": {
       "description": "The response message for SecuritySettings.ListSecuritySettings.",
       "id": "GoogleCloudDialogflowCxV3ListSecuritySettingsResponse",
@@ -7848,6 +8807,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3ListToolsResponse": {
+      "description": "The response message for Tools.ListTools.",
+      "id": "GoogleCloudDialogflowCxV3ListToolsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "tools": {
+          "description": "The list of Tools. There will be a maximum number of items returned based on the page_size field in the request.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3Tool"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3ListTransitionRouteGroupsResponse": {
       "description": "The response message for TransitionRouteGroups.ListTransitionRouteGroups.",
       "id": "GoogleCloudDialogflowCxV3ListTransitionRouteGroupsResponse",
@@ -7898,6 +8875,21 @@
             "$ref": "GoogleCloudDialogflowCxV3Webhook"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3LlmModelSettings": {
+      "description": "Settings for LLM models.",
+      "id": "GoogleCloudDialogflowCxV3LlmModelSettings",
+      "properties": {
+        "model": {
+          "description": "The selected LLM model.",
+          "type": "string"
+        },
+        "promptText": {
+          "description": "The custom prompt to use.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8259,6 +9251,277 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3Playbook": {
+      "description": "Playbook is the basic building block to instruct the LLM how to execute a certain task. A playbook consists of a goal to accomplish, an optional list of step by step instructions (the step instruction may refers to name of the custom or default plugin tools to use) to perform the task, a list of contextual input data to be passed in at the beginning of the invoked, and a list of output parameters to store the playbook result.",
+      "id": "GoogleCloudDialogflowCxV3Playbook",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp of initial playbook creation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The human-readable name of the playbook, unique within an agent.",
+          "type": "string"
+        },
+        "goal": {
+          "description": "Required. High level description of the goal the playbook intend to accomplish. A goal should be concise since it's visible to other playbooks that may reference this playbook.",
+          "type": "string"
+        },
+        "instruction": {
+          "$ref": "GoogleCloudDialogflowCxV3PlaybookInstruction",
+          "description": "Instruction to accomplish target goal."
+        },
+        "llmModelSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3LlmModelSettings",
+          "description": "Optional. Llm model settings for the playbook."
+        },
+        "name": {
+          "description": "The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.",
+          "type": "string"
+        },
+        "referencedFlows": {
+          "description": "Output only. The resource name of flows referenced by the current playbook in the instructions.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "referencedPlaybooks": {
+          "description": "Output only. The resource name of other playbooks referenced by the current playbook in the instructions.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "referencedTools": {
+          "description": "Optional. The resource name of tools referenced by the current playbook in the instructions. If not provided explicitly, they are will be implied using the tool being referenced in goal and steps.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tokenCount": {
+          "description": "Output only. Estimated number of tokes current playbook takes when sent to the LLM.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last time the playbook version was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3PlaybookImportStrategy": {
+      "description": "The playbook import strategy used for resource conflict resolution associated with an ImportPlaybookRequest.",
+      "id": "GoogleCloudDialogflowCxV3PlaybookImportStrategy",
+      "properties": {
+        "mainPlaybookImportStrategy": {
+          "description": "Optional. Specifies the import strategy used when resolving conflicts with the main playbook. If not specified, 'CREATE_NEW' is assumed.",
+          "enum": [
+            "IMPORT_STRATEGY_UNSPECIFIED",
+            "IMPORT_STRATEGY_CREATE_NEW",
+            "IMPORT_STRATEGY_REPLACE",
+            "IMPORT_STRATEGY_KEEP",
+            "IMPORT_STRATEGY_MERGE",
+            "IMPORT_STRATEGY_THROW_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Treated as 'CREATE_NEW'.",
+            "Create a new resource with a numeric suffix appended to the end of the existing display name.",
+            "Replace existing resource with incoming resource in the content to be imported.",
+            "Keep existing resource and discard incoming resource in the content to be imported.",
+            "Combine existing and incoming resources when a conflict is encountered.",
+            "Throw error if a conflict is encountered."
+          ],
+          "type": "string"
+        },
+        "nestedResourceImportStrategy": {
+          "description": "Optional. Specifies the import strategy used when resolving referenced playbook/flow conflicts. If not specified, 'CREATE_NEW' is assumed.",
+          "enum": [
+            "IMPORT_STRATEGY_UNSPECIFIED",
+            "IMPORT_STRATEGY_CREATE_NEW",
+            "IMPORT_STRATEGY_REPLACE",
+            "IMPORT_STRATEGY_KEEP",
+            "IMPORT_STRATEGY_MERGE",
+            "IMPORT_STRATEGY_THROW_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Treated as 'CREATE_NEW'.",
+            "Create a new resource with a numeric suffix appended to the end of the existing display name.",
+            "Replace existing resource with incoming resource in the content to be imported.",
+            "Keep existing resource and discard incoming resource in the content to be imported.",
+            "Combine existing and incoming resources when a conflict is encountered.",
+            "Throw error if a conflict is encountered."
+          ],
+          "type": "string"
+        },
+        "toolImportStrategy": {
+          "description": "Optional. Specifies the import strategy used when resolving tool conflicts. If not specified, 'CREATE_NEW' is assumed. This will be applied after the main playbook and nested resource import strategies, meaning if the playbook that references the tool is skipped, the tool will also be skipped.",
+          "enum": [
+            "IMPORT_STRATEGY_UNSPECIFIED",
+            "IMPORT_STRATEGY_CREATE_NEW",
+            "IMPORT_STRATEGY_REPLACE",
+            "IMPORT_STRATEGY_KEEP",
+            "IMPORT_STRATEGY_MERGE",
+            "IMPORT_STRATEGY_THROW_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Treated as 'CREATE_NEW'.",
+            "Create a new resource with a numeric suffix appended to the end of the existing display name.",
+            "Replace existing resource with incoming resource in the content to be imported.",
+            "Keep existing resource and discard incoming resource in the content to be imported.",
+            "Combine existing and incoming resources when a conflict is encountered.",
+            "Throw error if a conflict is encountered."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3PlaybookInput": {
+      "description": "Input of the playbook.",
+      "id": "GoogleCloudDialogflowCxV3PlaybookInput",
+      "properties": {
+        "precedingConversationSummary": {
+          "description": "Optional. Summary string of the preceding conversation for the child playbook invocation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3PlaybookInstruction": {
+      "description": "Message of the Instruction of the playbook.",
+      "id": "GoogleCloudDialogflowCxV3PlaybookInstruction",
+      "properties": {
+        "guidelines": {
+          "description": "General guidelines for the playbook. These are unstructured instructions that are not directly part of the goal, e.g. \"Always be polite\". It's valid for this text to be long and used instead of steps altogether.",
+          "type": "string"
+        },
+        "steps": {
+          "description": "Ordered list of step by step execution instructions to accomplish target goal.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3PlaybookStep"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3PlaybookInvocation": {
+      "description": "Stores metadata of the invocation of a child playbook.",
+      "id": "GoogleCloudDialogflowCxV3PlaybookInvocation",
+      "properties": {
+        "displayName": {
+          "description": "Output only. The display name of the playbook.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "playbook": {
+          "description": "Required. The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.",
+          "type": "string"
+        },
+        "playbookInput": {
+          "$ref": "GoogleCloudDialogflowCxV3PlaybookInput",
+          "description": "Optional. Input of the child playbook invocation."
+        },
+        "playbookOutput": {
+          "$ref": "GoogleCloudDialogflowCxV3PlaybookOutput",
+          "description": "Optional. Output of the child playbook invocation."
+        },
+        "playbookState": {
+          "description": "Required. Playbook invocation's output state.",
+          "enum": [
+            "OUTPUT_STATE_UNSPECIFIED",
+            "OUTPUT_STATE_OK",
+            "OUTPUT_STATE_CANCELLED",
+            "OUTPUT_STATE_FAILED",
+            "OUTPUT_STATE_ESCALATED",
+            "OUTPUT_STATE_PENDING"
+          ],
+          "enumDescriptions": [
+            "Unspecified output.",
+            "Succeeded.",
+            "Cancelled.",
+            "Failed.",
+            "Escalated.",
+            "Pending."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3PlaybookOutput": {
+      "description": "Output of the playbook.",
+      "id": "GoogleCloudDialogflowCxV3PlaybookOutput",
+      "properties": {
+        "executionSummary": {
+          "description": "Optional. Summary string of the execution result of the child playbook.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3PlaybookStep": {
+      "description": "Message of single step execution.",
+      "id": "GoogleCloudDialogflowCxV3PlaybookStep",
+      "properties": {
+        "steps": {
+          "description": "Sub-processing needed to execute the current step.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3PlaybookStep"
+          },
+          "type": "array"
+        },
+        "text": {
+          "description": "Step instruction in text format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3PlaybookVersion": {
+      "description": "Playbook version is a snapshot of the playbook at certain timestamp.",
+      "id": "GoogleCloudDialogflowCxV3PlaybookVersion",
+      "properties": {
+        "description": {
+          "description": "Optional. The description of the playbook version.",
+          "type": "string"
+        },
+        "examples": {
+          "description": "Output only. Snapshot of the examples belonging to the playbook when the playbook version is created.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3Example"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "The unique identifier of the playbook version. Format: `projects//locations//agents//playbooks//versions/`.",
+          "type": "string"
+        },
+        "playbook": {
+          "$ref": "GoogleCloudDialogflowCxV3Playbook",
+          "description": "Output only. Snapshot of the playbook when the playbook version is created.",
+          "readOnly": true
+        },
+        "updateTime": {
+          "description": "Output only. Last time the playbook version was created or modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3QueryInput": {
       "description": "Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value. 6. The results of a tool executed by the client.",
       "id": "GoogleCloudDialogflowCxV3QueryInput",
@@ -8286,6 +9549,10 @@
         "text": {
           "$ref": "GoogleCloudDialogflowCxV3TextInput",
           "description": "The natural language text to be processed."
+        },
+        "toolCallResult": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolCallResult",
+          "description": "The results of a tool executed by the client."
         }
       },
       "type": "object"
@@ -8304,6 +9571,10 @@
         },
         "currentPage": {
           "description": "The unique identifier of the page to override the current page in the session. Format: `projects//locations//agents//flows//pages/`. If `current_page` is specified, the previous state of the session will be ignored by Dialogflow, including the previous page and the previous session parameters. In most cases, current_page and parameters should be configured together to direct a session to a specific state.",
+          "type": "string"
+        },
+        "currentPlaybook": {
+          "description": "Optional. The unique identifier of the playbook to start or continue the session with. If `current_playbook` is specified, the previous state of the session will be ignored by Dialogflow. Format: `projects//locations//agents//playbooks/`.",
           "type": "string"
         },
         "disableWebhook": {
@@ -8328,6 +9599,10 @@
         "geoLocation": {
           "$ref": "GoogleTypeLatLng",
           "description": "The geo location of this conversational query."
+        },
+        "llmModelSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3LlmModelSettings",
+          "description": "Optional. Use the specified LLM model settings for processing the request."
         },
         "parameters": {
           "additionalProperties": {
@@ -8571,6 +9846,10 @@
         "text": {
           "$ref": "GoogleCloudDialogflowCxV3ResponseMessageText",
           "description": "Returns a text response."
+        },
+        "toolCall": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolCall",
+          "description": "Returns the definition of a tool call that should be executed by the client."
         }
       },
       "type": "object"
@@ -8763,6 +10042,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3RestorePlaybookVersionRequest": {
+      "description": "The request message for Playbooks.RestorePlaybookVersion.",
+      "id": "GoogleCloudDialogflowCxV3RestorePlaybookVersionRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse": {
+      "description": "The response message for Playbooks.RestorePlaybookVersion.",
+      "id": "GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse",
+      "properties": {
+        "playbook": {
+          "$ref": "GoogleCloudDialogflowCxV3Playbook",
+          "description": "The updated playbook."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3RolloutConfig": {
       "description": "The configuration for auto rollout.",
       "id": "GoogleCloudDialogflowCxV3RolloutConfig",
@@ -8896,6 +10192,20 @@
             "$ref": "GoogleCloudDialogflowCxV3SafetySettingsPhrase"
           },
           "type": "array"
+        },
+        "defaultBannedPhraseMatchStrategy": {
+          "description": "Optional. Default phrase match strategy for banned phrases.",
+          "enum": [
+            "PHRASE_MATCH_STRATEGY_UNSPECIFIED",
+            "PARTIAL_MATCH",
+            "WORD_MATCH"
+          ],
+          "enumDescriptions": [
+            "Unspecified, defaults to PARTIAL_MATCH.",
+            "Text that contains the phrase as a substring will be matched, e.g. \"foo\" will match \"afoobar\".",
+            "Text that contains the tokenized words of the phrase will be matched, e.g. \"foo\" will match \"a foo bar\" and \"foo bar\", but not \"foobar\"."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -9417,6 +10727,394 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3Tool": {
+      "description": "A tool provides a list of actions which are available to the Playbook to attain its goal. A Tool consists of a description of the tool's usage and a specification of the tool which contains the schema and authentication information.",
+      "id": "GoogleCloudDialogflowCxV3Tool",
+      "properties": {
+        "dataStoreSpec": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolDataStoreTool",
+          "description": "Data store search tool specification."
+        },
+        "description": {
+          "description": "Required. High level description of the Tool and its usage.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The human-readable name of the Tool, unique within an agent.",
+          "type": "string"
+        },
+        "functionSpec": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolFunctionTool",
+          "description": "Client side executed function specification."
+        },
+        "name": {
+          "description": "The unique identifier of the Tool. Format: `projects//locations//agents//tools/`.",
+          "type": "string"
+        },
+        "openApiSpec": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolOpenApiTool",
+          "description": "OpenAPI specification of the Tool."
+        },
+        "toolType": {
+          "description": "Output only. The tool type.",
+          "enum": [
+            "TOOL_TYPE_UNSPECIFIED",
+            "CUSTOMIZED_TOOL",
+            "BUILTIN_TOOL"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Customer provided tool.",
+            "First party built-in tool created by Dialogflow which cannot be modified."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolAuthentication": {
+      "description": "Authentication information required for API calls",
+      "id": "GoogleCloudDialogflowCxV3ToolAuthentication",
+      "properties": {
+        "apiKeyConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolAuthenticationApiKeyConfig",
+          "description": "Config for API key auth."
+        },
+        "bearerTokenConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolAuthenticationBearerTokenConfig",
+          "description": "Config for bearer token auth."
+        },
+        "oauthConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolAuthenticationOAuthConfig",
+          "description": "Config for OAuth."
+        },
+        "serviceAgentAuthConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolAuthenticationServiceAgentAuthConfig",
+          "description": "Config for [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent) auth."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolAuthenticationApiKeyConfig": {
+      "description": "Config for authentication with API key.",
+      "id": "GoogleCloudDialogflowCxV3ToolAuthenticationApiKeyConfig",
+      "properties": {
+        "apiKey": {
+          "description": "Optional. The API key. If the `secret_version_for_api_key` field is set, this field will be ignored.",
+          "type": "string"
+        },
+        "keyName": {
+          "description": "Required. The parameter name or the header name of the API key. E.g., If the API request is \"https://example.com/act?X-Api-Key=\", \"X-Api-Key\" would be the parameter name.",
+          "type": "string"
+        },
+        "requestLocation": {
+          "description": "Required. Key location in the request.",
+          "enum": [
+            "REQUEST_LOCATION_UNSPECIFIED",
+            "HEADER",
+            "QUERY_STRING"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Represents the key in http header.",
+            "Represents the key in query string."
+          ],
+          "type": "string"
+        },
+        "secretVersionForApiKey": {
+          "description": "Optional. The name of the SecretManager secret version resource storing the API key. If this field is set, the `api_key` field will be ignored. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolAuthenticationBearerTokenConfig": {
+      "description": "Config for authentication using bearer token.",
+      "id": "GoogleCloudDialogflowCxV3ToolAuthenticationBearerTokenConfig",
+      "properties": {
+        "secretVersionForToken": {
+          "description": "Optional. The name of the SecretManager secret version resource storing the Bearer token. If this field is set, the `token` field will be ignored. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        },
+        "token": {
+          "description": "Optional. The text token appended to the text `Bearer` to the request Authorization header. [Session parameters reference](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#session-ref) can be used to pass the token dynamically, e.g. `$session.params.parameter-id`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolAuthenticationOAuthConfig": {
+      "description": "Config for authentication with OAuth.",
+      "id": "GoogleCloudDialogflowCxV3ToolAuthenticationOAuthConfig",
+      "properties": {
+        "clientId": {
+          "description": "Required. The client ID from the OAuth provider.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Optional. The client secret from the OAuth provider. If the `secret_version_for_client_secret` field is set, this field will be ignored.",
+          "type": "string"
+        },
+        "oauthGrantType": {
+          "description": "Required. OAuth grant types.",
+          "enum": [
+            "OAUTH_GRANT_TYPE_UNSPECIFIED",
+            "CLIENT_CREDENTIAL"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Represents the [client credential flow](https://oauth.net/2/grant-types/client-credentials)."
+          ],
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Optional. The OAuth scopes to grant.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "secretVersionForClientSecret": {
+          "description": "Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        },
+        "tokenEndpoint": {
+          "description": "Required. The token endpoint in the OAuth provider to exchange for an access token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolAuthenticationServiceAgentAuthConfig": {
+      "description": "Config for auth using [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).",
+      "id": "GoogleCloudDialogflowCxV3ToolAuthenticationServiceAgentAuthConfig",
+      "properties": {
+        "serviceAgentAuth": {
+          "description": "Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.",
+          "enum": [
+            "SERVICE_AGENT_AUTH_UNSPECIFIED",
+            "ID_TOKEN",
+            "ACCESS_TOKEN"
+          ],
+          "enumDescriptions": [
+            "Service agent auth type unspecified. Default to ID_TOKEN.",
+            "Use [ID token](https://cloud.google.com/docs/authentication/token-types#id) generated from service agent. This can be used to access Cloud Function and Cloud Run after you grant Invoker role to `service-@gcp-sa-dialogflow.iam.gserviceaccount.com`.",
+            "Use [access token](https://cloud.google.com/docs/authentication/token-types#access) generated from service agent. This can be used to access other Google Cloud APIs after you grant required roles to `service-@gcp-sa-dialogflow.iam.gserviceaccount.com`."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolCall": {
+      "description": "Represents a call of a specific tool's action with the specified inputs.",
+      "id": "GoogleCloudDialogflowCxV3ToolCall",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "inputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The action's input parameters.",
+          "type": "object"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolCallResult": {
+      "description": "The result of calling a tool's action that has been executed by the client.",
+      "id": "GoogleCloudDialogflowCxV3ToolCallResult",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolCallResultError",
+          "description": "The tool call's error."
+        },
+        "outputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The tool call's output parameters.",
+          "type": "object"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolCallResultError": {
+      "description": "An error produced by the tool call.",
+      "id": "GoogleCloudDialogflowCxV3ToolCallResultError",
+      "properties": {
+        "message": {
+          "description": "Optional. The error message of the function.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolDataStoreTool": {
+      "description": "A DataStoreTool is a way to provide specifications needed to search a list of data stores.",
+      "id": "GoogleCloudDialogflowCxV3ToolDataStoreTool",
+      "properties": {
+        "dataStoreConnections": {
+          "description": "Required. List of data stores to search.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3DataStoreConnection"
+          },
+          "type": "array"
+        },
+        "fallbackPrompt": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolDataStoreToolFallbackPrompt",
+          "description": "Required. Fallback prompt configurations to use."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolDataStoreToolFallbackPrompt": {
+      "description": "A FallbackPrompt is a way to provide specifications for the Data Store fallback prompt when generating responses.",
+      "id": "GoogleCloudDialogflowCxV3ToolDataStoreToolFallbackPrompt",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolFunctionTool": {
+      "description": "A Function tool describes the functions to be invoked on the client side.",
+      "id": "GoogleCloudDialogflowCxV3ToolFunctionTool",
+      "properties": {
+        "inputSchema": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The JSON schema is encapsulated in a google.protobuf.Struct to describe the input of the function. This input is a JSON object that contains the function's parameters as properties of the object.",
+          "type": "object"
+        },
+        "outputSchema": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The JSON schema is encapsulated in a google.protobuf.Struct to describe the output of the function. This output is a JSON object that contains the function's parameters as properties of the object.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolOpenApiTool": {
+      "description": "An OpenAPI tool is a way to provide the Tool specifications in the Open API schema format.",
+      "id": "GoogleCloudDialogflowCxV3ToolOpenApiTool",
+      "properties": {
+        "authentication": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolAuthentication",
+          "description": "Optional. Authentication information required by the API."
+        },
+        "serviceDirectoryConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolServiceDirectoryConfig",
+          "description": "Optional. Service Directory configuration."
+        },
+        "textSchema": {
+          "description": "Required. The OpenAPI schema specified as a text.",
+          "type": "string"
+        },
+        "tlsConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolTLSConfig",
+          "description": "Optional. TLS configuration for the HTTPS verification."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolServiceDirectoryConfig": {
+      "description": "Configuration for tools using Service Directory.",
+      "id": "GoogleCloudDialogflowCxV3ToolServiceDirectoryConfig",
+      "properties": {
+        "service": {
+          "description": "Required. The name of [Service Directory](https://cloud.google.com/service-directory) service. Format: `projects//locations//namespaces//services/`. `LocationID` of the service directory must be the same as the location of the agent.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolTLSConfig": {
+      "description": "The TLS configuration.",
+      "id": "GoogleCloudDialogflowCxV3ToolTLSConfig",
+      "properties": {
+        "caCerts": {
+          "description": "Required. Specifies a list of allowed custom CA certificates for HTTPS verification.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3ToolTLSConfigCACert"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolTLSConfigCACert": {
+      "description": "The CA certificate.",
+      "id": "GoogleCloudDialogflowCxV3ToolTLSConfigCACert",
+      "properties": {
+        "cert": {
+          "description": "Required. The allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with \"subject alt name\". For instance a certificate can be self-signed using the following command: ``` openssl x509 -req -days 200 -in example.com.csr \\ -signkey example.com.key \\ -out example.com.crt \\ -extfile <(printf \"\\nsubjectAltName='DNS:www.example.com'\") ```",
+          "format": "byte",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The name of the allowed custom CA certificates. This can be used to disambiguate the custom CA certificates.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolUse": {
+      "description": "Stores metadata of the invocation of an action supported by a tool.",
+      "id": "GoogleCloudDialogflowCxV3ToolUse",
+      "properties": {
+        "action": {
+          "description": "Optional. Name of the action to be called during the tool use.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The display name of the tool.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "inputActionParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. A list of input parameters for the action.",
+          "type": "object"
+        },
+        "outputActionParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. A list of output parameters generated by the action.",
+          "type": "object"
+        },
+        "tool": {
+          "description": "Required. The tool that should be used. Format: `projects//locations//agents//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3TrainFlowRequest": {
       "description": "The request message for Flows.TrainFlow.",
       "id": "GoogleCloudDialogflowCxV3TrainFlowRequest",
@@ -9665,6 +11363,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3UserUtterance": {
+      "description": "UserUtterance represents one message sent by the customer.",
+      "id": "GoogleCloudDialogflowCxV3UserUtterance",
+      "properties": {
+        "text": {
+          "description": "Required. Message content in text.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9990,6 +11699,17 @@
           "description": "The HTTP request headers to send together with webhook requests.",
           "type": "object"
         },
+        "secretVersionForUsernamePassword": {
+          "description": "Optional. The SecretManager secret version resource storing the username:password pair for HTTP Basic authentication. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        },
+        "secretVersionsForRequestHeaders": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue"
+          },
+          "description": "Optional. The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both `request_headers` and `secret_versions_for_request_headers`, the value in `secret_versions_for_request_headers` will be used.",
+          "type": "object"
+        },
         "serviceAgentAuth": {
           "description": "Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.",
           "enum": [
@@ -10051,8 +11771,23 @@
           },
           "type": "array"
         },
+        "secretVersionForClientSecret": {
+          "description": "Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        },
         "tokenEndpoint": {
           "description": "Required. The token endpoint provided by the 3rd party platform to exchange an access token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue": {
+      "description": "Represents the value of an HTTP header stored in a SecretManager secret version.",
+      "id": "GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue",
+      "properties": {
+        "secretVersion": {
+          "description": "Required. The SecretManager secret version resource storing the header value. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
           "type": "string"
         }
       },
@@ -12365,6 +14100,17 @@
           "description": "The HTTP request headers to send together with webhook requests.",
           "type": "object"
         },
+        "secretVersionForUsernamePassword": {
+          "description": "Optional. The SecretManager secret version resource storing the username:password pair for HTTP Basic authentication. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        },
+        "secretVersionsForRequestHeaders": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue"
+          },
+          "description": "Optional. The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both `request_headers` and `secret_versions_for_request_headers`, the value in `secret_versions_for_request_headers` will be used.",
+          "type": "object"
+        },
         "serviceAgentAuth": {
           "description": "Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.",
           "enum": [
@@ -12426,8 +14172,23 @@
           },
           "type": "array"
         },
+        "secretVersionForClientSecret": {
+          "description": "Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
+          "type": "string"
+        },
         "tokenEndpoint": {
           "description": "Required. The token endpoint provided by the 3rd party platform to exchange an access token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue": {
+      "description": "Represents the value of an HTTP header stored in a SecretManager secret version.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue",
+      "properties": {
+        "secretVersion": {
+          "description": "Required. The SecretManager secret version resource storing the header value. Format: `projects/{project}/secrets/{secret}/versions/{version}`",
           "type": "string"
         }
       },
@@ -13330,6 +15091,28 @@
         "summarySuggestion": {
           "$ref": "GoogleCloudDialogflowV2SummarySuggestion",
           "description": "Optional. Suggested summary."
+        },
+        "toolCallInfo": {
+          "description": "Optional. List of request and response for tool calls executed.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo": {
+      "description": "Request and response for a tool call.",
+      "id": "GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo",
+      "properties": {
+        "toolCall": {
+          "$ref": "GoogleCloudDialogflowV2ToolCall",
+          "description": "Required. Request for a tool call."
+        },
+        "toolCallResult": {
+          "$ref": "GoogleCloudDialogflowV2ToolCallResult",
+          "description": "Required. Response for a tool call."
         }
       },
       "type": "object"
@@ -15068,6 +16851,80 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2ToolCall": {
+      "description": "Represents a call of a specific tool's action with the specified inputs.",
+      "id": "GoogleCloudDialogflowV2ToolCall",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time of the tool call.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "inputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The action's input parameters.",
+          "type": "object"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ToolCallResult": {
+      "description": "The result of calling a tool's action.",
+      "id": "GoogleCloudDialogflowV2ToolCallResult",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "content": {
+          "description": "Only populated if the response content is utf-8 encoded.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time of the tool call result.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleCloudDialogflowV2ToolCallResultError",
+          "description": "The tool call's error."
+        },
+        "rawContent": {
+          "description": "Only populated if the response content is not utf-8 encoded. (by definition byte fields are base64 encoded).",
+          "format": "byte",
+          "type": "string"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ToolCallResultError": {
+      "description": "An error produced by the tool call.",
+      "id": "GoogleCloudDialogflowV2ToolCallResultError",
+      "properties": {
+        "message": {
+          "description": "Optional. The error message of the function.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata": {
       "description": "Metadata for a ConversationModels.UndeployConversationModel operation.",
       "id": "GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata",
@@ -15621,6 +17478,28 @@
         "summarySuggestion": {
           "$ref": "GoogleCloudDialogflowV2beta1SummarySuggestion",
           "description": "Optional. Suggested summary."
+        },
+        "toolCallInfo": {
+          "description": "Optional. List of request and response for tool calls executed.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo": {
+      "description": "Request and response for a tool call.",
+      "id": "GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo",
+      "properties": {
+        "toolCall": {
+          "$ref": "GoogleCloudDialogflowV2beta1ToolCall",
+          "description": "Required. Request for a tool call."
+        },
+        "toolCallResult": {
+          "$ref": "GoogleCloudDialogflowV2beta1ToolCallResult",
+          "description": "Required. Response for a tool call."
         }
       },
       "type": "object"
@@ -17615,15 +19494,15 @@
           "enum": [
             "MESSAGE_TYPE_UNSPECIFIED",
             "TRANSCRIPT",
-            "DTMF_DIGITS",
             "END_OF_SINGLE_UTTERANCE",
+            "DTMF_DIGITS",
             "PARTIAL_DTMF_DIGITS"
           ],
           "enumDescriptions": [
             "Not specified. Should never be used.",
             "Message contains a (possibly partial) transcript.",
-            "Message contains DTMF digits.",
             "This event indicates that the server has detected the end of the user's speech utterance and expects no additional speech. Therefore, the server will not process additional audio (although it may subsequently return additional results). The client should stop sending additional audio data, half-close the gRPC connection, and wait for any additional results until the server closes the gRPC connection. This message is only sent if `single_utterance` was set to `true`, and is not used otherwise.",
+            "Message contains DTMF digits.",
             "Message contains DTMF digits. Before a message with DTMF_DIGITS is sent, a message with PARTIAL_DTMF_DIGITS may be sent with DTMF digits collected up to the time of sending, which represents an intermediate result."
           ],
           "type": "string"
@@ -17881,6 +19760,80 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ToolCall": {
+      "description": "Represents a call of a specific tool's action with the specified inputs.",
+      "id": "GoogleCloudDialogflowV2beta1ToolCall",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time of the tool call.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "inputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The action's input parameters.",
+          "type": "object"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ToolCallResult": {
+      "description": "The result of calling a tool's action.",
+      "id": "GoogleCloudDialogflowV2beta1ToolCallResult",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "content": {
+          "description": "Only populated if the response content is utf-8 encoded.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time of the tool call result.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleCloudDialogflowV2beta1ToolCallResultError",
+          "description": "The tool call's error."
+        },
+        "rawContent": {
+          "description": "Only populated if the response content is not utf-8 encoded. (by definition byte fields are base64 encoded).",
+          "format": "byte",
+          "type": "string"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ToolCallResultError": {
+      "description": "An error produced by the tool call.",
+      "id": "GoogleCloudDialogflowV2beta1ToolCallResultError",
+      "properties": {
+        "message": {
+          "description": "Optional. The error message of the function.",
+          "type": "string"
         }
       },
       "type": "object"

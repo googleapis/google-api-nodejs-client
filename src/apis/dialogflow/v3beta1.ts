@@ -261,6 +261,14 @@ export namespace dialogflow_v3beta1 {
      */
     agentUtterance?: Schema$GoogleCloudDialogflowCxV3beta1AgentUtterance;
     /**
+     * Output only. Timestamp of the completion of the agent action.
+     */
+    completeTime?: string | null;
+    /**
+     * Output only. The display name of the action.
+     */
+    displayName?: string | null;
+    /**
      * Optional. The agent received an event from the customer or a system event is emitted.
      */
     event?: Schema$GoogleCloudDialogflowCxV3beta1Event;
@@ -269,9 +277,21 @@ export namespace dialogflow_v3beta1 {
      */
     flowInvocation?: Schema$GoogleCloudDialogflowCxV3beta1FlowInvocation;
     /**
+     * Optional. Output only. The state machine update in flows.
+     */
+    flowStateUpdate?: Schema$GoogleCloudDialogflowCxV3beta1ActionFlowStateUpdate;
+    /**
      * Optional. Action performed on behalf of the agent by transitioning to a target CX flow.
      */
     flowTransition?: Schema$GoogleCloudDialogflowCxV3beta1FlowTransition;
+    /**
+     * Optional. Output only. Intent Match in flows.
+     */
+    intentMatch?: Schema$GoogleCloudDialogflowCxV3beta1ActionIntentMatch;
+    /**
+     * Optional. Output only. LLM call performed by the agent.
+     */
+    llmCall?: Schema$GoogleCloudDialogflowCxV3beta1LlmCall;
     /**
      * Optional. Action performed on behalf of the agent by invoking a child playbook.
      */
@@ -281,14 +301,123 @@ export namespace dialogflow_v3beta1 {
      */
     playbookTransition?: Schema$GoogleCloudDialogflowCxV3beta1PlaybookTransition;
     /**
+     * Output only. Timestamp of the start of the agent action.
+     */
+    startTime?: string | null;
+    /**
+     * Optional. Output only. The status of the action.
+     */
+    status?: Schema$GoogleCloudDialogflowCxV3beta1Status;
+    /**
+     * Optional. Speech-to-text action performed by the agent.
+     */
+    stt?: Schema$GoogleCloudDialogflowCxV3beta1ActionSTT;
+    /**
+     * Optional. The detailed tracing information for sub execution steps of the action.
+     */
+    subExecutionSteps?: Schema$GoogleCloudDialogflowCxV3beta1Span[];
+    /**
      * Optional. Action performed on behalf of the agent by calling a plugin tool.
      */
     toolUse?: Schema$GoogleCloudDialogflowCxV3beta1ToolUse;
+    /**
+     * Optional. Text-to-speech action performed by the agent.
+     */
+    tts?: Schema$GoogleCloudDialogflowCxV3beta1ActionTTS;
     /**
      * Optional. Agent obtained a message from the customer.
      */
     userUtterance?: Schema$GoogleCloudDialogflowCxV3beta1UserUtterance;
   }
+  /**
+   * Stores metadata of the state update action, such as a state machine execution in flows.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ActionFlowStateUpdate {
+    /**
+     * The destination of the transition. Format: `projects//locations//agents//flows//pages/` or `projects//locations//agents//playbooks/`.
+     */
+    destination?: string | null;
+    /**
+     * The type of the event that triggered the state update.
+     */
+    eventType?: string | null;
+    /**
+     * The function call to execute.
+     */
+    functionCall?: Schema$GoogleCloudDialogflowCxV3beta1ActionFlowStateUpdateFunctionCall;
+    /**
+     * The updated page and flow state.
+     */
+    pageState?: Schema$GoogleCloudDialogflowCxV3beta1ActionFlowStateUpdatePageState;
+    /**
+     * The updated parameters.
+     */
+    updatedParameters?: {[key: string]: any} | null;
+  }
+  /**
+   * Stores the metadata of a function call to execute.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ActionFlowStateUpdateFunctionCall {
+    /**
+     * The name of the function call.
+     */
+    name?: string | null;
+  }
+  /**
+   * Stores the state of a page and its flow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ActionFlowStateUpdatePageState {
+    /**
+     * The display name of the page.
+     */
+    displayName?: string | null;
+    /**
+     * The ID of the page. Format: `projects//locations//agents//flows//pages/`.
+     */
+    page?: string | null;
+    /**
+     * The status of the page.
+     */
+    status?: string | null;
+  }
+  /**
+   * Stores metadata of the intent match action.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ActionIntentMatch {
+    /**
+     * The matched intent.
+     */
+    matchedIntents?: Schema$GoogleCloudDialogflowCxV3beta1ActionIntentMatchMatchedIntent[];
+  }
+  /**
+   * Stores the matched intent, which is the result of the intent match action.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ActionIntentMatchMatchedIntent {
+    /**
+     * The display name of the matched intent.
+     */
+    displayName?: string | null;
+    /**
+     * The generative fallback response of the matched intent.
+     */
+    generativeFallback?: {[key: string]: any} | null;
+    /**
+     * The ID of the matched intent.
+     */
+    intentId?: string | null;
+    /**
+     * The score of the matched intent.
+     */
+    score?: number | null;
+  }
+  /**
+   * Stores metadata of the Speech-to-Text action.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ActionSTT {}
+  /**
+   * Stores metadata of the Text-to-Speech action.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ActionTTS {}
   /**
    * Hierarchical advanced settings for agent/flow/page/fulfillment/parameter. Settings exposed at lower level overrides the settings exposed at higher level. Overriding occurs at the sub-setting level. For example, the playback_interruption_settings at fulfillment level only overrides the playback_interruption_settings at the agent level, leaving other settings at the agent level unchanged. DTMF settings does not override each other. DTMF settings set at different levels define DTMF detections running in parallel. Hierarchy: Agent-\>Flow-\>Page-\>Fulfillment/Parameter.
    */
@@ -589,6 +718,10 @@ export namespace dialogflow_v3beta1 {
    * AgentUtterance represents one message sent by the agent.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1AgentUtterance {
+    /**
+     * Optional. True if the agent utterance needs to be generated by the LLM. Only used in webhook response to differentiate from empty text. Revisit whether we need this field or mark `text` as optional when we expose webhook interface to customer.
+     */
+    requireGeneration?: boolean | null;
     /**
      * Required. Message content in text.
      */
@@ -1638,6 +1771,10 @@ export namespace dialogflow_v3beta1 {
      * Required. Name of the event.
      */
     event?: string | null;
+    /**
+     * Optional. Unstructured text payload of the event.
+     */
+    text?: string | null;
   }
   /**
    * An event handler specifies an event that can be handled during a session. When the specified event happens, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the event, it will be called. * If there is a `target_page` associated with the event, the session will transition into the specified page. * If there is a `target_flow` associated with the event, the session will transition into the specified flow.
@@ -1725,6 +1862,15 @@ export namespace dialogflow_v3beta1 {
      * Output only. Last time the example was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Exception thrown during the execution of an action.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExceptionDetail {
+    /**
+     * Optional. The error message.
+     */
+    errorMessage?: string | null;
   }
   /**
    * Represents an experiment in an environment.
@@ -2042,6 +2188,19 @@ export namespace dialogflow_v3beta1 {
     intentsUri?: string | null;
   }
   /**
+   * The request message for Playbooks.ExportPlaybook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportPlaybookRequest {
+    /**
+     * Optional. The data format of the exported agent. If not specified, `BLOB` is assumed.
+     */
+    dataFormat?: string | null;
+    /**
+     * Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the playbook to. The format of this URI must be `gs:///`. If left unspecified, the serialized playbook is returned inline. Dialogflow performs a write operation for the Cloud Storage object on the caller's behalf, so your request authentication must have write permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
+     */
+    playbookUri?: string | null;
+  }
+  /**
    * Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata {}
@@ -2168,7 +2327,7 @@ export namespace dialogflow_v3beta1 {
     globalImportStrategy?: string | null;
   }
   /**
-   * Stores metadata of the invocation of a CX flow.
+   * Stores metadata of the invocation of a child CX flow. Flow invocation actions enter the child flow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1FlowInvocation {
     /**
@@ -2176,7 +2335,7 @@ export namespace dialogflow_v3beta1 {
      */
     displayName?: string | null;
     /**
-     * Required. The unique identifier of the flow. Format: `projects//locations//agents//flows/`.
+     * Required. The unique identifier of the flow. Format: `projects//locations//agents/`.
      */
     flow?: string | null;
     /**
@@ -2217,6 +2376,10 @@ export namespace dialogflow_v3beta1 {
      * Required. The unique identifier of the flow. Format: `projects//locations//agents/`.
      */
     flow?: string | null;
+    /**
+     * A list of input parameters for the action.
+     */
+    inputActionParameters?: {[key: string]: any} | null;
   }
   /**
    * The response message for Flows.GetFlowValidationResult.
@@ -2764,6 +2927,23 @@ export namespace dialogflow_v3beta1 {
      * Display names of conflicting intents.
      */
     intentDisplayNames?: string[] | null;
+  }
+  /**
+   * The request message for Playbooks.ImportPlaybook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportPlaybookRequest {
+    /**
+     * Optional. Specifies the import strategy used when resolving resource conflicts.
+     */
+    importStrategy?: Schema$GoogleCloudDialogflowCxV3beta1PlaybookImportStrategy;
+    /**
+     * Uncompressed raw byte content for playbook.
+     */
+    playbookContent?: string | null;
+    /**
+     * [Dialogflow access control] (https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
+     */
+    playbookUri?: string | null;
   }
   /**
    * Metadata returned for the TestCases.ImportTestCases long running operation.
@@ -3346,6 +3526,69 @@ export namespace dialogflow_v3beta1 {
     webhooks?: Schema$GoogleCloudDialogflowCxV3beta1Webhook[];
   }
   /**
+   * Stores metadata of the call of an LLM.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1LlmCall {
+    /**
+     * The model of the LLM call.
+     */
+    model?: string | null;
+    /**
+     * A list of relevant examples used for the LLM prompt.
+     */
+    retrievedExamples?: Schema$GoogleCloudDialogflowCxV3beta1LlmCallRetrievedExample[];
+    /**
+     * The temperature of the LLM call.
+     */
+    temperature?: number | null;
+    /**
+     * The token counts of the LLM call.
+     */
+    tokenCount?: Schema$GoogleCloudDialogflowCxV3beta1LlmCallTokenCount;
+  }
+  /**
+   * Relevant example used for the LLM prompt.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1LlmCallRetrievedExample {
+    /**
+     * The display name of the example.
+     */
+    exampleDisplayName?: string | null;
+    /**
+     * The id of the example.
+     */
+    exampleId?: string | null;
+    /**
+     * Optional. The matched retrieval label of this LLM call.
+     */
+    matchedRetrievalLabel?: string | null;
+    /**
+     * Retrieval strategy of the example.
+     */
+    retrievalStrategy?: string | null;
+  }
+  /**
+   * Stores token counts of the LLM call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1LlmCallTokenCount {
+    /**
+     * The number of tokens used for the conversation history in the prompt.
+     */
+    conversationContextTokenCount?: string | null;
+    /**
+     * The number of tokens used for the retrieved examples in the prompt.
+     */
+    exampleTokenCount?: string | null;
+    /**
+     * The total number of tokens used for the input to the LLM call.
+     */
+    totalInputTokenCount?: string | null;
+    /**
+     * The total number of tokens used for the output of the LLM call.
+     */
+    totalOutputTokenCount?: string | null;
+  }
+  /**
    * Settings for LLM models.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1LlmModelSettings {
@@ -3454,6 +3697,23 @@ export namespace dialogflow_v3beta1 {
      * If an intent was provided as input, this field will contain a copy of the intent identifier. Format: `projects//locations//agents//intents/`.
      */
     triggerIntent?: string | null;
+  }
+  /**
+   * A named metric is a metric with name, value and unit.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1NamedMetric {
+    /**
+     * The name of the metric.
+     */
+    name?: string | null;
+    /**
+     * The unit in which this metric is reported. Follows [The Unified Code for Units of Measure](https://unitsofmeasure.org/ucum.html) standard.
+     */
+    unit?: string | null;
+    /**
+     * The value of the metric.
+     */
+    value?: any | null;
   }
   /**
    * Settings related to NLU.
@@ -3685,6 +3945,23 @@ export namespace dialogflow_v3beta1 {
     updateTime?: string | null;
   }
   /**
+   * The playbook import strategy used for resource conflict resolution associated with an ImportPlaybookRequest.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1PlaybookImportStrategy {
+    /**
+     * Optional. Specifies the import strategy used when resolving conflicts with the main playbook. If not specified, 'CREATE_NEW' is assumed.
+     */
+    mainPlaybookImportStrategy?: string | null;
+    /**
+     * Optional. Specifies the import strategy used when resolving referenced playbook/flow conflicts. If not specified, 'CREATE_NEW' is assumed.
+     */
+    nestedResourceImportStrategy?: string | null;
+    /**
+     * Optional. Specifies the import strategy used when resolving tool conflicts. If not specified, 'CREATE_NEW' is assumed. This will be applied after the main playbook and nested resource import strategies, meaning if the playbook that references the tool is skipped, the tool will also be skipped.
+     */
+    toolImportStrategy?: string | null;
+  }
+  /**
    * Input of the playbook.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1PlaybookInput {
@@ -3711,7 +3988,7 @@ export namespace dialogflow_v3beta1 {
     steps?: Schema$GoogleCloudDialogflowCxV3beta1PlaybookStep[];
   }
   /**
-   * Stores metadata of the invocation of a child playbook.
+   * Stores metadata of the invocation of a child playbook. Playbook invocation actions enter the child playbook.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1PlaybookInvocation {
     /**
@@ -3747,6 +4024,10 @@ export namespace dialogflow_v3beta1 {
      * Optional. Summary string of the execution result of the child playbook.
      */
     executionSummary?: string | null;
+    /**
+     * End state of the playbook.
+     */
+    state?: string | null;
   }
   /**
    * Message of single step execution.
@@ -3769,6 +4050,10 @@ export namespace dialogflow_v3beta1 {
      * Output only. The display name of the playbook.
      */
     displayName?: string | null;
+    /**
+     * A list of input parameters for the action.
+     */
+    inputActionParameters?: {[key: string]: any} | null;
     /**
      * Required. The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.
      */
@@ -4211,6 +4496,19 @@ export namespace dialogflow_v3beta1 {
     trackingBranch?: string | null;
   }
   /**
+   * The request message for Playbooks.RestorePlaybookVersion.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionRequest {}
+  /**
+   * The response message for Playbooks.RestorePlaybookVersion.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse {
+    /**
+     * The updated playbook.
+     */
+    playbook?: Schema$GoogleCloudDialogflowCxV3beta1Playbook;
+  }
+  /**
    * The request message for Tools.RestoreToolVersion.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionRequest {}
@@ -4484,6 +4782,31 @@ export namespace dialogflow_v3beta1 {
     session?: string | null;
   }
   /**
+   * A span represents a sub execution step of an action.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1Span {
+    /**
+     * Timestamp of the completion of the span.
+     */
+    completeTime?: string | null;
+    /**
+     * The unordered collection of metrics in this span.
+     */
+    metrics?: Schema$GoogleCloudDialogflowCxV3beta1NamedMetric[];
+    /**
+     * The name of the span.
+     */
+    name?: string | null;
+    /**
+     * Timestamp of the start of the span.
+     */
+    startTime?: string | null;
+    /**
+     * The metadata tags of the span such as span type.
+     */
+    tags?: string[] | null;
+  }
+  /**
    * Settings related to speech recognition.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SpeechToTextSettings {
@@ -4496,6 +4819,15 @@ export namespace dialogflow_v3beta1 {
    * The request message for Experiments.StartExperiment.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1StartExperimentRequest {}
+  /**
+   * The status of the action.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1Status {
+    /**
+     * Optional. The exception thrown during the execution of the action.
+     */
+    exception?: Schema$GoogleCloudDialogflowCxV3beta1ExceptionDetail;
+  }
   /**
    * The request message for Experiments.StopExperiment.
    */
@@ -4764,11 +5096,19 @@ export namespace dialogflow_v3beta1 {
      * Required. Key location in the request.
      */
     requestLocation?: string | null;
+    /**
+     * Optional. The name of the SecretManager secret version resource storing the API key. If this field is set, the `api_key` field will be ignored. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForApiKey?: string | null;
   }
   /**
    * Config for authentication using bearer token.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ToolAuthenticationBearerTokenConfig {
+    /**
+     * Optional. The name of the SecretManager secret version resource storing the Bearer token. If this field is set, the `token` field will be ignored. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForToken?: string | null;
     /**
      * Optional. The text token appended to the text `Bearer` to the request Authorization header. [Session parameters reference](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#session-ref) can be used to pass the token dynamically, e.g. `$session.params.parameter-id`.
      */
@@ -4794,6 +5134,10 @@ export namespace dialogflow_v3beta1 {
      * Optional. The OAuth scopes to grant.
      */
     scopes?: string[] | null;
+    /**
+     * Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForClientSecret?: string | null;
     /**
      * Required. The token endpoint in the OAuth provider to exchange for an access token.
      */
@@ -5045,6 +5389,10 @@ export namespace dialogflow_v3beta1 {
      */
     action?: string | null;
     /**
+     * Optional. Data store tool trace.
+     */
+    dataStoreToolTrace?: Schema$GoogleCloudDialogflowCxV3beta1ToolUseDataStoreToolTrace;
+    /**
      * Output only. The display name of the tool.
      */
     displayName?: string | null;
@@ -5060,6 +5408,32 @@ export namespace dialogflow_v3beta1 {
      * Required. The tool that should be used. Format: `projects//locations//agents//tools/`.
      */
     tool?: string | null;
+    /**
+     * Optional. Webhook tool trace.
+     */
+    webhookToolTrace?: Schema$GoogleCloudDialogflowCxV3beta1ToolUseWebhookToolTrace;
+  }
+  /**
+   * The tracing information for the data store tool.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolUseDataStoreToolTrace {
+    /**
+     * Optional. Data store connection feature output signals.
+     */
+    dataStoreConnectionSignals?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignals;
+  }
+  /**
+   * The tracing information for the webhook tool.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolUseWebhookToolTrace {
+    /**
+     * Optional. The tag of the webhook.
+     */
+    webhookTag?: string | null;
+    /**
+     * Optional. The url of the webhook.
+     */
+    webhookUri?: string | null;
   }
   /**
    * Tool version is a snapshot of the tool at certain timestamp.
@@ -5314,6 +5688,14 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1UserUtterance {
     /**
+     * Optional. Audio input.
+     */
+    audio?: string | null;
+    /**
+     * Optional. Tokens of the audio input.
+     */
+    audioTokens?: number[] | null;
+    /**
      * Required. Message content in text.
      */
     text?: string | null;
@@ -5504,6 +5886,18 @@ export namespace dialogflow_v3beta1 {
      */
     requestHeaders?: {[key: string]: string} | null;
     /**
+     * Optional. The SecretManager secret version resource storing the username:password pair for HTTP Basic authentication. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForUsernamePassword?: string | null;
+    /**
+     * Optional. The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both `request_headers` and `secret_versions_for_request_headers`, the value in `secret_versions_for_request_headers` will be used.
+     */
+    secretVersionsForRequestHeaders?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue;
+    } | null;
+    /**
      * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
      */
     serviceAgentAuth?: string | null;
@@ -5537,9 +5931,22 @@ export namespace dialogflow_v3beta1 {
      */
     scopes?: string[] | null;
     /**
+     * Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForClientSecret?: string | null;
+    /**
      * Required. The token endpoint provided by the 3rd party platform to exchange an access token.
      */
     tokenEndpoint?: string | null;
+  }
+  /**
+   * Represents the value of an HTTP header stored in a SecretManager secret version.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceSecretVersionHeaderValue {
+    /**
+     * Required. The SecretManager secret version resource storing the header value. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersion?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -6619,6 +7026,10 @@ export namespace dialogflow_v3beta1 {
      * The natural language text to be processed.
      */
     text?: Schema$GoogleCloudDialogflowCxV3TextInput;
+    /**
+     * The results of a tool executed by the client.
+     */
+    toolCallResult?: Schema$GoogleCloudDialogflowCxV3ToolCallResult;
   }
   /**
    * Represents a response message that can be returned by a conversational agent. Response messages are also used for output audio synthesis. The approach is as follows: * If at least one OutputAudioText response is present, then all OutputAudioText responses are linearly concatenated, and the result is used for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the concatenated result is treated as SSML; otherwise, the result is treated as either text or SSML as appropriate. The agent designer should ideally use either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is used for output audio synthesis. This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.
@@ -6672,6 +7083,10 @@ export namespace dialogflow_v3beta1 {
      * Returns a text response.
      */
     text?: Schema$GoogleCloudDialogflowCxV3ResponseMessageText;
+    /**
+     * Returns the definition of a tool call that should be executed by the client.
+     */
+    toolCall?: Schema$GoogleCloudDialogflowCxV3ToolCall;
   }
   /**
    * Indicates that the conversation succeeded, i.e., the bot handled the issue that the customer talked to it about. Dialogflow only uses this to determine which conversations should be counted as successful and doesn't process the metadata in this message in any way. Note that Dialogflow also considers conversations that get to the conversation end page as successful even if they don't return ConversationSuccess. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates that the conversation succeeded. * In a webhook response when you determine that you handled the customer issue.
@@ -6953,6 +7368,53 @@ export namespace dialogflow_v3beta1 {
     text?: string | null;
   }
   /**
+   * Represents a call of a specific tool's action with the specified inputs.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolCall {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Optional. The action's input parameters.
+     */
+    inputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * The result of calling a tool's action that has been executed by the client.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolCallResult {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * The tool call's error.
+     */
+    error?: Schema$GoogleCloudDialogflowCxV3ToolCallResultError;
+    /**
+     * The tool call's output parameters.
+     */
+    outputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * An error produced by the tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ToolCallResultError {
+    /**
+     * Optional. The error message of the function.
+     */
+    message?: string | null;
+  }
+  /**
    * A transition route specifies a intent that can be matched and/or a data condition that can be evaluated during a session. When a specified transition is matched, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the transition, it will be called. * If there is a `target_page` associated with the transition, the session will transition into the specified page. * If there is a `target_flow` associated with the transition, the session will transition into the specified flow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3TransitionRoute {
@@ -7092,6 +7554,18 @@ export namespace dialogflow_v3beta1 {
      */
     requestHeaders?: {[key: string]: string} | null;
     /**
+     * Optional. The SecretManager secret version resource storing the username:password pair for HTTP Basic authentication. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForUsernamePassword?: string | null;
+    /**
+     * Optional. The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both `request_headers` and `secret_versions_for_request_headers`, the value in `secret_versions_for_request_headers` will be used.
+     */
+    secretVersionsForRequestHeaders?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue;
+    } | null;
+    /**
      * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
      */
     serviceAgentAuth?: string | null;
@@ -7125,9 +7599,22 @@ export namespace dialogflow_v3beta1 {
      */
     scopes?: string[] | null;
     /**
+     * Optional. The name of the SecretManager secret version resource storing the client secret. If this field is set, the `client_secret` field will be ignored. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersionForClientSecret?: string | null;
+    /**
      * Required. The token endpoint provided by the 3rd party platform to exchange an access token.
      */
     tokenEndpoint?: string | null;
+  }
+  /**
+   * Represents the value of an HTTP header stored in a SecretManager secret version.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue {
+    /**
+     * Required. The SecretManager secret version resource storing the header value. Format: `projects/{project\}/secrets/{secret\}/versions/{version\}`
+     */
+    secretVersion?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -7705,6 +8192,23 @@ export namespace dialogflow_v3beta1 {
      * Optional. Suggested summary.
      */
     summarySuggestion?: Schema$GoogleCloudDialogflowV2beta1SummarySuggestion;
+    /**
+     * Optional. List of request and response for tool calls executed.
+     */
+    toolCallInfo?: Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo[];
+  }
+  /**
+   * Request and response for a tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo {
+    /**
+     * Required. Request for a tool call.
+     */
+    toolCall?: Schema$GoogleCloudDialogflowV2beta1ToolCall;
+    /**
+     * Required. Response for a tool call.
+     */
+    toolCallResult?: Schema$GoogleCloudDialogflowV2beta1ToolCallResult;
   }
   /**
    * Output only. Represents a notification sent to Pub/Sub subscribers for agent assistant events in a specific conversation.
@@ -9293,6 +9797,65 @@ export namespace dialogflow_v3beta1 {
     dtmfEvents?: string[] | null;
   }
   /**
+   * Represents a call of a specific tool's action with the specified inputs.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ToolCall {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Output only. Create time of the tool call.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The action's input parameters.
+     */
+    inputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * The result of calling a tool's action.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ToolCallResult {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Only populated if the response content is utf-8 encoded.
+     */
+    content?: string | null;
+    /**
+     * Output only. Create time of the tool call result.
+     */
+    createTime?: string | null;
+    /**
+     * The tool call's error.
+     */
+    error?: Schema$GoogleCloudDialogflowV2beta1ToolCallResultError;
+    /**
+     * Only populated if the response content is not utf-8 encoded. (by definition byte fields are base64 encoded).
+     */
+    rawContent?: string | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * An error produced by the tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ToolCallResultError {
+    /**
+     * Optional. The error message of the function.
+     */
+    message?: string | null;
+  }
+  /**
    * The request message for a webhook call.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1WebhookRequest {
@@ -9726,6 +10289,23 @@ export namespace dialogflow_v3beta1 {
      * Optional. Suggested summary.
      */
     summarySuggestion?: Schema$GoogleCloudDialogflowV2SummarySuggestion;
+    /**
+     * Optional. List of request and response for tool calls executed.
+     */
+    toolCallInfo?: Schema$GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo[];
+  }
+  /**
+   * Request and response for a tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo {
+    /**
+     * Required. Request for a tool call.
+     */
+    toolCall?: Schema$GoogleCloudDialogflowV2ToolCall;
+    /**
+     * Required. Response for a tool call.
+     */
+    toolCallResult?: Schema$GoogleCloudDialogflowV2ToolCallResult;
   }
   /**
    * Represents a notification sent to Cloud Pub/Sub subscribers for human agent assistant events in a specific conversation.
@@ -10958,6 +11538,65 @@ export namespace dialogflow_v3beta1 {
     summary?: string | null;
   }
   /**
+   * Represents a call of a specific tool's action with the specified inputs.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ToolCall {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Output only. Create time of the tool call.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The action's input parameters.
+     */
+    inputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * The result of calling a tool's action.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ToolCallResult {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Only populated if the response content is utf-8 encoded.
+     */
+    content?: string | null;
+    /**
+     * Output only. Create time of the tool call result.
+     */
+    createTime?: string | null;
+    /**
+     * The tool call's error.
+     */
+    error?: Schema$GoogleCloudDialogflowV2ToolCallResultError;
+    /**
+     * Only populated if the response content is not utf-8 encoded. (by definition byte fields are base64 encoded).
+     */
+    rawContent?: string | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * An error produced by the tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ToolCallResultError {
+    /**
+     * Optional. The error message of the function.
+     */
+    message?: string | null;
+  }
+  /**
    * Metadata for a ConversationModels.UndeployConversationModel operation.
    */
   export interface Schema$GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata {
@@ -11419,6 +12058,10 @@ export namespace dialogflow_v3beta1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
@@ -21481,6 +22124,102 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
+     * Exports the specified playbook to a binary file. Note that resources (e.g. examples, tools) that the playbook references will also be exported.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Export,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Export,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Export
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}:export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Retrieves the specified Playbook.
      *
      * @param params - Parameters for request
@@ -21571,6 +22310,102 @@ export namespace dialogflow_v3beta1 {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Playbook>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Imports the specified playbook to the specified agent from a binary file.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+parent}/playbooks:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -21786,12 +22621,36 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Export
+    extends StandardParameters {
+    /**
+     * Required. The name of the playbook to export. Format: `projects//locations//agents//playbooks/`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1ExportPlaybookRequest;
+  }
   export interface Params$Resource$Projects$Locations$Agents$Playbooks$Get
     extends StandardParameters {
     /**
      * Required. The name of the playbook. Format: `projects//locations//agents//playbooks/`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Import
+    extends StandardParameters {
+    /**
+     * Required. The agent to import the playbook into. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1ImportPlaybookRequest;
   }
   export interface Params$Resource$Projects$Locations$Agents$Playbooks$List
     extends StandardParameters {
@@ -22754,6 +23613,104 @@ export namespace dialogflow_v3beta1 {
         );
       }
     }
+
+    /**
+     * Retrieves the specified version of the Playbook and stores it as the current playbook draft, returning the playbook with resources updated.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restore(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>;
+    restore(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>
+    ): void;
+    restore(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>
+    ): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}:restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create
@@ -22796,6 +23753,18 @@ export namespace dialogflow_v3beta1 {
      * Required. The playbook to list versions for. Format: `projects//locations//agents//playbooks/`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore
+    extends StandardParameters {
+    /**
+     * Required. The name of the playbook version. Format: `projects//locations//agents//playbooks//versions/`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionRequest;
   }
 
   export class Resource$Projects$Locations$Agents$Sessions {
