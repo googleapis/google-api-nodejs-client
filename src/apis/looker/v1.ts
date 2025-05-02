@@ -408,6 +408,48 @@ export namespace looker_v1 {
     userMetadata?: Schema$UserMetadata;
   }
   /**
+   * The details of a backup resource.
+   */
+  export interface Schema$InstanceBackup {
+    /**
+     * Output only. The time when the backup was started.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Current status of the CMEK encryption
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
+    /**
+     * Output only. The time when the backup will be deleted.
+     */
+    expireTime?: string | null;
+    /**
+     * Immutable. The relative resource name of the backup, in the following form: `projects/{project_number\}/locations/{location_id\}/instances/{instance_id\}/backups/{backup\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The current state of the backup.
+     */
+    state?: string | null;
+  }
+  /**
+   * Response from listing Looker instance backups.
+   */
+  export interface Schema$ListInstanceBackupsResponse {
+    /**
+     * The list of instances matching the request filters, up to the requested `page_size`.
+     */
+    instanceBackups?: Schema$InstanceBackup[];
+    /**
+     * If provided, a page token that can look up the next `page_size` results. If empty, the results list is exhausted.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response from ListInstances.
    */
   export interface Schema$ListInstancesResponse {
@@ -593,6 +635,15 @@ export namespace looker_v1 {
    * Request options for restarting an instance.
    */
   export interface Schema$RestartInstanceRequest {}
+  /**
+   * Request options for restoring an instance
+   */
+  export interface Schema$RestoreInstanceRequest {
+    /**
+     * Required. Backup being used to restore the instance Format: projects/{project\}/locations/{location\}/instances/{instance\}/backups/{backup\}
+     */
+    backup?: string | null;
+  }
   /**
    * Service attachment configuration.
    */
@@ -876,6 +927,10 @@ export namespace looker_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
+    /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
@@ -895,8 +950,12 @@ export namespace looker_v1 {
 
   export class Resource$Projects$Locations$Instances {
     context: APIRequestContext;
+    backups: Resource$Projects$Locations$Instances$Backups;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.backups = new Resource$Projects$Locations$Instances$Backups(
+        this.context
+      );
     }
 
     /**
@@ -1592,6 +1651,94 @@ export namespace looker_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Restore Looker instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restore(
+      params: Params$Resource$Projects$Locations$Instances$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Projects$Locations$Instances$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    restore(
+      params: Params$Resource$Projects$Locations$Instances$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Instances$Restore,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Instances$Restore,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restore(callback: BodyResponseCallback<Schema$Operation>): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Restore
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://looker.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Instances$Create
@@ -1694,6 +1841,426 @@ export namespace looker_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RestartInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Restore
+    extends StandardParameters {
+    /**
+     * Required. Instance being restored Format: projects/{project\}/locations/{location\}/instances/{instance\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestoreInstanceRequest;
+  }
+
+  export class Resource$Projects$Locations$Instances$Backups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Backup Looker instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Backups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Instances$Backups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Backups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Backups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Backups$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Backups$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Backups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Backups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://looker.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Delete backup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Backups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Instances$Backups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Backups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Backups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Backups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Backups$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Backups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Backups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://looker.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Backups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Instances$Backups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InstanceBackup>;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Backups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Backups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$InstanceBackup>,
+      callback: BodyResponseCallback<Schema$InstanceBackup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Backups$Get,
+      callback: BodyResponseCallback<Schema$InstanceBackup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$InstanceBackup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Backups$Get
+        | BodyResponseCallback<Schema$InstanceBackup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InstanceBackup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InstanceBackup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InstanceBackup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Backups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Backups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://looker.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InstanceBackup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InstanceBackup>(parameters);
+      }
+    }
+
+    /**
+     * List backups of Looker instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Backups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Instances$Backups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInstanceBackupsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Backups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Backups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstanceBackupsResponse>,
+      callback: BodyResponseCallback<Schema$ListInstanceBackupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Backups$List,
+      callback: BodyResponseCallback<Schema$ListInstanceBackupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListInstanceBackupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Backups$List
+        | BodyResponseCallback<Schema$ListInstanceBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInstanceBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInstanceBackupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInstanceBackupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Backups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Backups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://looker.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInstanceBackupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInstanceBackupsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Backups$Create
+    extends StandardParameters {
+    /**
+     * Required. Format: projects/{project\}/locations/{location\}/instances/{instance\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstanceBackup;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Backups$Delete
+    extends StandardParameters {
+    /**
+     * Required. Format: projects/{project\}/locations/{location\}/instances/{instance\}/backups/{backup\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Backups$Get
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project\}/locations/{location\}/instances/{instance\}/backups/{backup\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Backups$List
+    extends StandardParameters {
+    /**
+     * Sort results. Default order is "create_time desc". Other supported fields are "state" and "expire_time". https://google.aip.dev/132#ordering
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of instances to return.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from a previous ListInstances request.
+     */
+    pageToken?: string;
+    /**
+     * Required. Format: projects/{project\}/locations/{location\}/instances/{instance\}.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Operations {

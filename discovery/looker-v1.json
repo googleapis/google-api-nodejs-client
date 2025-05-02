@@ -143,6 +143,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -420,6 +426,159 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "restore": {
+                  "description": "Restore Looker instance.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:restore",
+                  "httpMethod": "POST",
+                  "id": "looker.projects.locations.instances.restore",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Instance being restored Format: projects/{project}/locations/{location}/instances/{instance}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:restore",
+                  "request": {
+                    "$ref": "RestoreInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "backups": {
+                  "methods": {
+                    "create": {
+                      "description": "Backup Looker instance.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/backups",
+                      "httpMethod": "POST",
+                      "id": "looker.projects.locations.instances.backups.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Format: projects/{project}/locations/{location}/instances/{instance}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/backups",
+                      "request": {
+                        "$ref": "InstanceBackup"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Delete backup.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/backups/{backupsId}",
+                      "httpMethod": "DELETE",
+                      "id": "looker.projects.locations.instances.backups.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Format: projects/{project}/locations/{location}/instances/{instance}/backups/{backup}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/backups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/backups/{backupsId}",
+                      "httpMethod": "GET",
+                      "id": "looker.projects.locations.instances.backups.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Format: `projects/{project}/locations/{location}/instances/{instance}/backups/{backup}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/backups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "InstanceBackup"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List backups of Looker instance.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/backups",
+                      "httpMethod": "GET",
+                      "id": "looker.projects.locations.instances.backups.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "orderBy": {
+                          "description": "Sort results. Default order is \"create_time desc\". Other supported fields are \"state\" and \"expire_time\". https://google.aip.dev/132#ordering",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of instances to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token received from a previous ListInstances request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Format: projects/{project}/locations/{location}/instances/{instance}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/backups",
+                      "response": {
+                        "$ref": "ListInstanceBackupsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -551,7 +710,7 @@
       }
     }
   },
-  "revision": "20250305",
+  "revision": "20250414",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -971,6 +1130,78 @@
       },
       "type": "object"
     },
+    "InstanceBackup": {
+      "description": "The details of a backup resource.",
+      "id": "InstanceBackup",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the backup was started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig",
+          "description": "Output only. Current status of the CMEK encryption",
+          "readOnly": true
+        },
+        "expireTime": {
+          "description": "Output only. The time when the backup will be deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The relative resource name of the backup, in the following form: `projects/{project_number}/locations/{location_id}/instances/{instance_id}/backups/{backup}`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the backup.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "DELETING",
+            "ACTIVE",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state of the backup is unknown.",
+            "The backup is being created.",
+            "The backup is being deleted.",
+            "The backup is active and ready to use.",
+            "The backup failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListInstanceBackupsResponse": {
+      "description": "Response from listing Looker instance backups.",
+      "id": "ListInstanceBackupsResponse",
+      "properties": {
+        "instanceBackups": {
+          "description": "The list of instances matching the request filters, up to the requested `page_size`.",
+          "items": {
+            "$ref": "InstanceBackup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If provided, a page token that can look up the next `page_size` results. If empty, the results list is exhausted.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListInstancesResponse": {
       "description": "Response from ListInstances.",
       "id": "ListInstancesResponse",
@@ -1235,6 +1466,17 @@
       "description": "Request options for restarting an instance.",
       "id": "RestartInstanceRequest",
       "properties": {},
+      "type": "object"
+    },
+    "RestoreInstanceRequest": {
+      "description": "Request options for restoring an instance",
+      "id": "RestoreInstanceRequest",
+      "properties": {
+        "backup": {
+          "description": "Required. Backup being used to restore the instance Format: projects/{project}/locations/{location}/instances/{instance}/backups/{backup}",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ServiceAttachment": {
