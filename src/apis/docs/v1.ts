@@ -2681,6 +2681,10 @@ export namespace docs_v1 {
      */
     matchCase?: boolean | null;
     /**
+     * Optional. True if the find value should be treated as a regular expression. Any backslashes in the pattern should be escaped. - `True`: the search text is treated as a regular expressions. - `False`: the search text is treated as a substring for matching.
+     */
+    searchByRegex?: boolean | null;
+    /**
      * The text to search for in the document.
      */
     text?: string | null;
