@@ -163,6 +163,11 @@ export namespace admin_reports_v1 {
      * User doing the action.
      */
     actor?: {
+      applicationInfo?: {
+        applicationName?: string;
+        impersonation?: boolean;
+        oauthClientId?: string;
+      };
       callerType?: string;
       email?: string;
       key?: string;
@@ -187,6 +192,7 @@ export namespace admin_reports_v1 {
         name?: string;
         value?: string;
       }>;
+      resourceIds?: string[];
       type?: string;
     }> | null;
     /**
@@ -210,6 +216,31 @@ export namespace admin_reports_v1 {
      * This is the domain that is affected by the report's event. For example domain of Admin console or the Drive application's document owner.
      */
     ownerDomain?: string | null;
+    /**
+     * Details of the resource on which the action was performed.
+     */
+    resourceDetails?: Schema$ResourceDetails[];
+  }
+  /**
+   * Details of the label applied on the resource.
+   */
+  export interface Schema$AppliedLabel {
+    /**
+     * List of fields which are part of the label and have been set by the user. If label has a field which was not set by the user, it would not be present in this list.
+     */
+    fieldValues?: Schema$FieldValue[];
+    /**
+     * Identifier of the label - Only the label id, not the full OnePlatform resource name.
+     */
+    id?: string | null;
+    /**
+     * The reason why the label was applied on the resource.
+     */
+    reason?: Schema$Reason;
+    /**
+     * Title of the label
+     */
+    title?: string | null;
   }
   /**
    * A notification channel used to watch for resource changes.
@@ -257,6 +288,137 @@ export namespace admin_reports_v1 {
     type?: string | null;
   }
   /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * Details of the field value set by the user for the particular label.
+   */
+  export interface Schema$FieldValue {
+    /**
+     * Setting a date value.
+     */
+    dateValue?: Schema$Date;
+    /**
+     * Display name of the field
+     */
+    displayName?: string | null;
+    /**
+     * Identifier of the field
+     */
+    id?: string | null;
+    /**
+     * Setting an integer value.
+     */
+    integerValue?: string | null;
+    /**
+     * Setting a long text value.
+     */
+    longTextValue?: string | null;
+    /**
+     * The reason why the field was applied to the label.
+     */
+    reason?: Schema$Reason;
+    /**
+     * Setting a selection list value by selecting multiple values from a dropdown.
+     */
+    selectionListValue?: Schema$FieldValueSelectionListValue;
+    /**
+     * Setting a selection value by selecting a single value from a dropdown.
+     */
+    selectionValue?: Schema$FieldValueSelectionValue;
+    /**
+     * Setting a text list value.
+     */
+    textListValue?: Schema$FieldValueTextListValue;
+    /**
+     * Setting a text value.
+     */
+    textValue?: string | null;
+    /**
+     * Type of the field
+     */
+    type?: string | null;
+    /**
+     * If the field is unset, this will be true.
+     */
+    unsetValue?: boolean | null;
+    /**
+     * Setting a user list value by selecting multiple users.
+     */
+    userListValue?: Schema$FieldValueUserListValue;
+    /**
+     * Setting a user value by selecting a single user.
+     */
+    userValue?: Schema$FieldValueUserValue;
+  }
+  /**
+   * Setting a selection list value by selecting multiple values from a dropdown.
+   */
+  export interface Schema$FieldValueSelectionListValue {
+    /**
+     * List of selections.
+     */
+    values?: Schema$FieldValueSelectionValue[];
+  }
+  /**
+   * Setting a selection value by selecting a single value from a dropdown.
+   */
+  export interface Schema$FieldValueSelectionValue {
+    /**
+     * Whether the selection is badged.
+     */
+    badged?: boolean | null;
+    /**
+     * Display name of the selection.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier of the selection.
+     */
+    id?: string | null;
+  }
+  /**
+   * Setting a text list value.
+   */
+  export interface Schema$FieldValueTextListValue {
+    /**
+     * List of text values.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * Setting a user list value by selecting multiple users.
+   */
+  export interface Schema$FieldValueUserListValue {
+    /**
+     * List of users.
+     */
+    values?: Schema$FieldValueUserValue[];
+  }
+  /**
+   * Setting a user value by selecting a single user.
+   */
+  export interface Schema$FieldValueUserValue {
+    /**
+     * Email of the user.
+     */
+    email?: string | null;
+  }
+  /**
    * JSON template for a parameter used in various reports.
    */
   export interface Schema$NestedParameter {
@@ -288,6 +450,40 @@ export namespace admin_reports_v1 {
      * String value of the parameter.
      */
     value?: string | null;
+  }
+  /**
+   * The reason why the label/field was applied.
+   */
+  export interface Schema$Reason {
+    /**
+     * The type of the reason.
+     */
+    reasonType?: string | null;
+  }
+  /**
+   * Details of the resource on which the action was performed.
+   */
+  export interface Schema$ResourceDetails {
+    /**
+     * List of labels applied on the resource
+     */
+    appliedLabels?: Schema$AppliedLabel[];
+    /**
+     * Identifier of the resource.
+     */
+    id?: string | null;
+    /**
+     * Defines relationship of the resource to the events
+     */
+    relation?: string | null;
+    /**
+     * Title of the resource. For instance, in case of a drive document, this would be the title of the document. In case of an email, this would be the subject.
+     */
+    title?: string | null;
+    /**
+     * Type of the resource - document, email, chat message
+     */
+    type?: string | null;
   }
   /**
    * JSON template for a usage report.

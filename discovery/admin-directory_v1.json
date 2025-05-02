@@ -98,7 +98,7 @@
   "canonicalName": "directory",
   "description": "Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/admin-sdk/",
+  "documentationLink": "https://developers.google.com/workspace/admin/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1011,7 +1011,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id}/printServers/{print_server.id}`",
+                      "description": "Identifier. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id}/printServers/{print_server.id}`",
                       "location": "path",
                       "pattern": "^customers/[^/]+/chrome/printServers/[^/]+$",
                       "required": true,
@@ -1284,7 +1284,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "The resource name of the Printer object, in the format customers/{customer-id}/printers/{printer-id} (During printer creation leave empty)",
+                      "description": "Identifier. The resource name of the Printer object, in the format customers/{customer-id}/printers/{printer-id} (During printer creation leave empty)",
                       "location": "path",
                       "pattern": "^customers/[^/]+/chrome/printers/[^/]+$",
                       "required": true,
@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20250217",
+  "revision": "20250421",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -7202,7 +7202,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id}/printServers/{print_server.id}`",
+          "description": "Identifier. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id}/printServers/{print_server.id}`",
           "type": "string"
         },
         "orgUnitId": {
@@ -7312,7 +7312,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the Printer object, in the format customers/{customer-id}/printers/{printer-id} (During printer creation leave empty)",
+          "description": "Identifier. The resource name of the Printer object, in the format customers/{customer-id}/printers/{printer-id} (During printer creation leave empty)",
           "type": "string"
         },
         "orgUnitId": {
