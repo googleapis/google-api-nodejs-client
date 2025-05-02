@@ -634,7 +634,7 @@ export namespace androidenterprise_v1 {
     topicName?: string | null;
   }
   /**
-   * An event generated when an enterprise is upgraded. **Note:** This feature is not generally available.
+   * An event generated when an enterprise is upgraded.
    */
   export interface Schema$EnterpriseUpgradeEvent {
     /**
@@ -980,7 +980,7 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string | null;
     /**
-     * Notifications about enterprise upgrade. **Note:** This feature is not generally available.
+     * Notifications about enterprise upgrade.
      */
     enterpriseUpgradeEvent?: Schema$EnterpriseUpgradeEvent;
     /**
@@ -2978,7 +2978,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Returns a service account and credentials. The service account can be bound to the enterprise by calling setAccount. The service account is unique to this enterprise and EMM, and will be deleted if the enterprise is unbound. The credentials contain private key data and are not stored server-side. This method can only be called after calling Enterprises.Enroll or Enterprises.CompleteSignup, and before Enterprises.SetAccount; at other times it will return an error. Subsequent calls after the first will generate a new, unique set of credentials, and invalidate the previously generated credentials. Once the service account is bound to the enterprise, it can be managed using the serviceAccountKeys resource.
+     * Returns a service account and credentials. The service account can be bound to the enterprise by calling setAccount. The service account is unique to this enterprise and EMM, and will be deleted if the enterprise is unbound. The credentials contain private key data and are not stored server-side. This method can only be called after calling Enterprises.Enroll or Enterprises.CompleteSignup, and before Enterprises.SetAccount; at other times it will return an error. Subsequent calls after the first will generate a new, unique set of credentials, and invalidate the previously generated credentials. Once the service account is bound to the enterprise, it can be managed using the serviceAccountKeys resource. *Note:* After you create a key, you might need to wait for 60 seconds or more before you perform another operation with the key. If you try to perform an operation with the key immediately after you create the key, and you receive an error, you can retry the request with exponential backoff .
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
