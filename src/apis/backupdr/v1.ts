@@ -735,7 +735,7 @@ export namespace backupdr_v1 {
    */
   export interface Schema$BackupRule {
     /**
-     * Required. Configures the duration for which backup data will be kept. It is defined in “days”. The value should be greater than or equal to minimum enforced retention of the backup vault. Minimum value is 1 and maximum value is 90 for hourly backups. Minimum value is 1 and maximum value is 90 for daily backups. Minimum value is 7 and maximum value is 186 for weekly backups. Minimum value is 30 and maximum value is 732 for monthly backups. Minimum value is 365 and maximum value is 36159 for yearly backups.
+     * Required. Configures the duration for which backup data will be kept. It is defined in “days”. The value should be greater than or equal to minimum enforced retention of the backup vault. Minimum value is 1 and maximum value is 90 for hourly backups. Minimum value is 1 and maximum value is 186 for daily backups. Minimum value is 7 and maximum value is 366 for weekly backups. Minimum value is 30 and maximum value is 732 for monthly backups. Minimum value is 365 and maximum value is 36159 for yearly backups.
      */
     backupRetentionDays?: number | null;
     /**
@@ -2466,6 +2466,10 @@ export namespace backupdr_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
@@ -6962,7 +6966,7 @@ export namespace backupdr_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will use 100 as default. Maximum value is 500 and values above 500 will be coerced to 500.
      */
     pageSize?: number;
     /**
