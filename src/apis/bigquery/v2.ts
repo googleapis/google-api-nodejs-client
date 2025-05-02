@@ -467,7 +467,7 @@ export namespace bigquery_v2 {
     biEngineReasons?: Schema$BiEngineReason[];
   }
   /**
-   * Configuration for BigLake managed tables.
+   * Configuration for BigQuery tables for Apache Iceberg (formerly BigLake managed tables.)
    */
   export interface Schema$BigLakeConfiguration {
     /**
@@ -4511,7 +4511,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$Table {
     /**
-     * Optional. Specifies the configuration of a BigLake managed table.
+     * Optional. Specifies the configuration of a BigQuery table for Apache Iceberg.
      */
     biglakeConfiguration?: Schema$BigLakeConfiguration;
     /**
