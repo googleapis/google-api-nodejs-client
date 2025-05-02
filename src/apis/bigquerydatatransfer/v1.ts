@@ -1131,7 +1131,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Datasources$Checkvalidcreds
     extends StandardParameters {
     /**
-     * Required. The data source in the form: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`.
+     * Required. The name of the data source. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/dataSources/{data_source_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
      */
     name?: string;
 
@@ -1143,7 +1143,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Datasources$Get
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
+     * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/dataSources/{data_source_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
      */
     name?: string;
   }
@@ -1558,6 +1558,10 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
+    /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
@@ -1874,7 +1878,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Datasources$Checkvalidcreds
     extends StandardParameters {
     /**
-     * Required. The data source in the form: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`.
+     * Required. The name of the data source. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/dataSources/{data_source_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
      */
     name?: string;
 
@@ -1886,7 +1890,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Datasources$Get
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
+     * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/dataSources/{data_source_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
      */
     name?: string;
   }
@@ -2461,7 +2465,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Start manual transfer runs to be executed now with schedule_time equal to current time. The transfer runs can be created for a time range where the run_time is between start_time (inclusive) and end_time (exclusive), or for a specific run_time.
+     * Manually initiates transfer runs. You can schedule these runs in two ways: 1. For a specific point in time using the 'requested_run_time' parameter. 2. For a period between 'start_time' (inclusive) and 'end_time' (exclusive). If scheduling a single run, it is set to execute immediately (schedule_time equals the current time). When scheduling multiple runs within a time range, the first run starts now, and subsequent runs are delayed by 15 seconds each.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2587,14 +2591,14 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
+     * Required. The name of the resource to delete. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Get
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
+     * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     name?: string;
   }
@@ -2613,7 +2617,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The BigQuery project id for which transfer configs should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
+     * Required. The BigQuery project id for which transfer configs should be returned. If you are using the regionless method, the location must be `US` and `parent` should be in the following form: * `projects/{project_id\} If you are using the regionalized method, `parent` should be in the following form: * `projects/{project_id\}/locations/{location_id\}`
      */
     parent?: string;
   }
@@ -2648,7 +2652,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns
     extends StandardParameters {
     /**
-     * Required. Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
+     * Required. Transfer configuration name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     parent?: string;
 
@@ -2660,7 +2664,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns
     extends StandardParameters {
     /**
-     * Required. Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
+     * Required. Transfer configuration name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     parent?: string;
 
@@ -2951,14 +2955,14 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
+     * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Get
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
+     * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     name?: string;
   }
@@ -2973,7 +2977,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
+     * Required. Name of transfer configuration for which transfer runs should be retrieved. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     parent?: string;
     /**
@@ -3103,7 +3107,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Transfer run name in the form: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
+     * Required. Transfer run name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     parent?: string;
   }
@@ -3658,7 +3662,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Start manual transfer runs to be executed now with schedule_time equal to current time. The transfer runs can be created for a time range where the run_time is between start_time (inclusive) and end_time (exclusive), or for a specific run_time.
+     * Manually initiates transfer runs. You can schedule these runs in two ways: 1. For a specific point in time using the 'requested_run_time' parameter. 2. For a period between 'start_time' (inclusive) and 'end_time' (exclusive). If scheduling a single run, it is set to execute immediately (schedule_time equals the current time). When scheduling multiple runs within a time range, the first run starts now, and subsequent runs are delayed by 15 seconds each.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3783,14 +3787,14 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
+     * Required. The name of the resource to delete. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Get
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
+     * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     name?: string;
   }
@@ -3809,7 +3813,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The BigQuery project id for which transfer configs should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
+     * Required. The BigQuery project id for which transfer configs should be returned. If you are using the regionless method, the location must be `US` and `parent` should be in the following form: * `projects/{project_id\} If you are using the regionalized method, `parent` should be in the following form: * `projects/{project_id\}/locations/{location_id\}`
      */
     parent?: string;
   }
@@ -3844,7 +3848,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Scheduleruns
     extends StandardParameters {
     /**
-     * Required. Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
+     * Required. Transfer configuration name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     parent?: string;
 
@@ -3856,7 +3860,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Startmanualruns
     extends StandardParameters {
     /**
-     * Required. Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
+     * Required. Transfer configuration name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     parent?: string;
 
@@ -4142,14 +4146,14 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Runs$Delete
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
+     * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Runs$Get
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
+     * Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     name?: string;
   }
@@ -4164,7 +4168,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
+     * Required. Name of transfer configuration for which transfer runs should be retrieved. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     parent?: string;
     /**
@@ -4294,7 +4298,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Transfer run name in the form: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
+     * Required. Transfer run name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     parent?: string;
   }
