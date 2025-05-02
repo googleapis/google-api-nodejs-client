@@ -1925,6 +1925,10 @@ export namespace gkeonprem_v1 {
      */
     description?: string | null;
     /**
+     * Enable advanced cluster.
+     */
+    enableAdvancedCluster?: boolean | null;
+    /**
      * Output only. The DNS name of VMware admin cluster's API server.
      */
     endpoint?: string | null;
@@ -2308,6 +2312,10 @@ export namespace gkeonprem_v1 {
      * Disable bundled ingress.
      */
     disableBundledIngress?: boolean | null;
+    /**
+     * Enable advanced cluster.
+     */
+    enableAdvancedCluster?: boolean | null;
     /**
      * Enable control plane V2. Default to false.
      */
@@ -3132,6 +3140,10 @@ export namespace gkeonprem_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
