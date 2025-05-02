@@ -931,31 +931,6 @@
   "revision": "20250609",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
-    "APILayerServer": {
-      "description": "The API layer server",
-      "id": "APILayerServer",
-      "properties": {
-        "name": {
-          "description": "Output only. The api layer name",
-          "readOnly": true,
-          "type": "string"
-        },
-        "osVersion": {
-          "description": "Output only. OS information",
-          "readOnly": true,
-          "type": "string"
-        },
-        "resources": {
-          "description": "Output only. resources in the component",
-          "items": {
-            "$ref": "CloudResource"
-          },
-          "readOnly": true,
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "AgentCommand": {
       "description": "* An AgentCommand specifies a one-time executable program for the agent to run.",
       "id": "AgentCommand",
@@ -1733,31 +1708,6 @@
       },
       "type": "object"
     },
-    "FrontEndServer": {
-      "description": "The front end server",
-      "id": "FrontEndServer",
-      "properties": {
-        "name": {
-          "description": "Output only. The frontend name",
-          "readOnly": true,
-          "type": "string"
-        },
-        "osVersion": {
-          "description": "Output only. OS information",
-          "readOnly": true,
-          "type": "string"
-        },
-        "resources": {
-          "description": "Output only. resources in the component",
-          "items": {
-            "$ref": "CloudResource"
-          },
-          "readOnly": true,
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GceInstanceFilter": {
       "description": "Message describing compute engine instance filter",
       "id": "GceInstanceFilter",
@@ -2070,23 +2020,6 @@
             "$ref": "ScannedResource"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "LoadBalancerServer": {
-      "description": "The load balancer for sqlserver",
-      "id": "LoadBalancerServer",
-      "properties": {
-        "ip": {
-          "description": "Output only. The IP address",
-          "readOnly": true,
-          "type": "string"
-        },
-        "vm": {
-          "description": "Output only. The VM name",
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"
@@ -3323,39 +3256,6 @@
       },
       "type": "object"
     },
-    "SqlserverWorkload": {
-      "description": "The body of sqlserver workload",
-      "id": "SqlserverWorkload",
-      "properties": {
-        "ags": {
-          "description": "Output only. The availability groups for sqlserver",
-          "items": {
-            "$ref": "AvailabilityGroup"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "cluster": {
-          "$ref": "Cluster",
-          "description": "Output only. The cluster for sqlserver",
-          "readOnly": true
-        },
-        "databases": {
-          "description": "Output only. The databases for sqlserver",
-          "items": {
-            "$ref": "Database"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "loadBalancerServer": {
-          "$ref": "LoadBalancerServer",
-          "description": "Output only. The load balancer for sqlserver",
-          "readOnly": true
-        }
-      },
-      "type": "object"
-    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -3404,33 +3304,6 @@
           "format": "int64",
           "readOnly": true,
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ThreeTierWorkload": {
-      "description": "The body of three tier workload",
-      "id": "ThreeTierWorkload",
-      "properties": {
-        "apiLayer": {
-          "$ref": "APILayerServer",
-          "description": "Output only. The API layer for three tier workload",
-          "readOnly": true
-        },
-        "backend": {
-          "$ref": "BackendServer",
-          "description": "Output only. The backend for three tier workload",
-          "readOnly": true
-        },
-        "endpoint": {
-          "description": "Output only. the workload endpoint",
-          "readOnly": true,
-          "type": "string"
-        },
-        "frontend": {
-          "$ref": "FrontEndServer",
-          "description": "Output only. The frontend for three tier workload",
-          "readOnly": true
         }
       },
       "type": "object"
