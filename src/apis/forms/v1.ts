@@ -382,19 +382,19 @@ export namespace forms_v1 {
      */
     linkedSheetId?: string | null;
     /**
-     * Output only. The publishing settings for a form. This field isn't set for legacy forms because they don't have the `publish_settings` field. All newly created forms support publish settings. Forms with `publish_settings` value set can call UpdatePublishSettings API to publish or unpublish the form.
+     * Output only. The publishing settings for a form. This field isn't set for legacy forms because they don't have the publish_settings field. All newly created forms support publish settings. Forms with publish_settings value set can call SetPublishSettings API to publish or unpublish the form.
      */
     publishSettings?: Schema$PublishSettings;
     /**
-     * Output only. The form URI to share with responders. This opens a page that allows the user to submit responses but not edit the questions.
+     * Output only. The form URI to share with responders. This opens a page that allows the user to submit responses but not edit the questions. For forms that have publish_settings value set, this is the published form URI.
      */
     responderUri?: string | null;
     /**
-     * Output only. The revision ID of the form. Used in the WriteControl in update requests to identify the revision on which the changes are based. The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the form has not changed. Conversely, a changed ID (for the same form and user) usually means the form has been updated; however, a changed ID can also be due to internal factors such as ID format changes.
+     * Output only. The revision ID of the form. Used in the WriteControl in update requests to identify the revision on which the changes are based. The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the form *content* has not changed. Conversely, a changed ID (for the same form and user) usually means the form *content* has been updated; however, a changed ID can also be due to internal factors such as ID format changes. Form content excludes form metadata, including: * sharing settings (who has access to the form) * publish_settings (if the form supports publishing and if it is published)
      */
     revisionId?: string | null;
     /**
-     * The form's settings. This must be updated with UpdateSettingsRequest; it is ignored during `forms.create` and UpdateFormInfoRequest.
+     * The form's settings. This must be updated with UpdateSettingsRequest; it is ignored during CreateForm and UpdateFormInfoRequest.
      */
     settings?: Schema$FormSettings;
   }
@@ -538,7 +538,7 @@ export namespace forms_v1 {
      */
     description?: string | null;
     /**
-     * Output only. The title of the document which is visible in Drive. If `Info.title` is empty, `document_title` may appear in its place in the Google Forms UI and be visible to responders. `document_title` can be set on create, but cannot be modified by a batchUpdate request. Please use the [Google Drive API](https://developers.google.com/drive/api/v3/reference/files/update) if you need to programmatically update `document_title`.
+     * Output only. The title of the document which is visible in Drive. If Info.title is empty, `document_title` may appear in its place in the Google Forms UI and be visible to responders. `document_title` can be set on create, but cannot be modified by a batchUpdate request. Please use the [Google Drive API](https://developers.google.com/drive/api/v3/reference/files/update) if you need to programmatically update `document_title`.
      */
     documentTitle?: string | null;
     /**
@@ -882,11 +882,11 @@ export namespace forms_v1 {
     updateMask?: string | null;
   }
   /**
-   * The response of a `SetPublishSettings` request.
+   * The response of a SetPublishSettings request.
    */
   export interface Schema$SetPublishSettingsResponse {
     /**
-     * Required. The ID of the Form. This is same as the `Form.form_id` field.
+     * Required. The ID of the Form. This is same as the Form.form_id field.
      */
     formId?: string | null;
     /**
@@ -1486,7 +1486,7 @@ export namespace forms_v1 {
   export interface Params$Resource$Forms$Setpublishsettings
     extends StandardParameters {
     /**
-     * Required. The ID of the form. You can get the id from `Form.form_id` field.
+     * Required. The ID of the form. You can get the id from Form.form_id field.
      */
     formId?: string;
 
