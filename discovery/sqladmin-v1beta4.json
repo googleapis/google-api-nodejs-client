@@ -396,7 +396,7 @@
           ]
         },
         "updateBackup": {
-          "description": "Updates the retention period and the description of the backup. You can use this API to update final backups only.",
+          "description": "This API updates the following: 1- retention period and description of backup in case of final backups only. 2- gcbdr_soft_delete_status of backup in case of GCBDR managed backups only.",
           "flatPath": "sql/v1beta4/projects/{projectsId}/backups/{backupsId}",
           "httpMethod": "PATCH",
           "id": "sql.backups.updateBackup",
@@ -412,7 +412,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "The list of fields that you can update. You can update only the description and retention period of the final backup.",
+              "description": "The list of fields that you can update. 1- You can update only the description and retention period for a final backup. 2- You can update only the gcbdr_soft_delete_status for GCBDR managed backup.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -1372,6 +1372,35 @@
           "path": "sql/v1beta4/projects/{project}/instances/{instance}",
           "request": {
             "$ref": "DatabaseInstance"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "pointInTimeRestore": {
+          "description": "Point in time restore for an instance managed by Google Cloud Backup and Disaster Recovery.",
+          "flatPath": "sql/v1beta4/projects/{projectsId}:pointInTimeRestore",
+          "httpMethod": "POST",
+          "id": "sql.instances.pointInTimeRestore",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. The parent resource where you created this instance. Format: projects/{project}",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "sql/v1beta4/{+parent}:pointInTimeRestore",
+          "request": {
+            "$ref": "PointInTimeRestoreContext"
           },
           "response": {
             "$ref": "Operation"
@@ -2565,7 +2594,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250427",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2681,7 +2710,7 @@
       "type": "object"
     },
     "Backup": {
-      "description": "A backup resource.",
+      "description": "A backup resource. Next ID: 30",
       "id": "Backup",
       "properties": {
         "backupInterval": {
@@ -2710,7 +2739,7 @@
           "type": "string"
         },
         "databaseVersion": {
-          "description": "Output only. The database version of the instance of when this backup was made.",
+          "description": "Output only. The database version of the instance of at the time this backup was made.",
           "enum": [
             "SQL_DATABASE_VERSION_UNSPECIFIED",
             "MYSQL_5_1",
@@ -2731,7 +2760,6 @@
             "MYSQL_8_0_35",
             "MYSQL_8_0_36",
             "MYSQL_8_0_37",
-            "MYSQL_8_0_38",
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
             "MYSQL_8_0_41",
@@ -2804,7 +2832,6 @@
             false,
             false,
             false,
-            false,
             false
           ],
           "enumDescriptions": [
@@ -2827,7 +2854,6 @@
             "The database major version is MySQL 8.0 and the minor version is 35.",
             "The database major version is MySQL 8.0 and the minor version is 36.",
             "The database major version is MySQL 8.0 and the minor version is 37.",
-            "The database major version is MySQL 8.0 and the minor version is 38.",
             "The database major version is MySQL 8.0 and the minor version is 39.",
             "The database major version is MySQL 8.0 and the minor version is 40.",
             "The database major version is MySQL 8.0 and the minor version is 41.",
@@ -2993,6 +3019,29 @@
           "$ref": "BackupRetentionSettings",
           "description": "Backup retention settings."
         },
+        "backupTier": {
+          "description": "Output only. Backup tier that manages the backups for the instance.",
+          "enum": [
+            "BACKUP_TIER_UNSPECIFIED",
+            "STANDARD",
+            "ADVANCED",
+            "ENHANCED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Instance is managed by Cloud SQL.",
+            "Deprecated: ADVANCED is deprecated. Please use ENHANCED instead.",
+            "Instance is managed by Google Cloud Backup and DR Service."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "binaryLogEnabled": {
           "description": "(MySQL only) Whether binary log is enabled. If backup configuration is disabled, binarylog must be disabled as well.",
           "type": "boolean"
@@ -3137,7 +3186,7 @@
           "type": "string"
         },
         "databaseVersion": {
-          "description": "Output only. The instance database version when this backup was made.",
+          "description": "Output only. The instance database version at the time this backup was made.",
           "enum": [
             "SQL_DATABASE_VERSION_UNSPECIFIED",
             "MYSQL_5_1",
@@ -3158,7 +3207,6 @@
             "MYSQL_8_0_35",
             "MYSQL_8_0_36",
             "MYSQL_8_0_37",
-            "MYSQL_8_0_38",
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
             "MYSQL_8_0_41",
@@ -3231,7 +3279,6 @@
             false,
             false,
             false,
-            false,
             false
           ],
           "enumDescriptions": [
@@ -3254,7 +3301,6 @@
             "The database major version is MySQL 8.0 and the minor version is 35.",
             "The database major version is MySQL 8.0 and the minor version is 36.",
             "The database major version is MySQL 8.0 and the minor version is 37.",
-            "The database major version is MySQL 8.0 and the minor version is 38.",
             "The database major version is MySQL 8.0 and the minor version is 39.",
             "The database major version is MySQL 8.0 and the minor version is 40.",
             "The database major version is MySQL 8.0 and the minor version is 41.",
@@ -3488,16 +3534,16 @@
       "type": "object"
     },
     "ConnectPoolNodeConfig": {
-      "description": "Details of a single node of a read pool.",
+      "description": "Details of a single read pool node of a read pool.",
       "id": "ConnectPoolNodeConfig",
       "properties": {
         "dnsName": {
-          "description": "Output only. The DNS name of the node.",
+          "description": "Output only. The DNS name of the read pool node.",
           "readOnly": true,
           "type": "string"
         },
         "dnsNames": {
-          "description": "Output only. The list of DNS names used by this instance.",
+          "description": "Output only. The list of DNS names used by this read pool node.",
           "items": {
             "$ref": "DnsNameMapping"
           },
@@ -3505,7 +3551,7 @@
           "type": "array"
         },
         "ipAddresses": {
-          "description": "Output only. Mappings containing IP addresses that can be used to connect to the node.",
+          "description": "Output only. Mappings containing IP addresses that can be used to connect to the read pool node.",
           "items": {
             "$ref": "IpMapping"
           },
@@ -3513,7 +3559,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. The name of the node. Doesn't include the project ID.",
+          "description": "Output only. The name of the read pool node. Doesn't include the project ID.",
           "readOnly": true,
           "type": "string"
         }
@@ -3575,7 +3621,6 @@
             "MYSQL_8_0_35",
             "MYSQL_8_0_36",
             "MYSQL_8_0_37",
-            "MYSQL_8_0_38",
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
             "MYSQL_8_0_41",
@@ -3648,7 +3693,6 @@
             false,
             false,
             false,
-            false,
             false
           ],
           "enumDescriptions": [
@@ -3671,7 +3715,6 @@
             "The database major version is MySQL 8.0 and the minor version is 35.",
             "The database major version is MySQL 8.0 and the minor version is 36.",
             "The database major version is MySQL 8.0 and the minor version is 37.",
-            "The database major version is MySQL 8.0 and the minor version is 38.",
             "The database major version is MySQL 8.0 and the minor version is 39.",
             "The database major version is MySQL 8.0 and the minor version is 40.",
             "The database major version is MySQL 8.0 and the minor version is 41.",
@@ -3725,12 +3768,12 @@
           "type": "string"
         },
         "nodeCount": {
-          "description": "The number of nodes in a read pool.",
+          "description": "The number of read pool nodes in a read pool.",
           "format": "int32",
           "type": "integer"
         },
         "nodes": {
-          "description": "Output only. Entries containing information about each node of the read pool.",
+          "description": "Output only. Entries containing information about each read pool node of the read pool.",
           "items": {
             "$ref": "ConnectPoolNodeConfig"
           },
@@ -3772,18 +3815,6 @@
       "description": "The managed connection pooling configuration.",
       "id": "ConnectionPoolConfig",
       "properties": {
-        "clientConnectionIdleTimeout": {
-          "deprecated": true,
-          "description": "Client idle timeout.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "connPoolSize": {
-          "deprecated": true,
-          "description": "Managed connection pool size.",
-          "format": "int32",
-          "type": "integer"
-        },
         "connectionPoolingEnabled": {
           "description": "Whether managed connection pooling is enabled.",
           "type": "boolean"
@@ -3794,39 +3825,6 @@
             "$ref": "ConnectionPoolFlags"
           },
           "type": "array"
-        },
-        "maxClientConnections": {
-          "deprecated": true,
-          "description": "Maximum number of client connections in connection pool.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "poolMode": {
-          "deprecated": true,
-          "description": "The managed connection pool mode for the instance.",
-          "enum": [
-            "POOL_MODE_UNSPECIFIED",
-            "SESSION",
-            "TRANSACTION"
-          ],
-          "enumDescriptions": [
-            "The pool mode is unknown.",
-            "The session mode for managed connection pooling.",
-            "The transaction(default) mode for managed connection pooling."
-          ],
-          "type": "string"
-        },
-        "queryWaitTimeout": {
-          "deprecated": true,
-          "description": "Query wait timeout.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "serverConnectionIdleTimeout": {
-          "deprecated": true,
-          "description": "Server idle timeout.",
-          "format": "google-duration",
-          "type": "string"
         }
       },
       "type": "object"
@@ -3991,7 +3989,6 @@
             "MYSQL_8_0_35",
             "MYSQL_8_0_36",
             "MYSQL_8_0_37",
-            "MYSQL_8_0_38",
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
             "MYSQL_8_0_41",
@@ -4064,7 +4061,6 @@
             false,
             false,
             false,
-            false,
             false
           ],
           "enumDescriptions": [
@@ -4087,7 +4083,6 @@
             "The database major version is MySQL 8.0 and the minor version is 35.",
             "The database major version is MySQL 8.0 and the minor version is 36.",
             "The database major version is MySQL 8.0 and the minor version is 37.",
-            "The database major version is MySQL 8.0 and the minor version is 38.",
             "The database major version is MySQL 8.0 and the minor version is 39.",
             "The database major version is MySQL 8.0 and the minor version is 40.",
             "The database major version is MySQL 8.0 and the minor version is 41.",
@@ -4182,7 +4177,7 @@
             "A regular Cloud SQL instance that is not replicating from a primary instance.",
             "An instance running on the customer's premises that is not managed by Cloud SQL.",
             "A Cloud SQL instance acting as a read-replica.",
-            "CloudSQL read pool."
+            "A Cloud SQL read pool."
           ],
           "type": "string"
         },
@@ -4221,12 +4216,12 @@
           "type": "string"
         },
         "nodeCount": {
-          "description": "The number of nodes in a read pool.",
+          "description": "The number of read pool nodes in a read pool.",
           "format": "int32",
           "type": "integer"
         },
         "nodes": {
-          "description": "Output only. Entries containing information about each node of the read pool.",
+          "description": "Output only. Entries containing information about each read pool node of the read pool.",
           "items": {
             "$ref": "PoolNodeConfig"
           },
@@ -4723,7 +4718,7 @@
           "type": "string"
         },
         "offload": {
-          "description": "Option for export offload.",
+          "description": "Whether to perform a serverless export.",
           "type": "boolean"
         },
         "sqlExportOptions": {
@@ -4748,7 +4743,7 @@
               "description": "Options for exporting from a Cloud SQL for PostgreSQL instance.",
               "properties": {
                 "clean": {
-                  "description": "Optional. Use this option to include DROP SQL statements. These statements are used to delete database objects before running the import operation.",
+                  "description": "Optional. Use this option to include DROP <object> SQL statements. Use these statements to delete database objects before running the import operation.",
                   "type": "boolean"
                 },
                 "ifExists": {
@@ -4875,7 +4870,6 @@
               "MYSQL_8_0_35",
               "MYSQL_8_0_36",
               "MYSQL_8_0_37",
-              "MYSQL_8_0_38",
               "MYSQL_8_0_39",
               "MYSQL_8_0_40",
               "MYSQL_8_0_41",
@@ -4948,7 +4942,6 @@
               false,
               false,
               false,
-              false,
               false
             ],
             "enumDescriptions": [
@@ -4971,7 +4964,6 @@
               "The database major version is MySQL 8.0 and the minor version is 35.",
               "The database major version is MySQL 8.0 and the minor version is 36.",
               "The database major version is MySQL 8.0 and the minor version is 37.",
-              "The database major version is MySQL 8.0 and the minor version is 38.",
               "The database major version is MySQL 8.0 and the minor version is 39.",
               "The database major version is MySQL 8.0 and the minor version is 40.",
               "The database major version is MySQL 8.0 and the minor version is 41.",
@@ -5582,6 +5574,10 @@
           "description": "The name of the backup that's used to restore a Cloud SQL instance: Format: projects/{project-id}/backups/{backup-uid}. Only one of restore_backup_context, backup, backupdr_backup can be passed to the input.",
           "type": "string"
         },
+        "backupdrBackup": {
+          "description": "The name of the backup that's used to restore a Cloud SQL instance: Format: \"projects/{project-id}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}/backups/{backup-uid}\". Only one of restore_backup_context, backup, backupdr_backup can be passed to the input.",
+          "type": "string"
+        },
         "restoreBackupContext": {
           "$ref": "RestoreBackupContext",
           "description": "Parameters required to perform the restore backup operation."
@@ -6184,7 +6180,7 @@
             "Deprecated: ADVANCED_BACKUP is deprecated. Use ENHANCED_BACKUP instead.",
             "Changes the BackupTier of a Cloud SQL instance.",
             "Creates a backup for an Enhanced BackupTier Cloud SQL instance.",
-            "Repairs entire read pool or specified nodes in the read pool.",
+            "Repairs entire read pool or specified read pool nodes in the read pool.",
             "Creates a Cloud SQL read pool instance."
           ],
           "type": "string"
@@ -6414,17 +6410,53 @@
       },
       "type": "object"
     },
+    "PointInTimeRestoreContext": {
+      "description": "Context to perform a point-in-time restore of an instance managed by Google Cloud Backup and Disaster Recovery.",
+      "id": "PointInTimeRestoreContext",
+      "properties": {
+        "allocatedIpRange": {
+          "description": "Optional. The name of the allocated IP range for the internal IP Cloud SQL instance. For example: \"google-managed-services-default\". If you set this, then Cloud SQL creates the IP address for the cloned instance in the allocated range. This range must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035) standards. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use. http://go/speckle-subnet-picker-clone",
+          "type": "string"
+        },
+        "datasource": {
+          "description": "The Google Cloud Backup and Disaster Recovery Datasource URI. Format: projects/{project}/locations/{region}/backupVaults/{backupvault}/dataSources/{datasource}.",
+          "type": "string"
+        },
+        "pointInTime": {
+          "description": "Required. The date and time to which you want to restore the instance.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "preferredSecondaryZone": {
+          "description": "Optional. Point-in-time recovery of a regional instance in the specified zones. If not specified, clone to the same secondary zone as the source instance. This value cannot be the same as the preferred_zone field.",
+          "type": "string"
+        },
+        "preferredZone": {
+          "description": "Optional. Point-in-time recovery of an instance to the specified zone. If no zone is specified, then clone to the same primary zone as the source instance.",
+          "type": "string"
+        },
+        "privateNetwork": {
+          "description": "Optional. The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, `/projects/myProject/global/networks/default`.",
+          "type": "string"
+        },
+        "targetInstance": {
+          "description": "Target instance name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PoolNodeConfig": {
-      "description": "Details of a single node of a read pool.",
+      "description": "Details of a single read pool node of a read pool.",
       "id": "PoolNodeConfig",
       "properties": {
         "dnsName": {
-          "description": "Output only. The DNS name of the node.",
+          "description": "Output only. The DNS name of the read pool node.",
           "readOnly": true,
           "type": "string"
         },
         "dnsNames": {
-          "description": "Output only. The list of DNS names used by this node.",
+          "description": "Output only. The list of DNS names used by this read pool node.",
           "items": {
             "$ref": "DnsNameMapping"
           },
@@ -6432,12 +6464,12 @@
           "type": "array"
         },
         "gceZone": {
-          "description": "Output only. The serving zone of the node.",
+          "description": "Output only. The zone of the read pool node.",
           "readOnly": true,
           "type": "string"
         },
         "ipAddresses": {
-          "description": "Output only. Mappings containing IP addresses that can be used to connect to the node.",
+          "description": "Output only. Mappings containing IP addresses that can be used to connect to the read pool node.",
           "items": {
             "$ref": "IpMapping"
           },
@@ -6445,12 +6477,12 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. The name of the node, to be used for retrieving metrics and logs for the node.",
+          "description": "Output only. The name of the read pool node, to be used for retrieving metrics and logs.",
           "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Output only. The current state of the node.",
+          "description": "Output only. The current state of the read pool node.",
           "enum": [
             "SQL_INSTANCE_STATE_UNSPECIFIED",
             "RUNNABLE",
@@ -6850,7 +6882,7 @@
           "type": "boolean"
         },
         "enableGoogleMlIntegration": {
-          "description": "Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for PostgreSQL instances.",
+          "description": "Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for MySQL and Cloud SQL for PostgreSQL instances.",
           "type": "boolean"
         },
         "insightsConfig": {

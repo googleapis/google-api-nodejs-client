@@ -230,7 +230,7 @@ export namespace sqladmin_v1 {
     name?: string | null;
   }
   /**
-   * A backup resource.
+   * A backup resource. Next ID: 30
    */
   export interface Schema$Backup {
     /**
@@ -246,7 +246,7 @@ export namespace sqladmin_v1 {
      */
     backupRun?: string | null;
     /**
-     * Output only. The database version of the instance of when this backup was made.
+     * Output only. The database version of the instance of at the time this backup was made.
      */
     databaseVersion?: string | null;
     /**
@@ -334,6 +334,10 @@ export namespace sqladmin_v1 {
      * Backup retention settings.
      */
     backupRetentionSettings?: Schema$BackupRetentionSettings;
+    /**
+     * Output only. Backup tier that manages the backups for the instance.
+     */
+    backupTier?: string | null;
     /**
      * (MySQL only) Whether binary log is enabled. If backup configuration is disabled, binarylog must be disabled as well.
      */
@@ -423,7 +427,7 @@ export namespace sqladmin_v1 {
      */
     backupKind?: string | null;
     /**
-     * Output only. The instance database version when this backup was made.
+     * Output only. The instance database version at the time this backup was made.
      */
     databaseVersion?: string | null;
     /**
@@ -575,37 +579,13 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$ConnectionPoolConfig {
     /**
-     * Client idle timeout.
-     */
-    clientConnectionIdleTimeout?: string | null;
-    /**
      * Whether managed connection pooling is enabled.
      */
     connectionPoolingEnabled?: boolean | null;
     /**
-     * Managed connection pool size.
-     */
-    connPoolSize?: number | null;
-    /**
      * Optional. List of connection pool configuration flags
      */
     flags?: Schema$ConnectionPoolFlags[];
-    /**
-     * Maximum number of client connections in connection pool.
-     */
-    maxClientConnections?: number | null;
-    /**
-     * The managed connection pool mode for the instance.
-     */
-    poolMode?: string | null;
-    /**
-     * Query wait timeout.
-     */
-    queryWaitTimeout?: string | null;
-    /**
-     * Server idle timeout.
-     */
-    serverConnectionIdleTimeout?: string | null;
   }
   /**
    * Connection pool flags for Cloud SQL instances managed connection pool configuration.
@@ -621,23 +601,23 @@ export namespace sqladmin_v1 {
     value?: string | null;
   }
   /**
-   * Details of a single node of a read pool.
+   * Details of a single read pool node of a read pool.
    */
   export interface Schema$ConnectPoolNodeConfig {
     /**
-     * Output only. The DNS name of the node.
+     * Output only. The DNS name of the read pool node.
      */
     dnsName?: string | null;
     /**
-     * Output only. The list of DNS names used by this node.
+     * Output only. The list of DNS names used by this read pool node.
      */
     dnsNames?: Schema$DnsNameMapping[];
     /**
-     * Output only. Mappings containing IP addresses that can be used to connect to the node.
+     * Output only. Mappings containing IP addresses that can be used to connect to the read pool node.
      */
     ipAddresses?: Schema$IpMapping[];
     /**
-     * Output only. The name of the node. Doesn't include the project ID.
+     * Output only. The name of the read pool node. Doesn't include the project ID.
      */
     name?: string | null;
   }
@@ -674,11 +654,11 @@ export namespace sqladmin_v1 {
      */
     kind?: string | null;
     /**
-     * The number of nodes in a read pool.
+     * The number of read pool nodes in a read pool.
      */
     nodeCount?: number | null;
     /**
-     * Output only. Entries containing information about each node of the read pool.
+     * Output only. Entries containing information about each read pool node of the read pool.
      */
     nodes?: Schema$ConnectPoolNodeConfig[];
     /**
@@ -850,11 +830,11 @@ export namespace sqladmin_v1 {
      */
     name?: string | null;
     /**
-     * The number of nodes in a read pool.
+     * The number of read pool nodes in a read pool.
      */
     nodeCount?: number | null;
     /**
-     * Output only. Entries containing information about each node of the read pool.
+     * Output only. Entries containing information about each read pool node of the read pool.
      */
     nodes?: Schema$PoolNodeConfig[];
     /**
@@ -1160,7 +1140,7 @@ export namespace sqladmin_v1 {
      */
     kind?: string | null;
     /**
-     * Option for export offload.
+     * Whether to perform a serverless export.
      */
     offload?: boolean | null;
     /**
@@ -1587,6 +1567,10 @@ export namespace sqladmin_v1 {
      * The name of the backup that's used to restore a Cloud SQL instance: Format: projects/{project-id\}/backups/{backup-uid\}. Only one of restore_backup_context, backup, backupdr_backup can be passed to the input.
      */
     backup?: string | null;
+    /**
+     * The name of the backup that's used to restore a Cloud SQL instance: Format: "projects/{project-id\}/locations/{location\}/backupVaults/{backupvault\}/dataSources/{datasource\}/backups/{backup-uid\}". Only one of restore_backup_context, backup, backupdr_backup can be passed to the input.
+     */
+    backupdrBackup?: string | null;
     /**
      * Parameters required to perform the restore backup operation.
      */
@@ -2082,31 +2066,64 @@ export namespace sqladmin_v1 {
     targetSizeGb?: string | null;
   }
   /**
-   * Details of a single node of a read pool.
+   * The context to perform a point-in-time recovery of an instance managed by Google Cloud Backup and Disaster Recovery.
+   */
+  export interface Schema$PointInTimeRestoreContext {
+    /**
+     * Optional. The name of the allocated IP range for the internal IP Cloud SQL instance. For example: "google-managed-services-default". If you set this, then Cloud SQL creates the IP address for the cloned instance in the allocated range. This range must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035) standards. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use. http://go/speckle-subnet-picker-clone
+     */
+    allocatedIpRange?: string | null;
+    /**
+     * The Google Cloud Backup and Disaster Recovery Datasource URI. Format: projects/{project\}/locations/{region\}/backupVaults/{backupvault\}/dataSources/{datasource\}.
+     */
+    datasource?: string | null;
+    /**
+     * Required. The date and time to which you want to restore the instance.
+     */
+    pointInTime?: string | null;
+    /**
+     * Optional. Point-in-time recovery of a regional instance in the specified zones. If not specified, clone to the same secondary zone as the source instance. This value cannot be the same as the preferred_zone field.
+     */
+    preferredSecondaryZone?: string | null;
+    /**
+     * Optional. Point-in-time recovery of an instance to the specified zone. If no zone is specified, then clone to the same primary zone as the source instance.
+     */
+    preferredZone?: string | null;
+    /**
+     * Optional. The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, `/projects/myProject/global/networks/default`.
+     */
+    privateNetwork?: string | null;
+    /**
+     * Target instance name.
+     */
+    targetInstance?: string | null;
+  }
+  /**
+   * Details of a single read pool node of a read pool.
    */
   export interface Schema$PoolNodeConfig {
     /**
-     * Output only. The DNS name of the node.
+     * Output only. The DNS name of the read pool node.
      */
     dnsName?: string | null;
     /**
-     * Output only. The list of DNS names used by this node.
+     * Output only. The list of DNS names used by this read pool node.
      */
     dnsNames?: Schema$DnsNameMapping[];
     /**
-     * Output only. The serving zone of the node.
+     * Output only. The zone of the read pool node.
      */
     gceZone?: string | null;
     /**
-     * Output only. Mappings containing IP addresses that can be used to connect to the node.
+     * Output only. Mappings containing IP addresses that can be used to connect to the read pool node.
      */
     ipAddresses?: Schema$IpMapping[];
     /**
-     * Output only. The name of the node, to be used for retrieving metrics and logs for the node.
+     * Output only. The name of the read pool node, to be used for retrieving metrics and logs.
      */
     name?: string | null;
     /**
-     * Output only. The current state of the node.
+     * Output only. The current state of the read pool node.
      */
     state?: string | null;
   }
@@ -2345,7 +2362,7 @@ export namespace sqladmin_v1 {
      */
     enableDataplexIntegration?: boolean | null;
     /**
-     * Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for PostgreSQL instances.
+     * Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for MySQL and Cloud SQL for PostgreSQL instances.
      */
     enableGoogleMlIntegration?: boolean | null;
     /**
@@ -3715,7 +3732,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Updates the retention period and description of the backup. You can use this API to update final backups only.
+     * This API updates the following: 1- retention period and description of backup in case of final backups only. 2- gcbdr_soft_delete_status of backup in case of GCBDR managed backups only.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3852,7 +3869,7 @@ export namespace sqladmin_v1 {
      */
     name?: string;
     /**
-     * The list of fields that you can update. You can update only the description and retention period of the final backup.
+     * The list of fields that you can update. 1- You can update only the description and retention period for a final backup. 2- You can update only the gcbdr_soft_delete_status for GCBDR managed backup.
      */
     updateMask?: string;
 
@@ -6245,6 +6262,94 @@ export namespace sqladmin_v1 {
     }
 
     /**
+     * Point in time restore for an instance managed by Google Cloud Backup and Disaster Recovery.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pointInTimeRestore(
+      params: Params$Resource$Instances$Pointintimerestore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pointInTimeRestore(
+      params?: Params$Resource$Instances$Pointintimerestore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    pointInTimeRestore(
+      params: Params$Resource$Instances$Pointintimerestore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pointInTimeRestore(
+      params: Params$Resource$Instances$Pointintimerestore,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pointInTimeRestore(
+      params: Params$Resource$Instances$Pointintimerestore,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pointInTimeRestore(callback: BodyResponseCallback<Schema$Operation>): void;
+    pointInTimeRestore(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Pointintimerestore
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Pointintimerestore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Pointintimerestore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:pointInTimeRestore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Promotes the read replica instance to be an independent Cloud SQL primary instance. Using this operation might cause your instance to restart.
      *
      * @param params - Parameters for request
@@ -7626,6 +7731,18 @@ export namespace sqladmin_v1 {
      * Request body metadata
      */
     requestBody?: Schema$DatabaseInstance;
+  }
+  export interface Params$Resource$Instances$Pointintimerestore
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where you created this instance. Format: projects/{project\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PointInTimeRestoreContext;
   }
   export interface Params$Resource$Instances$Promotereplica
     extends StandardParameters {
