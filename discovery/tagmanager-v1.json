@@ -1932,7 +1932,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250409",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -2391,14 +2391,6 @@
           },
           "type": "array"
         },
-        "macro": {
-          "deprecated": true,
-          "description": "The macros in the container that this version was taken from.",
-          "items": {
-            "$ref": "Macro"
-          },
-          "type": "array"
-        },
         "name": {
           "description": "Container version display name.",
           "type": "string"
@@ -2406,14 +2398,6 @@
         "notes": {
           "description": "User notes on how to apply this container version in the container.",
           "type": "string"
-        },
-        "rule": {
-          "deprecated": true,
-          "description": "The rules in the container that this version was taken from.",
-          "items": {
-            "$ref": "Rule"
-          },
-          "type": "array"
         },
         "tag": {
           "description": "The tags in the container that this version was taken from.",
@@ -2461,16 +2445,6 @@
         },
         "name": {
           "description": "Container version display name.",
-          "type": "string"
-        },
-        "numMacros": {
-          "deprecated": true,
-          "description": "Number of macros in the container version.",
-          "type": "string"
-        },
-        "numRules": {
-          "deprecated": true,
-          "description": "Number of rules in the container version.",
           "type": "string"
         },
         "numTags": {
@@ -2777,76 +2751,6 @@
       },
       "type": "object"
     },
-    "Macro": {
-      "description": "Represents a Google Tag Manager Macro.",
-      "id": "Macro",
-      "properties": {
-        "accountId": {
-          "description": "GTM Account ID.",
-          "type": "string"
-        },
-        "containerId": {
-          "description": "GTM Container ID.",
-          "type": "string"
-        },
-        "disablingRuleId": {
-          "description": "For mobile containers only: A list of rule IDs for disabling conditional macros; the macro is enabled if one of the enabling rules is true while all the disabling rules are false. Treated as an unordered set.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "enablingRuleId": {
-          "description": "For mobile containers only: A list of rule IDs for enabling conditional macros; the macro is enabled if one of the enabling rules is true while all the disabling rules are false. Treated as an unordered set.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "fingerprint": {
-          "description": "The fingerprint of the GTM Macro as computed at storage time. This value is recomputed whenever the macro is modified.",
-          "type": "string"
-        },
-        "macroId": {
-          "description": "The Macro ID uniquely identifies the GTM Macro.",
-          "type": "string"
-        },
-        "name": {
-          "description": "Macro display name.",
-          "type": "string"
-        },
-        "notes": {
-          "description": "User notes on how to apply this macro in the container.",
-          "type": "string"
-        },
-        "parameter": {
-          "description": "The macro's parameters.",
-          "items": {
-            "$ref": "Parameter"
-          },
-          "type": "array"
-        },
-        "parentFolderId": {
-          "description": "Parent folder id.",
-          "type": "string"
-        },
-        "scheduleEndMs": {
-          "description": "The end timestamp in milliseconds to schedule a macro.",
-          "format": "int64",
-          "type": "string"
-        },
-        "scheduleStartMs": {
-          "description": "The start timestamp in milliseconds to schedule a macro.",
-          "format": "int64",
-          "type": "string"
-        },
-        "type": {
-          "description": "GTM Macro Type.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "Parameter": {
       "description": "Represents a Google Tag Manager Parameter.",
       "id": "Parameter",
@@ -2913,44 +2817,6 @@
       },
       "type": "object"
     },
-    "Rule": {
-      "description": "Represents a Google Tag Manager Rule.",
-      "id": "Rule",
-      "properties": {
-        "accountId": {
-          "description": "GTM Account ID.",
-          "type": "string"
-        },
-        "condition": {
-          "description": "The list of conditions that make up this rule (implicit AND between them).",
-          "items": {
-            "$ref": "Condition"
-          },
-          "type": "array"
-        },
-        "containerId": {
-          "description": "GTM Container ID.",
-          "type": "string"
-        },
-        "fingerprint": {
-          "description": "The fingerprint of the GTM Rule as computed at storage time. This value is recomputed whenever the rule is modified.",
-          "type": "string"
-        },
-        "name": {
-          "description": "Rule display name.",
-          "type": "string"
-        },
-        "notes": {
-          "description": "User notes on how to apply this rule in the container.",
-          "type": "string"
-        },
-        "ruleId": {
-          "description": "The Rule ID uniquely identifies the GTM Rule.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "SetupTag": {
       "id": "SetupTag",
       "properties": {
@@ -2973,14 +2839,6 @@
           "description": "GTM Account ID.",
           "type": "string"
         },
-        "blockingRuleId": {
-          "deprecated": true,
-          "description": "Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "blockingTriggerId": {
           "description": "Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire.",
           "items": {
@@ -2995,14 +2853,6 @@
         "fingerprint": {
           "description": "The fingerprint of the GTM Tag as computed at storage time. This value is recomputed whenever the tag is modified.",
           "type": "string"
-        },
-        "firingRuleId": {
-          "deprecated": true,
-          "description": "Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         },
         "firingTriggerId": {
           "description": "Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its blockingTriggerIds (if any specified) are false.",

@@ -262,10 +262,6 @@ export namespace tagmanager_v1 {
      */
     folder?: Schema$Folder[];
     /**
-     * The macros in the container that this version was taken from.
-     */
-    macro?: Schema$Macro[];
-    /**
      * Container version display name.
      */
     name?: string | null;
@@ -273,10 +269,6 @@ export namespace tagmanager_v1 {
      * User notes on how to apply this container version in the container.
      */
     notes?: string | null;
-    /**
-     * The rules in the container that this version was taken from.
-     */
-    rule?: Schema$Rule[];
     /**
      * The tags in the container that this version was taken from.
      */
@@ -314,14 +306,6 @@ export namespace tagmanager_v1 {
      * Container version display name.
      */
     name?: string | null;
-    /**
-     * Number of macros in the container version.
-     */
-    numMacros?: string | null;
-    /**
-     * Number of rules in the container version.
-     */
-    numRules?: string | null;
     /**
      * Number of tags in the container version.
      */
@@ -543,63 +527,6 @@ export namespace tagmanager_v1 {
     variables?: Schema$Variable[];
   }
   /**
-   * Represents a Google Tag Manager Macro.
-   */
-  export interface Schema$Macro {
-    /**
-     * GTM Account ID.
-     */
-    accountId?: string | null;
-    /**
-     * GTM Container ID.
-     */
-    containerId?: string | null;
-    /**
-     * For mobile containers only: A list of rule IDs for disabling conditional macros; the macro is enabled if one of the enabling rules is true while all the disabling rules are false. Treated as an unordered set.
-     */
-    disablingRuleId?: string[] | null;
-    /**
-     * For mobile containers only: A list of rule IDs for enabling conditional macros; the macro is enabled if one of the enabling rules is true while all the disabling rules are false. Treated as an unordered set.
-     */
-    enablingRuleId?: string[] | null;
-    /**
-     * The fingerprint of the GTM Macro as computed at storage time. This value is recomputed whenever the macro is modified.
-     */
-    fingerprint?: string | null;
-    /**
-     * The Macro ID uniquely identifies the GTM Macro.
-     */
-    macroId?: string | null;
-    /**
-     * Macro display name.
-     */
-    name?: string | null;
-    /**
-     * User notes on how to apply this macro in the container.
-     */
-    notes?: string | null;
-    /**
-     * The macro's parameters.
-     */
-    parameter?: Schema$Parameter[];
-    /**
-     * Parent folder id.
-     */
-    parentFolderId?: string | null;
-    /**
-     * The end timestamp in milliseconds to schedule a macro.
-     */
-    scheduleEndMs?: string | null;
-    /**
-     * The start timestamp in milliseconds to schedule a macro.
-     */
-    scheduleStartMs?: string | null;
-    /**
-     * GTM Macro Type.
-     */
-    type?: string | null;
-  }
-  /**
    * Represents a Google Tag Manager Parameter.
    */
   export interface Schema$Parameter {
@@ -637,39 +564,6 @@ export namespace tagmanager_v1 {
      */
     containerVersion?: Schema$ContainerVersion;
   }
-  /**
-   * Represents a Google Tag Manager Rule.
-   */
-  export interface Schema$Rule {
-    /**
-     * GTM Account ID.
-     */
-    accountId?: string | null;
-    /**
-     * The list of conditions that make up this rule (implicit AND between them).
-     */
-    condition?: Schema$Condition[];
-    /**
-     * GTM Container ID.
-     */
-    containerId?: string | null;
-    /**
-     * The fingerprint of the GTM Rule as computed at storage time. This value is recomputed whenever the rule is modified.
-     */
-    fingerprint?: string | null;
-    /**
-     * Rule display name.
-     */
-    name?: string | null;
-    /**
-     * User notes on how to apply this rule in the container.
-     */
-    notes?: string | null;
-    /**
-     * The Rule ID uniquely identifies the GTM Rule.
-     */
-    ruleId?: string | null;
-  }
   export interface Schema$SetupTag {
     /**
      * If true, fire the main tag if and only if the setup tag fires successfully. If false, fire the main tag regardless of setup tag firing status.
@@ -689,10 +583,6 @@ export namespace tagmanager_v1 {
      */
     accountId?: string | null;
     /**
-     * Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire.
-     */
-    blockingRuleId?: string[] | null;
-    /**
      * Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire.
      */
     blockingTriggerId?: string[] | null;
@@ -704,10 +594,6 @@ export namespace tagmanager_v1 {
      * The fingerprint of the GTM Tag as computed at storage time. This value is recomputed whenever the tag is modified.
      */
     fingerprint?: string | null;
-    /**
-     * Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false.
-     */
-    firingRuleId?: string[] | null;
     /**
      * Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its blockingTriggerIds (if any specified) are false.
      */
