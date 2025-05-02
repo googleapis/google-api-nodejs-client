@@ -7799,6 +7799,20 @@
           "description": "Optional. The host from which the user can connect. For `insert` operations, host defaults to an empty string. For `update` operations, host is specified as part of the request URL. The host name cannot be updated after insertion. For a MySQL instance, it's required; for a PostgreSQL or SQL Server instance, it's optional.",
           "type": "string"
         },
+        "iamStatus": {
+          "description": "Indicates if user is active for IAM Authentication.",
+          "enum": [
+            "IAM_STATUS_UNSPECIFIED",
+            "INACTIVE",
+            "ACTIVE"
+          ],
+          "enumDescriptions": [
+            "The default value for users that are not of type CLOUD_IAM_GROUP. Only CLOUD_IAM_GROUP users will be inactive/active. Will not display any value in UI.",
+            "User is not available for IAM Authentication.",
+            "User is available for IAM Authentication."
+          ],
+          "type": "string"
+        },
         "instance": {
           "description": "The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for `update` because it is already specified on the URL.",
           "type": "string"

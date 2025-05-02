@@ -2887,6 +2887,10 @@ export namespace sqladmin_v1 {
      */
     host?: string | null;
     /**
+     * Indicates if user is active for IAM Authentication.
+     */
+    iamStatus?: string | null;
+    /**
      * The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for `update` because it is already specified on the URL.
      */
     instance?: string | null;
