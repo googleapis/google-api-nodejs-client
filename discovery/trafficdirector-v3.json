@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20250206",
+  "revision": "20250423",
   "rootUrl": "https://trafficdirector.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1102,7 +1102,7 @@
       "type": "object"
     },
     "SocketAddress": {
-      "description": "[#next-free-field: 7]",
+      "description": "[#next-free-field: 8]",
       "id": "SocketAddress",
       "properties": {
         "address": {
@@ -1115,6 +1115,10 @@
         },
         "namedPort": {
           "description": "This is only valid if :ref:`resolver_name ` is specified below and the named resolver is capable of named port resolution.",
+          "type": "string"
+        },
+        "networkNamespaceFilepath": {
+          "description": "The Linux network namespace to bind the socket to. If this is set, Envoy will create the socket in the specified network namespace. Only supported on Linux. [#not-implemented-hide:]",
           "type": "string"
         },
         "portValue": {
