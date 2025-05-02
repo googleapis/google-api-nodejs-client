@@ -425,13 +425,9 @@ export namespace places_v1 {
      */
     content?: Schema$GoogleTypeLocalizedText;
     /**
-     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. References that are related to this block of content.
+     * The list of resource names of the referenced places. This name can be used in other APIs that accept Place resource names.
      */
-    references?: Schema$GoogleMapsPlacesV1References;
-    /**
-     * The topic of the content, for example "overview" or "restaurant".
-     */
-    topic?: string | null;
+    referencedPlaces?: string[] | null;
   }
   /**
    * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Content that is contextual to the place query.
@@ -642,10 +638,6 @@ export namespace places_v1 {
      */
     allowsDogs?: boolean | null;
     /**
-     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the area that the place is in.
-     */
-    areaSummary?: Schema$GoogleMapsPlacesV1PlaceAreaSummary;
-    /**
      * A set of data provider that must be shown with this result.
      */
     attributions?: Schema$GoogleMapsPlacesV1PlaceAttribution[];
@@ -686,6 +678,10 @@ export namespace places_v1 {
      */
     editorialSummary?: Schema$GoogleTypeLocalizedText;
     /**
+     * The summary of amenities near the EV charging station.
+     */
+    evChargeAmenitySummary?: Schema$GoogleMapsPlacesV1PlaceEvChargeAmenitySummary;
+    /**
      * Information of ev charging options.
      */
     evChargeOptions?: Schema$GoogleMapsPlacesV1EVChargeOptions;
@@ -698,7 +694,7 @@ export namespace places_v1 {
      */
     fuelOptions?: Schema$GoogleMapsPlacesV1FuelOptions;
     /**
-     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the place.
+     * AI-generated summary of the place.
      */
     generativeSummary?: Schema$GoogleMapsPlacesV1PlaceGenerativeSummary;
     /**
@@ -758,6 +754,10 @@ export namespace places_v1 {
      */
     nationalPhoneNumber?: string | null;
     /**
+     * A summary of points of interest near the place.
+     */
+    neighborhoodSummary?: Schema$GoogleMapsPlacesV1PlaceNeighborhoodSummary;
+    /**
      * Place provides outdoor seating.
      */
     outdoorSeating?: boolean | null;
@@ -806,7 +806,7 @@ export namespace places_v1 {
      */
     rating?: number | null;
     /**
-     * The regular hours of operation. Note that if a place is always open (24 hours), the `close` field will not be set. Clients can rely on always open (24 hours) being represented as an `open` period containing `day` with value `0`, `hour` with value `0`, and `minute` with value `0`.
+     * The regular hours of operation. Note that if a place is always open (24 hours), the `close` field will not be set. Clients can rely on always open (24 hours) being represented as an [`open`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Period) period containing [`day`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`, [`hour`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`, and [`minute`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`.
      */
     regularOpeningHours?: Schema$GoogleMapsPlacesV1PlaceOpeningHours;
     /**
@@ -825,6 +825,10 @@ export namespace places_v1 {
      * List of reviews about this place, sorted by relevance. A maximum of 5 reviews can be returned.
      */
     reviews?: Schema$GoogleMapsPlacesV1Review[];
+    /**
+     * AI-generated summary of the place using user reviews.
+     */
+    reviewSummary?: Schema$GoogleMapsPlacesV1PlaceReviewSummary;
     /**
      * Specifies if the place serves beer.
      */
@@ -870,7 +874,7 @@ export namespace places_v1 {
      */
     shortFormattedAddress?: string | null;
     /**
-     * A list of sub destinations related to the place.
+     * A list of sub-destinations related to the place.
      */
     subDestinations?: Schema$GoogleMapsPlacesV1PlaceSubDestination[];
     /**
@@ -945,19 +949,6 @@ export namespace places_v1 {
     types?: string[] | null;
   }
   /**
-   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the area that the place is in.
-   */
-  export interface Schema$GoogleMapsPlacesV1PlaceAreaSummary {
-    /**
-     * Content blocks that compose the area summary. Each block has a separate topic about the area.
-     */
-    contentBlocks?: Schema$GoogleMapsPlacesV1ContentBlock[];
-    /**
-     * A link where users can flag a problem with the summary.
-     */
-    flagContentUri?: string | null;
-  }
-  /**
    * Information about data providers of this place.
    */
   export interface Schema$GoogleMapsPlacesV1PlaceAttribution {
@@ -984,17 +975,42 @@ export namespace places_v1 {
     name?: string | null;
   }
   /**
-   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the place.
+   * The summary of amenities near the EV charging station. This only applies to places with type `electric_vehicle_charging_station`. The `overview` field is guaranteed to be provided while the other fields are optional.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceEvChargeAmenitySummary {
+    /**
+     * A summary of the nearby coffee options.
+     */
+    coffee?: Schema$GoogleMapsPlacesV1ContentBlock;
+    /**
+     * The AI disclosure message "Summarized with Gemini" (and its localized variants). This will be in the language specified in the request if available.
+     */
+    disclosureText?: Schema$GoogleTypeLocalizedText;
+    /**
+     * A link where users can flag a problem with the summary.
+     */
+    flagContentUri?: string | null;
+    /**
+     * An overview of the available amenities. This is guaranteed to be provided.
+     */
+    overview?: Schema$GoogleMapsPlacesV1ContentBlock;
+    /**
+     * A summary of the nearby restaurants.
+     */
+    restaurant?: Schema$GoogleMapsPlacesV1ContentBlock;
+    /**
+     * A summary of the nearby gas stations.
+     */
+    store?: Schema$GoogleMapsPlacesV1ContentBlock;
+  }
+  /**
+   * AI-generated summary of the place.
    */
   export interface Schema$GoogleMapsPlacesV1PlaceGenerativeSummary {
     /**
-     * The detailed description of the place.
+     * The AI disclosure message "Summarized with Gemini" (and its localized variants). This will be in the language specified in the request if available.
      */
-    description?: Schema$GoogleTypeLocalizedText;
-    /**
-     * A link where users can flag a problem with the description summary.
-     */
-    descriptionFlagContentUri?: string | null;
+    disclosureText?: Schema$GoogleTypeLocalizedText;
     /**
      * The overview of the place.
      */
@@ -1003,10 +1019,6 @@ export namespace places_v1 {
      * A link where users can flag a problem with the overview summary.
      */
     overviewFlagContentUri?: string | null;
-    /**
-     * References that are used to generate the summary description.
-     */
-    references?: Schema$GoogleMapsPlacesV1References;
   }
   /**
    * Links to trigger different Google Maps actions.
@@ -1032,6 +1044,27 @@ export namespace places_v1 {
      * A link to write a review for this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
      */
     writeAReviewUri?: string | null;
+  }
+  /**
+   * A summary of points of interest near the place.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceNeighborhoodSummary {
+    /**
+     * A detailed description of the neighborhood.
+     */
+    description?: Schema$GoogleMapsPlacesV1ContentBlock;
+    /**
+     * The AI disclosure message "Summarized with Gemini" (and its localized variants). This will be in the language specified in the request if available.
+     */
+    disclosureText?: Schema$GoogleTypeLocalizedText;
+    /**
+     * A link where users can flag a problem with the summary.
+     */
+    flagContentUri?: string | null;
+    /**
+     * An overview summary of the neighborhood.
+     */
+    overview?: Schema$GoogleMapsPlacesV1ContentBlock;
   }
   /**
    * Information about business hour of the place.
@@ -1181,15 +1214,32 @@ export namespace places_v1 {
     globalCode?: string | null;
   }
   /**
-   * Sub-destinations are specific places associated with a main place. These provide more specific destinations for users who are searching inside a large or complex place, like an airport, national park, university, or stadium. For example, sub-destinations at an airport might include associated terminals and parking lots. Sub-destinations return the place ID and place resource name, which can be used in subsequent Place Details (new) requests to fetch richer details, including the sub-destination's display name and location.
+   * AI-generated summary of the place using user reviews.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceReviewSummary {
+    /**
+     * The AI disclosure message "Summarized with Gemini" (and its localized variants). This will be in the language specified in the request if available.
+     */
+    disclosureText?: Schema$GoogleTypeLocalizedText;
+    /**
+     * A link where users can flag a problem with the summary.
+     */
+    flagContentUri?: string | null;
+    /**
+     * The summary of user reviews.
+     */
+    text?: Schema$GoogleTypeLocalizedText;
+  }
+  /**
+   * Sub-destinations are specific places associated with a main place. These provide more specific destinations for users who are searching within a large or complex place, like an airport, national park, university, or stadium. For example, sub-destinations at an airport might include associated terminals and parking lots. Sub-destinations return the place ID and place resource name, which can be used in subsequent Place Details (New) requests to fetch richer details, including the sub-destination's display name and location.
    */
   export interface Schema$GoogleMapsPlacesV1PlaceSubDestination {
     /**
-     * The place id of the sub destination.
+     * The place id of the sub-destination.
      */
     id?: string | null;
     /**
-     * The resource name of the sub destination.
+     * The resource name of the sub-destination.
      */
     name?: string | null;
   }
@@ -1214,19 +1264,6 @@ export namespace places_v1 {
      * The low end of the price range (inclusive). Price should be at or above this amount.
      */
     startPrice?: Schema$GoogleTypeMoney;
-  }
-  /**
-   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Reference that the generative content is related to.
-   */
-  export interface Schema$GoogleMapsPlacesV1References {
-    /**
-     * The list of resource names of the referenced places. This name can be used in other APIs that accept Place resource names.
-     */
-    places?: string[] | null;
-    /**
-     * Reviews that serve as references.
-     */
-    reviews?: Schema$GoogleMapsPlacesV1Review[];
   }
   /**
    * Information about a review of a place.
@@ -1268,6 +1305,23 @@ export namespace places_v1 {
      * The localized text of the review.
      */
     text?: Schema$GoogleTypeLocalizedText;
+    /**
+     * The date when the author visited the place. This is trucated to month.
+     */
+    visitDate?: Schema$GoogleMapsPlacesV1ReviewVisitDate;
+  }
+  /**
+   * The date when the author visited the place. This is trucated to month.
+   */
+  export interface Schema$GoogleMapsPlacesV1ReviewVisitDate {
+    /**
+     * The month the author visited the place, e.g. 4. The value is between 1 and 12.
+     */
+    month?: number | null;
+    /**
+     * The year the author visited the place, e.g. 2025.
+     */
+    year?: number | null;
   }
   /**
    * Encapsulates a set of optional conditions to satisfy when calculating the routes.
@@ -1611,15 +1665,15 @@ export namespace places_v1 {
     units?: string | null;
   }
   /**
-   * Represents a postal address. For example for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478
+   * Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
    */
   export interface Schema$GoogleTypePostalAddress {
     /**
-     * Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (For example "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country/region of the address. In places where this can vary (For example Japan), address_language is used to make it explicit (For example "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
+     * Unstructured address lines describing the lower levels of an address. Because values in `address_lines` do not have type information and may sometimes contain multiple values in a single field (for example, "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country or region of the address. In places where this can vary (for example, Japan), `address_language` is used to make it explicit (for example, "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). In this way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a `region_code` with all remaining information placed in the `address_lines`. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a `region_code` and `address_lines` and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
      */
     addressLines?: string[] | null;
     /**
-     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (For example "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example in Switzerland this should be left unpopulated.
+     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated.
      */
     administrativeArea?: string | null;
     /**
@@ -1627,7 +1681,7 @@ export namespace places_v1 {
      */
     languageCode?: string | null;
     /**
-     * Optional. Generally refers to the city/town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave locality empty and use address_lines.
+     * Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty and use `address_lines`.
      */
     locality?: string | null;
     /**
@@ -1635,7 +1689,7 @@ export namespace places_v1 {
      */
     organization?: string | null;
     /**
-     * Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (For example state/zip validation in the U.S.A.).
+     * Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (for example, state or zip code validation in the United States).
      */
     postalCode?: string | null;
     /**
@@ -1651,11 +1705,11 @@ export namespace places_v1 {
      */
     revision?: number | null;
     /**
-     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (For example "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (For example Côte d'Ivoire).
+     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (for example, "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (Côte d'Ivoire).
      */
     sortingCode?: string | null;
     /**
-     * Optional. Sublocality of the address. For example, this can be neighborhoods, boroughs, districts.
+     * Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district.
      */
     sublocality?: string | null;
   }
