@@ -711,7 +711,7 @@ export namespace trafficdirector_v3 {
     patch?: number | null;
   }
   /**
-   * [#next-free-field: 7]
+   * [#next-free-field: 8]
    */
   export interface Schema$SocketAddress {
     /**
@@ -726,6 +726,10 @@ export namespace trafficdirector_v3 {
      * This is only valid if :ref:`resolver_name ` is specified below and the named resolver is capable of named port resolution.
      */
     namedPort?: string | null;
+    /**
+     * The Linux network namespace to bind the socket to. If this is set, Envoy will create the socket in the specified network namespace. Only supported on Linux. [#not-implemented-hide:]
+     */
+    networkNamespaceFilepath?: string | null;
     portValue?: number | null;
     protocol?: string | null;
     /**
