@@ -1190,6 +1190,10 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Document {
     /**
+     * Optional. The blob assets in this document. This is used to store the content of the inline blobs in this document, e.g. image bytes, such that it can be referenced by other fields in the document via asset id.
+     */
+    blobAssets?: Schema$GoogleCloudDocumentaiV1beta3DocumentBlobAsset[];
+    /**
      * Document chunked based on chunking config.
      */
     chunkedDocument?: Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocument;
@@ -1197,6 +1201,10 @@ export namespace documentai_v1beta3 {
      * Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
      */
     content?: string | null;
+    /**
+     * Optional. An internal identifier for document. Should be loggable (no PII).
+     */
+    docid?: string | null;
     /**
      * Parsed layout of the document.
      */
@@ -1247,6 +1255,32 @@ export namespace documentai_v1beta3 {
     uri?: string | null;
   }
   /**
+   * Represents the annotation of a block or a chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentAnnotations {
+    /**
+     * The description of the content with this annotation.
+     */
+    description?: string | null;
+  }
+  /**
+   * Represents a blob asset. It's used to store the content of the inline blob in this document, e.g. image bytes, such that it can be referenced by other fields in the document via asset id.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentBlobAsset {
+    /**
+     * Optional. The id of the blob asset.
+     */
+    assetId?: string | null;
+    /**
+     * Optional. The content of the blob asset, e.g. image bytes.
+     */
+    content?: string | null;
+    /**
+     * The mime type of the blob asset. An IANA published [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
+     */
+    mimeType?: string | null;
+  }
+  /**
    * Represents the chunks that the document is divided into.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocument {
@@ -1259,6 +1293,10 @@ export namespace documentai_v1beta3 {
    * Represents a chunk.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunk {
+    /**
+     * Chunk fields inside this chunk.
+     */
+    chunkFields?: Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkField[];
     /**
      * ID of the chunk.
      */
@@ -1283,6 +1321,19 @@ export namespace documentai_v1beta3 {
      * Unused.
      */
     sourceBlockIds?: string[] | null;
+  }
+  /**
+   * The chunk field in the chunk. A chunk field could be one of the various types (e.g. image, table) supported.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkField {
+    /**
+     * The image chunk field in the chunk.
+     */
+    imageChunkField?: Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkImageChunkField;
+    /**
+     * The table chunk field in the chunk.
+     */
+    tableChunkField?: Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkTableChunkField;
   }
   /**
    * Represents the page footer associated with the chunk.
@@ -1324,6 +1375,36 @@ export namespace documentai_v1beta3 {
     pageStart?: number | null;
   }
   /**
+   * The image chunk field in the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkImageChunkField {
+    /**
+     * Annotation of the image chunk field.
+     */
+    annotations?: Schema$GoogleCloudDocumentaiV1beta3DocumentAnnotations;
+    /**
+     * Optional. Asset id of the inline image. If set, find the image content in the blob_assets field.
+     */
+    blobAssetId?: string | null;
+    /**
+     * Optional. Data uri of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,
+     */
+    dataUri?: string | null;
+    /**
+     * Optional. Google Cloud Storage uri of the image.
+     */
+    gcsUri?: string | null;
+  }
+  /**
+   * The table chunk field in the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkTableChunkField {
+    /**
+     * Annotation of the table chunk field.
+     */
+    annotations?: Schema$GoogleCloudDocumentaiV1beta3DocumentAnnotations;
+  }
+  /**
    * Represents the parsed layout of a document as a collection of blocks that the document is divided into.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayout {
@@ -1341,6 +1422,14 @@ export namespace documentai_v1beta3 {
      */
     blockId?: string | null;
     /**
+     * Identifies the bounding box for the block.
+     */
+    boundingBox?: Schema$GoogleCloudDocumentaiV1beta3BoundingPoly;
+    /**
+     * Block consisting of image content.
+     */
+    imageBlock?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock;
+    /**
      * Block consisting of list content/structure.
      */
     listBlock?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock;
@@ -1356,6 +1445,35 @@ export namespace documentai_v1beta3 {
      * Block consisting of text content.
      */
     textBlock?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock;
+  }
+  /**
+   * Represents an image type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock {
+    /**
+     * Annotation of the image block.
+     */
+    annotations?: Schema$GoogleCloudDocumentaiV1beta3DocumentAnnotations;
+    /**
+     * Optional. Asset id of the inline image. If set, find the image content in the blob_assets field.
+     */
+    blobAssetId?: string | null;
+    /**
+     * Optional. Data uri of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,
+     */
+    dataUri?: string | null;
+    /**
+     * Optional. Google Cloud Storage uri of the image.
+     */
+    gcsUri?: string | null;
+    /**
+     * Text extracted from the image using OCR or alt text describing the image.
+     */
+    imageText?: string | null;
+    /**
+     * Mime type of the image. An IANA published [media type (MIME type)] (https://www.iana.org/assignments/media-types/media-types.xhtml).
+     */
+    mimeType?: string | null;
   }
   /**
    * Represents a list type block.
@@ -1396,6 +1514,10 @@ export namespace documentai_v1beta3 {
    * Represents a table type block.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock {
+    /**
+     * Annotation of the table block.
+     */
+    annotations?: Schema$GoogleCloudDocumentaiV1beta3DocumentAnnotations;
     /**
      * Body rows containing main table content.
      */
@@ -1533,6 +1655,7 @@ export namespace documentai_v1beta3 {
      * Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto
      */
     moneyValue?: Schema$GoogleTypeMoney;
+    signatureValue?: boolean | null;
     /**
      * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate `float` or `integer` normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
@@ -2329,6 +2452,10 @@ export namespace documentai_v1beta3 {
      */
     displayName?: string | null;
     /**
+     * Grounding config of the entity type.
+     */
+    groundingConfig?: string | null;
+    /**
      * The name of the property. Follows the same guidelines as the EntityType name.
      */
     name?: string | null;
@@ -3113,6 +3240,22 @@ export namespace documentai_v1beta3 {
      * Optional. Config for chunking in layout parser processor.
      */
     chunkingConfig?: Schema$GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfigChunkingConfig;
+    /**
+     * Optional. Whether to include image annotations in layout parser response.
+     */
+    enableImageAnnotation?: boolean | null;
+    /**
+     * Optional. Whether to extract images in layout parser response.
+     */
+    enableImageExtraction?: boolean | null;
+    /**
+     * Optional. Whether to refine PDF layout using LLM.
+     */
+    enableLlmLayoutParsing?: boolean | null;
+    /**
+     * Optional. Whether to include table annotations in layout parser response.
+     */
+    enableTableAnnotation?: boolean | null;
     /**
      * Optional. Whether to include bounding boxes in layout parser processor response.
      */
@@ -4132,15 +4275,15 @@ export namespace documentai_v1beta3 {
     units?: string | null;
   }
   /**
-   * Represents a postal address. For example for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478
+   * Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
    */
   export interface Schema$GoogleTypePostalAddress {
     /**
-     * Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (For example "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country/region of the address. In places where this can vary (For example Japan), address_language is used to make it explicit (For example "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
+     * Unstructured address lines describing the lower levels of an address. Because values in `address_lines` do not have type information and may sometimes contain multiple values in a single field (for example, "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country or region of the address. In places where this can vary (for example, Japan), `address_language` is used to make it explicit (for example, "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). In this way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a `region_code` with all remaining information placed in the `address_lines`. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a `region_code` and `address_lines` and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).
      */
     addressLines?: string[] | null;
     /**
-     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (For example "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example in Switzerland this should be left unpopulated.
+     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated.
      */
     administrativeArea?: string | null;
     /**
@@ -4148,7 +4291,7 @@ export namespace documentai_v1beta3 {
      */
     languageCode?: string | null;
     /**
-     * Optional. Generally refers to the city/town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave locality empty and use address_lines.
+     * Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty and use `address_lines`.
      */
     locality?: string | null;
     /**
@@ -4156,7 +4299,7 @@ export namespace documentai_v1beta3 {
      */
     organization?: string | null;
     /**
-     * Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (For example state/zip validation in the U.S.A.).
+     * Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (for example, state or zip code validation in the United States).
      */
     postalCode?: string | null;
     /**
@@ -4172,11 +4315,11 @@ export namespace documentai_v1beta3 {
      */
     revision?: number | null;
     /**
-     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (For example "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (For example Côte d'Ivoire).
+     * Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (for example, "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (Côte d'Ivoire).
      */
     sortingCode?: string | null;
     /**
-     * Optional. Sublocality of the address. For example, this can be neighborhoods, boroughs, districts.
+     * Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district.
      */
     sublocality?: string | null;
   }
@@ -4524,6 +4667,10 @@ export namespace documentai_v1beta3 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

@@ -168,6 +168,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -1284,7 +1290,7 @@
       }
     }
   },
-  "revision": "20250210",
+  "revision": "20250427",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -3102,6 +3108,13 @@
       "description": "Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.",
       "id": "GoogleCloudDocumentaiV1beta3Document",
       "properties": {
+        "blobAssets": {
+          "description": "Optional. The blob assets in this document. This is used to store the content of the inline blobs in this document, e.g. image bytes, such that it can be referenced by other fields in the document via asset id.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentBlobAsset"
+          },
+          "type": "array"
+        },
         "chunkedDocument": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocument",
           "description": "Document chunked based on chunking config."
@@ -3109,6 +3122,10 @@
         "content": {
           "description": "Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.",
           "format": "byte",
+          "type": "string"
+        },
+        "docid": {
+          "description": "Optional. An internal identifier for document. Should be loggable (no PII).",
           "type": "string"
         },
         "documentLayout": {
@@ -3181,6 +3198,37 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3DocumentAnnotations": {
+      "description": "Represents the annotation of a block or a chunk.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentAnnotations",
+      "properties": {
+        "description": {
+          "description": "The description of the content with this annotation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentBlobAsset": {
+      "description": "Represents a blob asset. It's used to store the content of the inline blob in this document, e.g. image bytes, such that it can be referenced by other fields in the document via asset id.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentBlobAsset",
+      "properties": {
+        "assetId": {
+          "description": "Optional. The id of the blob asset.",
+          "type": "string"
+        },
+        "content": {
+          "description": "Optional. The content of the blob asset, e.g. image bytes.",
+          "format": "byte",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The mime type of the blob asset. An IANA published [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3DocumentChunkedDocument": {
       "description": "Represents the chunks that the document is divided into.",
       "id": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocument",
@@ -3199,6 +3247,13 @@
       "description": "Represents a chunk.",
       "id": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunk",
       "properties": {
+        "chunkFields": {
+          "description": "Chunk fields inside this chunk.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkField"
+          },
+          "type": "array"
+        },
         "chunkId": {
           "description": "ID of the chunk.",
           "type": "string"
@@ -3231,6 +3286,21 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkField": {
+      "description": "The chunk field in the chunk. A chunk field could be one of the various types (e.g. image, table) supported.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkField",
+      "properties": {
+        "imageChunkField": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkImageChunkField",
+          "description": "The image chunk field in the chunk."
+        },
+        "tableChunkField": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkTableChunkField",
+          "description": "The table chunk field in the chunk."
         }
       },
       "type": "object"
@@ -3282,6 +3352,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkImageChunkField": {
+      "description": "The image chunk field in the chunk.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkImageChunkField",
+      "properties": {
+        "annotations": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentAnnotations",
+          "description": "Annotation of the image chunk field."
+        },
+        "blobAssetId": {
+          "description": "Optional. Asset id of the inline image. If set, find the image content in the blob_assets field.",
+          "type": "string"
+        },
+        "dataUri": {
+          "description": "Optional. Data uri of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,",
+          "type": "string"
+        },
+        "gcsUri": {
+          "description": "Optional. Google Cloud Storage uri of the image.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkTableChunkField": {
+      "description": "The table chunk field in the chunk.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkTableChunkField",
+      "properties": {
+        "annotations": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentAnnotations",
+          "description": "Annotation of the table chunk field."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3DocumentDocumentLayout": {
       "description": "Represents the parsed layout of a document as a collection of blocks that the document is divided into.",
       "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayout",
@@ -3304,6 +3408,14 @@
           "description": "ID of the block.",
           "type": "string"
         },
+        "boundingBox": {
+          "$ref": "GoogleCloudDocumentaiV1beta3BoundingPoly",
+          "description": "Identifies the bounding box for the block."
+        },
+        "imageBlock": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock",
+          "description": "Block consisting of image content."
+        },
         "listBlock": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock",
           "description": "Block consisting of list content/structure."
@@ -3319,6 +3431,37 @@
         "textBlock": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock",
           "description": "Block consisting of text content."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock": {
+      "description": "Represents an image type block.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock",
+      "properties": {
+        "annotations": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentAnnotations",
+          "description": "Annotation of the image block."
+        },
+        "blobAssetId": {
+          "description": "Optional. Asset id of the inline image. If set, find the image content in the blob_assets field.",
+          "type": "string"
+        },
+        "dataUri": {
+          "description": "Optional. Data uri of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,",
+          "type": "string"
+        },
+        "gcsUri": {
+          "description": "Optional. Google Cloud Storage uri of the image.",
+          "type": "string"
+        },
+        "imageText": {
+          "description": "Text extracted from the image using OCR or alt text describing the image.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Mime type of the image. An IANA published [media type (MIME type)] (https://www.iana.org/assignments/media-types/media-types.xhtml).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3376,6 +3519,10 @@
       "description": "Represents a table type block.",
       "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock",
       "properties": {
+        "annotations": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentAnnotations",
+          "description": "Annotation of the table block."
+        },
         "bodyRows": {
           "description": "Body rows containing main table content.",
           "items": {
@@ -3545,6 +3692,9 @@
         "moneyValue": {
           "$ref": "GoogleTypeMoney",
           "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
+        },
+        "signatureValue": {
+          "type": "boolean"
         },
         "text": {
           "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate `float` or `integer` normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
@@ -4663,6 +4813,22 @@
           "description": "User defined name for the property.",
           "type": "string"
         },
+        "groundingConfig": {
+          "description": "Grounding config of the entity type.",
+          "enum": [
+            "GROUNDING_CONFIG_UNSPECIFIED",
+            "STRICT",
+            "RELAXED",
+            "NO_GROUNDING"
+          ],
+          "enumDescriptions": [
+            "Unspecified grounding config. It defaults to `STRICT` grounding.",
+            "Strict grounding.",
+            "Relaxed grounding.",
+            "Allow no grounding."
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "The name of the property. Follows the same guidelines as the EntityType name.",
           "type": "string"
@@ -5696,6 +5862,22 @@
         "chunkingConfig": {
           "$ref": "GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfigChunkingConfig",
           "description": "Optional. Config for chunking in layout parser processor."
+        },
+        "enableImageAnnotation": {
+          "description": "Optional. Whether to include image annotations in layout parser response.",
+          "type": "boolean"
+        },
+        "enableImageExtraction": {
+          "description": "Optional. Whether to extract images in layout parser response.",
+          "type": "boolean"
+        },
+        "enableLlmLayoutParsing": {
+          "description": "Optional. Whether to refine PDF layout using LLM.",
+          "type": "boolean"
+        },
+        "enableTableAnnotation": {
+          "description": "Optional. Whether to include table annotations in layout parser response.",
+          "type": "boolean"
         },
         "returnBoundingBoxes": {
           "description": "Optional. Whether to include bounding boxes in layout parser processor response.",
@@ -6843,18 +7025,18 @@
       "type": "object"
     },
     "GoogleTypePostalAddress": {
-      "description": "Represents a postal address. For example for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478",
+      "description": "Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.",
       "id": "GoogleTypePostalAddress",
       "properties": {
         "addressLines": {
-          "description": "Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (For example \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country/region of the address. In places where this can vary (For example Japan), address_language is used to make it explicit (For example \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).",
+          "description": "Unstructured address lines describing the lower levels of an address. Because values in `address_lines` do not have type information and may sometimes contain multiple values in a single field (for example, \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country or region of the address. In places where this can vary (for example, Japan), `address_language` is used to make it explicit (for example, \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). In this way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a `region_code` with all remaining information placed in the `address_lines`. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a `region_code` and `address_lines` and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "administrativeArea": {
-          "description": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (For example \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. For example in Switzerland this should be left unpopulated.",
+          "description": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated.",
           "type": "string"
         },
         "languageCode": {
@@ -6862,7 +7044,7 @@
           "type": "string"
         },
         "locality": {
-          "description": "Optional. Generally refers to the city/town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave locality empty and use address_lines.",
+          "description": "Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty and use `address_lines`.",
           "type": "string"
         },
         "organization": {
@@ -6870,7 +7052,7 @@
           "type": "string"
         },
         "postalCode": {
-          "description": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (For example state/zip validation in the U.S.A.).",
+          "description": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (for example, state or zip code validation in the United States).",
           "type": "string"
         },
         "recipients": {
@@ -6890,11 +7072,11 @@
           "type": "integer"
         },
         "sortingCode": {
-          "description": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (For example \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (For example Côte d'Ivoire).",
+          "description": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (for example, \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (Côte d'Ivoire).",
           "type": "string"
         },
         "sublocality": {
-          "description": "Optional. Sublocality of the address. For example, this can be neighborhoods, boroughs, districts.",
+          "description": "Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district.",
           "type": "string"
         }
       },
