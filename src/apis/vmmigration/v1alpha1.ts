@@ -1418,6 +1418,10 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$ImageImportOsAdaptationParameters {
     /**
+     * Optional. By default the image will keep its existing boot option. Setting this property will trigger an internal process which will convert the image from using the existing boot option to another. The size of the boot disk might be increased to allow the conversion
+     */
+    bootConversion?: string | null;
+    /**
      * Optional. Set to true in order to generalize the imported image. The generalization process enables co-existence of multiple VMs created from the same image. For Windows, generalizing the image removes computer-specific information such as installed drivers and the computer security identifier (SID).
      */
     generalize?: boolean | null;
@@ -3036,6 +3040,10 @@ export namespace vmmigration_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
