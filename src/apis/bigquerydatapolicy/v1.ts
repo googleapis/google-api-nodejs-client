@@ -193,7 +193,7 @@ export namespace bigquerydatapolicy_v1 {
      */
     dataPolicyId?: string | null;
     /**
-     * Type of data policy.
+     * Required. Data policy type. Type of data policy.
      */
     dataPolicyType?: string | null;
     /**
