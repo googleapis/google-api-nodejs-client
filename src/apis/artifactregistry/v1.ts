@@ -221,7 +221,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$BatchDeleteVersionsRequest {
     /**
-     * Required. The names of the versions to delete. A maximum of 10000 versions can be deleted in a batch.
+     * Required. The names of the versions to delete. The maximum number of versions deleted per batch is determined by the service and is dependent on the available resources in the region.
      */
     names?: string[] | null;
     /**
@@ -2296,6 +2296,10 @@ export namespace artifactregistry_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */

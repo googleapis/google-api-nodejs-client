@@ -233,6 +233,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.me-central2.rep.googleapis.com/",
       "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://artifactregistry.us.rep.googleapis.com/",
+      "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://artifactregistry.eu.rep.googleapis.com/",
+      "location": "eu"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -452,6 +462,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -2439,7 +2455,7 @@
       }
     }
   },
-  "revision": "20241205",
+  "revision": "20250423",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -2578,7 +2594,7 @@
       "id": "BatchDeleteVersionsRequest",
       "properties": {
         "names": {
-          "description": "Required. The names of the versions to delete. A maximum of 10000 versions can be deleted in a batch.",
+          "description": "Required. The names of the versions to delete. The maximum number of versions deleted per batch is determined by the service and is dependent on the available resources in the region.",
           "items": {
             "type": "string"
           },
