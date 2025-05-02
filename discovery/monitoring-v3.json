@@ -2720,7 +2720,7 @@
       }
     }
   },
-  "revision": "20250227",
+  "revision": "20250323",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -4423,6 +4423,13 @@
         "unit": {
           "description": "The unit in which all time_series point values are reported. unit follows the UCUM format for units as seen in https://unitsofmeasure.org/ucum.html. If different time_series have different units (for example, because they come from different metric types, or a unit is absent), then unit will be \"{not_a_unit}\".",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Cloud regions that were unreachable which may have caused incomplete data to be returned.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6096,6 +6103,10 @@
             "$ref": "ContentMatcher"
           },
           "type": "array"
+        },
+        "disabled": {
+          "description": "Whether the check is disabled or not.",
+          "type": "boolean"
         },
         "displayName": {
           "description": "A human-friendly name for the Uptime check configuration. The display name should be unique within a Cloud Monitoring Workspace in order to make it easier to identify; however, uniqueness is not enforced. Required.",
