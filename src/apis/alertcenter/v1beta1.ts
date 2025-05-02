@@ -325,7 +325,7 @@ export namespace alertcenter_v1beta1 {
      */
     startTime?: string | null;
     /**
-     * Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [Google Workspace Alert types](https://developers.google.com/admin-sdk/alertcenter/reference/alert-types).
+     * Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [Google Workspace Alert types](https://developers.google.com/workspace/admin/alertcenter/reference/alert-types).
      */
     type?: string | null;
     /**
@@ -422,7 +422,7 @@ export namespace alertcenter_v1beta1 {
     requestInfo?: Schema$RequestInfo[];
   }
   /**
-   * * Alerts from AppSettingsChanged bucket Rules configured by Admin which contain the below rules. Calendar settings changed Drive settings changed Email settings changed Mobile settings changed
+   * Alerts from AppSettingsChanged bucket Rules configured by Admin which contain the following rules: - Calendar settings changed - Drive settings changed - Email settings changed - Mobile settings changed
    */
   export interface Schema$AppSettingsChanged {
     /**
@@ -931,7 +931,7 @@ export namespace alertcenter_v1beta1 {
     newIncidentTrackingId?: string | null;
   }
   /**
-   * Settings for callback notifications. For more details see [Google Workspace Alert Notification](https://developers.google.com/admin-sdk/alertcenter/guides/notifications).
+   * Settings for callback notifications. For more details see [Google Workspace Alert Notification](https://developers.google.com/workspace/admin/alertcenter/guides/notifications).
    */
   export interface Schema$Notification {
     /**
@@ -940,7 +940,7 @@ export namespace alertcenter_v1beta1 {
     cloudPubsubTopic?: Schema$CloudPubsubTopic;
   }
   /**
-   * Alert for a spike in user reported phishing. *Warning*: This type has been deprecated. Use [MailPhishing](/admin-sdk/alertcenter/reference/rest/v1beta1/MailPhishing) instead.
+   * Alert for a spike in user reported phishing. *Warning*: This type has been deprecated. Use [MailPhishing](https://developers.google.com/workspace/admin/alertcenter/reference/rest/v1beta1/MailPhishing) instead.
    */
   export interface Schema$PhishingSpike {
     /**
@@ -970,7 +970,7 @@ export namespace alertcenter_v1beta1 {
     detectorName?: string | null;
   }
   /**
-   * * Event occurred when primary admin changed in customer's account. The event are being received from insight forwarder
+   * Event occurred when primary admin changed in customer's account. The event are being received from insight forwarder
    */
   export interface Schema$PrimaryAdminChangedEvent {
     /**
@@ -1150,7 +1150,7 @@ export namespace alertcenter_v1beta1 {
     notifications?: Schema$Notification[];
   }
   /**
-   * * Event occurred when SSO Profile created in customer's account. The event are being received from insight forwarder
+   * Event occurred when SSO Profile created in customer's account. The event are being received from insight forwarder
    */
   export interface Schema$SSOProfileCreatedEvent {
     /**
@@ -1159,7 +1159,7 @@ export namespace alertcenter_v1beta1 {
     inboundSsoProfileName?: string | null;
   }
   /**
-   * * Event occurred when SSO Profile deleted in customer's account. The event are being received from insight forwarder
+   * Event occurred when SSO Profile deleted in customer's account. The event are being received from insight forwarder
    */
   export interface Schema$SSOProfileDeletedEvent {
     /**
@@ -1168,7 +1168,7 @@ export namespace alertcenter_v1beta1 {
     inboundSsoProfileName?: string | null;
   }
   /**
-   * * Event occurred when SSO Profile updated in customer's account. The event are being received from insight forwarder
+   * Event occurred when SSO Profile updated in customer's account. The event are being received from insight forwarder
    */
   export interface Schema$SSOProfileUpdatedEvent {
     /**
@@ -1207,7 +1207,7 @@ export namespace alertcenter_v1beta1 {
     message?: string | null;
   }
   /**
-   * * Event occurred when password was reset for super admin in customer's account. The event are being received from insight forwarder
+   * Event occurred when password was reset for super admin in customer's account. The event are being received from insight forwarder
    */
   export interface Schema$SuperAdminPasswordResetEvent {
     /**
@@ -1339,7 +1339,7 @@ export namespace alertcenter_v1beta1 {
     emailAddress?: string | null;
   }
   /**
-   * * Alerts from UserChanges bucket Rules for predefined rules which contain the below rules. Suspended user made active New user Added User suspended (by admin) User granted admin privileges User admin privileges revoked User deleted Users password changed
+   * Alerts from UserChanges bucket Rules for predefined rules which contain the following rules: - Suspended user made active - New user added - User suspended (by admin) - User granted admin privileges - User admin privileges revoked - User deleted - Users password changed
    */
   export interface Schema$UserChanges {
     /**
@@ -1359,6 +1359,31 @@ export namespace alertcenter_v1beta1 {
      * Resource name that uniquely identifies the detector.
      */
     resourceName?: string | null;
+  }
+  /**
+   * Alert that is triggered when a Vault accelerated deletion request is created or canceled.
+   */
+  export interface Schema$VaultAcceleratedDeletion {
+    /**
+     * The action can be one of create and cancel
+     */
+    actionType?: string | null;
+    /**
+     * Currentlty only Gmail is supported as app type
+     */
+    appType?: string | null;
+    /**
+     * The UTC timestamp of when the AD request was created
+     */
+    createTime?: string | null;
+    /**
+     * Accelerated deletion request ID intended to be used to construct the Vault UI link to the AD request
+     */
+    deletionRequestId?: string | null;
+    /**
+     * Matter ID of the accelerated deletion request intended to be used to construct the Vault UI link to the AD request
+     */
+    matterId?: string | null;
   }
   /**
    * Issue(s) with sending to voicemail.
@@ -2098,7 +2123,7 @@ export namespace alertcenter_v1beta1 {
      */
     customerId?: string;
     /**
-     * Optional. A query string for filtering alert results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
+     * Optional. A query string for filtering alert results. For more details, see [Query filters](https://developers.google.com/workspace/admin/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/workspace/admin/alertcenter/reference/filter-fields#alerts.list).
      */
     filter?: string;
     /**
@@ -2343,7 +2368,7 @@ export namespace alertcenter_v1beta1 {
      */
     customerId?: string;
     /**
-     * Optional. A query string for filtering alert feedback results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
+     * Optional. A query string for filtering alert feedback results. For more details, see [Query filters](https://developers.google.com/workspace/admin/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/workspace/admin/alertcenter/reference/filter-fields#alerts.feedback.list).
      */
     filter?: string;
   }
