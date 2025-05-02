@@ -1077,6 +1077,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -2750,6 +2756,734 @@
                 }
               }
             },
+            "interceptDeploymentGroups": {
+              "methods": {
+                "create": {
+                  "description": "Creates a deployment group in a given project and location. See https://google.aip.dev/133.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.interceptDeploymentGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "interceptDeploymentGroupId": {
+                      "description": "Required. The ID to use for the new deployment group, which will become the final component of the deployment group's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource where this deployment group will be created. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/interceptDeploymentGroups",
+                  "request": {
+                    "$ref": "InterceptDeploymentGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a deployment group. See https://google.aip.dev/135.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups/{interceptDeploymentGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.interceptDeploymentGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The deployment group to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeploymentGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a specific deployment group. See https://google.aip.dev/131.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups/{interceptDeploymentGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptDeploymentGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the deployment group to retrieve. Format: projects/{project}/locations/{location}/interceptDeploymentGroups/{intercept_deployment_group}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeploymentGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "InterceptDeploymentGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists deployment groups in a given project and location. See https://google.aip.dev/132.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptDeploymentGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListInterceptDeploymentGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListInterceptDeploymentGroups` must match the call that provided the page token. See https://google.aip.dev/158 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of deployment groups. Example: `projects/123456789/locations/global`. See https://google.aip.dev/132 for more details.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/interceptDeploymentGroups",
+                  "response": {
+                    "$ref": "ListInterceptDeploymentGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a deployment group. See https://google.aip.dev/134.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptDeploymentGroups/{interceptDeploymentGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.interceptDeploymentGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/interceptDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeploymentGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update. Fields are specified relative to the deployment group (e.g. `description`; *not* `intercept_deployment_group.description`). See https://google.aip.dev/161 for more details.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "InterceptDeploymentGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "interceptDeployments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a deployment in a given project and location. See https://google.aip.dev/133.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptDeployments",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.interceptDeployments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "interceptDeploymentId": {
+                      "description": "Required. The ID to use for the new deployment, which will become the final component of the deployment's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource where this deployment will be created. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/interceptDeployments",
+                  "request": {
+                    "$ref": "InterceptDeployment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a deployment. See https://google.aip.dev/135.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptDeployments/{interceptDeploymentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.interceptDeployments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a specific deployment. See https://google.aip.dev/131.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptDeployments/{interceptDeploymentsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptDeployments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the deployment to retrieve. Format: projects/{project}/locations/{location}/interceptDeployments/{intercept_deployment}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "InterceptDeployment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists deployments in a given project and location. See https://google.aip.dev/132.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptDeployments",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptDeployments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListInterceptDeployments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListInterceptDeployments` must match the call that provided the page token. See https://google.aip.dev/158 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of deployments. Example: `projects/123456789/locations/us-central1-a`. See https://google.aip.dev/132 for more details.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/interceptDeployments",
+                  "response": {
+                    "$ref": "ListInterceptDeploymentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a deployment. See https://google.aip.dev/134.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptDeployments/{interceptDeploymentsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.interceptDeployments.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/interceptDeployments/my-dep`. See https://google.aip.dev/122 for more details.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update. Fields are specified relative to the deployment (e.g. `description`; *not* `intercept_deployment.description`). See https://google.aip.dev/161 for more details.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "InterceptDeployment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "interceptEndpointGroupAssociations": {
+              "methods": {
+                "create": {
+                  "description": "Creates an association in a given project and location. See https://google.aip.dev/133.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "interceptEndpointGroupAssociationId": {
+                      "description": "Optional. The ID to use for the new association, which will become the final component of the endpoint group's resource name. If not provided, the server will generate a unique ID.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource where this association will be created. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/interceptEndpointGroupAssociations",
+                  "request": {
+                    "$ref": "InterceptEndpointGroupAssociation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an association. See https://google.aip.dev/135.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations/{interceptEndpointGroupAssociationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The association to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroupAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a specific association. See https://google.aip.dev/131.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations/{interceptEndpointGroupAssociationsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the association to retrieve. Format: projects/{project}/locations/{location}/interceptEndpointGroupAssociations/{intercept_endpoint_group_association}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroupAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "InterceptEndpointGroupAssociation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists associations in a given project and location. See https://google.aip.dev/132.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListInterceptEndpointGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListInterceptEndpointGroups` must match the call that provided the page token. See https://google.aip.dev/158 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of associations. Example: `projects/123456789/locations/global`. See https://google.aip.dev/132 for more details.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/interceptEndpointGroupAssociations",
+                  "response": {
+                    "$ref": "ListInterceptEndpointGroupAssociationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an association. See https://google.aip.dev/134.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroupAssociations/{interceptEndpointGroupAssociationsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroupAssociations.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/interceptEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroupAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update. Fields are specified relative to the association (e.g. `description`; *not* `intercept_endpoint_group_association.description`). See https://google.aip.dev/161 for more details.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "InterceptEndpointGroupAssociation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "interceptEndpointGroups": {
+              "methods": {
+                "create": {
+                  "description": "Creates an endpoint group in a given project and location. See https://google.aip.dev/133.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "interceptEndpointGroupId": {
+                      "description": "Required. The ID to use for the endpoint group, which will become the final component of the endpoint group's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource where this endpoint group will be created. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/interceptEndpointGroups",
+                  "request": {
+                    "$ref": "InterceptEndpointGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an endpoint group. See https://google.aip.dev/135.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups/{interceptEndpointGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The endpoint group to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a specific endpoint group. See https://google.aip.dev/131.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups/{interceptEndpointGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the endpoint group to retrieve. Format: projects/{project}/locations/{location}/interceptEndpointGroups/{intercept_endpoint_group}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "InterceptEndpointGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists endpoint groups in a given project and location. See https://google.aip.dev/132.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Sort expression. See https://google.aip.dev/132#ordering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. See https://google.aip.dev/158 for more details.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListInterceptEndpointGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListInterceptEndpointGroups` must match the call that provided the page token. See https://google.aip.dev/158 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of endpoint groups. Example: `projects/123456789/locations/global`. See https://google.aip.dev/132 for more details.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/interceptEndpointGroups",
+                  "response": {
+                    "$ref": "ListInterceptEndpointGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an endpoint group. See https://google.aip.dev/134.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/interceptEndpointGroups/{interceptEndpointGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.interceptEndpointGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/interceptEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/interceptEndpointGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Must be a UUID4. This request is only idempotent if a `request_id` is provided. See https://google.aip.dev/155 for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update. Fields are specified relative to the endpoint group (e.g. `description`; *not* `intercept_endpoint_group.description`). See https://google.aip.dev/161 for more details.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "InterceptEndpointGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "mirroringDeploymentGroups": {
               "methods": {
                 "create": {
@@ -4174,7 +4908,7 @@
       }
     }
   },
-  "revision": "20250310",
+  "revision": "20250416",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -4313,7 +5047,7 @@
           ],
           "enumDescriptions": [
             "Protocol not specified.",
-            "SMTP prtocol",
+            "SMTP protocol",
             "SMB protocol",
             "POP3 protocol",
             "IMAP protocol",
@@ -5333,6 +6067,480 @@
       },
       "type": "object"
     },
+    "InterceptDeployment": {
+      "description": "A deployment represents a zonal intercept backend ready to accept GENEVE-encapsulated traffic, e.g. a zonal instance group fronted by an internal passthrough load balancer. Deployments are always part of a global deployment group which represents a global intercept service.",
+      "id": "InterceptDeployment",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the deployment. Used as additional context for the deployment.",
+          "type": "string"
+        },
+        "forwardingRule": {
+          "description": "Required. Immutable. The regional forwarding rule that fronts the interceptors, for example: `projects/123456789/regions/us-central1/forwardingRules/my-rule`. See https://google.aip.dev/124.",
+          "type": "string"
+        },
+        "interceptDeploymentGroup": {
+          "description": "Required. Immutable. The deployment group that this deployment is a part of, for example: `projects/123456789/locations/global/interceptDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/interceptDeployments/my-dep`. See https://google.aip.dev/122 for more details.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. linking a new association to the parent group). See https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. The current state of the deployment. See https://google.aip.dev/216.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "State not set (this is not a valid state).",
+            "The deployment is ready and in sync with the parent group.",
+            "The deployment is being created.",
+            "The deployment is being deleted.",
+            "The deployment is out of sync with the parent group. In most cases, this is a result of a transient issue within the system (e.g. a delayed data-path config) and the system is expected to recover automatically. See the parent deployment group's state for more details.",
+            "An attempt to delete the deployment has failed. This is a terminal state and the deployment is not expected to recover. The only permitted operation is to retry deleting the deployment."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptDeploymentGroup": {
+      "description": "A deployment group aggregates many zonal intercept backends (deployments) into a single global intercept service. Consumers can connect this service using an endpoint group.",
+      "id": "InterceptDeploymentGroup",
+      "properties": {
+        "connectedEndpointGroups": {
+          "description": "Output only. The list of endpoint groups that are connected to this resource.",
+          "items": {
+            "$ref": "InterceptDeploymentGroupConnectedEndpointGroup"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the deployment group. Used as additional context for the deployment group.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
+          "type": "object"
+        },
+        "locations": {
+          "description": "Output only. The list of locations where the deployment group is present.",
+          "items": {
+            "$ref": "InterceptLocation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/interceptDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.",
+          "type": "string"
+        },
+        "nestedDeployments": {
+          "deprecated": true,
+          "description": "Output only. The list of Intercept Deployments that belong to this group.",
+          "items": {
+            "$ref": "InterceptDeploymentGroupDeployment"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "network": {
+          "description": "Required. Immutable. The network that will be used for all child deployments, for example: `projects/{project}/global/networks/{network}`. See https://google.aip.dev/124.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new deployment to the group) See https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. The current state of the deployment group. See https://google.aip.dev/216.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "State not set (this is not a valid state).",
+            "The deployment group is ready.",
+            "The deployment group is being created.",
+            "The deployment group is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptDeploymentGroupConnectedEndpointGroup": {
+      "description": "An endpoint group connected to this deployment group.",
+      "id": "InterceptDeploymentGroupConnectedEndpointGroup",
+      "properties": {
+        "name": {
+          "description": "Output only. The connected endpoint group's resource name, for example: `projects/123456789/locations/global/interceptEndpointGroups/my-eg`. See https://google.aip.dev/124.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptDeploymentGroupDeployment": {
+      "description": "A deployment belonging to this deployment group.",
+      "id": "InterceptDeploymentGroupDeployment",
+      "properties": {
+        "name": {
+          "description": "Output only. The name of the Intercept Deployment, in the format: `projects/{project}/locations/{location}/interceptDeployments/{intercept_deployment}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Most recent known state of the deployment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "State not set (this is not a valid state).",
+            "The deployment is ready and in sync with the parent group.",
+            "The deployment is being created.",
+            "The deployment is being deleted.",
+            "The deployment is out of sync with the parent group. In most cases, this is a result of a transient issue within the system (e.g. a delayed data-path config) and the system is expected to recover automatically. See the parent deployment group's state for more details.",
+            "An attempt to delete the deployment has failed. This is a terminal state and the deployment is not expected to recover. The only permitted operation is to retry deleting the deployment."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptEndpointGroup": {
+      "description": "An endpoint group is a consumer frontend for a deployment group (backend). In order to configure intercept for a network, consumers must create: - An association between their network and the endpoint group. - A security profile that points to the endpoint group. - A firewall rule that references the security profile (group).",
+      "id": "InterceptEndpointGroup",
+      "properties": {
+        "associations": {
+          "description": "Output only. List of associations to this endpoint group.",
+          "items": {
+            "$ref": "InterceptEndpointGroupAssociationDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "connectedDeploymentGroup": {
+          "$ref": "InterceptEndpointGroupConnectedDeploymentGroup",
+          "description": "Output only. Details about the connected deployment group to this endpoint group.",
+          "readOnly": true
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description of the endpoint group. Used as additional context for the endpoint group.",
+          "type": "string"
+        },
+        "interceptDeploymentGroup": {
+          "description": "Required. Immutable. The deployment group that this endpoint group is connected to, for example: `projects/123456789/locations/global/interceptDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/interceptEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new association to the group). See https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. The current state of the endpoint group. See https://google.aip.dev/216.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CLOSED",
+            "CREATING",
+            "DELETING",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "State not set (this is not a valid state).",
+            "The endpoint group is ready and in sync with the target deployment group.",
+            "The deployment group backing this endpoint group has been force-deleted. This endpoint group cannot be used and interception is effectively disabled.",
+            "The endpoint group is being created.",
+            "The endpoint group is being deleted.",
+            "The endpoint group is out of sync with the backing deployment group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. See the associations field for details per network and location.",
+            "An attempt to delete the endpoint group has failed. This is a terminal state and the endpoint group is not expected to recover. The only permitted operation is to retry deleting the endpoint group."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptEndpointGroupAssociation": {
+      "description": "An endpoint group association represents a link between a network and an endpoint group in the organization. Creating an association creates the networking infrastructure linking the network to the endpoint group, but does not enable intercept by itself. To enable intercept, the user must also create a network firewall policy containing intercept rules and associate it with the network.",
+      "id": "InterceptEndpointGroupAssociation",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "interceptEndpointGroup": {
+          "description": "Required. Immutable. The endpoint group that this association is connected to, for example: `projects/123456789/locations/global/interceptEndpointGroups/my-eg`. See https://google.aip.dev/124.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels are key/value pairs that help to organize and filter resources.",
+          "type": "object"
+        },
+        "locations": {
+          "description": "Output only. The list of locations where the association is configured. This information is retrieved from the linked endpoint group.",
+          "items": {
+            "$ref": "InterceptLocation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "locationsDetails": {
+          "deprecated": true,
+          "description": "Output only. The list of locations where the association is present. This information is retrieved from the linked endpoint group, and not configured as part of the association itself.",
+          "items": {
+            "$ref": "InterceptEndpointGroupAssociationLocationDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/interceptEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.",
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. Immutable. The VPC network that is associated. for example: `projects/123456789/global/networks/my-network`. See https://google.aip.dev/124.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. adding a new location to the target deployment group). See https://google.aip.dev/128.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. Current state of the endpoint group association.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "CLOSED",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "The association is ready and in sync with the linked endpoint group.",
+            "The association is being created.",
+            "The association is being deleted.",
+            "The association is disabled due to a breaking change in another resource.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. Check the `locations_details` field for more details.",
+            "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptEndpointGroupAssociationDetails": {
+      "description": "The endpoint group's view of a connected association.",
+      "id": "InterceptEndpointGroupAssociationDetails",
+      "properties": {
+        "name": {
+          "description": "Output only. The connected association's resource name, for example: `projects/123456789/locations/global/interceptEndpointGroupAssociations/my-ega`. See https://google.aip.dev/124.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "network": {
+          "description": "Output only. The associated network, for example: projects/123456789/global/networks/my-network. See https://google.aip.dev/124.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Most recent known state of the association.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "CLOSED",
+            "OUT_OF_SYNC",
+            "DELETE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "The association is ready and in sync with the linked endpoint group.",
+            "The association is being created.",
+            "The association is being deleted.",
+            "The association is disabled due to a breaking change in another resource.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically. Check the `locations_details` field for more details.",
+            "An attempt to delete the association has failed. This is a terminal state and the association is not expected to be usable as some of its resources have been deleted. The only permitted operation is to retry deleting the association."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptEndpointGroupAssociationLocationDetails": {
+      "description": "Contains details about the state of an association in a specific cloud location.",
+      "id": "InterceptEndpointGroupAssociationLocationDetails",
+      "properties": {
+        "location": {
+          "description": "Output only. The cloud location, e.g. \"us-central1-a\" or \"asia-south1\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the association in this location.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OUT_OF_SYNC"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "The association is ready and in sync with the linked endpoint group.",
+            "The association is out of sync with the linked endpoint group. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptEndpointGroupConnectedDeploymentGroup": {
+      "description": "The endpoint group's view of a connected deployment group.",
+      "id": "InterceptEndpointGroupConnectedDeploymentGroup",
+      "properties": {
+        "locations": {
+          "description": "Output only. The list of locations where the deployment group is present.",
+          "items": {
+            "$ref": "InterceptLocation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The connected deployment group's resource name, for example: `projects/123456789/locations/global/interceptDeploymentGroups/my-dg`. See https://google.aip.dev/124.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterceptLocation": {
+      "description": "Details about intercept in a specific cloud location.",
+      "id": "InterceptLocation",
+      "properties": {
+        "location": {
+          "description": "Output only. The cloud location, e.g. \"us-central1-a\" or \"asia-south1\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the association in this location.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OUT_OF_SYNC"
+          ],
+          "enumDescriptions": [
+            "State not set (this is not a valid state).",
+            "The resource is ready and in sync in the location.",
+            "The resource is out of sync in the location. In most cases, this is a result of a transient issue within the system (e.g. an inaccessible location) and the system is expected to recover automatically."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAddressGroupReferencesResponse": {
       "description": "Response of the ListAddressGroupReferences method.",
       "id": "ListAddressGroupReferencesResponse",
@@ -5553,6 +6761,85 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListInterceptDeploymentGroupsResponse": {
+      "description": "Response message for ListInterceptDeploymentGroups.",
+      "id": "ListInterceptDeploymentGroupsResponse",
+      "properties": {
+        "interceptDeploymentGroups": {
+          "description": "The deployment groups from the specified parent.",
+          "items": {
+            "$ref": "InterceptDeploymentGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListInterceptDeploymentsResponse": {
+      "description": "Response message for ListInterceptDeployments.",
+      "id": "ListInterceptDeploymentsResponse",
+      "properties": {
+        "interceptDeployments": {
+          "description": "The deployments from the specified parent.",
+          "items": {
+            "$ref": "InterceptDeployment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListInterceptEndpointGroupAssociationsResponse": {
+      "description": "Response message for ListInterceptEndpointGroupAssociations.",
+      "id": "ListInterceptEndpointGroupAssociationsResponse",
+      "properties": {
+        "interceptEndpointGroupAssociations": {
+          "description": "The associations from the specified parent.",
+          "items": {
+            "$ref": "InterceptEndpointGroupAssociation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListInterceptEndpointGroupsResponse": {
+      "description": "Response message for ListInterceptEndpointGroups.",
+      "id": "ListInterceptEndpointGroupsResponse",
+      "properties": {
+        "interceptEndpointGroups": {
+          "description": "The endpoint groups from the specified parent.",
+          "items": {
+            "$ref": "InterceptEndpointGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. See https://google.aip.dev/158 for more details.",
+          "type": "string"
         }
       },
       "type": "object"
