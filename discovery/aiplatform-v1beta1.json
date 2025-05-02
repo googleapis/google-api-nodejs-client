@@ -27565,6 +27565,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1CheckPublisherModelEulaAcceptanceRequest": {
+      "description": "Request message for ModelGardenService.CheckPublisherModelEula.",
+      "id": "GoogleCloudAiplatformV1beta1CheckPublisherModelEulaAcceptanceRequest",
+      "properties": {
+        "publisherModel": {
+          "description": "Required. The name of the PublisherModel resource. Format: `publishers/{publisher}/models/{publisher_model}`, or `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1CheckTrialEarlyStoppingStateMetatdata": {
       "description": "This message will be placed in the metadata field of a google.longrunning.Operation associated with a CheckTrialEarlyStoppingState request.",
       "id": "GoogleCloudAiplatformV1beta1CheckTrialEarlyStoppingStateMetatdata",
@@ -47259,6 +47270,14 @@
             false,
             false
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "The harm category is unspecified.",
             "The harm category is hate speech.",
@@ -47401,6 +47420,14 @@
             false,
             false,
             false
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "The harm category is unspecified.",

@@ -38420,6 +38420,14 @@
             false,
             false
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "The harm category is unspecified.",
             "The harm category is hate speech.",
@@ -38562,6 +38570,14 @@
             false,
             false,
             false
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "The harm category is unspecified.",
@@ -47367,6 +47383,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1VertexAiSearchConfig": {
+      "description": "Config for the Vertex AI Search.",
+      "id": "GoogleCloudAiplatformV1VertexAiSearchConfig",
+      "properties": {
+        "servingConfig": {
+          "description": "Vertex AI Search Serving Config resource full name. For example, `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}` or `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}`.",
+          "type": "string"
         }
       },
       "type": "object"
