@@ -112,6 +112,7 @@ export namespace aiplatform_v1 {
    */
   export class Aiplatform {
     context: APIRequestContext;
+    batchPredictionJobs: Resource$Batchpredictionjobs;
     datasets: Resource$Datasets;
     endpoints: Resource$Endpoints;
     media: Resource$Media;
@@ -124,6 +125,7 @@ export namespace aiplatform_v1 {
         google,
       };
 
+      this.batchPredictionJobs = new Resource$Batchpredictionjobs(this.context);
       this.datasets = new Resource$Datasets(this.context);
       this.endpoints = new Resource$Endpoints(this.context);
       this.media = new Resource$Media(this.context);
@@ -730,7 +732,7 @@ export namespace aiplatform_v1 {
      */
     autoraterModel?: string | null;
     /**
-     * Optional. Whether to flip the candidate and baseline responses. This is only applicable to the pairwise metric. If enabled, also provide PairwiseMetricSpec.candidate_response_field_name and PairwiseMetricSpec.baseline_response_field_name. When rendering PairwiseMetricSpec.metric_prompt_template, the candidate and baseline fields will be flipped for half of the samples to reduce bias.
+     * Optional. Default is true. Whether to flip the candidate and baseline responses. This is only applicable to the pairwise metric. If enabled, also provide PairwiseMetricSpec.candidate_response_field_name and PairwiseMetricSpec.baseline_response_field_name. When rendering PairwiseMetricSpec.metric_prompt_template, the candidate and baseline fields will be flipped for half of the samples to reduce bias.
      */
     flipEnabled?: boolean | null;
     /**
@@ -1809,6 +1811,26 @@ export namespace aiplatform_v1 {
     role?: string | null;
   }
   /**
+   * Map of placeholder in metric prompt template to contents of model input.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ContentMap {
+    /**
+     * Optional. Map of placeholder to contents.
+     */
+    values?: {
+      [key: string]: Schema$GoogleCloudAiplatformV1ContentMapContents;
+    } | null;
+  }
+  /**
+   * Repeated Content type.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ContentMapContents {
+    /**
+     * Optional. Repeated contents.
+     */
+    contents?: Schema$GoogleCloudAiplatformV1Content[];
+  }
+  /**
    * Instance of a general context.
    */
   export interface Schema$GoogleCloudAiplatformV1Context {
@@ -2418,6 +2440,24 @@ export namespace aiplatform_v1 {
      * Required. The spec of the worker pools including machine type and Docker image. All worker pools except the first one are optional and can be skipped by providing an empty value.
      */
     workerPoolSpecs?: Schema$GoogleCloudAiplatformV1WorkerPoolSpec[];
+  }
+  /**
+   * Spec for custom output.
+   */
+  export interface Schema$GoogleCloudAiplatformV1CustomOutput {
+    /**
+     * Output only. List of raw output strings.
+     */
+    rawOutputs?: Schema$GoogleCloudAiplatformV1RawOutput;
+  }
+  /**
+   * Spec for custom output format configuration.
+   */
+  export interface Schema$GoogleCloudAiplatformV1CustomOutputFormatConfig {
+    /**
+     * Optional. Whether to return raw output.
+     */
+    returnRawOutput?: boolean | null;
   }
   /**
    * A piece of data in a Dataset. Could be an image, a video, a document or plain text.
@@ -3223,7 +3263,7 @@ export namespace aiplatform_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. DNS of the dedicated endpoint. Will only be populated if dedicated_endpoint_enabled is true. Format: `https://{endpoint_id\}.{region\}-{project_number\}.prediction.vertexai.goog`.
+     * Output only. DNS of the dedicated endpoint. Will only be populated if dedicated_endpoint_enabled is true. Depending on the features enabled, uid might be a random number or a string. For example, if fast_tryout is enabled, uid will be fasttryout. Format: `https://{endpoint_id\}.{region\}-{uid\}.prediction.vertexai.goog`.
      */
     dedicatedEndpointDns?: string | null;
     /**
@@ -3459,7 +3499,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1EvaluateDatasetRequest {
     /**
-     * Optional. Autorater config used for evaluation.
+     * Optional. Autorater config used for evaluation. Currently only publisher Gemini models are supported. Format: `projects/{PROJECT\}/locations/{LOCATION\}/publishers/google/models/{MODEL\}.`
      */
     autoraterConfig?: Schema$GoogleCloudAiplatformV1AutoraterConfig;
     /**
@@ -3551,6 +3591,10 @@ export namespace aiplatform_v1 {
      * Instances and metric spec for rouge metric.
      */
     rougeInput?: Schema$GoogleCloudAiplatformV1RougeInput;
+    /**
+     * Rubric Based Instruction Following metric.
+     */
+    rubricBasedInstructionFollowingInput?: Schema$GoogleCloudAiplatformV1RubricBasedInstructionFollowingInput;
     /**
      * Input for safety metric.
      */
@@ -3681,6 +3725,10 @@ export namespace aiplatform_v1 {
      */
     rougeResults?: Schema$GoogleCloudAiplatformV1RougeResults;
     /**
+     * Result for rubric based instruction following metric.
+     */
+    rubricBasedInstructionFollowingResult?: Schema$GoogleCloudAiplatformV1RubricBasedInstructionFollowingResult;
+    /**
      * Result for safety metric.
      */
     safetyResult?: Schema$GoogleCloudAiplatformV1SafetyResult;
@@ -3746,7 +3794,7 @@ export namespace aiplatform_v1 {
      */
     bigquerySource?: Schema$GoogleCloudAiplatformV1BigQuerySource;
     /**
-     * Cloud storage source holds the dataset.
+     * Cloud storage source holds the dataset. Currently only one Cloud Storage file path is supported.
      */
     gcsSource?: Schema$GoogleCloudAiplatformV1GcsSource;
   }
@@ -4503,6 +4551,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1Fact {
     /**
+     * If present, chunk properties.
+     */
+    chunk?: Schema$GoogleCloudAiplatformV1RagChunk;
+    /**
      * Query that is used to retrieve this fact.
      */
     query?: string | null;
@@ -4613,6 +4665,14 @@ export namespace aiplatform_v1 {
      * Identifier. Name of the FeatureGroup. Format: `projects/{project\}/locations/{location\}/featureGroups/{featureGroup\}`
      */
     name?: string | null;
+    /**
+     * Output only. A Service Account unique to this FeatureGroup. The role bigquery.dataViewer should be granted to this service account to allow Vertex AI Feature Store to access source data while running jobs under this FeatureGroup.
+     */
+    serviceAccountEmail?: string | null;
+    /**
+     * Optional. Service agent type used during jobs under a FeatureGroup. By default, the Vertex AI Service Agent is used. When using an IAM Policy to isolate this FeatureGroup within a project, a separate service account should be provisioned by setting this field to `SERVICE_AGENT_TYPE_FEATURE_GROUP`. This will generate a separate service account to access the BigQuery source table.
+     */
+    serviceAgentType?: string | null;
     /**
      * Output only. Timestamp when this FeatureGroup was last updated.
      */
@@ -5621,7 +5681,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1FunctionCall {
     /**
-     * Optional. Required. The function parameters and values in JSON object format. See [FunctionDeclaration.parameters] for parameter details.
+     * Optional. The function parameters and values in JSON object format. See [FunctionDeclaration.parameters] for parameter details.
      */
     args?: {[key: string]: any} | null;
     /**
@@ -5690,7 +5750,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1GcsSource {
     /**
-     * Required. Google Cloud Storage URI(-s) to the input file(s). May contain wildcards. For more information on wildcards, see https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames.
+     * Required. Google Cloud Storage URI(-s) to the input file(s). May contain wildcards. For more information on wildcards, see https://cloud.google.com/storage/docs/wildcards.
      */
     uris?: string[] | null;
   }
@@ -5839,6 +5899,10 @@ export namespace aiplatform_v1 {
      * Total token count for prompt, response candidates, and tool-use prompts (if present).
      */
     totalTokenCount?: number | null;
+    /**
+     * Output only. Traffic type. This shows whether a request consumes Pay-As-You-Go or Provisioned Throughput quota.
+     */
+    trafficType?: string | null;
   }
   /**
    * Generate video response.
@@ -5947,6 +6011,10 @@ export namespace aiplatform_v1 {
      */
     temperature?: number | null;
     /**
+     * Optional. Config for thinking features. An error will be returned if this field is set for models that don't support thinking.
+     */
+    thinkingConfig?: Schema$GoogleCloudAiplatformV1GenerationConfigThinkingConfig;
+    /**
      * Optional. If specified, top-k sampling will be used.
      */
     topK?: number | null;
@@ -5982,9 +6050,18 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1GenerationConfigRoutingConfigManualRoutingMode {
     /**
-     * The model name to use. Only the public LLM models are accepted. e.g. 'gemini-1.5-pro-001'.
+     * The model name to use. Only the public LLM models are accepted. See [Supported models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference#supported-models).
      */
     modelName?: string | null;
+  }
+  /**
+   * Config for thinking features.
+   */
+  export interface Schema$GoogleCloudAiplatformV1GenerationConfigThinkingConfig {
+    /**
+     * Optional. Indicates the thinking budget in tokens. This is only applied when enable_thinking is true.
+     */
+    thinkingBudget?: number | null;
   }
   /**
    * Generic Metadata shared by all operations.
@@ -6113,6 +6190,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1GroundingChunkRetrievedContext {
     /**
+     * Additional context for the RAG retrieval result. This is only populated when using the RAG retrieval tool.
+     */
+    ragChunk?: Schema$GoogleCloudAiplatformV1RagChunk;
+    /**
      * Text of the attribution.
      */
     text?: string | null;
@@ -6129,6 +6210,10 @@ export namespace aiplatform_v1 {
    * Chunk from the web.
    */
   export interface Schema$GoogleCloudAiplatformV1GroundingChunkWeb {
+    /**
+     * Domain of the (original) URI.
+     */
+    domain?: string | null;
     /**
      * Title of the chunk.
      */
@@ -8903,10 +8988,6 @@ export namespace aiplatform_v1 {
      */
     epoch?: string | null;
     /**
-     * Identifier. The resource name of the ModelVersionCheckpoint. Format: `projects/{project\}/locations/{location\}/models/{model\}/versions/{version\}/checkpoints/{checkpoint\}`
-     */
-    name?: string | null;
-    /**
      * The step of the checkpoint.
      */
     step?: string | null;
@@ -9585,6 +9666,23 @@ export namespace aiplatform_v1 {
     idleTimeout?: string | null;
   }
   /**
+   * Notebook Reservation Affinity for consuming Zonal reservation.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NotebookReservationAffinity {
+    /**
+     * Required. Specifies the type of reservation from which this instance can consume resources: RESERVATION_ANY (default), RESERVATION_SPECIFIC, or RESERVATION_NONE. See Consuming reserved instances for examples.
+     */
+    consumeReservationType?: string | null;
+    /**
+     * Optional. Corresponds to the label key of a reservation resource. To target a RESERVATION_SPECIFIC by name, use compute.googleapis.com/reservation-name as the key and specify the name of your reservation as its value.
+     */
+    key?: string | null;
+    /**
+     * Optional. Corresponds to the label values of a reservation resource. This must be the full path name of Reservation.
+     */
+    values?: string[] | null;
+  }
+  /**
    * A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime limited to 24 hours.
    */
   export interface Schema$GoogleCloudAiplatformV1NotebookRuntime {
@@ -9660,6 +9758,10 @@ export namespace aiplatform_v1 {
      * Output only. The proxy endpoint used to access the NotebookRuntime.
      */
     proxyUri?: string | null;
+    /**
+     * Output only. Reservation Affinity of the notebook runtime.
+     */
+    reservationAffinity?: Schema$GoogleCloudAiplatformV1NotebookReservationAffinity;
     /**
      * Output only. The runtime (instance) state of the NotebookRuntime.
      */
@@ -9762,6 +9864,10 @@ export namespace aiplatform_v1 {
      */
     notebookRuntimeType?: string | null;
     /**
+     * Optional. Reservation Affinity of the notebook runtime template.
+     */
+    reservationAffinity?: Schema$GoogleCloudAiplatformV1NotebookReservationAffinity;
+    /**
      * Deprecated: This field is ignored and the "Vertex AI Notebook Service Account" (service-PROJECT_NUMBER@gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is used for the runtime workload identity. See https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account for more details. For NotebookExecutionJob, use NotebookExecutionJob.service_account instead. The service account that the runtime workload runs as. You can use any service account within the same project, but you must have the service account user permission to use the instance. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.
      */
     serviceAccount?: string | null;
@@ -9827,6 +9933,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1PairwiseMetricInstance {
     /**
+     * Key-value contents for the mutlimodality input, including text, image, video, audio, and pdf, etc. The key is placeholder in metric prompt template, and the value is the multimodal content.
+     */
+    contentMapInstance?: Schema$GoogleCloudAiplatformV1ContentMap;
+    /**
      * Instance specified as a json string. String key-value pairs are expected in the json_instance to render PairwiseMetricSpec.instance_prompt_template.
      */
     jsonInstance?: string | null;
@@ -9835,6 +9945,10 @@ export namespace aiplatform_v1 {
    * Spec for pairwise metric result.
    */
   export interface Schema$GoogleCloudAiplatformV1PairwiseMetricResult {
+    /**
+     * Output only. Spec for custom output.
+     */
+    customOutput?: Schema$GoogleCloudAiplatformV1CustomOutput;
     /**
      * Output only. Explanation for pairwise metric score.
      */
@@ -9856,6 +9970,10 @@ export namespace aiplatform_v1 {
      * Optional. The field name of the candidate response.
      */
     candidateResponseFieldName?: string | null;
+    /**
+     * Optional. CustomOutputFormatConfig allows customization of metric output. When this config is set, the default output is replaced with the raw output string. If a custom format is chosen, the `pairwise_choice` and `explanation` fields in the corresponding metric result will be empty.
+     */
+    customOutputFormatConfig?: Schema$GoogleCloudAiplatformV1CustomOutputFormatConfig;
     /**
      * Required. Metric prompt template for pairwise metric.
      */
@@ -10433,6 +10551,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1PointwiseMetricInstance {
     /**
+     * Key-value contents for the mutlimodality input, including text, image, video, audio, and pdf, etc. The key is placeholder in metric prompt template, and the value is the multimodal content.
+     */
+    contentMapInstance?: Schema$GoogleCloudAiplatformV1ContentMap;
+    /**
      * Instance specified as a json string. String key-value pairs are expected in the json_instance to render PointwiseMetricSpec.instance_prompt_template.
      */
     jsonInstance?: string | null;
@@ -10441,6 +10563,10 @@ export namespace aiplatform_v1 {
    * Spec for pointwise metric result.
    */
   export interface Schema$GoogleCloudAiplatformV1PointwiseMetricResult {
+    /**
+     * Output only. Spec for custom output.
+     */
+    customOutput?: Schema$GoogleCloudAiplatformV1CustomOutput;
     /**
      * Output only. Explanation for pointwise metric score.
      */
@@ -10454,6 +10580,10 @@ export namespace aiplatform_v1 {
    * Spec for pointwise metric.
    */
   export interface Schema$GoogleCloudAiplatformV1PointwiseMetricSpec {
+    /**
+     * Optional. CustomOutputFormatConfig allows customization of metric output. By default, metrics return a score and explanation. When this config is set, the default output is replaced with either: - The raw output string. - A parsed output based on a user-defined schema. If a custom format is chosen, the `score` and `explanation` fields in the corresponding metric result will be empty.
+     */
+    customOutputFormatConfig?: Schema$GoogleCloudAiplatformV1CustomOutputFormatConfig;
     /**
      * Required. Metric prompt template for pointwise metric.
      */
@@ -10706,7 +10836,7 @@ export namespace aiplatform_v1 {
      */
     port?: number | null;
     /**
-     * Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.
+     * Service is the name of the service to place in the gRPC HealthCheckRequest. See https://github.com/grpc/grpc/blob/master/doc/health-checking.md. If this is not specified, the default behavior is defined by gRPC.
      */
     service?: string | null;
   }
@@ -11501,6 +11631,32 @@ export namespace aiplatform_v1 {
     version?: number | null;
   }
   /**
+   * A RagChunk includes the content of a chunk of a RagFile, and associated metadata.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RagChunk {
+    /**
+     * If populated, represents where the chunk starts and ends in the document.
+     */
+    pageSpan?: Schema$GoogleCloudAiplatformV1RagChunkPageSpan;
+    /**
+     * The content of the chunk.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents where the chunk starts and ends in the document.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RagChunkPageSpan {
+    /**
+     * Page where chunk starts in the document. Inclusive. 1-indexed.
+     */
+    firstPage?: number | null;
+    /**
+     * Page where chunk ends in the document. Inclusive. 1-indexed.
+     */
+    lastPage?: number | null;
+  }
+  /**
    * Relevant contexts for one query.
    */
   export interface Schema$GoogleCloudAiplatformV1RagContexts {
@@ -11513,6 +11669,10 @@ export namespace aiplatform_v1 {
    * A context of the query.
    */
   export interface Schema$GoogleCloudAiplatformV1RagContextsContext {
+    /**
+     * Context of the retrieved chunk.
+     */
+    chunk?: Schema$GoogleCloudAiplatformV1RagChunk;
     /**
      * According to the underlying Vector DB and the selected metric type, the score can be either the distance or the similarity between the query and the context and its range depends on the metric type. For example, if the metric type is COSINE_DISTANCE, it represents the distance between the query and the context. The larger the distance, the less relevant the context is to the query. The range is [0, 2], while 0 means the most relevant and 2 means the least relevant.
      */
@@ -11562,6 +11722,10 @@ export namespace aiplatform_v1 {
      * Optional. Immutable. The config for the Vector DBs.
      */
     vectorDbConfig?: Schema$GoogleCloudAiplatformV1RagVectorDbConfig;
+    /**
+     * Optional. Immutable. The config for the Vertex AI Search.
+     */
+    vertexAiSearchConfig?: Schema$GoogleCloudAiplatformV1VertexAiSearchConfig;
   }
   /**
    * Config for the embedding model to use for RAG.
@@ -11717,6 +11881,10 @@ export namespace aiplatform_v1 {
      */
     filter?: Schema$GoogleCloudAiplatformV1RagRetrievalConfigFilter;
     /**
+     * Optional. Config for ranking and reranking.
+     */
+    ranking?: Schema$GoogleCloudAiplatformV1RagRetrievalConfigRanking;
+    /**
      * Optional. The number of contexts to retrieve.
      */
     topK?: number | null;
@@ -11737,6 +11905,37 @@ export namespace aiplatform_v1 {
      * Optional. Only returns contexts with vector similarity larger than the threshold.
      */
     vectorSimilarityThreshold?: number | null;
+  }
+  /**
+   * Config for ranking and reranking.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RagRetrievalConfigRanking {
+    /**
+     * Optional. Config for LlmRanker.
+     */
+    llmRanker?: Schema$GoogleCloudAiplatformV1RagRetrievalConfigRankingLlmRanker;
+    /**
+     * Optional. Config for Rank Service.
+     */
+    rankService?: Schema$GoogleCloudAiplatformV1RagRetrievalConfigRankingRankService;
+  }
+  /**
+   * Config for LlmRanker.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RagRetrievalConfigRankingLlmRanker {
+    /**
+     * Optional. The model name used for ranking. See [Supported models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference#supported-models).
+     */
+    modelName?: string | null;
+  }
+  /**
+   * Config for Rank Service.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RagRetrievalConfigRankingRankService {
+    /**
+     * Optional. The model name of the rank service. Format: `semantic-ranker-512@latest`
+     */
+    modelName?: string | null;
   }
   /**
    * Config for the Vector DB to use for RAG.
@@ -11788,6 +11987,15 @@ export namespace aiplatform_v1 {
      * The resource name of the Index Endpoint. Format: `projects/{project\}/locations/{location\}/indexEndpoints/{index_endpoint\}`
      */
     indexEndpoint?: string | null;
+  }
+  /**
+   * Raw output.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RawOutput {
+    /**
+     * Output only. Raw output string.
+     */
+    rawOutput?: string[] | null;
   }
   /**
    * Request message for PredictionService.RawPredict.
@@ -12024,7 +12232,7 @@ export namespace aiplatform_v1 {
      */
     name?: string | null;
     /**
-     * Required. Configurations of the ReasoningEngine
+     * Optional. Configurations of the ReasoningEngine
      */
     spec?: Schema$GoogleCloudAiplatformV1ReasoningEngineSpec;
     /**
@@ -12037,7 +12245,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1ReasoningEngineSpec {
     /**
-     * Optional. The OSS agent framework used to develop the agent. Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     * Optional. The OSS agent framework used to develop the agent. Currently supported values: "google-adk", "langchain", "langgraph", "ag2", "llama-index", "custom".
      */
     agentFramework?: string | null;
     /**
@@ -12049,7 +12257,7 @@ export namespace aiplatform_v1 {
      */
     deploymentSpec?: Schema$GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpec;
     /**
-     * Required. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes.
+     * Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes.
      */
     packageSpec?: Schema$GoogleCloudAiplatformV1ReasoningEngineSpecPackageSpec;
   }
@@ -12410,6 +12618,58 @@ export namespace aiplatform_v1 {
      * Optional. Whether to use stemmer to compute rouge score.
      */
     useStemmer?: boolean | null;
+  }
+  /**
+   * Instance and metric spec for RubricBasedInstructionFollowing metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RubricBasedInstructionFollowingInput {
+    /**
+     * Required. Instance for RubricBasedInstructionFollowing metric.
+     */
+    instance?: Schema$GoogleCloudAiplatformV1RubricBasedInstructionFollowingInstance;
+    /**
+     * Required. Spec for RubricBasedInstructionFollowing metric.
+     */
+    metricSpec?: Schema$GoogleCloudAiplatformV1RubricBasedInstructionFollowingSpec;
+  }
+  /**
+   * Instance for RubricBasedInstructionFollowing metric - one instance corresponds to one row in an evaluation dataset.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RubricBasedInstructionFollowingInstance {
+    /**
+     * Required. Instance specified as a json string. String key-value pairs are expected in the json_instance to render RubricBasedInstructionFollowing prompt templates.
+     */
+    jsonInstance?: string | null;
+  }
+  /**
+   * Result for RubricBasedInstructionFollowing metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RubricBasedInstructionFollowingResult {
+    /**
+     * Output only. List of per rubric critique results.
+     */
+    rubricCritiqueResults?: Schema$GoogleCloudAiplatformV1RubricCritiqueResult[];
+    /**
+     * Output only. Overall score for the instruction following.
+     */
+    score?: number | null;
+  }
+  /**
+   * Spec for RubricBasedInstructionFollowing metric - returns rubrics and verdicts corresponding to rubrics along with overall score.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RubricBasedInstructionFollowingSpec {}
+  /**
+   * Rubric critique result.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RubricCritiqueResult {
+    /**
+     * Output only. Rubric to be evaluated.
+     */
+    rubric?: string | null;
+    /**
+     * Output only. Verdict for the rubric - true if the rubric is met, false otherwise.
+     */
+    verdict?: boolean | null;
   }
   /**
    * Input for safety metric.
@@ -15835,7 +16095,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1SecretRef {
     /**
-     * Required. The name of the secret in Cloud Secret Manager. Format: {secret_name\} if the secret is in the same project. projects/{project\}/secrets/{secret_name\} if the secret is in a different project.
+     * Required. The name of the secret in Cloud Secret Manager. Format: {secret_name\}.
      */
     secret?: string | null;
     /**
@@ -16060,6 +16320,10 @@ export namespace aiplatform_v1 {
    * The speech generation config.
    */
   export interface Schema$GoogleCloudAiplatformV1SpeechConfig {
+    /**
+     * Optional. Language code (ISO 639. e.g. en-US) for the speech synthesization.
+     */
+    languageCode?: string | null;
     /**
      * The configuration for the speaker to use.
      */
@@ -18081,7 +18345,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1TuningJob {
     /**
-     * The base model that is being tuned, e.g., "gemini-1.0-pro-002". .
+     * The base model that is being tuned. See [Supported models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/tuning#supported_models).
      */
     baseModel?: string | null;
     /**
@@ -18516,6 +18780,15 @@ export namespace aiplatform_v1 {
     engine?: string | null;
   }
   /**
+   * Config for the Vertex AI Search.
+   */
+  export interface Schema$GoogleCloudAiplatformV1VertexAiSearchConfig {
+    /**
+     * Vertex AI Search Serving Config resource full name. For example, `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config\}` or `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/servingConfigs/{serving_config\}`.
+     */
+    servingConfig?: string | null;
+  }
+  /**
    * Retrieve from Vertex RAG Store for grounding.
    */
   export interface Schema$GoogleCloudAiplatformV1VertexRagStore {
@@ -18925,6 +19198,344 @@ export namespace aiplatform_v1 {
      * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+
+  export class Resource$Batchpredictionjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a BatchPredictionJob. A BatchPredictionJob once created will right away be attempted to start.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Batchpredictionjobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Batchpredictionjobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1BatchPredictionJob>;
+    create(
+      params: Params$Resource$Batchpredictionjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Batchpredictionjobs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+    ): void;
+    create(
+      params: Params$Resource$Batchpredictionjobs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Batchpredictionjobs$Create
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Batchpredictionjobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Batchpredictionjobs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/batchPredictionJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1BatchPredictionJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1BatchPredictionJob>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a BatchPredictionJob
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Batchpredictionjobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Batchpredictionjobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1BatchPredictionJob>;
+    get(
+      params: Params$Resource$Batchpredictionjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Batchpredictionjobs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+    ): void;
+    get(
+      params: Params$Resource$Batchpredictionjobs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Batchpredictionjobs$Get
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1BatchPredictionJob>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Batchpredictionjobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Batchpredictionjobs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1BatchPredictionJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1BatchPredictionJob>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists BatchPredictionJobs in a Location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Batchpredictionjobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Batchpredictionjobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>;
+    list(
+      params: Params$Resource$Batchpredictionjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Batchpredictionjobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Batchpredictionjobs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Batchpredictionjobs$List
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Batchpredictionjobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Batchpredictionjobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/batchPredictionJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListBatchPredictionJobsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Batchpredictionjobs$Create
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Location to create the BatchPredictionJob in. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1BatchPredictionJob;
+  }
+  export interface Params$Resource$Batchpredictionjobs$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the BatchPredictionJob resource. Format: `projects/{project\}/locations/{location\}/batchPredictionJobs/{batch_prediction_job\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Batchpredictionjobs$List
+    extends StandardParameters {
+    /**
+     * The standard list filter. Supported fields: * `display_name` supports `=`, `!=` comparisons, and `:` wildcard. * `model_display_name` supports `=`, `!=` comparisons. * `state` supports `=`, `!=` comparisons. * `create_time` supports `=`, `!=`,`<`, `<=`,`\>`, `\>=` comparisons. `create_time` must be in RFC 3339 format. * `labels` supports general map functions that is: `labels.key=value` - key:value equality `labels.key:* - key existence Some examples of using the filter are: * `state="JOB_STATE_SUCCEEDED" AND display_name:"my_job_*"` * `state!="JOB_STATE_FAILED" OR display_name="my_job"` * `NOT display_name="my_job"` * `create_time\>"2021-05-18T00:00:00Z"` * `labels.keyA=valueA` * `labels.keyB:*`
+     */
+    filter?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token. Typically obtained via ListBatchPredictionJobsResponse.next_page_token of the previous JobService.ListBatchPredictionJobs call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Location to list the BatchPredictionJobs from. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+    /**
+     * Mask specifying which fields to read.
+     */
+    readMask?: string;
   }
 
   export class Resource$Datasets {
@@ -20125,8 +20736,10 @@ export namespace aiplatform_v1 {
 
   export class Resource$Endpoints {
     context: APIRequestContext;
+    chat: Resource$Endpoints$Chat;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.chat = new Resource$Endpoints$Chat(this.context);
     }
 
     /**
@@ -20676,6 +21289,117 @@ export namespace aiplatform_v1 {
     requestBody?: Schema$GoogleCloudAiplatformV1GenerateContentRequest;
   }
 
+  export class Resource$Endpoints$Chat {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Exposes an OpenAI-compatible endpoint for chat completions.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    completions(
+      params: Params$Resource$Endpoints$Chat$Completions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    completions(
+      params?: Params$Resource$Endpoints$Chat$Completions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    completions(
+      params: Params$Resource$Endpoints$Chat$Completions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    completions(
+      params: Params$Resource$Endpoints$Chat$Completions,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleApiHttpBody>,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    completions(
+      params: Params$Resource$Endpoints$Chat$Completions,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    completions(callback: BodyResponseCallback<Schema$GoogleApiHttpBody>): void;
+    completions(
+      paramsOrCallback?:
+        | Params$Resource$Endpoints$Chat$Completions
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleApiHttpBody>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Endpoints$Chat$Completions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Endpoints$Chat$Completions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+endpoint}/chat/completions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleApiHttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleApiHttpBody>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Endpoints$Chat$Completions
+    extends StandardParameters {
+    /**
+     * Required. The name of the endpoint requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleApiHttpBody;
+  }
+
   export class Resource$Media {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -21053,6 +21777,7 @@ export namespace aiplatform_v1 {
     pipelineJobs: Resource$Projects$Locations$Pipelinejobs;
     publishers: Resource$Projects$Locations$Publishers;
     ragCorpora: Resource$Projects$Locations$Ragcorpora;
+    ragEngineConfig: Resource$Projects$Locations$Ragengineconfig;
     reasoningEngines: Resource$Projects$Locations$Reasoningengines;
     schedules: Resource$Projects$Locations$Schedules;
     specialistPools: Resource$Projects$Locations$Specialistpools;
@@ -21121,6 +21846,9 @@ export namespace aiplatform_v1 {
         this.context
       );
       this.ragCorpora = new Resource$Projects$Locations$Ragcorpora(
+        this.context
+      );
+      this.ragEngineConfig = new Resource$Projects$Locations$Ragengineconfig(
         this.context
       );
       this.reasoningEngines = new Resource$Projects$Locations$Reasoningengines(
@@ -21871,6 +22599,10 @@ export namespace aiplatform_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
@@ -26841,7 +27573,7 @@ export namespace aiplatform_v1 {
     }
 
     /**
-     * Lists Annotations belongs to a dataitem This RPC is only available in InternalDatasetService. It is only used for exporting conversation data to CCAI Insights.
+     * Lists Annotations belongs to a dataitem.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34453,6 +35185,100 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
      * Lists FeatureGroups in a given project and location.
      *
      * @param params - Parameters for request
@@ -34640,6 +35466,198 @@ export namespace aiplatform_v1 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Featuregroups$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Featuregroups$Testiampermissions,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Featuregroups$Testiampermissions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Featuregroups$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Featuregroups$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Featuregroups$Create
@@ -34675,6 +35693,17 @@ export namespace aiplatform_v1 {
      * Required. The name of the FeatureGroup resource.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Featuregroups$List
     extends StandardParameters {
@@ -34714,6 +35743,29 @@ export namespace aiplatform_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1FeatureGroup;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Featuregroups$Testiampermissions
+    extends StandardParameters {
+    /**
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     */
+    permissions?: string[];
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
   }
 
   export class Resource$Projects$Locations$Featuregroups$Features {
@@ -69981,6 +71033,539 @@ export namespace aiplatform_v1 {
     timeout?: string;
   }
 
+  export class Resource$Projects$Locations$Ragengineconfig {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Ragengineconfig$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Projects$Locations$Ragengineconfig$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Ragengineconfig$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragengineconfig$Operations$Cancel
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragengineconfig$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ragengineconfig$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragengineconfig$Operations$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragengineconfig$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ragengineconfig$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Ragengineconfig$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$List,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragengineconfig$Operations$List
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragengineconfig$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ragengineconfig$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    wait(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    wait(
+      params?: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    wait(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    wait(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    wait(
+      params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    wait(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    wait(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Ragengineconfig$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ragengineconfig$Operations$Delete
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ragengineconfig$Operations$List
+    extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to wait on.
+     */
+    name?: string;
+    /**
+     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
+     */
+    timeout?: string;
+  }
+
   export class Resource$Projects$Locations$Reasoningengines {
     context: APIRequestContext;
     operations: Resource$Projects$Locations$Reasoningengines$Operations;
@@ -70667,6 +72252,10 @@ export namespace aiplatform_v1 {
   }
   export interface Params$Resource$Projects$Locations$Reasoningengines$Delete
     extends StandardParameters {
+    /**
+     * Optional. If set to true, child resources of this reasoning engine will also be deleted. Otherwise, the request will fail with FAILED_PRECONDITION error when the reasoning engine has undeleted child resources.
+     */
+    force?: boolean;
     /**
      * Required. The name of the ReasoningEngine resource to be deleted. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
      */
