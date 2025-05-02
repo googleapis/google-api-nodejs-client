@@ -565,7 +565,7 @@ export namespace dataplex_v1 {
      */
     jsonOptions?: Schema$GoogleCloudDataplexV1AssetDiscoverySpecJsonOptions;
     /**
-     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.
+     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes.To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.
      */
     schedule?: string | null;
   }
@@ -945,6 +945,10 @@ export namespace dataplex_v1 {
      * Output only. Configuration for metadata publishing.
      */
     bigqueryPublishing?: Schema$GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing;
+    /**
+     * Output only. Describes result statistics of a data scan discovery job.
+     */
+    scanStatistics?: Schema$GoogleCloudDataplexV1DataDiscoveryResultScanStatistics;
   }
   /**
    * Describes BigQuery publishing configurations.
@@ -954,6 +958,51 @@ export namespace dataplex_v1 {
      * Output only. The BigQuery dataset the discovered tables are published to.
      */
     dataset?: string | null;
+    /**
+     * Output only. The location of the BigQuery publishing dataset.
+     */
+    location?: string | null;
+  }
+  /**
+   * Describes result statistics of a data scan discovery job.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoveryResultScanStatistics {
+    /**
+     * The data processed in bytes.
+     */
+    dataProcessedBytes?: string | null;
+    /**
+     * The number of filesets created.
+     */
+    filesetsCreated?: number | null;
+    /**
+     * The number of filesets deleted.
+     */
+    filesetsDeleted?: number | null;
+    /**
+     * The number of filesets updated.
+     */
+    filesetsUpdated?: number | null;
+    /**
+     * The number of files excluded.
+     */
+    filesExcluded?: number | null;
+    /**
+     * The number of files scanned.
+     */
+    scannedFileCount?: number | null;
+    /**
+     * The number of tables created.
+     */
+    tablesCreated?: number | null;
+    /**
+     * The number of tables deleted.
+     */
+    tablesDeleted?: number | null;
+    /**
+     * The number of tables updated.
+     */
+    tablesUpdated?: number | null;
   }
   /**
    * Spec for a data discovery scan.
@@ -1269,7 +1318,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileSpecPostScanActionsBigQueryExport {
     /**
-     * Optional. The BigQuery table to export DataProfileScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+     * Optional. The BigQuery table to export DataProfileScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID or projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      */
     resultsTable?: string | null;
   }
@@ -1300,7 +1349,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityDimension {
     /**
-     * The dimension name a rule belongs to. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "FRESHNESS", "VOLUME"
+     * Optional. The dimension name a rule belongs to. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.
      */
     name?: string | null;
   }
@@ -1313,7 +1362,7 @@ export namespace dataplex_v1 {
      */
     dimension?: Schema$GoogleCloudDataplexV1DataQualityDimension;
     /**
-     * Whether the dimension passed or failed.
+     * Output only. Whether the dimension passed or failed.
      */
     passed?: boolean | null;
     /**
@@ -1330,11 +1379,11 @@ export namespace dataplex_v1 {
      */
     columns?: Schema$GoogleCloudDataplexV1DataQualityColumnResult[];
     /**
-     * A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.
+     * Output only. A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.
      */
     dimensions?: Schema$GoogleCloudDataplexV1DataQualityDimensionResult[];
     /**
-     * Overall data quality result -- true if all rules passed.
+     * Output only. Overall data quality result -- true if all rules passed.
      */
     passed?: boolean | null;
     /**
@@ -1342,15 +1391,15 @@ export namespace dataplex_v1 {
      */
     postScanActionsResult?: Schema$GoogleCloudDataplexV1DataQualityResultPostScanActionsResult;
     /**
-     * The count of rows processed.
+     * Output only. The count of rows processed.
      */
     rowCount?: string | null;
     /**
-     * A list of all the rules in a job, and their results.
+     * Output only. A list of all the rules in a job, and their results.
      */
     rules?: Schema$GoogleCloudDataplexV1DataQualityRuleResult[];
     /**
-     * The data scanned for this result.
+     * Output only. The data scanned for this result.
      */
     scannedData?: Schema$GoogleCloudDataplexV1ScannedData;
     /**
@@ -1492,31 +1541,31 @@ export namespace dataplex_v1 {
      */
     assertionRowCount?: string | null;
     /**
-     * The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.
+     * Output only. The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.
      */
     evaluatedCount?: string | null;
     /**
-     * The query to find rows that did not pass this rule.This field is only valid for row-level type rules.
+     * Output only. The query to find rows that did not pass this rule.This field is only valid for row-level type rules.
      */
     failingRowsQuery?: string | null;
     /**
-     * The number of rows with null values in the specified column.
+     * Output only. The number of rows with null values in the specified column.
      */
     nullCount?: string | null;
     /**
-     * Whether the rule passed or failed.
+     * Output only. Whether the rule passed or failed.
      */
     passed?: boolean | null;
     /**
-     * This field is not set for rule SqlAssertion.
+     * Output only. The number of rows which passed a rule evaluation.This field is only valid for row-level type rules.This field is not set for rule SqlAssertion.
      */
     passedCount?: string | null;
     /**
-     * The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.
+     * Output only. The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.
      */
     passRatio?: number | null;
     /**
-     * The rule specified in the DataQualitySpec, as is.
+     * Output only. The rule specified in the DataQualitySpec, as is.
      */
     rule?: Schema$GoogleCloudDataplexV1DataQualityRule;
   }
@@ -1681,7 +1730,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport {
     /**
-     * Optional. The BigQuery table to export DataQualityScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+     * Optional. The BigQuery table to export DataQualityScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID or projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      */
     resultsTable?: string | null;
   }
@@ -2240,6 +2289,52 @@ export namespace dataplex_v1 {
     type?: string | null;
   }
   /**
+   * A Resource designed to manage encryption configurations for customers to support Customer Managed Encryption Keys (CMEK).
+   */
+  export interface Schema$GoogleCloudDataplexV1EncryptionConfig {
+    /**
+     * Output only. The time when the Encryption configuration was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The state of encryption of the databases.
+     */
+    encryptionState?: string | null;
+    /**
+     * Etag of the EncryptionConfig. This is a strong etag.
+     */
+    etag?: string | null;
+    /**
+     * Output only. Details of the failure if anything related to Cmek db fails.
+     */
+    failureDetails?: Schema$GoogleCloudDataplexV1EncryptionConfigFailureDetails;
+    /**
+     * Optional. If a key is chosen, it means that the customer is using CMEK. If a key is not chosen, it means that the customer is using Google managed encryption.
+     */
+    key?: string | null;
+    /**
+     * Identifier. The resource name of the EncryptionConfig. Format: organizations/{organization\}/locations/{location\}/encryptionConfigs/{encryption_config\} Global location is not supported.
+     */
+    name?: string | null;
+    /**
+     * Output only. The time when the Encryption configuration was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Details of the failure if anything related to Cmek db fails.
+   */
+  export interface Schema$GoogleCloudDataplexV1EncryptionConfigFailureDetails {
+    /**
+     * Output only. The error code for the failure.
+     */
+    errorCode?: string | null;
+    /**
+     * Output only. The error message will be shown to the user. Set only if the error code is REQUIRE_USER_ACTION.
+     */
+    errorMessage?: string | null;
+  }
+  /**
    * Represents tables and fileset metadata contained within a zone.
    */
   export interface Schema$GoogleCloudDataplexV1Entity {
@@ -2419,6 +2514,23 @@ export namespace dataplex_v1 {
      * Output only. The time when the EntryGroup was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Payload associated with Entry related log events.
+   */
+  export interface Schema$GoogleCloudDataplexV1EntryLinkEvent {
+    /**
+     * The type of the event.
+     */
+    eventType?: string | null;
+    /**
+     * The log message.
+     */
+    message?: string | null;
+    /**
+     * Name of the resource.
+     */
+    resource?: string | null;
   }
   /**
    * Information related to the source system of the data resource that is represented by the entry.
@@ -3068,6 +3180,23 @@ export namespace dataplex_v1 {
     unreachableLocations?: string[] | null;
   }
   /**
+   * List EncryptionConfigs Response
+   */
+  export interface Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse {
+    /**
+     * The list of EncryptionConfigs under the given parent location.
+     */
+    encryptionConfigs?: Schema$GoogleCloudDataplexV1EncryptionConfig[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachableLocations?: string[] | null;
+  }
+  /**
    * List metadata entities response.
    */
   export interface Schema$GoogleCloudDataplexV1ListEntitiesResponse {
@@ -3252,6 +3381,14 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. Export job result.
+     */
+    exportResult?: Schema$GoogleCloudDataplexV1MetadataJobExportJobResult;
+    /**
+     * Export job specification.
+     */
+    exportSpec?: Schema$GoogleCloudDataplexV1MetadataJobExportJobSpec;
+    /**
      * Output only. Import job result.
      */
     importResult?: Schema$GoogleCloudDataplexV1MetadataJobImportJobResult;
@@ -3283,6 +3420,57 @@ export namespace dataplex_v1 {
      * Output only. The time when the metadata job was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Summary results from a metadata export job. The results are a snapshot of the metadata at the time when the job was created. The exported entries are saved to a Cloud Storage bucket.
+   */
+  export interface Schema$GoogleCloudDataplexV1MetadataJobExportJobResult {
+    /**
+     * Output only. The error message if the metadata export job failed.
+     */
+    errorMessage?: string | null;
+    /**
+     * Output only. The number of entries that were exported.
+     */
+    exportedEntries?: string | null;
+  }
+  /**
+   * Job specification for a metadata export job.
+   */
+  export interface Schema$GoogleCloudDataplexV1MetadataJobExportJobSpec {
+    /**
+     * Required. The root path of the Cloud Storage bucket to export the metadata to, in the format gs://{bucket\}/. You can optionally specify a custom prefix after the bucket name, in the format gs://{bucket\}/{prefix\}/. The maximum length of the custom prefix is 128 characters. Dataplex constructs the object path for the exported files by using the bucket name and prefix that you provide, followed by a system-generated path.The bucket must be in the same VPC Service Controls perimeter as the job.
+     */
+    outputPath?: string | null;
+    /**
+     * Required. The scope of the export job.
+     */
+    scope?: Schema$GoogleCloudDataplexV1MetadataJobExportJobSpecExportJobScope;
+  }
+  /**
+   * The scope of the export job.
+   */
+  export interface Schema$GoogleCloudDataplexV1MetadataJobExportJobSpecExportJobScope {
+    /**
+     * The aspect types that are in scope for the export job, specified as relative resource names in the format projects/{project_id_or_number\}/locations/{location\}/aspectTypes/{aspect_type_id\}. Only aspects that belong to the specified aspect types are affected by the job.
+     */
+    aspectTypes?: string[] | null;
+    /**
+     * The entry groups whose metadata you want to export, in the format projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}. Only the entries in the specified entry groups are exported.The entry groups must be in the same location and the same VPC Service Controls perimeter as the job.If you set the job scope to be a list of entry groups, then set the organization-level export flag to false and don't provide a list of projects.
+     */
+    entryGroups?: string[] | null;
+    /**
+     * The entry types that are in scope for the export job, specified as relative resource names in the format projects/{project_id_or_number\}/locations/{location\}/entryTypes/{entry_type_id\}. Only entries that belong to the specified entry types are affected by the job.
+     */
+    entryTypes?: string[] | null;
+    /**
+     * Whether the metadata export job is an organization-level export job. If true, the job exports the entries from the same organization and VPC Service Controls perimeter as the job. The project that the job belongs to determines the VPC Service Controls perimeter. If you set the job scope to be at the organization level, then don't provide a list of projects or entry groups. If false, you must specify a list of projects or a list of entry groups whose entries you want to export.The default is false.
+     */
+    organizationLevel?: boolean | null;
+    /**
+     * The projects whose metadata you want to export, in the format projects/{project_id_or_number\}. Only the entries from the specified projects are exported.The projects must be in the same organization and VPC Service Controls perimeter as the job.If you set the job scope to be a list of projects, then set the organization-level export flag to false and don't provide a list of entry groups.
+     */
+    projects?: string[] | null;
   }
   /**
    * Results from a metadata import job.
@@ -3338,7 +3526,7 @@ export namespace dataplex_v1 {
      */
     sourceCreateTime?: string | null;
     /**
-     * Optional. The URI of a Cloud Storage bucket or folder (beginning with gs:// and ending with /) that contains the metadata import files for this job.A metadata import file defines the values to set for each of the entries and aspects in a metadata job. For more information about how to create a metadata import file and the file requirements, see Metadata import file (https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).You can provide multiple metadata import files in the same metadata job. The bucket or folder must contain at least one metadata import file, in JSON Lines format (either .json or .jsonl file extension).In FULL entry sync mode, don't save the metadata import file in a folder named SOURCE_STORAGE_URI/deletions/.Caution: If the metadata import file contains no data, all entries and aspects that belong to the job's scope are deleted.
+     * Optional. The URI of a Cloud Storage bucket or folder (beginning with gs:// and ending with /) that contains the metadata import files for this job.A metadata import file defines the values to set for each of the entries and aspects in a metadata import job. For more information about how to create a metadata import file and the file requirements, see Metadata import file (https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).You can provide multiple metadata import files in the same metadata job. The bucket or folder must contain at least one metadata import file, in JSON Lines format (either .json or .jsonl file extension).In FULL entry sync mode, don't save the metadata import file in a folder named SOURCE_STORAGE_URI/deletions/.Caution: If the metadata import file contains no data, all entries and aspects that belong to the job's scope are deleted.
      */
     sourceStorageUri?: string | null;
   }
@@ -4120,7 +4308,7 @@ export namespace dataplex_v1 {
      */
     jsonOptions?: Schema$GoogleCloudDataplexV1ZoneDiscoverySpecJsonOptions;
     /**
-     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.
+     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes.To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.
      */
     schedule?: string | null;
   }
@@ -4411,6 +4599,290 @@ export namespace dataplex_v1 {
     }
 
     /**
+     * Create an EncryptionConfig.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Encryptionconfigs$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Encryptionconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/encryptionConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Delete an EncryptionConfig.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Encryptionconfigs$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Encryptionconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Get an EncryptionConfig.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1EncryptionConfig>;
+    get(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EncryptionConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EncryptionConfig>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EncryptionConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EncryptionConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Encryptionconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EncryptionConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EncryptionConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EncryptionConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1EncryptionConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Encryptionconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1EncryptionConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1EncryptionConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      *
      * @param params - Parameters for request
@@ -4501,6 +4973,197 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * List EncryptionConfigs.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Encryptionconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Encryptionconfigs$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Encryptionconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/encryptionConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListEncryptionConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update an EncryptionConfig.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Encryptionconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Encryptionconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -4697,6 +5360,40 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the EncryptionConfig to create. Currently, only a value of "default" is supported.
+     */
+    encryptionConfigId?: string;
+    /**
+     * Required. The location at which the EncryptionConfig is to be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1EncryptionConfig;
+  }
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Optional. Etag of the EncryptionConfig. This is a strong etag.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the EncryptionConfig to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the EncryptionConfig to fetch.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy
     extends StandardParameters {
     /**
@@ -4707,6 +5404,45 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter the EncryptionConfigs to be returned. Using bare literals: (These values will be matched anywhere it may appear in the object's field values) * filter=some_value Using fields: (These values will be matched only in the specified field) * filter=some_field=some_value Supported fields: * name, key, create_time, update_time, encryption_state Example: * filter=name=organizations/123/locations/us-central1/encryptionConfigs/test-config conjunctions: (AND, OR, NOT) * filter=name=organizations/123/locations/us-central1/encryptionConfigs/test-config AND mode=CMEK logical operators: (\>, <, \>=, <=, !=, =, :), * filter=create_time\>2024-05-01T00:00:00.000Z
+     */
+    filter?: string;
+    /**
+     * Optional. Order by fields for the result.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of EncryptionConfigs to return. The service may return fewer than this value. If unspecified, at most 10 EncryptionConfigs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListEncryptionConfigs call. Provide this to retrieve the subsequent page. When paginating, the parameters - filter and order_by provided to ListEncryptionConfigs must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The location for which the EncryptionConfig is to be listed.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the EncryptionConfig. Format: organizations/{organization\}/locations/{location\}/encryptionConfigs/{encryption_config\} Global location is not supported.
+     */
+    name?: string;
+    /**
+     * Optional. Mask of fields to update. The service treats an omitted field mask as an implied field mask equivalent to all fields that are populated (have a non-empty value).
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1EncryptionConfig;
   }
   export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy
     extends StandardParameters {
@@ -5594,6 +6330,10 @@ export namespace dataplex_v1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      */

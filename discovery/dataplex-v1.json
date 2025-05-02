@@ -348,6 +348,94 @@
           "resources": {
             "encryptionConfigs": {
               "methods": {
+                "create": {
+                  "description": "Create an EncryptionConfig.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/encryptionConfigs",
+                  "httpMethod": "POST",
+                  "id": "dataplex.organizations.locations.encryptionConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "encryptionConfigId": {
+                      "description": "Required. The ID of the EncryptionConfig to create. Currently, only a value of \"default\" is supported.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The location at which the EncryptionConfig is to be created.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/encryptionConfigs",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1EncryptionConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete an EncryptionConfig.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/encryptionConfigs/{encryptionConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataplex.organizations.locations.encryptionConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. Etag of the EncryptionConfig. This is a strong etag.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the EncryptionConfig to delete.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/encryptionConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get an EncryptionConfig.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/encryptionConfigs/{encryptionConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "dataplex.organizations.locations.encryptionConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EncryptionConfig to fetch.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/encryptionConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1EncryptionConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/encryptionConfigs/{encryptionConfigsId}:getIamPolicy",
@@ -374,6 +462,86 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List EncryptionConfigs.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/encryptionConfigs",
+                  "httpMethod": "GET",
+                  "id": "dataplex.organizations.locations.encryptionConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter the EncryptionConfigs to be returned. Using bare literals: (These values will be matched anywhere it may appear in the object's field values) * filter=some_value Using fields: (These values will be matched only in the specified field) * filter=some_field=some_value Supported fields: * name, key, create_time, update_time, encryption_state Example: * filter=name=organizations/123/locations/us-central1/encryptionConfigs/test-config conjunctions: (AND, OR, NOT) * filter=name=organizations/123/locations/us-central1/encryptionConfigs/test-config AND mode=CMEK logical operators: (>, <, >=, <=, !=, =, :), * filter=create_time>2024-05-01T00:00:00.000Z",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Order by fields for the result.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of EncryptionConfigs to return. The service may return fewer than this value. If unspecified, at most 10 EncryptionConfigs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous ListEncryptionConfigs call. Provide this to retrieve the subsequent page. When paginating, the parameters - filter and order_by provided to ListEncryptionConfigs must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The location for which the EncryptionConfig is to be listed.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/encryptionConfigs",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1ListEncryptionConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update an EncryptionConfig.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/encryptionConfigs/{encryptionConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "dataplex.organizations.locations.encryptionConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the EncryptionConfig. Format: organizations/{organization}/locations/{location}/encryptionConfigs/{encryption_config} Global location is not supported.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/encryptionConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Mask of fields to update. The service treats an omitted field mask as an implied field mask equivalent to all fields that are populated (have a non-empty value).",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1EncryptionConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -602,6 +770,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
                   "location": "query",
@@ -6257,7 +6431,7 @@
       }
     }
   },
-  "revision": "20250307",
+  "revision": "20250419",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -6860,7 +7034,7 @@
           "description": "Optional. Configuration for Json data."
         },
         "schedule": {
-          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.",
+          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes.To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.",
           "type": "string"
         }
       },
@@ -7431,6 +7605,11 @@
           "$ref": "GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing",
           "description": "Output only. Configuration for metadata publishing.",
           "readOnly": true
+        },
+        "scanStatistics": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoveryResultScanStatistics",
+          "description": "Output only. Describes result statistics of a data scan discovery job.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -7443,6 +7622,63 @@
           "description": "Output only. The BigQuery dataset the discovered tables are published to.",
           "readOnly": true,
           "type": "string"
+        },
+        "location": {
+          "description": "Output only. The location of the BigQuery publishing dataset.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDiscoveryResultScanStatistics": {
+      "description": "Describes result statistics of a data scan discovery job.",
+      "id": "GoogleCloudDataplexV1DataDiscoveryResultScanStatistics",
+      "properties": {
+        "dataProcessedBytes": {
+          "description": "The data processed in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "filesExcluded": {
+          "description": "The number of files excluded.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "filesetsCreated": {
+          "description": "The number of filesets created.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "filesetsDeleted": {
+          "description": "The number of filesets deleted.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "filesetsUpdated": {
+          "description": "The number of filesets updated.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "scannedFileCount": {
+          "description": "The number of files scanned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "tablesCreated": {
+          "description": "The number of tables created.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "tablesDeleted": {
+          "description": "The number of tables deleted.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "tablesUpdated": {
+          "description": "The number of tables updated.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -7859,7 +8095,7 @@
       "id": "GoogleCloudDataplexV1DataProfileSpecPostScanActionsBigQueryExport",
       "properties": {
         "resultsTable": {
-          "description": "Optional. The BigQuery table to export DataProfileScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
+          "description": "Optional. The BigQuery table to export DataProfileScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID or projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
           "type": "string"
         }
       },
@@ -7902,7 +8138,7 @@
       "id": "GoogleCloudDataplexV1DataQualityDimension",
       "properties": {
         "name": {
-          "description": "The dimension name a rule belongs to. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"FRESHNESS\", \"VOLUME\"",
+          "description": "Optional. The dimension name a rule belongs to. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.",
           "type": "string"
         }
       },
@@ -7918,7 +8154,8 @@
           "readOnly": true
         },
         "passed": {
-          "description": "Whether the dimension passed or failed.",
+          "description": "Output only. Whether the dimension passed or failed.",
+          "readOnly": true,
           "type": "boolean"
         },
         "score": {
@@ -7943,14 +8180,16 @@
           "type": "array"
         },
         "dimensions": {
-          "description": "A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.",
+          "description": "Output only. A list of results at the dimension level.A dimension will have a corresponding DataQualityDimensionResult if and only if there is at least one rule with the 'dimension' field set to it.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataQualityDimensionResult"
           },
+          "readOnly": true,
           "type": "array"
         },
         "passed": {
-          "description": "Overall data quality result -- true if all rules passed.",
+          "description": "Output only. Overall data quality result -- true if all rules passed.",
+          "readOnly": true,
           "type": "boolean"
         },
         "postScanActionsResult": {
@@ -7959,20 +8198,23 @@
           "readOnly": true
         },
         "rowCount": {
-          "description": "The count of rows processed.",
+          "description": "Output only. The count of rows processed.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "rules": {
-          "description": "A list of all the rules in a job, and their results.",
+          "description": "Output only. A list of all the rules in a job, and their results.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataQualityRuleResult"
           },
+          "readOnly": true,
           "type": "array"
         },
         "scannedData": {
           "$ref": "GoogleCloudDataplexV1ScannedData",
-          "description": "The data scanned for this result."
+          "description": "Output only. The data scanned for this result.",
+          "readOnly": true
         },
         "score": {
           "description": "Output only. The overall data quality score.The score ranges between 0, 100 (up to two decimal points).",
@@ -8147,36 +8389,43 @@
           "type": "string"
         },
         "evaluatedCount": {
-          "description": "The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.",
+          "description": "Output only. The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "failingRowsQuery": {
-          "description": "The query to find rows that did not pass this rule.This field is only valid for row-level type rules.",
+          "description": "Output only. The query to find rows that did not pass this rule.This field is only valid for row-level type rules.",
+          "readOnly": true,
           "type": "string"
         },
         "nullCount": {
-          "description": "The number of rows with null values in the specified column.",
+          "description": "Output only. The number of rows with null values in the specified column.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "passRatio": {
-          "description": "The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.",
+          "description": "Output only. The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "passed": {
-          "description": "Whether the rule passed or failed.",
+          "description": "Output only. Whether the rule passed or failed.",
+          "readOnly": true,
           "type": "boolean"
         },
         "passedCount": {
-          "description": "This field is not set for rule SqlAssertion.",
+          "description": "Output only. The number of rows which passed a rule evaluation.This field is only valid for row-level type rules.This field is not set for rule SqlAssertion.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "rule": {
           "$ref": "GoogleCloudDataplexV1DataQualityRule",
-          "description": "The rule specified in the DataQualitySpec, as is."
+          "description": "Output only. The rule specified in the DataQualitySpec, as is.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -8428,7 +8677,7 @@
       "id": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport",
       "properties": {
         "resultsTable": {
-          "description": "Optional. The BigQuery table to export DataQualityScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
+          "description": "Optional. The BigQuery table to export DataQualityScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID or projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
           "type": "string"
         }
       },
@@ -9290,6 +9539,86 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1EncryptionConfig": {
+      "description": "A Resource designed to manage encryption configurations for customers to support Customer Managed Encryption Keys (CMEK).",
+      "id": "GoogleCloudDataplexV1EncryptionConfig",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the Encryption configuration was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "encryptionState": {
+          "description": "Output only. The state of encryption of the databases.",
+          "enum": [
+            "ENCRYPTION_STATE_UNSPECIFIED",
+            "ENCRYPTING",
+            "COMPLETED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "State is not specified.",
+            "The encryption state of the database when the EncryptionConfig is created or updated. If the encryption fails, it is retried indefinitely and the state is shown as ENCRYPTING.",
+            "The encryption of data has completed successfully.",
+            "The encryption of data has failed. The state is set to FAILED when the encryption fails due to reasons like permission issues, invalid key etc."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Etag of the EncryptionConfig. This is a strong etag.",
+          "type": "string"
+        },
+        "failureDetails": {
+          "$ref": "GoogleCloudDataplexV1EncryptionConfigFailureDetails",
+          "description": "Output only. Details of the failure if anything related to Cmek db fails.",
+          "readOnly": true
+        },
+        "key": {
+          "description": "Optional. If a key is chosen, it means that the customer is using CMEK. If a key is not chosen, it means that the customer is using Google managed encryption.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the EncryptionConfig. Format: organizations/{organization}/locations/{location}/encryptionConfigs/{encryption_config} Global location is not supported.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the Encryption configuration was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1EncryptionConfigFailureDetails": {
+      "description": "Details of the failure if anything related to Cmek db fails.",
+      "id": "GoogleCloudDataplexV1EncryptionConfigFailureDetails",
+      "properties": {
+        "errorCode": {
+          "description": "Output only. The error code for the failure.",
+          "enum": [
+            "UNKNOWN",
+            "INTERNAL_ERROR",
+            "REQUIRE_USER_ACTION"
+          ],
+          "enumDescriptions": [
+            "The error code is not specified",
+            "Error because of internal server error, will be retried automatically.",
+            "User action is required to resolve the error."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Output only. The error message will be shown to the user. Set only if the error code is REQUIRE_USER_ACTION.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1Entity": {
       "description": "Represents tables and fileset metadata contained within a zone.",
       "id": "GoogleCloudDataplexV1Entity",
@@ -9536,6 +9865,35 @@
           "description": "Output only. The time when the EntryGroup was last updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1EntryLinkEvent": {
+      "description": "Payload associated with Entry related log events.",
+      "id": "GoogleCloudDataplexV1EntryLinkEvent",
+      "properties": {
+        "eventType": {
+          "description": "The type of the event.",
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "ENTRY_LINK_CREATE",
+            "ENTRY_LINK_DELETE"
+          ],
+          "enumDescriptions": [
+            "An unspecified event type.",
+            "EntryLink create event.",
+            "EntryLink delete event."
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "The log message.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "Name of the resource.",
           "type": "string"
         }
       },
@@ -10556,6 +10914,31 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1ListEncryptionConfigsResponse": {
+      "description": "List EncryptionConfigs Response",
+      "id": "GoogleCloudDataplexV1ListEncryptionConfigsResponse",
+      "properties": {
+        "encryptionConfigs": {
+          "description": "The list of EncryptionConfigs under the given parent location.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1EncryptionConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachableLocations": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1ListEntitiesResponse": {
       "description": "List metadata entities response.",
       "id": "GoogleCloudDataplexV1ListEntitiesResponse",
@@ -10817,6 +11200,15 @@
           "readOnly": true,
           "type": "string"
         },
+        "exportResult": {
+          "$ref": "GoogleCloudDataplexV1MetadataJobExportJobResult",
+          "description": "Output only. Export job result.",
+          "readOnly": true
+        },
+        "exportSpec": {
+          "$ref": "GoogleCloudDataplexV1MetadataJobExportJobSpec",
+          "description": "Export job specification."
+        },
         "importResult": {
           "$ref": "GoogleCloudDataplexV1MetadataJobImportJobResult",
           "description": "Output only. Import job result.",
@@ -10847,11 +11239,13 @@
           "description": "Required. Metadata job type.",
           "enum": [
             "TYPE_UNSPECIFIED",
-            "IMPORT"
+            "IMPORT",
+            "EXPORT"
           ],
           "enumDescriptions": [
             "Unspecified.",
-            "Import job."
+            "Import job.",
+            "Export job."
           ],
           "type": "string"
         },
@@ -10865,6 +11259,78 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1MetadataJobExportJobResult": {
+      "description": "Summary results from a metadata export job. The results are a snapshot of the metadata at the time when the job was created. The exported entries are saved to a Cloud Storage bucket.",
+      "id": "GoogleCloudDataplexV1MetadataJobExportJobResult",
+      "properties": {
+        "errorMessage": {
+          "description": "Output only. The error message if the metadata export job failed.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "exportedEntries": {
+          "description": "Output only. The number of entries that were exported.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1MetadataJobExportJobSpec": {
+      "description": "Job specification for a metadata export job.",
+      "id": "GoogleCloudDataplexV1MetadataJobExportJobSpec",
+      "properties": {
+        "outputPath": {
+          "description": "Required. The root path of the Cloud Storage bucket to export the metadata to, in the format gs://{bucket}/. You can optionally specify a custom prefix after the bucket name, in the format gs://{bucket}/{prefix}/. The maximum length of the custom prefix is 128 characters. Dataplex constructs the object path for the exported files by using the bucket name and prefix that you provide, followed by a system-generated path.The bucket must be in the same VPC Service Controls perimeter as the job.",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "GoogleCloudDataplexV1MetadataJobExportJobSpecExportJobScope",
+          "description": "Required. The scope of the export job."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1MetadataJobExportJobSpecExportJobScope": {
+      "description": "The scope of the export job.",
+      "id": "GoogleCloudDataplexV1MetadataJobExportJobSpecExportJobScope",
+      "properties": {
+        "aspectTypes": {
+          "description": "The aspect types that are in scope for the export job, specified as relative resource names in the format projects/{project_id_or_number}/locations/{location}/aspectTypes/{aspect_type_id}. Only aspects that belong to the specified aspect types are affected by the job.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entryGroups": {
+          "description": "The entry groups whose metadata you want to export, in the format projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}. Only the entries in the specified entry groups are exported.The entry groups must be in the same location and the same VPC Service Controls perimeter as the job.If you set the job scope to be a list of entry groups, then set the organization-level export flag to false and don't provide a list of projects.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entryTypes": {
+          "description": "The entry types that are in scope for the export job, specified as relative resource names in the format projects/{project_id_or_number}/locations/{location}/entryTypes/{entry_type_id}. Only entries that belong to the specified entry types are affected by the job.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "organizationLevel": {
+          "description": "Whether the metadata export job is an organization-level export job. If true, the job exports the entries from the same organization and VPC Service Controls perimeter as the job. The project that the job belongs to determines the VPC Service Controls perimeter. If you set the job scope to be at the organization level, then don't provide a list of projects or entry groups. If false, you must specify a list of projects or a list of entry groups whose entries you want to export.The default is false.",
+          "type": "boolean"
+        },
+        "projects": {
+          "description": "The projects whose metadata you want to export, in the format projects/{project_id_or_number}. Only the entries from the specified projects are exported.The projects must be in the same organization and VPC Service Controls perimeter as the job.If you set the job scope to be a list of projects, then set the organization-level export flag to false and don't provide a list of entry groups.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -10972,7 +11438,7 @@
           "type": "string"
         },
         "sourceStorageUri": {
-          "description": "Optional. The URI of a Cloud Storage bucket or folder (beginning with gs:// and ending with /) that contains the metadata import files for this job.A metadata import file defines the values to set for each of the entries and aspects in a metadata job. For more information about how to create a metadata import file and the file requirements, see Metadata import file (https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).You can provide multiple metadata import files in the same metadata job. The bucket or folder must contain at least one metadata import file, in JSON Lines format (either .json or .jsonl file extension).In FULL entry sync mode, don't save the metadata import file in a folder named SOURCE_STORAGE_URI/deletions/.Caution: If the metadata import file contains no data, all entries and aspects that belong to the job's scope are deleted.",
+          "description": "Optional. The URI of a Cloud Storage bucket or folder (beginning with gs:// and ending with /) that contains the metadata import files for this job.A metadata import file defines the values to set for each of the entries and aspects in a metadata import job. For more information about how to create a metadata import file and the file requirements, see Metadata import file (https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).You can provide multiple metadata import files in the same metadata job. The bucket or folder must contain at least one metadata import file, in JSON Lines format (either .json or .jsonl file extension).In FULL entry sync mode, don't save the metadata import file in a folder named SOURCE_STORAGE_URI/deletions/.Caution: If the metadata import file contains no data, all entries and aspects that belong to the job's scope are deleted.",
           "type": "string"
         }
       },
@@ -12229,7 +12695,7 @@
           "description": "Optional. Configuration for Json data."
         },
         "schedule": {
-          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.",
+          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes.To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.",
           "type": "string"
         }
       },
