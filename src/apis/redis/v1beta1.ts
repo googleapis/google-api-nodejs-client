@@ -2143,6 +2143,10 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
+    /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
@@ -2357,7 +2361,7 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$Backupcollections$Get
     extends StandardParameters {
     /**
-     * Required. Redis backupCollection resource name using the form: `projects/{project_id\}/locations/{location_id\}/backupCollections/{backup_collection_id\}` where `location_id` refers to a GCP region.
+     * Required. Redis backupCollection resource name using the form: `projects/{project_id\}/locations/{location_id\}/backupCollections/{backup_collection_id\}` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
   }
@@ -2372,7 +2376,7 @@ export namespace redis_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the backupCollection location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region.
+     * Required. The resource name of the backupCollection location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a Google Cloud region.
      */
     parent?: string;
   }
@@ -3500,7 +3504,7 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Backup
     extends StandardParameters {
     /**
-     * Required. Redis cluster resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a GCP region.
+     * Required. Redis cluster resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
 
@@ -3516,7 +3520,7 @@ export namespace redis_v1beta1 {
      */
     clusterId?: string;
     /**
-     * Required. The resource name of the cluster location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region.
+     * Required. The resource name of the cluster location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a Google Cloud region.
      */
     parent?: string;
     /**
@@ -3532,7 +3536,7 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Delete
     extends StandardParameters {
     /**
-     * Required. Redis cluster resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a GCP region.
+     * Required. Redis cluster resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
     /**
@@ -3543,14 +3547,14 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Get
     extends StandardParameters {
     /**
-     * Required. Redis cluster resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a GCP region.
+     * Required. Redis cluster resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Getcertificateauthority
     extends StandardParameters {
     /**
-     * Required. Redis cluster certificate authority resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}/certificateAuthority` where `location_id` refers to a GCP region.
+     * Required. Redis cluster certificate authority resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}/certificateAuthority` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
   }
@@ -3565,7 +3569,7 @@ export namespace redis_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the cluster location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region.
+     * Required. The resource name of the cluster location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a Google Cloud region.
      */
     parent?: string;
   }
@@ -3592,7 +3596,7 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance
     extends StandardParameters {
     /**
-     * Required. Redis Cluster instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a GCP region.
+     * Required. Redis Cluster instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
 
