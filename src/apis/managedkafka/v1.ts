@@ -134,6 +134,69 @@ export namespace managedkafka_v1 {
     networkConfigs?: Schema$NetworkConfig[];
   }
   /**
+   * Represents the set of ACLs for a given Kafka Resource Pattern, which consists of resource_type, resource_name and pattern_type.
+   */
+  export interface Schema$Acl {
+    /**
+     * Required. The ACL entries that apply to the resource pattern. The maximum number of allowed entries 100.
+     */
+    aclEntries?: Schema$AclEntry[];
+    /**
+     * Optional. `etag` is used for concurrency control. An `etag` is returned in the response to `GetAcl` and `CreateAcl`. Callers are required to put that etag in the request to `UpdateAcl` to ensure that their change will be applied to the same version of the acl that exists in the Kafka Cluster. A terminal 'T' character in the etag indicates that the AclEntries were truncated; more entries for the Acl exist on the Kafka Cluster, but can't be returned in the Acl due to repeated field limits.
+     */
+    etag?: string | null;
+    /**
+     * Identifier. The name for the acl. Represents a single Resource Pattern. Structured like: projects/{project\}/locations/{location\}/clusters/{cluster\}/acls/{acl_id\} The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. `acl_id` is structured like one of the following: For acls on the cluster: `cluster` For acls on a single resource within the cluster: `topic/{resource_name\}` `consumerGroup/{resource_name\}` `transactionalId/{resource_name\}` For acls on all resources that match a prefix: `topicPrefixed/{resource_name\}` `consumerGroupPrefixed/{resource_name\}` `transactionalIdPrefixed/{resource_name\}` For acls on all resources of a given type (i.e. the wildcard literal "*"): `allTopics` (represents `topic/x`) `allConsumerGroups` (represents `consumerGroup/x`) `allTransactionalIds` (represents `transactionalId/x`)
+     */
+    name?: string | null;
+    /**
+     * Output only. The ACL pattern type derived from the name. One of: LITERAL, PREFIXED.
+     */
+    patternType?: string | null;
+    /**
+     * Output only. The ACL resource name derived from the name. For cluster resource_type, this is always "kafka-cluster". Can be the wildcard literal "*".
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. The ACL resource type derived from the name. One of: CLUSTER, TOPIC, GROUP, TRANSACTIONAL_ID.
+     */
+    resourceType?: string | null;
+  }
+  /**
+   * Represents the access granted for a given Resource Pattern in an ACL.
+   */
+  export interface Schema$AclEntry {
+    /**
+     * Required. The host. Must be set to "*" for Managed Service for Apache Kafka.
+     */
+    host?: string | null;
+    /**
+     * Required. The operation type. Allowed values are (case insensitive): ALL, READ, WRITE, CREATE, DELETE, ALTER, DESCRIBE, CLUSTER_ACTION, DESCRIBE_CONFIGS, ALTER_CONFIGS, and IDEMPOTENT_WRITE. See https://kafka.apache.org/documentation/#operations_resources_and_protocols for valid combinations of resource_type and operation for different Kafka API requests.
+     */
+    operation?: string | null;
+    /**
+     * Required. The permission type. Accepted values are (case insensitive): ALLOW, DENY.
+     */
+    permissionType?: string | null;
+    /**
+     * Required. The principal. Specified as Google Cloud account, with the Kafka StandardAuthorizer prefix "User:". For example: "User:test-kafka-client@test-project.iam.gserviceaccount.com". Can be the wildcard "User:*" to refer to all users.
+     */
+    principal?: string | null;
+  }
+  /**
+   * Response for AddAclEntry.
+   */
+  export interface Schema$AddAclEntryResponse {
+    /**
+     * The updated acl.
+     */
+    acl?: Schema$Acl;
+    /**
+     * Whether the acl was created as a result of adding the acl entry.
+     */
+    aclCreated?: boolean | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -196,6 +259,107 @@ export namespace managedkafka_v1 {
     updateTime?: string | null;
   }
   /**
+   * The configuration of access to the Kafka Connect cluster.
+   */
+  export interface Schema$ConnectAccessConfig {
+    /**
+     * Required. Virtual Private Cloud (VPC) networks that must be granted direct access to the Kafka Connect cluster. Minimum of 1 network is required. Maximum 10 networks can be specified.
+     */
+    networkConfigs?: Schema$ConnectNetworkConfig[];
+  }
+  /**
+   * An Apache Kafka Connect cluster deployed in a location.
+   */
+  export interface Schema$ConnectCluster {
+    /**
+     * Required. Capacity configuration for the Kafka Connect cluster.
+     */
+    capacityConfig?: Schema$CapacityConfig;
+    /**
+     * Optional. Configurations for the worker that are overridden from the defaults. The key of the map is a Kafka Connect worker property name, for example: `exactly.once.source.support`.
+     */
+    config?: {[key: string]: string} | null;
+    /**
+     * Output only. The time when the cluster was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. Configuration properties for a Kafka Connect cluster deployed to Google Cloud Platform.
+     */
+    gcpConfig?: Schema$ConnectGcpConfig;
+    /**
+     * Required. Immutable. The name of the Kafka cluster this Kafka Connect cluster is attached to. Structured like: projects/{project\}/locations/{location\}/clusters/{cluster\}
+     */
+    kafkaCluster?: string | null;
+    /**
+     * Optional. Labels as key value pairs.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The name of the Kafka Connect cluster. Structured like: projects/{project_number\}/locations/{location\}/connectClusters/{connect_cluster_id\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The current state of the cluster.
+     */
+    state?: string | null;
+    /**
+     * Output only. The time when the cluster was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Configuration properties for a Kafka Connect cluster deployed to Google Cloud Platform.
+   */
+  export interface Schema$ConnectGcpConfig {
+    /**
+     * Required. Access configuration for the Kafka Connect cluster.
+     */
+    accessConfig?: Schema$ConnectAccessConfig;
+    /**
+     * Optional. Secrets to load into workers. Exact SecretVersions from Secret Manager must be provided -- aliases are not supported. Up to 32 secrets may be loaded into one cluster. Format: projects//secrets//versions/
+     */
+    secretPaths?: string[] | null;
+  }
+  /**
+   * The configuration of a Virtual Private Cloud (VPC) network that can access the Kafka Connect cluster.
+   */
+  export interface Schema$ConnectNetworkConfig {
+    /**
+     * Optional. Additional subnets may be specified. They may be in another region, but must be in the same VPC network. The Connect workers can communicate with network endpoints in either the primary or additional subnets.
+     */
+    additionalSubnets?: string[] | null;
+    /**
+     * Optional. Additional DNS domain names from the subnet's network to be made visible to the Connect Cluster. When using MirrorMaker2, it's necessary to add the bootstrap address's dns domain name of the target cluster to make it visible to the connector. For example: my-kafka-cluster.us-central1.managedkafka.my-project.cloud.goog
+     */
+    dnsDomainNames?: string[] | null;
+    /**
+     * Required. VPC subnet to make available to the Kafka Connect cluster. Structured like: projects/{project\}/regions/{region\}/subnetworks/{subnet_id\} It is used to create a Private Service Connect (PSC) interface for the Kafka Connect workers. It must be located in the same region as the Kafka Connect cluster. The CIDR range of the subnet must be within the IPv4 address ranges for private networks, as specified in RFC 1918. The primary subnet CIDR range must have a minimum size of /22 (1024 addresses).
+     */
+    primarySubnet?: string | null;
+  }
+  /**
+   * A Kafka Connect connector in a given ConnectCluster.
+   */
+  export interface Schema$Connector {
+    /**
+     * Optional. Connector config as keys/values. The keys of the map are connector property names, for example: `connector.class`, `tasks.max`, `key.converter`.
+     */
+    configs?: {[key: string]: string} | null;
+    /**
+     * Identifier. The name of the connector. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connect_cluster\}/connectors/{connector\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The current state of the connector.
+     */
+    state?: string | null;
+    /**
+     * Optional. Restarts the individual tasks of a Connector.
+     */
+    taskRestartPolicy?: Schema$TaskRetryPolicy;
+  }
+  /**
    * A Kafka consumer group in a given cluster.
    */
   export interface Schema$ConsumerGroup {
@@ -248,6 +412,19 @@ export namespace managedkafka_v1 {
     kmsKey?: string | null;
   }
   /**
+   * Response for ListAcls.
+   */
+  export interface Schema$ListAclsResponse {
+    /**
+     * The list of acls in the requested parent. The order of the acls is unspecified.
+     */
+    acls?: Schema$Acl[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response for ListClusters.
    */
   export interface Schema$ListClustersResponse {
@@ -263,6 +440,36 @@ export namespace managedkafka_v1 {
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Response for ListConnectClusters.
+   */
+  export interface Schema$ListConnectClustersResponse {
+    /**
+     * The list of Connect clusters in the requested parent.
+     */
+    connectClusters?: Schema$ConnectCluster[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response for ListConnectors.
+   */
+  export interface Schema$ListConnectorsResponse {
+    /**
+     * The list of connectors in the requested parent.
+     */
+    connectors?: Schema$Connector[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response for ListConsumerGroups.
@@ -409,6 +616,14 @@ export namespace managedkafka_v1 {
     verb?: string | null;
   }
   /**
+   * Request for PauseConnector.
+   */
+  export interface Schema$PauseConnectorRequest {}
+  /**
+   * Response for PauseConnector.
+   */
+  export interface Schema$PauseConnectorResponse {}
+  /**
    * Defines rebalancing behavior of a Kafka cluster.
    */
   export interface Schema$RebalanceConfig {
@@ -417,6 +632,35 @@ export namespace managedkafka_v1 {
      */
     mode?: string | null;
   }
+  /**
+   * Response for RemoveAclEntry.
+   */
+  export interface Schema$RemoveAclEntryResponse {
+    /**
+     * The updated acl. Returned if the removed acl entry was not the last entry in the acl.
+     */
+    acl?: Schema$Acl;
+    /**
+     * Returned with value true if the removed acl entry was the last entry in the acl, resulting in acl deletion.
+     */
+    aclDeleted?: boolean | null;
+  }
+  /**
+   * Request for RestartConnector.
+   */
+  export interface Schema$RestartConnectorRequest {}
+  /**
+   * Response for RestartConnector.
+   */
+  export interface Schema$RestartConnectorResponse {}
+  /**
+   * Request for ResumeConnector.
+   */
+  export interface Schema$ResumeConnectorRequest {}
+  /**
+   * Response for ResumeConnector.
+   */
+  export interface Schema$ResumeConnectorResponse {}
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
@@ -433,6 +677,27 @@ export namespace managedkafka_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Request for StopConnector.
+   */
+  export interface Schema$StopConnectorRequest {}
+  /**
+   * Response for StopConnector.
+   */
+  export interface Schema$StopConnectorResponse {}
+  /**
+   * Task Retry Policy is implemented on a best-effort basis. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. Note that the delay between consecutive task restarts may not always precisely match the configured settings. This can happen when the ConnectCluster is in rebalancing state or if the ConnectCluster is unresponsive etc. The default values for minimum and maximum backoffs are 60 seconds and 30 minutes respectively.
+   */
+  export interface Schema$TaskRetryPolicy {
+    /**
+     * Optional. The maximum amount of time to wait before retrying a failed task. This sets an upper bound for the backoff delay.
+     */
+    maximumBackoff?: string | null;
+    /**
+     * Optional. The minimum amount of time to wait before retrying a failed task. This sets a lower bound for the backoff delay.
+     */
+    minimumBackoff?: string | null;
   }
   /**
    * A Kafka topic in a given cluster.
@@ -468,10 +733,14 @@ export namespace managedkafka_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     clusters: Resource$Projects$Locations$Clusters;
+    connectClusters: Resource$Projects$Locations$Connectclusters;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.clusters = new Resource$Projects$Locations$Clusters(this.context);
+      this.connectClusters = new Resource$Projects$Locations$Connectclusters(
+        this.context
+      );
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -666,6 +935,10 @@ export namespace managedkafka_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
+    /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
@@ -685,10 +958,12 @@ export namespace managedkafka_v1 {
 
   export class Resource$Projects$Locations$Clusters {
     context: APIRequestContext;
+    acls: Resource$Projects$Locations$Clusters$Acls;
     consumerGroups: Resource$Projects$Locations$Clusters$Consumergroups;
     topics: Resource$Projects$Locations$Clusters$Topics;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.acls = new Resource$Projects$Locations$Clusters$Acls(this.context);
       this.consumerGroups =
         new Resource$Projects$Locations$Clusters$Consumergroups(this.context);
       this.topics = new Resource$Projects$Locations$Clusters$Topics(
@@ -1213,6 +1488,714 @@ export namespace managedkafka_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Cluster;
+  }
+
+  export class Resource$Projects$Locations$Clusters$Acls {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Incremental update: Adds an acl entry to an acl. Creates the acl if it does not exist yet.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addAclEntry(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Addaclentry,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addAclEntry(
+      params?: Params$Resource$Projects$Locations$Clusters$Acls$Addaclentry,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddAclEntryResponse>;
+    addAclEntry(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Addaclentry,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addAclEntry(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Addaclentry,
+      options: MethodOptions | BodyResponseCallback<Schema$AddAclEntryResponse>,
+      callback: BodyResponseCallback<Schema$AddAclEntryResponse>
+    ): void;
+    addAclEntry(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Addaclentry,
+      callback: BodyResponseCallback<Schema$AddAclEntryResponse>
+    ): void;
+    addAclEntry(
+      callback: BodyResponseCallback<Schema$AddAclEntryResponse>
+    ): void;
+    addAclEntry(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Acls$Addaclentry
+        | BodyResponseCallback<Schema$AddAclEntryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddAclEntryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddAclEntryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AddAclEntryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Acls$Addaclentry;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Acls$Addaclentry;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+acl}:addAclEntry').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['acl'],
+        pathParams: ['acl'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddAclEntryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddAclEntryResponse>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new acl in the given project, location, and cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Clusters$Acls$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Acl>;
+    create(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Acl>,
+      callback: BodyResponseCallback<Schema$Acl>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Create,
+      callback: BodyResponseCallback<Schema$Acl>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Acl>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Acls$Create
+        | BodyResponseCallback<Schema$Acl>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Acl>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Acl>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Acl> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Acls$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Acls$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/acls').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Acl>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Acl>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an acl.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Clusters$Acls$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Acls$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Acls$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Acls$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Returns the properties of a single acl.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Clusters$Acls$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Acl>;
+    get(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Acl>,
+      callback: BodyResponseCallback<Schema$Acl>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Get,
+      callback: BodyResponseCallback<Schema$Acl>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Acl>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Acls$Get
+        | BodyResponseCallback<Schema$Acl>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Acl>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Acl>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Acl> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Acls$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Acls$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Acl>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Acl>(parameters);
+      }
+    }
+
+    /**
+     * Lists the acls in a given cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Clusters$Acls$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAclsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListAclsResponse>,
+      callback: BodyResponseCallback<Schema$ListAclsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$List,
+      callback: BodyResponseCallback<Schema$ListAclsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAclsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Acls$List
+        | BodyResponseCallback<Schema$ListAclsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAclsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAclsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListAclsResponse> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Acls$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Acls$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/acls').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAclsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAclsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the properties of a single acl.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Clusters$Acls$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Acl>;
+    patch(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Acl>,
+      callback: BodyResponseCallback<Schema$Acl>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Patch,
+      callback: BodyResponseCallback<Schema$Acl>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Acl>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Acls$Patch
+        | BodyResponseCallback<Schema$Acl>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Acl>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Acl>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Acl> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Acls$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Acls$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Acl>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Acl>(parameters);
+      }
+    }
+
+    /**
+     * Incremental update: Removes an acl entry from an acl. Deletes the acl if its acl entries become empty (i.e. if the removed entry was the last one in the acl).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeAclEntry(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeAclEntry(
+      params?: Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemoveAclEntryResponse>;
+    removeAclEntry(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeAclEntry(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemoveAclEntryResponse>,
+      callback: BodyResponseCallback<Schema$RemoveAclEntryResponse>
+    ): void;
+    removeAclEntry(
+      params: Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry,
+      callback: BodyResponseCallback<Schema$RemoveAclEntryResponse>
+    ): void;
+    removeAclEntry(
+      callback: BodyResponseCallback<Schema$RemoveAclEntryResponse>
+    ): void;
+    removeAclEntry(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry
+        | BodyResponseCallback<Schema$RemoveAclEntryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemoveAclEntryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemoveAclEntryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RemoveAclEntryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+acl}:removeAclEntry').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['acl'],
+        pathParams: ['acl'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RemoveAclEntryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RemoveAclEntryResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$Addaclentry
+    extends StandardParameters {
+    /**
+     * Required. The name of the acl to add the acl entry to. Structured like: `projects/{project\}/locations/{location\}/clusters/{cluster\}/acls/{acl_id\}`. The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. See `Acl.name` for details.
+     */
+    acl?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AclEntry;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the acl, which will become the final component of the acl's name. The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. `acl_id` is structured like one of the following: For acls on the cluster: `cluster` For acls on a single resource within the cluster: `topic/{resource_name\}` `consumerGroup/{resource_name\}` `transactionalId/{resource_name\}` For acls on all resources that match a prefix: `topicPrefixed/{resource_name\}` `consumerGroupPrefixed/{resource_name\}` `transactionalIdPrefixed/{resource_name\}` For acls on all resources of a given type (i.e. the wildcard literal "*"): `allTopics` (represents `topic/x`) `allConsumerGroups` (represents `consumerGroup/x`) `allTransactionalIds` (represents `transactionalId/x`)
+     */
+    aclId?: string;
+    /**
+     * Required. The parent cluster in which to create the acl. Structured like `projects/{project\}/locations/{location\}/clusters/{cluster\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Acl;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the acl to delete. Structured like: `projects/{project\}/locations/{location\}/clusters/{cluster\}/acls/{acl_id\}`. The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. See `Acl.name` for details.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the acl to return. Structured like: `projects/{project\}/locations/{location\}/clusters/{cluster\}/acls/{acl_id\}`. The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. See `Acl.name` for details.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of acls to return. The service may return fewer than this value. If unset or zero, all acls for the parent is returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListAcls` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAcls` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent cluster whose acls are to be listed. Structured like `projects/{project\}/locations/{location\}/clusters/{cluster\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The name for the acl. Represents a single Resource Pattern. Structured like: projects/{project\}/locations/{location\}/clusters/{cluster\}/acls/{acl_id\} The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. `acl_id` is structured like one of the following: For acls on the cluster: `cluster` For acls on a single resource within the cluster: `topic/{resource_name\}` `consumerGroup/{resource_name\}` `transactionalId/{resource_name\}` For acls on all resources that match a prefix: `topicPrefixed/{resource_name\}` `consumerGroupPrefixed/{resource_name\}` `transactionalIdPrefixed/{resource_name\}` For acls on all resources of a given type (i.e. the wildcard literal "*"): `allTopics` (represents `topic/x`) `allConsumerGroups` (represents `consumerGroup/x`) `allTransactionalIds` (represents `transactionalId/x`)
+     */
+    name?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the Acl resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Acl;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry
+    extends StandardParameters {
+    /**
+     * Required. The name of the acl to remove the acl entry from. Structured like: `projects/{project\}/locations/{location\}/clusters/{cluster\}/acls/{acl_id\}`. The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. See `Acl.name` for details.
+     */
+    acl?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AclEntry;
   }
 
   export class Resource$Projects$Locations$Clusters$Consumergroups {
@@ -2125,6 +3108,1469 @@ export namespace managedkafka_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Topic;
+  }
+
+  export class Resource$Projects$Locations$Connectclusters {
+    context: APIRequestContext;
+    connectors: Resource$Projects$Locations$Connectclusters$Connectors;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.connectors =
+        new Resource$Projects$Locations$Connectclusters$Connectors(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a new Kafka Connect cluster in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Connectclusters$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Connectclusters$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Connectclusters$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Connectclusters$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectclusters$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/connectClusters').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single Connect cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Connectclusters$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Connectclusters$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Connectclusters$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Connectclusters$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectclusters$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns the properties of a single Kafka Connect cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Connectclusters$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConnectCluster>;
+    get(
+      params: Params$Resource$Projects$Locations$Connectclusters$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connectclusters$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ConnectCluster>,
+      callback: BodyResponseCallback<Schema$ConnectCluster>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connectclusters$Get,
+      callback: BodyResponseCallback<Schema$ConnectCluster>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ConnectCluster>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Get
+        | BodyResponseCallback<Schema$ConnectCluster>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConnectCluster>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConnectCluster>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConnectCluster> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Connectclusters$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConnectCluster>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ConnectCluster>(parameters);
+      }
+    }
+
+    /**
+     * Lists the Kafka Connect clusters in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Connectclusters$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Connectclusters$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConnectClustersResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Connectclusters$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connectclusters$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConnectClustersResponse>,
+      callback: BodyResponseCallback<Schema$ListConnectClustersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connectclusters$List,
+      callback: BodyResponseCallback<Schema$ListConnectClustersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListConnectClustersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$List
+        | BodyResponseCallback<Schema$ListConnectClustersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConnectClustersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConnectClustersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConnectClustersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Connectclusters$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/connectClusters').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListConnectClustersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListConnectClustersResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the properties of a single Kafka Connect cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Connectclusters$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Connectclusters$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Connectclusters$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Connectclusters$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Connectclusters$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Connectclusters$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the Connect cluster, which will become the final component of the cluster's name. The ID must be 1-63 characters long, and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` to comply with RFC 1035. This value is structured like: `my-cluster-id`.
+     */
+    connectClusterId?: string;
+    /**
+     * Required. The parent project/location in which to create the Kafka Connect cluster. Structured like `projects/{project\}/locations/{location\}/`.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID to avoid duplication of requests. If a request times out or fails, retrying with the same ID allows the server to recognize the previous attempt. For at least 60 minutes, the server ignores duplicate requests bearing the same ID. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID within 60 minutes of the last request, the server checks if an original operation with the same request ID was received. If so, the server ignores the second request. The request ID must be a valid UUID. A zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConnectCluster;
+  }
+  export interface Params$Resource$Projects$Locations$Connectclusters$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the Kafka Connect cluster to delete. Structured like `projects/{project\}/locations/{location\}/connectClusters/{connect_cluster_id\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID to avoid duplication of requests. If a request times out or fails, retrying with the same ID allows the server to recognize the previous attempt. For at least 60 minutes, the server ignores duplicate requests bearing the same ID. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID within 60 minutes of the last request, the server checks if an original operation with the same request ID was received. If so, the server ignores the second request. The request ID must be a valid UUID. A zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connectclusters$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the Kafka Connect cluster whose configuration to return. Structured like `projects/{project\}/locations/{location\}/connectClusters/{connect_cluster_id\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connectclusters$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression for the result.
+     */
+    filter?: string;
+    /**
+     * Optional. Order by fields for the result.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of Connect clusters to return. The service may return fewer than this value. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListConnectClusters` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectClusters` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent project/location whose Connect clusters are to be listed. Structured like `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connectclusters$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The name of the Kafka Connect cluster. Structured like: projects/{project_number\}/locations/{location\}/connectClusters/{connect_cluster_id\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID to avoid duplication of requests. If a request times out or fails, retrying with the same ID allows the server to recognize the previous attempt. For at least 60 minutes, the server ignores duplicate requests bearing the same ID. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID within 60 minutes of the last request, the server checks if an original operation with the same request ID was received. If so, the server ignores the second request. The request ID must be a valid UUID. A zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the cluster resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The mask is required and a value of * will update all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConnectCluster;
+  }
+
+  export class Resource$Projects$Locations$Connectclusters$Connectors {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new connector in a given Connect cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Connectors$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Connector>;
+    create(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Connector>,
+      callback: BodyResponseCallback<Schema$Connector>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Create,
+      callback: BodyResponseCallback<Schema$Connector>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Connector>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Connectors$Create
+        | BodyResponseCallback<Schema$Connector>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Connector>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Connector>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Connector> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectclusters$Connectors$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/connectors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Connector>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Connector>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a connector.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Connectors$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Connectors$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectclusters$Connectors$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Returns the properties of a single connector.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Connectors$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Connector>;
+    get(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Connector>,
+      callback: BodyResponseCallback<Schema$Connector>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Get,
+      callback: BodyResponseCallback<Schema$Connector>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Connector>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Connectors$Get
+        | BodyResponseCallback<Schema$Connector>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Connector>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Connector>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Connector> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectclusters$Connectors$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Connector>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Connector>(parameters);
+      }
+    }
+
+    /**
+     * Lists the connectors in a given Connect cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Connectors$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConnectorsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConnectorsResponse>,
+      callback: BodyResponseCallback<Schema$ListConnectorsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$List,
+      callback: BodyResponseCallback<Schema$ListConnectorsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListConnectorsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Connectors$List
+        | BodyResponseCallback<Schema$ListConnectorsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConnectorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConnectorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConnectorsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectclusters$Connectors$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/connectors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListConnectorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListConnectorsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the properties of a connector.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Connectors$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Connector>;
+    patch(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Connector>,
+      callback: BodyResponseCallback<Schema$Connector>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Patch,
+      callback: BodyResponseCallback<Schema$Connector>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Connector>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Connectors$Patch
+        | BodyResponseCallback<Schema$Connector>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Connector>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Connector>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Connector> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectclusters$Connectors$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Connector>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Connector>(parameters);
+      }
+    }
+
+    /**
+     * Pauses the connector and its tasks.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pause(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pause(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PauseConnectorResponse>;
+    pause(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pause(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PauseConnectorResponse>,
+      callback: BodyResponseCallback<Schema$PauseConnectorResponse>
+    ): void;
+    pause(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause,
+      callback: BodyResponseCallback<Schema$PauseConnectorResponse>
+    ): void;
+    pause(callback: BodyResponseCallback<Schema$PauseConnectorResponse>): void;
+    pause(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause
+        | BodyResponseCallback<Schema$PauseConnectorResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PauseConnectorResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PauseConnectorResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PauseConnectorResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PauseConnectorResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PauseConnectorResponse>(parameters);
+      }
+    }
+
+    /**
+     * Restarts the connector.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restart(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restart(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RestartConnectorResponse>;
+    restart(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restart(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RestartConnectorResponse>,
+      callback: BodyResponseCallback<Schema$RestartConnectorResponse>
+    ): void;
+    restart(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart,
+      callback: BodyResponseCallback<Schema$RestartConnectorResponse>
+    ): void;
+    restart(
+      callback: BodyResponseCallback<Schema$RestartConnectorResponse>
+    ): void;
+    restart(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart
+        | BodyResponseCallback<Schema$RestartConnectorResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RestartConnectorResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RestartConnectorResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RestartConnectorResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:restart').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RestartConnectorResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RestartConnectorResponse>(parameters);
+      }
+    }
+
+    /**
+     * Resumes the connector and its tasks.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resume(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resume(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResumeConnectorResponse>;
+    resume(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resume(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResumeConnectorResponse>,
+      callback: BodyResponseCallback<Schema$ResumeConnectorResponse>
+    ): void;
+    resume(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume,
+      callback: BodyResponseCallback<Schema$ResumeConnectorResponse>
+    ): void;
+    resume(
+      callback: BodyResponseCallback<Schema$ResumeConnectorResponse>
+    ): void;
+    resume(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume
+        | BodyResponseCallback<Schema$ResumeConnectorResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResumeConnectorResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResumeConnectorResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResumeConnectorResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResumeConnectorResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResumeConnectorResponse>(parameters);
+      }
+    }
+
+    /**
+     * Stops the connector.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stop(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
+      params?: Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StopConnectorResponse>;
+    stop(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StopConnectorResponse>,
+      callback: BodyResponseCallback<Schema$StopConnectorResponse>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop,
+      callback: BodyResponseCallback<Schema$StopConnectorResponse>
+    ): void;
+    stop(callback: BodyResponseCallback<Schema$StopConnectorResponse>): void;
+    stop(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop
+        | BodyResponseCallback<Schema$StopConnectorResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StopConnectorResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StopConnectorResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$StopConnectorResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://managedkafka.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StopConnectorResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StopConnectorResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the connector, which will become the final component of the connector's name. The ID must be 1-63 characters long, and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` to comply with RFC 1035. This value is structured like: `my-connector-id`.
+     */
+    connectorId?: string;
+    /**
+     * Required. The parent Connect cluster in which to create the connector. Structured like `projects/{project\}/locations/{location\}/connectClusters/{connect_cluster_id\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Connector;
+  }
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the connector to delete. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connectCluster\}/connectors/{connector\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the connector whose configuration to return. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connectCluster\}/connectors/{connector\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of connectors to return. The service may return fewer than this value. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListConnectors` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectors` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent Connect cluster whose connectors are to be listed. Structured like `projects/{project\}/locations/{location\}/connectClusters/{connect_cluster_id\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The name of the connector. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connect_cluster\}/connectors/{connector\}
+     */
+    name?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the cluster resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The mask is required and a value of * will update all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Connector;
+  }
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause
+    extends StandardParameters {
+    /**
+     * Required. The name of the connector to pause. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connectCluster\}/connectors/{connector\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PauseConnectorRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart
+    extends StandardParameters {
+    /**
+     * Required. The name of the connector to restart. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connectCluster\}/connectors/{connector\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestartConnectorRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume
+    extends StandardParameters {
+    /**
+     * Required. The name of the connector to pause. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connectCluster\}/connectors/{connector\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResumeConnectorRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop
+    extends StandardParameters {
+    /**
+     * Required. The name of the connector to stop. Structured like: projects/{project\}/locations/{location\}/connectClusters/{connectCluster\}/connectors/{connector\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StopConnectorRequest;
   }
 
   export class Resource$Projects$Locations$Operations {
