@@ -269,6 +269,10 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$ExtensionChainExtension {
     /**
+     * Optional. When set to `TRUE`, the response from an extension service is allowed to set the `com.google.envoy.dynamic_forwarding` namespace in the dynamic metadata. This field is not supported for plugin extensions. Setting it results in a validation error.
+     */
+    allowDynamicForwarding?: boolean | null;
+    /**
      * Optional. The `:authority` header in the gRPC request sent from Envoy to the extension service. Required for Callout extensions. This field is not supported for plugin extensions. Setting it results in a validation error.
      */
     authority?: string | null;
@@ -281,13 +285,21 @@ export namespace networkservices_v1beta1 {
      */
     forwardHeaders?: string[] | null;
     /**
-     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google....`. For example: `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field is not supported for plugin extensions. Setting it results in a validation error.
+     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google....`. For example: `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field must not be set for plugin extensions. Setting it results in a validation error. You can set metadata at either the resource level or the extension level. The extension level metadata is recommended because you can pass a different set of metadata through each extension to the backend. This field is subject to following limitations: * The total size of the metadata must be less than 1KiB. * The total number of keys in the metadata must be less than 16. * The length of each key must be less than 64 characters. * The length of each value must be less than 1024 characters. * All values must be strings.
      */
     metadata?: {[key: string]: any} | null;
     /**
      * Required. The name for this extension. The name is logged as part of the HTTP request logs. The name must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number.
      */
     name?: string | null;
+    /**
+     * Optional. Configures the send mode for request body processing. The field can only be set if `supported_events` includes `REQUEST_BODY`. If `supported_events` includes `REQUEST_BODY`, but `request_body_send_mode` is unset, the default value `STREAMED` is used. When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events` must include both `REQUEST_BODY` and `REQUEST_TRAILERS`. This field can be set only for `LbTrafficExtension` and `LbRouteExtension` resources, and only when the `service` field of the extension points to a `BackendService`. Only `FULL_DUPLEX_STREAMED` mode is supported for `LbRouteExtension` resources.
+     */
+    requestBodySendMode?: string | null;
+    /**
+     * Optional. Configures the send mode for response processing. If unspecified, the default value `STREAMED` is used. When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events` must include both `RESPONSE_BODY` and `RESPONSE_TRAILERS`. This field can be set only for `LbTrafficExtension` resources, and only when the `service` field of the extension points to a `BackendService`.
+     */
+    responseBodySendMode?: string | null;
     /**
      * Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project\}/locations/{location\}/wasmPlugins/{plugin\}` or `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/wasmPlugins/{wasmPlugin\}`. Plugin extensions are currently supported for the `LbTrafficExtension` and the `LbRouteExtension` resources.
      */
@@ -297,7 +309,7 @@ export namespace networkservices_v1beta1 {
      */
     supportedEvents?: string[] | null;
     /**
-     * Optional. Specifies the timeout for each individual message on the stream. The timeout must be between `10`-`1000` milliseconds. Required for callout extensions. This field is not supported for plugin extensions. Setting it results in a validation error.
+     * Optional. Specifies the timeout for each individual message on the stream. The timeout must be between `10`-`10000` milliseconds. Required for callout extensions. This field is not supported for plugin extensions. Setting it results in a validation error.
      */
     timeout?: string | null;
   }
@@ -620,7 +632,7 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$GrpcRouteStatefulSessionAffinityPolicy {
     /**
-     * Required. The cookie TTL value for the Set-Cookie header generated by the data plane. The lifetime of the cookie may be set to a value from 1 to 86400 seconds (24 hours) inclusive.
+     * Required. The cookie TTL value for the Set-Cookie header generated by the data plane. The lifetime of the cookie may be set to a value from 0 to 86400 seconds (24 hours) inclusive. Set this to 0s to use a session cookie and disable cookie expiration.
      */
     cookieTtl?: string | null;
   }
@@ -1038,7 +1050,7 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$HttpRouteStatefulSessionAffinityPolicy {
     /**
-     * Required. The cookie TTL value for the Set-Cookie header generated by the data plane. The lifetime of the cookie may be set to a value from 1 to 86400 seconds (24 hours) inclusive.
+     * Required. The cookie TTL value for the Set-Cookie header generated by the data plane. The lifetime of the cookie may be set to a value from 0 to 86400 seconds (24 hours) inclusive. Set this to 0s to use a session cookie and disable cookie expiration.
      */
     cookieTtl?: string | null;
   }
@@ -1054,6 +1066,43 @@ export namespace networkservices_v1beta1 {
      * Prior to forwarding the request to the selected destination, the matching portion of the requests path is replaced by this value.
      */
     pathPrefixRewrite?: string | null;
+  }
+  /**
+   * `LbEdgeExtension` is a resource that lets the extension service influence the Backend Service selection or Cloud CDN cache keys by modifying the request headers.
+   */
+  export interface Schema$LbEdgeExtension {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Required. A set of ordered extension chains that contain the match conditions and extensions to execute. Match conditions for each extension chain are evaluated in sequence for a given request. The first extension chain that has a condition that matches the request is executed. Any subsequent extension chains do not execute. Limited to 5 extension chains per resource.
+     */
+    extensionChains?: Schema$ExtensionChain[];
+    /**
+     * Required. A list of references to the forwarding rules to which this service extension is attached. At least one forwarding rule is required. Only one `LbEdgeExtension` resource can be associated with a forwarding rule.
+     */
+    forwardingRules?: string[] | null;
+    /**
+     * Optional. Set of labels associated with the `LbEdgeExtension` resource. The format must comply with [the requirements for labels](https://cloud.google.com/compute/docs/labeling-resources#requirements) for Google Cloud resources.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
+     */
+    loadBalancingScheme?: string | null;
+    /**
+     * Required. Identifier. Name of the `LbEdgeExtension` resource in the following format: `projects/{project\}/locations/{location\}/lbEdgeExtensions/{lb_edge_extension\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * `LbRouteExtension` is a resource that lets you control where traffic is routed to for a given request.
@@ -1072,7 +1121,7 @@ export namespace networkservices_v1beta1 {
      */
     extensionChains?: Schema$ExtensionChain[];
     /**
-     * Required. A list of references to the forwarding rules to which this service extension is attached. At least one forwarding rule is required. There can be only one `LbRouteExtension` resource per forwarding rule.
+     * Required. A list of references to the forwarding rules to which this service extension is attached. At least one forwarding rule is required. Only one `LbRouteExtension` resource can be associated with a forwarding rule.
      */
     forwardingRules?: string[] | null;
     /**
@@ -1084,7 +1133,7 @@ export namespace networkservices_v1beta1 {
      */
     loadBalancingScheme?: string | null;
     /**
-     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google.lb_route_extension.`. The following variables are supported in the metadata Struct: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field is not supported for plugin extensions. Setting it results in a validation error.
+     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata applies to all extensions in all extensions chains in this resource. The metadata is available under the key `com.google.lb_route_extension.`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field must not be set if at least one of the extension chains contains plugin extensions. Setting it results in a validation error. You can set metadata at either the resource level or the extension level. The extension level metadata is recommended because you can pass a different set of metadata through each extension to the backend.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1113,7 +1162,7 @@ export namespace networkservices_v1beta1 {
      */
     extensionChains?: Schema$ExtensionChain[];
     /**
-     * Optional. A list of references to the forwarding rules to which this service extension is attached. At least one forwarding rule is required. There can be only one `LBTrafficExtension` resource per forwarding rule.
+     * Optional. A list of references to the forwarding rules to which this service extension is attached. At least one forwarding rule is required. Only one `LbTrafficExtension` resource can be associated with a forwarding rule.
      */
     forwardingRules?: string[] | null;
     /**
@@ -1125,7 +1174,7 @@ export namespace networkservices_v1beta1 {
      */
     loadBalancingScheme?: string | null;
     /**
-     * Optional. The metadata provided here is included in the `ProcessingRequest.metadata_context.filter_metadata` map field. The metadata is available under the key `com.google.lb_traffic_extension.`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field is not supported for plugin extensions. Setting it results in a validation error.
+     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata applies to all extensions in all extensions chains in this resource. The metadata is available under the key `com.google.lb_traffic_extension.`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field must not be set if at least one of the extension chains contains plugin extensions. Setting it results in a validation error. You can set metadata at either the resource level or the extension level. The extension level metadata is recommended because you can pass a different set of metadata through each extension to the backend.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1166,6 +1215,10 @@ export namespace networkservices_v1beta1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListGatewayRouteViews method.
@@ -1213,6 +1266,10 @@ export namespace networkservices_v1beta1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListHttpRoutes method.
@@ -1226,6 +1283,27 @@ export namespace networkservices_v1beta1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing `LbEdgeExtension` resources.
+   */
+  export interface Schema$ListLbEdgeExtensionsResponse {
+    /**
+     * The list of `LbEdgeExtension` resources.
+     */
+    lbEdgeExtensions?: Schema$LbEdgeExtension[];
+    /**
+     * A token identifying a page of results that the server returns.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Message for response to listing `LbRouteExtension` resources.
@@ -1367,6 +1445,10 @@ export namespace networkservices_v1beta1 {
      * List of TcpRoute resources.
      */
     tcpRoutes?: Schema$TcpRoute[];
+    /**
+     * Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListTlsRoutes method.
@@ -1380,6 +1462,10 @@ export namespace networkservices_v1beta1 {
      * List of TlsRoute resources.
      */
     tlsRoutes?: Schema$TlsRoute[];
+    /**
+     * Unreachable resources. Populated when the request opts into return_partial_success and reading across collections e.g. when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the `ListWasmPlugins` method.
@@ -1389,6 +1475,10 @@ export namespace networkservices_v1beta1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
+     */
+    unreachable?: string[] | null;
     /**
      * List of `WasmPlugin` resources.
      */
@@ -1402,6 +1492,10 @@ export namespace networkservices_v1beta1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
+     */
+    unreachable?: string[] | null;
     /**
      * List of `WasmPluginVersion` resources.
      */
@@ -1594,7 +1688,7 @@ export namespace networkservices_v1beta1 {
     cryptoKeyName?: string | null;
   }
   /**
-   * ServiceBinding can be used to: - Bind a Service Directory Service to be used in a BackendService resource. - Bind a Private Service Connect producer service to be used in consumer Cloud Service Mesh or Application Load Balancers.
+   * ServiceBinding can be used to: - Bind a Service Directory Service to be used in a BackendService resource. This feature will be deprecated soon. - Bind a Private Service Connect producer service to be used in consumer Cloud Service Mesh or Application Load Balancers. - Bind a Cloud Run service to be used in consumer Cloud Service Mesh or Application Load Balancers.
    */
   export interface Schema$ServiceBinding {
     /**
@@ -1614,11 +1708,11 @@ export namespace networkservices_v1beta1 {
      */
     name?: string | null;
     /**
-     * Optional. The full Service Directory Service name of the format `projects/x/locations/x/namespaces/x/services/x`. This field must be set.
+     * Optional. The full Service Directory Service name of the format `projects/x/locations/x/namespaces/x/services/x`. This field is for Service Directory integration which will be deprecated soon.
      */
     service?: string | null;
     /**
-     * Output only. The unique identifier of the Service Directory Service against which the ServiceBinding resource is validated. This is populated when the Service Binding resource is used in another resource (like Backend Service). This is of the UUID4 format.
+     * Output only. The unique identifier of the Service Directory Service against which the ServiceBinding resource is validated. This is populated when the Service Binding resource is used in another resource (like Backend Service). This is of the UUID4 format. This field is for Service Directory integration which will be deprecated soon.
      */
     serviceId?: string | null;
     /**
@@ -1646,6 +1740,10 @@ export namespace networkservices_v1beta1 {
      * Optional. Configuration related to health based failover.
      */
     failoverConfig?: Schema$ServiceLbPolicyFailoverConfig;
+    /**
+     * Optional. Configuration to provide isolation support for the associated Backend Service.
+     */
+    isolationConfig?: Schema$ServiceLbPolicyIsolationConfig;
     /**
      * Optional. Set of label tags associated with the ServiceLbPolicy resource.
      */
@@ -1680,6 +1778,19 @@ export namespace networkservices_v1beta1 {
      * Optional. The percentage threshold that a load balancer will begin to send traffic to failover backends. If the percentage of endpoints in a MIG/NEG is smaller than this value, traffic would be sent to failover backends if possible. This field should be set to a value between 1 and 99. The default value is 50 for Global external HTTP(S) load balancer (classic) and Proxyless service mesh, and 70 for others.
      */
     failoverHealthThreshold?: number | null;
+  }
+  /**
+   * Configuration to provide isolation support for the associated Backend Service.
+   */
+  export interface Schema$ServiceLbPolicyIsolationConfig {
+    /**
+     * Optional. The isolation granularity of the load balancer.
+     */
+    isolationGranularity?: string | null;
+    /**
+     * Optional. The isolation mode of the load balancer.
+     */
+    isolationMode?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1858,7 +1969,7 @@ export namespace networkservices_v1beta1 {
      */
     serviceName?: string | null;
     /**
-     * Optional. Specifies the proportion of requests forwareded to the backend referenced by the service_name field. This is computed as: - weight/Sum(weights in destinations) Weights in all destinations does not need to sum up to 100.
+     * Optional. Specifies the proportion of requests forwarded to the backend referenced by the service_name field. This is computed as: - weight/Sum(weights in destinations) Weights in all destinations does not need to sum up to 100.
      */
     weight?: number | null;
   }
@@ -2067,6 +2178,7 @@ export namespace networkservices_v1beta1 {
     gateways: Resource$Projects$Locations$Gateways;
     grpcRoutes: Resource$Projects$Locations$Grpcroutes;
     httpRoutes: Resource$Projects$Locations$Httproutes;
+    lbEdgeExtensions: Resource$Projects$Locations$Lbedgeextensions;
     lbRouteExtensions: Resource$Projects$Locations$Lbrouteextensions;
     lbTrafficExtensions: Resource$Projects$Locations$Lbtrafficextensions;
     meshes: Resource$Projects$Locations$Meshes;
@@ -2089,6 +2201,9 @@ export namespace networkservices_v1beta1 {
         this.context
       );
       this.httpRoutes = new Resource$Projects$Locations$Httproutes(
+        this.context
+      );
+      this.lbEdgeExtensions = new Resource$Projects$Locations$Lbedgeextensions(
         this.context
       );
       this.lbRouteExtensions =
@@ -2301,6 +2416,10 @@ export namespace networkservices_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
     /**
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
@@ -3352,6 +3471,10 @@ export namespace networkservices_v1beta1 {
      * Required. The project and location from which the EndpointPolicies should be listed, specified in the format `projects/x/locations/global`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Endpointpolicies$Patch
     extends StandardParameters {
@@ -4592,6 +4715,10 @@ export namespace networkservices_v1beta1 {
      * Required. The project and location from which the GrpcRoutes should be listed, specified in the format `projects/x/locations/global`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Grpcroutes$Patch
     extends StandardParameters {
@@ -5102,6 +5229,10 @@ export namespace networkservices_v1beta1 {
      * Required. The project and location from which the HttpRoutes should be listed, specified in the format `projects/x/locations/global`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Httproutes$Patch
     extends StandardParameters {
@@ -5118,6 +5249,543 @@ export namespace networkservices_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$HttpRoute;
+  }
+
+  export class Resource$Projects$Locations$Lbedgeextensions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `LbEdgeExtension` resource in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Lbedgeextensions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbedgeextensions$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbedgeextensions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lbedgeextensions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/lbEdgeExtensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified `LbEdgeExtension` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Lbedgeextensions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbedgeextensions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbedgeextensions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lbedgeextensions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of the specified `LbEdgeExtension` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Lbedgeextensions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LbEdgeExtension>;
+    get(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LbEdgeExtension>,
+      callback: BodyResponseCallback<Schema$LbEdgeExtension>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Get,
+      callback: BodyResponseCallback<Schema$LbEdgeExtension>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LbEdgeExtension>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbedgeextensions$Get
+        | BodyResponseCallback<Schema$LbEdgeExtension>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LbEdgeExtension>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LbEdgeExtension>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LbEdgeExtension> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbedgeextensions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Lbedgeextensions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LbEdgeExtension>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LbEdgeExtension>(parameters);
+      }
+    }
+
+    /**
+     * Lists `LbEdgeExtension` resources in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Lbedgeextensions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLbEdgeExtensionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLbEdgeExtensionsResponse>,
+      callback: BodyResponseCallback<Schema$ListLbEdgeExtensionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$List,
+      callback: BodyResponseCallback<Schema$ListLbEdgeExtensionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListLbEdgeExtensionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbedgeextensions$List
+        | BodyResponseCallback<Schema$ListLbEdgeExtensionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLbEdgeExtensionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLbEdgeExtensionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLbEdgeExtensionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbedgeextensions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Lbedgeextensions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/lbEdgeExtensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLbEdgeExtensionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLbEdgeExtensionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of the specified `LbEdgeExtension` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Lbedgeextensions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Lbedgeextensions$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbedgeextensions$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbedgeextensions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lbedgeextensions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Lbedgeextensions$Create
+    extends StandardParameters {
+    /**
+     * Required. User-provided ID of the `LbEdgeExtension` resource to be created.
+     */
+    lbEdgeExtensionId?: string;
+    /**
+     * Required. The parent resource of the `LbEdgeExtension` resource. Must be in the format `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LbEdgeExtension;
+  }
+  export interface Params$Resource$Projects$Locations$Lbedgeextensions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the `LbEdgeExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/lbEdgeExtensions/{lb_edge_extension\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Lbedgeextensions$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the `LbEdgeExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/lbEdgeExtensions/{lb_edge_extension\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Lbedgeextensions$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results.
+     */
+    filter?: string;
+    /**
+     * Optional. Hint about how to order the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results that the server returns.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the `LbEdgeExtension` resources are listed. These values are specified in the following format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Lbedgeextensions$Patch
+    extends StandardParameters {
+    /**
+     * Required. Identifier. Name of the `LbEdgeExtension` resource in the following format: `projects/{project\}/locations/{location\}/lbEdgeExtensions/{lb_edge_extension\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server ignores the second request This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. Used to specify the fields to be overwritten in the `LbEdgeExtension` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LbEdgeExtension;
   }
 
   export class Resource$Projects$Locations$Lbrouteextensions {
@@ -8759,6 +9427,10 @@ export namespace networkservices_v1beta1 {
      * Required. The project and location from which the TcpRoutes should be listed, specified in the format `projects/x/locations/global`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Tcproutes$Patch
     extends StandardParameters {
@@ -9269,6 +9941,10 @@ export namespace networkservices_v1beta1 {
      * Required. The project and location from which the TlsRoutes should be listed, specified in the format `projects/x/locations/global`.
      */
     parent?: string;
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated List requests. Otherwise if one of the locations is down or unreachable, the Aggregated List request will fail.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Tlsroutes$Patch
     extends StandardParameters {
