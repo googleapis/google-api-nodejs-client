@@ -2768,7 +2768,7 @@ export namespace searchads360_v0 {
     resourceName?: string | null;
   }
   /**
-   * A view on the usage of ad group ad asset combination.
+   * A view on the usage of asset group asset top combinations.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__AssetGroupTopCombinationView {
     /**
@@ -3591,6 +3591,10 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__Customer {
     /**
+     * Output only. The account level of the customer: Manager, Sub-manager, Associate manager, Service account.
+     */
+    accountLevel?: string | null;
+    /**
      * Output only. Account status, for example, Enabled, Paused, Removed, etc.
      */
     accountStatus?: string | null;
@@ -3598,6 +3602,14 @@ export namespace searchads360_v0 {
      * Output only. Engine account type, for example, Google Ads, Microsoft Advertising, Yahoo Japan, Baidu, Facebook, Engine Track, etc.
      */
     accountType?: string | null;
+    /**
+     * Output only. The descriptive name of the associate manager.
+     */
+    associateManagerDescriptiveName?: string | null;
+    /**
+     * Output only. The customer ID of the associate manager. A 0 value indicates that the customer has no SA360 associate manager.
+     */
+    associateManagerId?: string | null;
     /**
      * Whether auto-tagging is enabled for the customer.
      */
@@ -3643,6 +3655,14 @@ export namespace searchads360_v0 {
      */
     manager?: boolean | null;
     /**
+     * Output only. The descriptive name of the manager.
+     */
+    managerDescriptiveName?: string | null;
+    /**
+     * Output only. The customer ID of the manager. A 0 value indicates that the customer has no SA360 manager.
+     */
+    managerId?: string | null;
+    /**
      * Immutable. The resource name of the customer. Customer resource names have the form: `customers/{customer_id\}`
      */
     resourceName?: string | null;
@@ -3650,6 +3670,14 @@ export namespace searchads360_v0 {
      * Output only. The status of the customer.
      */
     status?: string | null;
+    /**
+     * Output only. The descriptive name of the sub manager.
+     */
+    subManagerDescriptiveName?: string | null;
+    /**
+     * Output only. The customer ID of the sub manager. A 0 value indicates that the customer has no sub SA360 manager.
+     */
+    subManagerId?: string | null;
     /**
      * Immutable. The local timezone ID of the customer.
      */
