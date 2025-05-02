@@ -158,7 +158,7 @@ export namespace texttospeech_v1beta1 {
      */
     sampleRateHertz?: number | null;
     /**
-     * Optional. Input only. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the normal native speed supported by the specific voice. 2.0 is twice as fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any other values < 0.25 or \> 4.0 will return an error.
+     * Optional. Input only. Speaking rate/speed, in the range [0.25, 2.0]. 1.0 is the normal native speed supported by the specific voice. 2.0 is twice as fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any other values < 0.25 or \> 2.0 will return an error.
      */
     speakingRate?: number | null;
     /**
@@ -300,7 +300,7 @@ export namespace texttospeech_v1beta1 {
    */
   export interface Schema$SynthesisInput {
     /**
-     * Optional. The pronunciation customizations are applied to the input. If this is set, the input is synthesized using the given pronunciation customizations. The initial support is for English, French, Italian, German, and Spanish (EFIGS) languages, as provided in VoiceSelectionParams. Journey and Instant Clone voices aren't supported. In order to customize the pronunciation of a phrase, there must be an exact match of the phrase in the input types. If using SSML, the phrase must not be inside a phoneme tag.
+     * Optional. The pronunciation customizations are applied to the input. If this is set, the input is synthesized using the given pronunciation customizations. The initial support is for en-us, with plans to expand to other locales in the future. Instant Clone voices aren't supported. In order to customize the pronunciation of a phrase, there must be an exact match of the phrase in the input types. If using SSML, the phrase must not be inside a phoneme tag.
      */
     customPronunciations?: Schema$CustomPronunciations;
     /**
