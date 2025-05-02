@@ -143,6 +143,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -758,7 +764,7 @@
       }
     }
   },
-  "revision": "20250305",
+  "revision": "20250416",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -797,6 +803,7 @@
             "FIREWALL_CONFIG_NOT_FOUND",
             "ROUTE_CONFIG_NOT_FOUND",
             "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
+            "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT",
             "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED",
             "SOURCE_REDIS_CLUSTER_UNSUPPORTED",
             "SOURCE_REDIS_INSTANCE_UNSUPPORTED",
@@ -816,6 +823,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -874,7 +882,8 @@
             "Aborted because expected network configuration was missing.",
             "Aborted because expected firewall configuration was missing.",
             "Aborted because expected route configuration was missing.",
-            "Aborted because a PSC endpoint selection for the Google-managed service is ambiguous (several PSC endpoints satisfy test input).",
+            "Aborted because PSC endpoint selection for the Google-managed service is ambiguous (several PSC endpoints satisfy test input).",
+            "Aborted because endpoint selection for the Google-managed service is ambiguous (several endpoints satisfy test input).",
             "Aborted because tests with a PSC-based Cloud SQL instance as a source are not supported.",
             "Aborted because tests with a Redis Cluster as a source are not supported.",
             "Aborted because tests with a Redis Instance as a source are not supported.",
@@ -1119,7 +1128,7 @@
       "id": "ConnectivityTest",
       "properties": {
         "bypassFirewallChecks": {
-          "description": "Whether the test should skip firewall checking. If not provided, we assume false.",
+          "description": "Whether the analysis should skip firewall checking. Default value is false.",
           "type": "boolean"
         },
         "createTime": {
@@ -1134,7 +1143,7 @@
         },
         "destination": {
           "$ref": "Endpoint",
-          "description": "Required. Destination specification of the Connectivity Test. You can use a combination of destination IP address, Compute Engine VM instance, or VPC network to uniquely identify the destination location. Even if the destination IP address is not unique, the source IP location is unique. Usually, the analysis can infer the destination endpoint from route information. If the destination you specify is a VM instance and the instance has multiple network interfaces, then you must also specify either a destination IP address or VPC network to identify the destination interface. A reachability analysis proceeds even if the destination location is ambiguous. However, the result can include endpoints that you don't intend to test."
+          "description": "Required. Destination specification of the Connectivity Test. You can use a combination of destination IP address, URI of a supported endpoint, project ID, or VPC network to identify the destination location. Reachability analysis proceeds even if the destination location is ambiguous. However, the test result might include endpoints or use a destination that you don't intend to test."
         },
         "displayName": {
           "description": "Output only. The display name of a Connectivity Test.",
@@ -1184,7 +1193,7 @@
         },
         "source": {
           "$ref": "Endpoint",
-          "description": "Required. Source specification of the Connectivity Test. You can use a combination of source IP address, virtual machine (VM) instance, or Compute Engine network to uniquely identify the source location. Examples: If the source IP address is an internal IP address within a Google Cloud Virtual Private Cloud (VPC) network, then you must also specify the VPC network. Otherwise, specify the VM instance, which already contains its internal IP address and VPC network information. If the source of the test is within an on-premises network, then you must provide the destination VPC network. If the source endpoint is a Compute Engine VM instance with multiple network interfaces, the instance itself is not sufficient to identify the endpoint. So, you must also specify the source IP address or VPC network. A reachability analysis proceeds even if the source location is ambiguous. However, the test result may include endpoints that you don't intend to test."
+          "description": "Required. Source specification of the Connectivity Test. You can use a combination of source IP address, URI of a supported endpoint, project ID, or VPC network to identify the source location. Reachability analysis might proceed even if the source location is ambiguous. However, the test result might include endpoints or use a source that you don't intend to test."
         },
         "updateTime": {
           "description": "Output only. The time the test's configuration was updated.",
@@ -1380,7 +1389,12 @@
             "NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION",
             "NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION",
             "NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION",
-            "PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED"
+            "PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED",
+            "PSC_PORT_MAPPING_PORT_MISMATCH",
+            "PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED",
+            "UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION",
+            "TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED",
+            "NO_MATCHING_NAT64_GATEWAY"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1401,9 +1415,9 @@
             "The packet does not match a policy-based VPN tunnel local selector.",
             "The packet does not match a policy-based VPN tunnel remote selector.",
             "Packet with internal destination address sent to the internet gateway.",
-            "Instance with only an internal IP address tries to access Google API and services, but private Google access is not enabled in the subnet.",
+            "Endpoint with only an internal IP address tries to access Google API and services, but Private Google Access is not enabled in the subnet or is not applicable.",
             "Source endpoint tries to access Google API and services through the VPN tunnel to another network, but Private Google Access needs to be enabled in the source endpoint network.",
-            "Instance with only an internal IP address tries to access external hosts, but Cloud NAT is not enabled in the subnet, unless special configurations on a VM allow this connection.",
+            "Endpoint with only an internal IP address tries to access external hosts, but there is no matching Cloud NAT gateway in the subnet.",
             "Destination internal address cannot be resolved to a known target. If this is a shared VPC scenario, verify if the service project ID is provided as test input. Otherwise, verify if the IP address is being used in the project.",
             "Forwarding rule's protocol and ports do not match the packet header.",
             "Forwarding rule does not have backends configured.",
@@ -1467,7 +1481,12 @@
             "Packet from the non-GCP (on-prem) or unknown GCP network is dropped due to the destination IP address not belonging to any IP prefix advertised via BGP by the Cloud Router.",
             "Packet from the non-GCP (on-prem) or unknown GCP network is dropped due to the destination IP address not belonging to any IP prefix included to the local traffic selector of the VPN tunnel.",
             "Packet from the unknown peered network is dropped due to no known route from the source network to the destination IP address.",
-            "Sending packets processed by the Private NAT Gateways to the Private Service Connect endpoints is not supported."
+            "Sending packets processed by the Private NAT Gateways to the Private Service Connect endpoints is not supported.",
+            "Packet is sent to the PSC port mapping service, but its destination port does not match any port mapping rules.",
+            "Sending packets directly to the PSC port mapping service without going through the PSC connection is not supported.",
+            "Packet with destination IP address within the reserved NAT64 range is dropped due to matching a route of an unsupported type.",
+            "Packet could be dropped because hybrid endpoint like a VPN gateway or Interconnect is not allowed to send traffic to the Internet.",
+            "Packet with destination IP address within the reserved NAT64 range is dropped due to no matching NAT gateway in the subnet."
           ],
           "type": "string"
         },
@@ -1513,22 +1532,22 @@
       "properties": {
         "appEngineVersion": {
           "$ref": "AppEngineVersionEndpoint",
-          "description": "An [App Engine](https://cloud.google.com/appengine) [service version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions)."
+          "description": "An [App Engine](https://cloud.google.com/appengine) [service version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions). Applicable only to source endpoint."
         },
         "cloudFunction": {
           "$ref": "CloudFunctionEndpoint",
-          "description": "A [Cloud Function](https://cloud.google.com/functions)."
+          "description": "A [Cloud Function](https://cloud.google.com/functions). Applicable only to source endpoint."
         },
         "cloudRunRevision": {
           "$ref": "CloudRunRevisionEndpoint",
-          "description": "A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)"
+          "description": "A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get) Applicable only to source endpoint."
         },
         "cloudSqlInstance": {
           "description": "A [Cloud SQL](https://cloud.google.com/sql) instance URI.",
           "type": "string"
         },
         "forwardingRule": {
-          "description": "A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Format: projects/{project}/global/forwardingRules/{id} or projects/{project}/regions/{region}/forwardingRules/{id}",
+          "description": "A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Applicable only to destination endpoint. Format: projects/{project}/global/forwardingRules/{id} or projects/{project}/regions/{region}/forwardingRules/{id}",
           "type": "string"
         },
         "forwardingRuleTarget": {
@@ -1603,7 +1622,7 @@
           "type": "string"
         },
         "network": {
-          "description": "A Compute Engine network URI.",
+          "description": "A VPC network URI.",
           "type": "string"
         },
         "networkType": {
@@ -1616,7 +1635,7 @@
           "enumDescriptions": [
             "Default type if unspecified.",
             "A network hosted within Google Cloud. To receive more detailed output, specify the URI for the source or destination network.",
-            "A network hosted outside of Google Cloud. This can be an on-premises network, or a network hosted by another cloud provider."
+            "A network hosted outside of Google Cloud. This can be an on-premises network, an internet resource or a network hosted by another cloud provider."
           ],
           "type": "string"
         },
@@ -1626,15 +1645,15 @@
           "type": "integer"
         },
         "projectId": {
-          "description": "Project ID where the endpoint is located. The Project ID can be derived from the URI if you provide a VM instance or network URI. The following are two cases where you must provide the project ID: 1. Only the IP address is specified, and the IP address is within a Google Cloud project. 2. When you are using Shared VPC and the IP address that you provide is from the service project. In this case, the network that the IP address resides in is defined in the host project.",
+          "description": "Project ID where the endpoint is located. The project ID can be derived from the URI if you provide a endpoint or network URI. The following are two cases where you may need to provide the project ID: 1. Only the IP address is specified, and the IP address is within a Google Cloud project. 2. When you are using Shared VPC and the IP address that you provide is from the service project. In this case, the network that the IP address resides in is defined in the host project.",
           "type": "string"
         },
         "redisCluster": {
-          "description": "A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster) URI.",
+          "description": "A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster) URI. Applicable only to destination endpoint.",
           "type": "string"
         },
         "redisInstance": {
-          "description": "A [Redis Instance](https://cloud.google.com/memorystore/docs/redis) URI.",
+          "description": "A [Redis Instance](https://cloud.google.com/memorystore/docs/redis) URI. Applicable only to destination endpoint.",
           "type": "string"
         }
       },
@@ -1932,7 +1951,8 @@
             "CLOUD_DNS",
             "GOOGLE_API",
             "GOOGLE_API_PSC",
-            "GOOGLE_API_VPC_SC"
+            "GOOGLE_API_VPC_SC",
+            "SERVERLESS_VPC_ACCESS"
           ],
           "enumDescriptions": [
             "Unspecified Google Service.",
@@ -1941,7 +1961,8 @@
             "Connectivity from Cloud DNS to forwarding targets or alternate name servers that use private routing. https://cloud.google.com/dns/docs/zones/forwarding-zones#firewall-rules https://cloud.google.com/dns/docs/policies#firewall-rules",
             "private.googleapis.com and restricted.googleapis.com",
             "Google API via Private Service Connect. https://cloud.google.com/vpc/docs/configure-private-service-connect-apis",
-            "Google API via VPC Service Controls. https://cloud.google.com/vpc/docs/configure-private-service-connect-apis"
+            "Google API via VPC Service Controls. https://cloud.google.com/vpc/docs/configure-private-service-connect-apis",
+            "Google API via Serverless VPC Access. https://cloud.google.com/vpc/docs/serverless-vpc-access"
           ],
           "type": "string"
         },
@@ -1986,6 +2007,10 @@
         "pscNetworkAttachmentUri": {
           "description": "URI of the PSC network attachment the NIC is attached to (if relevant).",
           "type": "string"
+        },
+        "running": {
+          "description": "Indicates whether the Compute Engine instance is running.",
+          "type": "boolean"
         },
         "serviceAccount": {
           "deprecated": true,
@@ -2541,7 +2566,14 @@
         },
         "destinationEgressLocation": {
           "$ref": "EdgeLocation",
-          "description": "The EdgeLocation from which a packet destined for/originating from the internet will egress/ingress the Google network. This will only be populated for a connectivity test which has an internet destination/source address. The absence of this field *must not* be used as an indication that the destination/source is part of the Google network."
+          "description": "The EdgeLocation from which a packet, destined to the internet, will egress the Google network. This will only be populated for a connectivity test which has an internet destination address. The absence of this field *must not* be used as an indication that the destination is part of the Google network."
+        },
+        "edgeResponses": {
+          "description": "Probing results for all edge devices.",
+          "items": {
+            "$ref": "SingleEdgeResponse"
+          },
+          "type": "array"
         },
         "endpointInfo": {
           "$ref": "EndpointInfo",
@@ -2550,6 +2582,10 @@
         "error": {
           "$ref": "Status",
           "description": "Details about an internal failure or the cancellation of active probing."
+        },
+        "probedAllDevices": {
+          "description": "Whether all relevant edge devices were probed.",
+          "type": "boolean"
         },
         "probingLatency": {
           "$ref": "LatencyDistribution",
@@ -2970,6 +3006,53 @@
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SingleEdgeResponse": {
+      "description": "Probing results for a single edge device.",
+      "id": "SingleEdgeResponse",
+      "properties": {
+        "destinationEgressLocation": {
+          "$ref": "EdgeLocation",
+          "description": "The EdgeLocation from which a packet, destined to the internet, will egress the Google network. This will only be populated for a connectivity test which has an internet destination address. The absence of this field *must not* be used as an indication that the destination is part of the Google network."
+        },
+        "destinationRouter": {
+          "description": "Router name in the format '{router}.{metroshard}'. For example: pf01.aaa01, pr02.aaa01.",
+          "type": "string"
+        },
+        "probingLatency": {
+          "$ref": "LatencyDistribution",
+          "description": "Latency as measured by active probing in one direction: from the source to the destination endpoint."
+        },
+        "result": {
+          "description": "The overall result of active probing for this egress device.",
+          "enum": [
+            "PROBING_RESULT_UNSPECIFIED",
+            "REACHABLE",
+            "UNREACHABLE",
+            "REACHABILITY_INCONSISTENT",
+            "UNDETERMINED"
+          ],
+          "enumDescriptions": [
+            "No result was specified.",
+            "At least 95% of packets reached the destination.",
+            "No packets reached the destination.",
+            "Less than 95% of packets reached the destination.",
+            "Reachability could not be determined. Possible reasons are: * The user lacks permission to access some of the network resources required to run the test. * No valid source endpoint could be derived from the request. * An internal error occurred."
+          ],
+          "type": "string"
+        },
+        "sentProbeCount": {
+          "description": "Number of probes sent.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "successfulProbeCount": {
+          "description": "Number of probes that reached the destination.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3420,7 +3503,7 @@
           "type": "string"
         },
         "state": {
-          "description": "Optional. The state of the VPC Flow Log configuration. Default value is ENABLED. When creating a new configuration, it must be enabled.",
+          "description": "Optional. The state of the VPC Flow Log configuration. Default value is ENABLED. When creating a new configuration, it must be enabled. Setting state=DISABLED will pause the log generation for this config.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ENABLED",
