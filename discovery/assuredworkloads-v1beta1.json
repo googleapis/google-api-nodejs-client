@@ -197,7 +197,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Page size. If a value is not specified, the default value of 10 is used.",
+                      "description": "Optional. Page size. If a value is not specified, the default value of 10 is used. The maximum value is 50.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -656,7 +656,7 @@
       }
     }
   },
-  "revision": "20250213",
+  "revision": "20250410",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
