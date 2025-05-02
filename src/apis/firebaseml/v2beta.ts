@@ -815,6 +815,10 @@ export namespace firebaseml_v2beta {
      */
     temperature?: number | null;
     /**
+     * Optional. Config for thinking features. An error will be returned if this field is set for models that don't support thinking.
+     */
+    thinkingConfig?: Schema$GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig;
+    /**
      * Optional. If specified, top-k sampling will be used.
      */
     topK?: number | null;

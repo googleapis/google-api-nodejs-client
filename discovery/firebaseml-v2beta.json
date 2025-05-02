@@ -1260,6 +1260,10 @@
           "format": "float",
           "type": "number"
         },
+        "thinkingConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig",
+          "description": "Optional. Config for thinking features. An error will be returned if this field is set for models that don't support thinking."
+        },
         "topK": {
           "description": "Optional. If specified, top-k sampling will be used.",
           "format": "float",
@@ -1859,6 +1863,14 @@
             false,
             false
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "The harm category is unspecified.",
             "The harm category is hate speech.",
@@ -1977,6 +1989,14 @@
             false,
             false,
             false
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "The harm category is unspecified.",
