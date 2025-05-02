@@ -3038,101 +3038,6 @@ export namespace merchantapi_accounts_v1beta {
         return createAPIRequest<Schema$Account>(parameters);
       }
     }
-
-    /**
-     * Updates the automatic improvements of an account.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updateAutomaticImprovements(
-      params: Params$Resource$Accounts$Updateautomaticimprovements,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    updateAutomaticImprovements(
-      params?: Params$Resource$Accounts$Updateautomaticimprovements,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AutomaticImprovements>;
-    updateAutomaticImprovements(
-      params: Params$Resource$Accounts$Updateautomaticimprovements,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updateAutomaticImprovements(
-      params: Params$Resource$Accounts$Updateautomaticimprovements,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AutomaticImprovements>,
-      callback: BodyResponseCallback<Schema$AutomaticImprovements>
-    ): void;
-    updateAutomaticImprovements(
-      params: Params$Resource$Accounts$Updateautomaticimprovements,
-      callback: BodyResponseCallback<Schema$AutomaticImprovements>
-    ): void;
-    updateAutomaticImprovements(
-      callback: BodyResponseCallback<Schema$AutomaticImprovements>
-    ): void;
-    updateAutomaticImprovements(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Updateautomaticimprovements
-        | BodyResponseCallback<Schema$AutomaticImprovements>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AutomaticImprovements>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$AutomaticImprovements>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$AutomaticImprovements>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Updateautomaticimprovements;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Updateautomaticimprovements;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AutomaticImprovements>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AutomaticImprovements>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Accounts$Createandconfigure
@@ -3155,13 +3060,6 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Required. The name of the account to retrieve. Format: `accounts/{account\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Accounts$Getautomaticimprovements
-    extends StandardParameters {
-    /**
-     * Required. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`
      */
     name?: string;
   }
@@ -3208,22 +3106,6 @@ export namespace merchantapi_accounts_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$Account;
-  }
-  export interface Params$Resource$Accounts$Updateautomaticimprovements
-    extends StandardParameters {
-    /**
-     * Identifier. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`.
-     */
-    name?: string;
-    /**
-     * Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `item_updates` - `item_updates.account_level_settings` - `image_improvements` - `image_improvements.account_level_settings` - `shipping_improvements` - `shipping_improvements.allow_shipping_improvements`
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AutomaticImprovements;
   }
 
   export class Resource$Accounts$Autofeedsettings {

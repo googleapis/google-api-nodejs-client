@@ -308,6 +308,7 @@
           "type": "integer"
         },
         "attributionModel": {
+          "description": "Required. Attribution model.",
           "enum": [
             "ATTRIBUTION_MODEL_UNSPECIFIED",
             "CROSS_CHANNEL_LAST_CLICK",

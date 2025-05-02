@@ -132,6 +132,9 @@ export namespace merchantapi_conversions_v1beta {
      * Required. Lookback window (in days) used for attribution in this source. Supported values are `7`, `30` & `40`.
      */
     attributionLookbackWindowDays?: number | null;
+    /**
+     * Required. Attribution model.
+     */
     attributionModel?: string | null;
     /**
      * Immutable. Unordered list. List of different conversion types a conversion event can be classified as. A standard "purchase" type will be automatically created if this list is empty at creation time.
