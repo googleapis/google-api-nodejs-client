@@ -5113,7 +5113,7 @@
       }
     }
   },
-  "revision": "20250309",
+  "revision": "20250323",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -8621,7 +8621,7 @@
           "type": "array"
         },
         "fileStoreIsEmpty": {
-          "description": "The file store does not have any files.",
+          "description": "The file store does not have any files. If the profiling failed, this will be false.",
           "type": "boolean"
         },
         "fileStoreLocation": {
