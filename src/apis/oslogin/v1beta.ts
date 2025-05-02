@@ -139,11 +139,11 @@ export namespace oslogin_v1beta {
      */
     appEngineInstance?: string | null;
     /**
-     * The compute instance to sign the SSH public key for. Expected format: projects/{project\}/zones/{zone\}/instances/{numeric_instance_id\}
+     * The Compute instance to sign the SSH public key for. Expected format: projects/{project\}/zones/{zone\}/instances/{numeric_instance_id\}
      */
     computeInstance?: string | null;
     /**
-     * Optional. The service account for the Compute instance. If the instance in question does not have a service account, this field should be left empty. If the wrong service account is provided, this operation will return a signed certificate that will not be accepted by the VM. During rollout of the new regionalized SignSshPublicKey API, this field will be required for all requests, but the VM will not initially carry out the
+     * Optional. The service account for the instance. If the instance in question does not have a service account, this field should be left empty. If the wrong service account is provided, this operation will return a signed certificate that will not be accepted by the VM.
      */
     serviceAccount?: string | null;
     /**
