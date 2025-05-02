@@ -543,7 +543,7 @@
       }
     }
   },
-  "revision": "20240124",
+  "revision": "20250430",
   "rootUrl": "https://doubleclicksearch.googleapis.com/",
   "schemas": {
     "Availability": {
@@ -606,7 +606,7 @@
       "type": "object"
     },
     "Conversion": {
-      "description": "A conversion containing data relevant to DoubleClick Search.",
+      "description": "A conversion containing data relevant to DoubleClick Search. Common DS3 API conversion fields: Id Range [1 - 2800]. Next Id to use: 33",
       "id": "Conversion",
       "properties": {
         "adGroupId": {
