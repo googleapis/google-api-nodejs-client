@@ -764,11 +764,7 @@
       }
     }
   },
-<<<<<<< HEAD
-  "revision": "20250416",
-=======
   "revision": "20250423",
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1398,12 +1394,8 @@
             "PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED",
             "UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION",
             "TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED",
-<<<<<<< HEAD
-            "NO_MATCHING_NAT64_GATEWAY"
-=======
             "NO_MATCHING_NAT64_GATEWAY",
             "LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH"
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1495,12 +1487,8 @@
             "Sending packets directly to the PSC port mapping service without going through the PSC connection is not supported.",
             "Packet with destination IP address within the reserved NAT64 range is dropped due to matching a route of an unsupported type.",
             "Packet could be dropped because hybrid endpoint like a VPN gateway or Interconnect is not allowed to send traffic to the Internet.",
-<<<<<<< HEAD
-            "Packet with destination IP address within the reserved NAT64 range is dropped due to no matching NAT gateway in the subnet."
-=======
             "Packet with destination IP address within the reserved NAT64 range is dropped due to no matching NAT gateway in the subnet.",
             "Packet is dropped due to being sent to a backend of a passthrough load balancer that doesn't use the same IP version as the frontend."
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
           ],
           "type": "string"
         },

@@ -252,11 +252,7 @@ export namespace merchantapi_lfp_v1beta {
      */
     countrySettings?: Schema$CountrySettings[];
     /**
-<<<<<<< HEAD
-     * The inventory statistics for the merchant.
-=======
      * The inventory statistics for the merchant. The field will be absent if the merchant has no inventory submitted through LFP.
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
      */
     inventoryStats?: Schema$InventoryStats;
     /**
@@ -268,11 +264,7 @@ export namespace merchantapi_lfp_v1beta {
      */
     name?: string | null;
     /**
-<<<<<<< HEAD
-     * Output only. The state per store from the specified merchant.
-=======
      * Output only. The state per store from the specified merchant. The field will be absent if the merchant has no stores submitted through LFP.
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
      */
     storeStates?: Schema$LfpStoreState[];
   }

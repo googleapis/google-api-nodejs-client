@@ -566,11 +566,7 @@ export namespace displayvideo_v4 {
    */
   export interface Schema$AlgorithmRules {
     /**
-<<<<<<< HEAD
-     * Attribution model for the algorithm.
-=======
      * Attribution model for the algorithm. This field is only supported for allowlisted partners.
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
      */
     attributionModelId?: string | null;
     /**
@@ -578,11 +574,7 @@ export namespace displayvideo_v4 {
      */
     impressionSignalRuleset?: Schema$AlgorithmRulesRuleset;
     /**
-<<<<<<< HEAD
-     * Rules for the post-impression signals.
-=======
      * Rules for the post-impression signals. This field is only supported for allowlisted partners.
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
      */
     postImpressionSignalRuleset?: Schema$AlgorithmRulesRuleset;
   }
@@ -631,11 +623,7 @@ export namespace displayvideo_v4 {
      */
     stringValue?: string | null;
     /**
-<<<<<<< HEAD
-     * Video player size value.
-=======
      * Video player size value. This field is only supported for allowlisted partners.
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
      */
     videoPlayerSizeValue?: string | null;
   }
@@ -704,19 +692,11 @@ export namespace displayvideo_v4 {
    */
   export interface Schema$AlgorithmRulesSignal {
     /**
-<<<<<<< HEAD
-     * Signal based on active views.
-     */
-    activeViewSignal?: string | null;
-    /**
-     * Signal based on clicks.
-=======
      * Signal based on active views. This field is only supported for allowlisted partners.
      */
     activeViewSignal?: string | null;
     /**
      * Signal based on clicks. This field is only supported for allowlisted partners.
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
      */
     clickSignal?: string | null;
     /**
@@ -746,19 +726,11 @@ export namespace displayvideo_v4 {
    */
   export interface Schema$AlgorithmRulesSignalValue {
     /**
-<<<<<<< HEAD
-     * Signal based on active views. Only `TIME_ON_SCREEN` is supported.
-     */
-    activeViewSignal?: string | null;
-    /**
-     * Signal based on floodlight conversion events.
-=======
      * Signal based on active views. Only `TIME_ON_SCREEN` is supported. This field is only supported for allowlisted partners.
      */
     activeViewSignal?: string | null;
     /**
      * Signal based on floodlight conversion events. This field is only supported for allowlisted partners.
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
      */
     floodlightActivityConversionSignal?: Schema$AlgorithmRulesFloodlightActivityConversionSignal;
     /**

@@ -1066,11 +1066,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     restockingFee?: Schema$RestockingFee;
     /**
-<<<<<<< HEAD
-     * The field specifies the return label source. This field is required when return method is BY_MAIL.
-=======
      * Optional. The field specifies the return label source.
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
      */
     returnLabelSource?: string | null;
     /**
@@ -2452,11 +2448,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     pageToken?: string;
     /**
-<<<<<<< HEAD
-     * Required. The aggregation service provider. Format: `accounts/{providerId\}`
-=======
      * Required. The aggregation service provider. Format: `accounts/{accountId\}`
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
      */
     provider?: string;
   }

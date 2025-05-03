@@ -753,11 +753,7 @@
       }
     }
   },
-<<<<<<< HEAD
-  "revision": "20250329",
-=======
   "revision": "20250424",
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {

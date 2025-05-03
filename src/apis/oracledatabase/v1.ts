@@ -1731,11 +1731,7 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$StopAutonomousDatabaseRequest {}
   /**
-<<<<<<< HEAD
-   * The request for `AutonomousDatabase.Switchover`.
-=======
    * The request for `OracleDatabase.SwitchoverAutonomousDatabase`.
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
    */
   export interface Schema$SwitchoverAutonomousDatabaseRequest {
     /**
@@ -3121,11 +3117,7 @@ export namespace oracledatabase_v1 {
     }
 
     /**
-<<<<<<< HEAD
-     * Initiates a switchover of specified autonomous deatabase to the associated peer database.
-=======
      * Initiates a switchover of specified autonomous database to the associated peer database.
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

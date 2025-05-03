@@ -2208,11 +2208,7 @@
       }
     }
   },
-<<<<<<< HEAD
-  "revision": "20250421",
-=======
   "revision": "20250428",
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {

@@ -233,11 +233,7 @@
               "type": "string"
             },
             "provider": {
-<<<<<<< HEAD
-              "description": "Required. The aggregation service provider. Format: `accounts/{providerId}`",
-=======
               "description": "Required. The aggregation service provider. Format: `accounts/{accountId}`",
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -1732,11 +1728,7 @@
       }
     }
   },
-<<<<<<< HEAD
-  "revision": "20250427",
-=======
   "revision": "20250430",
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AcceptTermsOfServiceResponse": {
@@ -3112,11 +3104,7 @@
           "description": "Optional. The restocking fee that applies to all return reason categories. This would be treated as a free restocking fee if the value is not set."
         },
         "returnLabelSource": {
-<<<<<<< HEAD
-          "description": "The field specifies the return label source. This field is required when return method is BY_MAIL.",
-=======
           "description": "Optional. The field specifies the return label source.",
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
           "enum": [
             "RETURN_LABEL_SOURCE_UNSPECIFIED",
             "DOWNLOAD_AND_PRINT",

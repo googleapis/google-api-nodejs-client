@@ -2066,8 +2066,6 @@ export namespace sqladmin_v1 {
     targetSizeGb?: string | null;
   }
   /**
-<<<<<<< HEAD
-=======
    * The context to perform a point-in-time recovery of an instance managed by Google Cloud Backup and Disaster Recovery.
    */
   export interface Schema$PointInTimeRestoreContext {
@@ -2101,7 +2099,6 @@ export namespace sqladmin_v1 {
     targetInstance?: string | null;
   }
   /**
->>>>>>> 68f904aab4e6a136bf8a0bcd4ef5b2ed2a6cdcb4
    * Details of a single read pool node of a read pool.
    */
   export interface Schema$PoolNodeConfig {
