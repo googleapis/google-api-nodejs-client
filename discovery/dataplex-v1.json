@@ -910,6 +910,11 @@
                   "description": "Optional. The scope under which the search should be operating. It must either be organizations/ or projects/. If it is unspecified, it defaults to the organization where the project provided in name is located.",
                   "location": "query",
                   "type": "string"
+                },
+                "semanticSearch": {
+                  "description": "Optional. Internal only.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+name}:searchEntries",
@@ -2945,6 +2950,93 @@
                       ]
                     }
                   }
+                },
+                "entryLinks": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates an Entry Link.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entryLinks",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.entryGroups.entryLinks.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "entryLinkId": {
+                          "description": "Required. Entry Link identifier * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the EntryGroup.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the parent Entry Group: projects/{project}/locations/{location}/entryGroups/{entry_group}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/entryLinks",
+                      "request": {
+                        "$ref": "GoogleCloudDataplexV1EntryLink"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1EntryLink"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes an Entry Link.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entryLinks/{entryLinksId}",
+                      "httpMethod": "DELETE",
+                      "id": "dataplex.projects.locations.entryGroups.entryLinks.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Entry Link: projects/{project}/locations/{location}/entryGroups/{entry_group}/entryLinks/{entry_link}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1EntryLink"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets an entry link.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entryLinks/{entryLinksId}",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.entryGroups.entryLinks.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Entry Link: projects/{project}/locations/{location}/entryGroups/{entry_group}/entryLinks/{entry_link}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1EntryLink"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -3310,6 +3402,99 @@
             },
             "glossaries": {
               "methods": {
+                "create": {
+                  "description": "Creates a new Glossary resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.glossaries.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "glossaryId": {
+                      "description": "Required. Glossary ID: Glossary identifier.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource where this Glossary will be created. Format: projects/{projectId}/locations/{locationId} where locationId refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Validates the request without actually creating the glossary. Default: false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/glossaries",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1Glossary"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a Glossary resource. All the categories and terms within the glossary must be deleted before a glossary can be deleted.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataplex.projects.locations.glossaries.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The etag of the Glossary. If this is provided, it must match the server's etag. If the etag is provided and does not match the server-computed etag, the request must fail with a ABORTED error code.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the Glossary to delete. Format: projects/{project}/locations/{location}/glossary/{glossary}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a specified Glossary resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.glossaries.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Glossary to retrieve. Format: projects/{project}/locations/{location}/glossaries/{glossary}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1Glossary"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}:getIamPolicy",
@@ -3336,6 +3521,91 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Glossary resources in a project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.glossaries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter expression that filters glossaries listed in the response. Initially, no filter is supported.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Order by expression that orders glossaries listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of glossaries to return. The service may return fewer than this value. If unspecified, at most 50 glossaries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous ListGlossaries call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListGlossaries must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which has this collection of glossaries. Format: projects/{project}/locations/{location} Location is the GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/glossaries",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1ListGlossariesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a Glossary resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}",
+                  "httpMethod": "PATCH",
+                  "id": "dataplex.projects.locations.glossaries.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Identifier. The resource name of the Glossary. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Validates the request without actually updating the glossary. Default: false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1Glossary"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -3401,6 +3671,89 @@
               "resources": {
                 "categories": {
                   "methods": {
+                    "create": {
+                      "description": "GlossaryCategory APIs are CCFE passthrough APIs. Creates a new GlossaryCategory resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.glossaries.categories.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "categoryId": {
+                          "description": "Required. Category ID: GlossaryCategory identifier.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource where this GlossaryCategory will be created. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId} where locationId refers to a GCP region.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/categories",
+                      "request": {
+                        "$ref": "GoogleCloudDataplexV1GlossaryCategory"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1GlossaryCategory"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a GlossaryCategory resource. All the categories and terms nested directly under the category will be moved one level up to the parent in the hierarchy.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories/{categoriesId}",
+                      "httpMethod": "DELETE",
+                      "id": "dataplex.projects.locations.glossaries.categories.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the GlossaryCategory to delete. Format: projects/{project}/locations/{location}/glossary/{glossary}/categories/{glossary_category}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/categories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Retrieves a specified GlossaryCategory resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories/{categoriesId}",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.glossaries.categories.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the GlossaryCategory to retrieve. Format: projects/{project}/locations/{location}/glossaries/{glossary}/categories/{glossary_category}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/categories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1GlossaryCategory"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "getIamPolicy": {
                       "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories/{categoriesId}:getIamPolicy",
@@ -3427,6 +3780,86 @@
                       "path": "v1/{+resource}:getIamPolicy",
                       "response": {
                         "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists GlossaryCategory resources in a glossary.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.glossaries.categories.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter expression that filters categories listed in the response. Filters supported: List GlossaryCategories based on immediate parent in the resource hierarchy. This will only return the GlossaryCategories nested directly under the parent and no other subsequent nested categories will be returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Order by expression that orders categories listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of categories to return. The service may return fewer than this value. If unspecified, at most 50 categories will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous ListGlossaryCategories call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListGlossaryCategories must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent, which has this collection of categories. Format: projects/{project}/locations/{location}/glossaries/{glossary} Location is the GCP region.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/categories",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1ListGlossaryCategoriesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a GlossaryCategory resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories/{categoriesId}",
+                      "httpMethod": "PATCH",
+                      "id": "dataplex.projects.locations.glossaries.categories.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}/categories/{categoryId}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/categories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. The list of fields to update.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDataplexV1GlossaryCategory"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1GlossaryCategory"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -3492,6 +3925,89 @@
                 },
                 "terms": {
                   "methods": {
+                    "create": {
+                      "description": "GlossaryTerm APIs are CCFE passthrough APIs. Creates a new GlossaryTerm resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/terms",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.glossaries.terms.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource where this GlossaryTerm will be created. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId} where locationId refers to a GCP region.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "termId": {
+                          "description": "Required. Term ID: GlossaryTerm identifier.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/terms",
+                      "request": {
+                        "$ref": "GoogleCloudDataplexV1GlossaryTerm"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1GlossaryTerm"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a GlossaryTerm resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/terms/{termsId}",
+                      "httpMethod": "DELETE",
+                      "id": "dataplex.projects.locations.glossaries.terms.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the GlossaryTerm to delete. Format: projects/{project}/locations/{location}/glossary/{glossary}/terms/{glossary_term}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/terms/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Retrieves a specified GlossaryTerm resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/terms/{termsId}",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.glossaries.terms.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the GlossaryTerm to retrieve. Format: projects/{project}/locations/{location}/glossaries/{glossary}/terms/{glossary_term}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/terms/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1GlossaryTerm"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "getIamPolicy": {
                       "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/terms/{termsId}:getIamPolicy",
@@ -3518,6 +4034,86 @@
                       "path": "v1/{+resource}:getIamPolicy",
                       "response": {
                         "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists GlossaryTerm resources in a glossary.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/terms",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.glossaries.terms.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter expression that filters terms listed in the response. Filters supported: List GlossaryTerms based on immediate parent in the resource hierarchy. This will only return the terms nested directly under the parent and no other subsequent nested terms will be returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Order by expression that orders terms listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of terms to return. The service may return fewer than this value. If unspecified, at most 50 terms will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous ListGlossaryTerms call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListGlossaryTerms must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent, which has this collection of terms. Format: projects/{project}/locations/{location}/glossaries/{glossary} Location is the GCP region.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/terms",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1ListGlossaryTermsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a GlossaryTerm resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/terms/{termsId}",
+                      "httpMethod": "PATCH",
+                      "id": "dataplex.projects.locations.glossaries.terms.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}/terms/{termId}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/terms/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. The list of fields to update.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDataplexV1GlossaryTerm"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1GlossaryTerm"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -6431,7 +7027,7 @@
       }
     }
   },
-  "revision": "20250419",
+  "revision": "20250429",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -6783,7 +7379,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1AspectTypeAuthorization": {
-      "description": "Autorization for an AspectType.",
+      "description": "Authorization for an AspectType.",
       "id": "GoogleCloudDataplexV1AspectTypeAuthorization",
       "properties": {
         "alternateUsePermission": {
@@ -8949,7 +9545,7 @@
             "Data scan job successfully completed.",
             "Data scan job was unsuccessful.",
             "Data scan job was cancelled.",
-            "Data scan job was createed."
+            "Data scan job was created."
           ],
           "type": "string"
         },
@@ -9870,6 +10466,70 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1EntryLink": {
+      "description": "EntryLink represents a link between two entries.",
+      "id": "GoogleCloudDataplexV1EntryLink",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the Entry Link was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "entryLinkType": {
+          "description": "Required. Immutable. Relative resource name of the Entry Link Type used to create this Entry Link, of the form: projects/{project}/locations/{location}/entryLinkTypes/{entry_link_type}.",
+          "type": "string"
+        },
+        "entryReferences": {
+          "description": "Required. Specifies the entries referenced in the entry link. There should be exactly two entry references.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1EntryLinkEntryReference"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Immutable. Identifier. The relative resource name of the Entry Link, of the form: projects/{project}/locations/{location}/entryGroups/{entry_group}/entryLinks/{entry_link}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the Entry Link was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1EntryLinkEntryReference": {
+      "description": "Reference to the Entry that is linked through the entry link.",
+      "id": "GoogleCloudDataplexV1EntryLinkEntryReference",
+      "properties": {
+        "name": {
+          "description": "Required. Immutable. The relative resource name of the referenced entry, of the form: projects/{project}/locations/{location}/entryGroups/{entryGroup}/entries/{entry}.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Immutable. The path in the entry that is referenced in the entry link. Empty path denotes that the entry itself is referenced in the entry link.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Immutable. The reference type of the entry.",
+          "enum": [
+            "UNSPECIFIED",
+            "SOURCE",
+            "TARGET"
+          ],
+          "enumDescriptions": [
+            "Unspecified reference type. Implies that the entry is referenced in a non-directional entry link.",
+            "The entry is referenced as the source of the directional entry link.",
+            "The entry is referenced as the target of the directional entry link."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1EntryLinkEvent": {
       "description": "Payload associated with Entry related log events.",
       "id": "GoogleCloudDataplexV1EntryLinkEvent",
@@ -10276,6 +10936,162 @@
             "$ref": "GoogleCloudDataplexV1DataQualityRule"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1Glossary": {
+      "description": "A Glossary represents a collection of categories and terms defined by the user. Glossary is a top level resource and is the GCP parent resource of all the categories and terms within it.",
+      "id": "GoogleCloudDataplexV1Glossary",
+      "properties": {
+        "categoryCount": {
+          "description": "Output only. The number of categories in the glossary.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "createTime": {
+          "description": "Output only. The time at which the glossary was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The user-mutable description of the glossary.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User friendly display name of the glossary. This is user-mutable. This will be same as the glossaryId, if not specified.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. Needed for resource freshness validation. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels for the Glossary.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Identifier. The resource name of the Glossary. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "termCount": {
+          "description": "Output only. The number of terms in the glossary.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "uid": {
+          "description": "Output only. System generated unique id for the Glossary. This ID will be different if the Glossary is deleted and re-created with the same name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time at which the glossary was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GlossaryCategory": {
+      "description": "A GlossaryCategory represents a collection of categories and terms within a Glossary that are related to each other.",
+      "id": "GoogleCloudDataplexV1GlossaryCategory",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which the GlossaryCategory was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The user-mutable description of the GlossaryCategory.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User friendly display name of the GlossaryCategory. This is user-mutable. This will be same as the categoryId, if not specified.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels for the GlossaryCategory.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}/categories/{categoryId}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. The immediate parent of the GlossaryCategory in the resource-hierarchy. It can either be a Glossary or a Category. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId} OR projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}/categories/{categoryId}",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System generated unique id for the GlossaryCategory. This ID will be different if the GlossaryCategory is deleted and re-created with the same name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time at which the GlossaryCategory was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1GlossaryTerm": {
+      "description": "GlossaryTerms are the core of glossary. A GlossaryTerm holds a rich text description that can be attached to entries or specific columns to enrich them.",
+      "id": "GoogleCloudDataplexV1GlossaryTerm",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which the GlossaryTerm was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The user-mutable description of the GlossaryTerm.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User friendly display name of the GlossaryTerm. This is user-mutable. This will be same as the termId, if not specified.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels for the GlossaryTerm.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}/terms/{termId}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. The immediate parent of the GlossaryTerm in the resource-hierarchy. It can either be a Glossary or a Category. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId} OR projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}/categories/{categoryId}",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System generated unique id for the GlossaryTerm. This ID will be different if the GlossaryTerm is deleted and re-created with the same name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time at which the GlossaryTerm was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -11039,6 +11855,81 @@
         "nextPageToken": {
           "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1ListGlossariesResponse": {
+      "description": "List Glossaries Response",
+      "id": "GoogleCloudDataplexV1ListGlossariesResponse",
+      "properties": {
+        "glossaries": {
+          "description": "Lists the glossaries in the specified parent.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1Glossary"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachableLocations": {
+          "description": "Locations that the service couldn't reach.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1ListGlossaryCategoriesResponse": {
+      "description": "List GlossaryCategories Response",
+      "id": "GoogleCloudDataplexV1ListGlossaryCategoriesResponse",
+      "properties": {
+        "categories": {
+          "description": "Lists the glossaryCategories in the specified parent.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1GlossaryCategory"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachableLocations": {
+          "description": "Locations that the service couldn't reach.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1ListGlossaryTermsResponse": {
+      "description": "List GlossaryTerms Response",
+      "id": "GoogleCloudDataplexV1ListGlossaryTermsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "terms": {
+          "description": "Lists the terms in the specified parent.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1GlossaryTerm"
+          },
+          "type": "array"
+        },
+        "unreachableLocations": {
+          "description": "Locations that the service couldn't reach.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
