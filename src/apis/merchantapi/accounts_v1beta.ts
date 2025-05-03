@@ -1030,11 +1030,11 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$OnlineReturnPolicy {
     /**
-     * This field specifies if merchant only accepts defective products for returns, and this field is required.
+     * Optional. This field specifies if merchant only accepts defective products for returns.
      */
     acceptDefectiveOnly?: boolean | null;
     /**
-     * This field specifies if merchant allows customers to exchange products, this field is required.
+     * Optional. This field specifies if merchant allows customers to exchange products.
      */
     acceptExchange?: boolean | null;
     /**
@@ -1058,7 +1058,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     policy?: Schema$Policy;
     /**
-     * The field specifies the number of days it takes for merchants to process refunds, field is optional.
+     * Optional. The field specifies the number of days it takes for merchants to process refunds.
      */
     processRefundDays?: number | null;
     /**
@@ -1066,7 +1066,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     restockingFee?: Schema$RestockingFee;
     /**
-     * The field specifies the return label source. This field is required when return method is BY_MAIL.
+     * Optional. The field specifies the return label source.
      */
     returnLabelSource?: string | null;
     /**
@@ -2448,7 +2448,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The aggregation service provider. Format: `accounts/{providerId\}`
+     * Required. The aggregation service provider. Format: `accounts/{accountId\}`
      */
     provider?: string;
   }

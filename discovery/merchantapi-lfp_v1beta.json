@@ -327,7 +327,7 @@
       }
     }
   },
-  "revision": "20250401",
+  "revision": "20250430",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "CountrySettings": {
@@ -530,7 +530,7 @@
         },
         "inventoryStats": {
           "$ref": "InventoryStats",
-          "description": "The inventory statistics for the merchant."
+          "description": "The inventory statistics for the merchant. The field will be absent if the merchant has no inventory submitted through LFP."
         },
         "linkedGbps": {
           "description": "Number of [GBPs](https://www.google.com/business/) this merchant has access to.",
@@ -542,7 +542,7 @@
           "type": "string"
         },
         "storeStates": {
-          "description": "Output only. The state per store from the specified merchant.",
+          "description": "Output only. The state per store from the specified merchant. The field will be absent if the merchant has no stores submitted through LFP.",
           "items": {
             "$ref": "LfpStoreState"
           },
