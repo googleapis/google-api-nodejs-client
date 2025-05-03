@@ -309,7 +309,7 @@ export namespace networkservices_v1beta1 {
      */
     supportedEvents?: string[] | null;
     /**
-     * Optional. Specifies the timeout for each individual message on the stream. The timeout must be between `10`-`1000` milliseconds. Required for callout extensions. This field is not supported for plugin extensions. Setting it results in a validation error.
+     * Optional. Specifies the timeout for each individual message on the stream. The timeout must be between `10`-`10000` milliseconds. Required for callout extensions. This field is not supported for plugin extensions. Setting it results in a validation error.
      */
     timeout?: string | null;
   }
@@ -1741,6 +1741,10 @@ export namespace networkservices_v1beta1 {
      */
     failoverConfig?: Schema$ServiceLbPolicyFailoverConfig;
     /**
+     * Optional. Configuration to provide isolation support for the associated Backend Service.
+     */
+    isolationConfig?: Schema$ServiceLbPolicyIsolationConfig;
+    /**
      * Optional. Set of label tags associated with the ServiceLbPolicy resource.
      */
     labels?: {[key: string]: string} | null;
@@ -1774,6 +1778,19 @@ export namespace networkservices_v1beta1 {
      * Optional. The percentage threshold that a load balancer will begin to send traffic to failover backends. If the percentage of endpoints in a MIG/NEG is smaller than this value, traffic would be sent to failover backends if possible. This field should be set to a value between 1 and 99. The default value is 50 for Global external HTTP(S) load balancer (classic) and Proxyless service mesh, and 70 for others.
      */
     failoverHealthThreshold?: number | null;
+  }
+  /**
+   * Configuration to provide isolation support for the associated Backend Service.
+   */
+  export interface Schema$ServiceLbPolicyIsolationConfig {
+    /**
+     * Optional. The isolation granularity of the load balancer.
+     */
+    isolationGranularity?: string | null;
+    /**
+     * Optional. The isolation mode of the load balancer.
+     */
+    isolationMode?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
