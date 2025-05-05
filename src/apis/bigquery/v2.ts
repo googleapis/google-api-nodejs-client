@@ -2423,7 +2423,7 @@ export namespace bigquery_v2 {
      */
     timestampFormat?: string | null;
     /**
-     * Optional. [Experimental] Default time zone that will apply when parsing timestamp values that have no specific time zone.
+     * Optional. Default time zone that will apply when parsing timestamp values that have no specific time zone.
      */
     timeZone?: string | null;
     /**
@@ -2865,7 +2865,7 @@ export namespace bigquery_v2 {
      */
     referencedRoutines?: Schema$RoutineReference[];
     /**
-     * Output only. Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
+     * Output only. Referenced tables for the job.
      */
     referencedTables?: Schema$TableReference[];
     /**
@@ -3808,6 +3808,10 @@ export namespace bigquery_v2 {
      * Total units of work remaining for the query. This number can be revised (increased or decreased) while the query is running.
      */
     pendingUnits?: string | null;
+    /**
+     * Total shuffle usage ratio in shuffle RAM per reservation of this query. This will be provided for reservation customers only.
+     */
+    shuffleRamUsageRatio?: number | null;
     /**
      * Cumulative slot-ms consumed by the query.
      */
@@ -6242,6 +6246,10 @@ export namespace bigquery_v2 {
      * Required. Project ID of the dataset being updated
      */
     projectId?: string;
+    /**
+     * Optional. Specifies the fields of dataset that update/patch operation is targeting By default, both metadata and ACL fields are updated.
+     */
+    updateMode?: string;
 
     /**
      * Request body metadata
@@ -6277,6 +6285,10 @@ export namespace bigquery_v2 {
      * Required. Project ID of the dataset being updated
      */
     projectId?: string;
+    /**
+     * Optional. Specifies the fields of dataset that update/patch operation is targeting By default, both metadata and ACL fields are updated.
+     */
+    updateMode?: string;
 
     /**
      * Request body metadata
