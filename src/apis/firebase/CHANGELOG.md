@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v8.0.0...firebase-v8.1.0) (2025-05-05)
+
+
+### Features
+
+* **firebase:** update the API ([d7892db](https://github.com/googleapis/google-api-nodejs-client/commit/d7892db63e7ecbcfc21d43da1c43d3bb33227ad0))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v7.0.0...firebase-v8.0.0) (2025-04-18)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v3.3.4...docs-v3.4.0) (2025-05-05)
+
+
+### Features
+
+* **docs:** update the API ([249c295](https://github.com/googleapis/google-api-nodejs-client/commit/249c295485076999dbae18dbf311fd3558d4f234))
+
 ## [3.3.4](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v3.3.3...docs-v3.3.4) (2025-04-18)
 
 

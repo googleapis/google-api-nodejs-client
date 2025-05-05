@@ -1,5 +1,16 @@
 # Changelog
 
+## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v20.6.0...connectors-v21.0.0) (2025-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **connectors:** This release has breaking changes.
+
+### Features
+
+* **connectors:** update the API ([0fdf1a8](https://github.com/googleapis/google-api-nodejs-client/commit/0fdf1a88b8211e399f1f026bed93519afc3e7e8a))
+
 ## [20.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v20.5.0...connectors-v20.6.0) (2025-04-18)
 
 
