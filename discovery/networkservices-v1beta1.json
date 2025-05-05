@@ -2879,7 +2879,7 @@
       }
     }
   },
-  "revision": "20250410",
+  "revision": "20250423",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuthzExtension": {
@@ -3180,7 +3180,7 @@
           "type": "array"
         },
         "timeout": {
-          "description": "Optional. Specifies the timeout for each individual message on the stream. The timeout must be between `10`-`1000` milliseconds. Required for callout extensions. This field is not supported for plugin extensions. Setting it results in a validation error.",
+          "description": "Optional. Specifies the timeout for each individual message on the stream. The timeout must be between `10`-`10000` milliseconds. Required for callout extensions. This field is not supported for plugin extensions. Setting it results in a validation error.",
           "format": "google-duration",
           "type": "string"
         }
@@ -5245,6 +5245,10 @@
           "$ref": "ServiceLbPolicyFailoverConfig",
           "description": "Optional. Configuration related to health based failover."
         },
+        "isolationConfig": {
+          "$ref": "ServiceLbPolicyIsolationConfig",
+          "description": "Optional. Configuration to provide isolation support for the associated Backend Service."
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -5302,6 +5306,39 @@
           "description": "Optional. The percentage threshold that a load balancer will begin to send traffic to failover backends. If the percentage of endpoints in a MIG/NEG is smaller than this value, traffic would be sent to failover backends if possible. This field should be set to a value between 1 and 99. The default value is 50 for Global external HTTP(S) load balancer (classic) and Proxyless service mesh, and 70 for others.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceLbPolicyIsolationConfig": {
+      "description": "Configuration to provide isolation support for the associated Backend Service.",
+      "id": "ServiceLbPolicyIsolationConfig",
+      "properties": {
+        "isolationGranularity": {
+          "description": "Optional. The isolation granularity of the load balancer.",
+          "enum": [
+            "ISOLATION_GRANULARITY_UNSPECIFIED",
+            "REGION"
+          ],
+          "enumDescriptions": [
+            "No isolation is configured for the backend service. Traffic can overflow based on the load balancing algorithm.",
+            "Traffic for this service will be isolated at the cloud region level."
+          ],
+          "type": "string"
+        },
+        "isolationMode": {
+          "description": "Optional. The isolation mode of the load balancer.",
+          "enum": [
+            "ISOLATION_MODE_UNSPECIFIED",
+            "NEAREST",
+            "STRICT"
+          ],
+          "enumDescriptions": [
+            "No isolation mode is configured for the backend service.",
+            "Traffic will be sent to the nearest region.",
+            "Traffic will fail if no serving backends are available in the same region as the load balancer."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
