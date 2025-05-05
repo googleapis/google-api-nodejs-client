@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20250209",
+  "revision": "20250427",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1093,6 +1093,33 @@
         },
         "version": {
           "description": "Optional. The version of the client module. For example, \"1.0.0\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1Bot": {
+      "description": "Bot information and metadata.",
+      "id": "GoogleCloudRecaptchaenterpriseV1Bot",
+      "properties": {
+        "botType": {
+          "description": "Optional. Enumerated field representing the type of bot.",
+          "enum": [
+            "BOT_TYPE_UNSPECIFIED",
+            "AI_AGENT",
+            "CONTENT_SCRAPER",
+            "SEARCH_INDEXER"
+          ],
+          "enumDescriptions": [
+            "Default unspecified type.",
+            "Software program that interacts with a site and performs tasks autonomously.",
+            "Software that extracts specific data from sites for use.",
+            "Software that crawls sites and stores content for the purpose of efficient retrieval, likely as part of a search engine."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case.",
           "type": "string"
         }
       },
@@ -1916,6 +1943,14 @@
           "format": "float",
           "readOnly": true,
           "type": "number"
+        },
+        "verifiedBots": {
+          "description": "Output only. Bots with identities that have been verified by reCAPTCHA and detected in the event.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1Bot"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
