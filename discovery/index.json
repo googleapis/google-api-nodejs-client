@@ -3006,7 +3006,7 @@
       "version": "v1alpha1"
     },
     {
-      "description": "FCM send API that provides a cross-platform messaging solution to reliably deliver messages at no cost.",
+      "description": "FCM send API that provides a cross-platform messaging solution to reliably deliver messages.",
       "discoveryRestUrl": "https://fcm.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://firebase.google.com/docs/cloud-messaging",
       "icons": {

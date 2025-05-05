@@ -2339,7 +2339,7 @@
       }
     }
   },
-  "revision": "20250411",
+  "revision": "20250429",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -3636,7 +3636,7 @@
             "TAG_TEMPLATE_MIGRATION_DISABLED"
           ],
           "enumDescriptions": [
-            "Default value. Migration of Tag Templates from Data Catalog to Dataplex is not performed.",
+            "Default value. Migration of Tag Templates from Data Catalog to Dataplex is not performed. For projects that are under an organization, the project inherits the organization's configuration when you set the project-level configuration to unspecified (`TAG_TEMPLATE_MIGRATION_UNSPECIFIED`). This means that when migration is enabled at the organization level, and the project-level configuration is unspecified, the project is migrated. To explicitly opt-in or opt-out individual projects, set the project-level configuration to enabled (`TAG_TEMPLATE_MIGRATION_ENABLED`) or disabled (`TAG_TEMPLATE_MIGRATION_DISABLED`).",
             "Migration of Tag Templates from Data Catalog to Dataplex is enabled.",
             "Migration of Tag Templates from Data Catalog to Dataplex is disabled."
           ],
@@ -4310,7 +4310,7 @@
             "TAG_TEMPLATE_MIGRATION_DISABLED"
           ],
           "enumDescriptions": [
-            "Default value. Migration of Tag Templates from Data Catalog to Dataplex is not performed.",
+            "Default value. Migration of Tag Templates from Data Catalog to Dataplex is not performed. For projects that are under an organization, the project inherits the organization's configuration when you set the project-level configuration to unspecified (`TAG_TEMPLATE_MIGRATION_UNSPECIFIED`). This means that when migration is enabled at the organization level, and the project-level configuration is unspecified, the project is migrated. To explicitly opt-in or opt-out individual projects, set the project-level configuration to enabled (`TAG_TEMPLATE_MIGRATION_ENABLED`) or disabled (`TAG_TEMPLATE_MIGRATION_DISABLED`).",
             "Migration of Tag Templates from Data Catalog to Dataplex is enabled.",
             "Migration of Tag Templates from Data Catalog to Dataplex is disabled."
           ],
