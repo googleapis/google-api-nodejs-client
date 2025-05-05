@@ -261,7 +261,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Identifier. The name of the data source. Format: `accounts/{account}/dataSources/{datasource}`",
+                  "description": "Required. Identifier. The name of the data source. Format: `accounts/{account}/dataSources/{datasource}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/dataSources/[^/]+$",
                   "required": true,
@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250430",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -370,7 +370,7 @@
           "description": "The [merchant review](https://support.google.com/merchants/answer/7045996) data source."
         },
         "name": {
-          "description": "Identifier. The name of the data source. Format: `accounts/{account}/dataSources/{datasource}`",
+          "description": "Required. Identifier. The name of the data source. Format: `accounts/{account}/dataSources/{datasource}`",
           "type": "string"
         },
         "primaryProductDataSource": {

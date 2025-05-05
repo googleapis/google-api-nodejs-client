@@ -153,7 +153,7 @@ export namespace merchantapi_datasources_v1beta {
      */
     merchantReviewDataSource?: Schema$MerchantReviewDataSource;
     /**
-     * Identifier. The name of the data source. Format: `accounts/{account\}/dataSources/{datasource\}`
+     * Required. Identifier. The name of the data source. Format: `accounts/{account\}/dataSources/{datasource\}`
      */
     name?: string | null;
     /**
@@ -1145,7 +1145,7 @@ export namespace merchantapi_datasources_v1beta {
   export interface Params$Resource$Accounts$Datasources$Patch
     extends StandardParameters {
     /**
-     * Identifier. The name of the data source. Format: `accounts/{account\}/dataSources/{datasource\}`
+     * Required. Identifier. The name of the data source. Format: `accounts/{account\}/dataSources/{datasource\}`
      */
     name?: string;
     /**

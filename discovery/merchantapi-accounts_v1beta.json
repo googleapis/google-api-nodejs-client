@@ -233,7 +233,7 @@
               "type": "string"
             },
             "provider": {
-              "description": "Required. The aggregation service provider. Format: `accounts/{providerId}`",
+              "description": "Required. The aggregation service provider. Format: `accounts/{accountId}`",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -1728,7 +1728,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250430",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AcceptTermsOfServiceResponse": {
@@ -3051,11 +3051,11 @@
       "id": "OnlineReturnPolicy",
       "properties": {
         "acceptDefectiveOnly": {
-          "description": "This field specifies if merchant only accepts defective products for returns, and this field is required.",
+          "description": "Optional. This field specifies if merchant only accepts defective products for returns.",
           "type": "boolean"
         },
         "acceptExchange": {
-          "description": "This field specifies if merchant allows customers to exchange products, this field is required.",
+          "description": "Optional. This field specifies if merchant allows customers to exchange products.",
           "type": "boolean"
         },
         "countries": {
@@ -3095,7 +3095,7 @@
           "description": "Optional. The return policy."
         },
         "processRefundDays": {
-          "description": "The field specifies the number of days it takes for merchants to process refunds, field is optional.",
+          "description": "Optional. The field specifies the number of days it takes for merchants to process refunds.",
           "format": "int32",
           "type": "integer"
         },
@@ -3104,7 +3104,7 @@
           "description": "Optional. The restocking fee that applies to all return reason categories. This would be treated as a free restocking fee if the value is not set."
         },
         "returnLabelSource": {
-          "description": "The field specifies the return label source. This field is required when return method is BY_MAIL.",
+          "description": "Optional. The field specifies the return label source.",
           "enum": [
             "RETURN_LABEL_SOURCE_UNSPECIFIED",
             "DOWNLOAD_AND_PRINT",
