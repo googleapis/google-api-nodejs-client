@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.7.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v6.6.0...recaptchaenterprise-v6.7.0) (2025-05-05)
+
+
+### Features
+
+* **recaptchaenterprise:** update the API ([b7e8b88](https://github.com/googleapis/google-api-nodejs-client/commit/b7e8b887f9e74cc8880215e00823614901500015))
+
 ## [6.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v6.5.0...recaptchaenterprise-v6.6.0) (2025-03-18)
 
 

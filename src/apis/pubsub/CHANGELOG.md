@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/pubsub-v6.3.0...pubsub-v6.4.0) (2025-05-05)
+
+
+### Features
+
+* **pubsub:** update the API ([bde826a](https://github.com/googleapis/google-api-nodejs-client/commit/bde826aadd33f10b8ec0542f1d453de6a684651f))
+
 ## [6.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/pubsub-v6.2.0...pubsub-v6.3.0) (2025-03-18)
 
 
