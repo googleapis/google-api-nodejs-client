@@ -993,8 +993,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CheckReadinessResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CheckReadinessResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Checkreadiness;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1087,8 +1087,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CheckStatusResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CheckStatusResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Checkstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1183,8 +1183,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExchangeAuthCodeResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ExchangeAuthCodeResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Exchangeauthcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1279,8 +1279,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExecuteSqlQueryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ExecuteSqlQueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Executesqlquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1375,8 +1375,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RefreshAccessTokenResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RefreshAccessTokenResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Refreshaccesstoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1527,8 +1527,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExecuteActionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ExecuteActionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Actions$Execute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1617,7 +1617,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$Action>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Action> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Action>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Actions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1705,8 +1708,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListActionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListActionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Actions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1850,7 +1853,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$EntityType>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EntityType> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EntityType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1940,8 +1946,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEntityTypesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListEntityTypesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2068,7 +2074,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$Entity>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Entity> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Entity>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2157,7 +2166,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2245,7 +2257,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Deleteentitieswithconditions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2334,7 +2349,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$Entity>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Entity> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Entity>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2424,8 +2442,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEntitiesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListEntitiesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2514,7 +2532,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$Entity>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Entity> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Entity>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2606,8 +2627,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UpdateEntitiesWithConditionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$UpdateEntitiesWithConditionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Updateentitieswithconditions;
       let options = (optionsOrCallback || {}) as MethodOptions;

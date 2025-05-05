@@ -428,8 +428,8 @@ export namespace dfareporting_v3_5 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeAssetMetadata>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CreativeAssetMetadata>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

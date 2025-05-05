@@ -790,7 +790,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -879,8 +882,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1015,7 +1018,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1103,7 +1109,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1188,7 +1197,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Cluster> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Cluster>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1277,8 +1289,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListClustersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListClustersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1366,7 +1378,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1544,8 +1559,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AddAclEntryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AddAclEntryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Acls$Addaclentry;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1634,7 +1649,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Acl>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Acl> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Acl>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Acls$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1719,7 +1737,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Acls$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1804,7 +1825,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Acl>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Acl> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Acl>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Acls$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1889,7 +1913,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListAclsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListAclsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListAclsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Acls$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1974,7 +2001,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Acl>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Acl> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Acl>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Acls$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2065,8 +2095,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RemoveAclEntryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RemoveAclEntryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Acls$Removeaclentry;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2248,7 +2278,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Consumergroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2334,7 +2367,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$ConsumerGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConsumerGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ConsumerGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Consumergroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2426,8 +2462,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConsumerGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListConsumerGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Consumergroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2516,7 +2552,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$ConsumerGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConsumerGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ConsumerGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Consumergroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2655,7 +2694,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Topic> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Topic>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Topics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2744,7 +2786,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Topics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2830,7 +2875,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Topic> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Topic>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Topics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2917,8 +2965,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTopicsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTopicsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Topics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3006,7 +3054,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Topic> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Topic>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Clusters$Topics$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3165,7 +3216,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3254,7 +3308,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3340,7 +3397,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$ConnectCluster>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConnectCluster> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ConnectCluster>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3431,8 +3491,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConnectClustersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListConnectClustersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3520,7 +3580,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3694,7 +3757,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Connector>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Connector> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Connector>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3783,7 +3849,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3869,7 +3938,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Connector>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Connector> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Connector>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3959,8 +4031,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConnectorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListConnectorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4049,7 +4121,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Connector>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Connector> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Connector>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4139,8 +4214,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PauseConnectorResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PauseConnectorResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4232,8 +4307,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RestartConnectorResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RestartConnectorResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Restart;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4328,8 +4403,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ResumeConnectorResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ResumeConnectorResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4419,8 +4494,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$StopConnectorResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$StopConnectorResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connectclusters$Connectors$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4623,7 +4698,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4708,7 +4786,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4793,7 +4874,10 @@ export namespace managedkafka_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4882,8 +4966,8 @@ export namespace managedkafka_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

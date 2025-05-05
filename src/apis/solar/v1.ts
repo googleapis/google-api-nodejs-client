@@ -694,7 +694,10 @@ export namespace solar_v1 {
       callback?:
         | BodyResponseCallback<Schema$BuildingInsights>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BuildingInsights> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$BuildingInsights>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buildinginsights$Findclosest;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -809,7 +812,10 @@ export namespace solar_v1 {
       callback?:
         | BodyResponseCallback<Schema$DataLayers>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataLayers> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DataLayers>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datalayers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -935,7 +941,10 @@ export namespace solar_v1 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$HttpBody>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Geotiff$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -1095,8 +1095,8 @@ export namespace driveactivity_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryDriveActivityResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$QueryDriveActivityResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activity$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

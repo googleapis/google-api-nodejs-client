@@ -1891,7 +1891,10 @@ export namespace ondemandscanning_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1980,7 +1983,10 @@ export namespace ondemandscanning_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2066,7 +2072,10 @@ export namespace ondemandscanning_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2156,8 +2165,8 @@ export namespace ondemandscanning_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2246,7 +2255,10 @@ export namespace ondemandscanning_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Wait;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2397,7 +2409,10 @@ export namespace ondemandscanning_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Scans$Analyzepackages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2512,8 +2527,8 @@ export namespace ondemandscanning_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVulnerabilitiesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListVulnerabilitiesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Scans$Vulnerabilities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

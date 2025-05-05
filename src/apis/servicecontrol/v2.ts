@@ -1003,7 +1003,10 @@ export namespace servicecontrol_v2 {
       callback?:
         | BodyResponseCallback<Schema$CheckResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CheckResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CheckResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1091,7 +1094,10 @@ export namespace servicecontrol_v2 {
       callback?:
         | BodyResponseCallback<Schema$ReportResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReportResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ReportResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Report;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

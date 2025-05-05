@@ -246,7 +246,10 @@ export namespace marketingplatformadmin_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Organization>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Organization> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Organization>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -351,8 +354,8 @@ export namespace marketingplatformadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AnalyticsAccountLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AnalyticsAccountLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Analyticsaccountlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -442,7 +445,10 @@ export namespace marketingplatformadmin_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Analyticsaccountlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -535,8 +541,8 @@ export namespace marketingplatformadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAnalyticsAccountLinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAnalyticsAccountLinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Analyticsaccountlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -633,8 +639,8 @@ export namespace marketingplatformadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SetPropertyServiceLevelResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SetPropertyServiceLevelResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Analyticsaccountlinks$Setpropertyservicelevel;
       let options = (optionsOrCallback || {}) as MethodOptions;

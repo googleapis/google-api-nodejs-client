@@ -1271,7 +1271,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Bookshelf>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bookshelf> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Bookshelf>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Bookshelves$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1357,7 +1360,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Bookshelves>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bookshelves> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Bookshelves>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Bookshelves$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1476,7 +1482,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Volumes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bookshelves$Volumes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1604,8 +1613,8 @@ export namespace books_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BooksCloudloadingResource>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BooksCloudloadingResource>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cloudloading$Addbook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1693,7 +1702,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cloudloading$Deletebook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1787,8 +1799,8 @@ export namespace books_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BooksCloudloadingResource>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BooksCloudloadingResource>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cloudloading$Updatebook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1917,7 +1929,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Metadata>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Metadata> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Metadata>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Dictionary$Listofflinemetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2020,7 +2035,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$FamilyInfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FamilyInfo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FamilyInfo>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Familysharing$Getfamilyinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2108,7 +2126,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Familysharing$Share;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2196,7 +2217,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Familysharing$Unshare;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2335,7 +2359,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Layersummary>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Layersummary> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Layersummary>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Layers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2421,7 +2448,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Layersummaries>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Layersummaries> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Layersummaries>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Layers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2559,8 +2589,8 @@ export namespace books_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DictionaryAnnotationdata>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DictionaryAnnotationdata>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Layers$Annotationdata$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2653,7 +2683,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Annotationsdata>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Annotationsdata> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Annotationsdata>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Layers$Annotationdata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2846,7 +2879,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Volumeannotation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Volumeannotation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Volumeannotation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Layers$Volumeannotations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2936,8 +2972,8 @@ export namespace books_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$Volumeannotations>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$Volumeannotations>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Layers$Volumeannotations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3118,7 +3154,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Usersettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Usersettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Usersettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Myconfig$Getusersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3208,7 +3247,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$DownloadAccesses>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DownloadAccesses> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DownloadAccesses>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Myconfig$Releasedownloadaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3300,8 +3342,8 @@ export namespace books_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RequestAccessData>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RequestAccessData>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Myconfig$Requestaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3389,7 +3431,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Volumes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Myconfig$Syncvolumelicenses;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3479,7 +3524,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Usersettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Usersettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Usersettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Myconfig$Updateusersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3685,7 +3733,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Annotations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3772,7 +3823,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Annotation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Annotation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Annotation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Annotations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3860,7 +3914,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Annotations>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Annotations> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Annotations>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Annotations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3950,8 +4007,8 @@ export namespace books_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AnnotationsSummary>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AnnotationsSummary>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Annotations$Summary;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4039,7 +4096,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Annotation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Annotation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Annotation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Annotations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4245,7 +4305,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Addvolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4332,7 +4395,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Clearvolumes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4419,7 +4485,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Bookshelf>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bookshelf> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Bookshelf>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4507,7 +4576,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Bookshelves>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bookshelves> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Bookshelves>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4595,7 +4667,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Movevolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4682,7 +4757,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Removevolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4863,7 +4941,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Volumes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Volumes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4993,7 +5074,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$ReadingPosition>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReadingPosition> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ReadingPosition>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Readingpositions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5080,7 +5164,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Readingpositions$Setposition;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5222,7 +5309,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Notification>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Notification> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Notification>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Notification$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5331,7 +5421,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Category>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Category> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Category>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Onboarding$Listcategories;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5419,7 +5512,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Volume2>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Volume2> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Volume2>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Onboarding$Listcategoryvolumes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5547,8 +5643,8 @@ export namespace books_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$Discoveryclusters>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$Discoveryclusters>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Personalizedstream$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5659,7 +5755,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Promooffer$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5747,7 +5846,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Promooffer$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5835,7 +5937,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Offers>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Offers> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Offers>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Promooffer$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6024,7 +6129,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Series>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Series> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Series>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Series$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6125,7 +6233,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Seriesmembership>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Seriesmembership> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Seriesmembership>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Series$Membership$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6244,7 +6355,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Volume>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Volume> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Volume>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Volumes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6331,7 +6445,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Volumes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Volumes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6511,7 +6628,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Volumes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Volumes$Associated$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6630,7 +6750,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Volumes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Volumes$Mybooks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6757,7 +6880,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Volumes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Volumes$Recommended$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6851,8 +6977,8 @@ export namespace books_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BooksVolumesRecommendedRateResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BooksVolumesRecommendedRateResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Volumes$Recommended$Rate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6984,7 +7110,10 @@ export namespace books_v1 {
       callback?:
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Volumes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Volumes$Useruploaded$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

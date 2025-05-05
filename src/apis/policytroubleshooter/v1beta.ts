@@ -380,8 +380,8 @@ export namespace policytroubleshooter_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPolicytroubleshooterV1betaTroubleshootIamPolicyResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicytroubleshooterV1betaTroubleshootIamPolicyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Iam$Troubleshoot;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

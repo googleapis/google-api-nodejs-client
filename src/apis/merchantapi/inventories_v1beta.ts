@@ -423,7 +423,10 @@ export namespace merchantapi_inventories_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Localinventories$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -512,7 +515,10 @@ export namespace merchantapi_inventories_v1beta {
       callback?:
         | BodyResponseCallback<Schema$LocalInventory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LocalInventory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LocalInventory>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Localinventories$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -606,8 +612,8 @@ export namespace merchantapi_inventories_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocalInventoriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocalInventoriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Localinventories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -738,7 +744,10 @@ export namespace merchantapi_inventories_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Regionalinventories$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -829,8 +838,8 @@ export namespace merchantapi_inventories_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RegionalInventory>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RegionalInventory>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Regionalinventories$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -925,8 +934,8 @@ export namespace merchantapi_inventories_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRegionalInventoriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRegionalInventoriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Regionalinventories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

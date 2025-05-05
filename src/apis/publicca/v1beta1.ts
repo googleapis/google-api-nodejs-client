@@ -213,8 +213,8 @@ export namespace publicca_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExternalAccountKey>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ExternalAccountKey>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Externalaccountkeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -1384,7 +1384,10 @@ export namespace transcoder_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1469,7 +1472,10 @@ export namespace transcoder_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1554,7 +1560,10 @@ export namespace transcoder_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1639,7 +1648,10 @@ export namespace transcoder_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListJobsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListJobsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1785,7 +1797,10 @@ export namespace transcoder_v1 {
       callback?:
         | BodyResponseCallback<Schema$JobTemplate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$JobTemplate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$JobTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobtemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1873,7 +1888,10 @@ export namespace transcoder_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobtemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1958,7 +1976,10 @@ export namespace transcoder_v1 {
       callback?:
         | BodyResponseCallback<Schema$JobTemplate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$JobTemplate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$JobTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2047,8 +2068,8 @@ export namespace transcoder_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListJobTemplatesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListJobTemplatesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

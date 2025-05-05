@@ -494,7 +494,10 @@ export namespace cloudtrace_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Traces$Batchwrite;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -602,7 +605,10 @@ export namespace cloudtrace_v2 {
       callback?:
         | BodyResponseCallback<Schema$Span>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Span> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Span>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Traces$Spans$Createspan;
       let options = (optionsOrCallback || {}) as MethodOptions;

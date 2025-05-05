@@ -348,7 +348,10 @@ export namespace workflowexecutions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Execution>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -438,7 +441,10 @@ export namespace workflowexecutions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Execution>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -528,7 +534,10 @@ export namespace workflowexecutions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Execution>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -619,8 +628,8 @@ export namespace workflowexecutions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExecutionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListExecutionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

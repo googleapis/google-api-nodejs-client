@@ -1365,8 +1365,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Assessments$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1463,8 +1463,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Assessment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Assessment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Assessments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1593,8 +1593,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Firewallpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1687,8 +1687,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Firewallpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1780,8 +1780,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Firewallpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1875,8 +1875,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Firewallpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1973,8 +1973,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Firewallpolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2068,8 +2068,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Firewallpolicies$Reorder;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2243,8 +2243,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Addipoverride;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2341,8 +2341,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Key>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Key>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2432,8 +2432,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2525,8 +2525,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Key>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Key>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2620,8 +2620,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Metrics>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Metrics>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Getmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2715,8 +2715,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListKeysResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListKeysResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2810,8 +2810,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Listipoverrides;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2908,8 +2908,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Key>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Key>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Migrate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3006,8 +3006,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Key>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Key>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3101,8 +3101,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Removeipoverride;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3199,8 +3199,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Retrievelegacysecretkey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3427,8 +3427,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Relatedaccountgroupmemberships$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3549,8 +3549,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Relatedaccountgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3670,8 +3670,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Relatedaccountgroups$Memberships$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

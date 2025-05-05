@@ -416,7 +416,10 @@ export namespace mybusinessaccountmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Account>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -502,7 +505,10 @@ export namespace mybusinessaccountmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Account>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -592,8 +598,8 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAccountsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -679,7 +685,10 @@ export namespace mybusinessaccountmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Account>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -822,7 +831,10 @@ export namespace mybusinessaccountmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Admin>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Admin> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Admin>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Admins$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -912,7 +924,10 @@ export namespace mybusinessaccountmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Admins$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1005,8 +1020,8 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAccountAdminsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAccountAdminsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Admins$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1096,7 +1111,10 @@ export namespace mybusinessaccountmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Admin>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Admin> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Admin>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Admins$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1233,7 +1251,10 @@ export namespace mybusinessaccountmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Invitations$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1320,7 +1341,10 @@ export namespace mybusinessaccountmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Invitations$Decline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1414,8 +1438,8 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInvitationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListInvitationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Invitations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1550,7 +1574,10 @@ export namespace mybusinessaccountmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Transfer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1660,7 +1687,10 @@ export namespace mybusinessaccountmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Admin>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Admin> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Admin>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Admins$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1750,7 +1780,10 @@ export namespace mybusinessaccountmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Admins$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1843,8 +1876,8 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationAdminsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationAdminsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Admins$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1934,7 +1967,10 @@ export namespace mybusinessaccountmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Admin>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Admin> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Admin>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Admins$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

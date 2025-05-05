@@ -314,8 +314,8 @@ export namespace versionhistory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPlatformsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPlatformsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Platforms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -431,8 +431,8 @@ export namespace versionhistory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -552,8 +552,8 @@ export namespace versionhistory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Channels$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -677,8 +677,8 @@ export namespace versionhistory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReleasesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReleasesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Channels$Versions$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

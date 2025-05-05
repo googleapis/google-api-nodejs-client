@@ -653,8 +653,8 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1Pipeline>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1Pipeline>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -747,8 +747,8 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -840,8 +840,8 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1Pipeline>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1Pipeline>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -935,8 +935,8 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1033,8 +1033,8 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1Pipeline>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1Pipeline>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1128,8 +1128,8 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1RunPipelineResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1RunPipelineResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1223,8 +1223,8 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1Pipeline>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1Pipeline>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1411,8 +1411,8 @@ export namespace datapipelines_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Pipelines$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

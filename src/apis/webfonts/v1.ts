@@ -254,7 +254,10 @@ export namespace webfonts_v1 {
       callback?:
         | BodyResponseCallback<Schema$WebfontList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WebfontList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WebfontList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webfonts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -5599,7 +5599,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5686,7 +5689,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Dataset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5773,7 +5779,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Dataset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5859,7 +5868,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$DatasetList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DatasetList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DatasetList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5945,7 +5957,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Dataset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6032,7 +6047,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Dataset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Datasets$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6120,7 +6138,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Dataset>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6348,8 +6369,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$JobCancelResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$JobCancelResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6434,7 +6455,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6521,7 +6545,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6613,8 +6640,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetQueryResultsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetQueryResultsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Jobs$Getqueryresults;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6701,7 +6728,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6791,7 +6821,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$JobList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$JobList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$JobList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6878,7 +6911,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$QueryResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$QueryResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$QueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7122,7 +7158,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Models$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7209,7 +7248,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Model>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Model> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Model>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Models$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7298,8 +7340,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListModelsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListModelsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Models$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7386,7 +7428,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Model>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Model> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Model>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Models$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7552,8 +7597,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetServiceAccountResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetServiceAccountResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getserviceaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7640,7 +7685,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$ProjectList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProjectList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ProjectList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7750,7 +7798,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routines$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7837,7 +7888,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Routine>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Routine> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Routine>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routines$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7924,7 +7978,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Routines$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8012,7 +8069,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Routine>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Routine> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Routine>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routines$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8103,8 +8163,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRoutinesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRoutinesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routines$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8191,7 +8251,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Routines$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8279,7 +8342,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Routine>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Routine> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Routine>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routines$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8488,7 +8554,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8574,7 +8643,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8662,7 +8734,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$RowAccessPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RowAccessPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RowAccessPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8750,7 +8825,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8838,7 +8916,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$RowAccessPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RowAccessPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RowAccessPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8932,8 +9013,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRowAccessPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRowAccessPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9029,8 +9110,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9117,7 +9198,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$RowAccessPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RowAccessPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RowAccessPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9372,8 +9456,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TableDataInsertAllResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TableDataInsertAllResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tabledata$Insertall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9461,7 +9545,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$TableDataList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TableDataList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$TableDataList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tabledata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9608,7 +9695,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9695,7 +9785,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Table>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9782,7 +9875,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9870,7 +9966,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Table>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9957,7 +10056,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$TableList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TableList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$TableList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10044,7 +10146,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Table>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10131,7 +10236,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10225,8 +10333,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10313,7 +10421,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Table>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

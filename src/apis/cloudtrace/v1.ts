@@ -253,7 +253,10 @@ export namespace cloudtrace_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchtraces;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -361,7 +364,10 @@ export namespace cloudtrace_v1 {
       callback?:
         | BodyResponseCallback<Schema$Trace>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Trace> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Trace>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Traces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -450,8 +456,8 @@ export namespace cloudtrace_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTracesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTracesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Traces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

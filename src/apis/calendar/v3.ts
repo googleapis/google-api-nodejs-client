@@ -1218,7 +1218,10 @@ export namespace calendar_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1304,7 +1307,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$AclRule>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AclRule> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AclRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1390,7 +1396,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$AclRule>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AclRule> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AclRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1477,7 +1486,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Acl>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Acl> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Acl>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1564,7 +1576,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$AclRule>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AclRule> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AclRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1650,7 +1665,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$AclRule>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AclRule> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AclRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1736,7 +1754,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Channel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1956,7 +1977,10 @@ export namespace calendar_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2045,8 +2069,8 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CalendarListEntry>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CalendarListEntry>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendarlist$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2134,8 +2158,8 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CalendarListEntry>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CalendarListEntry>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2223,7 +2247,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$CalendarList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CalendarList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CalendarList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2313,8 +2340,8 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CalendarListEntry>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CalendarListEntry>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2403,8 +2430,8 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CalendarListEntry>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CalendarListEntry>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2491,7 +2518,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Channel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2709,7 +2739,10 @@ export namespace calendar_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2793,7 +2826,10 @@ export namespace calendar_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2880,7 +2916,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Calendar>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Calendar> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Calendar>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2967,7 +3006,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Calendar>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Calendar> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Calendar>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3054,7 +3096,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Calendar>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Calendar> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Calendar>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3141,7 +3186,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Calendar>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Calendar> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Calendar>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3280,7 +3328,10 @@ export namespace calendar_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3381,7 +3432,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Colors>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Colors> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Colors>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Colors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3475,7 +3529,10 @@ export namespace calendar_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3561,7 +3618,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Event>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3648,7 +3708,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Event>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3734,7 +3797,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Event>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3820,7 +3886,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Events>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Events> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Events>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Instances;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3907,7 +3976,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Events>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Events> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Events>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3993,7 +4065,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Event>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4080,7 +4155,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Event>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4166,7 +4244,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Event>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Quickadd;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4252,7 +4333,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Event>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4338,7 +4422,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Channel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4911,7 +4998,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$FreeBusyResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FreeBusyResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FreeBusyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Freebusy$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5012,7 +5102,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Setting>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Setting> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Setting>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5099,7 +5192,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5186,7 +5282,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Channel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

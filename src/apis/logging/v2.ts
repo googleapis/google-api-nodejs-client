@@ -2026,7 +2026,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$CmekSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CmekSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Getcmeksettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2114,7 +2117,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2224,7 +2230,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2312,7 +2321,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2397,7 +2409,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2486,8 +2501,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExclusionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListExclusionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2575,7 +2590,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2741,7 +2759,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2830,8 +2851,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2965,7 +2986,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3053,7 +3077,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Createasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3142,7 +3169,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3227,7 +3257,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3314,8 +3347,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBucketsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBucketsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3403,7 +3436,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3488,7 +3524,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3577,7 +3616,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Updateasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3779,7 +3821,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Links$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3868,7 +3913,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Links$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3954,7 +4002,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Link>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Link> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Link>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Links$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4042,8 +4093,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Links$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4189,7 +4240,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Views$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4278,7 +4332,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Views$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4364,7 +4421,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Views$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4452,8 +4512,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListViewsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListViewsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Views$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4542,7 +4602,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Views$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4697,7 +4760,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$ListLogsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListLogsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Views$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4810,7 +4876,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4896,7 +4965,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4985,8 +5057,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5127,8 +5199,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRecentQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRecentQueriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Recentqueries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5244,7 +5316,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SavedQuery>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Savedqueries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5333,7 +5408,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Savedqueries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5419,7 +5497,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SavedQuery>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Savedqueries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5509,8 +5590,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSavedQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSavedQueriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Savedqueries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5599,7 +5680,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SavedQuery>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Savedqueries$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5758,7 +5842,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5843,7 +5930,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$ListLogsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListLogsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5962,7 +6052,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6050,7 +6143,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6135,7 +6231,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6222,8 +6321,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6311,7 +6410,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6396,7 +6498,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6590,7 +6695,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6678,8 +6786,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLogEntriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLogEntriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6767,8 +6875,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TailLogEntriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TailLogEntriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$Tail;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6856,8 +6964,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WriteLogEntriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WriteLogEntriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6973,7 +7081,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7061,7 +7172,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7146,7 +7260,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7234,8 +7351,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExclusionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListExclusionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7322,7 +7439,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7476,7 +7596,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$CmekSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CmekSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getcmeksettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7564,7 +7687,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7652,7 +7778,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7778,7 +7907,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7866,7 +7998,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7951,7 +8086,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8040,8 +8178,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExclusionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListExclusionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8129,7 +8267,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8293,7 +8434,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8382,8 +8526,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8513,7 +8657,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8601,7 +8748,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Createasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8689,7 +8839,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8774,7 +8927,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8861,8 +9017,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBucketsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBucketsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8950,7 +9106,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9035,7 +9194,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9123,7 +9285,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Updateasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9324,7 +9489,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Links$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9412,7 +9580,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Links$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9497,7 +9668,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Link>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Link> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Link>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Links$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9584,8 +9758,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Links$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9730,7 +9904,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Views$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9818,7 +9995,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Views$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9903,7 +10083,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Views$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9988,7 +10171,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Views$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10079,8 +10265,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListViewsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListViewsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Views$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10168,7 +10354,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Views$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10253,7 +10442,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Views$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10348,8 +10540,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Views$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10543,7 +10735,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$ListLogsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListLogsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Views$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10656,7 +10851,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogScope>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Logscopes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10744,7 +10942,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Logscopes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10829,7 +11030,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogScope>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Logscopes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10918,8 +11122,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLogScopesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLogScopesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Logscopes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11007,7 +11211,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogScope>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Logscopes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11161,7 +11368,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11246,7 +11456,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11335,8 +11548,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11476,8 +11689,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRecentQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRecentQueriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Recentqueries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11592,7 +11805,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SavedQuery>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Savedqueries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11680,7 +11896,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Savedqueries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11765,7 +11984,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SavedQuery>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Savedqueries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11854,8 +12076,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSavedQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSavedQueriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Savedqueries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11943,7 +12165,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SavedQuery>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Savedqueries$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12101,7 +12326,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12186,7 +12414,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$ListLogsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListLogsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12305,7 +12536,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12393,7 +12627,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12478,7 +12715,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12565,8 +12805,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12654,7 +12894,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12739,7 +12982,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12937,7 +13183,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13025,8 +13274,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13153,7 +13402,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13241,7 +13493,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Createasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13329,7 +13584,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13414,7 +13672,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13501,8 +13762,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBucketsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBucketsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13590,7 +13851,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13675,7 +13939,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13763,7 +14030,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Updateasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13964,7 +14234,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Links$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14052,7 +14325,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Links$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14137,7 +14413,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Link>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Link> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Link>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Links$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14224,8 +14503,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Links$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14366,7 +14645,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Views$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14454,7 +14736,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Views$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14539,7 +14824,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Views$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14624,7 +14912,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Views$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14714,8 +15005,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListViewsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListViewsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Views$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14803,7 +15094,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Views$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14888,7 +15182,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Views$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14982,8 +15279,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Views$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15177,7 +15474,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15262,7 +15562,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15351,8 +15654,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15486,7 +15789,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15570,7 +15876,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$ListLogsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListLogsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15692,8 +16001,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListMonitoredResourceDescriptorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monitoredresourcedescriptors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15810,7 +16119,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$CmekSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CmekSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getcmeksettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15898,7 +16210,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15988,7 +16303,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$CmekSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CmekSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updatecmeksettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16076,7 +16394,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16218,7 +16539,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16306,7 +16630,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16391,7 +16718,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16480,8 +16810,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExclusionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListExclusionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16569,7 +16899,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16737,7 +17070,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16826,8 +17162,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16961,7 +17297,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17049,7 +17388,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Createasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17138,7 +17480,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17223,7 +17568,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17310,8 +17658,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBucketsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBucketsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17399,7 +17747,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17484,7 +17835,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17572,7 +17926,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Updateasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17774,7 +18131,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Links$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17863,7 +18223,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Links$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17949,7 +18312,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Link>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Link> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Link>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Links$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18037,8 +18403,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Links$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18184,7 +18550,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Views$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18273,7 +18642,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Views$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18359,7 +18731,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Views$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18445,7 +18820,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Views$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18536,8 +18914,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListViewsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListViewsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Views$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18626,7 +19004,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Views$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18712,7 +19093,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Views$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18807,8 +19191,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Views$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19002,7 +19386,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$ListLogsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListLogsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Views$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19115,7 +19502,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogScope>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Logscopes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19203,7 +19593,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Logscopes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19288,7 +19681,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogScope>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Logscopes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19377,8 +19773,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLogScopesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLogScopesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Logscopes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19466,7 +19862,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogScope>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Logscopes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19620,7 +20019,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19706,7 +20108,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19795,8 +20200,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19936,8 +20341,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRecentQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRecentQueriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Recentqueries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20053,7 +20458,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SavedQuery>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Savedqueries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20142,7 +20550,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Savedqueries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20228,7 +20639,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SavedQuery>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Savedqueries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20317,8 +20731,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSavedQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSavedQueriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Savedqueries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20407,7 +20821,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SavedQuery>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Savedqueries$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20566,7 +20983,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20651,7 +21071,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$ListLogsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListLogsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20770,7 +21193,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20858,7 +21284,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20943,7 +21372,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21030,8 +21462,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21119,7 +21551,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21204,7 +21639,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21408,7 +21846,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$CmekSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CmekSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getcmeksettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21496,7 +21937,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21606,7 +22050,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21694,7 +22141,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21779,7 +22229,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21868,8 +22321,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExclusionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListExclusionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21957,7 +22410,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogExclusion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogExclusion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22123,7 +22579,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22212,8 +22671,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22343,7 +22802,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22431,7 +22893,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Createasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22519,7 +22984,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22604,7 +23072,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22691,8 +23162,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBucketsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBucketsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22780,7 +23251,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22865,7 +23339,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22953,7 +23430,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Updateasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23154,7 +23634,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Links$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23242,7 +23725,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Links$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23327,7 +23813,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Link>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Link> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Link>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Links$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23414,8 +23903,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Links$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23560,7 +24049,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Views$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23648,7 +24140,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Views$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23733,7 +24228,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Views$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23818,7 +24316,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Views$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23909,8 +24410,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListViewsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListViewsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Views$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23998,7 +24499,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Views$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24083,7 +24587,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Views$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24178,8 +24685,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Views$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24373,7 +24880,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$ListLogsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListLogsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Views$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24486,7 +24996,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogScope>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Logscopes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24574,7 +25087,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Logscopes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24659,7 +25175,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogScope>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Logscopes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24748,8 +25267,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLogScopesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLogScopesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Logscopes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24837,7 +25356,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogScope>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogScope>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Logscopes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24991,7 +25513,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25076,7 +25601,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25165,8 +25693,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25306,8 +25834,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRecentQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRecentQueriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recentqueries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25422,7 +25950,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SavedQuery>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Savedqueries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25510,7 +26041,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Savedqueries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25595,7 +26129,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SavedQuery>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Savedqueries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25684,8 +26221,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSavedQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSavedQueriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Savedqueries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25773,7 +26310,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedQuery>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SavedQuery>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Savedqueries$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25931,7 +26471,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26016,7 +26559,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$ListLogsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListLogsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26135,7 +26681,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogMetric>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogMetric> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogMetric>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26223,7 +26772,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26308,7 +26860,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogMetric>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogMetric> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogMetric>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26397,8 +26952,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLogMetricsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLogMetricsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26486,7 +27041,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogMetric>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogMetric> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogMetric>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26632,7 +27190,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26720,7 +27281,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26805,7 +27369,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26892,8 +27459,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26981,7 +27548,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27066,7 +27636,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27260,7 +27833,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27347,7 +27923,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27431,7 +28010,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27517,8 +28099,8 @@ export namespace logging_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27605,7 +28187,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogSink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogSink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27769,7 +28354,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$CmekSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CmekSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V2$Getcmeksettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27857,7 +28445,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$V2$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27946,7 +28537,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$CmekSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CmekSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V2$Updatecmeksettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28034,7 +28628,10 @@ export namespace logging_v2 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Settings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V2$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;

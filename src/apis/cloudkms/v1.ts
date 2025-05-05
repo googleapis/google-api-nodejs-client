@@ -1426,7 +1426,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$AutokeyConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AutokeyConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AutokeyConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getautokeyconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1513,7 +1516,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$AutokeyConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AutokeyConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AutokeyConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Updateautokeyconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1637,8 +1643,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ShowEffectiveAutokeyConfigResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ShowEffectiveAutokeyConfigResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Showeffectiveautokeyconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1765,8 +1771,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateRandomBytesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GenerateRandomBytesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Generaterandombytes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1854,7 +1860,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1939,7 +1948,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$EkmConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EkmConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EkmConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getekmconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2028,8 +2040,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2117,7 +2129,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$EkmConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EkmConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EkmConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Updateekmconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2275,7 +2290,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2364,7 +2382,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2459,8 +2480,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2592,7 +2613,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$EkmConnection>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EkmConnection> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EkmConnection>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2680,7 +2704,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$EkmConnection>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EkmConnection> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EkmConnection>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2765,7 +2792,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2860,8 +2890,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEkmConnectionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListEkmConnectionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2949,7 +2979,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$EkmConnection>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EkmConnection> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EkmConnection>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3034,7 +3067,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3129,8 +3165,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3225,8 +3261,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VerifyConnectivityResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VerifyConnectivityResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3427,7 +3463,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyhandles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3515,7 +3554,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$KeyHandle>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$KeyHandle> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$KeyHandle>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyhandles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3604,8 +3646,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListKeyHandlesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListKeyHandlesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyhandles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3751,7 +3793,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$KeyRing>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$KeyRing> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$KeyRing>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3839,7 +3884,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$KeyRing>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$KeyRing> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$KeyRing>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3924,7 +3972,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4016,8 +4067,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListKeyRingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListKeyRingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4105,7 +4156,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4199,8 +4253,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4383,7 +4437,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$CryptoKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CryptoKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CryptoKey>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4472,7 +4529,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$DecryptResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DecryptResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DecryptResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4561,7 +4621,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$EncryptResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EncryptResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EncryptResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4650,7 +4713,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$CryptoKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CryptoKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CryptoKey>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4736,7 +4802,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4829,8 +4898,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCryptoKeysResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCryptoKeysResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4919,7 +4988,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$CryptoKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CryptoKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CryptoKey>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5005,7 +5077,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5100,8 +5175,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5192,7 +5267,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$CryptoKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CryptoKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CryptoKey>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5436,8 +5514,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AsymmetricDecryptResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AsymmetricDecryptResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5532,8 +5610,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AsymmetricSignResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AsymmetricSignResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5622,7 +5700,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$CryptoKeyVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CryptoKeyVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5711,7 +5792,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$CryptoKeyVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CryptoKeyVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5800,7 +5884,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$CryptoKeyVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CryptoKeyVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5886,7 +5973,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$PublicKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PublicKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PublicKey>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5975,7 +6065,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$CryptoKeyVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CryptoKeyVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6070,8 +6163,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCryptoKeyVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCryptoKeyVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6162,7 +6255,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$MacSignResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MacSignResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MacSignResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macsign;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6253,8 +6349,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MacVerifyResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$MacVerifyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Macverify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6343,7 +6439,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$CryptoKeyVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CryptoKeyVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6431,8 +6530,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RawDecryptResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RawDecryptResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawdecrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6523,8 +6622,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RawEncryptResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RawEncryptResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Rawencrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6613,7 +6712,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$CryptoKeyVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CryptoKeyVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CryptoKeyVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6891,7 +6993,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$ImportJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ImportJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ImportJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6980,7 +7085,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$ImportJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ImportJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ImportJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7066,7 +7174,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7159,8 +7270,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListImportJobsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListImportJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7249,7 +7360,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7344,8 +7458,8 @@ export namespace cloudkms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7523,7 +7637,10 @@ export namespace cloudkms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

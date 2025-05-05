@@ -565,7 +565,10 @@ export namespace cloudscheduler_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -651,7 +654,10 @@ export namespace cloudscheduler_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -737,7 +743,10 @@ export namespace cloudscheduler_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -826,8 +835,8 @@ export namespace cloudscheduler_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -974,7 +983,10 @@ export namespace cloudscheduler_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1064,8 +1076,8 @@ export namespace cloudscheduler_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1192,7 +1204,10 @@ export namespace cloudscheduler_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1278,7 +1293,10 @@ export namespace cloudscheduler_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1364,7 +1382,10 @@ export namespace cloudscheduler_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1450,7 +1471,10 @@ export namespace cloudscheduler_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListJobsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListJobsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1536,7 +1560,10 @@ export namespace cloudscheduler_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1622,7 +1649,10 @@ export namespace cloudscheduler_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1708,7 +1738,10 @@ export namespace cloudscheduler_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1794,7 +1827,10 @@ export namespace cloudscheduler_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;

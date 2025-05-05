@@ -612,7 +612,10 @@ export namespace meet_v2 {
       callback?:
         | BodyResponseCallback<Schema$ConferenceRecord>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConferenceRecord> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ConferenceRecord>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conferencerecords$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -703,8 +706,8 @@ export namespace meet_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConferenceRecordsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListConferenceRecordsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conferencerecords$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -829,7 +832,10 @@ export namespace meet_v2 {
       callback?:
         | BodyResponseCallback<Schema$Participant>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Participant> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Participant>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conferencerecords$Participants$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -918,8 +924,8 @@ export namespace meet_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListParticipantsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListParticipantsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conferencerecords$Participants$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1043,8 +1049,8 @@ export namespace meet_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ParticipantSession>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ParticipantSession>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conferencerecords$Participants$Participantsessions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1136,8 +1142,8 @@ export namespace meet_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListParticipantSessionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListParticipantSessionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conferencerecords$Participants$Participantsessions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1262,7 +1268,10 @@ export namespace meet_v2 {
       callback?:
         | BodyResponseCallback<Schema$Recording>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Recording> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Recording>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conferencerecords$Recordings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1351,8 +1360,8 @@ export namespace meet_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRecordingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRecordingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conferencerecords$Recordings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1474,7 +1483,10 @@ export namespace meet_v2 {
       callback?:
         | BodyResponseCallback<Schema$Transcript>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Transcript> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Transcript>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conferencerecords$Transcripts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1563,8 +1575,8 @@ export namespace meet_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTranscriptsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTranscriptsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conferencerecords$Transcripts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1682,7 +1694,10 @@ export namespace meet_v2 {
       callback?:
         | BodyResponseCallback<Schema$TranscriptEntry>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TranscriptEntry> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$TranscriptEntry>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conferencerecords$Transcripts$Entries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1774,8 +1789,8 @@ export namespace meet_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTranscriptEntriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTranscriptEntriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conferencerecords$Transcripts$Entries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1896,7 +1911,10 @@ export namespace meet_v2 {
       callback?:
         | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Space> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Space>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1980,7 +1998,10 @@ export namespace meet_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spaces$Endactiveconference;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2068,7 +2089,10 @@ export namespace meet_v2 {
       callback?:
         | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Space> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Space>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2152,7 +2176,10 @@ export namespace meet_v2 {
       callback?:
         | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Space> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Space>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -266,8 +266,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$Compute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -364,8 +364,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -458,8 +458,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -551,8 +551,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -646,8 +646,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -744,8 +744,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -837,8 +837,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$Sendtestmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1038,8 +1038,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$Compute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1136,8 +1136,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1230,8 +1230,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1323,8 +1323,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1418,8 +1418,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1516,8 +1516,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1609,8 +1609,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$Sendtestmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1810,8 +1810,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$Compute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1908,8 +1908,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2002,8 +2002,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2095,8 +2095,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2190,8 +2190,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2288,8 +2288,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2381,8 +2381,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$Sendtestmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;

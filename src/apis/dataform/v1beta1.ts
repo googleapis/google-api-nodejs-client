@@ -1932,7 +1932,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2017,7 +2020,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Config>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Config> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Config>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2106,8 +2112,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2195,7 +2201,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Config>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Config> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Config>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2371,8 +2380,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CommitRepositoryChangesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CommitRepositoryChangesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2468,8 +2477,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ComputeRepositoryAccessTokenStatusResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ComputeRepositoryAccessTokenStatusResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2559,7 +2568,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Repository> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Repository>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2647,7 +2659,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2738,8 +2753,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FetchRepositoryHistoryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FetchRepositoryHistoryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Fetchhistory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2836,8 +2851,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FetchRemoteBranchesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FetchRemoteBranchesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Fetchremotebranches;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2926,7 +2941,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Repository> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Repository>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3011,7 +3029,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3104,8 +3125,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRepositoriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRepositoriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3193,7 +3214,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Repository> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Repository>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3284,8 +3308,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryRepositoryDirectoryContentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$QueryRepositoryDirectoryContentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Querydirectorycontents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3382,8 +3406,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReadRepositoryFileResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ReadRepositoryFileResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Readfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3471,7 +3495,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3566,8 +3593,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3853,8 +3880,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CompilationResult>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CompilationResult>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Compilationresults$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3945,8 +3972,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CompilationResult>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CompilationResult>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Compilationresults$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4038,8 +4065,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCompilationResultsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCompilationResultsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Compilationresults$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4136,8 +4163,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryCompilationResultActionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$QueryCompilationResultActionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Compilationresults$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4297,7 +4324,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$ReleaseConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReleaseConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ReleaseConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4386,7 +4416,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4472,7 +4505,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$ReleaseConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReleaseConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ReleaseConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4564,8 +4600,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReleaseConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReleaseConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Releaseconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4654,7 +4690,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$ReleaseConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReleaseConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ReleaseConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4809,7 +4848,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$WorkflowConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkflowConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WorkflowConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4898,7 +4940,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4984,7 +5029,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$WorkflowConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkflowConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WorkflowConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5076,8 +5124,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkflowConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListWorkflowConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5166,7 +5214,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$WorkflowConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkflowConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WorkflowConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5327,8 +5378,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CancelWorkflowInvocationResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CancelWorkflowInvocationResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5421,8 +5472,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WorkflowInvocation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WorkflowInvocation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5511,7 +5562,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5599,8 +5653,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WorkflowInvocation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WorkflowInvocation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5692,8 +5746,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkflowInvocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListWorkflowInvocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workflowinvocations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5790,8 +5844,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryWorkflowInvocationActionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$QueryWorkflowInvocationActionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workflowinvocations$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5972,8 +6026,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CommitWorkspaceChangesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CommitWorkspaceChangesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6064,7 +6118,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Workspace>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Workspace> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Workspace>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6153,7 +6210,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6245,8 +6305,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FetchFileDiffResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FetchFileDiffResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchfilediff;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6341,8 +6401,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FetchFileGitStatusesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FetchFileGitStatusesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchfilegitstatuses;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6439,8 +6499,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FetchGitAheadBehindResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FetchGitAheadBehindResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchgitaheadbehind;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6529,7 +6589,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Workspace>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Workspace> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Workspace>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6615,7 +6678,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6710,8 +6776,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InstallNpmPackagesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$InstallNpmPackagesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Installnpmpackages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6804,8 +6870,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkspacesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListWorkspacesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6900,8 +6966,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MakeDirectoryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$MakeDirectoryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Makedirectory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6996,8 +7062,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MoveDirectoryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$MoveDirectoryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Movedirectory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7086,7 +7152,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$MoveFileResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MoveFileResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MoveFileResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Movefile;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7179,8 +7248,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PullGitCommitsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PullGitCommitsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Pull;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7273,8 +7342,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PushGitCommitsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PushGitCommitsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Push;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7369,8 +7438,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryDirectoryContentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$QueryDirectoryContentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Querydirectorycontents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7460,7 +7529,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$ReadFileResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReadFileResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ReadFileResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Readfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7555,8 +7627,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RemoveDirectoryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RemoveDirectoryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Removedirectory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7647,8 +7719,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RemoveFileResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RemoveFileResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Removefile;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7743,8 +7815,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ResetWorkspaceChangesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ResetWorkspaceChangesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7839,8 +7911,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchFilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchFilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Searchfiles;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7929,7 +8001,10 @@ export namespace dataform_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8024,8 +8099,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8116,8 +8191,8 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WriteFileResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$WriteFileResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Workspaces$Writefile;
       let options = (optionsOrCallback || {}) as MethodOptions;

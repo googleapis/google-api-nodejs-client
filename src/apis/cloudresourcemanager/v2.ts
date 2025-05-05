@@ -650,7 +650,10 @@ export namespace cloudresourcemanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -735,7 +738,10 @@ export namespace cloudresourcemanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Folder>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -820,7 +826,10 @@ export namespace cloudresourcemanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Folder>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -905,7 +914,10 @@ export namespace cloudresourcemanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -996,8 +1008,8 @@ export namespace cloudresourcemanager_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFoldersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListFoldersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1082,7 +1094,10 @@ export namespace cloudresourcemanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1167,7 +1182,10 @@ export namespace cloudresourcemanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Folder>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1256,8 +1274,8 @@ export namespace cloudresourcemanager_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchFoldersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchFoldersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1342,7 +1360,10 @@ export namespace cloudresourcemanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1437,8 +1458,8 @@ export namespace cloudresourcemanager_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1527,7 +1548,10 @@ export namespace cloudresourcemanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Folder>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1743,7 +1767,10 @@ export namespace cloudresourcemanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

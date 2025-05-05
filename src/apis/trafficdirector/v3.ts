@@ -949,8 +949,8 @@ export namespace trafficdirector_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ClientStatusResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ClientStatusResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Discovery$Client_status;
       let options = (optionsOrCallback || {}) as MethodOptions;

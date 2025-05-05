@@ -2758,8 +2758,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Apps$Countchromeapprequests;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2855,8 +2855,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Apps$Fetchdevicesrequestingextension;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2953,8 +2953,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Apps$Fetchusersrequestingextension;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3128,8 +3128,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1AppDetails>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1AppDetails>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Apps$Android$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3238,8 +3238,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1AppDetails>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1AppDetails>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Apps$Chrome$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3348,8 +3348,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1AppDetails>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1AppDetails>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Apps$Web$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3454,8 +3454,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Profiles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3547,8 +3547,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Profiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3642,8 +3642,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Profiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3785,8 +3785,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Reports$Countchromebrowsersneedingattention;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3884,8 +3884,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Reports$Countchromecrashevents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3981,8 +3981,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4080,8 +4080,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Reports$Countchromedevicesthatneedattention;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4179,8 +4179,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Reports$Countchromehardwarefleetdevices;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4278,8 +4278,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountChromeVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Reports$Countchromeversions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4375,8 +4375,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1CountInstalledAppsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountInstalledAppsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Reports$Countinstalledapps;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4472,8 +4472,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Reports$Countprintjobsbyprinter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4570,8 +4570,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Reports$Countprintjobsbyuser;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4667,8 +4667,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1EnumeratePrintJobsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1EnumeratePrintJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Reports$Enumerateprintjobs;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4764,8 +4764,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1FindInstalledAppDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1FindInstalledAppDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Reports$Findinstalledappdevices;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5131,8 +5131,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1TelemetryDevice>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1TelemetryDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Telemetry$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5226,8 +5226,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Telemetry$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5366,8 +5366,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Telemetry$Events$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5495,8 +5495,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1TelemetryNotificationConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1TelemetryNotificationConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Telemetry$Notificationconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5589,8 +5589,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Telemetry$Notificationconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5683,8 +5683,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1ListTelemetryNotificationConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1ListTelemetryNotificationConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Telemetry$Notificationconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5823,8 +5823,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1TelemetryUser>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1TelemetryUser>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Telemetry$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5918,8 +5918,8 @@ export namespace chromemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Telemetry$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

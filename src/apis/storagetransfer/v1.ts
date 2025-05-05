@@ -1056,8 +1056,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleServiceAccount>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleServiceAccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Googleserviceaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1170,7 +1170,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$AgentPool>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AgentPool> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AgentPool>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agentpools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1259,7 +1262,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agentpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1345,7 +1351,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$AgentPool>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AgentPool> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AgentPool>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agentpools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1435,8 +1444,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAgentPoolsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAgentPoolsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agentpools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1525,7 +1534,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$AgentPool>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AgentPool> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AgentPool>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agentpools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1684,7 +1696,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransferJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransferJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$TransferJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1770,7 +1785,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferjobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1856,7 +1874,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransferJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransferJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$TransferJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transferjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1945,8 +1966,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTransferJobsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTransferJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2032,7 +2053,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransferJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransferJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$TransferJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferjobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2118,7 +2142,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transferjobs$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2277,7 +2304,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2363,7 +2393,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2453,8 +2486,8 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2540,7 +2573,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2626,7 +2662,10 @@ export namespace storagetransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;

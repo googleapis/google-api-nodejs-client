@@ -3552,8 +3552,8 @@ export namespace docs_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateDocumentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateDocumentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3641,7 +3641,10 @@ export namespace docs_v1 {
       callback?:
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Document>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Documents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3725,7 +3728,10 @@ export namespace docs_v1 {
       callback?:
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Document>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

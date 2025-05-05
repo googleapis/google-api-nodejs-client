@@ -4414,8 +4414,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Fetchprocessortypes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4511,8 +4511,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudLocationLocation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationLocation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4603,8 +4603,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4741,8 +4741,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4836,8 +4836,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4928,8 +4928,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5077,8 +5077,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Batchprocess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5173,8 +5173,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3Processor>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3Processor>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5270,8 +5270,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5362,8 +5362,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5457,8 +5457,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5552,8 +5552,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3Processor>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3Processor>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5646,8 +5646,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ListProcessorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3ListProcessorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5743,8 +5743,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Process;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5840,8 +5840,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5935,8 +5935,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Updatedataset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6153,8 +6153,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6249,8 +6249,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3DatasetSchema>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3DatasetSchema>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Dataset$Getdatasetschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6344,8 +6344,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Dataset$Getdocument;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6442,8 +6442,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6538,8 +6538,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3ListDocumentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Dataset$Listdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6636,8 +6636,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3DatasetSchema>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3DatasetSchema>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Dataset$Updatedatasetschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6845,8 +6845,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Humanreviewconfig$Reviewdocument;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6965,8 +6965,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7061,8 +7061,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7154,8 +7154,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Deploy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7250,8 +7250,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7345,8 +7345,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7440,8 +7440,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Importprocessorversion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7536,8 +7536,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Processorversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7634,8 +7634,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Process;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7732,8 +7732,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Train;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7827,8 +7827,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8044,8 +8044,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3Evaluation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3Evaluation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8139,8 +8139,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8267,8 +8267,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ProcessorType>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3ProcessorType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processortypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8361,8 +8361,8 @@ export namespace documentai_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ListProcessorTypesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDocumentaiV1beta3ListProcessorTypesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processortypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

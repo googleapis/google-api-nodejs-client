@@ -2056,7 +2056,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2146,8 +2149,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2299,8 +2302,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2396,8 +2399,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2493,8 +2496,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2586,8 +2589,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2673,7 +2676,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Hub>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Hub> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Hub>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2759,7 +2765,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2849,7 +2858,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListHubsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListHubsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListHubsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2941,8 +2953,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListHubSpokesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListHubSpokesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Listspokes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3038,8 +3050,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3131,8 +3143,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryHubStatusResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$QueryHubStatusResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Querystatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3228,8 +3240,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3325,8 +3337,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3416,7 +3428,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3512,8 +3527,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3833,7 +3848,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Group> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Group>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3920,7 +3938,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Groups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4012,8 +4033,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4109,8 +4130,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4197,7 +4218,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Groups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4293,8 +4317,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Groups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4482,7 +4506,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$RouteTable>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RouteTable> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RouteTable>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4573,8 +4600,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRouteTablesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRouteTablesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Routetables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4702,7 +4729,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Route>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Route> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Route>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4791,8 +4821,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRoutesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRoutesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4926,8 +4956,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policybasedroutes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5023,8 +5053,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5111,7 +5141,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$PolicyBasedRoute>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PolicyBasedRoute> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PolicyBasedRoute>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policybasedroutes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5198,7 +5231,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policybasedroutes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5294,8 +5330,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPolicyBasedRoutesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPolicyBasedRoutesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policybasedroutes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5387,7 +5423,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policybasedroutes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5483,8 +5522,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Policybasedroutes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5684,8 +5723,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Internalranges$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5780,8 +5819,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Internalranges$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5867,7 +5906,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$InternalRange>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InternalRange> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$InternalRange>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Internalranges$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5959,8 +6001,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInternalRangesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListInternalRangesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Internalranges$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6055,8 +6097,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Internalranges$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6231,7 +6273,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6317,7 +6362,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6409,8 +6457,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6502,8 +6550,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6653,8 +6701,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Regionalendpoints$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6750,8 +6798,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Regionalendpoints$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6838,7 +6886,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$RegionalEndpoint>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RegionalEndpoint> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RegionalEndpoint>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Regionalendpoints$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6930,8 +6981,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRegionalEndpointsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRegionalEndpointsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Regionalendpoints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7098,8 +7149,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceclasses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7185,7 +7236,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$ServiceClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ServiceClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ServiceClass>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceclasses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7271,7 +7325,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7367,8 +7424,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServiceClassesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListServiceClassesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceclasses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7463,8 +7520,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceclasses$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7550,7 +7607,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7646,8 +7706,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7851,8 +7911,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionmaps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7948,8 +8008,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionmaps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8040,8 +8100,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ServiceConnectionMap>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ServiceConnectionMap>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionmaps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8128,7 +8188,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8224,8 +8287,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServiceConnectionMapsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListServiceConnectionMapsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionmaps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8323,8 +8386,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionmaps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8411,7 +8474,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8507,8 +8573,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8732,8 +8798,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8829,8 +8895,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8921,8 +8987,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ServiceConnectionPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ServiceConnectionPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9009,7 +9075,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9105,8 +9174,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServiceConnectionPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListServiceConnectionPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9204,8 +9273,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9292,7 +9361,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9388,8 +9460,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9613,8 +9685,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectiontokens$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9710,8 +9782,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectiontokens$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9802,8 +9874,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ServiceConnectionToken>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ServiceConnectionToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectiontokens$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9896,8 +9968,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServiceConnectionTokensResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListServiceConnectionTokensResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Serviceconnectiontokens$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10068,8 +10140,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Spokes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10164,8 +10236,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Spokes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10251,7 +10323,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Spoke>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Spoke> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Spoke>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Spokes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10337,7 +10412,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Spokes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10428,8 +10506,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSpokesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSpokesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Spokes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10524,8 +10602,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Spokes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10611,7 +10689,10 @@ export namespace networkconnectivity_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Spokes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10706,8 +10787,8 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Spokes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

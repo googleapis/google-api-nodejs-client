@@ -311,7 +311,10 @@ export namespace admin_datatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Application>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Application> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Application>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -401,8 +404,8 @@ export namespace admin_datatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ApplicationsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ApplicationsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -519,7 +522,10 @@ export namespace admin_datatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$DataTransfer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataTransfer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DataTransfer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transfers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -605,7 +611,10 @@ export namespace admin_datatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$DataTransfer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataTransfer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DataTransfer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transfers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -698,8 +707,8 @@ export namespace admin_datatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DataTransfersListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DataTransfersListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transfers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

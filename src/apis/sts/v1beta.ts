@@ -351,8 +351,8 @@ export namespace sts_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIdentityStsV1betaExchangeTokenResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIdentityStsV1betaExchangeTokenResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1beta$Token;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -463,7 +463,10 @@ export namespace homegraph_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Agentusers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -567,7 +570,10 @@ export namespace homegraph_v1 {
       callback?:
         | BodyResponseCallback<Schema$QueryResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$QueryResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$QueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -657,8 +663,8 @@ export namespace homegraph_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReportStateAndNotificationResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ReportStateAndNotificationResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Devices$Reportstateandnotification;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -754,8 +760,8 @@ export namespace homegraph_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RequestSyncDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RequestSyncDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Devices$Requestsync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -843,7 +849,10 @@ export namespace homegraph_v1 {
       callback?:
         | BodyResponseCallback<Schema$SyncResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SyncResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SyncResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Sync;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

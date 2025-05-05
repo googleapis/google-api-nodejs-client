@@ -1386,8 +1386,8 @@ export namespace datastore_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AllocateIdsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AllocateIdsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Allocateids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1480,8 +1480,8 @@ export namespace datastore_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BeginTransactionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BeginTransactionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Begintransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1568,7 +1568,10 @@ export namespace datastore_v1beta3 {
       callback?:
         | BodyResponseCallback<Schema$CommitResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CommitResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CommitResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1655,7 +1658,10 @@ export namespace datastore_v1beta3 {
       callback?:
         | BodyResponseCallback<Schema$LookupResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LookupResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LookupResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1744,8 +1750,8 @@ export namespace datastore_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReserveIdsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ReserveIdsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Reserveids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1833,7 +1839,10 @@ export namespace datastore_v1beta3 {
       callback?:
         | BodyResponseCallback<Schema$RollbackResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RollbackResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RollbackResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1927,8 +1936,8 @@ export namespace datastore_v1beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RunAggregationQueryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RunAggregationQueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Runaggregationquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2015,7 +2024,10 @@ export namespace datastore_v1beta3 {
       callback?:
         | BodyResponseCallback<Schema$RunQueryResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RunQueryResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RunQueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -1435,8 +1435,8 @@ export namespace analyticsdata_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchRunPivotReportsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchRunPivotReportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Batchrunpivotreports;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1533,8 +1533,8 @@ export namespace analyticsdata_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchRunReportsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchRunReportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Batchrunreports;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1629,8 +1629,8 @@ export namespace analyticsdata_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CheckCompatibilityResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CheckCompatibilityResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Checkcompatibility;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1719,7 +1719,10 @@ export namespace analyticsdata_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Metadata>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Metadata> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Metadata>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1811,8 +1814,8 @@ export namespace analyticsdata_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RunPivotReportResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RunPivotReportResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Runpivotreport;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1907,8 +1910,8 @@ export namespace analyticsdata_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RunRealtimeReportResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RunRealtimeReportResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Runrealtimereport;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1999,8 +2002,8 @@ export namespace analyticsdata_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RunReportResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RunReportResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Runreport;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2176,7 +2179,10 @@ export namespace analyticsdata_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Audienceexports$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2265,7 +2271,10 @@ export namespace analyticsdata_v1beta {
       callback?:
         | BodyResponseCallback<Schema$AudienceExport>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AudienceExport> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AudienceExport>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Audienceexports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2357,8 +2366,8 @@ export namespace analyticsdata_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAudienceExportsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAudienceExportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Audienceexports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2453,8 +2462,8 @@ export namespace analyticsdata_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryAudienceExportResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$QueryAudienceExportResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Audienceexports$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;

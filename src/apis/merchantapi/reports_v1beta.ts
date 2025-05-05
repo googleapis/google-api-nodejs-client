@@ -1085,7 +1085,10 @@ export namespace merchantapi_reports_v1beta {
       callback?:
         | BodyResponseCallback<Schema$SearchResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SearchResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SearchResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;

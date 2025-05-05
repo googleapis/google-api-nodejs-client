@@ -2087,7 +2087,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2201,8 +2204,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2344,7 +2347,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2433,7 +2439,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2519,7 +2528,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Instance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Instance>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2605,7 +2617,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2698,8 +2713,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInstancesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListInstancesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2790,7 +2805,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Partialupdateinstance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2876,7 +2894,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2971,8 +2992,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3061,7 +3082,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Instance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Instance>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3256,7 +3280,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$AppProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AppProfile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3345,7 +3372,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3431,7 +3461,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$AppProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AppProfile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3521,8 +3554,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAppProfilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAppProfilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3611,7 +3644,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3786,7 +3822,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3875,7 +3914,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3961,7 +4003,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Cluster> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Cluster>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4051,8 +4096,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListClustersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListClustersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4143,7 +4188,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Partialupdatecluster;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4230,7 +4278,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4393,7 +4444,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4482,7 +4536,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4572,7 +4629,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4659,7 +4719,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Backup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4745,7 +4808,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4837,8 +4903,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBackupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4927,7 +4993,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Backup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5014,7 +5083,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5110,8 +5182,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5330,8 +5402,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListHotTabletsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListHotTabletsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Hottablets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5452,7 +5524,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5541,7 +5616,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5627,7 +5705,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogicalView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogicalView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LogicalView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5713,7 +5794,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5807,8 +5891,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLogicalViewsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLogicalViewsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5897,7 +5981,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5983,7 +6070,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6079,8 +6169,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6279,7 +6369,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6369,7 +6462,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6456,7 +6552,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$MaterializedView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MaterializedView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MaterializedView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6542,7 +6641,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6638,8 +6740,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMaterializedViewsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListMaterializedViewsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6731,7 +6833,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6818,7 +6923,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6914,8 +7022,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7123,8 +7231,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CheckConsistencyResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CheckConsistencyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Checkconsistency;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7214,7 +7322,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Table>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7303,7 +7414,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7389,7 +7503,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Droprowrange;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7484,8 +7601,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateConsistencyTokenResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GenerateConsistencyTokenResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Generateconsistencytoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7577,7 +7694,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Table>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7663,7 +7783,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7754,8 +7877,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTablesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTablesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7844,7 +7967,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Table>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7934,7 +8060,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8020,7 +8149,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8109,7 +8241,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8204,8 +8339,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8295,7 +8430,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8569,7 +8707,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8659,7 +8800,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8746,7 +8890,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$AuthorizedView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AuthorizedView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AuthorizedView>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8833,7 +8980,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8929,8 +9079,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAuthorizedViewsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAuthorizedViewsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9020,7 +9170,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9107,7 +9260,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9203,8 +9359,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9419,8 +9575,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -1154,8 +1154,8 @@ export namespace analyticsreporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetReportsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetReportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1263,8 +1263,8 @@ export namespace analyticsreporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchUserActivityResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchUserActivityResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Useractivity$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;

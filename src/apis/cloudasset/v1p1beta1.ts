@@ -1005,8 +1005,8 @@ export namespace cloudasset_v1p1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchAllIamPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchAllIamPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Iampolicies$Searchall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1128,8 +1128,8 @@ export namespace cloudasset_v1p1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchAllResourcesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchAllResourcesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Searchall;
       let options = (optionsOrCallback || {}) as MethodOptions;

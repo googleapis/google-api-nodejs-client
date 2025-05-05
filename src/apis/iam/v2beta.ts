@@ -594,8 +594,8 @@ export namespace iam_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Policies$Createpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -686,8 +686,8 @@ export namespace iam_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -775,8 +775,8 @@ export namespace iam_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV2betaPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV2betaPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -866,8 +866,8 @@ export namespace iam_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV2betaListPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV2betaListPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Policies$Listpolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -960,8 +960,8 @@ export namespace iam_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1117,8 +1117,8 @@ export namespace iam_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Policies$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

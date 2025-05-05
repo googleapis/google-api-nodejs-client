@@ -1794,8 +1794,8 @@ export namespace testing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetApkDetailsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetApkDetailsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applicationdetailservice$Getapkdetails;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1913,7 +1913,10 @@ export namespace testing_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Devicesessions$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1998,7 +2001,10 @@ export namespace testing_v1 {
       callback?:
         | BodyResponseCallback<Schema$DeviceSession>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DeviceSession> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DeviceSession>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Devicesessions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2086,7 +2092,10 @@ export namespace testing_v1 {
       callback?:
         | BodyResponseCallback<Schema$DeviceSession>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DeviceSession> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DeviceSession>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Devicesessions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2177,8 +2186,8 @@ export namespace testing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDeviceSessionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDeviceSessionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Devicesessions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2266,7 +2275,10 @@ export namespace testing_v1 {
       callback?:
         | BodyResponseCallback<Schema$DeviceSession>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DeviceSession> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DeviceSession>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Devicesessions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2431,8 +2443,8 @@ export namespace testing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CancelTestMatrixResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CancelTestMatrixResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testmatrices$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2520,7 +2532,10 @@ export namespace testing_v1 {
       callback?:
         | BodyResponseCallback<Schema$TestMatrix>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TestMatrix> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$TestMatrix>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testmatrices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2608,7 +2623,10 @@ export namespace testing_v1 {
       callback?:
         | BodyResponseCallback<Schema$TestMatrix>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TestMatrix> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$TestMatrix>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testmatrices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2745,8 +2763,8 @@ export namespace testing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestEnvironmentCatalog>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestEnvironmentCatalog>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Testenvironmentcatalog$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

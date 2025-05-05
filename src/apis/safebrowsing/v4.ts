@@ -626,8 +626,8 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Encodedfullhashes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -745,8 +745,8 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Encodedupdates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -865,8 +865,8 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Fullhashes$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -971,8 +971,8 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threathits$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1078,8 +1078,8 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Threatlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1181,8 +1181,8 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threatlistupdates$Fetch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1293,8 +1293,8 @@ export namespace safebrowsing_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threatmatches$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;

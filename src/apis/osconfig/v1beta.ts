@@ -1487,7 +1487,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$GuestPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GuestPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$GuestPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Guestpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1575,7 +1578,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Guestpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1660,7 +1666,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$GuestPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GuestPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$GuestPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Guestpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1751,8 +1760,8 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGuestPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListGuestPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Guestpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1840,7 +1849,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$GuestPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GuestPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$GuestPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Guestpolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1994,7 +2006,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PatchDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2082,7 +2097,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2167,7 +2185,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PatchDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2258,8 +2279,8 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPatchDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPatchDeploymentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2349,7 +2370,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PatchDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2434,7 +2458,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PatchDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2522,7 +2549,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PatchDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2707,7 +2737,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PatchJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2795,7 +2828,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PatchJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$Execute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2883,7 +2919,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PatchJob>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2972,8 +3011,8 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPatchJobsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPatchJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3125,8 +3164,8 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPatchJobInstanceDetailsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPatchJobInstanceDetailsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$Instancedetails$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3258,8 +3297,8 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EffectiveGuestPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EffectiveGuestPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;

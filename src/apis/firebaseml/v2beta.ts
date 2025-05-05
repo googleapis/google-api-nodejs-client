@@ -1483,8 +1483,8 @@ export namespace firebaseml_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Publishers$Models$Counttokens;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1581,8 +1581,8 @@ export namespace firebaseml_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Publishers$Models$Generatecontent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1679,8 +1679,8 @@ export namespace firebaseml_v2beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent;
       let options = (optionsOrCallback || {}) as MethodOptions;

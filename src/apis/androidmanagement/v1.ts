@@ -3585,7 +3585,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Enterprise>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Enterprise> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Enterprise>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3671,7 +3674,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3763,8 +3769,8 @@ export namespace androidmanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateEnterpriseUpgradeUrlResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GenerateEnterpriseUpgradeUrlResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Generateenterpriseupgradeurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3855,7 +3861,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Enterprise>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Enterprise> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Enterprise>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Enterprises$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3944,8 +3953,8 @@ export namespace androidmanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEnterprisesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListEnterprisesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Enterprises$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4030,7 +4039,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Enterprise>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Enterprise> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Enterprise>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4207,7 +4219,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Application>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Application> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Application>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4316,7 +4331,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4402,7 +4420,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Device>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Device> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Device>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4488,7 +4509,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$Issuecommand;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4579,8 +4603,8 @@ export namespace androidmanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4669,7 +4693,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Device>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Device> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Device>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4828,7 +4855,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4914,7 +4944,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5004,8 +5037,8 @@ export namespace androidmanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5132,7 +5165,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$EnrollmentToken>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EnrollmentToken> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EnrollmentToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Enrollmenttokens$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5221,7 +5257,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Enrollmenttokens$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5307,7 +5346,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$EnrollmentToken>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EnrollmentToken> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EnrollmentToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Enrollmenttokens$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5399,8 +5441,8 @@ export namespace androidmanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEnrollmentTokensResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListEnrollmentTokensResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Enrollmenttokens$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5540,7 +5582,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$MigrationToken>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MigrationToken> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MigrationToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Migrationtokens$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5629,7 +5674,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$MigrationToken>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MigrationToken> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MigrationToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Migrationtokens$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5721,8 +5769,8 @@ export namespace androidmanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMigrationTokensResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListMigrationTokensResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Migrationtokens$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5853,7 +5901,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Policies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5939,7 +5990,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6029,8 +6083,8 @@ export namespace androidmanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Policies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6119,7 +6173,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Policies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6258,7 +6315,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$WebApp>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WebApp> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WebApp>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Webapps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6347,7 +6407,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Webapps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6433,7 +6496,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$WebApp>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WebApp> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WebApp>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Webapps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6521,8 +6587,8 @@ export namespace androidmanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWebAppsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListWebAppsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Webapps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6611,7 +6677,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$WebApp>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WebApp> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WebApp>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Webapps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6762,7 +6831,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$WebToken>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WebToken> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WebToken>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Webtokens$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6871,7 +6943,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$ProvisioningInfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProvisioningInfo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ProvisioningInfo>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Provisioninginfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6972,7 +7047,10 @@ export namespace androidmanagement_v1 {
       callback?:
         | BodyResponseCallback<Schema$SignupUrl>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SignupUrl> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SignupUrl>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Signupurls$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;

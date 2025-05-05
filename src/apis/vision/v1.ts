@@ -5232,8 +5232,8 @@ export namespace vision_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchAnnotateFilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchAnnotateFilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5317,7 +5317,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5432,8 +5435,8 @@ export namespace vision_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchAnnotateImagesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchAnnotateImagesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5520,7 +5523,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Images$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5638,7 +5644,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5738,7 +5747,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5823,7 +5835,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5908,7 +5923,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5996,8 +6014,8 @@ export namespace vision_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6153,8 +6171,8 @@ export namespace vision_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchAnnotateFilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchAnnotateFilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6242,7 +6260,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6368,8 +6389,8 @@ export namespace vision_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchAnnotateImagesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchAnnotateImagesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6457,7 +6478,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Images$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6604,8 +6628,8 @@ export namespace vision_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchAnnotateFilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchAnnotateFilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6693,7 +6717,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6820,8 +6847,8 @@ export namespace vision_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchAnnotateImagesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchAnnotateImagesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6909,7 +6936,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Images$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7030,7 +7060,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7133,7 +7166,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Product>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7221,7 +7257,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7306,7 +7345,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Product>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7395,8 +7437,8 @@ export namespace vision_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProductsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProductsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7484,7 +7526,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Product>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7569,7 +7614,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Purge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7738,7 +7786,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$ReferenceImage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReferenceImage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ReferenceImage>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Referenceimages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7827,7 +7878,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Referenceimages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7913,7 +7967,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$ReferenceImage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReferenceImage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ReferenceImage>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Referenceimages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8005,8 +8062,8 @@ export namespace vision_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReferenceImagesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReferenceImagesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Referenceimages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8152,7 +8209,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Addproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8241,7 +8301,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$ProductSet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProductSet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ProductSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8329,7 +8392,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8414,7 +8480,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$ProductSet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProductSet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ProductSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8499,7 +8568,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8591,8 +8663,8 @@ export namespace vision_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProductSetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProductSetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8680,7 +8752,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$ProductSet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProductSet> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ProductSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8765,7 +8840,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Removeproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8965,8 +9043,8 @@ export namespace vision_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProductsInProductSetResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProductsInProductSetResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9080,7 +9158,10 @@ export namespace vision_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

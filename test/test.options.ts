@@ -224,7 +224,7 @@ describe('Options', () => {
     createNock('/drive/v2/files/woot');
     const res = await drive.files.get({auth: authClient, fileId: 'woot'});
     assert.strictEqual(res.config.timeout, 12345);
-    assert.strictEqual(res.config.headers!.Authorization, 'Bearer abc');
+    assert.strictEqual(res.config.headers.get('Authorization'), 'Bearer abc');
   });
 
   it('should allow overriding rootUrl via options', async () => {

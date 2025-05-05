@@ -1785,8 +1785,8 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1AutocompletePlacesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Places$Autocomplete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1880,8 +1880,8 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlacesV1Place>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1Place>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Places$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1971,8 +1971,8 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchNearbyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Places$Searchnearby;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2068,8 +2068,8 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlacesV1SearchTextResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1SearchTextResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Places$Searchtext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2212,8 +2212,8 @@ export namespace places_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsPlacesV1PhotoMedia>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleMapsPlacesV1PhotoMedia>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Places$Photos$Getmedia;
       let options = (optionsOrCallback || {}) as MethodOptions;

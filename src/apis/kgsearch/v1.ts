@@ -192,7 +192,10 @@ export namespace kgsearch_v1 {
       callback?:
         | BodyResponseCallback<Schema$SearchResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SearchResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SearchResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entities$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

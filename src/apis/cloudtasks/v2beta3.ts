@@ -873,7 +873,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -958,7 +961,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$CmekConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CmekConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CmekConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getcmekconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1047,8 +1053,8 @@ export namespace cloudtasks_v2beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1136,7 +1142,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$CmekConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CmekConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CmekConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Updatecmekconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1284,7 +1293,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Queue>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Queue> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Queue>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1372,7 +1384,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1457,7 +1472,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Queue>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Queue> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Queue>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1542,7 +1560,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1632,8 +1653,8 @@ export namespace cloudtasks_v2beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListQueuesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListQueuesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1721,7 +1742,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Queue>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Queue> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Queue>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1806,7 +1830,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Queue>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Queue> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Queue>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1894,7 +1921,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Queue>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Queue> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Queue>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Purge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1982,7 +2012,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Queue>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Queue> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Queue>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2070,7 +2103,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2164,8 +2200,8 @@ export namespace cloudtasks_v2beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2405,8 +2441,8 @@ export namespace cloudtasks_v2beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BufferTaskResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BufferTaskResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Tasks$Buffer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2494,7 +2530,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Task>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Tasks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2582,7 +2621,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Tasks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2667,7 +2709,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Task>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Tasks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2754,8 +2799,8 @@ export namespace cloudtasks_v2beta3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTasksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTasksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Tasks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2843,7 +2888,10 @@ export namespace cloudtasks_v2beta3 {
       callback?:
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Task>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Queues$Tasks$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;

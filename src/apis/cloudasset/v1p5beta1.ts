@@ -980,8 +980,8 @@ export namespace cloudasset_v1p5beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAssetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAssetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

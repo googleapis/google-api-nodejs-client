@@ -649,7 +649,10 @@ export namespace admob_v1 {
       callback?:
         | BodyResponseCallback<Schema$PublisherAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PublisherAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PublisherAccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -739,8 +742,8 @@ export namespace admob_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPublisherAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPublisherAccountsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -852,8 +855,8 @@ export namespace admob_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAdUnitsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAdUnitsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -964,7 +967,10 @@ export namespace admob_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListAppsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListAppsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListAppsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Apps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1078,8 +1084,8 @@ export namespace admob_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateMediationReportResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GenerateMediationReportResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Mediationreport$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1195,8 +1201,8 @@ export namespace admob_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateNetworkReportResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GenerateNetworkReportResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Networkreport$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;

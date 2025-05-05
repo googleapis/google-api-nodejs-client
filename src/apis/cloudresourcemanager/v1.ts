@@ -975,7 +975,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Clearorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1066,7 +1069,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Geteffectiveorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1155,7 +1161,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1250,8 +1259,8 @@ export namespace cloudresourcemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAvailableOrgPolicyConstraintsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Listavailableorgpolicyconstraints;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1348,8 +1357,8 @@ export namespace cloudresourcemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOrgPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOrgPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Listorgpolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1438,7 +1447,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Setorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1607,7 +1619,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Lien>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Lien> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Lien>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liens$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1692,7 +1707,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liens$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1777,7 +1795,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Lien>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Lien> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Lien>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liens$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1864,8 +1885,8 @@ export namespace cloudresourcemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLiensResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLiensResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liens$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1990,7 +2011,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2089,7 +2113,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Clearorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2178,7 +2205,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Organization>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Organization> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Organization>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2266,7 +2296,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Geteffectiveorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2355,7 +2388,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2444,7 +2480,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2539,8 +2578,8 @@ export namespace cloudresourcemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAvailableOrgPolicyConstraintsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Listavailableorgpolicyconstraints;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2637,8 +2676,8 @@ export namespace cloudresourcemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOrgPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOrgPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Listorgpolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2733,8 +2772,8 @@ export namespace cloudresourcemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchOrganizationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchOrganizationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2823,7 +2862,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2912,7 +2954,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Setorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3007,8 +3052,8 @@ export namespace cloudresourcemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3227,7 +3272,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Clearorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3316,7 +3364,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3401,7 +3452,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3489,7 +3543,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Project>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Project> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Project>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3581,8 +3638,8 @@ export namespace cloudresourcemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetAncestryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetAncestryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getancestry;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3673,7 +3730,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Geteffectiveorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3762,7 +3822,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3851,7 +3914,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3944,8 +4010,8 @@ export namespace cloudresourcemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProjectsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProjectsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4036,8 +4102,8 @@ export namespace cloudresourcemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAvailableOrgPolicyConstraintsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Listavailableorgpolicyconstraints;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4134,8 +4200,8 @@ export namespace cloudresourcemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOrgPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOrgPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Listorgpolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4224,7 +4290,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4313,7 +4382,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Setorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4408,8 +4480,8 @@ export namespace cloudresourcemanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4497,7 +4569,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4586,7 +4661,10 @@ export namespace cloudresourcemanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Project>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Project> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Project>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

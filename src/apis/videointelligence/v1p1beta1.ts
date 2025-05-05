@@ -3424,8 +3424,8 @@ export namespace videointelligence_v1p1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunning_Operation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunning_Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

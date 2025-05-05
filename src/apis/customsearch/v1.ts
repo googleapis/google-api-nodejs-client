@@ -445,7 +445,10 @@ export namespace customsearch_v1 {
       callback?:
         | BodyResponseCallback<Schema$Search>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Search> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Search>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cse$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -671,7 +674,10 @@ export namespace customsearch_v1 {
       callback?:
         | BodyResponseCallback<Schema$Search>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Search> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Search>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cse$Siterestrict$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

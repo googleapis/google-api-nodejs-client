@@ -710,8 +710,8 @@ export namespace addressvalidation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsAddressvalidationV1ProvideValidationFeedbackResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleMapsAddressvalidationV1ProvideValidationFeedbackResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Providevalidationfeedback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -808,8 +808,8 @@ export namespace addressvalidation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleMapsAddressvalidationV1ValidateAddressResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleMapsAddressvalidationV1ValidateAddressResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Validateaddress;
       let options = (optionsOrCallback || {}) as MethodOptions;

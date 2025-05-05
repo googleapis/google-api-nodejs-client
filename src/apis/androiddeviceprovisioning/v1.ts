@@ -970,8 +970,8 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CustomerListCustomersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CustomerListCustomersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1076,7 +1076,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Configuration>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Configuration> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Configuration>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Configurations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1165,7 +1168,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Configurations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1251,7 +1257,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Configuration>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Configuration> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Configuration>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Configurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1343,8 +1352,8 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CustomerListConfigurationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CustomerListConfigurationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Configurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1435,7 +1444,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Configuration>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Configuration> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Configuration>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Configurations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1578,7 +1590,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Applyconfiguration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1667,7 +1682,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Device>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Device> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Device>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1759,8 +1777,8 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CustomerListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CustomerListDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1849,7 +1867,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Removeconfiguration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1937,7 +1958,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Unclaim;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2096,8 +2120,8 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CustomerListDpcsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CustomerListDpcsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Dpcs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2198,7 +2222,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2310,7 +2337,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Company>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Company> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Company>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Customers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2403,8 +2433,8 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCustomersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCustomersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2530,8 +2560,8 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ClaimDeviceResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ClaimDeviceResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Claim;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2620,7 +2650,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Claimasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2714,8 +2747,8 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FindDevicesByDeviceIdentifierResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FindDevicesByDeviceIdentifierResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Findbyidentifier;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2811,8 +2844,8 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FindDevicesByOwnerResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FindDevicesByOwnerResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Findbyowner;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2900,7 +2933,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Device>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Device> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Device>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2992,8 +3028,8 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetDeviceSimLockStateResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetDeviceSimLockStateResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Getsimlockstate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3083,7 +3119,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$DeviceMetadata>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DeviceMetadata> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DeviceMetadata>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Metadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3172,7 +3211,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Unclaim;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3260,7 +3302,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Unclaimasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3348,7 +3393,10 @@ export namespace androiddeviceprovisioning_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Updatemetadataasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3567,8 +3615,8 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVendorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListVendorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Vendors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3686,8 +3734,8 @@ export namespace androiddeviceprovisioning_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVendorCustomersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListVendorCustomersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Vendors$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

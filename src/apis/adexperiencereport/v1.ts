@@ -238,8 +238,8 @@ export namespace adexperiencereport_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SiteSummaryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SiteSummaryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -342,8 +342,8 @@ export namespace adexperiencereport_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ViolatingSitesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ViolatingSitesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Violatingsites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

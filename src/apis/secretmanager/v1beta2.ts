@@ -668,7 +668,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -758,8 +761,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -890,7 +893,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SecretVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Addversion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -979,7 +985,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Secret>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1068,7 +1077,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1154,7 +1166,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Secret>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1240,7 +1255,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1331,8 +1349,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSecretsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSecretsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1421,7 +1439,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Secret>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1507,7 +1528,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1602,8 +1626,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1823,8 +1847,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSecretVersionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSecretVersionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Versions$Access;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1914,7 +1938,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SecretVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Versions$Destroy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2004,7 +2031,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SecretVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Versions$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2094,7 +2124,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SecretVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Versions$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2184,7 +2217,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SecretVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2276,8 +2312,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSecretVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSecretVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2445,7 +2481,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SecretVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Addversion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2534,7 +2573,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Secret>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2623,7 +2665,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2709,7 +2754,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Secret>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2795,7 +2843,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2886,8 +2937,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSecretsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSecretsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2976,7 +3027,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Secret>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3062,7 +3116,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3157,8 +3214,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3377,8 +3434,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSecretVersionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccessSecretVersionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Access;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3467,7 +3524,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SecretVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Destroy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3556,7 +3616,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SecretVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3645,7 +3708,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SecretVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3734,7 +3800,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SecretVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3826,8 +3895,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSecretVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSecretVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

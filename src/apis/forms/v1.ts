@@ -1145,8 +1145,8 @@ export namespace forms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateFormResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateFormResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Forms$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1234,7 +1234,10 @@ export namespace forms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Form>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Form> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Form>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Forms$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1318,7 +1321,10 @@ export namespace forms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Form>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Form> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Form>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Forms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1408,8 +1414,8 @@ export namespace forms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SetPublishSettingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SetPublishSettingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Forms$Setpublishsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1546,7 +1552,10 @@ export namespace forms_v1 {
       callback?:
         | BodyResponseCallback<Schema$FormResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FormResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FormResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Forms$Responses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1639,8 +1648,8 @@ export namespace forms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFormResponsesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListFormResponsesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Forms$Responses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1766,7 +1775,10 @@ export namespace forms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Watch>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Watch> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Watch>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Forms$Watches$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1854,7 +1866,10 @@ export namespace forms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Forms$Watches$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1944,8 +1959,8 @@ export namespace forms_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWatchesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListWatchesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Forms$Watches$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2033,7 +2048,10 @@ export namespace forms_v1 {
       callback?:
         | BodyResponseCallback<Schema$Watch>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Watch> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Watch>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Forms$Watches$Renew;
       let options = (optionsOrCallback || {}) as MethodOptions;

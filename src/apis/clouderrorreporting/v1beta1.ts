@@ -458,8 +458,8 @@ export namespace clouderrorreporting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DeleteEventsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DeleteEventsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deleteevents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -565,8 +565,8 @@ export namespace clouderrorreporting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEventsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListEventsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Events$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -661,8 +661,8 @@ export namespace clouderrorreporting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReportErrorEventResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ReportErrorEventResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Events$Report;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -806,7 +806,10 @@ export namespace clouderrorreporting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$ErrorGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ErrorGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ErrorGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -895,7 +898,10 @@ export namespace clouderrorreporting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$ErrorGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ErrorGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ErrorGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1012,8 +1018,8 @@ export namespace clouderrorreporting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGroupStatsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListGroupStatsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groupstats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1175,8 +1181,8 @@ export namespace clouderrorreporting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DeleteEventsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DeleteEventsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deleteevents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1282,8 +1288,8 @@ export namespace clouderrorreporting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEventsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListEventsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Events$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1415,7 +1421,10 @@ export namespace clouderrorreporting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$ErrorGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ErrorGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ErrorGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1504,7 +1513,10 @@ export namespace clouderrorreporting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$ErrorGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ErrorGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ErrorGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1621,8 +1633,8 @@ export namespace clouderrorreporting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGroupStatsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListGroupStatsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Groupstats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

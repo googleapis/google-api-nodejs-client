@@ -2258,8 +2258,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Bulkdeletedocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2353,8 +2353,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2448,8 +2448,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2540,8 +2540,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Exportdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2635,8 +2635,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1Database>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1Database>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2729,8 +2729,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Importdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2824,8 +2824,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1ListDatabasesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListDatabasesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2921,8 +2921,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3013,8 +3013,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3225,8 +3225,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1BackupSchedule>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1BackupSchedule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Backupschedules$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3317,7 +3317,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Backupschedules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3409,8 +3412,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1BackupSchedule>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1BackupSchedule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Backupschedules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3503,8 +3506,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Backupschedules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3600,8 +3603,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1BackupSchedule>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1BackupSchedule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Backupschedules$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3766,8 +3769,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1Field>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1Field>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Fields$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3859,8 +3862,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1ListFieldsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListFieldsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Fields$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3957,8 +3960,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4100,8 +4103,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4190,7 +4193,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4282,8 +4288,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1Index>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1Index>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4375,8 +4381,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1ListIndexesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListIndexesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4526,8 +4532,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchGetDocumentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchGetDocumentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4617,8 +4623,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchWriteResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchWriteResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Batchwrite;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4712,8 +4718,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BeginTransactionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BeginTransactionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Begintransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4801,7 +4807,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$CommitResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CommitResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CommitResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4889,7 +4898,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Document>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Createdocument;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4978,7 +4990,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5063,7 +5078,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Document>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5152,8 +5170,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDocumentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDocumentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5247,8 +5265,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCollectionIdsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCollectionIdsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Listcollectionids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5343,8 +5361,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDocumentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDocumentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Listdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5433,7 +5451,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListenResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListenResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListenResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Listen;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5527,8 +5548,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PartitionQueryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PartitionQueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Partitionquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5617,7 +5638,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Document>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5702,7 +5726,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5796,8 +5823,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RunAggregationQueryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RunAggregationQueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Runaggregationquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5886,7 +5913,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$RunQueryResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RunQueryResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RunQueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5974,7 +6004,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$WriteResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WriteResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$WriteResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Documents$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6366,7 +6399,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6451,7 +6487,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6542,8 +6581,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6634,8 +6673,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6784,8 +6823,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1UserCreds>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Usercreds$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6875,7 +6914,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Usercreds$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6966,8 +7008,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1UserCreds>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Usercreds$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7063,8 +7105,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1UserCreds>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Usercreds$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7157,8 +7199,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1UserCreds>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Usercreds$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7251,8 +7293,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListUserCredsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Usercreds$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7348,8 +7390,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1UserCreds>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1UserCreds>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Usercreds$Resetpassword;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7523,7 +7565,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7612,8 +7657,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7739,7 +7784,10 @@ export namespace firestore_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7830,8 +7878,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1Backup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1Backup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7924,8 +7972,8 @@ export namespace firestore_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1ListBackupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1ListBackupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Backups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

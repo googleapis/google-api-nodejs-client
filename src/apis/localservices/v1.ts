@@ -440,8 +440,8 @@ export namespace localservices_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountreports$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -585,8 +585,8 @@ export namespace localservices_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Detailedleadreports$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;

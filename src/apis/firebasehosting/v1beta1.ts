@@ -1046,7 +1046,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1159,7 +1162,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Site>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1248,7 +1254,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1334,7 +1343,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Site>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1420,7 +1432,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$SiteConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SiteConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SiteConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1508,8 +1523,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSitesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSitesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1598,7 +1613,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Site>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1684,7 +1702,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$SiteConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SiteConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SiteConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1870,7 +1891,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Channel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Channels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1959,7 +1983,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Channels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2045,7 +2072,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Channel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Channels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2135,8 +2165,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2225,7 +2255,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Channel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Channels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2380,7 +2413,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Release>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Channels$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2469,7 +2505,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Release>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Channels$Releases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2559,8 +2598,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReleasesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReleasesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Channels$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2699,7 +2738,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Customdomains$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2788,7 +2830,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Customdomains$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2874,7 +2919,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$CustomDomain>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CustomDomain> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CustomDomain>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Customdomains$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2966,8 +3014,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCustomDomainsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCustomDomainsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Customdomains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3056,7 +3104,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Customdomains$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3142,7 +3193,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Customdomains$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3340,7 +3394,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Customdomains$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3431,8 +3488,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Customdomains$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3556,7 +3613,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Domain>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Domains$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3645,7 +3705,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Domains$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3731,7 +3794,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Domain>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Domains$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3819,8 +3885,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDomainsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDomainsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Domains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3909,7 +3975,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Domain>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Domains$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4056,7 +4125,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Release>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4145,7 +4217,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Release>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Releases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4235,8 +4310,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReleasesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReleasesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4373,7 +4448,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$Clone;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4462,7 +4540,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Version>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4551,7 +4632,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4637,7 +4721,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Version>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4727,8 +4814,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4817,7 +4904,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Version>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4909,8 +4999,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PopulateVersionFilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PopulateVersionFilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$Populatefiles;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5106,8 +5196,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVersionFilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListVersionFilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5231,7 +5321,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$SiteConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SiteConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SiteConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5316,7 +5409,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$SiteConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SiteConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SiteConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5434,7 +5530,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Channel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Channels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5523,7 +5622,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Channels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5609,7 +5711,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Channel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Channels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5699,8 +5804,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5789,7 +5894,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Channel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Channels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5944,7 +6052,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Release>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Channels$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6033,7 +6144,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Release>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Channels$Releases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6123,8 +6237,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReleasesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReleasesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Channels$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6259,7 +6373,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Domain>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Domains$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6348,7 +6465,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Domains$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6434,7 +6554,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Domain>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Domains$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6522,8 +6645,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDomainsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDomainsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Domains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6612,7 +6735,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Domain>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Domains$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6759,7 +6885,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Release>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6848,7 +6977,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Release>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Releases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6938,8 +7070,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReleasesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReleasesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7076,7 +7208,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$Clone;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7165,7 +7300,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Version>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7254,7 +7392,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7340,7 +7481,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Version>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7430,8 +7574,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7520,7 +7664,10 @@ export namespace firebasehosting_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Version>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7612,8 +7759,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PopulateVersionFilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PopulateVersionFilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$Populatefiles;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7809,8 +7956,8 @@ export namespace firebasehosting_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVersionFilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListVersionFilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

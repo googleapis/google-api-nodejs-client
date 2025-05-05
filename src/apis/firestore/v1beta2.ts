@@ -618,8 +618,8 @@ export namespace firestore_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Exportdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -713,8 +713,8 @@ export namespace firestore_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Importdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -855,8 +855,8 @@ export namespace firestore_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1beta2Field>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Fields$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -950,8 +950,8 @@ export namespace firestore_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Fields$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1048,8 +1048,8 @@ export namespace firestore_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1191,8 +1191,8 @@ export namespace firestore_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1281,7 +1281,10 @@ export namespace firestore_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1373,8 +1376,8 @@ export namespace firestore_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1beta2Index>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1468,8 +1471,8 @@ export namespace firestore_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

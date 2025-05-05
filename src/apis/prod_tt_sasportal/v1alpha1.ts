@@ -961,8 +961,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalCustomer>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalCustomer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1053,8 +1053,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListCustomersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListCustomersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1150,8 +1150,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListGcpProjectDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListGcpProjectDeploymentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Listgcpprojectdeployments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1247,8 +1247,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListLegacyOrganizationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListLegacyOrganizationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Listlegacyorganizations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1342,8 +1342,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Migrateorganization;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1434,8 +1434,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalCustomer>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalCustomer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1526,8 +1526,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalProvisionDeploymentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalProvisionDeploymentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Provisiondeployment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1622,8 +1622,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Setupsasanalytics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1780,8 +1780,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1870,7 +1870,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1958,8 +1961,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2051,8 +2054,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2145,8 +2148,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2237,8 +2240,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2405,7 +2408,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2494,7 +2500,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2590,8 +2599,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2733,7 +2742,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2822,7 +2834,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2911,7 +2926,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2997,7 +3015,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3089,8 +3110,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3183,8 +3204,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3273,7 +3294,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3359,7 +3383,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Signdevice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3448,7 +3475,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Updatesigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3660,7 +3690,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalNode>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3749,7 +3782,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3835,7 +3871,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalNode>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3927,8 +3966,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListNodesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4019,8 +4058,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4109,7 +4148,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalNode>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4278,8 +4320,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Deployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4374,8 +4416,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4505,7 +4547,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4594,7 +4639,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4689,8 +4737,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4832,7 +4880,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalNode>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4927,8 +4978,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListNodesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5060,8 +5111,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5160,7 +5211,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Devices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5246,7 +5300,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5334,8 +5391,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Devices$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5424,7 +5481,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5510,7 +5570,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Devices$Signdevice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5599,7 +5662,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Devices$Updatesigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5768,8 +5834,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalGenerateSecretResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalGenerateSecretResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Installer$Generatesecret;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5866,8 +5932,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalValidateInstallerResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalValidateInstallerResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Installer$Validate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5986,7 +6052,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalNode>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6087,7 +6156,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6175,8 +6247,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6268,8 +6340,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6362,8 +6434,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6454,8 +6526,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6610,7 +6682,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6699,7 +6774,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6794,8 +6872,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6937,7 +7015,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7026,7 +7107,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7115,7 +7199,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7201,7 +7288,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7293,8 +7383,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7387,8 +7477,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7477,7 +7567,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7563,7 +7656,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Signdevice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7652,7 +7748,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Updatesigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7864,7 +7963,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalNode>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7953,7 +8055,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8039,7 +8144,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalNode>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Nodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8130,8 +8238,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListNodesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8221,8 +8329,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Nodes$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8310,7 +8418,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalNode>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8476,8 +8587,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Deployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8572,8 +8683,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8703,7 +8814,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8792,7 +8906,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8887,8 +9004,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9030,7 +9147,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalNode>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9125,8 +9245,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListNodesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9254,7 +9374,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9342,7 +9465,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SasPortalPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9436,8 +9562,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalTestPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SasPortalTestPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Test;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

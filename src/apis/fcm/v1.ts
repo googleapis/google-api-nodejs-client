@@ -537,7 +537,10 @@ export namespace fcm_v1 {
       callback?:
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Message>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Messages$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;

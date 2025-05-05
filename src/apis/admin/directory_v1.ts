@@ -2962,7 +2962,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Asps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3048,7 +3051,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Asp>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Asp> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Asp>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Asps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3134,7 +3140,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Asps>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Asps> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Asps>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Asps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3253,7 +3262,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3352,7 +3364,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Chromeosdevices$Action;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3440,7 +3455,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$ChromeOsDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ChromeOsDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ChromeOsDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Chromeosdevices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3528,7 +3546,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$ChromeOsDevices>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ChromeOsDevices> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ChromeOsDevices>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Chromeosdevices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3614,7 +3635,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Chromeosdevices$Movedevicestoou;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3702,7 +3726,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$ChromeOsDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ChromeOsDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ChromeOsDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Chromeosdevices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3790,7 +3817,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$ChromeOsDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ChromeOsDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ChromeOsDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Chromeosdevices$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4040,8 +4070,8 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchChangeChromeOsDeviceStatusResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchChangeChromeOsDeviceStatusResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customer$Devices$Chromeos$Batchchangestatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4138,8 +4168,8 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DirectoryChromeosdevicesIssueCommandResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DirectoryChromeosdevicesIssueCommandResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customer$Devices$Chromeos$Issuecommand;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4271,8 +4301,8 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DirectoryChromeosdevicesCommand>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DirectoryChromeosdevicesCommand>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customer$Devices$Chromeos$Commands$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4387,7 +4417,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Customer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Customer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4473,7 +4506,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Customer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Customer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4559,7 +4595,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Customer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Customer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4700,8 +4739,8 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchCreatePrintersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchCreatePrintersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printers$Batchcreateprinters;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4796,8 +4835,8 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchDeletePrintersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchDeletePrintersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printers$Batchdeleteprinters;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4886,7 +4925,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Printer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Printer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Printer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4973,7 +5015,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5061,7 +5106,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Printer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Printer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Printer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5153,8 +5201,8 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPrintersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPrintersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5247,8 +5295,8 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPrinterModelsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPrinterModelsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printers$Listprintermodels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5337,7 +5385,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Printer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Printer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Printer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5555,8 +5606,8 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchCreatePrintServersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchCreatePrintServersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printservers$Batchcreateprintservers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5653,8 +5704,8 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchDeletePrintServersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchDeletePrintServersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printservers$Batchdeleteprintservers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5745,7 +5796,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$PrintServer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PrintServer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PrintServer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printservers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5832,7 +5886,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printservers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5920,7 +5977,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$PrintServer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PrintServer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PrintServer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printservers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6012,8 +6072,8 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPrintServersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPrintServersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printservers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6100,7 +6160,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$PrintServer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PrintServer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PrintServer>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Chrome$Printservers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6287,7 +6350,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Domainaliases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6375,7 +6441,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$DomainAlias>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DomainAlias> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DomainAlias>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Domainaliases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6463,7 +6532,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$DomainAlias>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DomainAlias> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DomainAlias>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Domainaliases$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6550,7 +6622,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$DomainAliases>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DomainAliases> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DomainAliases>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Domainaliases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6688,7 +6763,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Domains$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6775,7 +6853,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Domains>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Domains> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Domains>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Domains$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6862,7 +6943,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Domains>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Domains> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Domains>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Domains$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6948,7 +7032,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Domains2>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Domains2> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Domains2>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Domains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7079,7 +7166,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7166,7 +7256,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Group> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Group>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7253,7 +7346,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Group> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Group>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7340,7 +7436,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Groups>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Groups> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Groups>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7427,7 +7526,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Group> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Group>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7514,7 +7616,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Group> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Group>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7681,7 +7786,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Aliases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7768,7 +7876,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Alias>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Alias> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Alias>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Aliases$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7855,7 +7966,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Aliases>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Aliases> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Aliases>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Aliases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7978,7 +8092,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8065,7 +8182,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Member>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Member> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Member>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8152,7 +8272,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$MembersHasMember>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MembersHasMember> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MembersHasMember>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Members$Hasmember;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8240,7 +8363,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Member>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Member> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Member>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8326,7 +8452,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Members>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Members> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Members>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8412,7 +8541,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Member>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Member> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Member>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8499,7 +8631,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Member>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Member> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Member>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8686,7 +8821,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mobiledevices$Action;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8772,7 +8910,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mobiledevices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8860,7 +9001,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$MobileDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MobileDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MobileDevice>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mobiledevices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8948,7 +9092,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$MobileDevices>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MobileDevices> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MobileDevices>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mobiledevices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9115,7 +9262,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9202,7 +9352,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgUnit>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgUnit> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgUnit>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9289,7 +9442,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgUnit>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgUnit> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgUnit>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9375,7 +9531,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgUnits>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgUnits> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgUnits>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9461,7 +9620,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgUnit>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgUnit> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgUnit>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9548,7 +9710,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$OrgUnit>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrgUnit> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OrgUnit>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9718,7 +9883,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Privileges>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Privileges> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Privileges>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Privileges$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9830,7 +9998,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Buildings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9918,7 +10089,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Building>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Building> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Building>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Buildings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10006,7 +10180,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Building>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Building> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Building>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Buildings$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10094,7 +10271,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Buildings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Buildings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Buildings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Buildings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10182,7 +10362,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Building>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Building> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Building>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Buildings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10270,7 +10453,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Building>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Building> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Building>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Buildings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10457,7 +10643,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Calendars$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10545,7 +10734,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$CalendarResource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CalendarResource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CalendarResource>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Calendars$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10633,7 +10825,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$CalendarResource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CalendarResource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CalendarResource>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Calendars$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10723,8 +10918,8 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CalendarResources>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CalendarResources>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Calendars$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10812,7 +11007,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$CalendarResource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CalendarResource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CalendarResource>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Calendars$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10900,7 +11098,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$CalendarResource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CalendarResource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CalendarResource>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Calendars$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11083,7 +11284,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Features$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11171,7 +11375,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Feature>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Feature> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Feature>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Features$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11259,7 +11466,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Feature>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Feature> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Feature>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Features$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11347,7 +11557,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Features>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Features> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Features>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Features$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11435,7 +11648,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Feature>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Feature> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Feature>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Features$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11521,7 +11737,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Features$Rename;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11609,7 +11828,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Feature>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Feature> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Feature>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Features$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11800,7 +12022,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Roleassignments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11888,7 +12113,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$RoleAssignment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RoleAssignment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RoleAssignment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Roleassignments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11976,7 +12204,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$RoleAssignment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RoleAssignment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RoleAssignment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Roleassignments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12064,7 +12295,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$RoleAssignments>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RoleAssignments> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RoleAssignments>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Roleassignments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12219,7 +12453,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12305,7 +12542,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Role>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12391,7 +12631,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Role>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12477,7 +12720,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Roles>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Roles> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Roles>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12563,7 +12809,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Role>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12649,7 +12898,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Role>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Role>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12816,7 +13068,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12903,7 +13158,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Schema> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Schema>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12990,7 +13248,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Schema> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Schema>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13076,7 +13337,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Schemas>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Schemas> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Schemas>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Schemas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13162,7 +13426,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Schema> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Schema>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13249,7 +13516,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Schema> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Schema>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13409,7 +13679,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tokens$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13495,7 +13768,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Token>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Token> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Token>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tokens$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13581,7 +13857,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Tokens>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Tokens> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Tokens>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tokens$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13699,7 +13978,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Twostepverification$Turnoff;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13804,7 +14086,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13891,7 +14176,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$User>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13978,7 +14266,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$User>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14065,7 +14356,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Users>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Users> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Users>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14150,7 +14444,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Makeadmin;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14236,7 +14533,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$User>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14321,7 +14621,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Signout;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14405,7 +14708,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14491,7 +14797,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$User>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14578,7 +14887,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Channel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14861,7 +15173,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Aliases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14948,7 +15263,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Alias>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Alias> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Alias>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Aliases$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15035,7 +15353,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Aliases>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Aliases> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Aliases>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Aliases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15122,7 +15443,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Channel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Aliases$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15265,7 +15589,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Photos$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15352,7 +15679,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$UserPhoto>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserPhoto> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UserPhoto>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Photos$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15438,7 +15768,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$UserPhoto>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserPhoto> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UserPhoto>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Photos$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15525,7 +15858,10 @@ export namespace admin_directory_v1 {
       callback?:
         | BodyResponseCallback<Schema$UserPhoto>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserPhoto> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UserPhoto>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Photos$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15655,7 +15991,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Verificationcodes$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15741,7 +16080,10 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Verificationcodes$Invalidate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15831,8 +16173,8 @@ export namespace admin_directory_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VerificationCodes>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VerificationCodes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Verificationcodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

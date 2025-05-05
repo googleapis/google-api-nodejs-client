@@ -339,8 +339,8 @@ export namespace businessprofileperformance_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Fetchmultidailymetricstimeseries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -437,8 +437,8 @@ export namespace businessprofileperformance_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetDailyMetricsTimeSeriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetDailyMetricsTimeSeriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Getdailymetricstimeseries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -655,8 +655,8 @@ export namespace businessprofileperformance_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSearchKeywordImpressionsMonthlyResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSearchKeywordImpressionsMonthlyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Searchkeywords$Impressions$Monthly$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

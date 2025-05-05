@@ -903,8 +903,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1051,8 +1051,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1AabInfo>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1AabInfo>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Getaabinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1166,8 +1166,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1262,8 +1262,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1DistributeReleaseResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1DistributeReleaseResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Distribute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1360,8 +1360,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Release>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Release>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1455,8 +1455,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListReleasesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListReleasesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1553,8 +1553,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Release>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Release>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1722,8 +1722,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Feedbackreports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1816,8 +1816,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1FeedbackReport>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1FeedbackReport>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Feedbackreports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1912,8 +1912,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListFeedbackReportsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListFeedbackReportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Feedbackreports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2044,8 +2044,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2133,8 +2133,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2226,8 +2226,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2319,8 +2319,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2417,8 +2417,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Operations$Wait;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2571,8 +2571,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Batchjoin;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2665,8 +2665,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Batchleave;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2761,8 +2761,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Group>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Group>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2855,8 +2855,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2948,8 +2948,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Group>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Group>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3043,8 +3043,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3141,8 +3141,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Group>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Group>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3329,8 +3329,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1BatchAddTestersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1BatchAddTestersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testers$Batchadd;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3427,8 +3427,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1BatchRemoveTestersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1BatchRemoveTestersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testers$Batchremove;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3525,8 +3525,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListTestersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListTestersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3623,8 +3623,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Tester>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Tester>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -694,7 +694,10 @@ export namespace streetviewpublish_v1 {
       callback?:
         | BodyResponseCallback<Schema$Photo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Photo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Photo>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -779,7 +782,10 @@ export namespace streetviewpublish_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -867,7 +873,10 @@ export namespace streetviewpublish_v1 {
       callback?:
         | BodyResponseCallback<Schema$Photo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Photo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Photo>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -955,7 +964,10 @@ export namespace streetviewpublish_v1 {
       callback?:
         | BodyResponseCallback<Schema$UploadRef>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UploadRef> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UploadRef>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photo$Startupload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1044,7 +1056,10 @@ export namespace streetviewpublish_v1 {
       callback?:
         | BodyResponseCallback<Schema$Photo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Photo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Photo>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1191,8 +1206,8 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchDeletePhotosResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchDeletePhotosResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photos$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1287,8 +1302,8 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchGetPhotosResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchGetPhotosResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photos$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1382,8 +1397,8 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdatePhotosResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdatePhotosResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photos$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1474,8 +1489,8 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPhotosResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPhotosResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1618,7 +1633,10 @@ export namespace streetviewpublish_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photosequence$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1704,7 +1722,10 @@ export namespace streetviewpublish_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photosequence$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1793,7 +1814,10 @@ export namespace streetviewpublish_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photosequence$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1882,7 +1906,10 @@ export namespace streetviewpublish_v1 {
       callback?:
         | BodyResponseCallback<Schema$UploadRef>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UploadRef> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UploadRef>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photosequence$Startupload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2026,8 +2053,8 @@ export namespace streetviewpublish_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPhotoSequencesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPhotoSequencesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photosequences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

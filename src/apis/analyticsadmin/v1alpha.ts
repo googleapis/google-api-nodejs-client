@@ -3087,8 +3087,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3179,8 +3179,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccount>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3273,8 +3273,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Getdatasharingsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3368,8 +3368,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3462,8 +3462,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccount>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3556,8 +3556,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Provisionaccountticket;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3654,8 +3654,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Runaccessreport;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3752,8 +3752,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Searchchangehistoryevents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3936,8 +3936,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Accessbindings$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4031,8 +4031,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Accessbindings$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4126,8 +4126,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Accessbindings$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4223,8 +4223,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Accessbindings$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4320,8 +4320,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Accessbindings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4414,8 +4414,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Accessbindings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4507,8 +4507,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Accessbindings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4602,8 +4602,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Accessbindings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4700,8 +4700,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Accessbindings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4903,8 +4903,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountsummaries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5081,8 +5081,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Acknowledgeuserdatacollection;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5178,8 +5178,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaProperty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaProperty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5276,8 +5276,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Createconnectedsitetag;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5373,8 +5373,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Createrollupproperty;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5471,8 +5471,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaProperty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaProperty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5564,8 +5564,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Deleteconnectedsitetag;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5659,8 +5659,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Fetchautomatedga4configurationoptout;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5758,8 +5758,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Fetchconnectedga4property;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5855,8 +5855,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaProperty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaProperty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Properties$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5949,8 +5949,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Getattributionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6044,8 +6044,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Getdataretentionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6139,8 +6139,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaGoogleSignalsSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaGoogleSignalsSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Getgooglesignalssettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6234,8 +6234,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Properties$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6331,8 +6331,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Listconnectedsitetags;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6428,8 +6428,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaProperty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaProperty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Properties$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6522,8 +6522,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaProvisionSubpropertyResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaProvisionSubpropertyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Provisionsubproperty;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6620,8 +6620,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Runaccessreport;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6718,8 +6718,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Setautomatedga4configurationoptout;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6816,8 +6816,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Updateattributionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6911,8 +6911,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Updatedataretentionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7006,8 +7006,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaGoogleSignalsSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaGoogleSignalsSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Updategooglesignalssettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7311,8 +7311,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Accessbindings$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7406,8 +7406,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Accessbindings$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7501,8 +7501,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Accessbindings$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7598,8 +7598,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Accessbindings$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7695,8 +7695,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Accessbindings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7789,8 +7789,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Accessbindings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7882,8 +7882,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Accessbindings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7977,8 +7977,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Accessbindings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8075,8 +8075,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Accessbindings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8278,8 +8278,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Adsenselinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8372,8 +8372,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Adsenselinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8465,8 +8465,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Adsenselinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8560,8 +8560,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Adsenselinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8703,8 +8703,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Audiences$Archive;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8799,8 +8799,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAudience>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAudience>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Audiences$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8897,8 +8897,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAudience>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAudience>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Audiences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8992,8 +8992,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Audiences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9090,8 +9090,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAudience>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaAudience>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Audiences$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9255,8 +9255,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Bigquerylinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9349,8 +9349,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Bigquerylinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9442,8 +9442,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Bigquerylinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9537,8 +9537,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Bigquerylinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9635,8 +9635,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Bigquerylinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9795,8 +9795,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Calculatedmetrics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9889,8 +9889,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Calculatedmetrics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9982,8 +9982,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Calculatedmetrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10077,8 +10077,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Calculatedmetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10175,8 +10175,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaCalculatedMetric>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Calculatedmetrics$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10339,8 +10339,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Channelgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10433,8 +10433,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Channelgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10526,8 +10526,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Channelgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10621,8 +10621,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Channelgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10719,8 +10719,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Channelgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10879,8 +10879,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Conversionevents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10973,8 +10973,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Conversionevents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11066,8 +11066,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Conversionevents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11161,8 +11161,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListConversionEventsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListConversionEventsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Conversionevents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11259,8 +11259,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Conversionevents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11415,8 +11415,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Customdimensions$Archive;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11511,8 +11511,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCustomDimension>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaCustomDimension>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Customdimensions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11609,8 +11609,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCustomDimension>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaCustomDimension>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Customdimensions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11704,8 +11704,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListCustomDimensionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListCustomDimensionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Customdimensions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11802,8 +11802,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCustomDimension>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaCustomDimension>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Customdimensions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11963,8 +11963,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Custommetrics$Archive;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12059,8 +12059,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCustomMetric>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaCustomMetric>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Custommetrics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12157,8 +12157,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCustomMetric>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaCustomMetric>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Custommetrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12252,8 +12252,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListCustomMetricsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListCustomMetricsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Custommetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12350,8 +12350,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCustomMetric>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaCustomMetric>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Custommetrics$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12532,8 +12532,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataStream>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDataStream>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12626,8 +12626,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12719,8 +12719,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataStream>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDataStream>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12814,8 +12814,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Getdataredactionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12910,8 +12910,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13006,8 +13006,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Getglobalsitetag;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13101,8 +13101,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListDataStreamsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListDataStreamsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13199,8 +13199,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataStream>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDataStream>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13294,8 +13294,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Updatedataredactionsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13390,8 +13390,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13604,8 +13604,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Eventcreaterules$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13699,8 +13699,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Eventcreaterules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13793,8 +13793,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Eventcreaterules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13889,8 +13889,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Eventcreaterules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13988,8 +13988,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Eventcreaterules$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14149,8 +14149,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEventEditRule>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaEventEditRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Eventeditrules$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14244,8 +14244,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Eventeditrules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14338,8 +14338,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEventEditRule>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaEventEditRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Eventeditrules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14434,8 +14434,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListEventEditRulesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListEventEditRulesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Eventeditrules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14533,8 +14533,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEventEditRule>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaEventEditRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Eventeditrules$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14625,8 +14625,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Eventeditrules$Reorder;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14798,8 +14798,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14892,8 +14892,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14986,8 +14986,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15082,8 +15082,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15180,8 +15180,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15341,8 +15341,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15435,8 +15435,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15529,8 +15529,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15625,8 +15625,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15723,8 +15723,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15884,8 +15884,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Displayvideo360advertiserlinkproposals$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15983,8 +15983,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Displayvideo360advertiserlinkproposals$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16082,8 +16082,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Displayvideo360advertiserlinkproposals$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16177,8 +16177,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Displayvideo360advertiserlinkproposals$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16271,8 +16271,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Displayvideo360advertiserlinkproposals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16367,8 +16367,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Displayvideo360advertiserlinkproposals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16539,8 +16539,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Displayvideo360advertiserlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16633,8 +16633,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Displayvideo360advertiserlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16727,8 +16727,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Displayvideo360advertiserlinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16823,8 +16823,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Displayvideo360advertiserlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16921,8 +16921,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Displayvideo360advertiserlinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17082,8 +17082,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Expandeddatasets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17176,8 +17176,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Expandeddatasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17269,8 +17269,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Expandeddatasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17364,8 +17364,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Expandeddatasets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17462,8 +17462,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Expandeddatasets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17622,8 +17622,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Firebaselinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17716,8 +17716,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Firebaselinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17809,8 +17809,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Firebaselinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17949,8 +17949,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Googleadslinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18043,8 +18043,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Googleadslinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18136,8 +18136,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Googleadslinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18234,8 +18234,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Googleadslinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18387,8 +18387,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaKeyEvent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaKeyEvent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Keyevents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18481,8 +18481,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Keyevents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18574,8 +18574,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaKeyEvent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaKeyEvent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Keyevents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18669,8 +18669,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListKeyEventsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListKeyEventsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Keyevents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18767,8 +18767,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaKeyEvent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaKeyEvent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Keyevents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18927,8 +18927,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaReportingDataAnnotation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaReportingDataAnnotation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Reportingdataannotations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19021,8 +19021,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Reportingdataannotations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19115,8 +19115,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaReportingDataAnnotation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaReportingDataAnnotation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Reportingdataannotations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19210,8 +19210,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Reportingdataannotations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19307,8 +19307,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaReportingDataAnnotation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaReportingDataAnnotation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Reportingdataannotations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19472,8 +19472,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Rolluppropertysourcelinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19566,8 +19566,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Rolluppropertysourcelinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19660,8 +19660,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Rolluppropertysourcelinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19755,8 +19755,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Rolluppropertysourcelinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19902,8 +19902,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Searchads360links$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19996,8 +19996,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Searchads360links$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20089,8 +20089,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Searchads360links$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20184,8 +20184,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Searchads360links$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20282,8 +20282,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Searchads360links$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20442,8 +20442,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Subpropertyeventfilters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20536,8 +20536,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Subpropertyeventfilters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20630,8 +20630,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Subpropertyeventfilters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20725,8 +20725,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Subpropertyeventfilters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20822,8 +20822,8 @@ export namespace analyticsadmin_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Subpropertyeventfilters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

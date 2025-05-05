@@ -1049,7 +1049,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Locations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1143,8 +1146,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1295,8 +1298,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAttributeMetadataResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAttributeMetadataResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Attributes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1428,8 +1431,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchGetCategoriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchGetCategoriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Categories$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1523,8 +1526,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCategoriesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCategoriesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Categories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1663,7 +1666,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Chain>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Chain> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Chain>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Chains$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1753,8 +1759,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchChainsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchChainsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Chains$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1870,8 +1876,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchGoogleLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchGoogleLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Googlelocations$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1980,7 +1986,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2066,7 +2075,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2152,7 +2164,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Attributes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attributes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Attributes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Getattributes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2245,8 +2260,8 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleUpdatedLocation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleUpdatedLocation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Getgoogleupdated;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2336,7 +2351,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2422,7 +2440,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Attributes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attributes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Attributes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Updateattributes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2586,7 +2607,10 @@ export namespace mybusinessbusinessinformation_v1 {
       callback?:
         | BodyResponseCallback<Schema$Attributes>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attributes> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Attributes>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Attributes$Getgoogleupdated;
       let options = (optionsOrCallback || {}) as MethodOptions;

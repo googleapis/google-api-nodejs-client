@@ -188,7 +188,10 @@ export namespace groupsmigration_v1 {
       callback?:
         | BodyResponseCallback<Schema$Groups>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Groups> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Groups>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Archive$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

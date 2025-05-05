@@ -218,7 +218,10 @@ export namespace playcustomapp_v1 {
       callback?:
         | BodyResponseCallback<Schema$CustomApp>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CustomApp> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CustomApp>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Customapps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;

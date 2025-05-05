@@ -1833,8 +1833,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GeneratePlayGroupingApiTokenResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GeneratePlayGroupingApiTokenResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesstokens$Generateplaygroupingapitoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1930,8 +1930,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateRecallPlayGroupingApiTokenResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2062,8 +2062,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementDefinitionsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AchievementDefinitionsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementdefinitions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2182,8 +2182,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementIncrementResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AchievementIncrementResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Increment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2278,8 +2278,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerAchievementListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlayerAchievementListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2374,8 +2374,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementRevealResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AchievementRevealResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Reveal;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2468,8 +2468,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AchievementSetStepsAtLeastResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Setstepsatleast;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2564,8 +2564,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementUnlockResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AchievementUnlockResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Unlock;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2658,8 +2658,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementUpdateMultipleResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AchievementUpdateMultipleResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Updatemultiple;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2827,7 +2827,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$Application>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Application> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Application>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2914,7 +2917,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$EndPoint>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EndPoint> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EndPoint>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Getendpoint;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3000,7 +3006,10 @@ export namespace games_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Played;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3094,8 +3103,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ApplicationVerifyResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ApplicationVerifyResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3230,8 +3239,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerEventListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlayerEventListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Listbyplayer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3322,8 +3331,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventDefinitionListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EventDefinitionListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Listdefinitions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3413,8 +3422,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventUpdateResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EventUpdateResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Record;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3547,7 +3556,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$Leaderboard>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Leaderboard> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Leaderboard>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Leaderboards$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3638,8 +3650,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LeaderboardListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LeaderboardListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboards$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3762,7 +3774,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$MetagameConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MetagameConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MetagameConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metagame$Getmetagameconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3856,8 +3871,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CategoryListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CategoryListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metagame$Listcategoriesbyplayer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3977,7 +3992,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$Player>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Player> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Player>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4070,8 +4088,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetMultipleApplicationPlayerIdsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetMultipleApplicationPlayerIdsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Players$Getmultipleapplicationplayerids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4162,7 +4180,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$ScopedPlayerIds>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ScopedPlayerIds> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ScopedPlayerIds>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Players$Getscopedplayerids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4252,8 +4273,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlayerListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4394,8 +4415,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RetrieveGamesPlayerTokensResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RetrieveGamesPlayerTokensResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recall$Gamesplayertokens;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4490,8 +4511,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recall$Lasttokenfromalldevelopergames;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4585,8 +4606,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LinkPersonaResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LinkPersonaResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recall$Linkpersona;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4680,8 +4701,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ResetPersonaResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ResetPersonaResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recall$Resetpersona;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4775,8 +4796,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RetrievePlayerTokensResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RetrievePlayerTokensResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recall$Retrievetokens;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4872,8 +4893,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UnlinkPersonaResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$UnlinkPersonaResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recall$Unlinkpersona;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5019,8 +5040,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RevisionCheckResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RevisionCheckResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5127,8 +5148,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlayerLeaderboardScoreListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5219,8 +5240,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LeaderboardScores>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LeaderboardScores>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5309,8 +5330,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LeaderboardScores>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LeaderboardScores>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Listwindow;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5400,8 +5421,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerScoreResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlayerScoreResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5493,8 +5514,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerScoreListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlayerScoreListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Submitmultiple;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5711,7 +5732,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Snapshot> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Snapshot>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5802,8 +5826,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SnapshotListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SnapshotListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5926,7 +5950,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$StatsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$StatsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$StatsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Stats$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -3390,7 +3390,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3475,7 +3478,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Config>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Config> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Config>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3564,8 +3570,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3698,7 +3704,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3787,7 +3796,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3873,7 +3885,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$CustomTargetType>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CustomTargetType> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CustomTargetType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3958,7 +3973,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4053,8 +4071,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCustomTargetTypesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCustomTargetTypesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4145,7 +4163,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4231,7 +4252,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4471,7 +4495,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4560,7 +4587,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4646,7 +4676,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$DeliveryPipeline>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DeliveryPipeline> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DeliveryPipeline>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4731,7 +4764,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4826,8 +4862,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDeliveryPipelinesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDeliveryPipelinesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4918,7 +4954,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5010,8 +5049,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RollbackTargetResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RollbackTargetResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5100,7 +5139,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5195,8 +5237,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5455,8 +5497,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CancelAutomationRunResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CancelAutomationRunResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5542,7 +5584,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$AutomationRun>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AutomationRun> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AutomationRun>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5634,8 +5679,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAutomationRunsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAutomationRunsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5774,7 +5819,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5863,7 +5911,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5949,7 +6000,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Automation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Automation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Automation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6039,8 +6093,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAutomationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAutomationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6129,7 +6183,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6339,8 +6396,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AbandonReleaseResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AbandonReleaseResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6429,7 +6486,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6518,7 +6578,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Release>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6608,8 +6671,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReleasesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReleasesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6787,8 +6850,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdvanceRolloutResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AdvanceRolloutResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6883,8 +6946,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ApproveRolloutResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ApproveRolloutResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6977,8 +7040,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CancelRolloutResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CancelRolloutResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7064,7 +7127,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7153,7 +7219,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Rollout>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Rollout> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Rollout>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7241,8 +7310,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$IgnoreJobResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$IgnoreJobResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7335,8 +7404,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRolloutsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRolloutsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7425,7 +7494,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$RetryJobResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RetryJobResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RetryJobResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7644,7 +7716,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$JobRun>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$JobRun> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$JobRun>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7732,8 +7807,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListJobRunsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListJobRunsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7828,8 +7903,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TerminateJobRunResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TerminateJobRunResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7968,7 +8043,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8056,7 +8134,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8141,7 +8222,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$DeployPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DeployPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DeployPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8226,7 +8310,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8321,8 +8408,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDeployPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDeployPoliciesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8410,7 +8497,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8495,7 +8585,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8720,7 +8813,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8805,7 +8901,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8890,7 +8989,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8979,8 +9081,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9121,7 +9223,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9209,7 +9314,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9294,7 +9402,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Target>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Target> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Target>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9379,7 +9490,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9469,8 +9583,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTargetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTargetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9558,7 +9672,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9643,7 +9760,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9737,8 +9857,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

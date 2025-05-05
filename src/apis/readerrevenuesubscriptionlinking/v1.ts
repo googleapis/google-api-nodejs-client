@@ -239,8 +239,8 @@ export namespace readerrevenuesubscriptionlinking_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DeleteReaderResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DeleteReaderResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Publications$Readers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -327,7 +327,10 @@ export namespace readerrevenuesubscriptionlinking_v1 {
       callback?:
         | BodyResponseCallback<Schema$Reader>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Reader> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Reader>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Publications$Readers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -418,8 +421,8 @@ export namespace readerrevenuesubscriptionlinking_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReaderEntitlements>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Publications$Readers$Getentitlements;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -510,8 +513,8 @@ export namespace readerrevenuesubscriptionlinking_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReaderEntitlements>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ReaderEntitlements>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Publications$Readers$Updateentitlements;
       let options = (optionsOrCallback || {}) as MethodOptions;

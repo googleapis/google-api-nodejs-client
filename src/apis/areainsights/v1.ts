@@ -349,8 +349,8 @@ export namespace areainsights_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ComputeInsightsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ComputeInsightsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Computeinsights;
       let options = (optionsOrCallback || {}) as MethodOptions;

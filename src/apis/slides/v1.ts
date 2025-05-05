@@ -2723,8 +2723,8 @@ export namespace slides_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdatePresentationResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdatePresentationResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2813,7 +2813,10 @@ export namespace slides_v1 {
       callback?:
         | BodyResponseCallback<Schema$Presentation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Presentation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Presentation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2898,7 +2901,10 @@ export namespace slides_v1 {
       callback?:
         | BodyResponseCallback<Schema$Presentation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Presentation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Presentation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3020,7 +3026,10 @@ export namespace slides_v1 {
       callback?:
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Page> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Page>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3108,7 +3117,10 @@ export namespace slides_v1 {
       callback?:
         | BodyResponseCallback<Schema$Thumbnail>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Thumbnail> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Thumbnail>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Pages$Getthumbnail;
       let options = (optionsOrCallback || {}) as MethodOptions;

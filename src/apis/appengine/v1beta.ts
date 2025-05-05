@@ -1993,7 +1993,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2077,7 +2080,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Application>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Application> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Application>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2170,8 +2176,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRuntimesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListRuntimesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Listruntimes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2259,7 +2265,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2346,7 +2355,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Repair;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2498,8 +2510,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AuthorizedCertificate>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AuthorizedCertificate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2586,7 +2598,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2678,8 +2693,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AuthorizedCertificate>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AuthorizedCertificate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2773,8 +2788,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAuthorizedCertificatesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAuthorizedCertificatesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2867,8 +2882,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AuthorizedCertificate>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AuthorizedCertificate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3047,8 +3062,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAuthorizedDomainsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAuthorizedDomainsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizeddomains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3161,7 +3176,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3249,7 +3267,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3337,7 +3358,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DomainMapping>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DomainMapping> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DomainMapping>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3431,8 +3455,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDomainMappingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDomainMappingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3520,7 +3544,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3704,8 +3731,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateIngressRulesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateIngressRulesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Firewall$Ingressrules$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3795,7 +3822,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$FirewallRule>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FirewallRule> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FirewallRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Firewall$Ingressrules$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3882,7 +3912,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Firewall$Ingressrules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3970,7 +4003,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$FirewallRule>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FirewallRule> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FirewallRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Firewall$Ingressrules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4062,8 +4098,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListIngressRulesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListIngressRulesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Firewall$Ingressrules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4150,7 +4186,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$FirewallRule>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FirewallRule> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FirewallRule>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Firewall$Ingressrules$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4331,7 +4370,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4422,8 +4464,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4553,7 +4595,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4644,8 +4689,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4773,7 +4818,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4860,7 +4908,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Service> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Service>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4951,8 +5002,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListServicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5040,7 +5091,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5204,7 +5258,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5291,7 +5348,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5379,7 +5439,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Version>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5471,8 +5534,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5559,7 +5622,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5756,7 +5822,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$Versions$Instances$Debug;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5844,7 +5913,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$Versions$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5932,7 +6004,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Instance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Instance>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$Versions$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6024,8 +6099,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInstancesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListInstancesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Services$Versions$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6223,7 +6298,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Location>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6314,8 +6392,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6454,7 +6532,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6580,8 +6661,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAuthorizedDomainsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAuthorizedDomainsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Authorizeddomains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6708,7 +6789,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Services$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6834,7 +6918,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Services$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6935,7 +7022,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Applications$Services$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7099,7 +7189,10 @@ export namespace appengine_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7191,8 +7284,8 @@ export namespace appengine_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

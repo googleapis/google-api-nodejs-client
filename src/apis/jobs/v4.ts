@@ -1295,7 +1295,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1409,8 +1412,8 @@ export namespace jobs_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CompleteQueryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CompleteQueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Completequery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1498,7 +1501,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Tenant>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Tenant> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Tenant>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1586,7 +1592,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1671,7 +1680,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Tenant>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Tenant> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Tenant>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1758,8 +1770,8 @@ export namespace jobs_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTenantsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTenantsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1847,7 +1859,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Tenant>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Tenant> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Tenant>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2028,7 +2043,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$ClientEvent>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ClientEvent> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ClientEvent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Clientevents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2136,7 +2154,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Company>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Company> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Company>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Companies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2224,7 +2245,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Companies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2309,7 +2333,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Company>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Company> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Company>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Companies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2398,8 +2425,8 @@ export namespace jobs_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCompaniesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCompaniesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Companies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2487,7 +2514,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Company>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Company> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Company>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Companies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2641,7 +2671,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Jobs$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2729,7 +2762,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Jobs$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2817,7 +2853,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Jobs$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2905,7 +2944,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2990,7 +3032,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3075,7 +3120,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3160,7 +3208,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$ListJobsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListJobsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3245,7 +3296,10 @@ export namespace jobs_v4 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Job>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3332,8 +3386,8 @@ export namespace jobs_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchJobsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Jobs$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3425,8 +3479,8 @@ export namespace jobs_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchJobsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchJobsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Jobs$Searchforalert;
       let options = (optionsOrCallback || {}) as MethodOptions;

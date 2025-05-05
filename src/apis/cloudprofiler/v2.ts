@@ -264,7 +264,10 @@ export namespace cloudprofiler_v2 {
       callback?:
         | BodyResponseCallback<Schema$Profile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Profile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -353,7 +356,10 @@ export namespace cloudprofiler_v2 {
       callback?:
         | BodyResponseCallback<Schema$Profile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Profile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$Createoffline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -446,8 +452,8 @@ export namespace cloudprofiler_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProfilesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProfilesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -536,7 +542,10 @@ export namespace cloudprofiler_v2 {
       callback?:
         | BodyResponseCallback<Schema$Profile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Profile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

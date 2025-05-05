@@ -919,7 +919,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Account>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1010,8 +1013,8 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAccountsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1098,7 +1101,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Account>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1236,7 +1242,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Container>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Container> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Container>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1321,7 +1330,10 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1409,7 +1421,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Container>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Container> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Container>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1501,8 +1516,8 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListContainersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListContainersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1589,7 +1604,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Container>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Container> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Container>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1746,7 +1764,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Environment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Environment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1832,7 +1853,10 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1920,7 +1944,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Environment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Environment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2012,8 +2039,8 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEnvironmentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListEnvironmentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2101,7 +2128,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Environment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Environment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2282,7 +2312,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Folder>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Folders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2368,7 +2401,10 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Folders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2456,7 +2492,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Folder>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Folders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2546,8 +2585,8 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFoldersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListFoldersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Folders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2635,7 +2674,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Folder>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Folders$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2812,7 +2854,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$FolderEntities>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FolderEntities> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FolderEntities>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Folders$Entities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2922,7 +2967,10 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Move_folders$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3050,7 +3098,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Environment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Environment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Reauthorize_environments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3167,7 +3218,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Tag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Tag>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Tags$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3253,7 +3307,10 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Tags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3341,7 +3398,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Tag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Tag>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Tags$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3429,7 +3489,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListTagsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListTagsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListTagsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Tags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3517,7 +3580,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Tag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Tag>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Tags$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3694,7 +3760,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Trigger>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Trigger> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Trigger>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Triggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3780,7 +3849,10 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Triggers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3868,7 +3940,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Trigger>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Trigger> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Trigger>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Triggers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3960,8 +4035,8 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTriggersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTriggersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Triggers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4049,7 +4124,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Trigger>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Trigger> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Trigger>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Triggers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4226,7 +4304,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Variable>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Variable>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Variables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4312,7 +4393,10 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Variables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4400,7 +4484,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Variable>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Variable>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Variables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4492,8 +4579,8 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVariablesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListVariablesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Variables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4581,7 +4668,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Variable>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Variable>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Variables$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4764,8 +4854,8 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreateContainerVersionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CreateContainerVersionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4853,7 +4943,10 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4941,7 +5034,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$ContainerVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ContainerVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5035,8 +5131,8 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListContainerVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListContainerVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5132,8 +5228,8 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PublishContainerVersionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PublishContainerVersionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5223,7 +5319,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$ContainerVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ContainerVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5311,7 +5410,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$ContainerVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ContainerVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5399,7 +5501,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$ContainerVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ContainerVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5633,7 +5738,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$UserAccess>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserAccess> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UserAccess>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5718,7 +5826,10 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5806,7 +5917,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$UserAccess>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserAccess> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UserAccess>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5898,8 +6012,8 @@ export namespace tagmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAccountUsersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAccountUsersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5986,7 +6100,10 @@ export namespace tagmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$UserAccess>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserAccess> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UserAccess>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

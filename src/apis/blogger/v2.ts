@@ -601,7 +601,10 @@ export namespace blogger_v2 {
       callback?:
         | BodyResponseCallback<Schema$Blog>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Blog> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Blog>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -685,7 +688,10 @@ export namespace blogger_v2 {
       callback?:
         | BodyResponseCallback<Schema$BlogList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BlogList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$BlogList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -792,7 +798,10 @@ export namespace blogger_v2 {
       callback?:
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Comment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -878,7 +887,10 @@ export namespace blogger_v2 {
       callback?:
         | BodyResponseCallback<Schema$CommentList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CommentList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CommentList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1012,7 +1024,10 @@ export namespace blogger_v2 {
       callback?:
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Page> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Page>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1099,7 +1114,10 @@ export namespace blogger_v2 {
       callback?:
         | BodyResponseCallback<Schema$PageList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PageList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PageList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1214,7 +1232,10 @@ export namespace blogger_v2 {
       callback?:
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Post> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Post>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1301,7 +1322,10 @@ export namespace blogger_v2 {
       callback?:
         | BodyResponseCallback<Schema$PostList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PostList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PostList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1428,7 +1452,10 @@ export namespace blogger_v2 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$User>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

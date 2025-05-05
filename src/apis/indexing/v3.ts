@@ -224,8 +224,8 @@ export namespace indexing_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UrlNotificationMetadata>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$UrlNotificationMetadata>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urlnotifications$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -319,8 +319,8 @@ export namespace indexing_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PublishUrlNotificationResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PublishUrlNotificationResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urlnotifications$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;

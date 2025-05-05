@@ -852,7 +852,10 @@ export namespace css_v1 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Account>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -942,8 +945,8 @@ export namespace css_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListChildAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListChildAccountsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Listchildaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1031,7 +1034,10 @@ export namespace css_v1 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Account>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Updatelabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1172,7 +1178,10 @@ export namespace css_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Cssproductinputs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1257,7 +1266,10 @@ export namespace css_v1 {
       callback?:
         | BodyResponseCallback<Schema$CssProductInput>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CssProductInput> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CssProductInput>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Cssproductinputs$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1345,7 +1357,10 @@ export namespace css_v1 {
       callback?:
         | BodyResponseCallback<Schema$CssProductInput>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CssProductInput> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CssProductInput>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Cssproductinputs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1481,7 +1496,10 @@ export namespace css_v1 {
       callback?:
         | BodyResponseCallback<Schema$CssProduct>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CssProduct> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CssProduct>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Cssproducts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1570,8 +1588,8 @@ export namespace css_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCssProductsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListCssProductsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Cssproducts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1689,7 +1707,10 @@ export namespace css_v1 {
       callback?:
         | BodyResponseCallback<Schema$AccountLabel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AccountLabel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AccountLabel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Labels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1777,7 +1798,10 @@ export namespace css_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Labels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1868,8 +1892,8 @@ export namespace css_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAccountLabelsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAccountLabelsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Labels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1957,7 +1981,10 @@ export namespace css_v1 {
       callback?:
         | BodyResponseCallback<Schema$AccountLabel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AccountLabel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AccountLabel>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Labels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2100,8 +2127,8 @@ export namespace css_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListQuotaGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListQuotaGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Quotas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

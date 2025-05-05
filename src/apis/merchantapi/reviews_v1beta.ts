@@ -692,7 +692,10 @@ export namespace merchantapi_reviews_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Merchantreviews$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -780,7 +783,10 @@ export namespace merchantapi_reviews_v1beta {
       callback?:
         | BodyResponseCallback<Schema$MerchantReview>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MerchantReview> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MerchantReview>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Merchantreviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -868,7 +874,10 @@ export namespace merchantapi_reviews_v1beta {
       callback?:
         | BodyResponseCallback<Schema$MerchantReview>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MerchantReview> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MerchantReview>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Merchantreviews$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -961,8 +970,8 @@ export namespace merchantapi_reviews_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMerchantReviewsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListMerchantReviewsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Merchantreviews$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1102,7 +1111,10 @@ export namespace merchantapi_reviews_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Productreviews$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1190,7 +1202,10 @@ export namespace merchantapi_reviews_v1beta {
       callback?:
         | BodyResponseCallback<Schema$ProductReview>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProductReview> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ProductReview>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Productreviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1278,7 +1293,10 @@ export namespace merchantapi_reviews_v1beta {
       callback?:
         | BodyResponseCallback<Schema$ProductReview>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProductReview> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ProductReview>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Productreviews$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1371,8 +1389,8 @@ export namespace merchantapi_reviews_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProductReviewsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProductReviewsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Productreviews$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

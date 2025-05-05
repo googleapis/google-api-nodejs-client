@@ -17,7 +17,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 const {mkdir} = require('fs').promises;
 import Q from 'p-queue';
-import {request, Headers} from 'gaxios';
+import {request} from 'gaxios';
 import * as gapi from 'googleapis-common';
 
 export type Schema = {[index: string]: {}};
@@ -60,11 +60,12 @@ export async function downloadDiscoveryDocs(
 ): Promise<ChangeSet[]> {
   await gfs.mkdir(options.downloadPath);
   const headers: Headers = options.includePrivate
-    ? {}
-    : {'X-User-Ip': '0.0.0.0'};
-  headers['Content-Type'] = headers['Content-Type']
-    ? headers['Content-Type']
-    : 'application/json';
+    ? new Headers()
+    : new Headers({'X-User-Ip': '0.0.0.0'});
+  headers.append(
+    'Content-Type',
+    headers.get('Content-Type') ?? 'application/json'
+  );
   console.log(`sending request to ${options.discoveryUrl}`);
   const res = await request({
     url: `${options.discoveryUrl}/index.json`,
@@ -149,8 +150,12 @@ export function sortKeys(obj: Schema): Schema {
   keys = keys.sort();
   for (const key of keys) {
     // typeof [] === 'object', which is maddening
-    if (!Array.isArray(obj[key]) && typeof obj[key] === 'object') {
-      sorted[key] = sortKeys(obj[key]);
+    if (
+      !Array.isArray(obj[key]) &&
+      typeof obj[key] === 'object' &&
+      typeof key === 'string'
+    ) {
+      sorted[key] = sortKeys(obj[key] as Schema);
     } else {
       sorted[key] = obj[key];
     }

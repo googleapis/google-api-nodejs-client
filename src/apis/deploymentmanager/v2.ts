@@ -965,7 +965,10 @@ export namespace deploymentmanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Cancelpreview;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1054,7 +1057,10 @@ export namespace deploymentmanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1143,7 +1149,10 @@ export namespace deploymentmanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Deployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Deployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Deployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1231,7 +1240,10 @@ export namespace deploymentmanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1320,7 +1332,10 @@ export namespace deploymentmanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1413,8 +1428,8 @@ export namespace deploymentmanager_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DeploymentsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DeploymentsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1502,7 +1517,10 @@ export namespace deploymentmanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1591,7 +1609,10 @@ export namespace deploymentmanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1680,7 +1701,10 @@ export namespace deploymentmanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1774,8 +1798,8 @@ export namespace deploymentmanager_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1864,7 +1888,10 @@ export namespace deploymentmanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2190,7 +2217,10 @@ export namespace deploymentmanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Manifest>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Manifest> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Manifest>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Manifests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2282,8 +2312,8 @@ export namespace deploymentmanager_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ManifestsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ManifestsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Manifests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2423,7 +2453,10 @@ export namespace deploymentmanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2515,8 +2548,8 @@ export namespace deploymentmanager_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OperationsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$OperationsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2648,7 +2681,10 @@ export namespace deploymentmanager_v2 {
       callback?:
         | BodyResponseCallback<Schema$Resource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Resource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Resource>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Resources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2740,8 +2776,8 @@ export namespace deploymentmanager_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ResourcesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ResourcesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Resources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2883,8 +2919,8 @@ export namespace deploymentmanager_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TypesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TypesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Types$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

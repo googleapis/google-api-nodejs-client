@@ -345,8 +345,8 @@ export namespace digitalassetlinks_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkCheckResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BulkCheckResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Assetlinks$Bulkcheck;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -435,7 +435,10 @@ export namespace digitalassetlinks_v1 {
       callback?:
         | BodyResponseCallback<Schema$CheckResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CheckResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CheckResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assetlinks$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -572,7 +575,10 @@ export namespace digitalassetlinks_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Statements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

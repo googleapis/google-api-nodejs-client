@@ -328,7 +328,10 @@ export namespace gmailpostmastertools_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Domain>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Domains$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -415,8 +418,8 @@ export namespace gmailpostmastertools_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDomainsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDomainsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Domains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -525,7 +528,10 @@ export namespace gmailpostmastertools_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$TrafficStats>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TrafficStats> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$TrafficStats>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Domains$Trafficstats$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -615,8 +621,8 @@ export namespace gmailpostmastertools_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTrafficStatsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTrafficStatsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Domains$Trafficstats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

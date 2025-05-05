@@ -3611,8 +3611,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1FetchAclResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1FetchAclResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Fetchacl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3709,8 +3709,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SetAclResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SetAclResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Setacl;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3853,8 +3853,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ProjectStatus>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ProjectStatus>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3951,8 +3951,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Initialize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4047,8 +4047,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Runpipeline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4189,8 +4189,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1CreateDocumentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1CreateDocumentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4283,8 +4283,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4376,8 +4376,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1FetchAclResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1FetchAclResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Fetchacl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4474,8 +4474,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1Document>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1Document>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4569,8 +4569,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListLinkedSourcesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListLinkedSourcesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Linkedsources;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4668,8 +4668,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListLinkedTargetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListLinkedTargetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Linkedtargets;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4767,8 +4767,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1Document>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1Document>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Lock;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4862,8 +4862,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1UpdateDocumentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1UpdateDocumentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4957,8 +4957,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SearchDocumentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SearchDocumentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5055,8 +5055,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SetAclResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SetAclResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Setacl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5281,8 +5281,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DocumentLink>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1DocumentLink>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Documentlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5376,8 +5376,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Documentlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5498,8 +5498,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Referenceid$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5592,8 +5592,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1Document>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1Document>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Referenceid$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5688,8 +5688,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1UpdateDocumentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1UpdateDocumentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documents$Referenceid$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5828,8 +5828,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documentschemas$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5923,8 +5923,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documentschemas$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6017,8 +6017,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documentschemas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6112,8 +6112,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListDocumentSchemasResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListDocumentSchemasResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documentschemas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6210,8 +6210,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1DocumentSchema>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Documentschemas$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6366,8 +6366,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6474,8 +6474,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1RuleSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1RuleSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Rulesets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6568,8 +6568,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Rulesets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6661,8 +6661,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1RuleSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1RuleSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Rulesets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6756,8 +6756,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListRuleSetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListRuleSetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Rulesets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6854,8 +6854,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1RuleSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1RuleSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Rulesets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7010,8 +7010,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SynonymSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SynonymSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Synonymsets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7104,8 +7104,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Synonymsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7197,8 +7197,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SynonymSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SynonymSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Synonymsets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7292,8 +7292,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1ListSynonymSetsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1ListSynonymSetsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Synonymsets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7390,8 +7390,8 @@ export namespace contentwarehouse_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1SynonymSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudContentwarehouseV1SynonymSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Synonymsets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

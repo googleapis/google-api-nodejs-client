@@ -603,7 +603,10 @@ export namespace cloudbilling_v1 {
       callback?:
         | BodyResponseCallback<Schema$BillingAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$BillingAccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -691,7 +694,10 @@ export namespace cloudbilling_v1 {
       callback?:
         | BodyResponseCallback<Schema$BillingAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$BillingAccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -776,7 +782,10 @@ export namespace cloudbilling_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -870,8 +879,8 @@ export namespace cloudbilling_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBillingAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBillingAccountsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -959,7 +968,10 @@ export namespace cloudbilling_v1 {
       callback?:
         | BodyResponseCallback<Schema$BillingAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$BillingAccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1044,7 +1056,10 @@ export namespace cloudbilling_v1 {
       callback?:
         | BodyResponseCallback<Schema$BillingAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$BillingAccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1129,7 +1144,10 @@ export namespace cloudbilling_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1223,8 +1241,8 @@ export namespace cloudbilling_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1427,8 +1445,8 @@ export namespace cloudbilling_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProjectBillingInfoResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProjectBillingInfoResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1541,7 +1559,10 @@ export namespace cloudbilling_v1 {
       callback?:
         | BodyResponseCallback<Schema$BillingAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$BillingAccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Subaccounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1635,8 +1656,8 @@ export namespace cloudbilling_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBillingAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBillingAccountsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Subaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1774,7 +1795,10 @@ export namespace cloudbilling_v1 {
       callback?:
         | BodyResponseCallback<Schema$BillingAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$BillingAccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Billingaccounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1868,8 +1892,8 @@ export namespace cloudbilling_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBillingAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBillingAccountsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Billingaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1957,7 +1981,10 @@ export namespace cloudbilling_v1 {
       callback?:
         | BodyResponseCallback<Schema$BillingAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$BillingAccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Billingaccounts$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2099,8 +2126,8 @@ export namespace cloudbilling_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProjectBillingInfo>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ProjectBillingInfo>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getbillinginfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2192,8 +2219,8 @@ export namespace cloudbilling_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProjectBillingInfo>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ProjectBillingInfo>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updatebillinginfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2314,8 +2341,8 @@ export namespace cloudbilling_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServicesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListServicesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2417,7 +2444,10 @@ export namespace cloudbilling_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListSkusResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListSkusResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListSkusResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Skus$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

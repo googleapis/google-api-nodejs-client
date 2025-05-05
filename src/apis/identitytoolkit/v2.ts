@@ -1866,8 +1866,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Revoketoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1979,8 +1979,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Mfaenrollment$Finalize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2077,8 +2077,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2StartMfaEnrollmentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2StartMfaEnrollmentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Mfaenrollment$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2175,8 +2175,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2WithdrawMfaResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2WithdrawMfaResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Mfaenrollment$Withdraw;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2302,8 +2302,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Mfasignin$Finalize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2400,8 +2400,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2StartMfaSignInResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2StartMfaSignInResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Mfasignin$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2520,8 +2520,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultsupportedidps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2654,8 +2654,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2Config>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2Config>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2749,8 +2749,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2Config>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2Config>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2875,8 +2875,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Defaultsupportedidpconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2970,8 +2970,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Defaultsupportedidpconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3064,8 +3064,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Defaultsupportedidpconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3159,8 +3159,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Defaultsupportedidpconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3257,8 +3257,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Defaultsupportedidpconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3422,8 +3422,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Identityplatform$Initializeauth;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3539,8 +3539,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Inboundsamlconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3633,8 +3633,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Inboundsamlconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3726,8 +3726,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Inboundsamlconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3821,8 +3821,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Inboundsamlconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3919,8 +3919,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Inboundsamlconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4083,8 +4083,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Oauthidpconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4177,8 +4177,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Oauthidpconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4270,8 +4270,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Oauthidpconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4365,8 +4365,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Oauthidpconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4463,8 +4463,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Oauthidpconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4637,8 +4637,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2Tenant>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2Tenant>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4731,8 +4731,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4824,8 +4824,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2Tenant>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2Tenant>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4917,8 +4917,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5013,8 +5013,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListTenantsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListTenantsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5111,8 +5111,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2Tenant>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2Tenant>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5204,8 +5204,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1Policy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5300,8 +5300,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5499,8 +5499,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5594,8 +5594,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5688,8 +5688,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5784,8 +5784,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5883,8 +5883,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Defaultsupportedidpconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6048,8 +6048,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Inboundsamlconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6143,8 +6143,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Inboundsamlconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6237,8 +6237,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Inboundsamlconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6332,8 +6332,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Inboundsamlconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6430,8 +6430,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Inboundsamlconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6595,8 +6595,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Oauthidpconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6689,8 +6689,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Oauthidpconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6782,8 +6782,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Oauthidpconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6877,8 +6877,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Oauthidpconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6975,8 +6975,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Tenants$Oauthidpconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7139,8 +7139,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V2$Getpasswordpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7234,8 +7234,8 @@ export namespace identitytoolkit_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V2$Getrecaptchaconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;

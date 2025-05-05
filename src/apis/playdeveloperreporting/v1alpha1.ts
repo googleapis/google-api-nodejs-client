@@ -1131,8 +1131,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1ListAnomaliesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1ListAnomaliesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Anomalies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1254,8 +1254,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1ReleaseFilterOptions>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1ReleaseFilterOptions>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Fetchreleasefilteroptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1351,8 +1351,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1SearchAccessibleAppsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1SearchAccessibleAppsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1501,8 +1501,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1AnrRateMetricSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1AnrRateMetricSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Anrrate$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1596,8 +1596,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1QueryAnrRateMetricSetResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1QueryAnrRateMetricSetResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Anrrate$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1721,8 +1721,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1CrashRateMetricSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1CrashRateMetricSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Crashrate$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1816,8 +1816,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1QueryCrashRateMetricSetResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1QueryCrashRateMetricSetResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Crashrate$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1954,8 +1954,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1ErrorCountMetricSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1ErrorCountMetricSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Errors$Counts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2049,8 +2049,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1QueryErrorCountMetricSetResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1QueryErrorCountMetricSetResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Errors$Counts$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2174,8 +2174,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1SearchErrorIssuesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1SearchErrorIssuesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Errors$Issues$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2387,8 +2387,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1SearchErrorReportsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1SearchErrorReportsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Errors$Reports$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2592,8 +2592,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1ExcessiveWakeupRateMetricSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1ExcessiveWakeupRateMetricSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Excessivewakeuprate$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2687,8 +2687,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1QueryExcessiveWakeupRateMetricSetResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1QueryExcessiveWakeupRateMetricSetResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Excessivewakeuprate$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2812,8 +2812,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1LmkRateMetricSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1LmkRateMetricSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Lmkrate$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2907,8 +2907,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1QueryLmkRateMetricSetResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1QueryLmkRateMetricSetResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Lmkrate$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3032,8 +3032,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1SlowRenderingRateMetricSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1SlowRenderingRateMetricSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Slowrenderingrate$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3127,8 +3127,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Slowrenderingrate$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3252,8 +3252,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1SlowStartRateMetricSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1SlowStartRateMetricSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Slowstartrate$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3347,8 +3347,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Slowstartrate$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3472,8 +3472,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1StuckBackgroundWakelockRateMetricSet>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1StuckBackgroundWakelockRateMetricSet>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Stuckbackgroundwakelockrate$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3567,8 +3567,8 @@ export namespace playdeveloperreporting_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GooglePlayDeveloperReportingV1alpha1QueryStuckBackgroundWakelockRateMetricSetResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GooglePlayDeveloperReportingV1alpha1QueryStuckBackgroundWakelockRateMetricSetResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Vitals$Stuckbackgroundwakelockrate$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;

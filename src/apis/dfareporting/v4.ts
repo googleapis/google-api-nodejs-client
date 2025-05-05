@@ -7090,8 +7090,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountActiveAdSummary>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccountActiveAdSummary>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountactiveadsummaries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7202,8 +7202,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountPermissionGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccountPermissionGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountpermissiongroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7297,8 +7297,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountPermissionGroupsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccountPermissionGroupsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountpermissiongroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7416,8 +7416,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountPermission>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccountPermission>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountpermissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7511,8 +7511,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountPermissionsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccountPermissionsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountpermissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7628,7 +7628,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Account>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7719,8 +7722,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccountsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7806,7 +7809,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Account>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7892,7 +7898,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Account>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8058,8 +8067,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountUserProfile>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccountUserProfile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountuserprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8149,8 +8158,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountUserProfile>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccountUserProfile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountuserprofiles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8244,8 +8253,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountUserProfilesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccountUserProfilesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountuserprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8337,8 +8346,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountUserProfile>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccountUserProfile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountuserprofiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8428,8 +8437,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountUserProfile>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AccountUserProfile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountuserprofiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8619,7 +8628,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Ad>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Ad> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Ad>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8705,7 +8717,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Ad>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Ad> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Ad>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8791,7 +8806,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$AdsListResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdsListResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AdsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8877,7 +8895,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Ad>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Ad> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Ad>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8963,7 +8984,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Ad>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Ad> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Ad>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9200,7 +9224,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisergroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9288,7 +9315,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$AdvertiserGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdvertiserGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AdvertiserGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisergroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9376,7 +9406,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$AdvertiserGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdvertiserGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AdvertiserGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisergroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9470,8 +9503,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdvertiserGroupsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AdvertiserGroupsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisergroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9561,7 +9594,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$AdvertiserGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdvertiserGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AdvertiserGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisergroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9649,7 +9685,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$AdvertiserGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdvertiserGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$AdvertiserGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisergroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9844,8 +9883,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdvertiserInvoicesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AdvertiserInvoicesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertiserinvoices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9966,7 +10005,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$LandingPage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LandingPage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LandingPage>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertiserlandingpages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10054,7 +10096,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$LandingPage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LandingPage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LandingPage>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertiserlandingpages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10148,8 +10193,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdvertiserLandingPagesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AdvertiserLandingPagesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertiserlandingpages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10239,7 +10284,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$LandingPage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LandingPage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LandingPage>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertiserlandingpages$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10327,7 +10375,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$LandingPage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LandingPage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$LandingPage>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertiserlandingpages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10521,7 +10572,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Advertiser>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10608,7 +10662,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Advertiser>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10699,8 +10756,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdvertisersListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$AdvertisersListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10786,7 +10843,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Advertiser>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10873,7 +10933,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Advertiser>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11074,8 +11137,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BillingAssignment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BillingAssignment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingassignments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11169,8 +11232,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BillingAssignmentsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BillingAssignmentsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingassignments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11295,7 +11358,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$BillingProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$BillingProfile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11389,8 +11455,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BillingProfilesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BillingProfilesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11478,7 +11544,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$BillingProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$BillingProfile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingprofiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11648,8 +11717,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BillingRatesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BillingRatesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingrates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11760,8 +11829,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BrowsersListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BrowsersListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Browsers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11867,8 +11936,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CampaignCreativeAssociation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CampaignCreativeAssociation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Campaigncreativeassociations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11962,8 +12031,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CampaignCreativeAssociationsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CampaignCreativeAssociationsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Campaigncreativeassociations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12100,7 +12169,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Campaign>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12187,7 +12259,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Campaign>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12277,8 +12352,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CampaignsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CampaignsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12364,7 +12439,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Campaign>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12450,7 +12528,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Campaign>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12649,7 +12730,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ChangeLog>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ChangeLog> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ChangeLog>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changelogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12740,8 +12824,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ChangeLogsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ChangeLogsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changelogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12893,8 +12977,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CitiesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CitiesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13010,7 +13094,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ConnectionType>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConnectionType> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ConnectionType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Connectiontypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13104,8 +13191,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ConnectionTypesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ConnectionTypesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Connectiontypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13217,7 +13304,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contentcategories$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13305,7 +13395,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ContentCategory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContentCategory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ContentCategory>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contentcategories$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13393,7 +13486,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ContentCategory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContentCategory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ContentCategory>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contentcategories$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13487,8 +13583,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContentCategoriesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ContentCategoriesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contentcategories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13578,7 +13674,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ContentCategory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContentCategory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ContentCategory>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contentcategories$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13666,7 +13765,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ContentCategory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContentCategory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ContentCategory>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contentcategories$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13861,8 +13963,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ConversionsBatchInsertResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ConversionsBatchInsertResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversions$Batchinsert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13958,8 +14060,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ConversionsBatchUpdateResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ConversionsBatchUpdateResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversions$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14081,7 +14183,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Country>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Country> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Country>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Countries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14172,8 +14277,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CountriesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CountriesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Countries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14287,8 +14392,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeAssetMetadata>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CreativeAssetMetadata>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativeassets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14417,7 +14522,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefields$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14505,7 +14613,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeField>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeField> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CreativeField>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefields$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14593,7 +14704,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeField>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeField> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CreativeField>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefields$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14687,8 +14801,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeFieldsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CreativeFieldsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefields$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14776,7 +14890,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeField>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeField> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CreativeField>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefields$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14864,7 +14981,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeField>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeField> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CreativeField>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefields$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15055,7 +15175,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefieldvalues$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15145,8 +15268,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeFieldValue>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CreativeFieldValue>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefieldvalues$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15236,8 +15359,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeFieldValue>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CreativeFieldValue>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefieldvalues$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15331,8 +15454,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeFieldValuesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CreativeFieldValuesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefieldvalues$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15424,8 +15547,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeFieldValue>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CreativeFieldValue>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefieldvalues$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15515,8 +15638,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeFieldValue>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CreativeFieldValue>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefieldvalues$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15729,7 +15852,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CreativeGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15817,7 +15943,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CreativeGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativegroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15911,8 +16040,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeGroupsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CreativeGroupsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16000,7 +16129,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CreativeGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativegroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16088,7 +16220,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CreativeGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativegroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16274,7 +16409,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Creative>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16361,7 +16499,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Creative>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16451,8 +16592,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CreativesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16538,7 +16679,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Creative>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16624,7 +16768,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Creative>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16837,8 +16984,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DimensionValueList>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DimensionValueList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Dimensionvalues$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16954,7 +17101,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$DirectorySite>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DirectorySite> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DirectorySite>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Directorysites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17042,7 +17192,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$DirectorySite>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DirectorySite> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DirectorySite>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Directorysites$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17136,8 +17289,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DirectorySitesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DirectorySitesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Directorysites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17305,7 +17458,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Dynamictargetingkeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17395,8 +17551,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DynamicTargetingKey>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DynamicTargetingKey>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Dynamictargetingkeys$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17490,8 +17646,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DynamicTargetingKeysListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DynamicTargetingKeysListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Dynamictargetingkeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17641,7 +17797,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17728,7 +17887,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$EventTag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventTag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EventTag>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17815,7 +17977,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$EventTag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventTag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EventTag>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17905,8 +18070,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventTagsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$EventTagsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17992,7 +18157,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$EventTag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventTag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EventTag>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18078,7 +18246,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$EventTag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventTag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$EventTag>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18275,7 +18446,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$File>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18361,7 +18535,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$FileList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FileList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FileList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18489,7 +18666,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18583,8 +18763,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightActivitiesGenerateTagResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$Generatetag;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18676,8 +18856,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivity>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightActivity>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18767,8 +18947,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivity>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightActivity>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18862,8 +19042,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivitiesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightActivitiesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18955,8 +19135,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivity>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightActivity>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19046,8 +19226,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivity>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightActivity>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19279,8 +19459,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivityGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivitygroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19374,8 +19554,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivityGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivitygroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19469,8 +19649,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivityGroupsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroupsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivitygroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19564,8 +19744,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivityGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivitygroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19659,8 +19839,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivityGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivitygroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19854,8 +20034,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightConfiguration>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightConfiguration>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightconfigurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19949,8 +20129,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightConfigurationsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightConfigurationsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightconfigurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20044,8 +20224,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightConfiguration>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightConfiguration>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightconfigurations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20139,8 +20319,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightConfiguration>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$FloodlightConfiguration>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightconfigurations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20286,7 +20466,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$InventoryItem>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InventoryItem> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$InventoryItem>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventoryitems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20380,8 +20563,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InventoryItemsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$InventoryItemsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventoryitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20543,8 +20726,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LanguagesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LanguagesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Languages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20646,8 +20829,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MetrosListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$MetrosListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Metros$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20747,7 +20930,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$MobileApp>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MobileApp> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MobileApp>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Mobileapps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20838,8 +21024,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MobileAppsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$MobileAppsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Mobileapps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20969,7 +21155,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$MobileCarrier>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MobileCarrier> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$MobileCarrier>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mobilecarriers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21063,8 +21252,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MobileCarriersListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$MobileCarriersListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mobilecarriers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21178,7 +21367,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$OperatingSystem>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OperatingSystem> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$OperatingSystem>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operatingsystems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21272,8 +21464,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OperatingSystemsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$OperatingSystemsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operatingsystems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21393,8 +21585,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OperatingSystemVersion>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$OperatingSystemVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operatingsystemversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21488,8 +21680,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OperatingSystemVersionsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$OperatingSystemVersionsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operatingsystemversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21605,7 +21797,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Order>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Order> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Order>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21694,8 +21889,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OrdersListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$OrdersListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21842,7 +22037,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$PlacementGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlacementGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PlacementGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21930,7 +22128,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$PlacementGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlacementGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PlacementGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementgroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22024,8 +22225,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementGroupsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlacementGroupsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22113,7 +22314,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$PlacementGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlacementGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PlacementGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22201,7 +22405,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$PlacementGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlacementGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PlacementGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementgroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22437,8 +22644,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementsGenerateTagsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlacementsGenerateTagsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placements$Generatetags;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22528,7 +22735,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Placement>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Placement> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Placement>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Placements$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22615,7 +22825,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Placement>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Placement> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Placement>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placements$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22706,8 +22919,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlacementsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Placements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22793,7 +23006,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Placement>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Placement> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Placement>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Placements$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22879,7 +23095,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Placement>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Placement> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Placement>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placements$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23134,7 +23353,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementstrategies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23224,8 +23446,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementStrategy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlacementStrategy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementstrategies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23315,8 +23537,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementStrategy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlacementStrategy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementstrategies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23410,8 +23632,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementStrategiesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlacementStrategiesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementstrategies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23503,8 +23725,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementStrategy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlacementStrategy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementstrategies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23594,8 +23816,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementStrategy>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlacementStrategy>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementstrategies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23784,7 +24006,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$PlatformType>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlatformType> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PlatformType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platformtypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23878,8 +24103,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlatformTypesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PlatformTypesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platformtypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23993,7 +24218,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$PostalCode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PostalCode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$PostalCode>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Postalcodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24084,8 +24312,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PostalCodesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$PostalCodesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Postalcodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24195,7 +24423,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Project>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Project> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Project>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24286,8 +24517,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProjectsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ProjectsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24427,8 +24658,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RegionsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RegionsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24528,7 +24759,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$RemarketingList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RemarketingList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RemarketingList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24616,7 +24850,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$RemarketingList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RemarketingList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RemarketingList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglists$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24710,8 +24947,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RemarketingListsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RemarketingListsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24801,7 +25038,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$RemarketingList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RemarketingList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RemarketingList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24889,7 +25129,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$RemarketingList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RemarketingList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RemarketingList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25079,8 +25322,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RemarketingListShare>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RemarketingListShare>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglistshares$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25172,8 +25415,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RemarketingListShare>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RemarketingListShare>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglistshares$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25265,8 +25508,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RemarketingListShare>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RemarketingListShare>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglistshares$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25405,7 +25648,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25492,7 +25738,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Report>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25579,7 +25828,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Report>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25665,7 +25917,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ReportList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReportList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ReportList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25751,7 +26006,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Report>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25838,7 +26096,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$File>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25925,7 +26186,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Report>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26121,7 +26385,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CompatibleFields>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CompatibleFields> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$CompatibleFields>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Compatiblefields$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26229,7 +26496,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$File>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26317,7 +26587,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$FileList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FileList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$FileList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26455,7 +26728,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Site>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26541,7 +26817,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Site>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26629,8 +26908,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SitesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SitesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26716,7 +26995,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Site>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26802,7 +27084,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Site>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27009,7 +27294,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Size>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Size> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Size>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sizes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27095,7 +27383,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Size>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Size> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Size>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sizes$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27183,8 +27474,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SizesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SizesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sizes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27321,7 +27612,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Subaccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subaccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subaccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Subaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27408,7 +27702,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Subaccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subaccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subaccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subaccounts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27499,8 +27796,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SubaccountsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SubaccountsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Subaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27586,7 +27883,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Subaccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subaccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subaccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subaccounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27673,7 +27973,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Subaccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subaccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subaccount>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subaccounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27852,8 +28155,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetableRemarketingList>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TargetableRemarketingList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetableremarketinglists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27947,8 +28250,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetableRemarketingListsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TargetableRemarketingListsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetableremarketinglists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28094,8 +28397,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetingTemplate>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TargetingTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28185,8 +28488,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetingTemplate>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TargetingTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtemplates$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28280,8 +28583,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetingTemplatesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TargetingTemplatesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28373,8 +28676,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetingTemplate>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TargetingTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28464,8 +28767,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetingTemplate>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TargetingTemplate>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtemplates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28647,7 +28950,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$TvCampaignDetail>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TvCampaignDetail> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$TvCampaignDetail>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tvcampaigndetails$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28764,8 +29070,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TvCampaignSummariesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$TvCampaignSummariesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tvcampaignsummaries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28878,7 +29184,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$UserProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UserProfile>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -28964,7 +29273,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$UserProfileList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserProfileList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UserProfileList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29072,8 +29384,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UserRolePermissionGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$UserRolePermissionGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userrolepermissiongroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29167,8 +29479,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UserRolePermissionGroupsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$UserRolePermissionGroupsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userrolepermissiongroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29286,8 +29598,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UserRolePermission>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$UserRolePermission>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userrolepermissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29381,8 +29693,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UserRolePermissionsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$UserRolePermissionsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userrolepermissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29500,7 +29812,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -29587,7 +29902,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$UserRole>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserRole> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UserRole>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -29674,7 +29992,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$UserRole>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserRole> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UserRole>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -29764,8 +30085,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UserRolesListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$UserRolesListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -29851,7 +30172,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$UserRole>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserRole> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UserRole>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -29937,7 +30261,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$UserRole>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserRole> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$UserRole>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -30126,7 +30453,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$VideoFormat>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$VideoFormat> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$VideoFormat>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videoformats$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -30217,8 +30547,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VideoFormatsListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VideoFormatsListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Videoformats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

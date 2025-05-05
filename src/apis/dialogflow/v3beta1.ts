@@ -11909,8 +11909,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudLocationLocation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationLocation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12001,8 +12001,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudLocationListLocationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12185,8 +12185,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Agent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Agent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12278,8 +12278,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12370,8 +12370,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12465,8 +12465,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Agent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Agent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12559,8 +12559,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Getgenerativesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12654,8 +12654,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Getvalidationresult;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12749,8 +12749,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12846,8 +12846,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Agent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Agent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12940,8 +12940,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13035,8 +13035,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Updategenerativesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13130,8 +13130,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Validate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13366,8 +13366,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Changelog>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Changelog>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Changelogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13460,8 +13460,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListChangelogsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListChangelogsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Changelogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13588,8 +13588,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Conversations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13681,8 +13681,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Conversation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Conversation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Conversations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13776,8 +13776,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Conversations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13915,8 +13915,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Entitytypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14009,8 +14009,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Entitytypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14102,8 +14102,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Entitytypes$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14198,8 +14198,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14293,8 +14293,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Entitytypes$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14389,8 +14389,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Entitytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14487,8 +14487,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Entitytypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14711,8 +14711,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14803,8 +14803,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14896,8 +14896,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Deployflow;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14992,8 +14992,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Environment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Environment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15087,8 +15087,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15185,8 +15185,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15282,8 +15282,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15375,8 +15375,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15574,8 +15574,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListContinuousTestResultsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListContinuousTestResultsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Continuoustestresults$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15695,8 +15695,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Deployment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Deployment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15790,8 +15790,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15918,8 +15918,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16012,8 +16012,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16105,8 +16105,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16200,8 +16200,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16298,8 +16298,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16393,8 +16393,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16491,8 +16491,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16683,8 +16683,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Detectintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16781,8 +16781,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16879,8 +16879,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Matchintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16977,8 +16977,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Serverstreamingdetectintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17130,8 +17130,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17224,8 +17224,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17317,8 +17317,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17412,8 +17412,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17510,8 +17510,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17683,8 +17683,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Flow>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Flow>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17776,8 +17776,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17868,8 +17868,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17963,8 +17963,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Flow>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Flow>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18057,8 +18057,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Getvalidationresult;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18152,8 +18152,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18247,8 +18247,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18344,8 +18344,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Flow>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Flow>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18438,8 +18438,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Train;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18533,8 +18533,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Validate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18774,8 +18774,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Page>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Page>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Pages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18868,8 +18868,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Pages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18961,8 +18961,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Page>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Page>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19056,8 +19056,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Pages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19154,8 +19154,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Page>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Page>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Pages$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19334,8 +19334,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19428,8 +19428,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19521,8 +19521,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19616,8 +19616,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19714,8 +19714,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19894,8 +19894,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1CompareVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1CompareVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Versions$Compareversions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19992,8 +19992,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20084,8 +20084,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20177,8 +20177,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Version>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Version>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20272,8 +20272,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20370,8 +20370,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Versions$Load;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20466,8 +20466,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Version>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Version>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20650,8 +20650,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Generator>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Generators$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20744,8 +20744,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Generators$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20837,8 +20837,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Generator>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Generators$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20931,8 +20931,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Generators$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21029,8 +21029,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Generator>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Generator>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Generators$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21209,8 +21209,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Intent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Intent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Intents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21302,8 +21302,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Intents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21394,8 +21394,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Intents$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21489,8 +21489,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Intent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Intent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Intents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21583,8 +21583,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Intents$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21678,8 +21678,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Intents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21775,8 +21775,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Intent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Intent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Intents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21986,8 +21986,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Playbook>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Playbook>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22080,8 +22080,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22173,8 +22173,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22269,8 +22269,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Playbook>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Playbook>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22363,8 +22363,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22459,8 +22459,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListPlaybooksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListPlaybooksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22556,8 +22556,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Playbook>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Playbook>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22740,8 +22740,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Example>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Example>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22834,8 +22834,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22927,8 +22927,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Example>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Example>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23022,8 +23022,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListExamplesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListExamplesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23120,8 +23120,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Example>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Example>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Examples$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23284,8 +23284,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1PlaybookVersion>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1PlaybookVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23378,8 +23378,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23471,8 +23471,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1PlaybookVersion>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1PlaybookVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23566,8 +23566,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListPlaybookVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListPlaybookVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23664,8 +23664,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Playbooks$Versions$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23828,8 +23828,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Detectintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23926,8 +23926,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24024,8 +24024,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Matchintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24122,8 +24122,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Serverstreamingdetectintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24219,8 +24219,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1AnswerFeedback>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1AnswerFeedback>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Submitanswerfeedback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24385,8 +24385,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24479,8 +24479,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24572,8 +24572,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24667,8 +24667,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24765,8 +24765,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24927,8 +24927,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Testcases$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25023,8 +25023,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Testcases$Batchrun;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25119,8 +25119,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Testcases$Calculatecoverage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25216,8 +25216,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Testcases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25314,8 +25314,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Testcases$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25410,8 +25410,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Testcases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25504,8 +25504,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Testcases$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25600,8 +25600,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Testcases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25697,8 +25697,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Testcases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25792,8 +25792,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Testcases$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26020,8 +26020,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TestCaseResult>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1TestCaseResult>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Testcases$Results$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26115,8 +26115,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Testcases$Results$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26251,8 +26251,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Tool>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Tool>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Tools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26344,8 +26344,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Tools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26436,8 +26436,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Tools$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26531,8 +26531,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Tool>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Tool>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Tools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26625,8 +26625,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListToolsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListToolsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Tools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26722,8 +26722,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Tool>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Tool>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Tools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26897,8 +26897,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Tools$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26991,8 +26991,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Tools$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27084,8 +27084,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ToolVersion>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Tools$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27179,8 +27179,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Tools$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27277,8 +27277,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Tools$Versions$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27440,8 +27440,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Transitionroutegroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27534,8 +27534,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Transitionroutegroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27627,8 +27627,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Transitionroutegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27722,8 +27722,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Transitionroutegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27820,8 +27820,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Transitionroutegroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28000,8 +28000,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Webhooks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28094,8 +28094,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Webhooks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28187,8 +28187,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Webhooks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28281,8 +28281,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Webhooks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28378,8 +28378,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Webhooks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28537,8 +28537,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28632,8 +28632,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28724,8 +28724,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28862,8 +28862,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitysettings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28956,8 +28956,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitysettings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29049,8 +29049,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitysettings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29143,8 +29143,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitysettings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29240,8 +29240,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Securitysettings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29396,8 +29396,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29491,8 +29491,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29583,8 +29583,8 @@ export namespace dialogflow_v3beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

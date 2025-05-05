@@ -243,7 +243,10 @@ export namespace verifiedaccess_v1 {
       callback?:
         | BodyResponseCallback<Schema$Challenge>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Challenge> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Challenge>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Challenge$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -334,8 +337,8 @@ export namespace verifiedaccess_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VerifyChallengeResponseResult>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$VerifyChallengeResponseResult>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Challenge$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

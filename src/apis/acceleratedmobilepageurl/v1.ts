@@ -241,8 +241,8 @@ export namespace acceleratedmobilepageurl_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchGetAmpUrlsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchGetAmpUrlsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ampurls$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

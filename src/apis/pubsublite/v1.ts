@@ -682,7 +682,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -771,7 +774,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -857,7 +863,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -946,8 +955,8 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1092,7 +1101,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Reservation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Reservation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Reservations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1181,7 +1193,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Reservations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1267,7 +1282,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Reservation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Reservation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Reservations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1357,8 +1375,8 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReservationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReservationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Reservations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1447,7 +1465,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Reservation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Reservation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Reservations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1608,8 +1629,8 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReservationTopicsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListReservationTopicsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Reservations$Topics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1723,7 +1744,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Subscriptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1812,7 +1836,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1898,7 +1925,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1990,8 +2020,8 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSubscriptionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSubscriptionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2080,7 +2110,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Subscription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Subscriptions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2166,7 +2199,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Operation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Subscriptions$Seek;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2345,7 +2381,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Topic> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Topic>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Topics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2433,7 +2472,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Topics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2518,7 +2560,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Topic> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Topic>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Topics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2603,7 +2648,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$TopicPartitions>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TopicPartitions> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$TopicPartitions>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Topics$Getpartitions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2694,8 +2742,8 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTopicsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTopicsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Topics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2783,7 +2831,10 @@ export namespace pubsublite_v1 {
       callback?:
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Topic> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Topic>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Topics$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2950,8 +3001,8 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTopicSubscriptionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTopicSubscriptionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Admin$Projects$Locations$Topics$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3105,8 +3156,8 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CommitCursorResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CommitCursorResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3221,8 +3272,8 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPartitionCursorsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListPartitionCursorsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cursor$Projects$Locations$Subscriptions$Cursors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3371,8 +3422,8 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ComputeHeadCursorResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ComputeHeadCursorResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3466,8 +3517,8 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ComputeMessageStatsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ComputeMessageStatsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3561,8 +3612,8 @@ export namespace pubsublite_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ComputeTimeCursorResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ComputeTimeCursorResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor;
       let options = (optionsOrCallback || {}) as MethodOptions;

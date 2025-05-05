@@ -502,7 +502,10 @@ export namespace discovery_v1 {
       callback?:
         | BodyResponseCallback<Schema$RestDescription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RestDescription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$RestDescription>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apis$Getrest;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -589,7 +592,10 @@ export namespace discovery_v1 {
       callback?:
         | BodyResponseCallback<Schema$DirectoryList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DirectoryList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DirectoryList>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apis$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -2756,7 +2756,10 @@ export namespace mybusinesslodging_v1 {
       callback?:
         | BodyResponseCallback<Schema$Lodging>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Lodging> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Lodging>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Getlodging;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2842,7 +2845,10 @@ export namespace mybusinesslodging_v1 {
       callback?:
         | BodyResponseCallback<Schema$Lodging>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Lodging> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Lodging>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Updatelodging;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2969,8 +2975,8 @@ export namespace mybusinesslodging_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetGoogleUpdatedLodgingResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetGoogleUpdatedLodgingResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Lodging$Getgoogleupdated;
       let options = (optionsOrCallback || {}) as MethodOptions;

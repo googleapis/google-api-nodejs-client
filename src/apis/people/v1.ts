@@ -1674,8 +1674,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchGetContactGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchGetContactGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1765,7 +1765,10 @@ export namespace people_v1 {
       callback?:
         | BodyResponseCallback<Schema$ContactGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContactGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ContactGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1850,7 +1853,10 @@ export namespace people_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1938,7 +1944,10 @@ export namespace people_v1 {
       callback?:
         | BodyResponseCallback<Schema$ContactGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContactGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ContactGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2032,8 +2041,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListContactGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListContactGroupsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2118,7 +2127,10 @@ export namespace people_v1 {
       callback?:
         | BodyResponseCallback<Schema$ContactGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContactGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ContactGroup>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2299,8 +2311,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ModifyContactGroupMembersResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ModifyContactGroupMembersResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Members$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2412,7 +2424,10 @@ export namespace people_v1 {
       callback?:
         | BodyResponseCallback<Schema$Person>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Person> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Person>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2506,8 +2521,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOtherContactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListOtherContactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Othercontacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2592,7 +2607,10 @@ export namespace people_v1 {
       callback?:
         | BodyResponseCallback<Schema$SearchResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SearchResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SearchResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Othercontacts$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2750,8 +2768,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchCreateContactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchCreateContactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Batchcreatecontacts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2839,7 +2857,10 @@ export namespace people_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Batchdeletecontacts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2933,8 +2954,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateContactsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateContactsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Batchupdatecontacts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3022,7 +3043,10 @@ export namespace people_v1 {
       callback?:
         | BodyResponseCallback<Schema$Person>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Person> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Person>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Createcontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3110,7 +3134,10 @@ export namespace people_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Deletecontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3204,8 +3231,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DeleteContactPhotoResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$DeleteContactPhotoResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Deletecontactphoto;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3293,7 +3320,10 @@ export namespace people_v1 {
       callback?:
         | BodyResponseCallback<Schema$Person>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Person> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Person>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3382,8 +3412,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetPeopleResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GetPeopleResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Getbatchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3477,8 +3507,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDirectoryPeopleResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListDirectoryPeopleResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Listdirectorypeople;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3566,7 +3596,10 @@ export namespace people_v1 {
       callback?:
         | BodyResponseCallback<Schema$SearchResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SearchResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$SearchResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Searchcontacts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3660,8 +3693,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchDirectoryPeopleResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SearchDirectoryPeopleResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Searchdirectorypeople;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3751,7 +3784,10 @@ export namespace people_v1 {
       callback?:
         | BodyResponseCallback<Schema$Person>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Person> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Person>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Updatecontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3845,8 +3881,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UpdateContactPhotoResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$UpdateContactPhotoResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Updatecontactphoto;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4155,8 +4191,8 @@ export namespace people_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConnectionsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListConnectionsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

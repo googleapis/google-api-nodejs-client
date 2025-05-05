@@ -478,7 +478,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Table>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -565,8 +568,8 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTablesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListTablesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -685,8 +688,8 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchCreateRowsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchCreateRowsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Rows$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -775,7 +778,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Rows$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -870,8 +876,8 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateRowsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$BatchUpdateRowsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Rows$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -960,7 +966,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Row>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Row> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Row>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Rows$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1049,7 +1058,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Rows$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1135,7 +1147,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Row>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Row> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Row>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Rows$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1220,7 +1235,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$ListRowsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListRowsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$ListRowsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Rows$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1308,7 +1326,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Row>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Row> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Row>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Rows$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1517,7 +1538,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Workspace>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Workspace> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Workspace>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Workspaces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1606,8 +1630,8 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkspacesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListWorkspacesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Workspaces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

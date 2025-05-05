@@ -749,8 +749,8 @@ export namespace civicinfo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CivicinfoApiprotosV2DivisionByAddressResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CivicinfoApiprotosV2DivisionByAddressResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Divisions$Querydivisionbyaddress;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -846,8 +846,8 @@ export namespace civicinfo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CivicinfoApiprotosV2DivisionSearchResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CivicinfoApiprotosV2DivisionSearchResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Divisions$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -963,8 +963,8 @@ export namespace civicinfo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CivicinfoApiprotosV2ElectionsQueryResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CivicinfoApiprotosV2ElectionsQueryResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Elections$Electionquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1060,8 +1060,8 @@ export namespace civicinfo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CivicinfoApiprotosV2VoterInfoResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CivicinfoApiprotosV2VoterInfoResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Elections$Voterinfoquery;
       let options = (optionsOrCallback || {}) as MethodOptions;

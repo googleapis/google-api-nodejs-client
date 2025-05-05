@@ -1092,8 +1092,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1190,8 +1190,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1Catalog>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommendationengineV1beta1Catalog>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1324,8 +1324,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1419,8 +1419,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1513,8 +1513,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1609,8 +1609,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1706,8 +1706,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Catalogitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1805,8 +1805,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2009,8 +2009,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2103,8 +2103,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2236,8 +2236,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2355,8 +2355,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2449,8 +2449,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2543,8 +2543,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2679,8 +2679,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleApiHttpBody>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Collect;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2776,8 +2776,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2873,8 +2873,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2972,8 +2972,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Purge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3069,8 +3069,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Rejoin;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3166,8 +3166,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1UserEvent>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleCloudRecommendationengineV1beta1UserEvent>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3359,8 +3359,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3453,8 +3453,8 @@ export namespace recommendationengine_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -234,7 +234,10 @@ export namespace firebasestorage_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deletedefaultbucket;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -322,7 +325,10 @@ export namespace firebasestorage_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DefaultBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DefaultBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DefaultBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getdefaultbucket;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -430,7 +436,10 @@ export namespace firebasestorage_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Bucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Buckets$Addfirebase;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -519,7 +528,10 @@ export namespace firebasestorage_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Bucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -607,8 +619,8 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBucketsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListBucketsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -697,7 +709,10 @@ export namespace firebasestorage_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Buckets$Removefirebase;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -840,7 +855,10 @@ export namespace firebasestorage_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DefaultBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DefaultBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$DefaultBucket>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Defaultbucket$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;

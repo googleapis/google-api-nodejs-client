@@ -36,13 +36,12 @@ async function testMultpart(drive: drive_v2.Drive) {
   assert.strictEqual(url.pathname, '/upload/drive/v2/files');
   assert.strictEqual(url.search, '?uploadType=multipart');
   assert.strictEqual(
-    res.config.headers!['content-type'].indexOf('multipart/related;'),
+    res.config.headers.get('content-type')!.indexOf('multipart/related;'),
     0
   );
-  const boundary = res.config.headers!['content-type'].replace(
-    boundaryPrefix,
-    ''
-  );
+  const boundary = res.config.headers
+    .get('content-type')!
+    .replace(boundaryPrefix, '');
   expectedResp = expectedResp
     .replace(/\r?\n/g, '\r\n')
     .replace(/\$boundary/g, boundary)
@@ -66,13 +65,12 @@ async function testMediaBody(drive: drive_v2.Drive) {
   assert.strictEqual(url.pathname, '/upload/drive/v2/files');
   assert.strictEqual(url.search, '?uploadType=multipart');
   assert.strictEqual(
-    res.config.headers!['content-type'].indexOf('multipart/related;'),
+    res.config.headers.get('content-type')!.indexOf('multipart/related;'),
     0
   );
-  const boundary = res.config.headers!['content-type'].replace(
-    boundaryPrefix,
-    ''
-  );
+  const boundary = res.config.headers
+    .get('content-type')!
+    .replace(boundaryPrefix, '');
   expectedResp = expectedResp
     .replace(/\r?\n/g, '\r\n')
     .replace(/\$boundary/g, boundary)
@@ -312,7 +310,7 @@ describe('Media', () => {
       media: {mimeType: 'message/rfc822'},
     } as gmail_v1.Params$Resource$Users$Drafts$Create);
     assert.strictEqual(
-      res.config.headers!['Content-Type'].indexOf('application/json'),
+      res.config.headers.get('content-type')!.indexOf('application/json'),
       0
     );
     assert.strictEqual(JSON.stringify(res.data), JSON.stringify(requestBody));
@@ -322,7 +320,7 @@ describe('Media', () => {
       media: {mimeType: 'message/rfc822'},
     } as gmail_v1.Params$Resource$Users$Drafts$Create);
     assert.strictEqual(
-      res2.config.headers!['Content-Type'].indexOf('application/json'),
+      res.config.headers.get('content-type')!.indexOf('application/json'),
       0
     );
     assert.deepStrictEqual(res2.data, requestBody);
@@ -391,10 +389,9 @@ describe('Media', () => {
       requestBody,
       media,
     });
-    const boundary = res.config.headers!['content-type'].replace(
-      boundaryPrefix,
-      ''
-    );
+    const boundary = res.config.headers
+      .get('content-type')!
+      .replace(boundaryPrefix, '');
     expectedBody = expectedBody
       .replace(/\r?\n/g, '\r\n')
       .replace(/\$boundary/g, boundary)
@@ -423,10 +420,9 @@ describe('Media', () => {
       requestBody,
       media,
     });
-    const boundary2 = res2.config.headers!['content-type'].replace(
-      boundaryPrefix,
-      ''
-    );
+    const boundary2 = res.config.headers
+      .get('content-type')!
+      .replace(boundaryPrefix, '');
     expectedBody = expectedBody
       .replace(/\r?\n/g, '\r\n')
       .replace(/\$boundary/g, boundary2)

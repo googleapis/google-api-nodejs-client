@@ -381,8 +381,8 @@ export namespace adsenseplatform_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CloseAccountResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$CloseAccountResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Close;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -468,7 +468,10 @@ export namespace adsenseplatform_v1 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Account>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -557,7 +560,10 @@ export namespace adsenseplatform_v1 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Account>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -647,8 +653,8 @@ export namespace adsenseplatform_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListAccountsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -741,8 +747,8 @@ export namespace adsenseplatform_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LookupAccountResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$LookupAccountResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -896,7 +902,10 @@ export namespace adsenseplatform_v1 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Event>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Events$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1005,7 +1014,10 @@ export namespace adsenseplatform_v1 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Site>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Sites$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1094,7 +1106,10 @@ export namespace adsenseplatform_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Sites$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1180,7 +1195,10 @@ export namespace adsenseplatform_v1 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Site>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1268,8 +1286,8 @@ export namespace adsenseplatform_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSitesResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListSitesResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1364,8 +1382,8 @@ export namespace adsenseplatform_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RequestSiteReviewResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$RequestSiteReviewResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Sites$Requestreview;
       let options = (optionsOrCallback || {}) as MethodOptions;

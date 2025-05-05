@@ -930,7 +930,10 @@ export namespace manufacturers_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Languages$Productcertifications$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1021,8 +1024,8 @@ export namespace manufacturers_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProductCertification>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ProductCertification>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Languages$Productcertifications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1115,8 +1118,8 @@ export namespace manufacturers_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProductCertificationsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProductCertificationsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Languages$Productcertifications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1212,8 +1215,8 @@ export namespace manufacturers_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProductCertification>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ProductCertification>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Languages$Productcertifications$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1353,7 +1356,10 @@ export namespace manufacturers_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1442,7 +1448,10 @@ export namespace manufacturers_v1 {
       callback?:
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Product>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1535,8 +1544,8 @@ export namespace manufacturers_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListProductsResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$ListProductsResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1625,7 +1634,10 @@ export namespace manufacturers_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<Schema$Empty>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

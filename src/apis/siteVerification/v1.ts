@@ -197,7 +197,10 @@ export namespace siteVerification_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosResponseWithHTTP2<void>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Webresource$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -291,8 +294,8 @@ export namespace siteVerification_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SiteVerificationWebResourceResource>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SiteVerificationWebResourceResource>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webresource$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -387,8 +390,8 @@ export namespace siteVerification_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SiteVerificationWebResourceGettokenResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Webresource$Gettoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -484,8 +487,8 @@ export namespace siteVerification_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SiteVerificationWebResourceResource>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SiteVerificationWebResourceResource>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Webresource$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -581,8 +584,8 @@ export namespace siteVerification_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SiteVerificationWebResourceListResponse>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SiteVerificationWebResourceListResponse>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webresource$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -677,8 +680,8 @@ export namespace siteVerification_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SiteVerificationWebResourceResource>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SiteVerificationWebResourceResource>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Webresource$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -774,8 +777,8 @@ export namespace siteVerification_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SiteVerificationWebResourceResource>
-      | GaxiosPromise<Readable> {
+      | GaxiosResponseWithHTTP2<Schema$SiteVerificationWebResourceResource>
+      | GaxiosResponseWithHTTP2<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Webresource$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
