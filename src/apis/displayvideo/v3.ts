@@ -564,7 +564,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$AlgorithmRules {
     /**
-     * Attribution model for the algorithm.
+     * Attribution model for the algorithm. This field is only supported for allowlisted partners.
      */
     attributionModelId?: string | null;
     /**
@@ -572,7 +572,7 @@ export namespace displayvideo_v3 {
      */
     impressionSignalRuleset?: Schema$AlgorithmRulesRuleset;
     /**
-     * Rules for the post-impression signals.
+     * Rules for the post-impression signals. This field is only supported for allowlisted partners.
      */
     postImpressionSignalRuleset?: Schema$AlgorithmRulesRuleset;
   }
@@ -621,7 +621,7 @@ export namespace displayvideo_v3 {
      */
     stringValue?: string | null;
     /**
-     * Video player size value.
+     * Video player size value. This field is only supported for allowlisted partners.
      */
     videoPlayerSizeValue?: string | null;
   }
@@ -690,11 +690,11 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$AlgorithmRulesSignal {
     /**
-     * Signal based on active views.
+     * Signal based on active views. This field is only supported for allowlisted partners.
      */
     activeViewSignal?: string | null;
     /**
-     * Signal based on clicks.
+     * Signal based on clicks. This field is only supported for allowlisted partners.
      */
     clickSignal?: string | null;
     /**
@@ -724,11 +724,11 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$AlgorithmRulesSignalValue {
     /**
-     * Signal based on active views. Only `TIME_ON_SCREEN` is supported.
+     * Signal based on active views. Only `TIME_ON_SCREEN` is supported. This field is only supported for allowlisted partners.
      */
     activeViewSignal?: string | null;
     /**
-     * Signal based on floodlight conversion events.
+     * Signal based on floodlight conversion events. This field is only supported for allowlisted partners.
      */
     floodlightActivityConversionSignal?: Schema$AlgorithmRulesFloodlightActivityConversionSignal;
     /**
@@ -7270,7 +7270,7 @@ export namespace displayvideo_v3 {
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `advertiserId` (default) * `displayName` * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -16216,7 +16216,7 @@ export namespace displayvideo_v3 {
      */
     assignedTargetingOptionId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD`
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`
      */
     targetingType?: string;
   }
@@ -16243,7 +16243,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
     /**
-     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD`
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`
      */
     targetingType?: string;
   }
