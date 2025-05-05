@@ -1172,7 +1172,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250425",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1571,12 +1571,12 @@
           "type": "string"
         },
         "satisfiesPzi": {
-          "description": "Output only. If set, the repository satisfies physical zone isolation.",
+          "description": "Output only. Whether or not this repository satisfies PZI.",
           "readOnly": true,
           "type": "boolean"
         },
         "satisfiesPzs": {
-          "description": "Output only. If set, the repository satisfies physical zone separation.",
+          "description": "Output only. Whether or not this repository satisfies PZS.",
           "readOnly": true,
           "type": "boolean"
         },
