@@ -887,6 +887,242 @@
                 }
               }
             },
+            "collections": {
+              "resources": {
+                "engines": {
+                  "resources": {
+                    "assistants": {
+                      "resources": {
+                        "agentFlows": {
+                          "methods": {
+                            "create": {
+                              "description": "Request to create a new AgentFlow with user-provided flow configuration.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agentFlows",
+                              "httpMethod": "POST",
+                              "id": "integrations.projects.locations.collections.engines.assistants.agentFlows.create",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. Parent resource name where this AgentFlow will be created.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/agentFlows",
+                              "request": {
+                                "$ref": "GoogleCloudIntegrationsV1alphaAgentFlow"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudIntegrationsV1alphaAgentFlow"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "delete": {
+                              "description": "Deletes an existing AgentFlow.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agentFlows/{agentFlowsId}",
+                              "httpMethod": "DELETE",
+                              "id": "integrations.projects.locations.collections.engines.assistants.agentFlows.delete",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The resource name of the AgentFlow to delete.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agentFlows/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}",
+                              "response": {
+                                "$ref": "GoogleProtobufEmpty"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "generate": {
+                              "description": "Uses Natural Language (NL) to generate an AgentFlow configuration and create a new AgentFlow.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agentFlows:generate",
+                              "httpMethod": "POST",
+                              "id": "integrations.projects.locations.collections.engines.assistants.agentFlows.generate",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. Parent resource name where this AgentFlow will be created.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/agentFlows:generate",
+                              "request": {
+                                "$ref": "GoogleCloudIntegrationsV1alphaGenerateAgentFlowRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudIntegrationsV1alphaGenerateAgentFlowResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "generateAndUpdate": {
+                              "description": "Uses Natural Language (NL) to generate an AgentFlow configuration and update an existing AgentFlow.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agentFlows/{agentFlowsId}:generateAndUpdate",
+                              "httpMethod": "POST",
+                              "id": "integrations.projects.locations.collections.engines.assistants.agentFlows.generateAndUpdate",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The resource name of the AgentFlow to update.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agentFlows/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}:generateAndUpdate",
+                              "request": {
+                                "$ref": "GoogleCloudIntegrationsV1alphaGenerateAndUpdateAgentFlowRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudIntegrationsV1alphaGenerateAndUpdateAgentFlowResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "get": {
+                              "description": "Gets an existing AgentFlow.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agentFlows/{agentFlowsId}",
+                              "httpMethod": "GET",
+                              "id": "integrations.projects.locations.collections.engines.assistants.agentFlows.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The resource name of the AgentFlow to get.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agentFlows/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}",
+                              "response": {
+                                "$ref": "GoogleCloudIntegrationsV1alphaAgentFlow"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "list": {
+                              "description": "Lists all AgentFlows.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agentFlows",
+                              "httpMethod": "GET",
+                              "id": "integrations.projects.locations.collections.engines.assistants.agentFlows.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "filter": {
+                                  "description": "Optional. Standard filter field. Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/list-filters.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "orderBy": {
+                                  "description": "Optional. The results would be returned in order specified here. Currently supported sort keys are: Descending sort order for \"create_time\", \"update_time\". Ascending sort order for \"agent_flow_id\", \"display_name\".",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "pageSize": {
+                                  "description": "Optional. The maximum number of AgentFlows to return. The service may return fewer than this value. If unspecified, at most 100 AgentFlows will be returned.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "Optional. A page token, received from a previous `ListAgentFlows` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAgentFlows` must match the call that provided the page token.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent resource where this AgentFlow was created.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "readMask": {
+                                  "description": "Optional. The mask which specifies fields that need to be returned in the AgentFlow's response.",
+                                  "format": "google-fieldmask",
+                                  "location": "query",
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/agentFlows",
+                              "response": {
+                                "$ref": "GoogleCloudIntegrationsV1alphaListAgentFlowsResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "patch": {
+                              "description": "Updates an existing AgentFlow.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agentFlows/{agentFlowsId}",
+                              "httpMethod": "PATCH",
+                              "id": "integrations.projects.locations.collections.engines.assistants.agentFlows.patch",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Resource name of the agent flow.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agentFlows/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "updateMask": {
+                                  "description": "Optional. Field mask specifying the fields in the above AgentFlow that have been modified and need to be updated.",
+                                  "format": "google-fieldmask",
+                                  "location": "query",
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}",
+                              "request": {
+                                "$ref": "GoogleCloudIntegrationsV1alphaAgentFlow"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudIntegrationsV1alphaAgentFlow"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "connections": {
               "methods": {
                 "getConnectionSchemaMetadata": {
@@ -4574,7 +4810,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250427",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -10353,6 +10589,50 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaAgentFlow": {
+      "description": "AgentFlow configurations.",
+      "id": "GoogleCloudIntegrationsV1alphaAgentFlow",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the agent flow was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creator": {
+          "description": "Output only. The user who created the agent flow.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the agent flow.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name of the agent flow.",
+          "type": "string"
+        },
+        "flowConfig": {
+          "description": "Required. The flow configuration, represented as a string.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Resource name of the agent flow.",
+          "type": "string"
+        },
+        "noCodeAgent": {
+          "description": "Optional. Name of the NoCodeAgent.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the agent flow was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaApiTriggerResource": {
       "description": "List of API triggerID and their workflow resource name.",
       "id": "GoogleCloudIntegrationsV1alphaApiTriggerResource",
@@ -11792,6 +12072,68 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaGenerateAgentFlowRequest": {
+      "description": "Request message for GenerateAgentFlow.",
+      "id": "GoogleCloudIntegrationsV1alphaGenerateAgentFlowRequest",
+      "properties": {
+        "creator": {
+          "description": "Optional. The creator id;",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The description of the AgentFlow to be generated.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. The display name of the AgentFlow to be generated.",
+          "type": "string"
+        },
+        "intent": {
+          "description": "Required. The intent, described in natural language, for the AgentFlow to generate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaGenerateAgentFlowResponse": {
+      "description": "Response message for GenerateAgentFlow.",
+      "id": "GoogleCloudIntegrationsV1alphaGenerateAgentFlowResponse",
+      "properties": {
+        "agentFlow": {
+          "$ref": "GoogleCloudIntegrationsV1alphaAgentFlow",
+          "description": "Output only. AgentFlow that gets generated.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaGenerateAndUpdateAgentFlowRequest": {
+      "description": "Request message for GenerateAndUpdateAgentFlow.",
+      "id": "GoogleCloudIntegrationsV1alphaGenerateAndUpdateAgentFlowRequest",
+      "properties": {
+        "intent": {
+          "description": "Required. The intent, described in natural language, for the AgentFlow to update.",
+          "type": "string"
+        },
+        "updater": {
+          "description": "Optional. The updater id;",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaGenerateAndUpdateAgentFlowResponse": {
+      "description": "Response message for GenerateAndUpdateAgentFlow.",
+      "id": "GoogleCloudIntegrationsV1alphaGenerateAndUpdateAgentFlowResponse",
+      "properties": {
+        "agentFlow": {
+          "$ref": "GoogleCloudIntegrationsV1alphaAgentFlow",
+          "description": "Output only. AgentFlow that gets updated.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaGenerateOpenApiSpecRequest": {
       "description": "Request for GenerateOpenApiSpec.",
       "id": "GoogleCloudIntegrationsV1alphaGenerateOpenApiSpecRequest",
@@ -12465,6 +12807,26 @@
       "properties": {
         "scriptId": {
           "description": "The id of the linked Apps Script project.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaListAgentFlowsResponse": {
+      "description": "Response for ListAgentFlows.",
+      "id": "GoogleCloudIntegrationsV1alphaListAgentFlowsResponse",
+      "properties": {
+        "agentFlows": {
+          "description": "Output only. The AgentFlows from the specified collection.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaAgentFlow"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "readOnly": true,
           "type": "string"
         }
       },
