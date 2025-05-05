@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/googleapis/google-api-nodejs-client/compare/addressvalidation-v0.1.2...addressvalidation-v0.1.3) (2025-05-05)
+
+
+### Bug Fixes
+
+* **addressvalidation:** update the API ([7b6cc3f](https://github.com/googleapis/google-api-nodejs-client/commit/7b6cc3f1bf09eeeeb9342b4ec0bd52324ce51959))
+
 ## [0.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/addressvalidation-v0.1.1...addressvalidation-v0.1.2) (2025-02-04)
 
 

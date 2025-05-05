@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/developerconnect",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "developerconnect",
   "main": "build/index.js",
   "types": "build/index.d.ts",
