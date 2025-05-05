@@ -3100,7 +3100,7 @@
       }
     }
   },
-  "revision": "20250326",
+  "revision": "20250423",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -3708,6 +3708,11 @@
         },
         "localName": {
           "description": "Output only. The object name of the bare metal user cluster custom resource on the associated admin cluster. This field is used to support conflicting names when enrolling existing clusters to the API. When used as a part of cluster enrollment, this field will differ from the name in the resource name. For new clusters, this field will match the user provided cluster name and be visible in the last component of the resource name. It is not modifiable. When the local name and cluster name differ, the local name is used in the admin cluster controller logs. You use the cluster name when accessing the cluster using bmctl and kubectl.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "localNamespace": {
+          "description": "Output only. The namespace of the cluster.",
           "readOnly": true,
           "type": "string"
         },
