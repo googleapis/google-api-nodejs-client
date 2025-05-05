@@ -595,6 +595,10 @@ export namespace gkeonprem_v1 {
      */
     localName?: string | null;
     /**
+     * Output only. The namespace of the cluster.
+     */
+    localNamespace?: string | null;
+    /**
      * Maintenance configuration.
      */
     maintenanceConfig?: Schema$BareMetalMaintenanceConfig;
