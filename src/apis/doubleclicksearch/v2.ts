@@ -162,7 +162,7 @@ export namespace doubleclicksearch_v2 {
     segmentationType?: string | null;
   }
   /**
-   * A conversion containing data relevant to DoubleClick Search.
+   * A conversion containing data relevant to DoubleClick Search. Common DS3 API conversion fields: Id Range [1 - 2800]. Next Id to use: 33
    */
   export interface Schema$Conversion {
     /**
