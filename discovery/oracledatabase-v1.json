@@ -555,7 +555,7 @@
                   ]
                 },
                 "switchover": {
-                  "description": "Initiates a switchover of specified autonomous deatabase to the associated peer database.",
+                  "description": "Initiates a switchover of specified autonomous database to the associated peer database.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autonomousDatabases/{autonomousDatabasesId}:switchover",
                   "httpMethod": "POST",
                   "id": "oracledatabase.projects.locations.autonomousDatabases.switchover",
@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20250416",
+  "revision": "20250428",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -3951,7 +3951,7 @@
       "type": "object"
     },
     "SwitchoverAutonomousDatabaseRequest": {
-      "description": "The request for `AutonomousDatabase.Switchover`.",
+      "description": "The request for `OracleDatabase.SwitchoverAutonomousDatabase`.",
       "id": "SwitchoverAutonomousDatabaseRequest",
       "properties": {
         "peerAutonomousDatabase": {
