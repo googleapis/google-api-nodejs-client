@@ -2974,7 +2974,7 @@
       "properties": {
         "templateVariableCondition": {
           "$ref": "TemplateVariableCondition",
-          "description": "A condition whose evaluation is based on the value of a template variable."
+          "description": "A condition whose evaluation is based on the value of a template1 variable."
         }
       },
       "type": "object"
