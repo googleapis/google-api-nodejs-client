@@ -1,5 +1,12 @@
 # Changelog
 
+## [35.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/content-v35.0.0...content-v35.0.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* **content:** update the API ([1722671](https://github.com/googleapis/google-api-nodejs-client/commit/1722671b7be03e831a368bdeaec26091a4f58f21))
+
 ## [35.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v34.0.0...content-v35.0.0) (2025-04-18)
 
 

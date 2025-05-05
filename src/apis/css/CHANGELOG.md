@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/css-v0.3.1...css-v0.4.0) (2025-05-05)
+
+
+### Features
+
+* **css:** update the API ([1c8c75d](https://github.com/googleapis/google-api-nodejs-client/commit/1c8c75db50a0ed04c16b9b6bc3fb86ea33aa94ea))
+
 ## [0.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/css-v0.3.0...css-v0.3.1) (2025-03-18)
 
 

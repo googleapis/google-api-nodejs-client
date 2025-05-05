@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v14.0.0...retail-v14.0.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* **retail:** update the API ([9ef50b5](https://github.com/googleapis/google-api-nodejs-client/commit/9ef50b5c993c594ff3c1e768a832c4a9c5e28349))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v13.1.0...retail-v14.0.0) (2025-03-18)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v16.1.0...dialogflow-v16.2.0) (2025-05-05)
+
+
+### Features
+
+* **dialogflow:** update the API ([7cb8ad7](https://github.com/googleapis/google-api-nodejs-client/commit/7cb8ad7ceb7107f2faf905a451f736c137ff04d7))
+
 ## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v16.0.0...dialogflow-v16.1.0) (2025-03-19)
 
 

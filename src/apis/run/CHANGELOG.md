@@ -1,5 +1,16 @@
 # Changelog
 
+## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v18.4.0...run-v19.0.0) (2025-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **run:** This release has breaking changes.
+
+### Features
+
+* **run:** update the API ([1f49314](https://github.com/googleapis/google-api-nodejs-client/commit/1f49314a694bd5d8875abc95eac9e1499f7e0618))
+
 ## [18.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v18.3.0...run-v18.4.0) (2025-03-18)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v7.3.0...clouddeploy-v7.4.0) (2025-05-05)
+
+
+### Features
+
+* **clouddeploy:** update the API ([dea2c44](https://github.com/googleapis/google-api-nodejs-client/commit/dea2c448595e0e930d8aef287616e625d7ff3cca))
+
 ## [7.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v7.2.0...clouddeploy-v7.3.0) (2025-03-18)
 
 

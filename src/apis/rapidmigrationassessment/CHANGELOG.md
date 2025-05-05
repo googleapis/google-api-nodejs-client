@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/rapidmigrationassessment-v0.1.3...rapidmigrationassessment-v0.2.0) (2025-05-05)
+
+
+### Features
+
+* **rapidmigrationassessment:** update the API ([8b0087b](https://github.com/googleapis/google-api-nodejs-client/commit/8b0087b89e4ffbc15075834e7b0ce00b08040802))
+
 ## [0.1.3](https://github.com/googleapis/google-api-nodejs-client/compare/rapidmigrationassessment-v0.1.2...rapidmigrationassessment-v0.1.3) (2025-03-18)
 
 

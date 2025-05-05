@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/gkeonprem",
-  "version": "7.2.1",
+  "version": "7.3.0",
   "description": "gkeonprem",
   "main": "build/index.js",
   "types": "build/index.d.ts",

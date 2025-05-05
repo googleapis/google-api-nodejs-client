@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v14.0.0...testing-v14.1.0) (2025-05-05)
+
+
+### Features
+
+* **testing:** update the API ([e3e3024](https://github.com/googleapis/google-api-nodejs-client/commit/e3e3024dca0f48052bd8e43045d25cce826b23b7))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v13.0.0...testing-v14.0.0) (2025-04-18)
 
 

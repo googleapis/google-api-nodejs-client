@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/parallelstore-v0.2.0...parallelstore-v0.3.0) (2025-05-05)
+
+
+### Features
+
+* **parallelstore:** update the API ([770e761](https://github.com/googleapis/google-api-nodejs-client/commit/770e76164b25a3fe37ccda2e315fd2a1fb88fe0d))
+
 ## [0.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/parallelstore-v0.1.0...parallelstore-v0.2.0) (2025-03-18)
 
 

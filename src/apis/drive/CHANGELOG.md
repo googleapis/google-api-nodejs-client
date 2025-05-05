@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v12.0.0...drive-v12.1.0) (2025-05-05)
+
+
+### Features
+
+* **drive:** update the API ([a22e854](https://github.com/googleapis/google-api-nodejs-client/commit/a22e85465ecf196ae8f57c9b0489834d22d79cec))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v11.0.0...drive-v12.0.0) (2025-04-18)
 
 

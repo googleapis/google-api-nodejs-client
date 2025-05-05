@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessbusinessinformation-v4.4.0...mybusinessbusinessinformation-v4.4.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* **mybusinessbusinessinformation:** update the API ([1a6d0d3](https://github.com/googleapis/google-api-nodejs-client/commit/1a6d0d31002de393c3d6e789210c3bb16a6beffc))
+
 ## [4.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessbusinessinformation-v4.3.0...mybusinessbusinessinformation-v4.4.0) (2025-04-18)
 
 

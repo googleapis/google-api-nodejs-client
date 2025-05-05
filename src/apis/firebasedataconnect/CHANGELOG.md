@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedataconnect-v0.2.0...firebasedataconnect-v0.3.0) (2025-05-05)
+
+
+### Features
+
+* **firebasedataconnect:** update the API ([d12e01c](https://github.com/googleapis/google-api-nodejs-client/commit/d12e01cbf579f0ec3b66fe7e34568706a83bf717))
+
 ## [0.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedataconnect-v0.1.0...firebasedataconnect-v0.2.0) (2025-02-04)
 
 

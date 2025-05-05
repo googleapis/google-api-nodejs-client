@@ -1,5 +1,16 @@
 # Changelog
 
+## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v20.0.0...workloadmanager-v21.0.0) (2025-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **workloadmanager:** This release has breaking changes.
+
+### Features
+
+* **workloadmanager:** update the API ([e63df22](https://github.com/googleapis/google-api-nodejs-client/commit/e63df22a91e0a8dfdc6bab46b6db4c20bd97625f))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v19.0.0...workloadmanager-v20.0.0) (2025-04-18)
 
 

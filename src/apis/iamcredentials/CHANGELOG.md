@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/iamcredentials-v4.1.0...iamcredentials-v4.2.0) (2025-05-05)
+
+
+### Features
+
+* **iamcredentials:** update the API ([c7a9bc3](https://github.com/googleapis/google-api-nodejs-client/commit/c7a9bc314853f48a940bfb682a7c73e152621beb))
+
 ## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/iamcredentials-v4.0.0...iamcredentials-v4.1.0) (2025-02-04)
 
 

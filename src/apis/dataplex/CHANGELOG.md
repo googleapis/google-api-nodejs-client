@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v15.0.0...dataplex-v15.1.0) (2025-05-05)
+
+
+### Features
+
+* **dataplex:** update the API ([c656bdd](https://github.com/googleapis/google-api-nodejs-client/commit/c656bddc3ae85ffb253c1031c510b166be4adfb3))
+* **dataplex:** update the API ([23a4d8a](https://github.com/googleapis/google-api-nodejs-client/commit/23a4d8a44cf2cc017af60a1d10c2ac709dc11596))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v14.0.0...dataplex-v15.0.0) (2025-03-18)
 
 

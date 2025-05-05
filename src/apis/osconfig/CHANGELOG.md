@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v4.2.0...osconfig-v5.0.0) (2025-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **osconfig:** This release has breaking changes.
+
+### Features
+
+* **osconfig:** update the API ([d13ec58](https://github.com/googleapis/google-api-nodejs-client/commit/d13ec58dbb849ed7f7b07ff247974e8623eb988c))
+
 ## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v4.1.2...osconfig-v4.2.0) (2025-02-04)
 
 

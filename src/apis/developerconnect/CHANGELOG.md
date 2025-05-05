@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v0.4.0...developerconnect-v0.5.0) (2025-05-05)
+
+
+### Features
+
+* **developerconnect:** update the API ([857497d](https://github.com/googleapis/google-api-nodejs-client/commit/857497da69522814bf180e2d3fd35f6fb9411d8c))
+
 ## [0.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v0.3.0...developerconnect-v0.4.0) (2025-03-18)
 
 

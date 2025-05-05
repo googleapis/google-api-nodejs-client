@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclicksearch-v4.0.3...doubleclicksearch-v4.0.4) (2025-05-05)
+
+
+### Bug Fixes
+
+* **doubleclicksearch:** update the API ([30aa349](https://github.com/googleapis/google-api-nodejs-client/commit/30aa3492fb5500cddc997448447cdb93649de387))
+
 ## [4.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclicksearch-v4.0.2...doubleclicksearch-v4.0.3) (2024-05-02)
 
 

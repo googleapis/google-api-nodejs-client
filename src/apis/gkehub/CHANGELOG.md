@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v18.0.0...gkehub-v18.1.0) (2025-05-05)
+
+
+### Features
+
+* **gkehub:** update the API ([bce8977](https://github.com/googleapis/google-api-nodejs-client/commit/bce8977ed0dd8d78df44fbcab829b8b5a5d7aa1c))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v17.1.0...gkehub-v18.0.0) (2025-03-18)
 
 

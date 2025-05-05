@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v15.0.0...redis-v15.1.0) (2025-05-05)
+
+
+### Features
+
+* **redis:** update the API ([6048907](https://github.com/googleapis/google-api-nodejs-client/commit/604890790fb2584dc5032ae433c74d4fa1692ce3))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v14.1.0...redis-v15.0.0) (2025-03-18)
 
 

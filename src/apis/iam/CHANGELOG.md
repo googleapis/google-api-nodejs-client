@@ -1,5 +1,12 @@
 # Changelog
 
+## [27.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v27.0.0...iam-v27.1.0) (2025-05-05)
+
+
+### Features
+
+* **iam:** update the API ([14c334f](https://github.com/googleapis/google-api-nodejs-client/commit/14c334f4dd119e941b3f9b670dfe0c3174117230))
+
 ## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v26.0.0...iam-v27.0.0) (2025-04-18)
 
 

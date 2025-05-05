@@ -1,5 +1,16 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v11.1.0...securitycenter-v12.0.0) (2025-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **securitycenter:** This release has breaking changes.
+
+### Features
+
+* **securitycenter:** update the API ([91ec71f](https://github.com/googleapis/google-api-nodejs-client/commit/91ec71f7891301cd29b1aaeb56ec6060e4f2d871))
+
 ## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v11.0.0...securitycenter-v11.1.0) (2025-03-18)
 
 

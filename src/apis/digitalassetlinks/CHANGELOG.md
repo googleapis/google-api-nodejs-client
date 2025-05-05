@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/digitalassetlinks-v5.0.0...digitalassetlinks-v5.1.0) (2025-05-05)
+
+
+### Features
+
+* **digitalassetlinks:** update the API ([681b285](https://github.com/googleapis/google-api-nodejs-client/commit/681b2855a70d2aebdb8985a1cb1f4fccb115965b))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/digitalassetlinks-v4.0.0...digitalassetlinks-v5.0.0) (2025-04-18)
 
 

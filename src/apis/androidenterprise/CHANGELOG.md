@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v9.0.0...androidenterprise-v9.0.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* **androidenterprise:** update the API ([128df64](https://github.com/googleapis/google-api-nodejs-client/commit/128df64f1632345cb7b50ef4fc0b448fbf9e9a91))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v8.0.0...androidenterprise-v9.0.0) (2025-04-18)
 
 
