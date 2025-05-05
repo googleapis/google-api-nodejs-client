@@ -276,9 +276,9 @@
               ],
               "enumDescriptions": [
                 "The default value. Default to the FULL view.",
-                "Includes metadata information for the dataset, such as location, etag, lastModifiedTime, etc.",
-                "Includes ACL information for the dataset, which defines dataset access for one or more entities.",
-                "Includes both dataset metadata and ACL information."
+                "Updates metadata information for the dataset, such as friendlyName, description, labels, etc.",
+                "Updates ACL information for the dataset, which defines dataset access for one or more entities.",
+                "Updates both dataset metadata and ACL information."
               ],
               "location": "query",
               "type": "string"
@@ -413,6 +413,23 @@
               "pattern": "^[^/]+$",
               "required": true,
               "type": "string"
+            },
+            "updateMode": {
+              "description": "Optional. Specifies the fields of dataset that update/patch operation is targeting By default, both metadata and ACL fields are updated.",
+              "enum": [
+                "UPDATE_MODE_UNSPECIFIED",
+                "UPDATE_METADATA",
+                "UPDATE_ACL",
+                "UPDATE_FULL"
+              ],
+              "enumDescriptions": [
+                "The default value. Default to the UPDATE_FULL.",
+                "Includes metadata information for the dataset, such as friendlyName, description, labels, etc.",
+                "Includes ACL information for the dataset, which defines dataset access for one or more entities.",
+                "Includes both dataset metadata and ACL information."
+              ],
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "projects/{+projectId}/datasets/{+datasetId}",
@@ -492,6 +509,23 @@
               "location": "path",
               "pattern": "^[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "updateMode": {
+              "description": "Optional. Specifies the fields of dataset that update/patch operation is targeting By default, both metadata and ACL fields are updated.",
+              "enum": [
+                "UPDATE_MODE_UNSPECIFIED",
+                "UPDATE_METADATA",
+                "UPDATE_ACL",
+                "UPDATE_FULL"
+              ],
+              "enumDescriptions": [
+                "The default value. Default to the UPDATE_FULL.",
+                "Includes metadata information for the dataset, such as friendlyName, description, labels, etc.",
+                "Includes ACL information for the dataset, which defines dataset access for one or more entities.",
+                "Includes both dataset metadata and ACL information."
+              ],
+              "location": "query",
               "type": "string"
             }
           },
@@ -2256,7 +2290,7 @@
       }
     }
   },
-  "revision": "20250404",
+  "revision": "20250427",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -5577,7 +5611,7 @@
           "description": "Time-based partitioning specification for the destination table. Only one of timePartitioning and rangePartitioning should be specified."
         },
         "timeZone": {
-          "description": "Optional. [Experimental] Default time zone that will apply when parsing timestamp values that have no specific time zone.",
+          "description": "Optional. Default time zone that will apply when parsing timestamp values that have no specific time zone.",
           "type": "string"
         },
         "timestampFormat": {
@@ -6235,7 +6269,7 @@
           "type": "array"
         },
         "referencedTables": {
-          "description": "Output only. Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.",
+          "description": "Output only. Referenced tables for the job.",
           "items": {
             "$ref": "TableReference"
           },
@@ -7779,6 +7813,11 @@
           "description": "Total units of work remaining for the query. This number can be revised (increased or decreased) while the query is running.",
           "format": "int64",
           "type": "string"
+        },
+        "shuffleRamUsageRatio": {
+          "description": "Total shuffle usage ratio in shuffle RAM per reservation of this query. This will be provided for reservation customers only.",
+          "format": "double",
+          "type": "number"
         },
         "totalSlotMs": {
           "description": "Cumulative slot-ms consumed by the query.",
