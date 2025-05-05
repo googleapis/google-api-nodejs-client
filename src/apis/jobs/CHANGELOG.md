@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v4.1.0...jobs-v4.1.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* **jobs:** update the API ([4ca07f1](https://github.com/googleapis/google-api-nodejs-client/commit/4ca07f1741b8169f6f6a1e2927f1a9baaebdcb50))
+
 ## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v4.0.0...jobs-v4.1.0) (2025-02-04)
 
 

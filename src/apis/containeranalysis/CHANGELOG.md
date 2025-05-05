@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v11.4.0...containeranalysis-v11.4.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* **containeranalysis:** update the API ([b6baad9](https://github.com/googleapis/google-api-nodejs-client/commit/b6baad958e0c484c55ebd92e706d9f802b8c0c7d))
+
 ## [11.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v11.3.0...containeranalysis-v11.4.0) (2025-03-18)
 
 
