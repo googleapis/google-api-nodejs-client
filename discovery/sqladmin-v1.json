@@ -234,7 +234,7 @@
           ]
         },
         "UpdateBackup": {
-          "description": "Updates the retention period and description of the backup. You can use this API to update final backups only.",
+          "description": "This API updates the following: 1- retention period and description of backup in case of final backups only. 2- gcbdr_soft_delete_status of backup in case of GCBDR managed backups only.",
           "flatPath": "v1/projects/{projectsId}/backups/{backupsId}",
           "httpMethod": "PATCH",
           "id": "sql.Backups.UpdateBackup",
@@ -250,7 +250,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "The list of fields that you can update. You can update only the description and retention period of the final backup.",
+              "description": "The list of fields that you can update. 1- You can update only the description and retention period for a final backup. 2- You can update only the gcbdr_soft_delete_status for GCBDR managed backup.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -6136,7 +6136,8 @@
             "MANAGE_BACKUP",
             "ENHANCED_BACKUP",
             "REPAIR_READ_POOL",
-            "CREATE_READ_POOL"
+            "CREATE_READ_POOL",
+            "PRE_CHECK_MAJOR_VERSION_UPGRADE"
           ],
           "enumDeprecated": [
             false,
@@ -6246,7 +6247,8 @@
             "Changes the BackupTier of a Cloud SQL instance.",
             "Creates a backup for an Enhanced BackupTier Cloud SQL instance.",
             "Repairs entire read pool or specified read pool nodes in the read pool.",
-            "Creates a Cloud SQL read pool instance."
+            "Creates a Cloud SQL read pool instance.",
+            "Pre-checks the major version upgrade operation."
           ],
           "type": "string"
         },
@@ -7797,20 +7799,6 @@
         },
         "host": {
           "description": "Optional. The host from which the user can connect. For `insert` operations, host defaults to an empty string. For `update` operations, host is specified as part of the request URL. The host name cannot be updated after insertion. For a MySQL instance, it's required; for a PostgreSQL or SQL Server instance, it's optional.",
-          "type": "string"
-        },
-        "iamStatus": {
-          "description": "Indicates if user is active for IAM Authentication.",
-          "enum": [
-            "IAM_STATUS_UNSPECIFIED",
-            "INACTIVE",
-            "ACTIVE"
-          ],
-          "enumDescriptions": [
-            "The default value for users that are not of type CLOUD_IAM_GROUP. Only CLOUD_IAM_GROUP users will be inactive/active. Will not display any value in UI.",
-            "User is not available for IAM Authentication.",
-            "User is available for IAM Authentication."
-          ],
           "type": "string"
         },
         "instance": {

@@ -2884,10 +2884,6 @@ export namespace sqladmin_v1beta4 {
      */
     host?: string | null;
     /**
-     * Indicates if user is active for IAM Authentication.
-     */
-    iamStatus?: string | null;
-    /**
      * The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for *update* because it is already specified on the URL.
      */
     instance?: string | null;
@@ -4596,7 +4592,7 @@ export namespace sqladmin_v1beta4 {
      */
     name?: string;
     /**
-     * The list of fields that you can update. You can update only the description and retention period of the final backup.
+     * The list of fields that you can update. 1- You can update only the description and retention period for a final backup. 2- You can update only the gcbdr_soft_delete_status for GCBDR managed backup.
      */
     updateMask?: string;
 
